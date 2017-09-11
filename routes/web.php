@@ -83,4 +83,7 @@ Route::get('/updateCorporate','CorporateAccountController@updateCorporate');
 Route::post('/update_Corporate','CorporateAccountController@update_Corporate');
 Route::post('/save_corp','CorporateAccountController@save_corp');
 Route::post('/deleteCorporate','CorporateAccountController@deleteCorporate');
-Route::post('/Maintenance/Corporate/CreatePackage','CorporateAccountController@createpackage');
+Route::get('/Maintenance/Corporate/CreatePackage','CorporateAccountController@createpackage');
+Route::post('/save_corpPackage','CorporateAccountController@save_corpPackage');
+Route::post('/deleteCorporatePackage','CorporateAccountController@deleteCorporatePackage');
+Route::get('/updateCorporatePackage','CorporateAccountController@updateCorporatePackage');
