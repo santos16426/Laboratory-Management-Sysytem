@@ -164,6 +164,13 @@
                   @endforeach              
                 </optgroup>
               @endforeach
+              <optgroup label="Others">
+              @foreach($serviceoffer as $nogrp)
+                @if($nogrp->servgroup_id == null)
+                  <option value="{{ $nogrp->service_id }}">{{ $nogrp->service_name }}</option>
+                  @endif
+              @endforeach
+              </optgroup>
             </select> 
           </div>
         </div>

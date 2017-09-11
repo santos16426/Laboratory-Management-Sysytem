@@ -9,7 +9,11 @@ class PackageController extends Controller
 {
     function package()
     {
-		$servicegroup = DB::table('service_group_tbl')->where('ServGroupStatus',1)->get();
+		$servicegroup = DB::table('service_group_tbl')
+      ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+      ->where('ServGroupStatus',1)
+      ->where('LabStatus',1)
+      ->get();
 		$serviceoffer = DB::table('service_tbl')
 		->leftjoin('service_group_tbl','service_group_tbl.servgroup_id','=','service_tbl.service_group_id')
 		->leftjoin('service_type_tbl','service_type_tbl.service_type_id','=','service_tbl.service_type_id')
