@@ -7,6 +7,40 @@ use DB;
 use Session;
 class CorporateAccountController extends Controller
 {
+    function createpackage()
+    {
+    $servicegroup = DB::table('service_group_tbl')
+      ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+      ->where('ServGroupStatus',1)
+      ->where('LabStatus',1)
+      ->get();
+    $serviceoffer = DB::table('service_tbl')
+      ->leftjoin('service_group_tbl','service_group_tbl.servgroup_id','=','service_tbl.service_group_id')
+      ->leftjoin('service_type_tbl','service_type_tbl.service_type_id','=','service_tbl.service_type_id')
+      ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+      ->where('service_tbl.ServiceStatus',1)
+      ->where('laboratory_tbl.LabStatus',1)
+      ->where('service_group_tbl.ServGroupStatus',1)
+      ->where('service_type_tbl.ServTypeStatus',1)
+      ->orWhere('service_tbl.ServiceStatus',1)
+      ->where('laboratory_tbl.LabStatus',null)
+      ->where('service_group_tbl.ServGroupStatus',null)
+      ->where('service_type_tbl.ServTypeStatus',null)
+      ->orWhere('service_tbl.ServiceStatus',1)
+      ->where('laboratory_tbl.LabStatus',1)
+      ->where('service_group_tbl.ServGroupStatus',1)
+      ->where('service_type_tbl.ServTypeStatus',null)
+      ->get();
+
+      $corp_id = $_POST['corp_id'];
+      $corp_name = DB::table('corporate_accounts_tbl')->where('corp_id',$corp_id)->select('corp_name')->get();
+      foreach($corp_name as $c)
+      {
+        $corp_name = $c->corp_name;
+      }
+      $table = DB::table('corp_package_tbl')->get();
+      return view('Maintenance.CreateCorporatePackage',['corp_name'=>$corp_name,'table'=>$table,'serviceoffer'=>$serviceoffer,'servicegroup'=>$servicegroup]);
+    }
     function corp()
     {
 			$corporates = DB::table('corporate_accounts_tbl')->get();

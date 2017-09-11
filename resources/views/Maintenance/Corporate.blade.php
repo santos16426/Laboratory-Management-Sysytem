@@ -49,6 +49,7 @@
 					      @if($corporates->CorpStatus == 1)
 					        <a class="btn btn-warning btn-xs updateModal" data-id="{{$corporates->corp_id}}" href="#updateModal" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 					        <a class="btn btn-danger btn-xs delbtn" data-id="{{$corporates->corp_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+					        <a class="btn btn-info btn-xs corppackages" data-id="{{$corporates->corp_id}}" ><i class="fa fa-dropbox" aria-hidden="true"></i>&nbsp; Packages</a>
 					       @else
 					       <a class="btn btn-warning btn-xs"  disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 					        <a class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
@@ -72,6 +73,7 @@
 		</section>
 	</div>
 </div>
+
 <div class="modal fade" id = "updateModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -184,7 +186,6 @@
 		       </div> 
 
 		        <div class="form-group">
-		           
 		              <div class="col-md-10 col-md-offset-1">
 		                 <div class="input-group">
 		                  <div class="input-group-addon">
@@ -227,10 +228,18 @@
     </div>  
   </div>
 </div>
+<form action="/Maintenance/Corporate/CreatePackage" method="POST" id="createcorppackage">
+{{ csrf_field() }}	
+<input type="hidden" name="corp_id" id="corp_id">
+</form>
 @endsection
 @section('additional')
 <script type="text/javascript">
-	$('#corpTbl').DataTable({
+$('.corppackages').click(function(){
+	$('#corp_id').val($(this).data('id'));
+	$('#createcorppackage').submit();
+});
+$('#corpTbl').DataTable({
   'paging'      : true,
   'lengthChange': true,
   'searching'   : true,

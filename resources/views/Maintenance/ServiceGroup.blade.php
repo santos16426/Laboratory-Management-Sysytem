@@ -46,6 +46,7 @@
                   @if($serviceGroups->ServGroupStatus == 1 and $serviceGroups->LabStatus == 1)
 				            <a class="btn btn-warning btn-xs servgroupupbtn" href="#updateModal" data-toggle="modal" data-id="{{ $serviceGroups->servgroup_id }}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 				            <a class="btn btn-danger btn-xs delbtn" data-id="{{ $serviceGroups->servgroup_id }}" ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                    
                   @endif
                   @if($serviceGroups->ServGroupStatus == 0 or $serviceGroups->LabStatus == 0)
                     <a class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
