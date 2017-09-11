@@ -52,9 +52,9 @@
       </div>
       <form action="/save_rebatePercentage" method="POST" class="form-horizontal" id="rebate">
         <div class="modal-body" >
-        	<div class="form-group" style="margin-right:3% ">
+        	<div class="form-group" >
 	            
-	              <div class="col-sm-6 col-md-offset-3">
+	              <div class="col-sm-10 col-md-offset-1">
 	                 <div class="input-group">
 	                  <div class="input-group-addon">
 	                  Percentage <sup style="color: red">*</sup>

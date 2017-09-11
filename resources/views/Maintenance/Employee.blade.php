@@ -15,7 +15,7 @@
 	<div class="col-lg-12">
 		<section class="panel">
 			<header class="panel-heading">
-				Employee Type
+				Employee
 			</header>
 			<div class="panel-body">
 				<div class="clearfix">
@@ -31,6 +31,7 @@
 			          <th>Middle Name</th>
 			          <th>Employee Type</th>
 			          <th>Action</th>
+                <th>Status</th>
 			        </tr>
 			      </thead>
 			      <tbody>
@@ -41,10 +42,25 @@
 			          <td>{{ $emp1->emp_mname }}</td>
 			          <td>{{ $emp1->role_name }}</td>
 			          <td>
+                @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1)
 			            <button class="btn btn-warning btn-xs empupdateModalbtn" data-target="#updateModal" data-id="{{ $emp1->emp_id }}" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</button>
 			            <button class="btn btn-info btn-xs empviewModalbtn" data-target="#viewModal"  data-id="{{ $emp1->emp_id }}" data-toggle="modal"><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp; View</button>
 			            <button class="btn btn-danger btn-xs empdeleteModalbtn" data-id="{{ $emp1->emp_id }}" ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
+                @endif
+                @if($emp1->RoleStatus == 0 or $emp1->EmpStatus == 0 or $emp1->LabStatus == 0)
+                  <button class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</button>
+                  <button class="btn btn-info btn-xs" disabled ><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp; View</button>
+                  <button class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
+                @endif
 			          </td>
+                <td>
+                @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1)
+                <span class="badge bg-success">Available</span>
+                @endif
+                @if($emp1->RoleStatus == 0 or $emp1->EmpStatus == 0 or $emp1->LabStatus == 0)
+                <span class="badge bg-important">Unavailable</span>
+                @endif
+                </td>
 			        </tr>
 
 			       
@@ -165,23 +181,35 @@
     </div>  
   </div>
 </div>
+
 @endsection
 @section('additional')
+
+<script>
+$(function () {
+$('#empTable').DataTable({
+  'paging'      : true,
+  'lengthChange': true,
+  'searching'   : true,
+  'ordering'    : true,
+  'info'        : true,
+  'autoWidth'   : true
+});
+$('.employeeTypeDropDown').select2({
+  placeholder: "Select employee type"
+});
+
+
+   
+
+});
+</script>
 <script type="text/javascript">
-	$('#empTable').DataTable({
-    'paging'      : true,
-    'lengthChange': true,
-    'searching'   : true,
-    'ordering'    : true,
-    'info'        : true,
-    'autoWidth'   : true
-  });
   $('.empdeleteModalbtn').click(function(){
     $('#empid').val($(this).data('id'));
     $('#deleteModal').modal('show');
   });
-  $('#emp_type').select2();
-	$('.employeeTypeDropDown').on('change',function(){ 
+$('.employeeTypeDropDown').on('change',function(){ 
       var address = ""; 
       var username = ""; 
       var formChanges = ""; 
@@ -211,24 +239,25 @@
           $('.geninfo').empty(); 
 
           if(rank==1){
-            $('.geninfo').append('<div class="form-group" id="medtechrank">  <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Position<sup style="color:red">*</sup></div> <select class="form-control select2" name="rank_id" style="width: 100%;"> @php $ranks1 = $ranks @endphp  @foreach($ranks1 as $ranks1) <option value="{{ $ranks1->rank_id }}">{{ $ranks1->rank_name }}</option> @endforeach </select> </div> </div> </div>'); 
+            $('.geninfo').append('<div class="form-group" id="medtechrank"> <label class="col-xs-3 control-label">Position</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-id-badge" aria-hidden="true"></i></div> <select class="form-control select2" name="rank_id" style="width: 100%;"> @php $ranks1 = $ranks @endphp  @foreach($ranks1 as $ranks1) <option value="{{ $ranks1->rank_id }}">{{ $ranks1->rank_name }}</option> @endforeach </select> </div> </div> </div>'); 
           }
           if(name==1){
-            $('.geninfo').append('<legend>General Information</legend><div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">First Name<sup style="color:red">*</sup></div> <input type="text" class="form-control ff2" name="firstname" placeholder="e.g. Juan" required> </div> </div> </div> <div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Middle Name</div> <input type="text" class="form-control mm2" name="middlename" placeholder="e.g. Martinez"> </div> </div> </div> <div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Last Name<sup style="color:red">*</sup></div> <input type="text" class="form-control ll2" name="lastname" placeholder="e.g. Dela Cruz"> </div> </div> </div>');
+
+            $('.geninfo').append('<legend>General Information</legend><div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">First Name <sup style="color:red">*</sup></div> <input type="text" class="form-control ff2" name="firstname" placeholder="e.g. Juan" required> </div> </div> </div> <div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Middle Name </div> <input type="text" class="form-control mm2" name="middlename" placeholder="e.g. Martinez"> </div> </div> </div> <div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Last Name <sup style="color:red">*</sup></div> <input type="text" class="form-control ll2" name="lastname" placeholder="e.g. Dela Cruz"> </div> </div> </div>');
           }
           if(address==1){
-            $('.geninfo').append('<div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Address<sup style="color:red">*</sup></div> <input type="text" class="form-control" name="address" placeholder="e.g. 173 L. Pascual Street, Q.C."> </div> </div> </div>');
+            $('.geninfo').append('<div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Address <sup style="color:red">*</sup></div> <input type="text" class="form-control" name="address" placeholder="e.g. 173 L. Pascual Street, Q.C."> </div> </div> </div>');
           }
           if(contact==1){
-            $('.geninfo').append('<div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Contact Number<sup style="color:red">*</sup></div> <input type="text" class="form-control" name="contact" placeholder="e.g. (63) 926 189 1291"> </div> </div> </div>');
+            $('.geninfo').append('<div class="form-group"><div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Contact Number <sup style="color:red">*</sup></div> <input type="text" class="form-control" name="contact" placeholder="e.g. (63) 926 189 1291"> </div> </div> </div>');
           }
           if(license==1){
-            $('.geninfo').append(' <div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">License No.<sup style="color:red">*</sup></div> <input type="text" class="form-control" name="license" placeholder="e.g. HH-DH-8876"> </div> </div> </div>');
+            $('.geninfo').append(' <div class="form-group"> <label class="col-xs-3 control-label">License Number</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div> <input type="text" class="form-control" name="license" placeholder="e.g. HH-DH-8876"> </div> </div> </div>');
           }
 
           $('.accountinfo').empty();
           if((username==1)&&(password==1)){
-          $('.accountinfo').append(' <legend>Account Information</legend><div class="form-group"><div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Username<sup style="color:red">*</sup></div><input type="text" class="form-control" name="username" placeholder="Username"></div></div></div><div class="form-group"><div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Password<sup style="color:red">*</sup></div><input type="password" class="form-control" name="password" placeholder="Password"></div></div></div><div class="form-group"><div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Confirm Password<sup style="color:red">*</sup></div><input type="password" class="form-control" name="confirmpass" placeholder="Confirm Password"></div></div></div>');
+          $('.accountinfo').append(' <legend>Account Information</legend><div class="form-group"><div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Username <sup style="color:red">*</sup></div><input type="text" class="form-control" name="username" placeholder="Username"></div></div></div><div class="form-group"><div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Password <sup style="color:red">*</sup></div><input type="password" class="form-control" name="password" placeholder="Password"></div></div></div><div class="form-group"><div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Confirm Password <sup style="color:red">*</sup></div><input type="password" class="form-control" name="confirmpass" placeholder="Confirm Password"></div></div></div>');
           }
 
         }
@@ -395,5 +424,7 @@ $('.empupdateModalbtn').click(function(){
   });
   return true;
 });
+
+
 </script>
 @endsection

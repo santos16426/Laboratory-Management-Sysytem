@@ -19,10 +19,14 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/advanced-datatable/media/css/demo_table.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/Toastr/build/toastr.css') }}">
         <link rel="stylesheet" href="{{ asset('/plugins/select2/dist/css/select2.min.css') }}">
+        <style type="text/css">
+          sup
+          {
+            color: red;
+          }
+        </style>
     </head>
-
   <body>
-
 <section id="container" >
     <header class="header white-bg">
         <div class="sidebar-toggle-box">
@@ -59,9 +63,9 @@
                   </a>
                   <ul class="sub">
                       <li>
-                        <a  href="/Maintenance/Department">
+                        <a  href="/Maintenance/Laboratory">
                             <i class="fa fa-building-o" aria-hidden="true"></i>
-                            <span>Department</span>    
+                            <span>Laboratory</span>    
                         </a>
                       </li>
 

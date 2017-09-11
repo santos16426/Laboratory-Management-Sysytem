@@ -31,6 +31,7 @@
 								<th>Medical Request</th>
 								<th>Price</th>
 								<th>Action</th>
+                <th>Status</th>
 							</tr>
 				      	</thead>
 						<tbody>
@@ -42,9 +43,23 @@
 									<td>{{ $service->medical_request }}</td>
 									<td>{{ $service->service_price }}</td>
 									<td>
+                  @if($service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus == 1 and $service->ServiceStatus == 1 or $service->LabStatus == null and $service->ServGroupStatus==null and $service->ServTypeStatus == null and $service->ServiceStatus == 1 or $service->LabStatus == 1 and $service->ServGroupStatus== 1 and $service->ServTypeStatus==null and $service->ServiceStatus == 1)
 									<a class="btn btn-warning btn-xs editsrvc" href="#updateModal" data-id="{{ $service->service_id }}" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 									<a class="btn btn-danger btn-xs delbtn"  data-id="{{$service->service_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                  @endif
+                  @if($service->ServiceStatus == 0 and $service->ServTypeStatus == 0 and $service->LabStatus == 0 and $service->ServGroupStatus == 0 or $service->ServiceStatus == 0 and $service->ServGroupStatus == 0 and $service->ServTypeStatus == null and $service->LabStatus == 0 or $service->ServiceStatus == 0 and $service->ServGroupStatus == null and $service->ServTypeStatus==null and $service->LabStatus == null or $service->ServiceStatus == 1 and $service->ServTypeStatus == 1 and $service->LabStatus == 0 and $service->ServGroupStatus == 1 or $service->ServiceStatus == 1 and $service->ServTypeStatus == null and $service->LabStatus == 0 and $service->ServGroupStatus == 1 or $service->ServiceStatus == 1 and $service->ServTypeStatus == 1 and $service->LabStatus == 1 and $service->ServGroupStatus == 0 or $service->ServiceStatus == 1 and $service->ServTypeStatus == null and $service->LabStatus == 1 and $service->ServGroupStatus == 0)
+                  <a class="btn btn-warning btn-xs disabled" ><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                  <a class="btn btn-danger btn-xs disabled"  ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                  @endif
 									</td>
+                  <td>
+                    <!-- @if($service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus == 1 and $service->ServiceStatus == 1 or $service->LabStatus == null and $service->ServGroupStatus == null and $service->ServTypeStatus == null and $service->ServiceStatus == 1 or $service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus == null and $service->ServiceStatus == 1)
+                    <span class="badge bg-success">Available</span>
+                    @endif  
+                    @if($service->ServiceStatus == 0 and $service->ServTypeStatus == 0 and $service->LabStatus == 0 and $service->ServGroupStatus == 0 or $service->ServiceStatus == 0 and $service->ServGroupStatus == 0 and $service->ServTypeStatus == null and $service->LabStatus == 0 or $service->ServiceStatus == 0 and $service->ServGroupStatus == null and $service->ServTypeStatus==null and $service->LabStatus == null or $service->ServiceStatus == 1 and $service->ServTypeStatus == 1 and $service->LabStatus == 0 and $service->ServGroupStatus == 1 or $service->ServiceStatus == 1 and $service->ServTypeStatus == null and $service->LabStatus == 0 and $service->ServGroupStatus == 1 or $service->ServiceStatus == 1 and $service->ServTypeStatus == 1 and $service->LabStatus == 1 and $service->ServGroupStatus == 0 or $service->ServiceStatus == 1 and $service->ServTypeStatus == null and $service->LabStatus == 1 and $service->ServGroupStatus == 0)
+                    <span class="badge bg-important">Unavailable</span>
+                    @endif -->
+                  </td>
 								</tr>
 						@endforeach
 						</tbody>
@@ -229,18 +244,24 @@
 </div>
 @endsection
 @section('additional')
-<script type="text/javascript">
-	$('#servicesTbl').DataTable({
-		'paging'      : true,
-		'lengthChange': true,
-		'searching'   : true,
-		'ordering'    : true,
-		'info'        : true,
-		'autoWidth'   : true,
-	});
-	
 
-	$('.srvcgrp').on('change',function(){ // onchange function ng service group dropdown
+<script>
+$(function () {
+$('#servicesTbl').DataTable({
+    'paging'      : true,
+    'lengthChange': true,
+    'searching'   : true,
+    'ordering'    : true,
+    'info'        : true,
+    'autoWidth'   : true,
+     
+  });
+
+  $('#servg').select2();
+  $('#servt').select2();
+
+
+    $('.srvcgrp').on('change',function(){ // onchange function ng service group dropdown
       var optionSrvc = ""; 
       $.ajax
       ({
@@ -277,11 +298,16 @@
         }
       });
     });
-    $('.delbtn').click(function(){
-	    $('#sid').val($(this).data('id'));
-	    $('#deleteModal').modal('show');
-  	});
-  	$('.editsrvc').on('click',function(){
+    
+});
+
+</script>
+<script type="text/javascript">
+$('.delbtn').click(function(){
+    $('#sid').val($(this).data('id'));
+    $('#deleteModal').modal('show');
+  });
+$('.editsrvc').on('click',function(){
   
       $.ajax
       ({
@@ -301,7 +327,28 @@
         }
       });
     });
-    $('#servg').select2();
-  	$('#servt').select2();
+  $('#servicesTbl').on("click",".editsrvc",function(){
+  $('.editsrvc').on('click',function(){
+ 
+      $.ajax
+      ({
+        url: '/getService', //eto ung route para makuha ung mga service type na may parehong service type id
+        type: 'get',
+        data: {ID:$(this).data('id')}, // value ng selected sa dropdown ng service group
+        dataType : 'json',
+        success:function(response) { //eto ung response na galing sa controller na kinquery
+          response.forEach(function(data) {
+            $('#srvcid').val(data.service_id);
+            $('#srvcname').val(data.service_name);
+            $('#srvcprice').val(data.service_price);
+            $('#srvcgrpid').val(data.service_group_id);
+            $('#typesel').val(data.service_type_id);
+
+          })      
+        }
+      });
+    });
+});
+  
 </script>
 @endsection

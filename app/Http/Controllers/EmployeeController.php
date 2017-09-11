@@ -9,22 +9,33 @@ class EmployeeController extends Controller
 {
     function emptype()
     {
-    	$emptype = DB::table('employee_role_tbl')->where('status',1)->get();
-    	return view('Maintenance.EmployeeType',['emptype'=> $emptype]);
+    	$labs = DB::table('laboratory_tbl')->where('LabStatus',1)->get();
+    	$emptype = DB::table('employee_role_tbl')
+    		->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+    		->get();
+    	return view('Maintenance.EmployeeType',['emptype'=> $emptype,'labs'=>$labs]);
     }
     function  emp()
     {
-    	$emp1 = DB::table('employee_tbl')->join('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')->where('employee_tbl.status',1)->get();
-        $empTypes = DB::table('employee_role_tbl')->where('status',1)->get();
-        $ranks = DB::table('medtech_rank')->where('status',1)->get();
+    	$emp1 = DB::table('employee_tbl')
+    		->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
+    		->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+    		->get();
+        $empTypes = DB::table('employee_role_tbl')
+        	->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+        	->where('laboratory_tbl.LabStatus',1)
+        	->where('RoleStatus',1)
+        	->get();
+        $ranks = DB::table('medtech_rank')->get();
         return view('Maintenance.Employee',['emp1' => $emp1,'empTypes'=> $empTypes,'ranks'=>$ranks] );
     	
     }
     public function updateEmployeeType(Request $req){
-    	$emptype = DB::table('employee_role_tbl')->where('role_id',$req->id)->where('status',1)->get();
+    	$emptype = DB::table('employee_role_tbl')->where('role_id',$req->id)->get();
     	return response()->json($emptype);
     }
     public function save_empType(){
+    	$lab_id = $_POST['lab_id'];
 		$x = array();
 		$x[0]=0;
 		$x[1]=0;
@@ -52,21 +63,45 @@ class EmployeeController extends Controller
 		if (isset($_POST['rebate'])) {
 		$x[6]=1;
 		}
-		DB::table('employee_role_tbl')->insert(['role_name'=>$_POST['emptype'],'status'=> 1]);
-		$role_id = DB::table('employee_role_tbl')->select('role_id')->max('role_id');
-		DB::table('rolefields_tbl')->insert(['role_id'=>$role_id,'address'=>$x[5],'rank'=>$x[4],'username'=>$x[1],'password'=>$x[2],'contact'=>$x[0],'license'=>$x[3],'status'=>1,'rebate'=>$x[6]]);
+		DB::table('employee_role_tbl')
+			->insert([
+				'role_name'=>$_POST['emptype'],
+				'lab_id'=>$lab_id
+			]);
+		$role_id = DB::table('employee_role_tbl')
+			->select('role_id')
+			->max('role_id');
+		DB::table('rolefields_tbl')
+			->insert([
+				'role_id'=>$role_id,
+				'address'=>$x[5],
+				'rank'=>$x[4],
+				'username'=>$x[1],
+				'password'=>$x[2],
+				'contact'=>$x[0],
+				'license'=>$x[3],
+				'rebate'=>$x[6]
+			]);
 		Session::flash('add', 'true');
 	return redirect()->back();
    	}
 	public function update_empType(){
 		$upemptype_id = $_POST['upemptype_id'];
 		$updateemptype = $_POST['updateemptype'];
-		DB::table('employee_role_tbl')->where('role_id',$upemptype_id)->update(['role_name'=>$updateemptype]);
+		DB::table('employee_role_tbl')
+			->where('role_id',$upemptype_id)
+			->update([
+				'role_name'=>$updateemptype
+			]);
 		Session::flash('update', 'true');
 		return redirect()->back();
 	}
 	public function deleteEmployeeType(){
-		DB::table('employee_role_tbl')->where('role_id',$_POST['id'])->update(['status'=>0]);
+		DB::table('employee_role_tbl')
+			->where('role_id',$_POST['id'])
+			->update([
+				'RoleStatus'=>0
+			]);
 		Session::flash('delete', 'true');
 		return redirect()->back();
     }
@@ -88,7 +123,6 @@ class EmployeeController extends Controller
     }
     public function update_employee(){
       $empid = ($_POST['update_emp_id'])*1;
-
       $emp_type = $_POST['update_emp_type'];
       $checkfields = DB::table('rolefields_tbl')->where('role_id',$emp_type)->get();
       $firstname = $_POST['firstname'];
@@ -232,7 +266,7 @@ class EmployeeController extends Controller
 
 	}
 	public function deleteEmployee(){
-      DB::table('employee_tbl')->where('emp_id',$_POST['id'])->update(['status'=>0]);
+      DB::table('employee_tbl')->where('emp_id',$_POST['id'])->update(['EmpStatus'=>0]);
       Session::flash('delete',true);
       return redirect()->back();
     }

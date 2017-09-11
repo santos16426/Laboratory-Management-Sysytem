@@ -19,8 +19,11 @@ Route::get('/Admin/Dashboard','AdminController@dashboard');
 
 
 // Department
-Route::get('/Maintenance/Department','DepartmentController@department');
-
+Route::get('/Maintenance/Laboratory','LaboratoryController@lab');
+Route::post('/save_Lab','LaboratoryController@save_Lab');
+Route::post('/deleteLaboratory','LaboratoryController@deleteLaboratory');
+Route::get('/updateLab','LaboratoryController@updateLab');
+Route::post('/update_laboratory','LaboratoryController@update_laboratory');
 
 // Employee
 Route::get('/Maintenance/EmployeeType','EmployeeController@emptype');

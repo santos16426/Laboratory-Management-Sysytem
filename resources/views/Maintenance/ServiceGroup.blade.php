@@ -26,17 +26,34 @@
 				      <thead>
 				        <tr>
 				          <th>Service Group</th>
+                  <th>Laboratory Name</th>
 				          <th>Action</th>
+                  <th>Status</th>
 				        </tr>
 				      </thead>
 				      <tbody>
 				        @foreach($serviceGroups as $serviceGroups)
 				        <tr>
 				          <td>{{ $serviceGroups->servgroup_name }}</td>
+                  <td>{{ $serviceGroups->lab_name }}</td>
 				          <td>
+                  @if($serviceGroups->ServGroupStatus == 1 and $serviceGroups->LabStatus == 1)
 				            <a class="btn btn-warning btn-xs servgroupupbtn" href="#updateModal" data-toggle="modal" data-id="{{ $serviceGroups->servgroup_id }}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 				            <a class="btn btn-danger btn-xs delbtn" data-id="{{ $serviceGroups->servgroup_id }}" ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                  @endif
+                  @if($serviceGroups->ServGroupStatus == 0 or $serviceGroups->LabStatus == 0)
+                    <a class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                    <a class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                  @endif
 				          </td>
+                  <td>
+                  @if($serviceGroups->ServGroupStatus == 1 and $serviceGroups->LabStatus == 1)
+                    <span class="badge bg-success">Available</span>
+                  @endif
+                  @if($serviceGroups->ServGroupStatus == 0 or $serviceGroups->LabStatus == 0)
+                    <span class="badge bg-important">Unavailable</span>
+                  @endif
+                  </td>
 				        </tr>
 				        @endforeach
 				      </tbody>
@@ -55,12 +72,11 @@
       </div>
       <div class="modal-body">
         <form action="/update_servGroup" method="POST" class="form-horizontal" id="servgrpedit">
-          <div class="form-group" style="margin-right:3% ">
-             <label class="col-xs-4 control-label">Service Group Name</label>  
-                <div class="col-md-6">
+          <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
                    <div class="input-group">
                     <div class="input-group-addon">
-                     <i class="fa fa-briefcase"></i>
+                     Service Group <sup style="color:red">*</sup>
                    </div>
                    <input name="upservice_id" type="hidden" id="upservice_id">
                   <input  name="upservicegroup" type="text" id="upservicegroup" placeholder="Service Group Name" class="form-control input-md" required>
@@ -83,16 +99,31 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header btn-primary">
-        <h4 class="modal-title"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Service Group</h4>
+        <h4 class="modal-title"><i class="fa fa-plus" aria-hidden="true"></i> Add Service Group</h4>
       </div>
       <div class="modal-body">
         <form action="/save_servGroup" method="POST" class="form-horizontal" id="servgrpadd">
-          <div class="form-group" style="margin-right:3% ">
-             <label class="col-xs-4 control-label">Service Group Name</label>  
-                <div class="col-md-6">
+
+          <div class="form-group" >
+            <div class="col-sm-10 col-md-offset-1">
+              <div class="input-group">
+                <div class="input-group-addon">
+                  Laboratory Name <sup style="color: red">*</sup>
+                </div>
+                <select class="form-control select2" name="lab_id" id="dropLABID" style="width: 100%">
+                  @foreach($labs as $gd) 
+                  <option value="{{$gd->lab_id}}">{{$gd->lab_name}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>  
+          </div> 
+
+          <div class="form-group" >
+             <div class="col-md-10 col-md-offset-1">
                    <div class="input-group">
                     <div class="input-group-addon">
-                     <i class="fa fa-briefcase"></i>
+                     Service Group <sup style="color: red">*</sup>
                    </div>
                   <input  name="servicegroup" id="servicegroup" type="text" placeholder="Service Group Name" class="form-control input-md" required>
                </div>
@@ -135,6 +166,7 @@
 @endsection
 @section('additional')
 <script type="text/javascript">
+  $('#dropLABID').select2();
 	$('#servGroup').DataTable({
 		'paging'      : true,
 		'lengthChange': true,

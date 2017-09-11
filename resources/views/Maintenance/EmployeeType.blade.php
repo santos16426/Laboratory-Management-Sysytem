@@ -27,17 +27,33 @@
 		      		<thead>
 		      			<tr>
 		      				<th>Employee Types</th>
+		      				<th>Laboratory Name</th>
 		      				<th>Action</th>
+		      				<th>Status</th>
 		      			</tr>
 		      		</thead>
 		      		<tbody>
 		      			@foreach($emptype as $emptype)
 		      			<tr>
 		      				<td>{{ $emptype->role_name }}</td>
+		      				<td>{{ $emptype->lab_name }}</td>
 		      				<td>
-		                  <input type="text" name="" value="" class="hidden">
+		      					@if($emptype->RoleStatus == 1 and $emptype->LabStatus == 1)
 		                  <a class="btn btn-warning btn-xs upEtypebtn" data-toggle="modal" href="#EmployeeTypeedit" data-id="{{ $emptype->role_id }}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 		                  <button type="button" class="btn btn-danger btn-xs delEtypebtn" data-id="{{ $emptype->role_id }}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
+		                @endif
+		                @if($emptype->RoleStatus == 0 or $emptype->LabStatus == 0)
+		                  <a class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+		                  <button type="button" class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
+		                @endif
+		      				</td>
+		      				<td>
+		      					@if($emptype->RoleStatus == 1 and $emptype->LabStatus == 1)
+		      					<span class="badge bg-success">Available</span>
+										@endif
+										@if($emptype->RoleStatus == 0 or $emptype->LabStatus == 0)
+										<span class="badge bg-important">Unavailable</span>
+										@endif
 		      				</td>
 		      			</tr>
 
@@ -58,28 +74,45 @@
       		</div>
       		<div class="modal-body">
          		<form class="form-horizontal" id="EmployeeTypeadd" method="POST" action="/save_empType">
-         		{{ csrf_field() }}
           			<div class="box-body">
+            			<div class="form-group"  >
+										<div class="col-md-10 col-md-offset-1">
+											<div class="input-group">
+												<div class="input-group-addon">
+													Employee Type<sup style="color: red">*</sup>
+												</div>
+												<input type="text" class="form-control" id="emptype" name="emptype" >
+											</div>
+										</div>  
+									</div> 
             			<div class="form-group">
-		             		<label  class="col-sm-3 control-label">Employee Type<sup style="color: red">*</sup></label>
-              				<div class="col-sm-8">
-	                			<input type="text" class="form-control" id="emptype" name="emptype" >
-              				</div>
-            			</div>
+										<div class="col-md-10 col-md-offset-1">
+											<div class="input-group">
+												<div class="input-group-addon">
+													Laboratory Name <sup style="color: red">*</sup>
+												</div>
+												<select class="form-control select2" name="lab_id" id="dropLABID" style="width: 100%">
+													@foreach($labs as $gd) 
+														<option value="{{$gd->lab_id}}">{{$gd->lab_name}}</option>
+													@endforeach
+												</select>
+											</div>
+										</div>  
+									</div> 
             			<hr>
             			<h4>Attributes needed:</h4>
             			<div class="col-md-12">
             				<div class="col-md-4">
             					<div class="form-group">
 		              				<div class="checkbox">
-		              					<label class="label_check" for="number">
+		              					<label class="" for="number">
 		              						<input type="checkbox" id="number" name="number" value="1"> Contact Number
 		              					</label>
 		            				</div>
             					</div>
 		            			<div class="form-group">
 			              			<div class="checkbox">
-			              				<label class="label_check" for="account">
+			              				<label class="" for="account">
 			              					<input type="checkbox" id="account" name="account" value="2"> Account
 			              				</label>
 			            			</div>
@@ -88,14 +121,14 @@
 	            			<div class="col-md-4">
 	            				<div class="form-group">
 			              			<div class="checkbox">
-			              				<label class="label_check" for="license">
+			              				<label class="" for="license">
 			              					<input type="checkbox" id="license" name="license" value="3"> License Number
 			              				</label>
 			            			</div>
 	            				</div>
 		            			<div class="form-group">
 			              			<div class="checkbox">
-			              				<label class="label_check" for="rank">
+			              				<label class="" for="rank">
 			              					<input type="checkbox" id="rank" name="rank" value="4"> Position/Rank
 			              				</label>
 			            			</div>
@@ -104,7 +137,7 @@
 	            			<div class="col-md-4">
 		            			<div class="form-group">
 			              			<div class="checkbox">
-			              				<label class="label_check" for="address">
+			              				<label class="" for="address">
 			              					<input type="checkbox" id="address" name="address" value="5"> Address
 			              				</label>
 			            			</div>
@@ -113,7 +146,7 @@
 							<div class="col-md-4">
 								<div class="form-group">
 								    <div class="checkbox">
-								      <label class="label_check" for="rebate">
+								      <label class="" for="rebate">
 								      	<input type="checkbox" id="rebate" name="rebate" value="6"> Rebate
 								      </label>
 								  </div>
@@ -125,6 +158,7 @@
 						<button  data-dismiss="modal" class="btn btn-default">Cancel</button>
 						<button type="submit" class="btn btn-primary pull-right">Save</button>
 					</div>
+					{{ csrf_field() }}
         		</form>
       		</div>
     	</div>
@@ -160,18 +194,23 @@
 			</div>
 			<form class="form-horizontal" id="EmployeeType2" method="POST" action="/update_empType">
 				<div class="modal-body">
-					<div class="form-group">
-						<label  class="col-sm-3 control-label">Employee Type<sup style="color: red">*</sup></label>
-						<div class="col-sm-8">
-							<input type="hidden" name="upemptype_id" value="" id="typefield_id">
+					<div class="form-group"  >
+						<div class="col-md-10 col-md-offset-1">
+							<div class="input-group">
+								<div class="input-group-addon">
+									Employee Type<sup style="color: red">*</sup>
+								</div>
+								<input type="hidden" name="upemptype_id" value="" id="typefield_id">
 							<input type="text" class="form-control" name="updateemptype" value = "" id="typefield_name">
-						</div>
+							</div>
+						</div>  
 					</div>
+			
 				{{ csrf_field() }}
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-xs btn-warning"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Update</button>
+					<button type="button" class="btn pull-left" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-warning"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Update</button>
 				</div>
 			</form>
 		</div>  
@@ -188,7 +227,7 @@
 		'info'        : true,
 		'autoWidth'   : true
 	});
-
+	$('#dropLABID').select2();
 	$('.delEtypebtn').click(function(){
 		$('#emptypeid').val($(this).data('id'));
 		$('#deleteModal').modal('show');

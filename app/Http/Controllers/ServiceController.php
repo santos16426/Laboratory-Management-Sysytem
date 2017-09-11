@@ -9,24 +9,33 @@ class ServiceController extends Controller
 {
     function servgroup()
     {
-		$serviceGroups = DB::table('service_group_tbl')->where('status',1)->get();
-		return view('Maintenance.ServiceGroup',['serviceGroups'=>$serviceGroups]);
+    $labs = DB::table('laboratory_tbl')->where('LabStatus',1)->get();
+		$serviceGroups = DB::table('service_group_tbl')
+      ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+      ->get();
+		return view('Maintenance.ServiceGroup',['serviceGroups'=>$serviceGroups,'labs'=>$labs]);
     }
     public function updateServGroup(Request $req){
-    	$servgroup = DB::table('service_group_tbl')->where('servgroup_id',$req->id)->where('status',1)->get();
+    	$servgroup = DB::table('service_group_tbl')
+        ->where('servgroup_id',$req->id)
+        ->get();
     	return response()->json($servgroup);
     }
     public function deleteServiceGroup(){
-      DB::table('service_group_tbl')->where('servgroup_id',$_POST['id'])->update(['status'=>0]);
+      DB::table('service_group_tbl')->where('servgroup_id',$_POST['id'])->update(['ServGroupStatus'=>0]);
       Session::flash('delete',true);
       return redirect()->back();
     }
     public function save_servGroup(){
     $servGroupName = ucfirst($_POST['servicegroup']);
+    $lab_id = $_POST['lab_id'];
     DB::table('service_group_tbl')->insert([
-      'servgroup_name'=>$servGroupName
+      'servgroup_name'=>$servGroupName,
+      'lab_id'=>$lab_id
       ]);
-    $servgroup_id = DB::table('service_group_tbl')->select('servGroup_id')->max('servgroup_id');
+    $servgroup_id = DB::table('service_group_tbl')
+      ->select('servGroup_id')
+      ->max('servgroup_id');
 
     DB::table('servgroup_log_tbl')->insert([
       'servgroup_id'  =>  $servgroup_id,
@@ -40,9 +49,9 @@ class ServiceController extends Controller
     public function update_servGroup(){
     	$upservice_id = $_POST['upservice_id'];
     	$upservicegroup = $_POST['upservicegroup'];
-    	DB::table('service_group_tbl')->
-      where('servgroup_id',$upservice_id)->
-      update([
+    	DB::table('service_group_tbl')
+      ->where('servgroup_id',$upservice_id)
+      ->update([
         'servgroup_name'=>$upservicegroup
       ]);
       DB::table('servgroup_log_tbl')->insert([
@@ -55,16 +64,27 @@ class ServiceController extends Controller
     }
     function servtype()
     {
-			$serviceGroup = DB::table('service_group_tbl')->where('status',1)->get();
-			$serviceType = DB::table('service_group_tbl')->join('service_type_tbl','service_type_tbl.service_type_group_id','=','service_group_tbl.servgroup_id')->where('service_type_tbl.status',1)->where('service_group_tbl.status',1)->get();
+			$serviceGroup = DB::table('service_group_tbl')
+        ->where('ServGroupStatus',1)
+        ->get();
+			$serviceType = DB::table('service_group_tbl')
+        ->leftjoin('service_type_tbl','service_type_tbl.service_type_group_id','=','service_group_tbl.servgroup_id')
+        ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+        ->get();
 			return view('Maintenance.ServiceType',['serviceType'=>$serviceType,'serviceGroup'=>$serviceGroup]);
     }
     public function updateServType(Request $req){
-    	$servtype = DB::table('service_type_tbl')->where('service_type_id',$req->id)->where('status',1)->get();
+    	$servtype = DB::table('service_type_tbl')
+        ->where('service_type_id',$req->id)
+        ->get();
     	return response()->json($servtype);	
     }
     public function deleteServiceType(){
-      DB::table('service_type_tbl')->where('service_type_id',$_POST['id'])->update(['status'=>0]);
+      DB::table('service_type_tbl')
+        ->where('service_type_id',$_POST['id'])
+        ->update([
+          'ServTypeStatus'=>0
+        ]);
       Session::flash('delete', true);
       return redirect()->back();
     }
@@ -90,24 +110,16 @@ class ServiceController extends Controller
     }
     function serv()
     {
-      $groupdropdown = DB::table('service_group_tbl')->where('status',1)->get();
+      $groupdropdown = DB::table('service_group_tbl')->where('ServGroupStatus',1)->get();
         $typedropdown = DB::table('service_group_tbl')->join('service_type_tbl','service_type_tbl.service_type_group_id','=','service_group_tbl.servgroup_id')->get();
         
         $service = DB::table('service_tbl')
         ->leftjoin('service_group_tbl','service_group_tbl.servgroup_id','=','service_tbl.service_group_id')
         ->leftjoin('service_type_tbl','service_type_tbl.service_type_id','=','service_tbl.service_type_id')
-        ->where('service_tbl.status',1)
-        ->where('service_group_tbl.status',1)
-        ->where('service_type_tbl.status',1)
-        ->orWhere('service_tbl.status',1)
-        ->where('service_group_tbl.status',null)
-        ->where('service_type_tbl.status',null)
-        ->orWhere('service_tbl.status',1)
-        ->where('service_group_tbl.status',1)
-        ->where('service_type_tbl.status',null)
+        ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
         ->get();
-
-      return view('Maintenance.Service',['service'=>$service,'groupdropdown'=>$groupdropdown,'typedropdown'=>$typedropdown]);
+        dd($service);
+      // return view('Madsdsdsdintenance.Service',['service'=>$service,'groupdropdown'=>$groupdropdown,'typedropdown'=>$typedropdown]);
       
     }
     public function getServiceType(Request $req){
@@ -121,17 +133,22 @@ class ServiceController extends Controller
     public function update_servType(){
       $upservtypeid = $_POST['upservTypeId'];
       $upservTypeName = $_POST['upservTypeName'];
-      DB::table('service_type_tbl')->where('service_type_id',$upservtypeid)->update(['service_type_name'=>$upservTypeName]);
-      DB::table('service_type_log_tbl')->insert([
-        'service_type_id'=>$upservtypeid,
-        'service_type_name'=>$upservTypeName,
-        'updated_at'=>date_create('now')
-      ]);
+      DB::table('service_type_tbl')
+        ->where('service_type_id',$upservtypeid)
+        ->update([
+          'service_type_name'=>$upservTypeName
+        ]);
+      DB::table('service_type_log_tbl')
+        ->insert([
+          'service_type_id'=>$upservtypeid,
+          'service_type_name'=>$upservTypeName,
+          'updated_at'=>date_create('now')
+        ]);
       Session::flash('update', true);
       return redirect()->back();
     }
     public function deleteService(){
-      DB::table('service_tbl')->where('service_id',$_POST['id'])->update(['status'=>0]);
+      DB::table('service_tbl')->where('service_id',$_POST['id'])->update(['ServiceStatus'=>0]);
       Session::flash('delete', true);
       return redirect()->back();
     }

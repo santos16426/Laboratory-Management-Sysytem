@@ -8,14 +8,14 @@
 <i class="fa fa-heartbeat" aria-hidden="true"></i><span> Service</span>
 @endsection
 
-@section ('breadactivePage','Service Group')
+@section ('breadactivePage','Service Type')
 
 @section('content')
 <div class="row">
 	<div class="col-lg-12">
 		<section class="panel">
 			<header class="panel-heading">
-				Service Group
+				Service Type
 			</header>
 			<div class="panel-body">
 				<div class="clearfix">
@@ -28,6 +28,7 @@
                 <th>Service Type</th>
                 <th>Service Group</th>
                 <th>Action</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -36,12 +37,24 @@
                 <td>{{ $serviceType->service_type_name }}</td>
                 <td>{{ $serviceType->servgroup_name }}</td>
                 <td>
+                @if($serviceType->LabStatus == 1 and $serviceType->ServTypeStatus == 1 and $serviceType->ServGroupStatus == 1)
                   <a class="btn btn-warning btn-xs upservtype" href="#updateModal"  data-toggle="modal" data-id="{{ $serviceType->service_type_id }}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
                   <a class="btn btn-danger btn-xs delbtn" data-id="{{ $serviceType->service_type_id }}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
                 </td>
-              </tr>
-
-              
+                @endif
+                @if($serviceType->LabStatus == 0 or $serviceType->ServTypeStatus == 0 or $serviceType->ServGroupStatus == 0)
+                  <a class="btn btn-warning btn-xs disabled" ><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                  <a class="btn btn-danger btn-xs disabled"  ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                @endif
+                <td>
+                  @if($serviceType->LabStatus == 1 and $serviceType->ServTypeStatus == 1 and $serviceType->ServGroupStatus == 1)
+                    <span class="badge bg-success">Available</span>
+                  @endif
+                  @if($serviceType->LabStatus == 0 or $serviceType->ServTypeStatus == 0 or $serviceType->ServGroupStatus == 0)
+                    <span class="badge bg-important">Unavailable</span>
+                  @endif
+                </td>
+              </tr> 
               @endforeach
             </tbody>
           </table>
@@ -58,12 +71,11 @@
       </div>
       <div class="modal-body">
         <form action="/update_servType" method="POST" class="form-horizontal" id="servtypeedit">
-          <div class="form-group" style="margin-right:3% ">
-            <label class="col-xs-4 control-label">Service Type Name</label>  
-              <div class="col-md-7">
+          <div class="form-group">
+              <div class="col-md-10 col-md-offset-1">
                  <div class="input-group">
                   <div class="input-group-addon">
-                   <i class="fa fa-briefcase"></i>
+                   Service Type <sup>*</sup>
                  </div>
                  <input name="upservTypeId" type="hidden" id="upservTypeId">
                 <input  name="upservTypeName"  id="upservTypeName" type="text" placeholder="Service Type Name" class="form-control input-md" required>
@@ -91,9 +103,8 @@
       <div class="modal-body">
         <form action="/save_servType" method="POST" class="form-horizontal" id="servtypeadd">
           <div class="form-group">
-            <label class="col-xs-4 control-label" for="emp_type">Group</label>
-            <div class="col-md-6 input-group">
-                <span class="input-group-addon"><i class="fa fa-user-md" aria-hidden="true"></i></span>
+            <div class="col-md-10 col-md-offset-1 input-group">
+                <span class="input-group-addon">Service Group <sup>*</sup></span>
                 <select class="form-control select2" name="servGroup_id" id="emp_type" style="width: 100%;">
                 @foreach($serviceGroup as $serviceGroup)
                   <option value="{{ $serviceGroup->servgroup_id }}">{{ $serviceGroup->servgroup_name }}</option>
@@ -101,17 +112,13 @@
                 </select>
             </div>
           </div>
-          <div class="form-group" style="margin-right:3% ">
-            <label class="col-xs-4 control-label">Service Type Name</label>  
-              <div class="col-md-7">
-                 <div class="input-group">
-                  <div class="input-group-addon">
-                   <i class="fa fa-briefcase"></i>
-                 </div>
+          <div class="form-group">
+            <div class="col-md-10 col-md-offset-1 input-group">
+                <span class="input-group-addon">Service Type Name <sup>*</sup></span>
                 <input  name="servTypeName" id="servTypeName" type="text" placeholder="Service Type Name" class="form-control input-md" required>
-              </div>
-            </div>  
-         </div> 
+            </div>
+          </div>
+          
         {{ @csrf_field() }}
         <div class="modal-footer">
           <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
@@ -160,6 +167,7 @@
     $('#deleteModal').modal('show');
   });
   $('.upservtype').click(function(){
+    
     $.ajax
     ({
       url: '/updateServType',

@@ -28,26 +28,26 @@ class RebateController extends Controller
 		$emp_worebates = DB::table('employee_tbl')
 			->leftjoin('rolefields_tbl','rolefields_tbl.role_id','=','employee_tbl.emp_type_id')
 			->leftjoin('emp_rebate_tbl','emp_rebate_tbl.emp_id','=','employee_tbl.emp_id')
-			->where('employee_tbl.status',1)
+			->where('employee_tbl.EmpStatus',1)
 			->where('rolefields_tbl.rebate',1)
-			->where('emp_rebate_tbl.status',null)
+			->where('emp_rebate_tbl.EmpRebStatus',null)
 			->where('emp_rebate_tbl.emp_id',null)
 
-			->orwhere('rolefields_tbl.rebate',1)->where('employee_tbl.status',1)
-			->where('emp_rebate_tbl.status',0)->select('employee_tbl.emp_id as emp_id','emp_fname','emp_mname','emp_lname')->get();
+			->orwhere('rolefields_tbl.rebate',1)->where('employee_tbl.EmpStatus',1)
+			->where('emp_rebate_tbl.EmpRebStatus',0)->select('employee_tbl.emp_id as emp_id','emp_fname','emp_mname','emp_lname')->get();
 
 		$emp_rebates = DB::table('employee_tbl')
 			->leftjoin('rolefields_tbl','rolefields_tbl.role_id','=','employee_tbl.emp_type_id')
 			->leftjoin('emp_rebate_tbl','emp_rebate_tbl.emp_id','=','employee_tbl.emp_id')
 			->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
 			->where('rolefields_tbl.rebate',1)
-			->where('employee_tbl.status',1)
-			->where('emp_rebate_tbl.status',1)->get();
+			->where('employee_tbl.EmpStatus',1)
+			->where('emp_rebate_tbl.EmpRebStatus',1)->get();
 
 		return view('Maintenance.EmployeeRebate',['emp_rebates'=>$emp_rebates,'emp_worebates'=>$emp_worebates]);
     }
 	public function deleteRebate(){
-		DB::table('emp_rebate_tbl')->where('emp_id',$_POST['id'])->update(['status'=>0]);
+		DB::table('emp_rebate_tbl')->where('emp_id',$_POST['id'])->update(['EmpRebStatus'=>0]);
 		Session::flash('delete', true);
 		return redirect()->back();
 	}
@@ -59,8 +59,7 @@ class RebateController extends Controller
 		{
 		DB::table('emp_rebate_tbl')
 		->update([
-		  'rebate_id' =>  $rebate_id,
-		  'status'  => 1
+		  'rebate_id' =>  $rebate_id
 		  ]);
 		DB::table('emprebate_log_tbl')
 		->insert([
@@ -71,19 +70,6 @@ class RebateController extends Controller
 		Session::flash('add', true);
 		return redirect()->back();
 		}
-		DB::table('emp_rebate_tbl')
-		->insert([
-		'emp_id'  =>  $emp_id,
-		'rebate_id' =>  $rebate_id,
-		'status'  =>  1
-		]);
-		DB::table('emprebate_log_tbl')
-		->insert([
-		'emp_id'  =>  $emp_id,
-		'rebate_id' =>  $rebate_id,
-		'updated_at'  =>  date_create('now')
-		]);
-		Session::flash('add', true);
-		return redirect()->back();
+		
 	}
 }
