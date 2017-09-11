@@ -9,11 +9,25 @@ class PackageController extends Controller
 {
     function package()
     {
-		$servicegroup = DB::table('service_group_tbl')->where('status',1)->get();
+		$servicegroup = DB::table('service_group_tbl')->where('ServGroupStatus',1)->get();
 		$serviceoffer = DB::table('service_tbl')
 		->leftjoin('service_group_tbl','service_group_tbl.servgroup_id','=','service_tbl.service_group_id')
-		->leftjoin('service_type_tbl','service_type_tbl.service_type_id','=','service_tbl.service_type_id')->where('service_tbl.status',1)->get();
-		$packages = DB::select(DB::raw("SELECT * FROM package_tbl WHERE status = 1"));
+		->leftjoin('service_type_tbl','service_type_tbl.service_type_id','=','service_tbl.service_type_id')
+    ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+    ->where('service_tbl.ServiceStatus',1)
+    ->where('laboratory_tbl.LabStatus',1)
+    ->where('service_group_tbl.ServGroupStatus',1)
+    ->where('service_type_tbl.ServTypeStatus',1)
+    ->orWhere('service_tbl.ServiceStatus',1)
+    ->where('laboratory_tbl.LabStatus',null)
+    ->where('service_group_tbl.ServGroupStatus',null)
+    ->where('service_type_tbl.ServTypeStatus',null)
+    ->orWhere('service_tbl.ServiceStatus',1)
+    ->where('laboratory_tbl.LabStatus',1)
+    ->where('service_group_tbl.ServGroupStatus',1)
+    ->where('service_type_tbl.ServTypeStatus',null)
+    ->get();
+		$packages = DB::table('package_tbl')->get();
 		return view('Maintenance.Package',['serviceoffer'=>$serviceoffer,'packages'=>$packages,'servicegroup'=>$servicegroup]);
     }
     public function updatePackage(Request $req){

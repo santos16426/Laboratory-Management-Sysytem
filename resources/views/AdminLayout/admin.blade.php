@@ -24,6 +24,10 @@
           {
             color: red;
           }
+          input
+          {
+            color: black
+          }
         </style>
     </head>
   <body>

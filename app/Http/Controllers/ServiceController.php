@@ -118,8 +118,8 @@ class ServiceController extends Controller
         ->leftjoin('service_type_tbl','service_type_tbl.service_type_id','=','service_tbl.service_type_id')
         ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
         ->get();
-        dd($service);
-      // return view('Madsdsdsdintenance.Service',['service'=>$service,'groupdropdown'=>$groupdropdown,'typedropdown'=>$typedropdown]);
+        // dd($service);
+      return view('Maintenance.Service',['service'=>$service,'groupdropdown'=>$groupdropdown,'typedropdown'=>$typedropdown]);
       
     }
     public function getServiceType(Request $req){

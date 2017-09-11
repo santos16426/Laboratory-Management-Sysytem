@@ -43,22 +43,20 @@
 									<td>{{ $service->medical_request }}</td>
 									<td>{{ $service->service_price }}</td>
 									<td>
-                  @if($service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus == 1 and $service->ServiceStatus == 1 or $service->LabStatus == null and $service->ServGroupStatus==null and $service->ServTypeStatus == null and $service->ServiceStatus == 1 or $service->LabStatus == 1 and $service->ServGroupStatus== 1 and $service->ServTypeStatus==null and $service->ServiceStatus == 1)
+                  @if($service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus == 1 and $service->ServiceStatus == 1 or $service->LabStatus == null and $service->ServGroupStatus == null and $service->ServTypeStatus == null and $service->ServiceStatus == 1 or $service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus === null and $service->ServiceStatus == 1)
 									<a class="btn btn-warning btn-xs editsrvc" href="#updateModal" data-id="{{ $service->service_id }}" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 									<a class="btn btn-danger btn-xs delbtn"  data-id="{{$service->service_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
-                  @endif
-                  @if($service->ServiceStatus == 0 and $service->ServTypeStatus == 0 and $service->LabStatus == 0 and $service->ServGroupStatus == 0 or $service->ServiceStatus == 0 and $service->ServGroupStatus == 0 and $service->ServTypeStatus == null and $service->LabStatus == 0 or $service->ServiceStatus == 0 and $service->ServGroupStatus == null and $service->ServTypeStatus==null and $service->LabStatus == null or $service->ServiceStatus == 1 and $service->ServTypeStatus == 1 and $service->LabStatus == 0 and $service->ServGroupStatus == 1 or $service->ServiceStatus == 1 and $service->ServTypeStatus == null and $service->LabStatus == 0 and $service->ServGroupStatus == 1 or $service->ServiceStatus == 1 and $service->ServTypeStatus == 1 and $service->LabStatus == 1 and $service->ServGroupStatus == 0 or $service->ServiceStatus == 1 and $service->ServTypeStatus == null and $service->LabStatus == 1 and $service->ServGroupStatus == 0)
+                  @else
                   <a class="btn btn-warning btn-xs disabled" ><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
                   <a class="btn btn-danger btn-xs disabled"  ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
                   @endif
 									</td>
                   <td>
-                    <!-- @if($service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus == 1 and $service->ServiceStatus == 1 or $service->LabStatus == null and $service->ServGroupStatus == null and $service->ServTypeStatus == null and $service->ServiceStatus == 1 or $service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus == null and $service->ServiceStatus == 1)
+                    @if($service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus == 1 and $service->ServiceStatus == 1 or $service->LabStatus == null and $service->ServGroupStatus == null and $service->ServTypeStatus == null and $service->ServiceStatus == 1 or $service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus === null and $service->ServiceStatus == 1)
                     <span class="badge bg-success">Available</span>
-                    @endif  
-                    @if($service->ServiceStatus == 0 and $service->ServTypeStatus == 0 and $service->LabStatus == 0 and $service->ServGroupStatus == 0 or $service->ServiceStatus == 0 and $service->ServGroupStatus == 0 and $service->ServTypeStatus == null and $service->LabStatus == 0 or $service->ServiceStatus == 0 and $service->ServGroupStatus == null and $service->ServTypeStatus==null and $service->LabStatus == null or $service->ServiceStatus == 1 and $service->ServTypeStatus == 1 and $service->LabStatus == 0 and $service->ServGroupStatus == 1 or $service->ServiceStatus == 1 and $service->ServTypeStatus == null and $service->LabStatus == 0 and $service->ServGroupStatus == 1 or $service->ServiceStatus == 1 and $service->ServTypeStatus == 1 and $service->LabStatus == 1 and $service->ServGroupStatus == 0 or $service->ServiceStatus == 1 and $service->ServTypeStatus == null and $service->LabStatus == 1 and $service->ServGroupStatus == 0)
+                    @else
                     <span class="badge bg-important">Unavailable</span>
-                    @endif -->
+                    @endif
                   </td>
 								</tr>
 						@endforeach
@@ -79,23 +77,21 @@
         <form action="/update_Service" method="POST" class="form-horizontal" id="servedit" >
         <input type="hidden" name="srvcid" id="srvcid">
          {{ csrf_field() }}
-          <div class="form-group" style="margin-right:3% ">
-            <label class="col-sm-4 control-label text-right">Service Name</label>  
-              <div class="col-sm-6">
+          <div class="form-group">
+              <div class="col-sm-10 col-md-offset-1">
                  <div class="input-group">
                   <div class="input-group-addon">
-                  <i class="fa fa-briefcase"></i>
+                  Service Name <sup>*</sup>
                  </div>
                 <input  name="srvcname" id="srvcname" type="text" placeholder="Service Name" class="form-control input-md" required>
               </div>
             </div>  
          </div>
-         <div class="form-group" style="margin-right:3% ">
-          <label class="col-sm-4 control-label text-right">Service Group</label>  
-            <div class="col-sm-6">
+         <div class="form-group">
+            <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-rub"></i>
+                  Service Group <sup>*</sup>
                 </div>
                   <select class="form-control srvcgrp" name="srvcgrp_id" id="srvcgrpid" disabled="">
                     <option value = "0">Service Group(Optional)</option> <!-- dito ididisplay lahat ng service group -->
@@ -106,12 +102,11 @@
             </div>
           </div>  
         </div> 
-         <div class="form-group" style="margin-right:3% ">
-          <label class="col-sm-4 control-label text-right">Service Type</label>  
-            <div class="col-sm-6">
+         <div class="form-group">
+            <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-rub"></i>
+                  Service Type <sup>*</sup>
                 </div>
                   <select class="form-control" id="typesel" name="srvctyp_id" disabled=""> <!-- dito magaad ng service type everytime na mag onchange ung sa group -->
                     <option value = "0">Service Type(Optional)</option>
@@ -119,12 +114,11 @@
             </div>
           </div>  
         </div> 
-         <div class="form-group" style="margin-right:3% ">
-          <label class="col-sm-4 control-label text-right">Service Price</label>  
-            <div class="col-sm-6">
+         <div class="form-group">
+            <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-rub"></i>
+                  Service Price <sup>*</sup>
                 </div>
               <input  name="srvc_price" id="srvcprice" type="text" placeholder="Service Price" class="form-control input-md" required>
             </div>
@@ -149,23 +143,21 @@
       <div class="modal-body">
         <form action="/save_Service" method="POST" class="form-horizontal" id="servadd">
          {{ csrf_field() }}
-          <div class="form-group" style="margin-right:3% ">
-            <label class="col-sm-4 control-label text-right">Service Name</label>  
-              <div class="col-sm-6">
+          <div class="form-group" >
+              <div class="col-sm-10 col-md-offset-1">
                  <div class="input-group">
                   <div class="input-group-addon">
-                  <i class="fa fa-briefcase"></i>
+                  Service Name <sup>*</sup>
                  </div>
                 <input  name="srvcname" id="srvcname" type="text" placeholder="Service Name" class="form-control input-md" required>
               </div>
             </div>  
          </div>
-         <div class="form-group" style="margin-right:3% ">
-          <label class="col-sm-4 control-label text-right">Service Group</label>  
-            <div class="col-sm-6">
+         <div class="form-group" >
+            <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-rub"></i>
+                  Service Group <sup>*</sup>
                 </div>
                   <select class="form-control srvcgrp" name="srvcgrp_id" id="servg" style="width: 100%">
                     <option value = "0">Service Group(Optional)</option> <!-- dito ididisplay lahat ng service group -->
@@ -176,12 +168,11 @@
             </div>
           </div>  
         </div> 
-         <div class="form-group" style="margin-right:3% ">
-          <label class="col-sm-4 control-label text-right">Service Type</label>  
-            <div class="col-sm-6">
+         <div class="form-group" >
+            <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-rub"></i>
+                  Service Type <sup>*</sup>
                 </div>
                   <select class="form-control"  name="srvctyp_id" id="servt" style="width: 100%"> <!-- dito magaad ng service type everytime na mag onchange ung sa group -->
                     <option value = "0">Service Type(Optional)</option>
@@ -189,12 +180,11 @@
             </div>
           </div>  
         </div> 
-         <div class="form-group" style="margin-right:3% ">
-          <label class="col-sm-4 control-label text-right">Service Price</label>  
-            <div class="col-sm-6">
+         <div class="form-group" >
+            <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-rub"></i>
+                  Service Price <sup>*</sup>
                 </div>
               <input  name="srvc_price" type="text" placeholder="Service Price" class="form-control input-md" required>
             </div>
