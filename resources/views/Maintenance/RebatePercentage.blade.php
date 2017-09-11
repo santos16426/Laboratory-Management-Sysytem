@@ -8,6 +8,12 @@
 <i class="fa fa-percent" aria-hidden="true"></i><span> Rebate</span>
 @endsection
 
+@section('maintenanceactive')
+<a href="" class="active">
+@endsection
+@section('rebate','active')
+@section('rebactive','active')
+
 @section ('breadactivePage','Rebate Percentage')
 
 @section('content')

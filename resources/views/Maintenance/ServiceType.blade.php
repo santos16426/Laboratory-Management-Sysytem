@@ -8,6 +8,12 @@
 <i class="fa fa-heartbeat" aria-hidden="true"></i><span> Service</span>
 @endsection
 
+@section('maintenanceactive')
+<a href="" class="active">
+@endsection
+@section('service','active')
+@section('servicetypeactive','active')
+
 @section ('breadactivePage','Service Type')
 
 @section('content')

@@ -8,6 +8,12 @@
 <i class="fa fa-building" aria-hidden="true"></i><span> Laboratory</span>
 @endsection
 
+@section('maintenanceactive')
+<a href="" class="active">
+@endsection
+@section('laboratoryactive','active')
+
+
 @section('content')
 <div class="row">
 	<div class="col-lg-12">

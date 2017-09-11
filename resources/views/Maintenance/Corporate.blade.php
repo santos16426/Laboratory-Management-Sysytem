@@ -8,8 +8,10 @@
 <i class="fa fa-users" aria-hidden="true"></i><span> Corporate Account</span>
 @endsection
 
-
-
+@section('maintenanceactive')
+<a href="" class="active">
+@endsection
+@section('corpactive','active')
 @section('content')
 <div class="row">
 	<div class="col-lg-12">
@@ -31,6 +33,7 @@
 					      <th>Email</th>
 					      <th>Contact Number</th>
 					      <th>Action</th>
+					      <th>Status</th>
 					    </tr>
 					  </thead>
 					  <tbody>
@@ -40,10 +43,23 @@
 					      <td>{{ $corporates->corp_contactperson }}</td>
 					      <td>{{ $corporates->corp_email }}</td>
 					      <td>{{ $corporates->corp_contact }}</td>
+
 					      
 					      <td>
+					      @if($corporates->CorpStatus == 1)
 					        <a class="btn btn-warning btn-xs updateModal" data-id="{{$corporates->corp_id}}" href="#updateModal" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 					        <a class="btn btn-danger btn-xs delbtn" data-id="{{$corporates->corp_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+					       @else
+					       <a class="btn btn-warning btn-xs"  disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+					        <a class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+					       @endif
+					      </td>
+					      <td>
+					      	@if($corporates->CorpStatus == 1)
+					      	<span class="badge bg-success">Available</span>
+					      	@else
+					      	<span class="badge bg-important">Unavailable</span>
+					      	@endif
 					      </td>
 					    </tr>
 
@@ -67,82 +83,50 @@
  		<div class="modal-body">
           <form action="/update_Corporate" method="POST" class="form-horizontal" id="corpedit">
           <input type="hidden" name="upcorpid" id="upcorpid">
-	        <div class="form-group" style="margin-right:3% ">
-	           <label class="col-xs-4 control-label">Company Name</label>  
-	              <div class="col-md-6">
+	        <div class="form-group">
+	              <div class="col-md-10 col-md-offset-1">
 	                 <div class="input-group">
 	                  <div class="input-group-addon">
-	                   <i class="fa fa-users"></i>
+	                   Company Name <sup>*</sup>
 	                 </div>
 	                <input  name="upcompname" id="upcompanyname" type="text" placeholder="Company Name" class="form-control input-md" required>
 	             </div>
 	          </div>  
 	       </div>  
 
-	        <div class="form-group" style="margin-right:3% ">
-	           <label class="col-xs-4 control-label">Contact Person</label>  
-	              <div class="col-md-6">
+	        <div class="form-group">
+	              <div class="col-md-10 col-md-offset-1">
 	                 <div class="input-group">
 	                  <div class="input-group-addon">
-	                   <i class="fa fa-user-o"></i>
+	                   Contact Person <sup>*</sup>
 	                 </div>
 	                <input  name="upcontactperson" id="upcontactperson" type="text" placeholder="Contact Person" class="form-control input-md" required>
 	             </div>
 	          </div>  
 	       </div>  
 	          
-	        <div class="form-group" style="margin-right:3% ">
-	           <label class="col-xs-4 control-label">Contact Number</label>  
-	              <div class="col-md-6">
-	                 <div class="input-group">
-	                  <div class="input-group-addon">
-	                   <i class="fa fa-phone"></i>
-	                 </div>
-	                <input  name="upcontactnumber" id="upcontactnumber" type="text" placeholder="Telephone Number" class="form-control input-md" required>
+	        <div class="form-group">
+          	<div class="col-md-10 col-md-offset-1">
+              <div class="input-group">
+                <div class="input-group-addon">
+                	Contact Number <sup>*</sup>
+	              </div>
+	               <input  name="upcontactnumber" id="upcontactnumber" type="text" placeholder="Telephone Number" class="form-control input-md" required>
 	             </div>
 	          </div>  
 	       </div> 
 
-	        <div class="form-group" style="margin-right:3% ">
-	           <label class="col-xs-4 control-label">Email Address</label>  
-	              <div class="col-md-6">
+	        <div class="form-group">
+	              <div class="col-md-10 col-md-offset-1">
 	                 <div class="input-group">
 	                  <div class="input-group-addon">
-	                   <i class="fa fa-at"></i>
+	                   Email Address <sup>*</sup>
 	                 </div>
 	                <input  name="upemail" id="upemail" type="email" placeholder="Email Address" class="form-control input-md" required>
 	             </div>
 	          </div>  
 	       </div>
 
-	       	<div class="form-group">
-	          <label class="col-xs-4 control-label">Package</label>
-	          <div class="col-md-5 input-group">
-	            <select class="form-control select2 uppackservice" name="upservices[]" values="" style="width: 108%" multiple="multiple" required>
-	            @php $serviceoffer2 = $serviceoffer @endphp
-	              @foreach($servicegroup as $updates)
-	              <optgroup label="{{ $updates->servgroup_name }}">
-	                  @foreach($serviceoffer as $updateserviceoffer2)
-	                    @if($updates->servgroup_id == $updateserviceoffer2->service_group_id)
-	                    <option value="{{ $updateserviceoffer2->service_id }}">{{ $updateserviceoffer2->service_name }}</option>
-	                    @endif
-	                  @endforeach              
-	                </optgroup>
-	              @endforeach
-	            </select> 
-	          </div>
-	        </div>
-	        <div class="form-group" style="margin-right:3% ">
-	           <label class="col-xs-4 control-label">Package Price</label>  
-	              <div class="col-md-6">
-	                 <div class="input-group">
-	                  <div class="input-group-addon">
-	                   <i class="fa fa-rub" aria-hidden="true"></i>
-	                 </div>
-	                <input  name="uppackprice" type="text" id="uppackprice" placeholder="Package Price" class="form-control input-md" required>
-	             </div>
-	          </div>  
-	       </div>
 	       
         <div class="modal-footer">
           <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
@@ -157,90 +141,60 @@
 
 
 <div class="modal fade" id = "addModal">
-  <div class="modal-dialog" style="width: 70%">
+  <div class="modal-dialog modal-lg" >
     <div class="modal-content">
 	    <div class="modal-header btn-primary">
 	        <h4 class="modal-title"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Corporate Account</h4>
 	    </div>
     	<form action="/save_corp" method="POST" class="form-horizontal" id="corpadd">
 	      	<div class="modal-body">
-		        <div class="form-group" style="margin-right:3% ">
-		           <label class="col-xs-4 control-label">Company Name</label>  
-		              <div class="col-md-6">
+		        <div class="form-group">
+		              <div class="col-md-10 col-md-offset-1">
 		                 <div class="input-group">
 		                  <div class="input-group-addon">
-		                   <i class="fa fa-users"></i>
+		                   Company Name <sup>*</sup>
 		                 </div>
 		                <input  name="companyname" id="companyname" type="text" placeholder="Company Name" class="form-control input-md" required>
 		             </div>
 		          </div>  
 		       </div>  
 
-		        <div class="form-group" style="margin-right:3% ">
-		           <label class="col-xs-4 control-label">Contact Person</label>  
-		              <div class="col-md-6">
+		        <div class="form-group">
+		           
+		              <div class="col-md-10 col-md-offset-1">
 		                 <div class="input-group">
 		                  <div class="input-group-addon">
-		                   <i class="fa fa-user-o"></i>
+		                   Contact Person <sup>*</sup>
 		                 </div>
 		                <input  name="contactperson" id type="text" placeholder="Contact Person" class="form-control input-md" required>
 		             </div>
 		          </div>  
 		       </div>  
 		          
-		        <div class="form-group" style="margin-right:3% ">
-		           <label class="col-xs-4 control-label">Contact Number</label>  
-		              <div class="col-md-6">
+		        <div class="form-group">
+		           
+		              <div class="col-md-10 col-md-offset-1">
 		                 <div class="input-group">
 		                  <div class="input-group-addon">
-		                   <i class="fa fa-phone"></i>
+		                   Contact Number <sup>*</sup>
 		                 </div>
 		                <input  name="contactnumber" id="contactnumber" type="text" placeholder="Telephone Number" class="form-control input-md" required>
 		             </div>
 		          </div>  
 		       </div> 
 
-		        <div class="form-group" style="margin-right:3% ">
-		           <label class="col-xs-4 control-label">Email Address</label>  
-		              <div class="col-md-6">
+		        <div class="form-group">
+		           
+		              <div class="col-md-10 col-md-offset-1">
 		                 <div class="input-group">
 		                  <div class="input-group-addon">
-		                   <i class="fa fa-at"></i>
+		                   Email Address <sup>*</sup>
 		                 </div>
 		                <input  name="email" id="email" type="email" placeholder="Email Address" class="form-control input-md" required>
 		             </div>
 		          </div>  
 		       </div>
 
-				<div class="form-group">
-		          <label class="col-xs-4 control-label">Package</label>
-		          <div class="col-md-5 input-group">
-		            <select class="form-control select2 updatepackservice" name="services[]" values="" style="width: 108%" multiple="multiple" required>
-		            @php $serviceoffer2 = $serviceoffer @endphp
-		              @foreach($servicegroup as $s)
-		              <optgroup label="{{ $s->servgroup_name }}">
-		                  @foreach($serviceoffer as $serviceoffer2)
-		                    @if($s->servgroup_id == $serviceoffer2->service_group_id)
-		                    <option value="{{ $serviceoffer2->service_id }}">{{ $serviceoffer2->service_name }}</option>
-		                    @endif
-		                  @endforeach              
-		                </optgroup>
-		              @endforeach
-		            </select> 
-		          </div>
-		        </div>
-		        <div class="form-group" style="margin-right:3% ">
-		           <label class="col-xs-4 control-label">Package Price</label>  
-		              <div class="col-md-6">
-		                 <div class="input-group">
-		                  <div class="input-group-addon">
-		                   <i class="fa fa-rub" aria-hidden="true"></i>
-		                 </div>
-		                <input  name="packprice" id="packprice" type="text" placeholder="Total Price" class="form-control input-md">
-		             </div>
-		          </div>  
-		       </div> 
-		      
 	       <div class="modal-footer">
 	          <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
 	          <button  class="btn btn-xs btn-success" type="submit" ><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>

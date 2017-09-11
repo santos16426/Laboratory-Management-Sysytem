@@ -8,6 +8,11 @@
 <i class="fa fa-dropbox" aria-hidden="true"></i><span> Package</span>
 @endsection
 
+@section('maintenanceactive')
+<a href="" class="active">
+@endsection
+@section('packactive','active')
+
 @section ('breadactivePage','Create Package')
 
 @section('content')
@@ -85,6 +90,13 @@
                   @endforeach              
                 </optgroup>
               @endforeach
+              <optgroup label="Others">
+              @foreach($serviceoffer as $upnogrp)
+                @if($upnogrp->servgroup_id == null)
+                  <option value="{{ $upnogrp->service_id }}">{{ $upnogrp->service_name }}</option>
+                  @endif
+              @endforeach
+              </optgroup>
             </select> 
           </div>
         </div>

@@ -7,8 +7,13 @@
 @section ('breadParentName')
 <i class="fa fa-user" aria-hidden="true"></i><span> Employee</span>
 @endsection
-
+@section('maintenanceactive')
+<a href="" class="active">
+@endsection
 @section ('breadactivePage','Employee List')
+@section('empactive','active')
+
+@section('employee','active')
 
 @section('content')
 <div class="row">
