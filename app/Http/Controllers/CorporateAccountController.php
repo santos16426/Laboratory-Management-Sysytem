@@ -7,6 +7,63 @@ use DB;
 use Session;
 class CorporateAccountController extends Controller
 {
+    public function update_corpPackage()
+    {
+      $corpid = $_POST['corpid'];
+      $corpPack_id = $_POST['corpPack_id'];
+      $uppackname = $_POST['uppackname'];
+      $uppackprice = $_POST['uppackprice'];
+      $upservices = $_POST['upservices'];
+      $upexam = $_POST['upexam'];
+      $gender = 3;
+      $age =  'All' ;
+      if(isset($_POST['gender']))
+      {
+        $gender = $_POST['gender'];
+      }
+      if(isset($_POST['age']))
+      {
+        $age = $_POST['age'];
+      }
+      DB::table('corp_package_tbl')
+        ->where('corpPack_id',$corpPack_id)
+        ->update([
+          'corpPack_name'=>$uppackname,
+          'price'=>$uppackprice,
+          'corp_id'=>$corpid,
+          'age'=>$age,
+          'gender'=>$gender,
+          'physical_exam'=>$upexam
+      ]);
+      
+      DB::table('corp_package_log_tbl')
+        ->insert([
+          'corpPack_name'=>$uppackname,
+          'corpPack_id'=>$corpPack_id,
+          'price'=>$uppackprice,
+          'corp_id'=>$corpid,
+          'age'=>$age,
+          'gender'=>$gender,
+          'updated_at'=>date_create('now'),
+          'physical_exam'=>$upexam
+      ]);
+      foreach($upservices as $ps)
+      {
+        DB::table('corp_packserv_tbl')
+          ->insert([
+            'corpPack_id' =>  $corpPack_id,
+            'service_id'  =>  $ps
+          ]);
+        DB::table('corp_packserv_log_tbl')
+          ->insert([
+            'corpPack_id' =>  $corpPack_id,
+            'service_id'  =>  $ps,
+            'updated_at'  =>  date_create('now')
+          ]);
+      }
+      Session::flash('add',true);
+      return redirect('/Maintenance/Corporate/CreatePackage?corp_id='.$corpid);
+    }
     public function updateCorporatePackage(Request $req)
     {
        $servoffer = DB::table('corp_packserv_tbl')
@@ -29,10 +86,10 @@ class CorporateAccountController extends Controller
     function save_corpPackage()
     {
       $corp_id = $_POST['corp_id'];
-      
       $packname = $_POST['packname'];
       $packprice = $_POST['packprice'];
       $services = $_POST['services'];
+      $exam = $_POST['exam'];
       $gender = 3;
       $age =  'All' ;
       if(isset($_POST['gender']))
@@ -49,7 +106,8 @@ class CorporateAccountController extends Controller
           'price'=>$packprice,
           'corp_id'=>$corp_id,
           'age'=>$age,
-          'gender'=>$gender
+          'gender'=>$gender,
+          'physical_exam'=>$exam
       ]);
       $corpPack_id = DB::table('corp_package_tbl')->select('corpPack_id')->max('corpPack_id');
       DB::table('corp_package_log_tbl')
@@ -60,7 +118,8 @@ class CorporateAccountController extends Controller
           'corp_id'=>$corp_id,
           'age'=>$age,
           'gender'=>$gender,
-          'updated_at'=>date_create('now')
+          'updated_at'=>date_create('now'),
+          'physical_exam'=>$exam
       ]);
       foreach($services as $ps)
       {
@@ -111,7 +170,7 @@ class CorporateAccountController extends Controller
       {
         $corp_name = $c->corp_name;
       }
-      $table = DB::table('corp_package_tbl')->get();
+      $table = DB::table('corp_package_tbl')->where('corp_id',$corp_id)->get();
       return view('Maintenance.CreateCorporatePackage',['corp_name'=>$corp_name,'table'=>$table,'serviceoffer'=>$serviceoffer,'servicegroup'=>$servicegroup,'corp_id'=>$corp_id]);
     }
     function corp()
@@ -230,20 +289,20 @@ class CorporateAccountController extends Controller
       //     'updated_at'  => date_create('now')
       //   ]);
       // $corpPack_id = DB::table('corp_package_tbl')->select('corpPack_id')->max('corpPack_id');
-      foreach($services as $ps)
-      {
-        DB::table('corp_packserv_tbl')
-          ->insert([
-            'corpPack_id' =>  $corpPack_id,
-            'service_id'  =>  $ps
-          ]);
-        DB::table('corp_packserv_log_tbl')
-          ->insert([
-            'corpPack_id' =>  $corpPack_id,
-            'service_id'  =>  $ps,
-            'updated_at'  =>  date_create('now')
-          ]);
-      }
+      // foreach($services as $ps)
+      // {
+      //   DB::table('corp_packserv_tbl')
+      //     ->insert([
+      //       'corpPack_id' =>  $corpPack_id,
+      //       'service_id'  =>  $ps
+      //     ]);
+      //   DB::table('corp_packserv_log_tbl')
+      //     ->insert([
+      //       'corpPack_id' =>  $corpPack_id,
+      //       'service_id'  =>  $ps,
+      //       'updated_at'  =>  date_create('now')
+      //     ]);
+      // }
       Session::flash('add', true);
       return redirect()->back();
     }

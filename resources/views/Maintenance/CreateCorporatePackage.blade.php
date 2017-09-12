@@ -19,11 +19,11 @@
       <div class="modal-header btn-warning">
         <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Update</h4>
       </div>
-      <form action="/" method="POST" class="form-horizontal" id="corppackedit">
-      
+      <form action="/update_corpPackage" method="POST" class="form-horizontal" id="corppackedit">
 	    	<div class="modal-body">
 	    	{{ csrf_field() }}
-	    	<input type="hidden" name="corp_id" value="{{ $corp_id }}">
+	    	<input type="hidden" name="corpPack_id" value="" id="corpPack_id">
+	    	<input type="hidden" name="corpid" value="{{ $corp_id }}">
 					<div class="form-group">
 						<div class="col-md-10 col-md-offset-1">
 							<div class="input-group">
@@ -72,6 +72,19 @@
 		          	</div>	            
 		          </div>
 		        </div>
+		       	<div class="form-group">
+							<div class="col-md-4 col-md-offset-1">
+								<div class="input-group">
+									<div class="input-group-addon">
+										<small>Physical Examination</small>
+									</div>
+									<select class="form-control select2" name="upexam" id="upexam" values="" style="width: 100%" >
+										<option value="No">No</option>
+										<option value="Yes">Yes</option>
+									</select> 
+								</div>	            
+							</div>
+						</div>
 		        <fieldset>
 		        	<legend>Conditions</legend>
 		        	
@@ -80,7 +93,7 @@
         				<div class="col-md-3">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="Male">
+              					<label class="" for="upMale">
               						<input type="radio" id="upMale" name="gender" value="1"> Male
               					</label>
             				</div>
@@ -89,7 +102,7 @@
             		<div class="col-md-3">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="Female">
+              					<label class="" for="upFemale">
               						<input type="radio" id="upFemale" name="gender" value="2"> Female
               					</label>
             				</div>
@@ -98,7 +111,7 @@
             		<div class="col-md-3">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="Both">
+              					<label class="" for="upBoth">
               						<input type="radio" id="upBoth" name="gender" value="3"> Both
               					</label>
             				</div>
@@ -112,7 +125,7 @@
         				<div class="col-md-1">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="Teen">
+              					<label class="" for="upTeen">
               						<input type="radio" id="upTeen" name="age" value="Teen"> Teen
               					</label>
             				</div>
@@ -121,7 +134,7 @@
             		<div class="col-md-1">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="Adult">
+              					<label class="" for="upAdult">
               						<input type="radio" id="upAdult" name="age" value="Adult"> Adult
               					</label>
             				</div>
@@ -130,7 +143,7 @@
             		<div class="col-md-1">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="Senior">
+              					<label class="" for="upSenior">
               						<input type="radio" id="upSenior" name="age" value="Senior"> Senior
               					</label>
             				</div>
@@ -139,7 +152,7 @@
             			<div class="col-md-1">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="All Ages">
+              					<label class="" for="upAllAges">
               						<input type="radio" id="upAllAges" name="age" value="All"> All Ages
               					</label>
             				</div>
@@ -216,6 +229,21 @@
 		          	</div>	            
 		          </div>
 		        </div>
+
+						<div class="form-group">
+							<div class="col-md-4 col-md-offset-1">
+								<div class="input-group">
+									<div class="input-group-addon">
+										<small>Physical Examination</small>
+									</div>
+									<select class="form-control select2" name="exam" values="" style="width: 100%" >
+										<option value="No">No</option>
+										<option value="Yes">Yes</option>
+									</select> 
+								</div>	            
+							</div>
+						</div>
+						
 		        <fieldset>
 		        	<legend>Conditions</legend>
 		        	
@@ -391,7 +419,9 @@ $('.delbtn').click(function(){
 $('#cid').val($(this).data('id'));
 $('#deleteModal').modal('show');
 });
-$('.packservice').select2();
+$('.packservice').select2({
+	placeholder: "Select Services"
+});
 $('.uppackservice').select2();
 $('.updateModal').click(function(){
 	$.ajax
@@ -405,6 +435,7 @@ $('.updateModal').click(function(){
         response.forEach(function(data){
 				$('#uppackname').val(data.corpPack_name);
 				$('#uppackprice').val(data.price);
+				$('#corpPack_id').val(data.corpPack_id);
 				var selectedValues = new Array();
 				var i = 0;
 				response.forEach(function(data){
@@ -440,7 +471,16 @@ $('.updateModal').click(function(){
 				{
 					$('#upAllAges').prop('checked',true);
 				}
+				if(data.physical_exam == 'Yes')
+				{
+					$('#upexam').val('Yes');
+				}	
+				else if(data.physical_exam == 'No')
+				{
+					$('#upexam').val('No');
+				}	
 		     })
+				
 				
 		    },
       error:function(){
