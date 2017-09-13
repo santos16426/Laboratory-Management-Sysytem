@@ -7,6 +7,13 @@ use DB;
 use Session;
 class TransactionController extends Controller
 {
+    public function getDataPackage(Request $req){
+        $packagedetails = DB::table('corp_package_tbl')
+            ->leftjoin('corporate_accounts_tbl','corporate_accounts_tbl.corp_id','=','corp_package_tbl.corp_id')
+            ->where('corp_package_tbl.corp_id',$req->id)
+            ->get();
+        return response()->json($packagedetails);
+    }
     public function medicalservice(){
       $pid = $_GET['patient_id'];
         $emp_rebates = DB::table('employee_tbl')

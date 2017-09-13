@@ -202,9 +202,7 @@
 <script type="text/javascript" src="{{ asset('/plugins/assets/advanced-datatable/media/js/jquery.dataTables.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/data-tables/DT_bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/gritter/js/jquery.gritter.js') }}"></script>
-
 <script src="{{ asset('/plugins/select2/dist/js/select2.full.min.js') }}"></script>
-
 <script type="text/javascript" src="{{ asset('/plugins/js/bootstrap-switch.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.tagsinput.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>

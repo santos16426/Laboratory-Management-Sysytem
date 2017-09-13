@@ -17,6 +17,7 @@
 @section ('breadactivePage','Avail Medical Services')
 
 @section('content')
+<form action="/proceed_Payment" method="POST" >
 <div class="modal fade" id = "myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -209,9 +210,54 @@
 		</div>
 	</div>
 </div>
+
+	
+<div class="col-md-12">
+	<div class="col-md-12">
+		<div class="col-md-4 pull-right">
+			<section class="panel">
+				<header class="panel-heading">
+					Bill
+				</header>
+				<div class="panel-body">
+				 <div class="form-group">
+	          <label >Total</label><input type="text" class="form-control" id="totalpriceinput"  name="totalpriceinput" value ="0"  readonly="">
+	        </div>
+	        <div class="form-group">
+	          <label  >Payment</label><input type="text" class="form-control" id="paymentinput"  name="paymentinput">
+	        </div>
+					<a  class="btn btn-primary btn-sm col-md-12" id="procpaymentmodal">Proceed to payment <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+{{ csrf_field() }}
+</form>
+
+
+<div class="modal fade" id="OptionPackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+      	<h4><center>Pay Where?</center></h4>
+      <div class="modal-footer">
+      	<button type="button" class="btn pull-left" data-dismiss="modal" style="width: 48%" id="payDirect"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 100px"></i><br><h3>Pay Here</h3></button>
+        <button type="button" class="btn pull-right " data-dismiss="modal" style="width: 48%" id="payCorp"><i class="fa fa-building-o" aria-hidden="true" style="font-size: 100px"></i><br><h3>Bill to Company</h3></button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 @section('additional')
+
 <script type="text/javascript">
 	$('.select2').select2();
 </script>
+<script type="text/javascript"  src="{{ asset('/Transaction/medicalservice.js') }}"></script>
 @endsection
