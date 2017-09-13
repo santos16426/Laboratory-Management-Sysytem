@@ -92,3 +92,5 @@ Route::post('/update_corpPackage','CorporateAccountController@update_corpPackage
 
 // Transaction
 Route::get('/Transactions/PatientList','TransactionController@patient');
+Route::post('/save_patient','TransactionController@save_patient');
+Route::get('/Transaction/AvailService','TransactionController@medicalservice');

@@ -58,7 +58,7 @@
 			          <td>{{ $table->patient_civilstatus }}</td>
 			          <td>{{ $table->patient_gender }}</td>
 			          <td>
-			            <a class="btn btn-warning btn-xs upservtype" href="/processMedicalService?id={{ $table->patient_id }}"><i class="fa fa-wrench" aria-hidden="true"></i></a>
+			            <a class="btn btn-info btn-xs upservtype" onclick="availserv({{ $table->patient_id }})" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Avail Service </a>
 			          </td>
 			        </tr>
 			        @endforeach
@@ -161,7 +161,7 @@
 								<div class="input-group-addon">
 									Email Address
 								</div>
-								<input  name="patient_email" type="text" placeholder="Email Address" class="form-control input-md" required>
+								<input  name="patient_email" type="email" placeholder="Email Address" class="form-control input-md" >
 							</div>
 						</div>  
 					</div>
@@ -224,12 +224,16 @@
     </div>  
   </div>
 </div>
+<form action="/Transaction/AvailService" method="GET" id="proceedtoService">
+	<input type="hidden" name="patient_id" value="" id="patient_id">
+	{{ csrf_field() }}
+</form>
+<script type="text/javascript" src="{{ asset('/Transaction/availservice.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/Transaction/addpatient.js') }}"></script>
 @endsection
 
 @section('additional')
 <script type="text/javascript">
-
-$(function() {
 $('.select2').select2();
 $('#patientTbl').DataTable({
   'paging'      : true,
@@ -241,77 +245,7 @@ $('#patientTbl').DataTable({
 
 });
 
-});
 </script>
-<script type="text/javascript">
-	function getage(){
-      var dnow
-      var bday
-          var a 
-          var checker
-          var temp
-          var yr
-          var dt
-          var gbday = document.getElementById("birthday").value
 
-          bday = new Date(gbday)
-          dnow = new Date()
-          a = dnow.getFullYear() - bday.getFullYear()
-          yr = bday.getFullYear() + a
-          dt = (dnow.getMonth() + 1) + "/" + dnow.getDate() + "/" + dnow.getFullYear()
-          checker = (bday.getMonth() + 1) + "/" + bday.getDate() + "/" + yr
-         
-          if(Date.parse(dt) < Date.parse(checker)){
-       a = a - 1
-          }
-         if(a<0){
-          a=0
-         }
-
-          document.getElementById("age").value=a;
-  }
-  function getage2(id){
-      var dnow
-      var bday
-          var a 
-          var checker
-          var temp
-          var yr
-          var dt
-          var gbday = document.getElementById("birthday"+id).value
-
-          bday = new Date(gbday)
-          dnow = new Date()
-          a = dnow.getFullYear() - bday.getFullYear()
-          yr = bday.getFullYear() + a
-          dt = (dnow.getMonth() + 1) + "/" + dnow.getDate() + "/" + dnow.getFullYear()
-          checker = (bday.getMonth() + 1) + "/" + bday.getDate() + "/" + yr
-         
-          if(Date.parse(dt) < Date.parse(checker)){
-       a = a - 1
-          }
-         if(a<0){
-          a=0
-         }
-
-          document.getElementById("age"+id).value=a;
-  }
-  function showCorpadd(){
-  	var selectBox = document.getElementById('addpatienttype')
-    var userInput = selectBox.options[selectBox.selectedIndex].value
-
-    if(userInput == '2')
-    {
-      
-      document.getElementById('addcorp').className = ('form-group')
-      
-    }
-    else if(userInput == '1')
-    {
-     document.getElementById('addcorp').className = ('form-group hidden')
-     
-    }
-  }
-</script>
 
 @endsection
