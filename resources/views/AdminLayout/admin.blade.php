@@ -36,7 +36,7 @@
         <div class="sidebar-toggle-box">
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
-        <a href="/Admin/Dashboard" class="logo">Global<span>Healthdsadsadsa</span></a>
+        <a href="/Admin/Dashboard" class="logo">Global<span>Health</span></a>
         <div class="top-nav ">
             <ul class="nav pull-right top-menu">
                 <li class="dropdown">
