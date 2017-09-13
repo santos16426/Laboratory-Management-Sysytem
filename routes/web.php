@@ -88,3 +88,7 @@ Route::post('/save_corpPackage','CorporateAccountController@save_corpPackage');
 Route::post('/deleteCorporatePackage','CorporateAccountController@deleteCorporatePackage');
 Route::get('/updateCorporatePackage','CorporateAccountController@updateCorporatePackage');
 Route::post('/update_corpPackage','CorporateAccountController@update_corpPackage');
+
+
+// Transaction
+Route::get('/Transactions/PatientList','TransactionController@patient');

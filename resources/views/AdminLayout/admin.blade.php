@@ -125,15 +125,15 @@
                 </li>
 
                 <li class="sub-menu">
-                  <a href="">
+                  <a href="" class="@yield('transaction')">
                       <i class="fa fa-handshake-o"></i>
                       <span>Transactions</span>
                   </a>
                   <ul class="sub">
-                      <li><a  href="/Transactions/MedicalService">Medical Services</a></li>
+                      <li class="@yield('medicalservice')"><a  href="/Transactions/PatientList"><i class="fa fa-heartbeat" aria-hidden="true"></i> Medical Services</a></li>
 
                       <li class="sub-menu">
-                          <a  href="">Results</a>
+                          <a  href=""><i class="fa fa-file-o" aria-hidden="true"></i> Results</a>
                           <ul class="sub">
                               <li><a  href="/Transactions/EncodeResults">Enconding of Results</a></li>
                               <li><a  href="/Transactions/UploadResults">Uploading of Results</a></li>
