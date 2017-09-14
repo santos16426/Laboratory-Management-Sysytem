@@ -76,12 +76,12 @@
         <h4 class="modal-title"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Patient</h4>
       </div>
       <div class="modal-body">
-        <form action="/save_patient" method="POST" class="form-horizontal">
+        <form action="/save_patient" method="POST" class="form-horizontal age" id="patientinfo">
         {{ csrf_field() }}
-					<div class="form-group">
-						<div class="col-md-10 col-md-offset-1 input-group">
+					<div class="form-group" style="margin-right: 39%">
+						<div class="col-md-10 col-md-offset-2 input-group">
 							<span class="input-group-addon">Patient Type <sup>*</sup></span>
-							<select class="form-control select2" onchange="showCorpadd();" id="addpatienttype" name="patienttype" style="width: 100%">
+							<select class="form-control select2" onchange="showCorpadd();" id="addpatienttype" name="patienttype" style="width: 179%">
 								@foreach($patienttype as $patienttype)
 									<option value="{{ $patienttype->ptype_id }}">{{ $patienttype->ptype_name }}</option>
 								@endforeach
@@ -89,10 +89,10 @@
 						</div>
 					</div>
 
-					<div class="form-group hidden" id="addcorp">
-						<div class="col-md-10 col-md-offset-1 input-group">
+					<div class="form-group hidden" id="addcorp" style="margin-right: 39%">
+						<div class="col-md-10 col-md-offset-2 input-group">
 							<span class="input-group-addon">Corporate Name <sup>*</sup></span>
-							<select class="form-control select2" name="addcorpid" id="addcorpid" style="width: 100%">
+							<select class="form-control select2" name="addcorpid" id="addcorpid" style="width: 186%">
 								@foreach($corps as $corps)
 									<option value="{{ $corps->corp_id }}">{{ $corps->corp_name }}</option>
 								@endforeach
@@ -100,7 +100,7 @@
 						</div>
 					</div>
 
-	        <div class="form-group">
+	        		<div class="form-group">
 						<div class="col-md-10 col-md-offset-1">
 							<div class="input-group">
 								<div class="input-group-addon">
@@ -161,25 +161,27 @@
 								<div class="input-group-addon">
 									Email Address
 								</div>
-								<input  name="patient_email" type="email" placeholder="Email Address" class="form-control input-md" >
+								<input  name="patient_email" type="text" placeholder="Email Address" class="form-control input-md" required>
 							</div>
 						</div>  
 					</div>
-					<div class="col-md-5 col-md-offset-2">
+					<div class="form-group" style="margin-right: 14%">
+					<div class="col-md-12">
+					<div class="col-md-6 col-md-offset-1">
 						<div class="form-group">
-							<div class="col-md-5 col-md-offet-4">
+							<div class="col-md-5 col-md-offet-1">
 								<div class="input-group">
 									<div class="input-group-addon">
 										Birthday <sup>*</sup>
 									</div>
-									<input  name="birthday" type="date" id="birthday" class="form-control" required onblur="getage()">
+									<input  name="birthday" type="date" id="birthday" class="form-control form-control-inline input-medium default-date-picker" onblur="getage()">
 								</div>
 							</div>  
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-5">
 						<div class="form-group">
-							<div class="col-md-6 col-md-offset-1">
+							<div class="col-md-7 col-md-offset-1">
 								<div class="input-group">
 									<div class="input-group-addon">
 										Age <sup>*</sup>
@@ -189,18 +191,23 @@
 							</div>  
 						</div>
 					</div>
-					<div class="col-md-5 col-md-offet-1">
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon">Gender <sup>*</sup></span>
-							<select class="form-control select2" name = "gender" style="width: 100%">
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-							</select>
+					</div>
+					
+					</div>
+					<div class="form-group" style="margin-left: 10%">
+					<div class="col-md-12">
+					<div class="col-md-4 col-md-offet-1">
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon">Gender <sup>*</sup></span>
+								<select class="form-control select2" name = "gender" style="width: 100%">
+									<option value="Male">Male</option>
+									<option value="Female">Female</option>
+								</select>
+							</div>
 						</div>
 					</div>
-					</div>
-					<div class="col-md-5 col-md-offset-1">
+					<div class="col-md-5 col-md-offset-3">
 					<div class="form-group">
 						<div class="input-group">
 						<span class="input-group-addon">Civil Status <sup>*</sup></span>
@@ -213,11 +220,13 @@
 						</div>
 						</div>
 					</div>
+					</div>
+					</div>
         
         
         <div class="modal-footer">
           <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
-          <button  class="btn btn-xs btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+          <button type="submit" class="btn btn-xs btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
         </div>
         </form>
       </div>

@@ -84,6 +84,7 @@ class TransactionController extends Controller
             $patitent_age = $s->age;
             $patient_gender = $s->patient_gender;
         }
+        $corpid=0;
         if($ptype_id == 2)
         {
             $corpid = $corp_id;

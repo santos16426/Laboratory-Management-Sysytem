@@ -15,6 +15,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/style-responsive.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/gritter/css/jquery.gritter.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/Datatable/datatables.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('/bootstrapvalidator/dist/css/bootstrapValidator.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/Toastr/build/toastr.css') }}">
         <link rel="stylesheet" href="{{ asset('/plugins/select2/dist/css/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('/bootstrapvalidator/dist/css/bootstrapValidator.css') }}">
@@ -198,6 +199,7 @@
 <script type="text/javascript" src="{{ asset('/plugins/js/sparkline-chart.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/easy-pie-chart.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/count.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/bootstrapvalidator/dist/js/bootstrapValidator.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/Datatable/datatables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/gritter/js/jquery.gritter.js') }}"></script>
 <script src="{{ asset('/plugins/select2/dist/js/select2.full.min.js') }}"></script>
@@ -211,6 +213,8 @@
 <script type="text/javascript" src="{{ asset('/plugins/js/form-component.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/gritter.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/Toastr/toastr.js') }}" ></script>
+<script src="{{ asset('/plugins/js/val.js') }}"></script>
+
 
 @if (Session::has('add'))
 <script type="text/javascript">
