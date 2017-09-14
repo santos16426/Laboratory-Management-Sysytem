@@ -355,7 +355,7 @@
 	<div class="col-lg-12">
 		<section class="panel">
 			<header class="panel-heading">
-				{{ $corp_name }} Packages
+				<strong>{{ $corp_name }} Packages</strong>
 			</header>
 			<div class="panel-body">
 				<div class="clearfix">
@@ -405,5 +405,74 @@
 
 @endsection
 @section('additional')
-<script type="text/javascript" src="{{ asset('/Maintenance/CreateCorporatePackage.js') }}"></script>
+<script type="text/javascript">
+	 function fnFormatDetails ( oTable, nTr )
+      {
+         
+          aData = oTable.fnGetData( nTr );
+          sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+          sOut += '<tr><td>Package Name: '+ aData[1]+ '</td></tr>'
+          sOut += '<tr><td>Package Price: '+ aData[2]+ '</td></tr>'
+          sOut += '<tr><td>Services under this package :</td></tr>';
+         
+          sOut += '<tr><td></td></tr>';
+          sOut += '</table>';
+
+          return sOut;
+      }
+
+      $(document).ready(function() {
+          /*
+           * Insert a 'details' column to the table
+           */
+          var nCloneTh = document.createElement( 'th' );
+          var nCloneTd = document.createElement( 'td' );
+          nCloneTd.innerHTML = '<img src="/plugins/assets/advanced-datatable/examples/examples_support/details_open.png">';
+          nCloneTd.className = "center";
+
+          $('#corpPackage thead tr').each( function () {
+              this.insertBefore( nCloneTh, this.childNodes[0] );
+          } );
+
+          $('#corpPackage tbody tr').each( function () {
+              this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+          } );
+
+          /*
+           * Initialse DataTables, with no sorting on the 'details' column
+           */
+          var oTable = $('#corpPackage').dataTable( {
+            'paging'      : true,
+            'lengthChange': true,
+            'searching'   : true,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : true,
+              "aoColumnDefs": [
+                  { "bSortable": false, "aTargets": [ 0 ] }
+              ],
+              "aaSorting": [[1, 'asc']]
+          });
+
+          /* Add event listener for opening and closing details
+           * Note that the indicator for showing which row is open is not controlled by DataTables,
+           * rather it is done here
+           */
+          $('#corpPackage tbody td img').live('click', function () {
+              var nTr = $(this).parents('tr')[0];
+              if ( oTable.fnIsOpen(nTr) )
+              {
+                  /* This row is already open - close it */
+                  this.src = "/plugins/assets/advanced-datatable/examples/examples_support/details_open.png";
+                  oTable.fnClose( nTr );
+              }
+              else
+              {
+                  /* Open this row */
+                  this.src = "/plugins/assets/advanced-datatable/examples/examples_support/details_close.png";
+                  oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
+              }
+          } );
+      } );
+</script>
 @endsection

@@ -232,16 +232,96 @@
 </div>
 @endsection
 @section('additional')
+
 <script type="text/javascript">
-	$('#empTable').DataTable({
-  'paging'      : true,
-  'lengthChange': true,
-  'searching'   : true,
-  'ordering'    : true,
-  'info'        : true,
-  'autoWidth'   : true
-  
-});
+      /* Formating function for row details */
+      function fnFormatDetails ( oTable, nTr )
+      {
+          servicename = [];
+          names = "";
+          aData = oTable.fnGetData( nTr );
+          sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+          sOut += '<tr><td>Package Name: '+ aData[1]+ '</td></tr>'
+          sOut += '<tr><td>Package Price: '+ aData[2]+ '</td></tr>'
+          sOut += '<tr><td>Services under this package :</td></tr>';
+          $.ajax
+          ({
+            url: '/getServiceUnderPackage',
+            type: 'GET',
+            data:{package_name:aData[1]},
+            dataType: 'json',
+            success:function(response)
+            {
+
+              response.forEach(function(data){
+                servicename.push(data.service_name);
+              })
+              names += servicename;
+            }
+          });
+          alert(names);
+          sOut += '<tr><td></td></tr>';
+          sOut += '</table>';
+
+          return sOut;
+      }
+
+      $(document).ready(function() {
+          /*
+           * Insert a 'details' column to the table
+           */
+          var nCloneTh = document.createElement( 'th' );
+          var nCloneTd = document.createElement( 'td' );
+          nCloneTd.innerHTML = '<img src="/plugins/assets/advanced-datatable/examples/examples_support/details_open.png">';
+          nCloneTd.className = "center";
+
+          $('#empTable thead tr').each( function () {
+              this.insertBefore( nCloneTh, this.childNodes[0] );
+          } );
+
+          $('#empTable tbody tr').each( function () {
+              this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+          } );
+
+          /*
+           * Initialse DataTables, with no sorting on the 'details' column
+           */
+          var oTable = $('#empTable').dataTable( {
+            'paging'      : true,
+            'lengthChange': true,
+            'searching'   : true,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : true,
+              "aoColumnDefs": [
+                  { "bSortable": false, "aTargets": [ 0 ] }
+              ],
+              "aaSorting": [[1, 'asc']]
+          });
+
+          /* Add event listener for opening and closing details
+           * Note that the indicator for showing which row is open is not controlled by DataTables,
+           * rather it is done here
+           */
+          $('#empTable tbody td img').live('click', function () {
+              var nTr = $(this).parents('tr')[0];
+              if ( oTable.fnIsOpen(nTr) )
+              {
+                  /* This row is already open - close it */
+                  this.src = "/plugins/assets/advanced-datatable/examples/examples_support/details_open.png";
+                  oTable.fnClose( nTr );
+              }
+              else
+              {
+                  /* Open this row */
+                  this.src = "/plugins/assets/advanced-datatable/examples/examples_support/details_close.png";
+                  oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
+              }
+          } );
+      } );
+  </script>
+
+<script type="text/javascript">
 
 $('.select2').select2();
 $('.packservice').select2({
@@ -297,4 +377,6 @@ $('.packservice').select2({
     return true;
   });
 </script>
+
+
 @endsection

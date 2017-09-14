@@ -228,7 +228,7 @@
     </div>  
   </div>
 </div>
-<form action="/Maintenance/Corporate/CreatePackage" method="GET" id="createcorppackage">
+<form action="/Maintenance/Corporate/CreatePackage" method="POST" id="createcorppackage">
 {{ csrf_field() }}	
 <input type="hidden" name="corp_id" id="corp_id">
 </form>
