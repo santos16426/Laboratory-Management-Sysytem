@@ -10,5 +10,9 @@ class LoginController extends Controller
     	if(Auth::attempt(['username'=> $_POST['user'],'password'=> $_POST['password']])){
     		return redirect('/Admin/Dashboard');
     	}
+    	else
+    	{
+    		return redirect('/');
+    	}
     }
 }
