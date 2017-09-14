@@ -43,7 +43,6 @@
 									<td>{{ $packages->pack_price }}</td>
 									<td>
 									<a class="btn btn-warning btn-xs  updateModal" href="#updateModal" data-toggle="modal" data-id="{{$packages->pack_id}}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
-									<a class="btn btn-info btn-xs  viewModal" href="#viewModal" data-toggle="modal" data-id="{{$packages->pack_id}}"><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp; View</a>
 									<a class="btn btn-danger btn-xs delbtn" data-id="{{$packages->pack_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
 									</td>
 								</tr>
@@ -65,7 +64,7 @@
         <form action="/update_package" method="POST" class="form-horizontal" id="packageedit">
         <input type="hidden" name="packid" id="packid">
         <div class="form-group" style="margin-right:3% ">
-          <label class="col-xs-4 control-label">Pakage Name</label>  
+          <label class="col-xs-4 control-label">Package Name</label>  
               <div class="col-md-6">
                 <div class="input-group">
                   <div class="input-group-addon">
@@ -101,7 +100,7 @@
           </div>
         </div>
         <div class="form-group" style="margin-right:3% ">
-          <label class="col-xs-4 control-label">Pakage Price</label>  
+          <label class="col-xs-4 control-label">Package Price</label>  
             <div class="col-md-6">
               <div class="input-group">
                 <div class="input-group-addon">
@@ -122,24 +121,6 @@
 </div>
 </div>
 
-<div class="modal fade" id = "viewModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header btn-info">
-        
-        <h4 class="modal-title"><i class="fa fa-info-circle" aria-hidden="true"></i> View Record</h4>
-      </div>
-      <form action="#" method="POST">
-        <div class="modal-body" id="serviceView">
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
-        </div>
-      </form>
-    </div>  
-  </div>
-</div>
 
 
 <div class="modal fade" id = "addModal">
@@ -151,7 +132,7 @@
       <div class="modal-body">
         <form action="/save_package" method="POST" class="form-horizontal" id="packageadd">
         <div class="form-group" style="margin-right:3% ">
-          <label class="col-xs-4 control-label">Pakage Name</label>  
+          <label class="col-xs-4 control-label">Package Name</label>  
               <div class="col-md-6">
                 <div class="input-group">
                   <div class="input-group-addon">
@@ -187,7 +168,7 @@
           </div>
         </div>
         <div class="form-group" style="margin-right:3% ">
-          <label class="col-xs-4 control-label">Pakage Price</label>  
+          <label class="col-xs-4 control-label">Package Price</label>  
             <div class="col-md-6">
               <div class="input-group">
                 <div class="input-group-addon">
@@ -235,15 +216,13 @@
 
 <script type="text/javascript">
       /* Formating function for row details */
+      names = "";
       function fnFormatDetails ( oTable, nTr )
       {
           servicename = [];
-          names = "";
+          
           aData = oTable.fnGetData( nTr );
-          sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-          sOut += '<tr><td>Package Name: '+ aData[1]+ '</td></tr>'
-          sOut += '<tr><td>Package Price: '+ aData[2]+ '</td></tr>'
-          sOut += '<tr><td>Services under this package :</td></tr>';
+
           $.ajax
           ({
             url: '/getServiceUnderPackage',
@@ -256,16 +235,20 @@
               response.forEach(function(data){
                 servicename.push(data.service_name);
               })
-              names += servicename;
+              names = servicename;
+              sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+              sOut += '<tr><td>Package Name: '+ aData[1]+ '</td></tr>'
+              sOut += '<tr><td>Package Price: '+ aData[2]+ '</td></tr>'
+              sOut += '<tr><td>Services under this package :</td></tr>';
+              sOut += '<tr><td>'+names+'</td></tr>';
+              sOut += '</table>';
+          
             }
           });
-          alert(names);
-          sOut += '<tr><td></td></tr>';
-          sOut += '</table>';
-
-          return sOut;
+ return sOut;
+          
       }
-
+ 
       $(document).ready(function() {
           /*
            * Insert a 'details' column to the table

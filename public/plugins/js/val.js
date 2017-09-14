@@ -167,12 +167,12 @@ $('#EmployeeTypeadd').bootstrapValidator({
                         max: 25,
                         message:'You cannot exceed 25 characters.'
                     },
-                    remote: {
-                        type: 'GET',
-                        url: '/checkEmpType',
-                        data:{ emptype:$('#emptype').val()},
-                        message: 'Shing',
-                    },
+                    // remote: {
+                    //     type: 'GET',
+                    //     url: '/checkEmpType',
+                    //     data:{ emptype:$('#emptype').val()},
+                    //     message: 'Shing',
+                    // },
                         notEmpty: {
                         message: 'This field is required.'
                     }
@@ -193,12 +193,12 @@ $('#EmployeeTypeadd').bootstrapValidator({
         fields: {        
             servicegroup: {
                 validators: {
-                  remote: {
-                        type: 'GET',
-                        url: '/checkServgrp',
-                        data:{ servicegroup:$('#servicegroup').val()},
-                        message: 'Shing',
-                    },
+                  // remote: {
+                  //       type: 'GET',
+                  //       url: '/checkServgrp',
+                  //       data:{ servicegroup:$('#servicegroup').val()},
+                  //       message: 'Shing',
+                  //   },
                     regexp: {
                             regexp: /^[a-zA-Z0-9.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
@@ -249,12 +249,12 @@ $('#EmployeeTypeadd').bootstrapValidator({
         fields: {        
             servTypeName: {
                 validators: {
-                  remote: {
-                        type: 'GET',
-                        url: '/checkServtype',
-                        data:{ servTypeName:$('#servTypeName').val()},
-                        message: 'Shing',
-                    },
+                  // remote: {
+                  //       type: 'GET',
+                  //       url: '/checkServtype',
+                  //       data:{ servTypeName:$('#servTypeName').val()},
+                  //       message: 'Shing',
+                  //   },
                     regexp: {
                             regexp: /^[a-zA-Z0-9.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
@@ -314,12 +314,12 @@ $('#EmployeeTypeadd').bootstrapValidator({
         fields: {    
             srvcname: {
                 validators: {
-                  remote: {
-                        type: 'GET',
-                        url: '/checkService',
-                        data:{ srvcname:$('#srvcname').val()},
-                        message: 'Shing',
-                    },
+                  : {
+                    //  remote   type: 'GET',
+                    //     url: '/checkService',
+                    //     data:{ srvcname:$('#srvcname').val()},
+                    //     message: 'Shing',
+                    // },
                         regexp: {
                             regexp: /^[a-zA-Z0-9.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
@@ -446,12 +446,12 @@ $('#EmployeeTypeadd').bootstrapValidator({
         fields: {    
             packagename: {
                 validators: {
-                   remote: {
-                        type: 'GET',
-                        url: '/checkPackage',
-                        data:{ packagename:$('#packagename').val()},
-                        message: 'Shing',
-                    },
+                   // remote: {
+                   //      type: 'GET',
+                   //      url: '/checkPackage',
+                   //      data:{ packagename:$('#packagename').val()},
+                   //      message: 'Shing',
+                   //  },
                     regexp: {
                         regexp: /^[a-zA-Z0-9]+([-'_\s][a-zA-Z0-9]+)*$/,
                         message: 'Special characters are not allowed.'
@@ -513,15 +513,15 @@ $('#packageedit')
                         max: 20,
                         message:'Package name should be at least 2 characters and not exceed 20 characters.'
                     },
-                    remote: {
-                        type: 'GET',
-                        url: '/checkUpPack',
-                        data: {
-                            packid: $('#packid').val(),
-                            packagename: $('#packagename').val()
-                        },
-                        message: 'Shing',
-                    },
+                    // remote: {
+                    //     type: 'GET',
+                    //     url: '/checkUpPack',
+                    //     data: {
+                    //         packid: $('#packid').val(),
+                    //         packagename: $('#packagename').val()
+                    //     },
+                    //     message: 'Shing',
+                    // },
                         notEmpty: {
                         message: 'This field is required.'
                     }
@@ -579,12 +579,12 @@ $('#packageedit')
             }, 
            companyname: {
                 validators: {
-                    remote: {
-                        type: 'GET',
-                        url: '/checkCorpName',
-                        data:{ companyname:$('#companyname').val()},
-                        message: 'Shing',
-                    },
+                    // remote: {
+                    //     type: 'GET',
+                    //     url: '/checkCorpName',
+                    //     data:{ companyname:$('#companyname').val()},
+                    //     message: 'Shing',
+                    // },
                     regexp: {
                             regexp: /^[a-zA-Z0-9]+([-'_\s][a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
@@ -600,12 +600,12 @@ $('#packageedit')
             },   
             contactnumber: {
                 validators: {
-                        remote: {
-                        type: 'GET',
-                        url: '/checkContacts',
-                        data:{ contactnumber:$('#contactnumber').val()},
-                        message: 'Shing',
-                    },
+                    //     remote: {
+                    //     type: 'GET',
+                    //     url: '/checkContacts',
+                    //     data:{ contactnumber:$('#contactnumber').val()},
+                    //     message: 'Shing',
+                    // },
                         regexp: {
                             regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                             message: 'Invalid Format.'
@@ -617,12 +617,12 @@ $('#packageedit')
             },
             email: {
                 validators: {
-                        remote: {
-                        type: 'GET',
-                        url: '/checkEmail',
-                        data:{ email:$('#email').val()},
-                        message: 'Shing',
-                    },
+                    //     remote: {
+                    //     type: 'GET',
+                    //     url: '/checkEmail',
+                    //     data:{ email:$('#email').val()},
+                    //     message: 'Shing',
+                    // },
                         regexp: {
                             regexp: /^[a-zA-Z0-9_.-]+@(yahoo|ymail|rocketmail|gmail)\.(uk|co|com|com.ph|in|co\.uk|net)$/,
                             message: 'Enter a valid email.'
