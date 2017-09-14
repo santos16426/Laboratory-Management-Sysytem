@@ -161,7 +161,7 @@
           
           <div class="form-group">
             
-            <div class="col-xs-9 col-md-offset-2 input-group">
+            <div class="col-xs-10 col-md-offset-1 input-group">
                 <span class="input-group-addon">Employee Type <sup style="color: red">*</sup></span>
                 <select class="form-control select2 employeeTypeDropDown" name="emp_type" id="emp_type" style="width: 100%;">
                 <option value="0">Select Employee Type</option>
@@ -244,25 +244,25 @@ $('.employeeTypeDropDown').on('change',function(){
           $('.geninfo').empty(); 
 
           if(rank==1){
-            $('.geninfo').append('<div class="form-group" id="medtechrank"> <label class="col-xs-3 control-label">Position</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-id-badge" aria-hidden="true"></i></div> <select class="form-control select2" name="rank_id" style="width: 100%;"> @php $ranks1 = $ranks @endphp  @foreach($ranks1 as $ranks1) <option value="{{ $ranks1->rank_id }}">{{ $ranks1->rank_name }}</option> @endforeach </select> </div> </div> </div>'); 
+            $('.geninfo').append('<div class="form-group" id="medtechrank"><div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Position <sup>*</sup></div> <select class="form-control select2" name="rank_id" style="width: 100%;"> @php $ranks1 = $ranks @endphp  @foreach($ranks1 as $ranks1) <option value="{{ $ranks1->rank_id }}">{{ $ranks1->rank_name }}</option> @endforeach </select> </div> </div> </div>'); 
           }
           if(name==1){
 
-            $('.geninfo').append('<legend>General Information</legend><div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">First Name <sup style="color:red">*</sup></div> <input type="text" class="form-control ff2" name="firstname" placeholder="e.g. Juan" required> </div> </div> </div> <div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Middle Name </div> <input type="text" class="form-control mm2" name="middlename" placeholder="e.g. Martinez"> </div> </div> </div> <div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Last Name <sup style="color:red">*</sup></div> <input type="text" class="form-control ll2" name="lastname" placeholder="e.g. Dela Cruz"> </div> </div> </div>');
+            $('.geninfo').append('<legend>General Information</legend><div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">First Name <sup style="color:red">*</sup></div> <input type="text" class="form-control ff2" name="firstname" placeholder="e.g. Juan" required> </div> </div> </div> <div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Middle Name </div> <input type="text" class="form-control mm2" name="middlename" placeholder="e.g. Martinez"> </div> </div> </div> <div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Last Name <sup style="color:red">*</sup></div> <input type="text" class="form-control ll2" name="lastname" placeholder="e.g. Dela Cruz"> </div> </div> </div>');
           }
           if(address==1){
-            $('.geninfo').append('<div class="form-group"> <div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Address <sup style="color:red">*</sup></div> <input type="text" class="form-control" name="address" placeholder="e.g. 173 L. Pascual Street, Q.C."> </div> </div> </div>');
+            $('.geninfo').append('<div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Address <sup style="color:red">*</sup></div> <input type="text" class="form-control" name="address" placeholder="e.g. 173 L. Pascual Street, Q.C."> </div> </div> </div>');
           }
           if(contact==1){
-            $('.geninfo').append('<div class="form-group"><div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Contact Number <sup style="color:red">*</sup></div> <input type="text" class="form-control" name="contact" placeholder="e.g. (63) 926 189 1291"> </div> </div> </div>');
+            $('.geninfo').append('<div class="form-group"><div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Contact Number <sup style="color:red">*</sup></div> <input type="text" class="form-control" name="contact" placeholder="e.g. (63) 926 189 1291"> </div> </div> </div>');
           }
           if(license==1){
-            $('.geninfo').append(' <div class="form-group"> <label class="col-xs-3 control-label">License Number</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div> <input type="text" class="form-control" name="license" placeholder="e.g. HH-DH-8876"> </div> </div> </div>');
+            $('.geninfo').append(' <div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">License Number <sup>*</sup></div> <input type="text" class="form-control" name="license" placeholder="e.g. HH-DH-8876"> </div> </div> </div>');
           }
 
           $('.accountinfo').empty();
           if((username==1)&&(password==1)){
-          $('.accountinfo').append(' <legend>Account Information</legend><div class="form-group"><div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Username <sup style="color:red">*</sup></div><input type="text" class="form-control" name="username" placeholder="Username"></div></div></div><div class="form-group"><div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Password <sup style="color:red">*</sup></div><input type="password" class="form-control" name="password" placeholder="Password"></div></div></div><div class="form-group"><div class="col-md-7 col-md-offset-3"> <div class="input-group"> <div class="input-group-addon">Confirm Password <sup style="color:red">*</sup></div><input type="password" class="form-control" name="confirmpass" placeholder="Confirm Password"></div></div></div>');
+          $('.accountinfo').append(' <legend>Account Information</legend><div class="form-group"><div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Username <sup style="color:red">*</sup></div><input type="text" class="form-control" name="username" placeholder="Username"></div></div></div><div class="form-group"><div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Password <sup style="color:red">*</sup></div><input type="password" class="form-control" name="password" placeholder="Password"></div></div></div><div class="form-group"><div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Confirm Password <sup style="color:red">*</sup></div><input type="password" class="form-control" name="confirmpass" placeholder="Confirm Password"></div></div></div>');
           }
 
         }
