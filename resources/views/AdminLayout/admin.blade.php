@@ -14,6 +14,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/style.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/style-responsive.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/gritter/css/jquery.gritter.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/bootstrap-fileupload/bootstrap-fileupload.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/Datatable/datatables.min.css') }}">
         <link rel="stylesheet" href="{{ asset('/bootstrapvalidator/dist/css/bootstrapValidator.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/Toastr/build/toastr.css') }}">
@@ -192,6 +193,7 @@
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.nicescroll.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.sparkline.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-fileupload/bootstrap-fileupload.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/owl.carousel.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.customSelect.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/respond.min.js') }}"></script>
