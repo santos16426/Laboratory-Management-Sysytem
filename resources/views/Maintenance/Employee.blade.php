@@ -16,6 +16,7 @@
 @section('employee','active')
 
 @section('content')
+
 <div class="row">
 	<div class="col-lg-12">
 		<section class="panel">
@@ -266,7 +267,7 @@ $('.employeeTypeDropDown').on('change',function(){
           if((username==1)&&(password==1)){
           $('.accountinfo').append(' <legend>Account Information</legend><div class="form-group"><div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Username <sup style="color:red">*</sup></div><input type="text" class="form-control" name="username" placeholder="Username"></div></div></div><div class="form-group"><div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Password <sup style="color:red">*</sup></div><input type="password" class="form-control" name="password" placeholder="Password"></div></div></div><div class="form-group"><div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Confirm Password <sup style="color:red">*</sup></div><input type="password" class="form-control" name="confirmpass" placeholder="Confirm Password"></div></div></div>');
           }
-          $('.accountinfo').append('<label class="control-label col-md-3 col-md-offset-1">Image Upload</label> <div class="col-md-8"> <div class="fileupload fileupload-new" data-provides="fileupload"> <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"> <img src="{{ asset("/Employee_images/default.jpg") }}" alt="" /> </div> <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div> <div> <span class="btn btn-white btn-file"> <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span> <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span> <input type="file" class="default" name="emp_pic"> </span> <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a> </div> </div> </div>')
+          $('.accountinfo').append('<label class="control-label col-md-3 col-md-offset-1">Image Upload</label> <div class="col-md-8"> <div class="fileupload fileupload-new" data-provides="fileupload"> <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"> <img src="{{ asset("/Employee_images/default.jpg") }}" alt="" /> </div> <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div> <div> <span class="btn btn-white btn-file"> <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span> <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span> <input type="file" class="default" name="emp_pic" capture="camera" accept="image/*"> </span> <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a> </div> </div> </div>')
         }
       });
     });

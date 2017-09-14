@@ -75,6 +75,7 @@ Route::get('/viewServiceinPackage','PackageController@viewServiceinPackage');
 Route::post('/deletePackage','PackageController@deletePackage');
 Route::post('/update_package','PackageController@update_package');
 Route::post('/save_package','PackageController@save_package');
+Route::get('/getServiceUnderPackage','PackageController@getServiceUnderPackage');
 
 //Corporate
 Route::get('/Maintenance/Corporate','CorporateAccountController@corp');
@@ -83,7 +84,7 @@ Route::get('/updateCorporate','CorporateAccountController@updateCorporate');
 Route::post('/update_Corporate','CorporateAccountController@update_Corporate');
 Route::post('/save_corp','CorporateAccountController@save_corp');
 Route::post('/deleteCorporate','CorporateAccountController@deleteCorporate');
-Route::get('/Maintenance/Corporate/CreatePackage','CorporateAccountController@createpackage');
+Route::post('/Maintenance/Corporate/CreatePackage','CorporateAccountController@createpackage');
 Route::post('/save_corpPackage','CorporateAccountController@save_corpPackage');
 Route::post('/deleteCorporatePackage','CorporateAccountController@deleteCorporatePackage');
 Route::get('/updateCorporatePackage','CorporateAccountController@updateCorporatePackage');
