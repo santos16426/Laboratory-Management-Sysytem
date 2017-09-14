@@ -19,6 +19,9 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/advanced-datatable/media/css/demo_table.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/Toastr/build/toastr.css') }}">
         <link rel="stylesheet" href="{{ asset('/plugins/select2/dist/css/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('/bootstrapvalidator/dist/css/bootstrapValidator.css') }}">
+        <link rel="stylesheet" href="{{ asset('/sweetalert-master/dist/sweetalert.css') }}">
+        <script src="{{ asset('/sweetalert-master/dist/sweetalert.min.js') }}"></script>
         <style type="text/css">
           sup
           {
@@ -183,6 +186,7 @@
         </section>
     </section>
 </section>
+
 <script type="text/javascript" src="{{ asset('/plugins/assets/advanced-datatable/media/js/jquery.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery-1.8.3.min.js') }}"></script>

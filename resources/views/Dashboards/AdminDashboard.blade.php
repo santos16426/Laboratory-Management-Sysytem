@@ -6,3 +6,6 @@
 @section('breadParentName')
 <i class="fa fa-dashboard" aria-hidden="true"></i><span> Dashboard</span>
 @endsection
+@section('maintenanceactive')
+<a href="" class="">
+@endsection

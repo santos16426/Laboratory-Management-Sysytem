@@ -95,3 +95,4 @@ Route::get('/Transactions/PatientList','TransactionController@patient');
 Route::post('/save_patient','TransactionController@save_patient');
 Route::get('/Transaction/AvailService','TransactionController@medicalservice');
 Route::get('/getDataPackage','TransactionController@getDataPackage');	
+Route::get('/getDataService','TransactionController@getDataService');

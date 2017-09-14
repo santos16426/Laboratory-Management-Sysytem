@@ -7,6 +7,13 @@ use DB;
 use Session;
 class TransactionController extends Controller
 {
+    public function getDataService(Request $req){
+        $servicedetails = DB::table('service_tbl')
+            ->leftjoin('service_group_tbl','service_group_tbl.servgroup_id','=','service_tbl.service_group_id')
+            ->where('service_id',$req->id)
+            ->get();
+        return response()->json($servicedetails);
+    }
     public function getDataPackage(Request $req){
         $packagedetails = DB::table('corp_package_tbl')
             ->leftjoin('corporate_accounts_tbl','corporate_accounts_tbl.corp_id','=','corp_package_tbl.corp_id')
