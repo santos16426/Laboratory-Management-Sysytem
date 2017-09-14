@@ -130,6 +130,26 @@
             </div>
           </div>  
         </div> 
+        <div class="form-group" style="margin-left:33% ">
+        <div class="col-md-12">
+          <div class="form-group">
+              <div class="checkbox">
+                <label><input type="checkbox" name="med_req" id="med_req" value="Yes">Check if this service needs a medical <br> request upon transaction.</label>
+            </div>
+          </div>
+        </div>  
+      </div>  
+        <div class="form-group" >
+            <div class="col-sm-10 col-md-offset-1">
+              <div class="input-group">
+                <div class="input-group-addon">
+                  Prescription
+                </div>
+              <textarea class="col-md-12" name="service_notes" id="service_notes">
+              </textarea>
+            </div>
+          </div>  
+        </div>  
         <div class="modal-footer">
           <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
           <button class="btn btn-xs btn-success" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Update</button>
@@ -197,14 +217,27 @@
           </div>  
         </div> 
       <div class="form-group" style="margin-left:33% ">
-       <div class="col-md-12">
+        <div class="col-md-12">
           <div class="form-group">
               <div class="checkbox">
                 <label><input type="checkbox" name="med_req" value="Yes">Check if this service needs a medical <br> request upon transaction.</label>
             </div>
           </div>
         </div>  
-        </div>   
+      </div>   
+
+        <div class="form-group" >
+            <div class="col-sm-10 col-md-offset-1">
+              <div class="input-group">
+                <div class="input-group-addon">
+                  Prescription
+                </div>
+              <textarea class="col-md-12" name="service_notes">
+              </textarea>
+            </div>
+          </div>  
+        </div>  
+
 
         <div class="modal-footer">
           <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
@@ -381,7 +414,12 @@ $('.editsrvc').on('click',function(){
             $('#srvcprice').val(data.service_price);
             $('#srvcgrpid').val(data.service_group_id);
             $('#typesel').val(data.service_type_id);
-
+            if(data.medical_request == "Yes")
+            {
+              $('#med_req').attr('checked',true);
+            }
+            $('#service_notes').empty();
+            $('#service_notes').append(data.service_notes);
           })      
         }
       });

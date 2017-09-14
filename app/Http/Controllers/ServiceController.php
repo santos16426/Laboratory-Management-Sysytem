@@ -158,6 +158,7 @@ class ServiceController extends Controller
       $srvctyp_id = $_POST['srvctyp_id'];
       $srvc_price = $_POST['srvc_price'];
       $med_request = "No";
+      $service_notes = $_POST['service_notes'];
       if(isset($_POST['med_req']))
       {
         $med_request = $_POST['med_req'];
@@ -170,6 +171,7 @@ class ServiceController extends Controller
       }
       DB::table('service_tbl')->insert
       ([
+        'service_notes'=>$service_notes,
         'medical_request'=>$med_request,
         'service_name'=>$srvcname,
         'service_group_id'=>$srvcgrp_id,
@@ -179,25 +181,36 @@ class ServiceController extends Controller
       $service_id = DB::table('service_tbl')->select('service_id')->max('service_id');
       DB::table('service_log_tbl')->insert(
         [
+          'service_notes'=>$service_notes,
           'service_name'=>$srvcname,
           'service_id'=>$service_id,
           'service_price'=>$srvc_price,
-          'updated_at'=>date_create('now')
+          'updated_at'=>date_create('now'),
+          'medical_request'=>$med_request
         ]);
       Session::flash('add', true);
        return redirect()->back();
     }
     public function update_service(){
+      $med_req='No';
+      if(isset($_POST['med_req']))
+      {
+        $med_req = 'Yes';
+      }
       DB::table('service_tbl')->where('service_id',$_POST['srvcid'])->update([
             'service_name' => $_POST['srvcname'],
             'service_price' => $_POST['srvc_price'],
+            'medical_request'=>$med_req,
+            'service_notes'=>$_POST['service_notes']
             ]);
       DB::table('service_log_tbl')
         ->insert([
             'service_id'  =>  $_POST['srvcid'],
             'service_name' => $_POST['srvcname'],
             'service_price' => $_POST['srvc_price'],
-            'updated_at'  => date_create('now')
+            'updated_at'  => date_create('now'),
+            'medical_request'=>$med_req,
+            'service_notes'=>$_POST['service_notes']
           ]);
       Session::flash('update', true);
       return redirect()->back();
