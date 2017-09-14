@@ -7,6 +7,13 @@ use DB;
 use Session;
 class TransactionController extends Controller
 {
+    public function getCompanyPackage(Request $req)
+    {
+        $package = DB::table('package_tbl')
+            ->where('pack_id',$req->id)
+            ->get();
+        return response()->json($package);
+    }
     public function getDataService(Request $req){
         $servicedetails = DB::table('service_tbl')
             ->leftjoin('service_group_tbl','service_group_tbl.servgroup_id','=','service_tbl.service_group_id')
@@ -17,12 +24,13 @@ class TransactionController extends Controller
     public function getDataPackage(Request $req){
         $packagedetails = DB::table('corp_package_tbl')
             ->leftjoin('corporate_accounts_tbl','corporate_accounts_tbl.corp_id','=','corp_package_tbl.corp_id')
-            ->where('corp_package_tbl.corp_id',$req->id)
+            ->where('corp_package_tbl.corpPack_id',$req->id)
             ->get();
         return response()->json($packagedetails);
     }
     public function medicalservice(){
-      $pid = $_GET['patient_id'];
+        $pid = $_GET['patient_id'];
+
         $emp_rebates = DB::table('employee_tbl')
             ->leftjoin('rolefields_tbl','rolefields_tbl.role_id','=','employee_tbl.emp_type_id')
             ->leftjoin('emp_rebate_tbl','emp_rebate_tbl.emp_id','=','employee_tbl.emp_id')
@@ -35,7 +43,7 @@ class TransactionController extends Controller
             ->where('RoleStatus',1)
             ->get();
 
-      $patientinfo = DB::table('patient_tbl')
+        $patientinfo = DB::table('patient_tbl')
             ->leftjoin('patient_type_tbl','patient_type_tbl.ptype_id','=','patient_tbl.patient_type_id')
             ->where('patient_tbl.PatientStatus',1)
             ->where('patient_id',$pid)->get();
@@ -45,12 +53,12 @@ class TransactionController extends Controller
             ->get();
 
         $servicegroup = DB::table('service_group_tbl')
-          ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
-          ->where('ServGroupStatus',1)
-          ->where('LabStatus',1)
-          ->get();
-        
-      $service = DB::table('service_tbl')
+            ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+            ->where('ServGroupStatus',1)
+            ->where('LabStatus',1)
+            ->get();
+
+        $service = DB::table('service_tbl')
             ->leftjoin('service_group_tbl','service_group_tbl.servgroup_id','=','service_tbl.service_group_id')
             ->leftjoin('service_type_tbl','service_type_tbl.service_type_id','=','service_tbl.service_type_id')
             ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
@@ -68,14 +76,21 @@ class TransactionController extends Controller
             ->where('ServTypeStatus',null)
             ->where('ServGroupStatus',null)
             ->where('LabStatus',null)
-
             ->get();
         foreach($patientinfo as $s)
         {
             $ptype_id = $s->patient_type_id;
+            $corp_id = $s->patient_corp_id;
+            $patitent_age = $s->age;
+            $patient_gender = $s->patient_gender;
         }
+        if($ptype_id == 2)
+        {
+            $corpid = $corp_id;
+        }
+        $corppackage = DB::table('corp_package_tbl')->where('corp_id',$corpid)->where('CorpPackStatus',1)->get();
 
-      return view('Transaction.MedicalService',['patientinfo'=>$patientinfo,'service'=>$service,'emp_rebates'=>$emp_rebates,'ptype_id'=>$ptype_id,'servicegroup'=>$servicegroup,'package'=>$package,'corp'=>$corp]);
+        return view('Transaction.MedicalService',['patientinfo'=>$patientinfo,'service'=>$service,'emp_rebates'=>$emp_rebates,'ptype_id'=>$ptype_id,'servicegroup'=>$servicegroup,'package'=>$package,'corp'=>$corp,'corppackage'=>$corppackage,'patitent_age'=>$patitent_age,'patient_gender'=>$patient_gender]);
     }
     function patient()
     {

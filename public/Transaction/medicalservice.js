@@ -85,26 +85,26 @@ payment = payment *1;
 $('#payDirect').click(function(){	
 	$('#payWhere').val('0');
 	var total = $('#totalpriceinput').val();
-	var corp_id = $('#corporate_id').val();
+	var corpPack_id = $('#corppack_id').val();
 	var addpackagebtn = document.getElementById('activecorppack');
 	var price = 0*1;
 	$.ajax
 	({
 		url: '/getDataPackage',
 		type: 'get',
-		data: { id: corp_id },
+		data: { id: corpPack_id },
 		dataType : 'json',
 		success:function(response)
 		{
 			response.forEach(function(data)
 			{
 				t.row.add([
-				data.corp_name + ' Package',
+				data.corpPack_name,
 				'',
 				data.price,
 				'<button class="btn btn-danger btn-xs corpremove_package'+data.corpPack_id+'" data-id="'+data.corpPack_id+'"><i class="fa fa-trash" aria-hidden="true"></i></button><input type="hidden" name="corppackage_id" value="'+data.corpPack_id+'"><input type="hidden" name="payWhere" id="payWhere" value="0"><input type="hidden" name="corppackprice" id="corppackprice'+data.corpPack_id+'" value='+data.price+'>'
 				]).draw(false);
-				addpackagebtn.className = "btn btn-info disabled";
+				addpackagebtn.className = "btn btn-default btn-sm disabled";
 				total = total * 1;
 				price = ($('#corppackprice'+data.corpPack_id).val()*1);
 				total = total + price;
@@ -126,7 +126,7 @@ $('#payDirect').click(function(){
 				toastr.success("Success! Corporate Package added!");
 				$('.corpremove_package'+data.corpPack_id+'').click(function()
 				{
-					addpackagebtn.className = "btn btn-info";
+					addpackagebtn.className = "btn btn-default btn-sm";
 					var remPack_id = $(this).data("id");
 					$('#totalpriceinput').val($('#totalpriceinput').val() - price);
 					t.row($(this).parents('tr')).remove().draw();
@@ -157,18 +157,18 @@ $('#payCorp').click(function(){
 	var total = $('#totalpriceinput').val();
 	var addpackagebtn = document.getElementById('activecorppack');
 	$('#payWhere').val('1');
-	var corp_id = $('#corporate_id').val();
+	var corpPack_id = $('#corppack_id').val();
 	var price = 0*1;
 	$.ajax
 	({
 		url: '/getDataPackage',
 		type: 'get',
-		data: { id: corp_id },
+		data: { id: corpPack_id },
 		dataType : 'json',
 		success:function(response){
 			response.forEach(function(data){
 				t.row.add([
-				data.corp_name + ' Package',
+				data.corpPack_name,
 				'',
 				data.price + " (c/o "+data.corp_name+")",
 				'<button class="btn btn-danger btn-xs corpremove_package'+data.corpPack_id+'" data-id="'+data.corpPack_id+'"><i class="fa fa-trash" aria-hidden="true"></i></button><input type="hidden" name="corppackage_id" value="'+data.corpPack_id+'"><input type="hidden" name="payWhere" id="payWhere" value="1"><input type="hidden" name="corppackprice" id="corppackprice'+data.corpPack_id+'" value="0">'
@@ -178,6 +178,21 @@ $('#payCorp').click(function(){
 				price = $('#corppackprice'+data.corpPack_id).val()*1;
 				total = total + price;
 				$('#totalpriceinput').val(total);
+				toastr.options = {
+			      "closeButton": true,
+			      "debug": false,
+			      "positionClass": "toast-top-right",
+			      "onclick": null,
+			      "showDuration": "3000",
+			      "hideDuration": "100",
+			      "timeOut": "3000",
+			      "extendedTimeOut": "0",
+			      "showEasing": "swing",
+			      "hideEasing": "swing",
+			      "showMethod": "show",
+			      "hideMethod": "hide"
+			    }
+			    toastr.success(data.corpPack_name + " is successfully added");
 				$('.corpremove_package'+data.corpPack_id+'').click(function(){
 					var remPack_id = $(this).data("id");
 					addpackagebtn.className = "btn btn-info";
@@ -210,6 +225,21 @@ $('#addpackageBtn').click(function(){
 				data.pack_price,
 				'<button class="btn btn-danger btn-xs remove_package'+package_id+'" data-id="'+package_id+'"><i class="fa fa-trash" aria-hidden="true"></i></button><input type="hidden" name="package_id[]" value="'+package_id+'"><input type="hidden" name="packprice" id="packprice'+package_id+' value ='+data.pack_price+' ">'
 				]).draw(false);
+				toastr.options = {
+			      "closeButton": true,
+			      "debug": false,
+			      "positionClass": "toast-top-right",
+			      "onclick": null,
+			      "showDuration": "3000",
+			      "hideDuration": "100",
+			      "timeOut": "3000",
+			      "extendedTimeOut": "0",
+			      "showEasing": "swing",
+			      "hideEasing": "swing",
+			      "showMethod": "show",
+			      "hideMethod": "hide"
+			    }
+			    toastr.success(data.pack_name + " is successfully added");
 				$("#PackageID"+package_id).attr("disabled","disabled");
 				total = total *1;
 				price = data.pack_price;
@@ -217,7 +247,21 @@ $('#addpackageBtn').click(function(){
 				$('#totalpriceinput').val(total);
 				$('.remove_package'+package_id+'').click(function(){
 					var remPack_id = $(this).data("id");
-					console.log("Remove Package ID:" + remPack_id);
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.success(data.pack_name + " is successfully removed");
 					$('#totalpriceinput').val($('#totalpriceinput').val() - price);
 					$("#PackageID"+package_id).removeAttr("disabled","disabled");
 					t.row($(this).parents('tr')).remove().draw();
@@ -246,12 +290,27 @@ $('#addservice').click(function(){
 			response.forEach(function(data) { 
 				med_req = data.medical_request;
 				if(med_req == "No"){
-					t.fnAddData([
+					t.row.add([
 					data.service_name ,
 					data.servgroup_name,
 					data.service_price,
 					'<button class="btn btn-danger btn-xs remove_service'+service_id+'" data-id="'+service_id+'"><i class="fa fa-trash" aria-hidden="true"></i></button><input type="hidden" name="medservice_id[]" value="'+service_id+'"><input type="hidden" name="serviceprice" value='+data.service_price+' id="serviceprice'+service_id+'">'
-					])
+					]).draw(false);
+					toastr.options = {
+					  "closeButton": true,
+					  "debug": false,
+					  "positionClass": "toast-top-right",
+					  "onclick": null,
+					  "showDuration": "3000",
+					  "hideDuration": "100",
+					  "timeOut": "3000",
+					  "extendedTimeOut": "0",
+					  "showEasing": "swing",
+					  "hideEasing": "swing",
+					  "showMethod": "show",
+					  "hideMethod": "hide"
+					}
+					toastr.success(data.service_name + " is successfully added");
 					$("#ServiceOPTION"+service_id).attr("disabled","disabled");
 					total = total *1;
 					price = ($('#serviceprice'+service_id+'').val()*1);
@@ -260,7 +319,21 @@ $('#addservice').click(function(){
 					$('.remove_service'+service_id+'').click(function(){
 					var remServ_id = $(this).data("id");
 					$('#totalpriceinput').val($('#totalpriceinput').val() - price);
-					console.log("Remove Service ID:" + remServ_id);
+					toastr.options = {
+					  "closeButton": true,
+					  "debug": false,
+					  "positionClass": "toast-top-right",
+					  "onclick": null,
+					  "showDuration": "3000",
+					  "hideDuration": "100",
+					  "timeOut": "3000",
+					  "extendedTimeOut": "0",
+					  "showEasing": "swing",
+					  "hideEasing": "swing",
+					  "showMethod": "show",
+					  "hideMethod": "hide"
+					}
+					toastr.success(data.service_name + " is successfully removed");
 					$("#ServiceOPTION"+remServ_id).removeAttr("disabled","disabled");
 					t.row($(this).parents('tr')).remove().draw();
 					return true;
@@ -269,23 +342,38 @@ $('#addservice').click(function(){
 				else{
 					swal({
 						title: "Verification",
-						text: "",
+						text: "This service requires a medical certificate",
 						type: "warning",
 						showCancelButton: true,
 						confirmButtonColor: "#00a65a",
-						confirmButtonText: "Yes",
+						confirmButtonText: "It is included",
 						cancelButtonText: "None",
 						closeOnConfirm: true,
-						closeOnCancel:false
+						closeOnCancel:true
 					},
 					function(isConfirm){
 						if (isConfirm) {
-							t.fnAddData([
+							t.row.add([
 							data.service_name ,
 							data.servgroup_name,
 							data.service_price,
 							'<a class="btn btn-danger btn-xs remove_service'+service_id+'" data-id="'+service_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="medservice_id[]" value="'+service_id+'"><input type="hidden" name="serviceprice" value='+data.service_price+' id="serviceprice'+service_id+'">'
-							])
+							]).draw(false);
+							toastr.options = {
+						      "closeButton": true,
+						      "debug": false,
+						      "positionClass": "toast-top-right",
+						      "onclick": null,
+						      "showDuration": "3000",
+						      "hideDuration": "100",
+						      "timeOut": "3000",
+						      "extendedTimeOut": "0",
+						      "showEasing": "swing",
+						      "hideEasing": "swing",
+						      "showMethod": "show",
+						      "hideMethod": "hide"
+						    }
+						    toastr.success(data.service_name + " is successfully added");
 							$("#ServiceOPTION"+service_id).attr("disabled","disabled");
 							total = total *1;
 							price = ($('#serviceprice'+service_id+'').val()*1);
@@ -295,20 +383,42 @@ $('#addservice').click(function(){
 
 								var remServ_id = $(this).data("id");
 								$('#totalpriceinput').val($('#totalpriceinput').val() - price);
-								console.log("Remove Service ID:" + remServ_id);
+								toastr.options = {
+							      "closeButton": true,
+							      "debug": false,
+							      "positionClass": "toast-top-right",
+							      "onclick": null,
+							      "showDuration": "3000",
+							      "hideDuration": "100",
+							      "timeOut": "3000",
+							      "extendedTimeOut": "0",
+							      "showEasing": "swing",
+							      "hideEasing": "swing",
+							      "showMethod": "show",
+							      "hideMethod": "hide"
+							    }
+							    toastr.success(data.service_name + " is successfully removed");
 								$("#ServiceOPTION"+remServ_id).removeAttr("disabled","disabled");
 								t.row($(this).parents('tr')).remove().draw();
 								return true;
 							});
 						} 
 						else {
-							swal({
-								title: "Sorry",
-								text: "Requires a medical request for this service",
-								type: "error",
-								closeOnConfirm: true,
-								timer: 2000
-							});
+							toastr.options = {
+							  "closeButton": true,
+							  "debug": false,
+							  "positionClass": "toast-top-right",
+							  "onclick": null,
+							  "showDuration": "3000",
+							  "hideDuration": "100",
+							  "timeOut": "3000",
+							  "extendedTimeOut": "0",
+							  "showEasing": "swing",
+							  "hideEasing": "swing",
+							  "showMethod": "show",
+							  "hideMethod": "hide"
+							}
+							toastr.error("Sorry! This service requires a medical service");
 						}
 					});
 				}

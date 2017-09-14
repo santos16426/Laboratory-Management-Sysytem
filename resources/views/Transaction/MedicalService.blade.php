@@ -104,7 +104,16 @@
 										<div class="form-group" style="padding-top: 2%">
 											<div class="col-md-12">
 												<div class="col-md-12" >
-													<a href="#OptionPackModal" id="activecorppack" data-toggle="modal" class="btn btn-info" style="width: 100%; ">Activate Corporate Package<i  aria-hidden="true"></i></a>
+													<div class="input-group" >
+														<select class="form-control corppack_id select2" name="corppack_id" id="corppack_id" style="width: 100%" >
+															@foreach($corppackage as $corppack)
+																<option id="{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
+															@endforeach
+														</select>
+														<div class="input-group-btn">
+															<a href="#OptionPackModal" id="activecorppack" data-toggle="modal" class="btn btn-default btn-sm" style="border-radius: 10%">Add<i  aria-hidden="true"></i></a>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -258,6 +267,9 @@
 
 <script type="text/javascript">
 	$('.select2').select2();
+	$('#srvc_id').select2({
+		placeholder: "Select a service"
+	});
 </script>
 <script type="text/javascript"  src="{{ asset('/Transaction/medicalservice.js') }}"></script>
 @endsection

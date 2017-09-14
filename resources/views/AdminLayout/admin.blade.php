@@ -14,9 +14,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/style.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/style-responsive.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/gritter/css/jquery.gritter.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/advanced-datatable/media/css/demo_page.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/data-tables/DT_bootstrap.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/advanced-datatable/media/css/demo_table.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/Datatable/datatables.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/Toastr/build/toastr.css') }}">
         <link rel="stylesheet" href="{{ asset('/plugins/select2/dist/css/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('/bootstrapvalidator/dist/css/bootstrapValidator.css') }}">
@@ -122,11 +120,8 @@
                             <span>Corporate Accounts</span>
                         </a>
                       </li>
-
-
                   </ul>
                 </li>
-
                 <li class="sub-menu">
                   <a href="" class="@yield('transaction')">
                       <i class="fa fa-handshake-o"></i>
@@ -203,8 +198,7 @@
 <script type="text/javascript" src="{{ asset('/plugins/js/sparkline-chart.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/easy-pie-chart.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/count.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/plugins/assets/advanced-datatable/media/js/jquery.dataTables.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/plugins/assets/data-tables/DT_bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/Datatable/datatables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/gritter/js/jquery.gritter.js') }}"></script>
 <script src="{{ asset('/plugins/select2/dist/js/select2.full.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/bootstrap-switch.js') }}"></script>
