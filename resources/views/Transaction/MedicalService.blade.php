@@ -41,7 +41,7 @@
 				<div class="col-md-6">
 					<div class="panel">
 						<header class="panel-heading">
-							Patient Information
+							<strong>Patient Information</strong>
 						</header>
 						<div class="panel-body">
 							<table style="font-size: 13px;">
@@ -95,7 +95,7 @@
 				<div class="col-md-6">
 					<div class="panel">
 						<header class="panel-heading">
-							Title neto??
+							<strong>Service</strong>
 						</header>
 						<div class="panel-body">
 							<div class="form-group">
@@ -196,7 +196,7 @@
 			<div class="col-md-12">
 				<section class="panel">
 					<header class="panel-heading">
-						Reciept
+						<strong>Reciept</strong>
 					</header>
 					<div class="panel-body">
 						<div class="col-md-12">
@@ -226,7 +226,7 @@
 		<div class="col-md-4 pull-right">
 			<section class="panel">
 				<header class="panel-heading">
-					Bill
+					<strong>Bill</strong>
 				</header>
 				<div class="panel-body">
 				 <div class="form-group">

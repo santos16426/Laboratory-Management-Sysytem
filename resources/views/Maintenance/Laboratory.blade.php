@@ -19,7 +19,7 @@
 	<div class="col-lg-12">
 		<section class="panel">
 			<header class="panel-heading">
-				Laboratories
+				<strong>Laboratories</strong>
 			</header>
 			<div class="panel-body">
 				<div class="clearfix">
