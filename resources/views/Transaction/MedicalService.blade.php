@@ -225,14 +225,13 @@
 		<div class="col-md-6 pull-left">
 			<section class="panel">
 				<header class="panel-heading">
-					<strong>Bill</strong>
+					<strong>Medical Certificate</strong>
 				</header>
 				<div class="panel-body">
-					<section id="main-content">
-			          <label class="control-label col-md-3 col-md-offset-1">Image Upload</label>  
+					<section id="main-content col-md-12"> 
 			          		<div class="fileupload fileupload-new" data-provides="fileupload"> 
-			          			<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"> <img src="{{ asset("/Employee_images/default.jpg") }}" alt="" /> </div> 
-			          			<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div> 
+			          			<div class="fileupload-new thumbnail col-md-12"> <img src='{{ asset("/Employee_images/default.jpg") }}' alt="" /> </div> 
+			          			<div class="fileupload-preview fileupload-exists thumbnail" style="width: 500px; height: 200px;"></div> 
 			          			<div> <span class="btn btn-white btn-file"> 
 			          				<span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span> 
 			          				<span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span> 
