@@ -12,6 +12,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/owl.carousel.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/dropzone/css/dropzone.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/style-responsive.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/gritter/css/jquery.gritter.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/bootstrap-fileupload/bootstrap-fileupload.css') }}">
@@ -188,6 +189,7 @@
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery-1.8.3.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/plugins/assets/dropzone/dropzone.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.dcjqaccordion.2.7.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.scrollTo.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.nicescroll.js') }}"></script>

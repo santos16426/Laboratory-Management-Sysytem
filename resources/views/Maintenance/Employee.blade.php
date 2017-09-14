@@ -257,7 +257,7 @@
                   oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
               }
           } );
-      } );
+      } ); 
   </script>
 <script>
 $(function () {

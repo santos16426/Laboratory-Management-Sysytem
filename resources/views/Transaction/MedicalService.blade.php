@@ -222,7 +222,28 @@
 
 	
 <div class="col-md-12">
-	<div class="col-md-12">
+		<div class="col-md-6 pull-left">
+			<section class="panel">
+				<header class="panel-heading">
+					<strong>Bill</strong>
+				</header>
+				<div class="panel-body">
+					<section id="main-content">
+			          <label class="control-label col-md-3 col-md-offset-1">Image Upload</label>  
+			          		<div class="fileupload fileupload-new" data-provides="fileupload"> 
+			          			<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"> <img src="{{ asset("/Employee_images/default.jpg") }}" alt="" /> </div> 
+			          			<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div> 
+			          			<div> <span class="btn btn-white btn-file"> 
+			          				<span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span> 
+			          				<span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span> 
+			          				<input type="file" class="default" name="emp_pic"> </span> <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a> 
+			          		</div> 
+			          	</div> 
+			      </section>
+				</div>
+			</section>
+		</div>
+
 		<div class="col-md-4 pull-right">
 			<section class="panel">
 				<header class="panel-heading">
@@ -240,7 +261,6 @@
 			</section>
 		</div>
 	</div>
-</div>
 {{ csrf_field() }}
 </form>
 
