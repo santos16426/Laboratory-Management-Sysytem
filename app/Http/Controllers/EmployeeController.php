@@ -180,6 +180,31 @@ class EmployeeController extends Controller
     	return redirect()->back();
     }
 	public function save_employee(){
+		$file = $_FILES['emp_pic'];
+        $file_error = $file['error'];
+        // File properties
+        $file_name = $file['name'];
+        $file_tmp = $file['tmp_name'];
+        $file_size = $file['size'];
+
+        //Work out the file extension
+        $file_ext = explode('.',$file_name);
+        $file_ext = strtolower(end($file_ext));
+
+        $allowed = array('jpg','png','jpeg','bmp');
+        if(in_array($file_ext,$allowed))
+        {
+            if($file_error === 0)
+            {
+                if($file_size <= 2097152)
+                {
+                    $file_name_new = uniqid('',true) . '.' . $file_ext;
+                    $file_destination = 'Employee_images/' . $file_name_new;
+                   	move_uploaded_file($file_tmp, $file_destination);
+                }
+            }
+        }
+
 		$emp_type = $_POST['emp_type'];
 		$checkfields = DB::table('rolefields_tbl')->where('role_id',$emp_type)->get();
 		$emp_type = $_POST['emp_type'];
@@ -221,6 +246,7 @@ class EmployeeController extends Controller
 		}
 		DB::table('employee_tbl')->insert
 		([
+		'emp_pic'=>$file_name_new,
 		'emp_fname'=>$firstname,
 		'emp_mname'=>$middlename,
 		'emp_lname'=>$lastname,
@@ -235,6 +261,7 @@ class EmployeeController extends Controller
 
 		DB::table('employee_log_tbl')->insert
 		([
+		'emp_pic'=>$file_name_new,
 		'emp_id'=>$empid,
 		'emp_fname'=>$firstname,
 		'emp_mname'=>$middlename,
