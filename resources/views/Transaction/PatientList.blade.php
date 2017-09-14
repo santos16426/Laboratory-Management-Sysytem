@@ -169,12 +169,12 @@
 					<div class="col-md-12">
 					<div class="col-md-6 col-md-offset-1">
 						<div class="form-group">
-							<div class="col-md-5 col-md-offet-1">
+							<div class="col-md-11 col-md-offet-1">
 								<div class="input-group">
 									<div class="input-group-addon">
 										Birthday <sup>*</sup>
 									</div>
-									<input  name="birthday" type="date" id="birthday" class="form-control form-control-inline input-medium default-date-picker" onblur="getage()">
+									<input  name="birthday" type="date" id="birthday" class="form-control form-control-inline input-medium default-date-picker" onblur="getage()" required>
 								</div>
 							</div>  
 						</div>
@@ -186,7 +186,7 @@
 									<div class="input-group-addon">
 										Age <sup>*</sup>
 									</div>
-									<input  name="age" id="age" type="text"  class="form-control" required readonly="">
+									<input  name="age" id="age" type="text"  class="form-control">
 								</div>
 							</div>  
 						</div>
@@ -194,34 +194,71 @@
 					</div>
 					
 					</div>
-					<div class="form-group" style="margin-left: 10%">
-					<div class="col-md-12">
-					<div class="col-md-4 col-md-offet-1">
-						<div class="form-group">
-							<div class="input-group">
-								<span class="input-group-addon">Gender <sup>*</sup></span>
-								<select class="form-control select2" name = "gender" style="width: 100%">
-									<option value="Male">Male</option>
-									<option value="Female">Female</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-5 col-md-offset-3">
+
 					<div class="form-group">
-						<div class="input-group">
-						<span class="input-group-addon">Civil Status <sup>*</sup></span>
-						<select class="form-control select2" name = "civil_status" style="width: 100%">
-						<option value="Single">Single</option>
-						<option value="Married">Married</option>
-						<option value="Widowed">Widowed</option>
-						<option value="Divorced">Divorced</option>
-						</select>
-						</div>
-						</div>
-					</div>
-					</div>
-					</div>
+					<div class="col-md-6 col-md-offset-1">
+		        		<div class="col-md-3"><h5>Gender:</h5></div>
+        				<div class="col-md-3">
+        					<div class="form-group">
+              				<div class="radio">
+              					<label class="" for="upMale">
+              						<input type="radio" id="upMale" name="gender" value="1"> Male
+              					</label>
+            				</div>
+        					</div>
+            		</div>
+            		<div class="col-md-3">
+        					<div class="form-group">
+              				<div class="radio">
+              					<label class="" for="upFemale">
+              						<input type="radio" id="upFemale" name="gender" value="2"> Female
+              					</label>
+            				</div>
+        					</div>
+            		</div>
+        			</div>
+        			<div class="col-md-12"></div>
+        			
+        			<div class="col-md-12">
+		        		<div class="col-md-2 col-md-offset-1"><h5>Civil Status:</h5></div>	
+        				<div class="col-md-1">
+        					<div class="form-group">
+              				<div class="radio">
+              					<label class="" for="upTeen">
+              						<input type="radio" id="upTeen" name="age" value="Teen"> Single
+              					</label>
+            				</div>
+        					</div>
+            		</div>
+            		<div class="col-md-1">
+        					<div class="form-group">
+              				<div class="radio">
+              					<label class="" for="upAdult">
+              						<input type="radio" id="upAdult" name="age" value="Adult"> Married
+              					</label>
+            				</div>
+        					</div>
+            		</div>
+            		<div class="col-md-1">
+        					<div class="form-group">
+              				<div class="radio">
+              					<label class="" for="upSenior">
+              						<input type="radio" id="upSenior" name="age" value="Senior"> Divorced
+              					</label>
+            				</div>
+        					</div>
+            		</div>
+            			<div class="col-md-1" style="margin-left: 1%">
+        					<div class="form-group">
+              				<div class="radio">
+              					<label class="" for="upAllAges">
+              						<input type="radio" id="upAllAges" name="age" value="All"> Widowed
+              					</label>
+            				</div>
+        					</div>
+            		</div>
+        			</div>
+        			</div>
         
         
         <div class="modal-footer">

@@ -853,14 +853,14 @@ $('#patientinfo')
                     }
                 }
             }, 
-            birthday: {
-                validators: {
+            // birthday: {
+            //     validators: {
                  
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
-                }
-              }, 
+            //       notEmpty: {
+            //         message: 'This field is required.'
+            //       }
+            //     }
+            //   }, 
             // gender: {
             //     validators: {
             //          regexp: {
@@ -881,4 +881,3 @@ $('#patientinfo')
         })
 
         ;
- 
