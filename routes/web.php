@@ -97,3 +97,14 @@ Route::get('/Transaction/AvailService','TransactionController@medicalservice');
 Route::get('/getDataPackage','TransactionController@getDataPackage');	
 Route::get('/getDataService','TransactionController@getDataService');
 Route::get('/getCompanyPackage','TransactionController@getCompanyPackage');
+
+//Remote Validation
+Route::get('/checkEmpType','RemoteController@checkEmpType');
+Route::get('/checkServgrp','RemoteController@checkServgrp');
+Route::get('/checkServtype','RemoteController@checkServtype');
+Route::get('/checkService','RemoteController@checkService');
+Route::get('/checkPackage','RemoteController@checkPackage');
+Route::get('/checkCorpName','RemoteController@checkCorpName');
+Route::get('/checkContacts','RemoteController@checkContacts');
+Route::get('/checkEmail','RemoteController@checkEmail');
+Route::get('/checkUpPack','RemoteController@checkUpPack');

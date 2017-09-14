@@ -107,11 +107,11 @@
 													<div class="input-group" >
 														<select class="form-control corppack_id select2" name="corppack_id" id="corppack_id" style="width: 100%" >
 															@foreach($corppackage as $corppack)
-																<option id="{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
+																<option id="Corppack_id{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
 															@endforeach
 														</select>
 														<div class="input-group-btn">
-															<a href="#OptionPackModal" id="activecorppack" data-toggle="modal" class="btn btn-default btn-sm" style="border-radius: 10%">Add<i  aria-hidden="true"></i></a>
+															<a  id="activecorppack" class="btn btn-default btn-sm" style="border-radius: 10%">Add<i  aria-hidden="true"></i></a>
 														</div>
 													</div>
 												</div>
@@ -130,7 +130,7 @@
 														@endforeach
 													</select>
 													<div class="input-group-btn">
-														<a id="addpackageBtn" class="btn btn-default addpackageBtn btn-sm" style="border-radius: 10%">Add</a>
+														<a id="addpackageBtn" class="btn btn-default addpackageBtn btn-sm " style="border-radius: 10%">Add</a>
 													</div>
 												</div>
 											</div>

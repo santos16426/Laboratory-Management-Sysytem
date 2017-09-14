@@ -86,7 +86,7 @@
 												<div class="input-group-addon">
 													Employee Type<sup style="color: red">*</sup>
 												</div>
-												<input type="text" class="form-control" id="emptype" name="emptype" >
+												<input type="text" class="form-control disabled" id="emptype" name="emptype" >
 											</div>
 										</div>  
 									</div> 

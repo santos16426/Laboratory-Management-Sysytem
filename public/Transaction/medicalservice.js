@@ -17,7 +17,31 @@ $(document).ready(function() {
 		}
 	});
 });
-
+$('#activecorppack').click(function(){
+	var payWhere = $('#payWhere').val();
+	if(payWhere == null)
+	{
+		$('#OptionPackModal').modal('show');
+	}
+	else
+	{
+		toastr.options = {
+		  "closeButton": true,
+		  "debug": false,
+		  "positionClass": "toast-top-right",
+		  "onclick": null,
+		  "showDuration": "3000",
+		  "hideDuration": "100",
+		  "timeOut": "3000",
+		  "extendedTimeOut": "0",
+		  "showEasing": "swing",
+		  "hideEasing": "swing",
+		  "showMethod": "show",
+		  "hideMethod": "hide"
+		}
+		toastr.error("Error! Patient can only avail one (1) Corporate Package");
+	}
+});
 $('#procpaymentmodal').click(function(){
 var payment = $('#paymentinput').val();
 var total = $('#totalpriceinput').val();
@@ -102,9 +126,8 @@ $('#payDirect').click(function(){
 				data.corpPack_name,
 				'',
 				data.price,
-				'<button class="btn btn-danger btn-xs corpremove_package'+data.corpPack_id+'" data-id="'+data.corpPack_id+'"><i class="fa fa-trash" aria-hidden="true"></i></button><input type="hidden" name="corppackage_id" value="'+data.corpPack_id+'"><input type="hidden" name="payWhere" id="payWhere" value="0"><input type="hidden" name="corppackprice" id="corppackprice'+data.corpPack_id+'" value='+data.price+'>'
+				'<a class="btn btn-danger btn-xs corpremove_package'+data.corpPack_id+'" data-id="'+data.corpPack_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="corppackage_id" value="'+data.corpPack_id+'"><input type="hidden" name="payWhere" id="payWhere" value="0"><input type="hidden" name="corppackprice" id="corppackprice'+data.corpPack_id+'" value='+data.price+'>'
 				]).draw(false);
-				addpackagebtn.className = "btn btn-default btn-sm disabled";
 				total = total * 1;
 				price = ($('#corppackprice'+data.corpPack_id).val()*1);
 				total = total + price;
@@ -124,9 +147,10 @@ $('#payDirect').click(function(){
 				  "hideMethod": "hide"
 				}
 				toastr.success("Success! Corporate Package added!");
+				$('Corppack_id'+corpPack_id).attr('disabled',"disabled");
 				$('.corpremove_package'+data.corpPack_id+'').click(function()
 				{
-					addpackagebtn.className = "btn btn-default btn-sm";
+					$('Corppack_id'+corpPack_id).RemoveAttr('disabled',"disabled");
 					var remPack_id = $(this).data("id");
 					$('#totalpriceinput').val($('#totalpriceinput').val() - price);
 					t.row($(this).parents('tr')).remove().draw();
@@ -171,9 +195,8 @@ $('#payCorp').click(function(){
 				data.corpPack_name,
 				'',
 				data.price + " (c/o "+data.corp_name+")",
-				'<button class="btn btn-danger btn-xs corpremove_package'+data.corpPack_id+'" data-id="'+data.corpPack_id+'"><i class="fa fa-trash" aria-hidden="true"></i></button><input type="hidden" name="corppackage_id" value="'+data.corpPack_id+'"><input type="hidden" name="payWhere" id="payWhere" value="1"><input type="hidden" name="corppackprice" id="corppackprice'+data.corpPack_id+'" value="0">'
+				'<a class="btn btn-danger btn-xs corpremove_package'+data.corpPack_id+'" data-id="'+data.corpPack_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="corppackage_id" value="'+data.corpPack_id+'"><input type="hidden" name="payWhere" id="payWhere" value="1"><input type="hidden" name="corppackprice" id="corppackprice'+data.corpPack_id+'" value="0">'
 				]).draw(false);
-				addpackagebtn.className = "btn btn-info disabled";
 				total = total*1;
 				price = $('#corppackprice'+data.corpPack_id).val()*1;
 				total = total + price;
@@ -195,7 +218,7 @@ $('#payCorp').click(function(){
 			    toastr.success(data.corpPack_name + " is successfully added");
 				$('.corpremove_package'+data.corpPack_id+'').click(function(){
 					var remPack_id = $(this).data("id");
-					addpackagebtn.className = "btn btn-info";
+					
 					$('#totalpriceinput').val($('#totalpriceinput').val() - price);
 					console.log("Remove Service ID:" + remPack_id);
 					t.row($(this).parents('tr')).remove().draw();
@@ -223,7 +246,7 @@ $('#addpackageBtn').click(function(){
 				data.pack_name + " (Package)" ,
 				'',
 				data.pack_price,
-				'<button class="btn btn-danger btn-xs remove_package'+package_id+'" data-id="'+package_id+'"><i class="fa fa-trash" aria-hidden="true"></i></button><input type="hidden" name="package_id[]" value="'+package_id+'"><input type="hidden" name="packprice" id="packprice'+package_id+' value ='+data.pack_price+' ">'
+				'<a class="btn btn-danger btn-xs remove_package'+package_id+'" data-id="'+package_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="package_id[]" value="'+package_id+'"><input type="hidden" name="packprice" id="packprice'+package_id+' value ='+data.pack_price+' ">'
 				]).draw(false);
 				toastr.options = {
 			      "closeButton": true,
@@ -294,7 +317,7 @@ $('#addservice').click(function(){
 					data.service_name ,
 					data.servgroup_name,
 					data.service_price,
-					'<button class="btn btn-danger btn-xs remove_service'+service_id+'" data-id="'+service_id+'"><i class="fa fa-trash" aria-hidden="true"></i></button><input type="hidden" name="medservice_id[]" value="'+service_id+'"><input type="hidden" name="serviceprice" value='+data.service_price+' id="serviceprice'+service_id+'">'
+					'<a class="btn btn-danger btn-xs remove_service'+service_id+'" data-id="'+service_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="medservice_id[]" value="'+service_id+'"><input type="hidden" name="serviceprice" value='+data.service_price+' id="serviceprice'+service_id+'">'
 					]).draw(false);
 					toastr.options = {
 					  "closeButton": true,
