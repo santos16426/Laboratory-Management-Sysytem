@@ -342,7 +342,7 @@ class TransactionController extends Controller
             }
         }
         
-        Session::put('transaction',true);
+        Session::flash('transaction',true);
         $transactionDetails = DB::table('transaction_tbl')->get();
         $transaction_id=0;
         $employee_id = 0;
@@ -362,7 +362,7 @@ class TransactionController extends Controller
             $trans_date = $t->trans_date;
         }
         
-        Session::put('trans_id',$transaction_id);
+        Session::flash('trans_id',$transaction_id);
         return redirect('/Admin/Dashboard');
     
     }
@@ -440,7 +440,7 @@ class TransactionController extends Controller
         {
             $ptype_id = $s->patient_type_id;
             $corp_id = $s->patient_corp_id;
-            $patitent_age = $s->age;
+            $patient_age = $s->age;
             $patient_gender = $s->patient_gender;
         }
         $corpid=0;
@@ -450,7 +450,7 @@ class TransactionController extends Controller
         }
         $corppackage = DB::table('corp_package_tbl')->where('corp_id',$corpid)->where('CorpPackStatus',1)->get();
 
-        return view('Transaction.MedicalService',['patientinfo'=>$patientinfo,'service'=>$service,'emp_rebates'=>$emp_rebates,'ptype_id'=>$ptype_id,'servicegroup'=>$servicegroup,'package'=>$package,'corp'=>$corp,'corppackage'=>$corppackage,'patitent_age'=>$patitent_age,'patient_gender'=>$patient_gender]);
+        return view('Transaction.MedicalService',['patientinfo'=>$patientinfo,'service'=>$service,'emp_rebates'=>$emp_rebates,'ptype_id'=>$ptype_id,'servicegroup'=>$servicegroup,'package'=>$package,'corp'=>$corp,'corppackage'=>$corppackage,'patient_age'=>$patient_age,'patient_gender'=>$patient_gender]);
     }
     function patient()
     {
