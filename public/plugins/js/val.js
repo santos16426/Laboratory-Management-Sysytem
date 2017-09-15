@@ -314,7 +314,6 @@ $('#EmployeeTypeadd').bootstrapValidator({
         fields: {    
             srvcname: {
                 validators: {
-                  : {
                     //  remote   type: 'GET',
                     //     url: '/checkService',
                     //     data:{ srvcname:$('#srvcname').val()},
@@ -365,8 +364,8 @@ $('#EmployeeTypeadd').bootstrapValidator({
                     }
                 }
             },   
-            }
-        })
+        }
+    })
 
         ;
  
