@@ -126,11 +126,12 @@ $('#payDirect').click(function(){
 				data.corpPack_name,
 				'',
 				data.price,
-				'<a class="btn btn-danger btn-xs corpremove_package'+data.corpPack_id+'" data-id="'+data.corpPack_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="corppackage_id" value="'+data.corpPack_id+'"><input type="hidden" name="payWhere" id="payWhere" value="0"><input type="hidden" name="corppackprice" id="corppackprice'+data.corpPack_id+'" value='+data.price+'>'
+				'<input type="hidden" id="corppackprice'+data.corpPack_id+'" value='+data.price+' name="corppackprice" /><a class="btn btn-danger btn-xs corpremove_package'+data.corpPack_id+'" data-id="'+data.corpPack_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="corppackage_id" value="'+data.corpPack_id+'"><input type="hidden" name="payWhere" id="payWhere" value="0"><input type="hidden" name="corp_id" id="corp_id" value='+data.corp_id+'>'
 				]).draw(false);
 				total = total * 1;
 				price = ($('#corppackprice'+data.corpPack_id).val()*1);
 				total = total + price;
+
 				$('#totalpriceinput').val(total);
 				toastr.options = {
 				  "closeButton": true,
@@ -147,10 +148,8 @@ $('#payDirect').click(function(){
 				  "hideMethod": "hide"
 				}
 				toastr.success("Success! Corporate Package added!");
-				$('Corppack_id'+corpPack_id).attr('disabled',"disabled");
 				$('.corpremove_package'+data.corpPack_id+'').click(function()
 				{
-					$('Corppack_id'+corpPack_id).RemoveAttr('disabled',"disabled");
 					var remPack_id = $(this).data("id");
 					$('#totalpriceinput').val($('#totalpriceinput').val() - price);
 					t.row($(this).parents('tr')).remove().draw();
@@ -195,10 +194,10 @@ $('#payCorp').click(function(){
 				data.corpPack_name,
 				'',
 				data.price + " (c/o "+data.corp_name+")",
-				'<a class="btn btn-danger btn-xs corpremove_package'+data.corpPack_id+'" data-id="'+data.corpPack_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="corppackage_id" value="'+data.corpPack_id+'"><input type="hidden" name="payWhere" id="payWhere" value="1"><input type="hidden" name="corppackprice" id="corppackprice'+data.corpPack_id+'" value="0">'
+				'<input type="hidden" id="corppackprice'+data.corpPack_id+'" value='+data.price+' name="corppackprice" /><a class="btn btn-danger btn-xs corpremove_package'+data.corpPack_id+'" data-id="'+data.corpPack_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="corppackage_id" value="'+data.corpPack_id+'"><input type="hidden" name="payWhere" id="payWhere" value="1"><input type="hidden" name="corp_id" id="corp_id" value='+data.corp_id+'>'
 				]).draw(false);
 				total = total*1;
-				price = $('#corppackprice'+data.corpPack_id).val()*1;
+				price = 0;
 				total = total + price;
 				$('#totalpriceinput').val(total);
 				toastr.options = {

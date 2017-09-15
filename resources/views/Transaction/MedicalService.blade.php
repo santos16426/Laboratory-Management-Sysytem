@@ -17,7 +17,7 @@
 @section ('breadactivePage','Avail Medical Services')
 
 @section('content')
-<form action="/proceed_Payment" method="POST" >
+<form action="/proceed_Payment" method="POST" enctype="multipart/form-data">
 <div class="modal fade" id = "myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -244,7 +244,7 @@
 			          			<div> <span class="btn btn-white btn-file"> 
 			          				<span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span> 
 			          				<span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span> 
-			          				<input type="file" class="default" name="emp_pic"> </span> <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a> 
+			          				<input type="file" class="default" name="medical_certificate" value='{{ asset("/Medical_services/default.jpg") }}'> </span> <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a> 
 			          		</div> 
 			          	</div> 
 			      </section>
