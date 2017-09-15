@@ -19,11 +19,11 @@
       <div class="modal-header btn-warning">
         <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Update</h4>
       </div>
-      <form action="/update_corpPackage" method="POST" class="form-horizontal" id="corppackedit">
+      <form action="/" method="POST" class="form-horizontal" id="corppackedit">
+      
 	    	<div class="modal-body">
 	    	{{ csrf_field() }}
-	    	<input type="hidden" name="corpPack_id" value="" id="corpPack_id">
-	    	<input type="hidden" name="corpid" value="{{ $corp_id }}">
+	    	<input type="hidden" name="corp_id" value="{{ $corp_id }}">
 					<div class="form-group">
 						<div class="col-md-10 col-md-offset-1">
 							<div class="input-group">
@@ -72,19 +72,6 @@
 		          	</div>	            
 		          </div>
 		        </div>
-		       	<div class="form-group">
-							<div class="col-md-4 col-md-offset-1">
-								<div class="input-group">
-									<div class="input-group-addon">
-										<small>Physical Examination</small>
-									</div>
-									<select class="form-control select2" name="upexam" id="upexam" values="" style="width: 100%" >
-										<option value="No">No</option>
-										<option value="Yes">Yes</option>
-									</select> 
-								</div>	            
-							</div>
-						</div>
 		        <fieldset>
 		        	<legend>Conditions</legend>
 		        	
@@ -93,7 +80,7 @@
         				<div class="col-md-3">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="upMale">
+              					<label class="" for="Male">
               						<input type="radio" id="upMale" name="gender" value="1"> Male
               					</label>
             				</div>
@@ -102,7 +89,7 @@
             		<div class="col-md-3">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="upFemale">
+              					<label class="" for="Female">
               						<input type="radio" id="upFemale" name="gender" value="2"> Female
               					</label>
             				</div>
@@ -111,7 +98,7 @@
             		<div class="col-md-3">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="upBoth">
+              					<label class="" for="Both">
               						<input type="radio" id="upBoth" name="gender" value="3"> Both
               					</label>
             				</div>
@@ -125,7 +112,7 @@
         				<div class="col-md-1">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="upTeen">
+              					<label class="" for="Teen">
               						<input type="radio" id="upTeen" name="age" value="Teen"> Teen
               					</label>
             				</div>
@@ -134,7 +121,7 @@
             		<div class="col-md-1">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="upAdult">
+              					<label class="" for="Adult">
               						<input type="radio" id="upAdult" name="age" value="Adult"> Adult
               					</label>
             				</div>
@@ -143,7 +130,7 @@
             		<div class="col-md-1">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="upSenior">
+              					<label class="" for="Senior">
               						<input type="radio" id="upSenior" name="age" value="Senior"> Senior
               					</label>
             				</div>
@@ -152,7 +139,7 @@
             			<div class="col-md-1">
         					<div class="form-group">
               				<div class="radio">
-              					<label class="" for="upAllAges">
+              					<label class="" for="All Ages">
               						<input type="radio" id="upAllAges" name="age" value="All"> All Ages
               					</label>
             				</div>
@@ -229,21 +216,6 @@
 		          	</div>	            
 		          </div>
 		        </div>
-
-						<div class="form-group">
-							<div class="col-md-4 col-md-offset-1">
-								<div class="input-group">
-									<div class="input-group-addon">
-										<small>Physical Examination</small>
-									</div>
-									<select class="form-control select2" name="exam" values="" style="width: 100%" >
-										<option value="No">No</option>
-										<option value="Yes">Yes</option>
-									</select> 
-								</div>	            
-							</div>
-						</div>
-						
 		        <fieldset>
 		        	<legend>Conditions</legend>
 		        	
@@ -355,7 +327,7 @@
 	<div class="col-lg-12">
 		<section class="panel">
 			<header class="panel-heading">
-				<strong>{{ $corp_name }} Packages</strong>
+				{{ $corp_name }} Packages
 			</header>
 			<div class="panel-body">
 				<div class="clearfix">
@@ -363,7 +335,7 @@
 					
 					<a class="btn btn-info" style="margin-left: -20%" href="#addModal" data-toggle="modal" id="addEmpBtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
 					</div>
-					<table class="table table-bordered table-hover dataTable" id="corpPackage">
+					<table class="table table-bordered table-hover dataTable" id="corpTbl">
 					  <thead>
 					    <tr>
 					      <th>Package Name</th>
@@ -406,73 +378,75 @@
 @endsection
 @section('additional')
 <script type="text/javascript">
-	 function fnFormatDetails ( oTable, nTr )
-      {
-         
-          aData = oTable.fnGetData( nTr );
-          sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-          sOut += '<tr><td>Package Name: '+ aData[1]+ '</td></tr>'
-          sOut += '<tr><td>Package Price: '+ aData[2]+ '</td></tr>'
-          sOut += '<tr><td>Services under this package :</td></tr>';
-         
-          sOut += '<tr><td></td></tr>';
-          sOut += '</table>';
+$('#corpTbl').dataTable({
+  'paging'      : true,
+  'lengthChange': true,
+  'searching'   : true,
+  'ordering'    : true,
+  'info'        : true,
+  'autoWidth'   : true
 
-          return sOut;
+});
+$('.delbtn').click(function(){
+$('#cid').val($(this).data('id'));
+$('#deleteModal').modal('show');
+});
+$('.packservice').select2();
+$('.uppackservice').select2();
+$('.updateModal').click(function(){
+	$.ajax
+    ({
+      url: '/updateCorporatePackage',
+      type: 'get',
+      data:  { id:$(this).data('id')},
+      dataType : 'json', 
+
+      success:function(response){
+        response.forEach(function(data){
+				$('#uppackname').val(data.corpPack_name);
+				$('#uppackprice').val(data.price);
+				var selectedValues = new Array();
+				var i = 0;
+				response.forEach(function(data){
+				selectedValues[i] = data.service_id;
+				i++;
+				})
+				$('.uppackservice').val(selectedValues).trigger('change');
+				if(data.gender == 3)
+				{
+					$('#upBoth').prop('checked',true);
+				}
+				else if(data.gender == 2)
+				{
+					$('#upFemale').prop('checked',true);
+				}
+				else if(data.gender == 1)
+				{
+					$('#upMale').prop('checked',true);
+				}
+				if(data.age == 'Teen')
+				{
+					$('#upTeen').prop('checked',true);
+				}
+				else if(data.age == 'Adult')
+				{
+					$('#upAdult').prop('checked',true);
+				}
+				else if(data.age == 'Senior')
+				{
+					$('#upSenior').prop('checked',true);
+				}
+				else if(data.age == 'All')
+				{
+					$('#upAllAges').prop('checked',true);
+				}
+		     })
+				
+		    },
+      error:function(){
       }
+    });
+});
 
-      $(document).ready(function() {
-          /*
-           * Insert a 'details' column to the table
-           */
-          var nCloneTh = document.createElement( 'th' );
-          var nCloneTd = document.createElement( 'td' );
-          nCloneTd.innerHTML = '<img src="/plugins/assets/advanced-datatable/examples/examples_support/details_open.png">';
-          nCloneTd.className = "center";
-
-          $('#corpPackage thead tr').each( function () {
-              this.insertBefore( nCloneTh, this.childNodes[0] );
-          } );
-
-          $('#corpPackage tbody tr').each( function () {
-              this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
-          } );
-
-          /*
-           * Initialse DataTables, with no sorting on the 'details' column
-           */
-          var oTable = $('#corpPackage').dataTable( {
-            'paging'      : true,
-            'lengthChange': true,
-            'searching'   : true,
-            'ordering'    : true,
-            'info'        : true,
-            'autoWidth'   : true,
-              "aoColumnDefs": [
-                  { "bSortable": false, "aTargets": [ 0 ] }
-              ],
-              "aaSorting": [[1, 'asc']]
-          });
-
-          /* Add event listener for opening and closing details
-           * Note that the indicator for showing which row is open is not controlled by DataTables,
-           * rather it is done here
-           */
-          $('#corpPackage tbody td img').live('click', function () {
-              var nTr = $(this).parents('tr')[0];
-              if ( oTable.fnIsOpen(nTr) )
-              {
-                  /* This row is already open - close it */
-                  this.src = "/plugins/assets/advanced-datatable/examples/examples_support/details_open.png";
-                  oTable.fnClose( nTr );
-              }
-              else
-              {
-                  /* Open this row */
-                  this.src = "/plugins/assets/advanced-datatable/examples/examples_support/details_close.png";
-                  oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
-              }
-          } );
-      } );
 </script>
 @endsection

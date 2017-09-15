@@ -164,7 +164,7 @@ class CorporateAccountController extends Controller
       ->where('service_type_tbl.ServTypeStatus',null)
       ->get();
 
-      $corp_id = $_POST['corp_id'];
+      $corp_id = $_GET['corp_id'];
       $corp_name = DB::table('corporate_accounts_tbl')->where('corp_id',$corp_id)->select('corp_name')->get();
       foreach($corp_name as $c)
       {

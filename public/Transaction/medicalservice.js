@@ -311,6 +311,7 @@ $('#addservice').click(function(){
 		dataType : 'json',
 		success:function(response) {
 			response.forEach(function(data) { 
+
 				med_req = data.medical_request;
 				if(med_req == "No"){
 					t.row.add([
@@ -334,12 +335,24 @@ $('#addservice').click(function(){
 					  "hideMethod": "hide"
 					}
 					toastr.success(data.service_name + " is successfully added");
+					if(data.service_notes != null)
+					{
+						$('#service_notes').append(data.service_notes + "<br>");
+					}
 					$("#ServiceOPTION"+service_id).attr("disabled","disabled");
 					total = total *1;
 					price = ($('#serviceprice'+service_id+'').val()*1);
 					total = total + price;
 					$('#totalpriceinput').val(total);
 					$('.remove_service'+service_id+'').click(function(){
+
+					if(data.service_notes != null)
+					{
+						var str = $('#service_notes').text().replace(data.service_notes + "<br>", ' ');
+						len = str.length;
+						$('#service_notes').text(str.substring(len));
+					}
+
 					var remServ_id = $(this).data("id");
 					$('#totalpriceinput').val($('#totalpriceinput').val() - price);
 					toastr.options = {
@@ -397,12 +410,23 @@ $('#addservice').click(function(){
 						      "hideMethod": "hide"
 						    }
 						    toastr.success(data.service_name + " is successfully added");
+						    if(data.service_notes != null)
+							{
+								$('#service_notes').append(data.service_notes + "<br>");
+							}
+							
 							$("#ServiceOPTION"+service_id).attr("disabled","disabled");
 							total = total *1;
 							price = ($('#serviceprice'+service_id+'').val()*1);
 							total = total + price;
 							$('#totalpriceinput').val(total);
 							$('.remove_service'+service_id).click(function(){
+								if(data.service_notes != null)
+								{
+									var str = $('#service_notes').text().replace(data.service_notes + "<br>", ' ');
+									len = str.length;
+									$('#service_notes').text(str.substring(len));
+								}
 
 								var remServ_id = $(this).data("id");
 								$('#totalpriceinput').val($('#totalpriceinput').val() - price);

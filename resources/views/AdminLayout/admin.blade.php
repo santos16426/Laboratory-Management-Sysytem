@@ -185,10 +185,15 @@
     </section>
 </section>
 
-<script type="text/javascript" src="{{ asset('/plugins/assets/advanced-datatable/media/js/jquery.js') }}"></script>
+
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery-1.8.3.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/Datatable/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/plugins/assets/advanced-datatable/media/js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/plugins/assets/advanced-datatable/media/js/jquery.dataTables.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/plugins/assets/data-tables/DT_bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/bootstrap.min.js') }}"></script>
+
 <script type="text/javascript" src="{{ asset('/plugins/assets/dropzone/dropzone.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.dcjqaccordion.2.7.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.scrollTo.min.js') }}"></script>
@@ -204,7 +209,6 @@
 <script type="text/javascript" src="{{ asset('/plugins/js/easy-pie-chart.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/count.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/bootstrapvalidator/dist/js/bootstrapValidator.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/Datatable/datatables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/gritter/js/jquery.gritter.js') }}"></script>
 <script src="{{ asset('/plugins/select2/dist/js/select2.full.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/bootstrap-switch.js') }}"></script>

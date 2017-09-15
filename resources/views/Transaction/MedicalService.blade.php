@@ -107,7 +107,9 @@
 													<div class="input-group" >
 														<select class="form-control corppack_id select2" name="corppack_id" id="corppack_id" style="width: 100%" >
 															@foreach($corppackage as $corppack)
+
 																<option id="Corppack_id{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
+																
 															@endforeach
 														</select>
 														<div class="input-group-btn">
@@ -212,6 +214,13 @@
 								<tbody>
 								</tbody>
 							</table>
+							<div class="col-md-12">
+								<hr>
+								<label><sup>*</sup>Note:</label>
+								<div id="service_notes">
+									
+								</div>
+							</div>
 						</div>
 					</div>
 				</section>
@@ -230,7 +239,7 @@
 				<div class="panel-body">
 					<section id="main-content col-md-12"> 
 			          		<div class="fileupload fileupload-new" data-provides="fileupload"> 
-			          			<div class="fileupload-new thumbnail col-md-12"> <img src='{{ asset("/Employee_images/default.jpg") }}' alt="" /> </div> 
+			          			<div class="fileupload-new thumbnail col-md-12"> <img src='{{ asset("/Medical_services/default.jpg") }}' alt="" /> </div> 
 			          			<div class="fileupload-preview fileupload-exists thumbnail" style="width: 500px; height: 200px;"></div> 
 			          			<div> <span class="btn btn-white btn-file"> 
 			          				<span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span> 
