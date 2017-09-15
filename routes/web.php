@@ -114,3 +114,6 @@ Route::get('/checkUpPack','RemoteController@checkUpPack');
 
 // Reciept
 Route::get('/retrieveReciept','TransactionController@retrieveReciept');
+
+//email
+Route::get('sendmail', 'SendMailController@sendMail');
