@@ -64,21 +64,23 @@
         <form action="/update_package" method="POST" class="form-horizontal" id="packageedit">
         <input type="hidden" name="packid" id="packid">
         <div class="form-group" style="margin-right:3% ">
-          <label class="col-xs-4 control-label">Package Name</label>  
-              <div class="col-md-6">
+              <div class="col-md-10 col-md-offset-1">
                 <div class="input-group">
                   <div class="input-group-addon">
-                   <i class="fa fa-dropbox"></i>
+                   Package Name <sup>*</sup>
                 </div>
                 <input  name="packagename" type="text" id="packname" placeholder="Package Name" class="form-control input-md" required>
               </div>
           </div>  
         </div> 
 
-        <div class="form-group">
-          <label class="col-xs-4 control-label">Services Offered</label>
-          <div class="col-md-5 input-group">
-            <select class="form-control select2 updatepackservice" name="services[]" values="" style="width: 108%" multiple="multiple" required>
+
+        <div class="form-group" style="margin-right:3% ">
+            <div class="col-md-10 col-md-offset-1">
+              <div class="input-group">
+                <span class="input-group-addon">Service Offered <sup>*</sup></span>
+
+                <select class="form-control select2 updatepackservice" name="services[]" values="" style="width: 100%" multiple="multiple" required>
             
               @foreach($servicegroup as $s)
               <optgroup label="{{ $s->servgroup_name }}">
@@ -97,14 +99,16 @@
               @endforeach
               </optgroup>
             </select> 
+            </div>
           </div>
         </div>
-        <div class="form-group" style="margin-right:3% ">
-          <label class="col-xs-4 control-label">Package Price</label>  
-            <div class="col-md-6">
+                
+        
+        <div class="form-group" style="margin-right:3% "> 
+            <div class="col-md-10 col-md-offset-1">
               <div class="input-group">
                 <div class="input-group-addon">
-                   <i class="fa fa-rub"></i>
+                   Package Price <sup>*</sup>
                  </div>
                 <input  name="packageprice" type="text" id="packprice" placeholder="Price" class="form-control input-md" required>
              </div>
@@ -132,21 +136,22 @@
       <div class="modal-body">
         <form action="/save_package" method="POST" class="form-horizontal" id="packageadd">
         <div class="form-group" style="margin-right:3% ">
-          <label class="col-xs-4 control-label">Package Name</label>  
-              <div class="col-md-6">
+              <div class="col-md-10 col-md-offset-1">
                 <div class="input-group">
                   <div class="input-group-addon">
-                   <i class="fa fa-dropbox"></i>
+                   Package Name <sup>*</sup>
                 </div>
                 <input  name="packagename" id="packagename" type="text" id="example-text-input" placeholder="Package Name" class="form-control input-md" required>
               </div>
           </div>  
         </div> 
 
-        <div class="form-group">
-          <label class="col-xs-4 control-label">Services Offered</label>
-          <div class="col-md-5 input-group">
-            <select class="form-control select2 packservice" name="services[]" values="" style="width: 108%" multiple="multiple" required>
+
+        <div class="form-group" style="margin-right:3% ">
+            <div class="col-md-10 col-md-offset-1">
+              <div class="input-group">
+                <span class="input-group-addon">Service Offered <sup>*</sup></span>
+                  <select class="form-control select2 packservice" name="services[]" values="" style="width: 100%" multiple="multiple" required>
             @php $serviceoffer2 = $serviceoffer @endphp
               @foreach($servicegroup as $s)
               <optgroup label="{{ $s->servgroup_name }}">
@@ -165,14 +170,15 @@
               @endforeach
               </optgroup>
             </select> 
+              </div>
           </div>
         </div>
-        <div class="form-group" style="margin-right:3% ">
-          <label class="col-xs-4 control-label">Package Price</label>  
-            <div class="col-md-6">
+          
+        <div class="form-group" style="margin-right:3% "> 
+            <div class="col-md-10 col-md-offset-1">
               <div class="input-group">
                 <div class="input-group-addon">
-                   <i class="fa fa-rub"></i>
+                   Package Price <sup>*</sup>
                  </div>
                 <input  name="packageprice" type="text" id="example-number-input" placeholder="Price" class="form-control input-md" required>
              </div>

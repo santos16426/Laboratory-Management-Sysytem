@@ -202,7 +202,7 @@
         					<div class="form-group">
               				<div class="radio">
               					<label class="" for="upMale">
-              						<input type="radio" id="upMale" name="gender" value="1"> Male
+              						<input type="radio" id="upMale" name="gender" value="Male"> Male
               					</label>
             				</div>
         					</div>
@@ -211,7 +211,7 @@
         					<div class="form-group">
               				<div class="radio">
               					<label class="" for="upFemale">
-              						<input type="radio" id="upFemale" name="gender" value="2"> Female
+              						<input type="radio" id="upFemale" name="gender" value="Female"> Female
               					</label>
             				</div>
         					</div>
@@ -225,16 +225,16 @@
         					<div class="form-group">
               				<div class="radio">
               					<label class="" for="upTeen">
-              						<input type="radio" id="upTeen" name="age" value="Teen"> Single
+              						<input type="radio" id="upTeen" name="civil_status" value="Single"><small> Single</small>
               					</label>
             				</div>
         					</div>
             		</div>
-            		<div class="col-md-1">
+            		<div class="col-md-1" style="margin-right: 1%">
         					<div class="form-group">
               				<div class="radio">
               					<label class="" for="upAdult">
-              						<input type="radio" id="upAdult" name="age" value="Adult"> Married
+              						<input type="radio" id="upAdult" name="civil_status" value="Married"> Married
               					</label>
             				</div>
         					</div>
@@ -243,7 +243,7 @@
         					<div class="form-group">
               				<div class="radio">
               					<label class="" for="upSenior">
-              						<input type="radio" id="upSenior" name="age" value="Senior"> Divorced
+              						<input type="radio" id="upSenior" name="civil_status" value="Divorced"> Divorced
               					</label>
             				</div>
         					</div>
@@ -252,7 +252,7 @@
         					<div class="form-group">
               				<div class="radio">
               					<label class="" for="upAllAges">
-              						<input type="radio" id="upAllAges" name="age" value="All"> Widowed
+              						<input type="radio" id="upAllAges" name="civil_status" value="Widowed"> Widowed
               					</label>
             				</div>
         					</div>

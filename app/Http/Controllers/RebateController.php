@@ -57,19 +57,28 @@ class RebateController extends Controller
 		$check = DB::table('emp_rebate_tbl')->where('emp_id',$emp_id)->count();
 		if($check == 1)
 		{
+			DB::table('emp_rebate_tbl')
+			->update([
+			'rebate_id' =>  $rebate_id,
+			'EmpRebStatus'  => 1
+			]);
+			Session::flash('add', true);
+			return redirect()->back();
+		}
 		DB::table('emp_rebate_tbl')
-		->update([
-		  'rebate_id' =>  $rebate_id
-		  ]);
+			->insert([
+			'emp_id'  =>  $emp_id,
+			'rebate_id' =>  $rebate_id,
+			'EmpRebStatus'  =>  1
+			]);
 		DB::table('emprebate_log_tbl')
-		->insert([
-		'emp_id'  =>  $emp_id,
-		'rebate_id' =>  $rebate_id,
-		'updated_at'  =>  date_create('now')
-		]);
+			->insert([
+			'emp_id'  =>  $emp_id,
+			'rebate_id' =>  $rebate_id,
+			'updated_at'  =>  date_create('now')
+			]);
 		Session::flash('add', true);
 		return redirect()->back();
-		}
 		
 	}
 }

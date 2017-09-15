@@ -25,6 +25,8 @@ class EmployeeController extends Controller
         	->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
         	->where('laboratory_tbl.LabStatus',1)
         	->where('RoleStatus',1)
+        	->orWhere('LabStatus',null)
+        	->where('RoleStatus',1)
         	->get();
         $ranks = DB::table('medtech_rank')->get();
         return view('Maintenance.Employee',['emp1' => $emp1,'empTypes'=> $empTypes,'ranks'=>$ranks] );
@@ -36,6 +38,7 @@ class EmployeeController extends Controller
     }
     public function save_empType(){
     	$lab_id = $_POST['lab_id'];
+
 		$x = array();
 		$x[0]=0;
 		$x[1]=0;
@@ -62,6 +65,10 @@ class EmployeeController extends Controller
 		}
 		if (isset($_POST['rebate'])) {
 		$x[6]=1;
+		}
+		if($lab_id == "Null")
+		{
+			$lab_id = null;
 		}
 		DB::table('employee_role_tbl')
 			->insert([

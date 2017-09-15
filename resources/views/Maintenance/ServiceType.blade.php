@@ -47,16 +47,14 @@
                   <a class="btn btn-warning btn-xs upservtype" href="#updateModal"  data-toggle="modal" data-id="{{ $serviceType->service_type_id }}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
                   <a class="btn btn-danger btn-xs delbtn" data-id="{{ $serviceType->service_type_id }}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
                 </td>
-                @endif
-                @if($serviceType->LabStatus == 0 or $serviceType->ServTypeStatus == 0 or $serviceType->ServGroupStatus == 0)
+                @else
                   <a class="btn btn-warning btn-xs disabled" ><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
                   <a class="btn btn-danger btn-xs disabled"  ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
                 @endif
                 <td>
                   @if($serviceType->LabStatus == 1 and $serviceType->ServTypeStatus == 1 and $serviceType->ServGroupStatus == 1)
                     <span class="badge bg-success">Available</span>
-                  @endif
-                  @if($serviceType->LabStatus == 0 or $serviceType->ServTypeStatus == 0 or $serviceType->ServGroupStatus == 0)
+                  @else
                     <span class="badge bg-important">Unavailable</span>
                   @endif
                 </td>

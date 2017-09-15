@@ -9,7 +9,8 @@ class TransactionController extends Controller
 {
     function corpbilling()
     {
-        return view('Transaction.CorporateBilling');
+        $corporates = DB::table('corporate_accounts_tbl')->get();
+        return view('Transaction.CorporateBilling',['corporates'=>$corporates]);   
     }
     public function retrieveReciept(Request $req)
     {

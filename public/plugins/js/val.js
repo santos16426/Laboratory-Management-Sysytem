@@ -822,7 +822,7 @@ $('#patientinfo')
               patient_address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z0-9#.]+([-.'-_\s][().,a-zA-Z0-9]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -852,6 +852,20 @@ $('#patientinfo')
                     }
                 }
             }, 
+            gender: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The gender is required'
+                        }
+                    }
+                },
+            civil_status: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The gender is required'
+                        }
+                    }
+                },
             // birthday: {
             //     validators: {
                  

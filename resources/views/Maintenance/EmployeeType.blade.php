@@ -43,22 +43,20 @@
 		      				<td>{{ $emptype->role_name }}</td>
 		      				<td>{{ $emptype->lab_name }}</td>
 		      				<td>
-		      					@if($emptype->RoleStatus == 1 and $emptype->LabStatus == 1)
-		                  <a class="btn btn-warning btn-xs upEtypebtn" data-toggle="modal" href="#EmployeeTypeedit" data-id="{{ $emptype->role_id }}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
-		                  <button type="button" class="btn btn-danger btn-xs delEtypebtn" data-id="{{ $emptype->role_id }}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
-		                @endif
-		                @if($emptype->RoleStatus == 0 or $emptype->LabStatus == 0)
-		                  <a class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
-		                  <button type="button" class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
+		      			@if($emptype->RoleStatus == 1 and $emptype->LabStatus == 1 or $emptype->RoleStatus == 1 and $emptype->LabStatus == null)
+							<a class="btn btn-warning btn-xs upEtypebtn" data-toggle="modal" href="#EmployeeTypeedit" data-id="{{ $emptype->role_id }}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+							<button type="button" class="btn btn-danger btn-xs delEtypebtn" data-id="{{ $emptype->role_id }}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
+		                @else
+							<a class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+							<button type="button" class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
 		                @endif
 		      				</td>
 		      				<td>
-		      					@if($emptype->RoleStatus == 1 and $emptype->LabStatus == 1)
-		      					<span class="badge bg-success">Available</span>
-										@endif
-										@if($emptype->RoleStatus == 0 or $emptype->LabStatus == 0)
-										<span class="badge bg-important">Unavailable</span>
-										@endif
+		      					@if($emptype->RoleStatus == 1 and $emptype->LabStatus == 1 or $emptype->RoleStatus == 1 and $emptype->LabStatus == null)
+		      						<span class="badge bg-success">Available</span>
+								@else
+									<span class="badge bg-important">Unavailable</span>
+								@endif
 		      				</td>
 		      			</tr>
 
@@ -94,9 +92,10 @@
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group">
 												<div class="input-group-addon">
-													Laboratory Name <sup style="color: red">*</sup>
+													Laboratory Name
 												</div>
 												<select class="form-control select2" name="lab_id" id="dropLABID" style="width: 100%">
+													<option value=Null>Select a laboratory</option>
 													@foreach($labs as $gd) 
 														<option value="{{$gd->lab_id}}">{{$gd->lab_name}}</option>
 													@endforeach

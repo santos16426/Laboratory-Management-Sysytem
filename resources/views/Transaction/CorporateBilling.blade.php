@@ -5,7 +5,7 @@
 @endsection
 
 @section ('breadParentName')
-<i class="fa fa-heartbeat" aria-hidden="true"></i><span> Medical Services</span>
+<i class="fa fa-heartbeat" aria-hidden="true"></i><span> Corporate Account Billing</span>
 @endsection
 
 @section('maintenanceactive')
@@ -14,7 +14,6 @@
 
 @section('transaction','active')
 @section('corporatetrans','active')
-@section ('breadactivePage','Patient List')
 
 @section('content')
 <div class="row">
@@ -24,19 +23,46 @@
 				Corporate Account Billing
 			</header>
 			<div class="panel-body">
-				
-			</div>
+				<div class="clearfix">
+					<table class="table table-bordered table-hover dataTable" id="corpTbl">
+					  <thead>
+					    <tr>
+					      <th>Company Name</th>
+					      <th>Contact Person</th>
+					      <th>Email</th>
+					      <th>Contact Number</th>
+					      <th>Action</th>
+					      <th>Status</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    @foreach($corporates as $corporates)
+					    <tr>
+					      <td>{{ $corporates->corp_name }}</td>
+					      <td>{{ $corporates->corp_contactperson }}</td>
+					      <td>{{ $corporates->corp_email }}</td>
+					      <td>{{ $corporates->corp_contact }}</td>
+					      <td>
+					      	
+					      </td>
+					    </tr>
+
+					    
+					    @endforeach
+					  </tbody>
+					</table>
+				</div>
 			</div>
 		</section>
 	</div>
-</div>	
+</div>
 
 @endsection
 
 @section('additional')
 <script type="text/javascript">
 $('.select2').select2();
-$('#patientTbl').DataTable({
+$('#corpTbl').DataTable({
   'paging'      : true,
   'lengthChange': true,
   'searching'   : true,

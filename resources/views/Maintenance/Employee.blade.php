@@ -49,22 +49,20 @@
 			          <td>{{ $emp1->emp_mname }}</td>
 			          <td>{{ $emp1->role_name }}</td>
 			          <td>
-                @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1)
+                @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1 or $emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == null)
 			            <button class="btn btn-warning btn-xs empupdateModalbtn" data-target="#updateModal" data-id="{{ $emp1->emp_id }}" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</button>
 			            <button class="btn btn-info btn-xs empviewModalbtn" data-target="#viewModal"  data-id="{{ $emp1->emp_id }}" data-toggle="modal"><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp; View</button>
 			            <button class="btn btn-danger btn-xs empdeleteModalbtn" data-id="{{ $emp1->emp_id }}" ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
-                @endif
-                @if($emp1->RoleStatus == 0 or $emp1->EmpStatus == 0 or $emp1->LabStatus == 0)
+                @else
                   <button class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</button>
                   <button class="btn btn-info btn-xs" disabled ><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp; View</button>
                   <button class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
                 @endif
 			          </td>
                 <td>
-                @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1)
+                @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1 or $emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == null)
                 <span class="badge bg-success">Available</span>
-                @endif
-                @if($emp1->RoleStatus == 0 or $emp1->EmpStatus == 0 or $emp1->LabStatus == 0)
+                @else
                 <span class="badge bg-important">Unavailable</span>
                 @endif
                 </td>

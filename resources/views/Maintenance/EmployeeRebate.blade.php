@@ -11,7 +11,7 @@
 @section('maintenanceactive')
 <a href="" class="active">
 @endsection
-@section ('breadactivePage','Rebate Percentage')
+@section ('breadactivePage',"Employee's Rebate")
 
 @section('rebate','active')
 @section('emprebactive','active')
@@ -21,7 +21,7 @@
 	<div class="col-lg-12">
 		<section class="panel">
 			<header class="panel-heading">
-				<strong>Rebate Percentage</strong>
+				<strong>Employee's Rebate</strong>
 			</header>
 			<div class="panel-body">
 				<div class="clearfix">

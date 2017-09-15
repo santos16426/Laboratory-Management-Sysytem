@@ -72,6 +72,28 @@
 		          	</div>	            
 		          </div>
 		        </div>
+		        <div class="col-md-6 col-md-offset-1">
+		        		<div class="col-md-3"><h4>Physical Examination</h4></div>
+        				<div class="col-md-3">
+        					<div class="form-group">
+              				<div class="radio">
+              					<label class="" for="yes">
+              						<input type="radio" id="yes" name="exam" value="1"> Yes
+              					</label>
+            				</div>
+        					</div>
+            		</div>
+            		<div class="col-md-3">
+        					<div class="form-group">
+              				<div class="radio">
+              					<label class="" for="no">
+              						<input type="radio" id="no" name="exam" value="2"> No
+              					</label>
+            				</div>
+        					</div>
+            		</div>
+            		
+        			</div>
 		        <fieldset>
 		        	<legend>Conditions</legend>
 		        	
@@ -216,11 +238,34 @@
 		          	</div>	            
 		          </div>
 		        </div>
+		        <div class="form-group">
+		         <div class="col-md-8 col-md-offset-1">
+		        		<div class="col-md-5"><strong><h5>Physical Examination:</h5></strong></div>
+        				<div class="col-md-3">
+        					<div class="form-group">
+              				<div class="radio">
+              					<label class="" for="yes">
+              						<input type="radio" id="yes" name="exam" value="1"> Yes
+              					</label>
+            				</div>
+        					</div>
+            		</div>
+            		<div class="col-md-3">
+        					<div class="form-group">
+              				<div class="radio">
+              					<label class="" for="no">
+              						<input type="radio" id="no" name="exam" value="2"> No
+              					</label>
+            				</div>
+        					</div>
+            		</div>
+        			</div>
+        		</div>
 		        <fieldset>
 		        	<legend>Conditions</legend>
 		        	
 		        	<div class="col-md-6 col-md-offset-1">
-		        		<div class="col-md-3"><h4>Age:</h4></div>
+		        		<div class="col-md-3"><strong><h5>Age:</h5></strong></div>
         				<div class="col-md-3">
         					<div class="form-group">
               				<div class="radio">
@@ -252,7 +297,7 @@
         			<div class="col-md-12"></div>
         			
         			<div class="col-md-12">
-		        		<div class="col-md-2 col-md-offset-1"><h4>Gender:</h4></div>	
+		        		<div class="col-md-2 col-md-offset-1"><strong><h5>Gender:</h5></strong></div>	
         				<div class="col-md-1">
         					<div class="form-group">
               				<div class="radio">

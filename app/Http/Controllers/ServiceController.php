@@ -67,8 +67,8 @@ class ServiceController extends Controller
 			$serviceGroup = DB::table('service_group_tbl')
         ->where('ServGroupStatus',1)
         ->get();
-			$serviceType = DB::table('service_group_tbl')
-        ->leftjoin('service_type_tbl','service_type_tbl.service_type_group_id','=','service_group_tbl.servgroup_id')
+			$serviceType = DB::table('service_type_tbl')
+        ->leftjoin('service_group_tbl','service_group_tbl.servgroup_id','=','service_type_tbl.service_type_group_id')
         ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
         ->get();
 			return view('Maintenance.ServiceType',['serviceType'=>$serviceType,'serviceGroup'=>$serviceGroup]);
