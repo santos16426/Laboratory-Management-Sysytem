@@ -107,9 +107,34 @@
 													<div class="input-group" >
 														<select class="form-control corppack_id select2" name="corppack_id" id="corppack_id" style="width: 100%" >
 															@foreach($corppackage as $corppack)
-
+															@if($corppack->age == 'All' and $corppack->gender==3)
 																<option id="Corppack_id{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
-																
+															@elseif($corppack->age == 'Teen' and $patient_age > 11 and $patient_age < 19)
+																@if($corppack->gender == 3)
+																<option id="Corppack_id{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
+																@elseif($corppack->gender == 2 and $patient_gender == "Female")
+																<option id="Corppack_id{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
+																@elseif($corppack->gender == 1 and $patient_gender == "Male")
+																<option id="Corppack_id{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
+																@endif
+															@elseif($corppack->age == 'Adult' and $patient_age > 18 and $patient_age < 60 )
+																@if($corppack->gender == 3)
+																<option id="Corppack_id{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
+																@elseif($corppack->gender == 2 and $patient_gender == "Female")
+																<option id="Corppack_id{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
+																@elseif($corppack->gender == 1 and $patient_gender == "Male")
+																<option id="Corppack_id{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
+																@endif
+															@elseif($corppack->age == 'Senior' and $patient_age > 60)
+																@if($corppack->gender == 3)
+																<option id="Corppack_id{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
+																@elseif($corppack->gender == 2 and $patient_gender == "Female")
+																<option id="Corppack_id{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
+																@elseif($corppack->gender == 1 and $patient_gender == "Male")
+																<option id="Corppack_id{{ $corppack->corpPack_id }}" value="{{ $corppack->corpPack_id }}">{{ $corppack->corpPack_name }}</option>
+																@endif
+															@endif
+
 															@endforeach
 														</select>
 														<div class="input-group-btn">

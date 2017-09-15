@@ -49,7 +49,7 @@
 					      @if($corporates->CorpStatus == 1)
 					        <a class="btn btn-warning btn-xs updateModal" data-id="{{$corporates->corp_id}}" href="#updateModal" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 					        <a class="btn btn-danger btn-xs delbtn" data-id="{{$corporates->corp_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
-					        <a class="btn btn-info btn-xs corppackages" data-id="{{$corporates->corp_id}}" ><i class="fa fa-dropbox" aria-hidden="true"></i>&nbsp; Packages</a>
+					        <a class="btn btn-info btn-xs" href="/Maintenance/Corporate/CreatePackage?corp_id={{ $corporates->corp_id }}"><i class="fa fa-dropbox" aria-hidden="true"></i>&nbsp; Packages</a>
 					       @else
 					       <a class="btn btn-warning btn-xs"  disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 					        <a class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
@@ -228,10 +228,7 @@
     </div>  
   </div>
 </div>
-<form action="/Maintenance/Corporate/CreatePackage" method="get" id="createcorppackage">
-{{ csrf_field() }}	
-<input type="hidden" name="corp_id" id="corp_id">
-</form>
+
 @endsection
 @section('additional')
 <script type="text/javascript" src="{{ asset('/Maintenance/Corporate.js') }}"></script>

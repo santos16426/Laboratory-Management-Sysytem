@@ -61,7 +61,7 @@ class CorporateAccountController extends Controller
             'updated_at'  =>  date_create('now')
           ]);
       }
-      Session::flash('add',true);
+      Session::flash('update',true);
       return redirect('/Maintenance/Corporate/CreatePackage?corp_id='.$corpid);
     }
     public function updateCorporatePackage(Request $req)
@@ -170,6 +170,7 @@ class CorporateAccountController extends Controller
       {
         $corp_name = $c->corp_name;
       }
+
       $table = DB::table('corp_package_tbl')->where('corp_id',$corp_id)->get();
       return view('Maintenance.CreateCorporatePackage',['corp_name'=>$corp_name,'table'=>$table,'serviceoffer'=>$serviceoffer,'servicegroup'=>$servicegroup,'corp_id'=>$corp_id]);
     }
