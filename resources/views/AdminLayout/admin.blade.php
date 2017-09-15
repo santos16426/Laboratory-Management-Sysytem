@@ -132,7 +132,7 @@
                   </a>
                   <ul class="sub">
                       <li class="@yield('medicalservice')"><a  href="/Transactions/PatientList"><i class="fa fa-heartbeat" aria-hidden="true"></i> Medical Services</a></li>
-
+                      <li class="@yield('corporatetrans')"><a  href="/Transactions/CorporateBilling"><i class="fa fa-users" aria-hidden="true"></i> Corporate Account Billing</a></li>
                       <li class="sub-menu">
                           <a  href=""><i class="fa fa-file-o" aria-hidden="true"></i> Results</a>
                           <ul class="sub">

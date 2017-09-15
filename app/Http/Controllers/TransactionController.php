@@ -7,6 +7,10 @@ use DB;
 use Session;
 class TransactionController extends Controller
 {
+    function corpbilling()
+    {
+        return view('Transaction.CorporateBilling');
+    }
     public function retrieveReciept(Request $req)
     {
         $transaction_details = DB::table('transaction_tbl')->where('trans_id',$req->ID)->get();
