@@ -194,72 +194,49 @@
 					</div>
 					
 					</div>
+					 <div class="form-group">
+                            <label class="col-lg-1 col-md-offset-1 control-label">Gender:</label>
+                            <div class="col-lg-5">
+                                <div class="radio">
+                                    <label for="upMale">
+                                        <input type="radio" id="upMale" name="gender" value="current" /> Male
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="upFemale">
+                                        <input type="radio" id="upFemale" name="gender" value="new" /> Female
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
-					<div class="form-group">
-					<div class="col-md-6 col-md-offset-1">
-		        		<div class="col-md-3"><h5>Gender:</h5></div>
-        				<div class="col-md-3">
-        					<div class="form-group">
-              				<div class="radio">
-              					<label class="" for="upMale">
-              						<input type="radio" id="upMale" name="gender" value="Male"> Male
-              					</label>
-            				</div>
-        					</div>
-            		</div>
-            		<div class="col-md-3">
-        					<div class="form-group">
-              				<div class="radio">
-              					<label class="" for="upFemale">
-              						<input type="radio" id="upFemale" name="gender" value="Female"> Female
-              					</label>
-            				</div>
-        					</div>
-            		</div>
-        			</div>
-        			<div class="col-md-12"></div>
-        			
-        			<div class="col-md-12">
-		        		<div class="col-md-2 col-md-offset-1"><h5>Civil Status:</h5></div>	
-        				<div class="col-md-1">
-        					<div class="form-group">
-              				<div class="radio">
-              					<label class="" for="upTeen">
-              						<input type="radio" id="upTeen" name="civil_status" value="Single"><small> Single</small>
-              					</label>
-            				</div>
-        					</div>
-            		</div>
-            		<div class="col-md-1" style="margin-right: 1%">
-        					<div class="form-group">
-              				<div class="radio">
-              					<label class="" for="upAdult">
-              						<input type="radio" id="upAdult" name="civil_status" value="Married"> Married
-              					</label>
-            				</div>
-        					</div>
-            		</div>
-            		<div class="col-md-1">
-        					<div class="form-group">
-              				<div class="radio">
-              					<label class="" for="upSenior">
-              						<input type="radio" id="upSenior" name="civil_status" value="Divorced"> Divorced
-              					</label>
-            				</div>
-        					</div>
-            		</div>
-            			<div class="col-md-1" style="margin-left: 1%">
-        					<div class="form-group">
-              				<div class="radio">
-              					<label class="" for="upAllAges">
-              						<input type="radio" id="upAllAges" name="civil_status" value="Widowed"> Widowed
-              					</label>
-            				</div>
-        					</div>
-            		</div>
-        			</div>
-        			</div>
-        
+                        <div class="form-group">
+                            <label class="col-lg-1 col-md-offset-1 control-label">Civil Status:</label>
+                            <div class="col-lg-5">
+                                <div class="radio">
+                                    <label for="upSingle">
+                                        <input type="radio" id="upSingle" name="civil_status" value="current" /> Single
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="upMarried">
+                                        <input type="radio" id="upMarried" name="civil_status" value="new" /> Married
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="upDivorced">
+                                        <input type="radio" id="upDivorced" name="civil_status" value="new" /> Divorced
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="upWidowed">
+                                        <input type="radio" id="upWidowed" name="civil_status" value="new" /> Widowed
+                                    </label>
+                                </div>
+                            </div>
+                        </div>	
+
+
         
         <div class="modal-footer">
           <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>

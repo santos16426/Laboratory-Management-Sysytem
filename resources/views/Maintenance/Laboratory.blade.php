@@ -79,7 +79,7 @@
         <form action="/update_laboratory" method="POST" class="form-horizontal" id="labedit">
           <div class="form-group" style="margin-right:3% ">
              
-                <div class="col-md-7 col-md-offset-3">
+                <div class="col-md-10 col-md-offset-1">
                    <div class="input-group">
                     <div class="input-group-addon">
                     Laboratory Name<sup style="color: red">*</sup>
@@ -110,7 +110,7 @@
       <div class="modal-body">
         <form action="/save_Lab" method="POST" class="form-horizontal" id="save_lab">
 					<div class="form-group" style="margin-right:3% ">
-						<div class="col-md-7 col-md-offset-3">
+						<div class="col-md-10 col-md-offset-1">
 							<div class="input-group">
 								<div class="input-group-addon">
 									Laboratory Name<sup style="color: red">*</sup>

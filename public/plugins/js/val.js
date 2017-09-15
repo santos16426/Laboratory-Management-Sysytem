@@ -147,6 +147,83 @@
  //          //end ng validations
 
 
+// Laboratory add
+$('#save_lab')   
+       
+   .bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {    
+            labname: {
+                validators: {
+                   // remote: {
+                   //      type: 'GET',
+                   //      url: '/checkPackage',
+                   //      data:{ packagename:$('#packagename').val()},
+                   //      message: 'Shing',
+                   //  },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9]+([-'_\s][a-zA-Z0-9]+)*$/,
+                        message: 'Special characters are not allowed.'
+                    },
+                    stringLength: {
+                        min: 2,
+                        max: 20,
+                        message:'Laboratory name should be at least 2 characters and not exceed 20 characters.'
+                    },
+                        notEmpty: {
+                        message: 'This field is required.'
+                    },
+                }
+            },   
+            }
+        })
+
+        ;
+
+// Laboratory EDIT
+$('#labedit')   
+       
+   .bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {    
+            uplab_name: {
+                validators: {
+                   // remote: {
+                   //      type: 'GET',
+                   //      url: '/checkPackage',
+                   //      data:{ packagename:$('#packagename').val()},
+                   //      message: 'Shing',
+                   //  },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9]+([-'_\s][a-zA-Z0-9]+)*$/,
+                        message: 'Special characters are not allowed.'
+                    },
+                    stringLength: {
+                        min: 2,
+                        max: 20,
+                        message:'Laboratory name should be at least 2 characters and not exceed 20 characters.'
+                    },
+                        notEmpty: {
+                        message: 'This field is required.'
+                    },
+                }
+            },   
+            }
+        })
+
+        ;
+
+
 // EmployeeType
 $('#EmployeeTypeadd').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
