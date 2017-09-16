@@ -49,7 +49,7 @@
 					      @if($corporates->CorpStatus == 1)
 					        <a class="btn btn-warning btn-xs updateModal" data-id="{{$corporates->corp_id}}" href="#updateModal" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 					        <a class="btn btn-danger btn-xs delbtn" data-id="{{$corporates->corp_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
-					        <a class="btn btn-info btn-xs" href="/Maintenance/Corporate/CreatePackage?corp_id={{ $corporates->corp_id }}"><i class="fa fa-dropbox" aria-hidden="true"></i>&nbsp; Packages</a>
+					        <a class="btn btn-info btn-xs corppackages" data-id="{{ $corporates->corp_id }}"><i class="fa fa-dropbox" aria-hidden="true"></i>&nbsp; Packages</a>
 					       @else
 					       <a class="btn btn-warning btn-xs"  disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 					        <a class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
@@ -228,8 +228,85 @@
     </div>  
   </div>
 </div>
-
+<form action="/Maintenance/Corporate/CreatePackage" method="get" id="createcorppackage">
+	{{ csrf_field()}}
+	<input type="hidden" name="corp_id" id="corp_id">
+	
+</form>
 @endsection
 @section('additional')
-<script type="text/javascript" src="{{ asset('/Maintenance/Corporate.js') }}"></script>
+<script type="text/javascript">
+	$('.corppackages').click(function(){
+	$('#corp_id').val($(this).data('id'));
+	$('#createcorppackage').submit();
+});
+$('#corpTbl').DataTable({
+  'paging'      : true,
+  'lengthChange': true,
+  'searching'   : true,
+  'ordering'    : true,
+  'info'        : true,
+  'autoWidth'   : true
+
+});
+$('.select2').select2();	
+$('.packservice').select2({
+  placeholder: 'Services offered'
+});
+
+$('.delbtn').click(function(){
+    $('#cid').val($(this).data('id'));
+    $('#deleteModal').modal('show');
+    });
+    $('.updatepackservice').change(function(){
+	var idstr = $('.updatepackservice').val();
+	
+	$.ajax
+	({
+		url: '/getTotalPrice',
+		type: 'get',
+		data:{id:idstr},
+		dataType: 'json',
+		success:function(response)
+		{
+			response.forEach(function(data){
+				$('#packprice').attr('placeholder','Suggested Price: 0');
+				$('#packprice').attr('placeholder','Suggested Price: '+data.total);
+				
+				
+			})
+		}
+	});
+});
+    $('.updateModal').click(function(){
+    $.ajax
+    ({
+      url: '/updateCorporate',
+      type: 'get',
+      data:  { id:$(this).data('id')},
+      dataType : 'json', 
+
+      success:function(response){
+        response.forEach(function(data){
+
+			$('#upcorpid').val(data.corp_id);
+			$('#upcompanyname').val(data.corp_name);
+			$('#upcontactperson').val(data.corp_contactperson);
+			$('#upcontactnumber').val(data.corp_contact);
+			$('#upemail').val(data.corp_email);
+			$('#uppackprice').val(data.price)
+			var selectedValues = new Array();
+			var i = 0;
+			response.forEach(function(data){
+			selectedValues[i] = data.service_id;
+			i++;
+			})
+			$('.uppackservice').val(selectedValues).trigger('change');
+        })
+      },
+      error:function(){
+      }
+    });
+  });
+</script>
 @endsection
