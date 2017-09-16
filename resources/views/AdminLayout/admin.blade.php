@@ -188,10 +188,11 @@
 
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery-1.8.3.min.js') }}" ></script>
-<script type="text/javascript" src="{{ asset('/Datatable/datatables.min.js') }}" ></script>
+
 
 <script type="text/javascript" src="{{ asset('/plugins/assets/advanced-datatable/media/js/jquery.dataTables.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/data-tables/DT_bootstrap.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('/Datatable/datatables.min.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/bootstrap.min.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/dropzone/dropzone.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.dcjqaccordion.2.7.js') }}" ></script>
