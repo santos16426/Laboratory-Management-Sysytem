@@ -23,7 +23,8 @@
       
         <div class="modal-body">
         {{ csrf_field() }}
-        <input type="hidden" name="corp_id" value="{{ $corp_id }}">
+        <input type="hidden" name="corpid" value="{{ $corp_id }}">
+        <input type="hidden" name="corpPack_id" value="" id="upcorpPack_id">
           <div class="form-group">
             <div class="col-md-10 col-md-offset-1">
               <div class="input-group">
@@ -405,6 +406,7 @@ $('.updateModal').click(function(){
         response.forEach(function(data){
         $('#uppackname').val(data.corpPack_name);
         $('#uppackprice').val(data.price);
+        $('#upcorpPack_id').val(data.corpPack_id);
         var selectedValues = new Array();
         var i = 0;
         response.forEach(function(data){

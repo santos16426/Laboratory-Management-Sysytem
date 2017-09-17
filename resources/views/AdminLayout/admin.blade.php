@@ -120,7 +120,7 @@
                       <li class="@yield('corpactive')">
                         <a  href="/Maintenance/Corporate">
                             <i class="fa fa-users" aria-hidden="true"></i>
-                            <span>Corporate Billing</span>
+                            <span>Corporate Accounts</span>
                         </a>
                       </li>
                   </ul>
