@@ -43,7 +43,7 @@
 			      <tbody>
 			        @foreach($emp1 as $emp1)
 			        <tr>
-                <td><img src="/Employee_images/{{ $emp1->emp_pic }}" style="height: 20px;display: block"></td>
+                <td><img src="/Employee_images/{{ $emp1->emp_pic }}" style="height: 40px;display: block"></td>
 			          <td>{{ $emp1->emp_lname }}</td>
 			          <td>{{ $emp1->emp_fname }}</td>
 			          <td>{{ $emp1->emp_mname }}</td>

@@ -296,11 +296,11 @@ $( document ).ready(function() {
         var charge = data.charge;
         if(charge == 0)
         {
-          frameDoc.document.write('<tr class="item"><td>'+data.corp_name+' Package</td><td>Php '+data.price+'</td></tr>');
+          frameDoc.document.write('<tr class="item"><td>'+data.corpPack_name+' (Corporate Package)</td><td>Php '+data.price+'</td></tr>');
         }
         if(charge == 1)
         {
-          frameDoc.document.write('<tr><td>'+data.corp_name+' Package (c/o '+data.corp_name+')</td><td>Php 0</td></tr>'); 
+          frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) (c/o '+data.corp_name+')</td><td>Php 0</td></tr>'); 
         }
         response[7].forEach(function(data){
           frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');

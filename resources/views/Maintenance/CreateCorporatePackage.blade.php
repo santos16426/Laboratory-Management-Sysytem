@@ -19,7 +19,7 @@
       <div class="modal-header btn-warning">
         <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Update</h4>
       </div>
-      <form action="/" method="POST" class="form-horizontal" id="corppackedit">
+      <form action="/update_corpPackage" method="POST" class="form-horizontal" id="corppackedit">
       
         <div class="modal-body">
         {{ csrf_field() }}

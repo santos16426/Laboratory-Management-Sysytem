@@ -9,8 +9,31 @@ class TransactionController extends Controller
 {
     function corpbilling()
     {
-        $corporates = DB::table('corporate_accounts_tbl')->get();
-        return view('Transaction.CorporateBilling',['corporates'=>$corporates]);   
+        $balance = 0;
+        $corporates = DB::table('corporate_accounts_tbl')
+                        ->distinct()
+                        ->get();
+        $corppack_ids = DB::table('transcorp_tbl')->select('corpPack_id')->where('charge',1)->get();
+        $corpPack_ids = array();
+        $corppPack_count = array();
+        foreach($corppack_ids as $corppack)
+        {
+            array_push($corpPack_ids,$corppack->corpPack_id);
+        }
+        $corppPack_count = array_count_values($corpPack_ids);
+        $corp_ids = array();
+        foreach($corppPack_count as $key => $value)
+        {
+            $corp_id = DB::table('corp_package_tbl')->select('corp_id')->where('corpPack_id',$key)->get();
+            foreach($corp_id as $cd)
+            {
+             $corp_id = $cd->corp_id;
+            }
+            array_push($corp_ids,$corp_id);
+        }
+        $corp_ids = array_count_values($corp_ids);
+        $corppackage = DB::table('corp_package_tbl')->get();
+        return view('Transaction.CorporateBilling',['corporates'=>$corporates,'corpPack_count'=>$corppPack_count,'corp_id'=>$corp_ids,'corppackage'=>$corppackage,'balance'=>$balance]);   
     }
     public function retrieveReciept(Request $req)
     {
@@ -39,16 +62,43 @@ class TransactionController extends Controller
         $services = DB::table('trans_serv_tbl')
             ->where('trans_id',$req->ID)
             ->get();
+        $corpPack_id = DB::table('transcorp_tbl')->select('corpPack_id')->where('trans_id',$req->ID)->get();
+        foreach($corpPack_id as $corppid)
+        {
+            $corpPack_id = $corppid->corpPack_id;
+        }
         $corpPackCharge = DB::table('transcorp_tbl')
             ->leftjoin('corp_package_tbl','corp_package_tbl.corp_id','=','transcorp_tbl.corp_id')
             ->leftjoin('corporate_accounts_tbl','corporate_accounts_tbl.corp_id','=','transcorp_tbl.corp_id')
-            ->where('trans_id',$req->ID)->get();
-        $corpPackage = DB::table('transcorp_tbl')
-                        ->leftjoin('corp_package_tbl','corp_package_tbl.corp_id','=','transcorp_tbl.corp_id')
-                        ->leftjoin('corp_packserv_tbl','corp_packserv_tbl.corpPack_id','=','corp_package_tbl.corpPack_id')
-                        ->leftjoin('service_tbl','service_tbl.service_id','=','corp_packserv_tbl.service_id')
-                        ->where('transcorp_tbl.trans_id',$req->ID)
-                        ->get();
+            ->where('corp_package_tbl.corpPack_id',$corpPack_id)
+            ->where('trans_id',$req->ID)
+            ->get();
+            
+
+        $corpPackage =  DB::table('corp_packserv_tbl')
+                            ->leftjoin('service_tbl','service_tbl.service_id','=','corp_packserv_tbl.service_id')
+                            ->leftjoin('service_group_tbl','service_group_tbl.servgroup_id','=','service_tbl.service_group_id')
+                            ->leftjoin('service_type_tbl','service_type_tbl.service_type_id','=','service_tbl.service_type_id')
+                            ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+                            ->leftjoin('corp_package_tbl','corp_package_tbl.corpPack_id','=','corp_packserv_tbl.corpPack_id')
+                            ->leftjoin('corporate_accounts_tbl','corporate_accounts_tbl.corp_id','=','corp_package_tbl.corp_id')
+                            ->where('service_tbl.ServiceStatus',1)
+                            ->where('laboratory_tbl.LabStatus',1)
+                            ->where('service_group_tbl.ServGroupStatus',1)
+                            ->where('service_type_tbl.ServTypeStatus',1)
+                            ->where('corp_package_tbl.corpPack_id',$corpPack_id)
+                            ->orWhere('service_tbl.ServiceStatus',1)
+                            ->where('laboratory_tbl.LabStatus',null)
+                            ->where('service_group_tbl.ServGroupStatus',null)
+                            ->where('service_type_tbl.ServTypeStatus',null)
+                            ->where('corp_package_tbl.corpPack_id',$corpPack_id)
+                            ->orWhere('service_tbl.ServiceStatus',1)
+                            ->where('laboratory_tbl.LabStatus',1)
+                            ->where('service_group_tbl.ServGroupStatus',1)
+                            ->where('service_type_tbl.ServTypeStatus',null)
+                            ->where('corp_package_tbl.corpPack_id',$corpPack_id)
+                            ->distinct()
+                            ->get();
         $companyPackage = DB::table('trans_pack_tbl')
                             ->leftjoin('package_tbl','package_tbl.pack_id','=','trans_pack_tbl.pack_id')
                             ->where('trans_id',$req->ID)
@@ -102,7 +152,8 @@ class TransactionController extends Controller
         }
         else
         {
-            DB::table('employee_tbl')->select('emp_id')->max('emp_id')->where('EmpStatus',1)->get();
+            $issuedBy = DB::table('employee_tbl')->where('EmpStatus',1)->select('emp_id')->max('emp_id');
+
         }
 
         $patient_id = $_POST['patient_id'] ;
@@ -399,6 +450,11 @@ class TransactionController extends Controller
             ->where('EmpRebStatus',1)
             ->where('EmpStatus',1)
             ->where('LabStatus',1)
+            ->where('RoleStatus',1)
+            ->orWhere('rebate',1)
+            ->where('EmpRebStatus',1)
+            ->where('EmpStatus',1)
+            ->where('LabStatus',null)
             ->where('RoleStatus',1)
             ->get();
 
