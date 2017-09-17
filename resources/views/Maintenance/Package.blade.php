@@ -242,7 +242,7 @@
                 servicename.push(data.service_name);
               })
               names = servicename;
-              sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+              sOut = '<table cellpadding="5" cellspacing="1" border="1 style="padding-left:10px;">';
               sOut += '<tr><td>Package Name: '+ aData[1]+ '</td></tr>'
               sOut += '<tr><td>Package Price: '+ aData[2]+ '</td></tr>'
               sOut += '<tr><td>Services under this package :</td></tr>';
