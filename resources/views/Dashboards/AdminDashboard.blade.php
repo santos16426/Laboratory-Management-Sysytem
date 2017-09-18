@@ -298,7 +298,7 @@ $( document ).ready(function() {
         {
           frameDoc.document.write('<tr class="item"><td>'+data.corpPack_name+' (Corporate Package)</td><td>Php '+data.price+'</td></tr>');
         }
-        if(charge == 1)
+        if(charge != 0)
         {
           frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) (c/o '+data.corp_name+')</td><td>Php 0</td></tr>'); 
         }

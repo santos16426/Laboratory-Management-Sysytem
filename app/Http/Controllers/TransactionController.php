@@ -32,6 +32,7 @@ class TransactionController extends Controller
             array_push($corp_ids,$corp_id);
         }
         $corp_ids = array_count_values($corp_ids);
+        dd($corppPack_count);
         $corppackage = DB::table('corp_package_tbl')->get();
         return view('Transaction.CorporateBilling',['corporates'=>$corporates,'corpPack_count'=>$corppPack_count,'corp_id'=>$corp_ids,'corppackage'=>$corppackage,'balance'=>$balance]);   
     }
@@ -240,6 +241,19 @@ class TransactionController extends Controller
         {
             $charge = $_POST['payWhere'];
             $corppackage_id = $_POST['corppackage_id'];
+            if($charge == 0)
+            {
+                $corpcharge = 0;
+            }
+            else{
+                $packagePrice = DB::table('corp_package_tbl')->where('corpPack_id',$corppackage_id)->select('price')->get();
+                foreach($packagePrice as $ps)
+                {
+                    $packagePrice = $ps->price;
+                }
+                $corpcharge = $packagePrice;
+            }
+            
             $corp_id = $_POST['corp_id'];
             DB::table('transcorp_tbl')
                 ->insert([
@@ -247,7 +261,7 @@ class TransactionController extends Controller
                     'trans_id'  =>  $trans_id,
                     'date'    =>  date_create('now'),
                     'corp_id'   => $corp_id,
-                    'charge'  =>  $charge
+                    'charge'  =>  $corpcharge
 
             ]);
             $corpPack_id = $_POST['corppackage_id'];
@@ -393,7 +407,7 @@ class TransactionController extends Controller
             }
         }
         
-        Session::flash('transaction',true);
+        Session::put('transaction',true);
         $transactionDetails = DB::table('transaction_tbl')->get();
         $transaction_id=0;
         $employee_id = 0;
@@ -413,7 +427,7 @@ class TransactionController extends Controller
             $trans_date = $t->trans_date;
         }
         
-        Session::flash('trans_id',$transaction_id);
+        Session::put('trans_id',$transaction_id);
         return redirect('/Admin/Dashboard');
     
     }
