@@ -7,6 +7,10 @@ use DB;
 use Session;
 class TransactionController extends Controller
 {
+    function rebatebilling()
+    {
+        
+    }
     function saveCorporatePayment()
     {
         $corp_id = $_POST['corp_id'];
@@ -79,7 +83,7 @@ class TransactionController extends Controller
                         ->get();
         $corppack_ids = DB::table('transcorp_tbl')->whereNotIn('charge',[0])->get();
         $corppayments = DB::table('transcorp_payment_tbl')->get();
-        
+
         return view('Transaction.CorporateBilling',['corporates'=>$corporates,'packprice'=>$corppack_ids,'balance'=>$balance,'payments'=>$corppayments,'corppay'=>$payments,'bill'=>$bill]);   
     }
     public function retrieveReciept(Request $req)

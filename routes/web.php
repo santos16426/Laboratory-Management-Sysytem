@@ -102,6 +102,7 @@ Route::post('/proceed_Payment','TransactionController@proceed_Payment');
 Route::get('/Transaction/CorporateBilling/ViewTransactions','TransactionController@viewCorpTrans');
 Route::post('/saveCorporatePayment','TransactionController@saveCorporatePayment');
 Route::get('/Transactions/CorporateBilling','TransactionController@corpbilling');
+Route::get('/Transactions/RebateBilling','TransactionController@rebatebilling');
 //Results
 Route::get('/Transactions/EncodeResults','TransactionController@encoderesults');
 Route::get('/Transactions/UploadResults','TransactionController@uploadresults');
