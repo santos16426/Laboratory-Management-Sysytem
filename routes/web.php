@@ -99,6 +99,7 @@ Route::get('/getDataPackage','TransactionController@getDataPackage');
 Route::get('/getDataService','TransactionController@getDataService');
 Route::get('/getCompanyPackage','TransactionController@getCompanyPackage');
 Route::post('/proceed_Payment','TransactionController@proceed_Payment');
+Route::get('/Transaction/CorporateBilling/ViewTransactions','TransactionController@viewCorpTrans');
 
 Route::get('/Transactions/CorporateBilling','TransactionController@corpbilling');
 //Remote Validation

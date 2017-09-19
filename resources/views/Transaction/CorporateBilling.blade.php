@@ -58,10 +58,10 @@
 					      		@endif
 					      	@endforeach
 					      	@if($balance > 0)
-					      	<a class="btn btn-info btn-xs viewTrans" ><i class="fa fa-handshake-o" aria-hidden="true" data-id="{{ $corporates->corp_id }}"></i>&nbsp;View Transactions</a>
-					      	<a class="btn btn-success btn-xs payCorp" ><i class="fa fa-rub" aria-hidden="true" data-id="{{ $corporates->corp_id }}"></i>&nbsp; Pay</a>
+					      	<a class="btn btn-info btn-xs viewTrans" data-id="{{ $corporates->corp_id }}"><i class="fa fa-handshake-o" aria-hidden="true" ></i>&nbsp;View Transactions</a>
+					      	<a class="btn btn-success btn-xs payCorp" data-id="{{ $corporates->corp_id }}"><i class="fa fa-rub" aria-hidden="true" ></i>&nbsp; Pay</a>
 					      	@else
-					      	
+					      	<a class="btn btn-info btn-xs viewTrans" data-id="{{ $corporates->corp_id }}"><i class="fa fa-handshake-o" aria-hidden="true" ></i>&nbsp;View Transactions</a>
 					      	@endif
 					      	<?php $balance=0; ?>
 					      </td>
@@ -89,11 +89,18 @@
 		</section>
 	</div>
 </div>
-
+<form action="/Transaction/CorporateBilling/ViewTransactions" method="GET" id="viewTrans">
+	{{ csrf_field() }}
+	<input type="hidden" name="corp_id" value="" id="corp_id">
+</form>
 @endsection
-
 @section('additional')
+
 <script type="text/javascript">
+$('.viewTrans').click(function(){
+	$('#corp_id').val($(this).data('id'));
+	$('#viewTrans').submit();
+});
 $('.select2').select2();
 $('#corpTbl').DataTable({
   'paging'      : true,

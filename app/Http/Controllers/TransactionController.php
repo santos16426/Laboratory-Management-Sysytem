@@ -7,6 +7,11 @@ use DB;
 use Session;
 class TransactionController extends Controller
 {
+    function viewCorpTrans()
+    {
+        $corp_id = $_GET['corp_id'];
+        echo $corp_id;
+    }
     function corpbilling()
     {
         $balance = 0;
