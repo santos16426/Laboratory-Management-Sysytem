@@ -50,15 +50,25 @@
 					      		<?php $balance += $getBill->charge ?>
 					      		@endif
 					      	@endforeach	
-					      	
-					      	<?php echo $balance; $balance=0;?>
+					      	@foreach($payments as $getPayments)
+					      		@if($getPayments->corp_id == $corporates->corp_id)
+					      		<?php $corppay += $getPayments->corpPayment_bill ?>
+					      		@endif
+					      	@endforeach
+					      	<?php echo $balance = $balance - $corppay; $balance=0;?>
 					      </td>
 					      <td>
-					      		@foreach($packprice as $getBill)
+				      		@foreach($packprice as $getBill)
 					      		@if($getBill->corp_id == $corporates->corp_id)
 					      		<?php $balance += $getBill->charge ?>
 					      		@endif
 					      	@endforeach
+					      	@foreach($payments as $getPayments)
+					      		@if($getPayments->corp_id == $corporates->corp_id)
+					      		<?php $corppay += $getPayments->corpPayment_bill ?>
+					      		@endif
+					      	@endforeach
+					      	<?php $balance = $balance - $corppay; ?>
 					      	@if($balance > 0)
 					      	<a class="btn btn-info btn-xs viewTrans" data-id="{{ $corporates->corp_id }}"><i class="fa fa-handshake-o" aria-hidden="true" ></i>&nbsp;View Transactions</a>
 					      	<a class="btn btn-success btn-xs payCorp" data-id="{{ $corporates->corp_id }}"><i class="fa fa-rub" aria-hidden="true" ></i>&nbsp; Pay</a>
@@ -67,7 +77,7 @@
 					      	<a class="btn btn-info btn-xs viewTrans" data-id="{{ $corporates->corp_id }}"><i class="fa fa-handshake-o" aria-hidden="true" ></i>&nbsp;View Transactions</a>
 					      	@endif
 					      	
-					      	<?php $balance=0; $bill = 0; $corppay=0; ?>
+					      	<?php $balance=0; $corppay=0; ?>
 					      </td>
 					      <td>
 					      	@foreach($packprice as $getBill)
@@ -75,12 +85,18 @@
 					      		<?php $balance += $getBill->charge ?>
 					      		@endif
 					      	@endforeach
+					      	@foreach($payments as $getPayments)
+					      		@if($getPayments->corp_id == $corporates->corp_id)
+					      		<?php $corppay += $getPayments->corpPayment_bill ?>
+					      		@endif
+					      	@endforeach
+					      	<?php $balance = $balance - $corppay; ?>
 					      	@if($balance > 0)
 					      	<span class="badge bg-warning">Not yet Paid</span>
 					      	@else
 					      	<span class="badge bg-success">Cleared</span>
 					      	@endif
-					      	<?php $balance=0; $bill = 0; $corppay=0; ?>
+					      	<?php $balance=0; $corppay=0; ?>
 					      </td>
 					    </tr>
 
