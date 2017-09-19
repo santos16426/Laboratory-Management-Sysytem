@@ -135,10 +135,10 @@
                       <li class="@yield('corporatetrans')"><a  href="/Transactions/CorporateBilling"><i class="fa fa-users" aria-hidden="true"></i> Corporate Account Billing</a></li>
                       <li class="@yield('rebatetrans')"><a  href="/Transactions/RebateBilling"><i class="fa fa-percent" aria-hidden="true"></i> Rebate Employee Billing</a></li>
                       <li class="sub-menu">
-                          <a  href=""><i class="fa fa-file-o" aria-hidden="true"></i> Results</a>
+                          <a  href="" class="@yield('transresultactive')"><i class="fa fa-file-o" aria-hidden="true"></i> Results</a>
                           <ul class="sub">
-                              <li><a  href="/Transactions/EncodeResults">Enconding of Results</a></li>
-                              <li><a  href="/Transactions/UploadResults">Uploading of Results</a></li>
+                              <li class="@yield('encodeactive')"><a  href="/Transactions/EncodeResults">Enconding of Results</a></li>
+                              <li class="@yield('uploadactive')"><a  href="/Transactions/UploadResults">Uploading of Results</a></li>
                           </ul>
                       </li>
 

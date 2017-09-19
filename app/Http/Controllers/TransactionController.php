@@ -7,21 +7,80 @@ use DB;
 use Session;
 class TransactionController extends Controller
 {
+    function saveCorporatePayment()
+    {
+        $corp_id = $_POST['corp_id'];
+        $amount = $_POST['amount'];
+        $file_name_new = "default.jpg";
+        if(isset($_FILES['payment_img']))
+        {
+            $file = $_FILES['payment_img'];
+            $file_error = $file['error'];
+            // File properties
+            $file_name = $file['name'];
+            $file_tmp = $file['tmp_name'];
+            $file_size = $file['size'];
+
+            //Work out the file extension
+            $file_ext = explode('.',$file_name);
+            $file_ext = strtolower(end($file_ext));
+
+            $allowed = array('jpg','png','jpeg','bmp');
+            if(in_array($file_ext,$allowed))
+            {
+                if($file_error === 0)
+                {
+                    if($file_size <= 2097152)
+                    {
+                        $file_name_new = uniqid('',true) . '.' . $file_ext;
+                        $file_destination = 'CorporatePayments/' . $file_name_new;
+                        move_uploaded_file($file_tmp, $file_destination);
+                    }
+                }
+            }
+        }
+        DB::table('transcorp_payment_tbl')
+            ->insert([
+                'corpPayment_date'  =>  date_create('now'),
+                'corpPayment_bill'  =>  $amount,
+                'corp_id'           =>  $corp_id,
+                'corpPayment_img'   =>  $file_name_new
+            ]);
+        Session::flash('paid',true);
+        return redirect()->back();
+    }
+    function encoderesults()
+    {
+        return view('Transaction.EncodingOfResults');
+    }
+    function uploadresults()
+    {
+        return view('Transaction.UploadOfResults');
+    }
     function viewCorpTrans()
     {
         $corp_id = $_GET['corp_id'];
-        echo $corp_id;
+        $corporatedetails = DB::table('corporate_accounts_tbl')->where('corp_id',$corp_id)->get();
+        $table = DB::table('transcorp_tbl')
+            ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','transcorp_tbl.trans_id')
+            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+            ->where('corp_id',$corp_id)
+            ->get();
+        $payments = DB::table('transcorp_payment_tbl')->where('corp_id',$corp_id)->get();
+        return view('Transaction.ViewCorporateTrans',['corporate'=>$corporatedetails,'transactions'=>$table,'payments'=>$payments]);
     }
     function corpbilling()
     {
         $balance = 0;
+        $payments = 0;
+        $bill = 0;
         $corporates = DB::table('corporate_accounts_tbl')
                         ->distinct()
                         ->get();
-
         $corppack_ids = DB::table('transcorp_tbl')->whereNotIn('charge',[0])->get();
-
-        return view('Transaction.CorporateBilling',['corporates'=>$corporates,'packprice'=>$corppack_ids,'balance'=>$balance]);   
+        $corppayments = DB::table('transcorp_payment_tbl')->get();
+        
+        return view('Transaction.CorporateBilling',['corporates'=>$corporates,'packprice'=>$corppack_ids,'balance'=>$balance,'payments'=>$corppayments,'corppay'=>$payments,'bill'=>$bill]);   
     }
     public function retrieveReciept(Request $req)
     {

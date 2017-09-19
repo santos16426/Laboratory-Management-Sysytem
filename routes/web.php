@@ -100,8 +100,11 @@ Route::get('/getDataService','TransactionController@getDataService');
 Route::get('/getCompanyPackage','TransactionController@getCompanyPackage');
 Route::post('/proceed_Payment','TransactionController@proceed_Payment');
 Route::get('/Transaction/CorporateBilling/ViewTransactions','TransactionController@viewCorpTrans');
-
+Route::post('/saveCorporatePayment','TransactionController@saveCorporatePayment');
 Route::get('/Transactions/CorporateBilling','TransactionController@corpbilling');
+//Results
+Route::get('/Transactions/EncodeResults','TransactionController@encoderesults');
+Route::get('/Transactions/UploadResults','TransactionController@uploadresults');
 //Remote Validation
 Route::get('/checkEmpType','RemoteController@checkEmpType');
 Route::get('/checkServgrp','RemoteController@checkServgrp');
