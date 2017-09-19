@@ -26,10 +26,62 @@
 				<div class="clearfix">
 					<table class="table table-bordered table-hover dataTable" id="corpTbl">
 					  <thead>
-					    
+					    <tr>
+					      <th>Company Name</th>
+					      <th>Contact Person</th>
+					      <th>Email</th>
+					      <th>Contact Number</th>
+					      <th>Balance</th>
+					      <th>Action</th>
+					      <th>Status</th>
+					    </tr>
 					  </thead>
 					  <tbody>
+					    @foreach($corporates as $corporates)
+					    <tr>
+					      <td>{{ $corporates->corp_name }}</td>
+					      <td>{{ $corporates->corp_contactperson }}</td>
+					      <td>{{ $corporates->corp_email }}</td>
+					      <td>{{ $corporates->corp_contact }}</td>
+					      <td>
+					      	@foreach($packprice as $getBill)
+					      		@if($getBill->corp_id == $corporates->corp_id)
+					      		<?php $balance += $getBill->charge ?>
+					      		@endif
+					      	@endforeach
+					      	<?php echo $balance; $balance=0; ?>
+					      </td>
+					      <td>
+					      	@foreach($packprice as $getBill)
+					      		@if($getBill->corp_id == $corporates->corp_id)
+					      		<?php $balance += $getBill->charge ?>
+					      		@endif
+					      	@endforeach
+					      	@if($balance > 0)
+					      	<a class="btn btn-info btn-xs viewTrans" ><i class="fa fa-handshake-o" aria-hidden="true" data-id="{{ $corporates->corp_id }}"></i>&nbsp;View Transactions</a>
+					      	<a class="btn btn-success btn-xs payCorp" ><i class="fa fa-rub" aria-hidden="true" data-id="{{ $corporates->corp_id }}"></i>&nbsp; Pay</a>
+					      	@else
+					      	
+					      	@endif
+					      	<?php $balance=0; ?>
+					      </td>
+					      <td>
+					      	@foreach($packprice as $getBill)
+					      		@if($getBill->corp_id == $corporates->corp_id)
+					      		<?php $balance += $getBill->charge ?>
+					      		@endif
+					      	@endforeach
+					      	@if($balance > 0)
+					      	<span class="badge bg-warning">Not yet Paid</span>
+					      	@else
+					      	<span class="badge bg-success">Cleared</span>
+					      	@endif
+					      	<?php $balance=0; ?>
+					      </td>
+					    </tr>
+
 					    
+					    @endforeach
 					  </tbody>
 					</table>
 				</div>
@@ -50,7 +102,7 @@ $('#corpTbl').DataTable({
   'ordering'    : true,
   'info'        : true,
   'autoWidth'   : true
-
 });
+
 </script>
 @endsection

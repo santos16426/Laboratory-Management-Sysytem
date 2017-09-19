@@ -13,28 +13,10 @@ class TransactionController extends Controller
         $corporates = DB::table('corporate_accounts_tbl')
                         ->distinct()
                         ->get();
-        $corppack_ids = DB::table('transcorp_tbl')->select('corpPack_id')->where('charge',1)->get();
-        $corpPack_ids = array();
-        $corppPack_count = array();
-        foreach($corppack_ids as $corppack)
-        {
-            array_push($corpPack_ids,$corppack->corpPack_id);
-        }
-        $corppPack_count = array_count_values($corpPack_ids);
-        $corp_ids = array();
-        foreach($corppPack_count as $key => $value)
-        {
-            $corp_id = DB::table('corp_package_tbl')->select('corp_id')->where('corpPack_id',$key)->get();
-            foreach($corp_id as $cd)
-            {
-             $corp_id = $cd->corp_id;
-            }
-            array_push($corp_ids,$corp_id);
-        }
-        $corp_ids = array_count_values($corp_ids);
-        dd($corppPack_count);
-        $corppackage = DB::table('corp_package_tbl')->get();
-        return view('Transaction.CorporateBilling',['corporates'=>$corporates,'corpPack_count'=>$corppPack_count,'corp_id'=>$corp_ids,'corppackage'=>$corppackage,'balance'=>$balance]);   
+
+        $corppack_ids = DB::table('transcorp_tbl')->whereNotIn('charge',[0])->get();
+
+        return view('Transaction.CorporateBilling',['corporates'=>$corporates,'packprice'=>$corppack_ids,'balance'=>$balance]);   
     }
     public function retrieveReciept(Request $req)
     {
