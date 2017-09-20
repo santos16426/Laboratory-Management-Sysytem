@@ -26,7 +26,7 @@
 			<div class="panel-body">
 				<div class="clearfix">
 					<div class="btn-group pull-right">
-						<a class="btn btn-info" style="margin-left: -20%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="patientTbl">
 			      <thead>

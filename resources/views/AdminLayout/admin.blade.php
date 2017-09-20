@@ -34,7 +34,7 @@
           }
         </style>
     </head>
-  <body>
+<body>
 <section id="container" >
     <header class="header white-bg">
         <div class="sidebar-toggle-box">
@@ -46,7 +46,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="plugins/img/avatar1_small.jpg">
-                        <span class="username">Jhon Doue</span>
+                        <span class="username">Administrator</span>
                     </a>
                 </li>
             </ul>

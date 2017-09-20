@@ -48,7 +48,7 @@
 					    	<th>Transaction Date</th>
 					    	<th>Transaction Charge</th>
 					    	<th>Corporate Patient</th>
-
+					    	<th>Action</th>
 					    </tr>
 					  </thead>
 					  <tbody>
@@ -59,6 +59,9 @@
 						      <td>{{ $transact->charge }}</td>
 						      <td>
 						      	{{ $transact->patient_fname }}  {{ $transact->patient_mname }} {{ $transact->patient_lname }}
+						      </td>
+						      <td>
+						      	<a class="btn btn-primary btn-xs printTrans" data-id="{{ $transact->transCorp_id }}"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a>
 						      </td>
 					    </tr>
 					    @endforeach
@@ -84,6 +87,7 @@
 					    	<th>Payment ID</th>
 					    	<th>Payment Date</th>
 					    	<th>Amount</th>
+					    	<th>Action</th>
 					    </tr>
 					  </thead>
 					  <tbody>
@@ -91,7 +95,10 @@
 					    <tr>
 					      <td>{{ $payments->corpPayment_id }}</td>
 					      <td>{{ $payments->corpPayment_date }}</td>
-					      <td>{{ $payments->corpPayment_bill }}</td>					   
+					      <td>{{ $payments->corpPayment_bill }}</td>
+					      <td>
+					      	<a class="btn btn-primary btn-xs printPayment" data-id="{{ $payments->corpPayment_id }}"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a>
+					      </td>					   
 					    </tr>
 					    @endforeach  
 					  </tbody>

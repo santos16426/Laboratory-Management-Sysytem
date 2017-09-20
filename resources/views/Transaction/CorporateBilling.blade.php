@@ -55,10 +55,12 @@
 					      		<?php $corppay += $getPayments->corpPayment_bill ?>
 					      		@endif
 					      	@endforeach
-					      	<?php echo $balance = $balance - $corppay; $balance=0;?>
+					      	<?php echo $balance = $balance - $corppay; $balance=0; $corppay=0?>
 					      </td>
+
 					      <td>
-				      		@foreach($packprice as $getBill)
+				      		
+					      	@foreach($packprice as $getBill)
 					      		@if($getBill->corp_id == $corporates->corp_id)
 					      		<?php $balance += $getBill->charge ?>
 					      		@endif
@@ -76,7 +78,6 @@
 					      	@else
 					      	<a class="btn btn-info btn-xs viewTrans" data-id="{{ $corporates->corp_id }}"><i class="fa fa-handshake-o" aria-hidden="true" ></i>&nbsp;View Transactions</a>
 					      	@endif
-					      	
 					      	<?php $balance=0; $corppay=0; ?>
 					      </td>
 					      <td>
