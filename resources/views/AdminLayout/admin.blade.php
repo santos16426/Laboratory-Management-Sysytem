@@ -22,6 +22,8 @@
         <link rel="stylesheet" href="{{ asset('/plugins/select2/dist/css/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('/bootstrapvalidator/dist/css/bootstrapValidator.css') }}">
         <link rel="stylesheet" href="{{ asset('/sweetalert-master/dist/sweetalert.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/fancybox/source/jquery.fancybox.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/gallery.css') }}">
         <script src="{{ asset('/sweetalert-master/dist/sweetalert.min.js') }}"></script>
         <style type="text/css">
           sup
@@ -222,8 +224,17 @@
 <script type="text/javascript" src="{{ asset('/plugins/js/form-component.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/gritter.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/Toastr/toastr.js') }}" ></script>
+<script src="{{ asset('/plugins/assets/fancybox/source/jquery.fancybox.js') }}"></script>
+<script src="{{ asset('/plugins/js/modernizr.custom.js') }}"></script>
+<script src="{{ asset('/plugins/js/toucheffects.js') }}"></script>
 <script src="{{ asset('/plugins/js/val.js') }}"></script>
+<script type="text/javascript">
+      $(function() {
+        //    fancybox
+          jQuery(".fancybox").fancybox();
+      });
 
+  </script>
 
 @if (Session::has('add'))
 <script type="text/javascript">
