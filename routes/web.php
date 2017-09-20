@@ -106,7 +106,13 @@ Route::get('/Transactions/RebateBilling','TransactionController@rebatebilling');
 Route::get('/Transaction/Rebate/ViewTransactions','TransactionController@viewrebatetrans');
 Route::post('/saveEmpRebatePayment','TransactionController@saveRebatePayment');
 
-
+//Layouts
+Route::get('/medicalReport','ResultController@medicalReport');
+Route::get('/ecg','ResultController@ecg');
+Route::get('/uploadResult','ResultController@uploadResult');
+Route::get('/ultra','ResultController@ultra');
+Route::get('/xray','ResultController@xray');
+Route::get('/medservice','ResultController@medservice');
 
 
 //Results

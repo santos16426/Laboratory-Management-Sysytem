@@ -48,4 +48,39 @@ class ResultController extends Controller
         $gid = $_GET['group_id'];
         return view('Transaction.AddLayout',['id'=>$id,'gid'=>$gid]);
     }
+    
+    public function ecg(){
+        $trans_id = $_GET['id'];
+        $patientinfo = DB::table('transaction_tbl')
+            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+            ->where('trans_id',$trans_id)
+            ->get();
+        return view('Transaction.ecg',['patientinfo'=>$patientinfo]);
+    }
+    public function ultra(){
+        $trans_id = $_GET['id'];
+        $patientinfo = DB::table('transaction_tbl')
+            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+            ->where('trans_id',$trans_id)
+            ->get();
+        return view('Transaction.ultra',['patientinfo'=>$patientinfo]);
+    }
+    public function xray(){
+        $trans_id = $_GET['id'];
+        $patientinfo = DB::table('transaction_tbl')
+            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+            ->where('trans_id',$trans_id)
+            ->get();
+        return view('Transaction.xray',['patientinfo'=>$patientinfo]);
+    }
+    public function medicalReport()
+    {
+        $trans_id = $_GET['id'];
+        $patientinfo = DB::table('transaction_tbl')
+            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+            ->where('trans_id',$trans_id)
+            ->get();
+
+        return view('Transaction.medicalReport',['patientinfo'=>$patientinfo]);
+    }
 }
