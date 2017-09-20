@@ -69,6 +69,7 @@ class TransactionController extends Controller
                 }
             }
         }
+       
         DB::table('transcorp_payment_tbl')
             ->insert([
                 'corpPayment_date'  =>  date_create('now'),
