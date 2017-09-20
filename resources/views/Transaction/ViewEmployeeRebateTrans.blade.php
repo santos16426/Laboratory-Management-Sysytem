@@ -21,9 +21,20 @@
 		<section class="panel">
 			<div class="panel-body">
 				@foreach($empdetails as $emp)
-					<label>Employee Name:&nbsp; {{ $emp->emp_fname }} {{ $emp->emp_mname }} {{ $emp->emp_lname }}</label>
+					<label>Employee Type:&nbsp; {{ $emp->role_name }}</label><br>
+					<label>Name:&nbsp; {{ $emp->emp_fname }} {{ $emp->emp_mname }} {{ $emp->emp_lname }}</label><br>
+					
 					@if($emp->address)
-						<label>Employee Address:&nbsp; {{ $emp->emp_address }}</label>
+						<label>Address:&nbsp; {{ $emp->emp_address }}</label><br>
+					@endif
+					@if($emp->contact)
+						<label>Contact Number:&nbsp; {{ $emp->emp_contact }}</label><br>
+					@endif
+					@if($emp->rank)
+						<label>Rank:&nbsp; {{ $emp->rank_name }}</label><br>
+					@endif
+					@if($emp->license)
+						<label>License Number:&nbsp; {{ $emp->license_no }}</label><br>
 					@endif
 					
 				@endforeach

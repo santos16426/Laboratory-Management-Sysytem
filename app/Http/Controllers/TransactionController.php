@@ -13,6 +13,7 @@ class TransactionController extends Controller
         $empdetails = DB::table('employee_tbl')
             ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
             ->leftjoin('rolefields_tbl','rolefields_tbl.role_id','=','employee_role_tbl.role_id')
+            ->leftjoin('medtech_rank','medtech_rank.rank_id','=','employee_tbl.emp_medtech_rank_id')
             ->where('emp_id',$emp_id)
             ->get();
         $transactions = DB::table('trans_emprebate_tbl')->where('emp_id',$emp_id)->get();
