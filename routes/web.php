@@ -104,15 +104,17 @@ Route::post('/saveCorporatePayment','TransactionController@saveCorporatePayment'
 Route::get('/Transactions/CorporateBilling','TransactionController@corpbilling');
 Route::get('/Transactions/RebateBilling','TransactionController@rebatebilling');
 Route::get('/Transaction/Rebate/ViewTransactions','TransactionController@viewrebatetrans');
+Route::post('/saveEmpRebatePayment','TransactionController@saveRebatePayment');
 
-Route::get('/getTransactionperGroup','ResultController@getTransactionperGroup');
-Route::get('/AddLayout','ResultController@AddLayout');
+
+
 
 //Results
 Route::get('/Transactions/EncodeResults','ResultController@encoderesults');
 Route::get('/Transactions/UploadOfResults','ResultController@uploadresults');
 Route::get('/Transactions/ResultDashboard','ResultController@resultdashboard');
-
+Route::get('/getTransactionperGroup','ResultController@getTransactionperGroup');
+Route::get('/AddLayout','ResultController@AddLayout');
 //Remote Validation
 Route::get('/checkEmpType','RemoteController@checkEmpType');
 Route::get('/checkServgrp','RemoteController@checkServgrp');

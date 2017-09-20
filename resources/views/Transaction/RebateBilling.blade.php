@@ -41,8 +41,14 @@
 										<?php  $total += $rebate->percentage; ?>
 										@endif
 									@endforeach
+									@foreach($paymentTransaction as $payments)
+										@if($payments->transRebPay_emp_id == $empreb->emp_id)
+											<?php $payment += $payments->transRebPay_amount; ?>
+										@endif
+									@endforeach
+									<?php  $total = $total-$payment; ?>
 									{{ $total }}
-									<?php $total=0; ?>
+									<?php $total=0;$payment=0; ?>
 								</td>
 								<td>
 									@foreach($rebates as $rebate)
@@ -50,15 +56,39 @@
 										<?php  $total += $rebate->percentage; ?>
 										@endif
 									@endforeach
+									@foreach($paymentTransaction as $payments)
+										@if($payments->transRebPay_emp_id == $empreb->emp_id)
+											<?php $payment += $payments->transRebPay_amount; ?>
+										@endif
+									@endforeach
+									<?php  $total = $total-$payment; ?>
 									@if($total > 0)
 									<a class="btn btn-info btn-xs viewTrans" data-id="{{ $empreb->emp_id }}"><i class="fa fa-handshake-o" aria-hidden="true" ></i>&nbsp;View Transactions</a>
 					      			<a class="btn btn-success btn-xs payEmpReb" data-id="{{ $empreb->emp_id }}" data-amount="{{ $total }}"><i class="fa fa-rub" aria-hidden="true" ></i>&nbsp; Pay</a>
 									@else
-
+									<a class="btn btn-info btn-xs viewTrans" data-id="{{ $empreb->emp_id }}"><i class="fa fa-handshake-o" aria-hidden="true" ></i>&nbsp;View Transactions</a>
 									@endif
-									<?php $total=0; ?>
+									<?php $total=0;$payment=0; ?>
 								</td>
-								<td></td>
+								<td>
+									@foreach($rebates as $rebate)
+										@if($empreb->emp_id == $rebate->emp_id)
+										<?php  $total += $rebate->percentage; ?>
+										@endif
+									@endforeach
+									@foreach($paymentTransaction as $payments)
+										@if($payments->transRebPay_emp_id == $empreb->emp_id)
+											<?php $payment += $payments->transRebPay_amount; ?>
+										@endif
+									@endforeach
+									<?php  $total = $total-$payment; ?>
+									@if($total > 0)
+									<span class="badge bg-warning">Not yet Paid</span>
+									@else
+									<span class="badge bg-success">Cleared</span>
+									@endif
+									<?php $total=0;$payment=0; ?>
+								</td>
 							</tr>
 						@endforeach
 						</tbody>
@@ -72,12 +102,12 @@
 	<div class="modal-dialog">
     	<div class="modal-content">
       		<div class="modal-header">
-        		<h4 class="modal-title">Corporate Payment</h4>
+        		<h4 class="modal-title">Rebate Payment</h4>
       		</div>
       		<div class="modal-body">
          		<form class="form-horizontal" method="post" action="/saveEmpRebatePayment" id="paymentForm" enctype="multipart/form-data">
           			<div class="box-body">
-            			<input type="hidden" name="corp_id" id="PAYemp_id" value="">
+            			<input type="hidden" name="emp_id" id="PAYemp_id" value="">
             			<input type="hidden" name="checkAmount" id="checkAmount" value="">
             			<div class="form-group" style="margin-right:3% ">
 							<div class="col-md-10 col-md-offset-1">
@@ -143,5 +173,27 @@ $('.viewTrans').click(function(){
 	$('#viewTrans').submit();
 });
 </script>
+@if (Session::has('paid'))
+<script type="text/javascript">
+  $( document ).ready(function() 
+  {
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "positionClass": "toast-top-right",
+      "onclick": null,
+      "showDuration": "3000",
+      "hideDuration": "100",
+      "timeOut": "3000",
+      "extendedTimeOut": "0",
+      "showEasing": "swing",
+      "hideEasing": "swing",
+      "showMethod": "show",
+      "hideMethod": "hide"
+    }
+    toastr.success("Payment saved!");
+  }); 
+</script>
+@endif
 @endsection
 

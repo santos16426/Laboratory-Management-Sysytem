@@ -184,7 +184,7 @@
       "showMethod": "show",
       "hideMethod": "hide"
     }
-    toastr.success("Successfully Updated!");
+    toastr.success("Payment saved!");
   }); 
 </script>
 @endif

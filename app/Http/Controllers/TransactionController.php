@@ -35,7 +35,52 @@ class TransactionController extends Controller
         $getRebateTransaction = DB::table('trans_emprebate_tbl')->get();
         $rebates = DB::select(DB::raw('SELECT empr.emp_id,(t.trans_total * (r.percentage/100)) as percentage FROM trans_emprebate_tbl empr LEFT JOIN rebate_tbl r on empr.rebate_id = r.rebate_id LEFT JOIN employee_tbl e on empr.emp_id = e.emp_id LEFT JOIN transaction_tbl t ON t.trans_id = empr.trans_id '));
         $total = 0;
-        return view('Transaction.RebateBilling',['emp_rebate'=>$emp_rebates,'rebateTransaction'=>$getRebateTransaction,'rebates'=>$rebates,'total'=>$total]);
+        $payments = 0;
+        $getRebatePayments = DB::table('transrebate_payment_tbl')->get();
+        return view('Transaction.RebateBilling',['emp_rebate'=>$emp_rebates,'rebateTransaction'=>$getRebateTransaction,'rebates'=>$rebates,'total'=>$total,'payment'=>$payments,'paymentTransaction'=>$getRebatePayments]);
+    }
+    function saveRebatePayment()
+    {
+        $emp_id = $_POST['emp_id'];
+        $amount = $_POST['amount'];
+        $file_name_new = "default.jpg";
+        if(isset($_FILES['payment_img']))
+        {
+            $file = $_FILES['payment_img'];
+            $file_error = $file['error'];
+            // File properties
+            $file_name = $file['name'];
+            $file_tmp = $file['tmp_name'];
+            $file_size = $file['size'];
+
+            //Work out the file extension
+            $file_ext = explode('.',$file_name);
+            $file_ext = strtolower(end($file_ext));
+
+            $allowed = array('jpg','png','jpeg','bmp');
+            if(in_array($file_ext,$allowed))
+            {
+                if($file_error === 0)
+                {
+                    if($file_size <= 2097152)
+                    {
+                        $file_name_new = uniqid('',true) . '.' . $file_ext;
+                        $file_destination = 'Rebate_payments/' . $file_name_new;
+                        move_uploaded_file($file_tmp, $file_destination);
+                    }
+                }
+            }
+        }
+       
+        DB::table('transrebate_payment_tbl')
+            ->insert([
+                'transRebPay_date'              =>  date_create('now'),
+                'transRebPay_amount'            =>  $amount,
+                'transRebPay_emp_id'            =>  $emp_id,
+                'transRebPay_img'               =>  $file_name_new
+            ]);
+        Session::flash('paid',true);
+        return redirect()->back();
     }
     function saveCorporatePayment()
     {
