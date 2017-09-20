@@ -122,6 +122,7 @@ Route::get('/getTransactionperGroup','ResultController@getTransactionperGroup');
 Route::get('/AddLayout','ResultController@AddLayout');
 Route::get('/Transaction/PatientTransaction','ResultController@PatientTransaction');
 Route::post('/uploadResultFile','ResultController@uploadResultFile');
+Route::get('/uploadFileResuls','ResultController@uploadFileResuls');
 
 //Remote Validation
 Route::get('/checkEmpType','RemoteController@checkEmpType');

@@ -141,4 +141,17 @@ class ResultController extends Controller
        
     return redirect()->back();
     }
+     public function uploadFileResuls()
+    {
+        $trans_id = $_GET['id'];
+        DB::table('transresult_tbl')
+            ->where('trans_id',$trans_id)
+            ->update([
+                'status'=>'DONE'
+                ]);
+        Session::flash('title', 'Success!');
+        Session::flash('type', "success");
+        Session::flash('message',"All files are successfully uploaded");
+        return redirect()->back();
+    }
 }

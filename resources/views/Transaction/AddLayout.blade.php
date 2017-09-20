@@ -30,8 +30,8 @@
                   </header>
                   <div class="panel-body">
                       <ul class="grid cs-style-3">
-                          <li>
-                              <figure style="">
+                          <li style="border: 100px">
+                              <figure >
                                   <img src="{{ asset('/ResultImage/medicalrequest2.jpg') }}" alt="img04">
                                   <figcaption>
                                       <h3>Mindblowing</h3>
