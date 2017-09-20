@@ -104,7 +104,9 @@ Route::post('/saveCorporatePayment','TransactionController@saveCorporatePayment'
 Route::get('/Transactions/CorporateBilling','TransactionController@corpbilling');
 Route::get('/Transactions/RebateBilling','TransactionController@rebatebilling');
 Route::get('/Transaction/Rebate/ViewTransactions','TransactionController@viewrebatetrans');
-Route::get('/getTransactionperGroup','TransactionController@getTransactionperGroup');
+
+Route::get('/getTransactionperGroup','ResultController@getTransactionperGroup');
+Route::get('/AddLayout','ResultController@AddLayout');
 
 //Results
 Route::get('/Transactions/EncodeResults','ResultController@encoderesults');

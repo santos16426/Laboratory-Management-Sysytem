@@ -111,7 +111,7 @@
 						data.patient_lname,
 						data.patient_mname,
 						data.patient_fname,
-						'<a class="btn btn-warning btn-xs" href="/result_addlayout?trans_id='+data.trans_id+'><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; Add Result</a>'
+						'<a class="btn btn-warning btn-xs" href="/AddLayout?trans_id='+data.trans_id+'&group_id='+servgroup_id+'"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; Add Result</a>'
 					]).draw(false);
 				})
 			}
