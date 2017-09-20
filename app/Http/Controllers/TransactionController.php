@@ -7,6 +7,17 @@ use DB;
 use Session;
 class TransactionController extends Controller
 {
+    function viewrebatetrans()
+    {
+        $emp_id = $_GET['emp_id'];
+        $empdetails = DB::table('employee_tbl')
+            ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
+            ->leftjoin('rolefields_tbl','rolefields_tbl.role_id','=','employee_role_tbl.role_id')
+            ->where('emp_id',$emp_id)
+            ->get();
+        $transactions = DB::table('trans_emprebate_tbl')->where('emp_id',$emp_id)->get();
+        return view ('Transaction.ViewEmployeeRebateTrans',['transactions'=>$transactions,'empdetails'=>$empdetails]);
+    }
     function rebatebilling()
     {
         $emp_rebates = DB::table('employee_tbl')

@@ -73,7 +73,7 @@
 					      	<?php $balance = $balance - $corppay; ?>
 					      	@if($balance > 0)
 					      	<a class="btn btn-info btn-xs viewTrans" data-id="{{ $corporates->corp_id }}"><i class="fa fa-handshake-o" aria-hidden="true" ></i>&nbsp;View Transactions</a>
-					      	<a class="btn btn-success btn-xs payCorp" data-id="{{ $corporates->corp_id }}"><i class="fa fa-rub" aria-hidden="true" ></i>&nbsp; Pay</a>
+					      	<a class="btn btn-success btn-xs payCorp" data-id="{{ $corporates->corp_id }}" data-amount="{{ $balance }}"><i class="fa fa-rub" aria-hidden="true" ></i>&nbsp; Pay</a>
 					      	<a class="btn btn-primary btn-xs sendEmail" data-id="{{ $corporates->corp_id }}"><i class="fa fa-envelope" aria-hidden="true" ></i>&nbsp; Email</a>
 					      	@else
 					      	<a class="btn btn-info btn-xs viewTrans" data-id="{{ $corporates->corp_id }}"><i class="fa fa-handshake-o" aria-hidden="true" ></i>&nbsp;View Transactions</a>
@@ -120,6 +120,7 @@
          		<form class="form-horizontal" method="post" action="/saveCorporatePayment" id="paymentForm">
           			<div class="box-body">
             			<input type="hidden" name="corp_id" id="PAYcorp_id" value="">
+            			<input type="hidden" name="checkAmount" id="checkAmount" value="">
             			<div class="form-group" style="margin-right:3% ">
 							<div class="col-md-10 col-md-offset-1">
 								<div class="input-group">
@@ -207,6 +208,7 @@ $('.sendEmail').click(function(){
 });
 $('.payCorp').click(function(){
 	$('#PAYcorp_id').val($(this).data('id'));
+	$('#checkAmount').val($(this).data('amount'));
 	$('#paymentModal').modal('show');
 });
 $('.viewTrans').click(function(){
