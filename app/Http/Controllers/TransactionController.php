@@ -75,13 +75,18 @@ class TransactionController extends Controller
         Session::flash('paid',true);
         return redirect()->back();
     }
-    function encoderesults()
-    {
-        return view('Transaction.EncodingOfResults');
+    public function resultdashboard(){
+        $servgroup = DB::table('service_group_tbl')->where('ServGroupStatus',1)->get();
+        return view('Transaction.ResultDashboard',['servgroup'=>$servgroup]);
     }
-    function uploadresults()
+    public function uploadresults()
     {
-        return view('Transaction.UploadOfResults');
+        $transactions = DB::table('transaction_tbl')
+                            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+                            ->leftjoin('transresult_tbl','transresult_tbl.trans_id','=','transaction_tbl.trans_id')
+                            ->where('transresult_tbl.status','PENDING')
+                            ->get();
+        return view('Transaction.UploadOfResults',['transactions'=>$transactions]);
     }
     function viewCorpTrans()
     {
@@ -705,4 +710,5 @@ class TransactionController extends Controller
        Session::flash('add', true);
       return redirect()->back();
     }
+
 }
