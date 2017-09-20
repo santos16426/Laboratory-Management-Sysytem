@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="plugins/img/favicon.png">
+        <link rel="shortcut icon" href="{{ asset('/plugins/img/favicon.png') }}">
         <title>E-Diagnostic Center</title>
 
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/bootstrap.min.css') }}">
@@ -47,7 +47,7 @@
             <ul class="nav pull-right top-menu">
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" src="plugins/img/avatar1_small.jpg">
+                        <img alt="" src="/plugins/img/images.jpg" style="max-width: 20px">
                         <span class="username">Administrator</span>
                     </a>
                 </li>
@@ -63,9 +63,6 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                
-                
-
                 <li class="sub-menu">
                   @yield('maintenanceactive')
                       <i class="fa fa-cogs"></i>
@@ -148,12 +145,13 @@
                 </li>
 
                 <li class="sub-menu">
-                  <a href="" >
-                      <i class="fa fa-clipboard"></i>
+                  <a href="@yield('reportactive')">
+                      <i class="fa fa-area-chart" aria-hidden="true"></i>
                       <span>Reports</span>
                   </a>
                   <ul class="sub">
-                      <li><a  href="">Census</a></li>
+                      <li class="@yield('censusactive')"><a  href=""><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Census</a></li>
+                      <li class="@yield('transactionactive')"><a  href=""><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Transaction</a></li>
                   </ul>
                 </li>
 
