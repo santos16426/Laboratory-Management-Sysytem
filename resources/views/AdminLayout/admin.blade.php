@@ -137,8 +137,8 @@
                       <li class="sub-menu">
                           <a  href="" class="@yield('transresultactive')"><i class="fa fa-file-o" aria-hidden="true"></i> Results</a>
                           <ul class="sub">
-                              <li class="@yield('encodeactive')"><a  href="/Transactions/EncodeResults">Enconding of Results</a></li>
-                              <li class="@yield('uploadactive')"><a  href="/Transactions/UploadResults">Uploading of Results</a></li>
+                              <li class="@yield('encodeactive')"><a  href="/Transactions/ResultDashboard">Enconding of Results</a></li>
+                              <li class="@yield('uploadactive')"><a  href="/Transactions/UploadOfResults">Uploading of Results</a></li>
                           </ul>
                       </li>
 

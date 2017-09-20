@@ -16,5 +16,59 @@
 @section('transresultactive','active')
 @section('uploadactive','active')
 @section('content')
+<div class="row">
+	<div class="col-lg-12">
+		<section class="panel">
+			<header class="panel-heading">
+				<strong>Upload Result</strong>
+			</header>
+			<div class="panel-body">
+				<div class="clearfix">
+					<div class="btn-group pull-right">
+					</div>
+					<table class="table table-bordered table-hover dataTable" id="result_tbl">
+				      <thead>
+				        <tr>
+				          
+				          
+				          <th>Transaction Date</th>
+				          <th>Patient Last Name</th>
+				          <th>Patient Middle Name</th>
+				          <th>Patient First Name</th>
+				          <th>Action</th>
+				        </tr>
+				      </thead>
 
+				      <tbody>
+				        @foreach($transactions as $transact)
+				        <tr>
+				          <td>{{ $transact->trans_date }}</td>
+				          <td>{{ $transact->patient_lname }}</td>
+				          <td>{{ $transact->patient_mname }}</td>
+				          <td>{{ $transact->patient_fname }}</td>
+				          <td>
+				            <a class="btn btn-warning btn-xs" href="/patientTransaction?id={{ $transact->trans_id }}"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;  Add Files</a>
+				          </td>
+				        </tr>
+				        @endforeach
+				      </tbody>
+				    </table>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+@endsection
+@section('additional')
+<script type="text/javascript">
+	$('#rebateTbl').DataTable({
+	  'paging'      : true,
+	  'lengthChange': true,
+	  'searching'   : true,
+	  'ordering'    : false,
+	  'info'        : true,
+	  'autoWidth'   : true,
+	  'bSort'		: false
+	});
+</script>
 @endsection
