@@ -21,10 +21,10 @@
 		<section class="panel">
 			<div class="panel-body">
 				@foreach($corporate as $details)
-					<label>Corporate Name: &nbsp; {{ $details->corp_name }}</label>
-					<label>Contact Person: &nbsp; {{ $details->corp_contactperson }}</label>
-					<label>Contact Number: &nbsp; {{ $details->corp_contact }}</label>
-					<label>Email Address: &nbsp; {{ $details->corp_email }}</label>
+					<label>Corporate Name: &nbsp; {{ $details->corp_name }}</label><br>
+					<label>Contact Person: &nbsp; {{ $details->corp_contactperson }}</label><br>
+					<label>Contact Number: &nbsp; {{ $details->corp_contact }}</label><br>
+					<label>Email Address: &nbsp; {{ $details->corp_email }}</label><br>
 				@endforeach
 			</div>
 		</section>
@@ -97,7 +97,7 @@
 					      <td>{{ $payments->corpPayment_date }}</td>
 					      <td>{{ $payments->corpPayment_bill }}</td>
 					      <td>
-					      	<a class="btn btn-primary btn-xs printPayment" data-id="{{ $payments->corpPayment_id }}"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a>
+					      	<a class="btn btn-primary btn-xs printPayment" href="{{ URL::to( '/CorporatePayments/'.$payments->corpPayment_img)  }}" target="_blank"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a>
 					      </td>					   
 					    </tr>
 					    @endforeach  

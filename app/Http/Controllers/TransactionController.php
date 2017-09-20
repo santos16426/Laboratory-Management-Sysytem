@@ -16,8 +16,12 @@ class TransactionController extends Controller
             ->leftjoin('medtech_rank','medtech_rank.rank_id','=','employee_tbl.emp_medtech_rank_id')
             ->where('emp_id',$emp_id)
             ->get();
-        $transactions = DB::table('trans_emprebate_tbl')->where('emp_id',$emp_id)->get();
-        return view ('Transaction.ViewEmployeeRebateTrans',['transactions'=>$transactions,'empdetails'=>$empdetails]);
+        $transactions = DB::table('trans_emprebate_tbl')
+            ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','trans_emprebate_tbl.trans_id')
+            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+            ->where('emp_id',$emp_id)->get();
+        $payments = DB::table('transrebate_payment_tbl')->where('transRebPay_emp_id',$emp_id)->get();
+        return view ('Transaction.ViewEmployeeRebateTrans',['transactions'=>$transactions,'empdetails'=>$empdetails,'payments'=>$payments]);
     }
     function rebatebilling()
     {

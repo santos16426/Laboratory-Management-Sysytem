@@ -23,7 +23,6 @@
 				@foreach($empdetails as $emp)
 					<label>Employee Type:&nbsp; {{ $emp->role_name }}</label><br>
 					<label>Name:&nbsp; {{ $emp->emp_fname }} {{ $emp->emp_mname }} {{ $emp->emp_lname }}</label><br>
-					
 					@if($emp->address)
 						<label>Address:&nbsp; {{ $emp->emp_address }}</label><br>
 					@endif
@@ -55,26 +54,25 @@
 					<table class="table table-bordered table-hover dataTable" id="corpTrans">
 					  <thead>
 					    <tr>
-
 					    	<th>Transaction ID</th>
 					    	<th>Transaction Date</th>
-					    	<th>Transaction Charge</th>
-					    	<th>Corporate Patient</th>
+					    	<th>Transaction Total</th>
+					    	<th>Patient</th>
 					    	<th>Action</th>
 					    </tr>
 					  </thead>
 					  <tbody>
+					  	@foreach($transactions as $trans)
 					    <tr>
-						      <td></td>
-						      <td></td>
-						      <td></td>
-						      <td>
-						      	
-						      </td>
+						      <td>{{ $trans->trans_id }}</td>
+						      <td>{{ $trans->date }}</td>
+						      <td>{{ $trans->trans_total }}</td>
+						      <td>{{ $trans->patient_fname }} {{ $trans->patient_mname }} {{ $trans->patient_lname }}</td>
 						      <td>
 						      	<a class="btn btn-primary btn-xs printTrans" data-id=""><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a>
 						      </td>
 					    </tr>
+					    @endforeach
 					  </tbody>
 					</table>
 				</div>
@@ -101,15 +99,16 @@
 					    </tr>
 					  </thead>
 					  <tbody>
+					  	@foreach($payments as $pay)
 					    <tr>
-					      <td></td>
-					      <td></td>
-					      <td></td>
+					      <td>{{ $pay->transRebPay_id }}</td>
+					      <td>{{ $pay->transRebPay_date }}</td>
+					      <td>{{ $pay->transRebPay_amount }}</td>
 					      <td>
-					      	<a class="btn btn-primary btn-xs printPayment" data-id=""><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a>
+					      	<a class="btn btn-primary btn-xs printPayment" href="{{ URL::to( '/Rebate_payments/'.$pay->transRebPay_img)  }}" target="_blank" data-id=""><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a>
 					      </td>					   
 					    </tr>
-					    
+					    @endforeach
 					  </tbody>
 				</table>
 			</div>
