@@ -48,7 +48,7 @@ class ResultController extends Controller
         $gid = $_GET['group_id'];
         return view('Transaction.AddLayout',['id'=>$id,'gid'=>$gid]);
     }
-    
+
     public function ecg(){
         $trans_id = $_GET['id'];
         $patientinfo = DB::table('transaction_tbl')
@@ -82,5 +82,63 @@ class ResultController extends Controller
             ->get();
 
         return view('Transaction.medicalReport',['patientinfo'=>$patientinfo]);
+    }
+    public function PatientTransaction()
+    {
+        $trans_id = $_GET['id'];
+        $result_id = DB::table('transresult_tbl')->select('result_id')->where('trans_id',$trans_id)->get();
+        $table = DB::table('trans_resultfiles_tbl')
+                    ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','trans_resultfiles_tbl.trans_id')
+                    ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_resultfiles_tbl.result_id')
+                    ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+                    ->where('trans_resultfiles_tbl.trans_id',$trans_id)
+                    ->get();
+        foreach($result_id as $s)
+        {
+            $result_id = $s->result_id;
+        }
+        return view('Transaction.PatientTransaction',['trans_id'=>$trans_id,'result_id'=>$result_id,'table'=>$table]);
+    }
+    public function uploadResultFile()
+    {
+        $trans_id = $_POST['transaction_id'];
+        $result_id= $_POST['result_id'];
+
+        $file = $_FILES['file'];
+        $file_error = $file['error'];
+        // File properties
+        $file_name = $file['name'];
+        $file_tmp = $file['tmp_name'];
+        $file_size = $file['size'];
+
+        //Work out the file extension
+        $file_ext = explode('.',$file_name);
+        $file_ext = strtolower(end($file_ext));
+
+        $allowed = array('pdf','jpg','png');
+        if(in_array($file_ext,$allowed))
+        {
+            if($file_error === 0)
+            {
+                if($file_size <= 2097152)
+                {
+                    $file_name_new = uniqid('',true) . '.' . $file_ext;
+                    $file_destination = 'PatientResults/' . $file_name_new;
+
+                    if(move_uploaded_file($file_tmp, $file_destination))
+                    {
+                        
+                         DB::table('trans_resultfiles_tbl')->insert([
+                            'trans_id'  =>  $trans_id,
+                            'result_id' =>  $result_id,
+                            'date'      =>  date_create('now'),
+                            'file'      =>  $file_name_new
+                        ]);
+                    }
+                }
+            }
+        }
+       
+    return redirect()->back();
     }
 }

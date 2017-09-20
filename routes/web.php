@@ -114,13 +114,15 @@ Route::get('/ultra','ResultController@ultra');
 Route::get('/xray','ResultController@xray');
 Route::get('/medservice','ResultController@medservice');
 
-
 //Results
 Route::get('/Transactions/EncodeResults','ResultController@encoderesults');
 Route::get('/Transactions/UploadOfResults','ResultController@uploadresults');
 Route::get('/Transactions/ResultDashboard','ResultController@resultdashboard');
 Route::get('/getTransactionperGroup','ResultController@getTransactionperGroup');
 Route::get('/AddLayout','ResultController@AddLayout');
+Route::get('/Transaction/PatientTransaction','ResultController@PatientTransaction');
+Route::post('/uploadResultFile','ResultController@uploadResultFile');
+
 //Remote Validation
 Route::get('/checkEmpType','RemoteController@checkEmpType');
 Route::get('/checkServgrp','RemoteController@checkServgrp');

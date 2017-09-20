@@ -47,7 +47,7 @@
 				          <td>{{ $transact->patient_mname }}</td>
 				          <td>{{ $transact->patient_fname }}</td>
 				          <td>
-				            <a class="btn btn-warning btn-xs" href="/patientTransaction?id={{ $transact->trans_id }}"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;  Add Files</a>
+				            <a class="btn btn-warning btn-xs" href="/Transaction/PatientTransaction?id={{ $transact->trans_id }}"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;  Add Files</a>
 				          </td>
 				        </tr>
 				        @endforeach
