@@ -79,6 +79,26 @@
 			</div>
 		</div>
 </section>
+<section class="panel">
+  <header class="panel-heading tab-bg-dark-navy-blue ">
+      <ul class="nav nav-tabs">
+	@foreach($servgroup as $sg)
+		<li><a href="#{{ $sg->servgroup_id }}" class="tabs" data-id="{{ $sg->servgroup_id }}" data-toggle="tab">{{ $sg->servgroup_name }}</a></li>
+	@endforeach
+		<li><a href="#Others" class="tabs" data-id='null' data-toggle="tab">Others</a></li>
+	</ul>
+  </header>
+  <div class="panel-body">
+      <div class="tab-content">
+          <div id="home" class="tab-pane active">
+              Home
+          </div>
+          <div id="about" class="tab-pane">About</div>
+          <div id="profile" class="tab-pane">Profile</div>
+          <div id="contact" class="tab-pane">Contact</div>
+      </div>
+  </div>
+</section>
 @endsection
 @section('additional')
 <script type="text/javascript">
