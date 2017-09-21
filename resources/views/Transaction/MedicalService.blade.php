@@ -17,7 +17,7 @@
 @section ('breadactivePage','Avail Medical Services')
 
 @section('content')
-<form action="/proceed_Payment" method="POST" enctype="multipart/form-data">
+<form action="/proceed_Payment" method="POST" id="price" enctype="multipart/form-data">
 <div class="modal fade" id = "myModal">
   <div class="modal-dialog">
     <div class="modal-content">

@@ -708,21 +708,21 @@ $('#packageedit')
                     }
                 }
             },  
-            packprice: {
-                validators: {
-                        regexp: {
-                            regexp: /^\d+(?:\.\d{1,2})?$/,
-                            message: 'Invalid Input.'
-                    },
-                    stringLength: {
-                        max: 9,
-                        message:'Price limit reached'
-                    },
-                        notEmpty: {
-                        message: 'This field is required.'
-                    }
-                }
-            },                                        
+            // packprice: {
+            //     validators: {
+            //             regexp: {
+            //                 regexp: /^\d+(?:\.\d{1,2})?$/,
+            //                 message: 'Invalid Input.'
+            //         },
+            //         stringLength: {
+            //             max: 9,
+            //             message:'Price limit reached'
+            //         },
+            //             notEmpty: {
+            //             message: 'This field is required.'
+            //         }
+            //     }
+            // },                                        
             }
         })
 
@@ -737,7 +737,7 @@ $('#packageedit')
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            contactperson: {
+            upcontactperson: {
                 validators: {
                         stringLength: {
                         min: 2,
@@ -753,7 +753,7 @@ $('#packageedit')
                     },
                 }
             }, 
-           companyname: {
+           upcompname: {
                 validators: {
                     regexp: {
                             regexp: /^[a-zA-Z0-9]+([-'_\s][a-zA-Z0-9]+)*$/,
@@ -768,7 +768,7 @@ $('#packageedit')
                     }
                 }
             },   
-            contactnumber: {
+            upcontactnumber: {
                 validators: {
                         regexp: {
                             regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
@@ -779,7 +779,7 @@ $('#packageedit')
                     }
                 }
             },
-            email: {
+            upemail: {
                 validators: {
                         regexp: {
                             regexp: /^[a-zA-Z0-9_.-]+@(yahoo|ymail|rocketmail|gmail)\.(uk|co|com|com.ph|in|co\.uk|net)$/,
@@ -790,6 +790,108 @@ $('#packageedit')
                     }
                 }
             },  
+                                           
+            }
+        })
+
+        ;
+
+//corppackage ADD
+
+$('#corppackadd').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+           packname: {
+                validators: {
+                    // remote: {
+                    //     type: 'GET',
+                    //     url: '/checkCorpName',
+                    //     data:{ companyname:$('#companyname').val()},
+                    //     message: 'Shing',
+                    // },
+                    regexp: {
+                            regexp: /^[a-zA-Z0-9]+([-'_\s][a-zA-Z0-9]+)*$/,
+                            message: 'Special characters are not allowed.'
+                    },
+                    stringLength: {
+                        max: 20,
+                        message:'Package name should not exceed 20 characters.'
+                    },
+                        notEmpty: {
+                        message: 'This field is required.'
+                    }
+                }
+            },
+            packprice: {
+                validators: {
+                        regexp: {
+                            regexp: /^\d+(?:\.\d{1,2})?$/,
+                            message: 'Invalid Input.'
+                    },
+                    stringLength: {
+                        max: 9,
+                        message:'Price limit reached'
+                    },
+                        notEmpty: {
+                        message: 'This field is required.'
+                    }
+                }
+            },
+            gender: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The gender is required'
+                        }
+                    }
+                },
+            age: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The gender is required'
+                        }
+                    }
+                },                                   
+            }
+        })
+
+        ;
+
+//corppackage EDIT
+
+$('#corppackedit').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+           uppackname: {
+                validators: {
+                    // remote: {
+                    //     type: 'GET',
+                    //     url: '/checkCorpName',
+                    //     data:{ companyname:$('#companyname').val()},
+                    //     message: 'Shing',
+                    // },
+                    regexp: {
+                            regexp: /^[a-zA-Z0-9]+([-'_\s][a-zA-Z0-9]+)*$/,
+                            message: 'Special characters are not allowed.'
+                    },
+                    stringLength: {
+                        max: 20,
+                        message:'Package name should not exceed 20 characters.'
+                    },
+                        notEmpty: {
+                        message: 'This field is required.'
+                    }
+                }
+            },
             uppackprice: {
                 validators: {
                         regexp: {
@@ -804,11 +906,55 @@ $('#packageedit')
                         message: 'This field is required.'
                     }
                 }
-            },                                        
+            },
+            gender: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The gender is required'
+                        }
+                    }
+                },
+            age: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The gender is required'
+                        }
+                    }
+                },                                   
             }
         })
 
         ;
+
+//Medical Service Price
+$('#price').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            paymentinput: {
+                validators: {
+                        regexp: {
+                            regexp: /^\d+(?:\.\d{1,2})?$/,
+                            message: 'Invalid Input.'
+                    },
+                    stringLength: {
+                        max: 9,
+                        message:'Price limit reached'
+                    },
+                        notEmpty: {
+                        message: 'This field is required.'
+                    }
+                }
+            },                                  
+            }
+        })
+
+        ;
+
 
 // rebate percentage
     $('#rebate').bootstrapValidator({
