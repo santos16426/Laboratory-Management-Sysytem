@@ -62,7 +62,7 @@
         <div id="sidebar"  class="nav-collapse ">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a href="/Admin/Dashboard">
+                    <a href="/Admin/Dashboard" class="@yield('dashboard')">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>

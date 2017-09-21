@@ -9,11 +9,11 @@
 @section('maintenanceactive')
 <a href="" class="">
 @endsection
+@section('dashboard','active')
 @section('content')
 <div class="row">
   <div class="col-lg-12">
     <section class="main-content">
-      
               <!--state overview start-->
               <div class="row state-overview">
                   <div class="col-lg-3 col-sm-6">
