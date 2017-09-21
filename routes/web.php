@@ -144,3 +144,4 @@ Route::get('sendmail', 'SendMailController@sendMail');
 // Reports
 Route::get('/Reports/TransactionReports','ReportController@transactionreport');
 Route::get('/dailyTransactionReport','ReportController@dailyTransactionReport');
+Route::get('/weeklyTransactionReport','ReportController@weeklyTransactionReport');

@@ -18,9 +18,9 @@
 			<header class="panel-heading">
 				Transaction Report Generate
 				<span class="tools pull-right">
-          <a class="fa fa-chevron-down" href="javascript:;"></a>
-          <a class="fa fa-times" href="javascript:;"></a>
-      	</span>
+		          <a class="fa fa-chevron-down" href="javascript:;"></a>
+		          <a class="fa fa-times" href="javascript:;"></a>
+		      	</span>
 			</header>
 			<div class="panel-body">
 				<div class="clearfix">
@@ -40,7 +40,7 @@
 						
 						<div class="form-group" id="startdate">
 			              <div class="col-md-10 col-md-offset-1 input-group">
-			              	<span class="input-group-addon">Starting Date</span>
+			              	<span class="input-group-addon">Starting Date <sup>*</sup></span>
 								<div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="yyyy-mm-dd"  class="input-append date dpYears">
 			                  		<input class="form-control form-control-inline input-medium default-date-picker" name="start_date" id="start_date_date"  size="16" type="text" value="" />
 			                  	</div>
@@ -49,7 +49,7 @@
 
 			          	<div class="form-group hidden" id="monthly">
 			              <div class="col-md-9 col-md-offset-1 input-group">
-			              	<span class="input-group-addon">Month/Year</span>
+			              	<span class="input-group-addon">Month/Year <sup>*</sup></span>
 			                <div data-date-minviewmode="months" data-date-viewmode="years" data-date-format="mm/yyyy" data-date="102/2012"  class="input-append date dpMonths">
 			                  <input type="text" readonly="" value="mm/yyyy" size="16" class="form-control" name="monthly" id="monthly_date">
 			                  <span class="input-group-btn add-on">
@@ -61,7 +61,7 @@
 
 			          	<div class="form-group hidden" id="yearly">
 			              <div class="col-md-9 col-md-offset-1 input-group">
-			              	<span class="input-group-addon">Year</span>
+			              	<span class="input-group-addon">Year <sup>*</sup></span>
 			                <div data-date-minviewmode="years" data-date-viewmode="years" data-date-format="yyyy " data-date="2020/"  class="input-append date dpMonths">
 			                  <input type="text" readonly="" value="yyyy" size="16" class="form-control" name="yearly" id="yearly_date">
 			                  <span class="input-group-btn add-on">
@@ -73,7 +73,7 @@
 
 						<div class="form-group hidden" id="rangepicker">
 			              <div class="col-md-10 col-md-offset-1 input-group">
-			              	<span class="input-group-addon">Select Range</span>
+			              	<span class="input-group-addon">Select Range <sup>*</sup></span>
 			                  <div class="input-group input-large"  data-date="13/07/2013" data-date-format="mm/dd/yyyy">
 			                    <input type="text" class="form-control dpd1" name="rangestart" id="rangestart_date">
 			                    <span class="input-group-addon">To</span>
@@ -93,38 +93,187 @@
 	</div>
 </div>	
 <div class="row" id="reportdiv">
-	
+	<div class="col-lg-12">
+		<section class="panel">
+			<header class="panel-heading">
+				Transaction Report
+				<span class="tools pull-right">
+		          <a class="fa fa-chevron-down" href="javascript:;"></a>
+		          <a class="fa fa-times" href="javascript:;"></a>
+		      	</span>
+			</header>
+			<div class="panel-body">
+				<div class="clearfix">
+					<table class="table table-bordered table-hover dataTable" id="transTbl">
+						<thead>
+							<tr>
+								<th>Transaction ID</th>
+								<th>Transaction Date</th>
+								<th>Total</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+						</tbody>
+					</table>
+				</div> 
+			</div>
+			<div class="panel-footer">
+				<button type="button" class="btn btn-success pull-right" id="printbtn">Print</button>
+			</div>
+		</section>
+	</div>
 </div>			
 @endsection
 @section('additional')
+
 <script type="text/javascript">
+	var t = $('#transTbl').DataTable({
+	  'paging'      : true,
+	  'lengthChange': true,
+	  'searching'   : true,
+	  'ordering'    : false,
+	  'info'        : true,
+	  'autoWidth'   : true,
+	  'bSort'		: false
+	});
+	$('#printbtn').click(function(){
+		var check = $('.trans_id').val();
+		if(check == null){
+			toastr.options = {
+		      "closeButton": true,
+		      "debug": false,
+		      "positionClass": "toast-top-right",
+		      "onclick": null,
+		      "showDuration": "3000",
+		      "hideDuration": "100",
+		      "timeOut": "3000",
+		      "extendedTimeOut": "0",
+		      "showEasing": "swing",
+		      "hideEasing": "swing",
+		      "showMethod": "show",
+		      "hideMethod": "hide"
+		    }
+		    toastr.error("No reports to be print");
+		}
+		else{
+			
+		}
+	});
 	$('#generatebtn').click(function(){
 		var report = $('#selectrange').val();
-    var start_date = $('#start_date_date').val();
-    var monthly = $('#monthly_date').val();
-    var yearly = $('#yearly_date').val();
-    var rangestart = $('#rangestart_date').val();
-    var rangeend = $('#rangeend_date').val();
-		
+	    var start_date = $('#start_date_date').val();
+	    var monthly = $('#monthly_date').val();
+	    var yearly = $('#yearly_date').val();
+	    var rangestart = $('#rangestart_date').val();
+    	var rangeend = $('#rangeend_date').val();
+
 		if(report == 'daily')
 		{
-			alert(start_date);
-			$.ajax
-			({
-				url: '/dailyTransactionReport',
-				type: 'get',
-				data:  { start_date:start_date},
-				dataType : 'json',
-				success:function(response){
-					response[0].forEach(function(data){
-
-					})
-				}
-			});
+			if(start_date != '')
+			{
+				t.clear().draw();
+				$.ajax
+				({
+					url: '/dailyTransactionReport',
+					type: 'get',
+					data:  { start_date:start_date},
+					dataType : 'json',
+					success:function(response){
+						response.forEach(function(data){
+							t.row.add([
+								data.trans_id,
+								data.trans_date,
+								data.trans_total + data.charge,
+								'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
+							]).draw(false);
+						})
+					}
+				});
+			}
+			else
+			{
+				toastr.options = {
+			      "closeButton": true,
+			      "debug": false,
+			      "positionClass": "toast-top-right",
+			      "onclick": null,
+			      "showDuration": "3000",
+			      "hideDuration": "100",
+			      "timeOut": "3000",
+			      "extendedTimeOut": "0",
+			      "showEasing": "swing",
+			      "hideEasing": "swing",
+			      "showMethod": "show",
+			      "hideMethod": "hide"
+			    }
+			    toastr.warning("Please select a starting date");
+			}
 		}
 		else if(report == 'weekly')
 		{
-			alert(start_date);
+			if(start_date != '')
+			{
+
+			    var date = new Date(start_date);
+			    var newdate = new Date(date);
+			    var sdd = date.getDate();
+			    var smm = date.getMonth() + 1;
+			    var sy = date.getFullYear();
+
+			    var startdate = sy + '-' + smm + '-' + sdd;
+			    newdate.setDate(newdate.getDate() + 7);
+			    
+			    var dd = newdate.getDate();
+			    var mm = newdate.getMonth() + 1;
+			    var y = newdate.getFullYear();
+
+
+
+			    var enddate =  y + '-' + mm + '-' + dd ;
+			    alert(startdate);
+			    alert(enddate);
+				t.clear().draw();
+				$.ajax
+				({
+					url: '/weeklyTransactionReport',
+					type: 'get',
+					data:  { 
+						startdate:startdate,
+						enddate:enddate
+					},
+					dataType : 'json',
+					success:function(response){
+						response.forEach(function(data){
+							t.row.add([
+								data.trans_id,
+								data.trans_date,
+								data.trans_total + data.charge,
+								'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
+							]).draw(false);
+						})
+					}
+				});
+			}
+			else
+			{
+				toastr.options = {
+			      "closeButton": true,
+			      "debug": false,
+			      "positionClass": "toast-top-right",
+			      "onclick": null,
+			      "showDuration": "3000",
+			      "hideDuration": "100",
+			      "timeOut": "3000",
+			      "extendedTimeOut": "0",
+			      "showEasing": "swing",
+			      "hideEasing": "swing",
+			      "showMethod": "show",
+			      "hideMethod": "hide"
+			    }
+			    toastr.warning("Please select a starting date");
+			}
 		}
 		else if(report == 'monthly')
 		{

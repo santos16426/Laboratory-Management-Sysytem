@@ -243,6 +243,7 @@
 
 @if (Session::has('add'))
 <script type="text/javascript">
+  
   $( document ).ready(function() 
   {
     
