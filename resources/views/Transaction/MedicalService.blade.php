@@ -1,4 +1,4 @@
-@extends('AdminLayout.admin')
+`@extends('AdminLayout.admin')
 
 @section ('breadrootName')
 <i class="fa fa-handshake-o" aria-hidden="true"></i><span> Transaction</span>
@@ -29,7 +29,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn pull-left" data-dismiss="modal">Not yet</button>
-          <button  class="btn btn-primary" id="yesPrintBtn"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Yes, Print Reciept</button>
+          <button  class="btn btn-primary" id="yesPrintBtn"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Yes, Print Receipt</button>
         </div>
     </div>  
   </div>

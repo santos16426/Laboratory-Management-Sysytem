@@ -60,8 +60,10 @@
 </div>
 </div>
 
+
+
 <div class="modal fade" id = "addModal">
-  <div class="modal-dialog" style="width: 70%">
+  <div class="modal-dialog" style="width: 30%">
     <div class="modal-content">
       <div class="modal-header btn-primary">
         <h4 class="modal-title"><i class="fa fa-plus" aria-hidden="true"></i> Add File Results</h4>
@@ -69,9 +71,26 @@
       <form action="/uploadResultFile" enctype="multipart/form-data" method="POST">
       {{ csrf_field() }}
         <div class="modal-body">
-        <input type="hidden" name="transaction_id" value="{{ $trans_id }}">
+
+
+        <div class="form-group">
+            <div class="controls col-md-9">
+                <div class="fileupload fileupload-new" data-provides="fileupload">
+                  <span class="btn btn-white btn-file">
+                  <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select file</span>
+                  <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                  <input type="file" class="default" />
+                  </span>
+                    <span class="fileupload-preview" style="margin-left:5px;"></span>
+                    <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none; margin-left:5px;"></a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <input type="hidden" name="transaction_id" value="{{ $trans_id }}">
         <input type="hidden" name="result_id" value="{{ $result_id }}">
-        <input type="file" name="file" id="file">
+        <input type="file" name="file" id="file"> -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>

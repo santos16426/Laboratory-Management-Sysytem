@@ -19,23 +19,22 @@
 @section ('content')
 <style type="text/css">
   img{
-
+    border: 100px;
   }
 </style>
 <section id="container">
               <!-- page start-->
               <section class="panel">
                   <header class="panel-heading">
-                      Result Layouts
+                      <strong>Result Layouts</strong>
                   </header>
                   <div class="panel-body">
                       <ul class="grid cs-style-3">
-                          <li style="border: 100px">
+                          <li>
                               <figure >
                                   <img src="{{ asset('/ResultImage/medicalrequest2.jpg') }}" alt="img04">
                                   <figcaption>
-                                      <h3>Mindblowing</h3>
-                                      <span>lorem ipsume </span>
+                                      <h3>Medical Request</h3>
                                      <div class="btn-group pull-right" role="group" style="padding-top: 3%">
                                         <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/medicalrequest.jpg') }}">View</a>
                                         <a type="button" class="btn" href="/medicalReport?id={{ $id }}">Use</a>
@@ -43,12 +42,12 @@
                                   </figcaption>
                               </figure>
                           </li>
+
                           <li>
                               <figure>
                                   <img src="{{ asset('/ResultImage/ecgsample.jpg') }}" alt="img01">
                                   <figcaption>
-                                      <h3>Clean & Fresh</h3>
-                                      <span>dolor ament</span>
+                                      <h3>ECG</h3>
                                       <div class="btn-group pull-right" role="group" style="padding-top: 3%">
                                         <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/ecgsample.jpg') }}">View</a>
                                         <a type="button" class="btn" href="/ecg?id={{ $id }}">Use</a>
@@ -60,8 +59,7 @@
                               <figure>
                                   <img src="{{ asset('/ResultImage/ultrasoundsample2.jpg') }}" alt="img02">
                                   <figcaption>
-                                      <h3>Flat Concept</h3>
-                                      <span>tawseef tasi</span>
+                                      <h3>Ultrasound</h3>
                                       <div class="btn-group pull-right" role="group" style="padding-top: 3%">
                                         <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/ultrasoundsample.jpg') }}">View</a>
                                         <a type="button" class="btn">Use</a>
@@ -73,8 +71,7 @@
                               <figure>
                                   <img src="{{ asset('/ResultImage/xraysample2.jpg') }}" alt="img05">
                                   <figcaption>
-                                      <h3>Modern</h3>
-                                      <span>dkmosa inc</span>
+                                      <h3>X-Ray</h3>
                                       <div class="btn-group pull-right" role="group" style="padding-top: 3%">
                                         <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/xraysample.jpg') }}">View</a>
                                         <a type="button" class="btn" href="/ultra?id={{ $id }}">Use</a>
@@ -86,8 +83,7 @@
                               <figure>
                                   <img src="{{ asset('/ResultImage/medservicesample2.jpg') }}" alt="img03">
                                   <figcaption>
-                                      <h3>Clean Code</h3>
-                                      <span>nice concept</span>
+                                      <h3>Medical Service</h3>
                                       <div class="btn-group pull-right" role="group" style="padding-top: 3%">
                                         <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/medservicesample.jpg') }}">View</a>
                                         <a type="button" class="btn" href="/xray?id={{ $id }}">Use</a>
