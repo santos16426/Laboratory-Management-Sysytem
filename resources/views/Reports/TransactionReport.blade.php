@@ -39,52 +39,54 @@
 						</div>
 						
 						<div class="form-group" id="startdate">
-              <div class="col-md-10 col-md-offset-1 input-group">
-              	<span class="input-group-addon">Starting Date</span>
-                  <input class="form-control form-control-inline input-medium default-date-picker" name="start_date" id="start_date_date"  size="16" type="text" value="" />
-              </div>
-          	</div>
+			              <div class="col-md-10 col-md-offset-1 input-group">
+			              	<span class="input-group-addon">Starting Date</span>
+								<div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="yyyy-mm-dd"  class="input-append date dpYears">
+			                  		<input class="form-control form-control-inline input-medium default-date-picker" name="start_date" id="start_date_date"  size="16" type="text" value="" />
+			                  	</div>
+			              </div>
+			          	</div>
 
-          	<div class="form-group hidden" id="monthly">
-              <div class="col-md-9 col-md-offset-1 input-group">
-              	<span class="input-group-addon">Month/Year</span>
-                <div data-date-minviewmode="months" data-date-viewmode="years" data-date-format="mm/yyyy" data-date="102/2012"  class="input-append date dpMonths">
-                  <input type="text" readonly="" value="mm/yyyy" size="16" class="form-control" name="monthly" id="monthly_date">
-                  <span class="input-group-btn add-on">
-                    <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
-                  </span>
-                </div>
-            	</div>
-          	</div>
+			          	<div class="form-group hidden" id="monthly">
+			              <div class="col-md-9 col-md-offset-1 input-group">
+			              	<span class="input-group-addon">Month/Year</span>
+			                <div data-date-minviewmode="months" data-date-viewmode="years" data-date-format="mm/yyyy" data-date="102/2012"  class="input-append date dpMonths">
+			                  <input type="text" readonly="" value="mm/yyyy" size="16" class="form-control" name="monthly" id="monthly_date">
+			                  <span class="input-group-btn add-on">
+			                    <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+			                  </span>
+			                </div>
+			            	</div>
+			          	</div>
 
-          	<div class="form-group hidden" id="yearly">
-              <div class="col-md-9 col-md-offset-1 input-group">
-              	<span class="input-group-addon">Year</span>
-                <div data-date-minviewmode="years" data-date-viewmode="years" data-date-format="yyyy " data-date="2020/"  class="input-append date dpMonths">
-                  <input type="text" readonly="" value="yyyy" size="16" class="form-control" name="yearly" id="yearly_date">
-                  <span class="input-group-btn add-on">
-                    <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
-                  </span>
-                </div>
-            	</div>
-          	</div>
+			          	<div class="form-group hidden" id="yearly">
+			              <div class="col-md-9 col-md-offset-1 input-group">
+			              	<span class="input-group-addon">Year</span>
+			                <div data-date-minviewmode="years" data-date-viewmode="years" data-date-format="yyyy " data-date="2020/"  class="input-append date dpMonths">
+			                  <input type="text" readonly="" value="yyyy" size="16" class="form-control" name="yearly" id="yearly_date">
+			                  <span class="input-group-btn add-on">
+			                    <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+			                  </span>
+			                </div>
+			            	</div>
+			          	</div>
 
 						<div class="form-group hidden" id="rangepicker">
-              <div class="col-md-10 col-md-offset-1 input-group">
-              	<span class="input-group-addon">Select Range</span>
-                  <div class="input-group input-large"  data-date="13/07/2013" data-date-format="mm/dd/yyyy">
-                    <input type="text" class="form-control dpd1" name="rangestart" id="rangestart_date">
-                    <span class="input-group-addon">To</span>
-                    <input type="text" class="form-control dpd2" name="rangeend" id="rangeend_date">
-                  </div>
-              </div>
-          	</div>
-          	<div class="col-md-12">
-          		<div class="col-md-12">
-          			<button type="button" class="btn btn-success btn-block" id="generatebtn">Generate</button>
-          		</div>
-          	</div>
-        	</form>
+			              <div class="col-md-10 col-md-offset-1 input-group">
+			              	<span class="input-group-addon">Select Range</span>
+			                  <div class="input-group input-large"  data-date="13/07/2013" data-date-format="mm/dd/yyyy">
+			                    <input type="text" class="form-control dpd1" name="rangestart" id="rangestart_date">
+			                    <span class="input-group-addon">To</span>
+			                    <input type="text" class="form-control dpd2" name="rangeend" id="rangeend_date">
+			                  </div>
+			              </div>
+			          	</div>
+			          	<div class="col-md-12">
+			          		<div class="col-md-12">
+			          			<button type="button" class="btn btn-success btn-block" id="generatebtn">Generate</button>
+			          		</div>
+			          	</div>
+        			</form>
 				</div>
 			</div>
 		</section>
@@ -110,15 +112,14 @@
 			$.ajax
 			({
 				url: '/dailyTransactionReport',
-	      type: 'get',
-	      data:  { start_date:start_date},
-	      dataType : 'json',
-	      success:function(response){
-	        response[0].forEach(function(data){
-	          
-	        })
-	        
-	      }
+				type: 'get',
+				data:  { start_date:start_date},
+				dataType : 'json',
+				success:function(response){
+					response[0].forEach(function(data){
+
+					})
+				}
 			});
 		}
 		else if(report == 'weekly')
