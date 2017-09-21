@@ -1,4 +1,4 @@
-`@extends('AdminLayout.admin')
+@extends('AdminLayout.admin')
 
 @section ('breadrootName')
 <i class="fa fa-handshake-o" aria-hidden="true"></i><span> Transaction</span>
