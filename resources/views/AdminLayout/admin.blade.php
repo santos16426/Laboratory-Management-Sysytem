@@ -24,8 +24,12 @@
         <link rel="stylesheet" href="{{ asset('/sweetalert-master/dist/sweetalert.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/fancybox/source/jquery.fancybox.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/gallery.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/bootstrap-datepicker/css/datepicker.css') }}">
         <script src="{{ asset('/sweetalert-master/dist/sweetalert.min.js') }}"></script>
+        <link href="{{ asset('/plugins/css/style.css') }}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/style-responsive.css') }}">
         <style type="text/css">
+          .datepicker{z-index:1151 !important;}
           sup
           {
             color: red;
@@ -145,13 +149,13 @@
                 </li>
 
                 <li class="sub-menu">
-                  <a href="@yield('reportactive')">
+                  <a class="@yield('reportactive')">
                       <i class="fa fa-area-chart" aria-hidden="true"></i>
                       <span>Reports</span>
                   </a>
                   <ul class="sub">
                       <li class="@yield('censusactive')"><a  href=""><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Census</a></li>
-                      <li class="@yield('transactionactive')"><a  href=""><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Transaction</a></li>
+                      <li class="@yield('transactionactive')"><a  href="/Reports/TransactionReports"><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Transaction</a></li>
                   </ul>
                 </li>
 
@@ -214,6 +218,8 @@
 <script src="{{ asset('/plugins/select2/dist/js/select2.full.min.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/bootstrap-switch.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.tagsinput.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-daterangepicker/date.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
@@ -226,6 +232,7 @@
 <script src="{{ asset('/plugins/js/modernizr.custom.js') }}"></script>
 <script src="{{ asset('/plugins/js/toucheffects.js') }}"></script>
 <script src="{{ asset('/plugins/js/val.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/plugins/js/advanced-form-components.js') }}"></script>
 <script type="text/javascript">
       $(function() {
         //    fancybox

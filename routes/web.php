@@ -140,3 +140,6 @@ Route::get('/retrieveReciept','TransactionController@retrieveReciept');
 
 //email
 Route::get('sendmail', 'SendMailController@sendMail');
+
+// Reports
+Route::get('/Reports/TransactionReports','ReportController@transactionreport');

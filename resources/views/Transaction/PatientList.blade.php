@@ -174,11 +174,15 @@
 									<div class="input-group-addon">
 										Birthday <sup>*</sup>
 									</div>
-									<input  name="birthday" type="date" id="birthday" class="form-control form-control-inline input-medium default-date-picker" onblur="getage()" required>
+									<input class="form-control form-control-inline input-medium default-date-picker" onblur="getage()" name="birthday" id="birthday" size="16" type="text" value="" required>
 								</div>
 							</div>  
 						</div>
 					</div>
+				
+					
+					 
+					
 					<div class="col-md-5">
 						<div class="form-group">
 							<div class="col-md-7 col-md-offset-1">
