@@ -107,6 +107,19 @@
 		if(report == 'daily')
 		{
 			alert(start_date);
+			$.ajax
+			({
+				url: '/dailyTransactionReport',
+	      type: 'get',
+	      data:  { start_date:start_date},
+	      dataType : 'json',
+	      success:function(response){
+	        response[0].forEach(function(data){
+	          
+	        })
+	        
+	      }
+			});
 		}
 		else if(report == 'weekly')
 		{

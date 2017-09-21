@@ -665,6 +665,7 @@ class TransactionController extends Controller
       $patient_contact  = $_POST['patient_contact'];
       $patient_civil = $_POST['civil_status'];
       $birthday = $_POST['birthday'];
+      $birthday = date('Y-m-d',strtotime($birthday));
       $age  = $_POST['age'];
       $gender = $_POST['gender'];
       $addcorpid= null;

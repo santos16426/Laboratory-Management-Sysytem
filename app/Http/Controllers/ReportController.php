@@ -10,4 +10,9 @@ class ReportController extends Controller
     {
     	return view('Reports.TransactionReport');
     }
+    function dailyTransactionReport(Request $req)
+    {
+    	$var = DB::table('')
+    	return response()->json($var);
+    }
 }
