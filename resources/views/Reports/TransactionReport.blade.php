@@ -34,6 +34,7 @@
 									<option value="monthly">Monthly</option>
 									<option value="yearly">Yearly</option>
 									<option value="range">Select Range</option>
+									<option value="all">See all transactions</option>
 								</select>
 							</div>
 						</div>
@@ -191,6 +192,21 @@
 						})
 					}
 				});
+				toastr.options = {
+			      "closeButton": true,
+			      "debug": false,
+			      "positionClass": "toast-top-right",
+			      "onclick": null,
+			      "showDuration": "3000",
+			      "hideDuration": "100",
+			      "timeOut": "3000",
+			      "extendedTimeOut": "0",
+			      "showEasing": "swing",
+			      "hideEasing": "swing",
+			      "showMethod": "show",
+			      "hideMethod": "hide"
+			    }
+			    toastr.success("Done!");
 			}
 			else
 			{
@@ -232,8 +248,6 @@
 
 
 			    var enddate =  y + '-' + mm + '-' + dd ;
-			    alert(startdate);
-			    alert(enddate);
 				t.clear().draw();
 				$.ajax
 				({
@@ -255,6 +269,21 @@
 						})
 					}
 				});
+				toastr.options = {
+			      "closeButton": true,
+			      "debug": false,
+			      "positionClass": "toast-top-right",
+			      "onclick": null,
+			      "showDuration": "3000",
+			      "hideDuration": "100",
+			      "timeOut": "3000",
+			      "extendedTimeOut": "0",
+			      "showEasing": "swing",
+			      "hideEasing": "swing",
+			      "showMethod": "show",
+			      "hideMethod": "hide"
+			    }
+			    toastr.success("Done!");
 			}
 			else
 			{
@@ -277,16 +306,237 @@
 		}
 		else if(report == 'monthly')
 		{
-			alert(monthly);
+			if(monthly != 'mm/yyyy')		    
+			{
+				var date = new Date("01/"+monthly);
+			    var newdate = new Date(date);
+			    var smm = date.getDate();
+			    var sy = date.getFullYear();
+			    t.clear().draw();
+				$.ajax
+				({
+					url: '/monthlyTransactionReport',
+					type: 'get',
+					data:  { 
+						month : smm,
+						year : sy
+					},
+					dataType : 'json',
+					success:function(response){
+						response.forEach(function(data){
+							t.row.add([
+								data.trans_id,
+								data.trans_date,
+								data.trans_total + data.charge,
+								'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
+							]).draw(false);
+						})
+					}
+				});
+				toastr.options = {
+			      "closeButton": true,
+			      "debug": false,
+			      "positionClass": "toast-top-right",
+			      "onclick": null,
+			      "showDuration": "3000",
+			      "hideDuration": "100",
+			      "timeOut": "3000",
+			      "extendedTimeOut": "0",
+			      "showEasing": "swing",
+			      "hideEasing": "swing",
+			      "showMethod": "show",
+			      "hideMethod": "hide"
+			    }
+			    toastr.success("Done!");
+			}
+			else
+			{
+				toastr.options = {
+			      "closeButton": true,
+			      "debug": false,
+			      "positionClass": "toast-top-right",
+			      "onclick": null,
+			      "showDuration": "3000",
+			      "hideDuration": "100",
+			      "timeOut": "3000",
+			      "extendedTimeOut": "0",
+			      "showEasing": "swing",
+			      "hideEasing": "swing",
+			      "showMethod": "show",
+			      "hideMethod": "hide"
+			    }
+			    toastr.warning("Please select a Month/Year");
+			}
+
 		}
 		else if(report == 'yearly')
 		{
-			alert(yearly);
+			if(yearly != 'yyyy')   
+			{
+				var date = new Date("01/01/"+yearly);
+			    var newdate = new Date(date);
+			    var sy = date.getFullYear();
+			    t.clear().draw();
+				$.ajax
+				({
+					url: '/yearlyTransactionReport',
+					type: 'get',
+					data:  { 
+						month : smm,
+						year : sy
+					},
+					dataType : 'json',
+					success:function(response){
+						response.forEach(function(data){
+							t.row.add([
+								data.trans_id,
+								data.trans_date,
+								data.trans_total + data.charge,
+								'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
+							]).draw(false);
+						})
+					}
+				});
+				toastr.options = {
+			      "closeButton": true,
+			      "debug": false,
+			      "positionClass": "toast-top-right",
+			      "onclick": null,
+			      "showDuration": "3000",
+			      "hideDuration": "100",
+			      "timeOut": "3000",
+			      "extendedTimeOut": "0",
+			      "showEasing": "swing",
+			      "hideEasing": "swing",
+			      "showMethod": "show",
+			      "hideMethod": "hide"
+			    }
+			    toastr.success("Done!");
+			}
+			else
+			{
+				toastr.options = {
+			      "closeButton": true,
+			      "debug": false,
+			      "positionClass": "toast-top-right",
+			      "onclick": null,
+			      "showDuration": "3000",
+			      "hideDuration": "100",
+			      "timeOut": "3000",
+			      "extendedTimeOut": "0",
+			      "showEasing": "swing",
+			      "hideEasing": "swing",
+			      "showMethod": "show",
+			      "hideMethod": "hide"
+			    }
+			    toastr.warning("Please select a Year");
+			}
 		}
 		else if(report == 'range')
 		{
-			alert(rangestart);
-			alert(rangeend);
+			var startdate = new Date(rangestart);
+		    var enddate = new Date(rangeend);
+		    var edd = enddate.getDate();
+		    var emm = enddate.getMonth() + 1;
+		    var ey = enddate.getFullYear();
+
+		    var sdd = startdate.getDate();
+		    var smm = startdate.getMonth() + 1;
+		    var sy = startdate.getFullYear();
+
+		    var end_date =  ey + '-' + emm + '-' + edd ;
+		    var start_date =  sy + '-' + smm + '-' + sdd ;
+		    if(startdate != 'Invalid Date' && enddate != 'Invalid Date')   
+			{
+			    t.clear().draw();
+				$.ajax
+				({
+					url: '/rangeTransactionReport',
+					type: 'get',
+					data:  { 
+						enddate : end_date,
+						startdate : start_date
+					},
+					dataType : 'json',
+					success:function(response){
+						response.forEach(function(data){
+							t.row.add([
+								data.trans_id,
+								data.trans_date,
+								data.trans_total + data.charge,
+								'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
+							]).draw(false);
+						})
+					}
+				});
+				toastr.options = {
+			      "closeButton": true,
+			      "debug": false,
+			      "positionClass": "toast-top-right",
+			      "onclick": null,
+			      "showDuration": "3000",
+			      "hideDuration": "100",
+			      "timeOut": "3000",
+			      "extendedTimeOut": "0",
+			      "showEasing": "swing",
+			      "hideEasing": "swing",
+			      "showMethod": "show",
+			      "hideMethod": "hide"
+			    }
+			    toastr.success("Done!");
+			}
+			else
+			{
+				toastr.options = {
+			      "closeButton": true,
+			      "debug": false,
+			      "positionClass": "toast-top-right",
+			      "onclick": null,
+			      "showDuration": "3000",
+			      "hideDuration": "100",
+			      "timeOut": "3000",
+			      "extendedTimeOut": "0",
+			      "showEasing": "swing",
+			      "hideEasing": "swing",
+			      "showMethod": "show",
+			      "hideMethod": "hide"
+			    }
+			    toastr.warning("Please select a date range");
+			}
+		}
+		else if(report == 'all')
+		{
+			$.ajax
+				({
+					url: '/allTransactionReport',
+					type: 'get',
+					dataType : 'json',
+					success:function(response){
+						response.forEach(function(data){
+							t.row.add([
+								data.trans_id,
+								data.trans_date,
+								data.trans_total + data.charge,
+								'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
+							]).draw(false);
+						})
+					}
+				});
+				toastr.options = {
+			      "closeButton": true,
+			      "debug": false,
+			      "positionClass": "toast-top-right",
+			      "onclick": null,
+			      "showDuration": "3000",
+			      "hideDuration": "100",
+			      "timeOut": "3000",
+			      "extendedTimeOut": "0",
+			      "showEasing": "swing",
+			      "hideEasing": "swing",
+			      "showMethod": "show",
+			      "hideMethod": "hide"
+			    }
+			    toastr.success("Done!");
 		}
 	});
 	$('#selectrange').change(function(){
@@ -330,6 +580,13 @@
 			monthly.className = "form-group hidden";
 			yearly.className = "form-group hidden";
 			rangepicker.className = "form-group ";
+		}
+		else if(report == 'all')
+		{
+			startdate.className = "form-group hidden";
+			monthly.className = "form-group hidden";
+			yearly.className = "form-group hidden";
+			rangepicker.className = "form-group hidden";
 		}
 	});
 </script>
