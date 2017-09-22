@@ -142,6 +142,7 @@ Route::get('/retrieveReciept','TransactionController@retrieveReciept');
 Route::get('sendmail', 'SendMailController@sendMail');
 
 // Reports
+Route::get('/Reports/CorporateReports','ReportController@corporatereports');
 Route::get('/allTransactionReport','ReportController@allTransactionReport');
 Route::get('/Reports/TransactionReports','ReportController@transactionreport');
 Route::get('/dailyTransactionReport','ReportController@dailyTransactionReport');
@@ -149,3 +150,7 @@ Route::get('/weeklyTransactionReport','ReportController@weeklyTransactionReport'
 Route::get('/monthlyTransactionReport','ReportController@monthlyTransactionReport');
 Route::get('/yearlyTransactionReport','ReportController@yearlyTransactionReport');
 Route::get('/rangeTransactionReport','ReportController@rangeTransactionReport');
+
+// Utilities
+Route::get('/Utilities/Reactivation','UtilitiesController@reactivation');
+Route::get('/Utilities/CompanyDetails','UtilitiesController@companydetails');

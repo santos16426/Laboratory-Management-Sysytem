@@ -154,19 +154,21 @@
                       <span>Reports</span>
                   </a>
                   <ul class="sub">
-                      <li class="@yield('censusactive')"><a  href=""><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Census</a></li>
-                      <li class="@yield('transactionactive')"><a  href="/Reports/TransactionReports"><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Transaction</a></li>
+                      <li class="@yield('censusactive')"><a  href=""><i class="fa fa-line-chart" aria-hidden="true"></i> Census Reports</a></li>
+                      <li class="@yield('transactionactive')"><a  href="/Reports/TransactionReports"><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Transaction Reports</a></li>
+                      <li class="@yield('censusactive')"><a  href="/Reports/CorporateReports"><i class="fa fa-pie-chart" aria-hidden="true"></i> Corporate Reports</a></li>
+
                   </ul>
                 </li>
 
                 <li class="sub-menu">
-                  <a href="" >
+                  <a href="" class="@yield('utilitiesactive')" >
                       <i class="fa fa-wrench"></i>
                       <span>Utilities</span>
                   </a>
                   <ul class="sub">
-                      <li><a  href="">Reactivation</a></li>
-                      <li><a  href="">Company Details</a></li>
+                      <li class="@yield('reactivation')"><a  href="/Utilities/Reactivation"><span><i class="fa fa-recycle" aria-hidden="true"></i></span> Reactivation</a></li>
+                      <li class="@yield('companydetails')"><a  href="/Utilities/CompanyDetails"><span><i class="fa fa-address-card" aria-hidden="true"></i></span>Company Details</a></li>
                   </ul>
                 </li>
 

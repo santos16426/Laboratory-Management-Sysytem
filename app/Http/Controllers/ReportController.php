@@ -7,6 +7,10 @@ use DB;
 use DateTime;
 class ReportController extends Controller
 {
+    function corporatereports()
+    {
+        return view('Reports.CorporateReports');
+    }
     function transactionreport()
     {
     	return view('Reports.TransactionReport');

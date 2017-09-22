@@ -26,7 +26,7 @@
 				<div class="clearfix">
 					<div class="btn-group pull-right">
 					</div>
-					<table class="table table-bordered table-hover dataTable" id="result_tbl">
+					<table class="table table-bordered table-hover dataTable" id="rebateTbl">
 				      <thead>
 				        <tr>
 				          
