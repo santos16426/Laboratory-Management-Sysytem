@@ -73,6 +73,15 @@
                 </div>              
               </div>
             </div>
+            <div class="form-group" style="margin-left:33% ">
+              <div class="col-md-12">
+                <div class="form-group">
+                    <div class="checkbox">
+                      <label><input type="checkbox" name="upexam" id="" value="Yes">Include Physical Exam.</label>
+                  </div>
+                </div>
+              </div>  
+            </div> 
             <fieldset>
               <legend>Conditions</legend>
               
@@ -121,7 +130,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div> 
+                        </div>  
             </fieldset>
             <div class="modal-footer">
             <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
@@ -192,6 +201,15 @@
                 </div>              
               </div>
             </div>
+            <div class="form-group" style="margin-left:33% ">
+              <div class="col-md-12">
+                <div class="form-group">
+                    <div class="checkbox">
+                      <label><input type="checkbox" name="exam" id="" value="Yes">Include Physical Exam.</label>
+                  </div>
+                </div>
+              </div>  
+            </div>  
             <fieldset>
               <legend>Conditions</legend>
               
