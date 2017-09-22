@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Mail\OrderShipped;
+use App\Mail\SendCorporateMail;
 use Mail;
 use DB;
 class SendMailController extends Controller
@@ -28,10 +28,21 @@ class SendMailController extends Controller
     		'button' => 'Click Here'
     		];
 
-    	$receiverAddress = 'santos16426@gmail.com';
+    	/*$receiverAddress = 'santos16426@gmail.com';
 
     	Mail::to('santos16426@gmail.com')->send(new OrderShipped($content));
 
-    	dd('mail send successfully');
+    	dd('mail send successfully');*/
+    }
+    public function sendcorpemail(Request $req)
+    {
+
+        $corp_id = $req->corp_id;
+        $email = $req->email;
+        $total = $req->total;
+        $content = "";
+        Mail::to($email)->send(new SendCorporateMail($content,$total)); 
+        return response()->json(); 
+
     }
 }

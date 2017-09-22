@@ -154,3 +154,5 @@ Route::get('/rangeTransactionReport','ReportController@rangeTransactionReport');
 // Utilities
 Route::get('/Utilities/Reactivation','UtilitiesController@reactivation');
 Route::get('/Utilities/CompanyDetails','UtilitiesController@companydetails');
+
+Route::get('/sendCorporateEmail','SendMailController@sendcorpemail');

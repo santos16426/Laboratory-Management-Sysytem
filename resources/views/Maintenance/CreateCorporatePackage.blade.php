@@ -205,7 +205,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                     <div class="checkbox">
-                      <label><input type="checkbox" name="exam" id="" value="Yes">Include Physical Exam.</label>
+                      <label><input type="checkbox" name="exam" id="exam" value="Yes">Include Physical Exam.</label>
                   </div>
                 </div>
               </div>  
@@ -218,17 +218,17 @@
                             <div class="col-lg-5">
                                 <div class="radio">
                                     <label for="Male">
-                                        <input type="radio" id="Male" name="gender" value="Male" /> Male
+                                        <input type="radio" id="Male" name="gender" value="1" /> Male
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label for="Female">
-                                        <input type="radio" id="Female" name="gender" value="Female" /> Female
+                                        <input type="radio" id="Female" name="gender" value="2" /> Female
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label for="Both">
-                                        <input type="radio" id="Both" name="gender" value="Both" /> Both
+                                        <input type="radio" id="Both" name="gender" value="3" /> Both
                                     </label>
                                 </div>
                             </div>

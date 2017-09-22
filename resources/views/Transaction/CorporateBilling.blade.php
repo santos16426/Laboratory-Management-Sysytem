@@ -74,7 +74,7 @@
 					      	@if($balance > 0)
 					      	<a class="btn btn-info btn-xs viewTrans" data-id="{{ $corporates->corp_id }}"><i class="fa fa-handshake-o" aria-hidden="true" ></i>&nbsp;View Transactions</a>
 					      	<a class="btn btn-success btn-xs payCorp" data-id="{{ $corporates->corp_id }}" data-amount="{{ $balance }}"><i class="fa fa-rub" aria-hidden="true" ></i>&nbsp; Pay</a>
-					      	<a class="btn btn-primary btn-xs sendEmail" data-id="{{ $corporates->corp_id }}"><i class="fa fa-envelope" aria-hidden="true" ></i>&nbsp; Email</a>
+					      	<a class="btn btn-primary btn-xs sendEmail" data-id="{{ $corporates->corp_id }}" data-total="{{ $balance }}" data-email="{{ $corporates->corp_email }}"><i class="fa fa-envelope" aria-hidden="true" ></i>&nbsp; Email</a>
 					      	@else
 					      	<a class="btn btn-info btn-xs viewTrans" data-id="{{ $corporates->corp_id }}"><i class="fa fa-handshake-o" aria-hidden="true" ></i>&nbsp;View Transactions</a>
 					      	@endif
@@ -190,21 +190,34 @@
 @endif
 <script type="text/javascript">
 $('.sendEmail').click(function(){
-	 toastr.options = {
-      "closeButton": true,
-      "debug": false,
-      "positionClass": "toast-top-right",
-      "onclick": null,
-      "showDuration": "3000",
-      "hideDuration": "100",
-      "timeOut": "3000",
-      "extendedTimeOut": "0",
-      "showEasing": "swing",
-      "hideEasing": "swing",
-      "showMethod": "show",
-      "hideMethod": "hide"
-    }
-    toastr.success("Email Sent");
+	 $.ajax
+	 ({
+	 	url: '/sendCorporateEmail',
+		type: 'get',
+		data:  { 
+			corp_id : $(this).data('id'),
+			email : $(this).data('email'),
+			total : $(this).data('total')
+		},
+		dataType : 'json',
+		success:function(response){
+			toastr.options = {
+		      "closeButton": true,
+		      "debug": false,
+		      "positionClass": "toast-top-right",
+		      "onclick": null,
+		      "showDuration": "3000",
+		      "hideDuration": "100",
+		      "timeOut": "3000",
+		      "extendedTimeOut": "0",
+		      "showEasing": "swing",
+		      "hideEasing": "swing",
+		      "showMethod": "show",
+		      "hideMethod": "hide"
+		    }
+		    toastr.success("Success wala nakong maisip ehe");
+		}
+	 })
 });
 $('.payCorp').click(function(){
 	$('#PAYcorp_id').val($(this).data('id'));
