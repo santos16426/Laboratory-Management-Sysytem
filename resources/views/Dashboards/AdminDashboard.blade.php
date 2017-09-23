@@ -22,10 +22,12 @@
                               <i class="fa fa-user"></i>
                           </div>
                           <div class="value">
-                              <h1 class="count">
-                                  0
+                              <h1 class="count" id="count1">
+                                  @foreach ($patientCount as $fetch)
+                                        {{ $fetch->totalCount }}
+                                    @endforeach
                               </h1>
-                              <p>New Users</p>
+                              <p>Patients</p>
                           </div>
                       </section>
                   </div>
@@ -35,10 +37,12 @@
                               <i class="fa fa-tags"></i>
                           </div>
                           <div class="value">
-                              <h1 class=" count2">
-                                  0
+                              <h1 class=" count2" id="count2">
+                                    @foreach ($employeeCount as $fetch)
+                                        {{ $fetch->totalCount }}
+                                    @endforeach
                               </h1>
-                              <p>Sales</p>
+                              <p>Employee</p>
                           </div>
                       </section>
                   </div>
@@ -48,10 +52,12 @@
                               <i class="fa fa-shopping-cart"></i>
                           </div>
                           <div class="value">
-                              <h1 class=" count3">
-                                  0
+                              <h1 class=" count3" id="count3">
+                                  @foreach ($serviceCount as $fetch)
+								  {{ $fetch->totalCount }}
+								  @endforeach
                               </h1>
-                              <p>New Order</p>
+                              <p>Services</p>
                           </div>
                       </section>
                   </div>
@@ -64,7 +70,7 @@
                               <h1 class=" count4">
                                   0
                               </h1>
-                              <p>Total Profit</p>
+                              <p>Profit of the Day</p>
                           </div>
                       </section>
                   </div>

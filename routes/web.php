@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//pang debug eton route
+Route::get('/sam',  'AdminController@empCount');
+//
 Route::get('/', function () {
     return view('Pages.Login');
 });
