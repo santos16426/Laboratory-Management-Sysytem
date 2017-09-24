@@ -89,7 +89,7 @@ class CorporateAccountController extends Controller
       $packname = $_POST['packname'];
       $packprice = $_POST['packprice'];
       $services = $_POST['services'];
-      $exam = "No";
+      $exam = 2;
       $gender = 3;
       $age =  'All' ;
       if(isset($_POST['gender']))

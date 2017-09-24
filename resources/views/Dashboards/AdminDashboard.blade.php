@@ -11,7 +11,10 @@
 @endsection
 @section('dashboard','active')
 @section('content')
-<input type="hidden" id="newuser" value ="200">
+<input type="hidden" id="emp_count" value="{{ $emp_count }}">
+<input type="hidden" id="patient_count" value="{{ $patient_count }}">
+<input type="hidden" id="service_count" value="{{ $service_count }}">
+
 <div class="row">
   <div class="col-lg-12">
     <section class="main-content" >
@@ -23,10 +26,8 @@
                               <i class="fa fa-user"></i>
                           </div>
                           <div class="value">
-                              <h1 class="count" id="count1">
-                                  @foreach ($patientCount as $fetch)
-                                        {{ $fetch->totalCount }}
-                                    @endforeach
+                              <h1 class="emp_count">
+                                  
                               </h1>
                               <p>Patients</p>
                           </div>
@@ -38,10 +39,8 @@
                               <i class="fa fa-tags"></i>
                           </div>
                           <div class="value">
-                              <h1 class=" count2" id="count2">
-                                    @foreach ($employeeCount as $fetch)
-                                        {{ $fetch->totalCount }}
-                                    @endforeach
+                              <h1 class=" patient_count">
+                                    
                               </h1>
                               <p>Employee</p>
                           </div>
@@ -53,10 +52,8 @@
                               <i class="fa fa-shopping-cart"></i>
                           </div>
                           <div class="value">
-                              <h1 class=" count3" id="count3">
-                                  @foreach ($serviceCount as $fetch)
-								  {{ $fetch->totalCount }}
-								  @endforeach
+                              <h1 class=" service_count">
+                                  
                               </h1>
                               <p>Services</p>
                           </div>
@@ -232,17 +229,22 @@
     </section>
   </div>
 </div>
+
 @endsection
 @section('additional')
 <script type="text/javascript">
   $(document).ready(function(){
-    var count = $('#newuser').val();
-    countUp(count);
-    function countUp(count)
+
+    
+    patient_count($('#patient_count').val());
+    service_count($('#service_count').val());   
+    emp_count($('#emp_count').val());
+    function emp_count(emp_count)
     {
+
         var div_by = 100,
-            speed = Math.round(count / div_by),
-            $display = $('.count'),
+            speed = Math.round(emp_count / div_by),
+            $display = $('.emp_count'),
             run_count = 1,
             int_speed = 24;
 
@@ -250,7 +252,47 @@
             if(run_count < div_by){
                 $display.text(speed * run_count);
                 run_count++;
-            } else if(parseInt($display.text()) < count) {
+            } else if(parseInt($display.text()) < emp_count) {
+                var curr_count = parseInt($display.text()) + 1;
+                $display.text(curr_count);
+            } else {
+                clearInterval(int);
+            }
+        }, int_speed);
+    }
+    function patient_count(patient_count)
+    {
+        var div_by = 100,
+            speed = Math.round(patient_count / div_by),
+            $display = $('.patient_count'),
+            run_count = 1,
+            int_speed = 24;
+
+        var int = setInterval(function() {
+            if(run_count < div_by){
+                $display.text(speed * run_count);
+                run_count++;
+            } else if(parseInt($display.text()) < patient_count) {
+                var curr_count = parseInt($display.text()) + 1;
+                $display.text(curr_count);
+            } else {
+                clearInterval(int);
+            }
+        }, int_speed);
+    }
+    function service_count(service_count)
+    {
+        var div_by = 100,
+            speed = Math.round(service_count / div_by),
+            $display = $('.service_count'),
+            run_count = 1,
+            int_speed = 24;
+
+        var int = setInterval(function() {
+            if(run_count < div_by){
+                $display.text(speed * run_count);
+                run_count++;
+            } else if(parseInt($display.text()) < service_count) {
                 var curr_count = parseInt($display.text()) + 1;
                 $display.text(curr_count);
             } else {

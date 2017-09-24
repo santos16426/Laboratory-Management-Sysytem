@@ -77,7 +77,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                     <div class="checkbox">
-                      <label><input type="checkbox" name="upexam" id="" value="Yes">Include Physical Exam.</label>
+                      <label><input type="checkbox" name="upexam" id="" value="1">Include Physical Exam.</label>
                   </div>
                 </div>
               </div>  
@@ -126,7 +126,7 @@
                                 </div>
                                 <div class="radio">
                                     <label for="All Ages">
-                                        <input type="radio" id="upAllAges" name="age" value="All Ages" /> All Ages
+                                        <input type="radio" id="upAllAges" name="age" value="All" /> All Ages
                                     </label>
                                 </div>
                             </div>

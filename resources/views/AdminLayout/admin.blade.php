@@ -214,7 +214,7 @@
 <script type="text/javascript" src="{{ asset('/plugins/js/common-scripts.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/sparkline-chart.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/easy-pie-chart.js') }}" ></script>
-<script type="text/javascript" src="{{ asset('/plugins/js/count.js') }}" ></script>
+
 <script type="text/javascript" src="{{ asset('/bootstrapvalidator/dist/js/bootstrapValidator.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/gritter/js/jquery.gritter.js') }}"></script>
 <script src="{{ asset('/plugins/select2/dist/js/select2.full.min.js') }}" ></script>
@@ -233,7 +233,7 @@
 <script src="{{ asset('/plugins/assets/fancybox/source/jquery.fancybox.js') }}"></script>
 <script src="{{ asset('/plugins/js/modernizr.custom.js') }}"></script>
 <script src="{{ asset('/plugins/js/toucheffects.js') }}"></script>
-<script src="{{ asset('/plugins/js/val.js') }}"></script>
+<!-- <script src="{{ asset('/plugins/js/val.js') }}"></script> -->
 <script type="text/javascript" src="{{ asset('/plugins/js/advanced-form-components.js') }}"></script>
 <script type="text/javascript">
       $(function() {
