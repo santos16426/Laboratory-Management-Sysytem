@@ -152,6 +152,7 @@ class TransactionController extends Controller
     }
     public function retrieveReciept(Request $req)
     {
+
         $transaction_details = DB::table('transaction_tbl')->where('trans_id',$req->ID)->get();
         foreach($transaction_details as $td)
         {
@@ -165,6 +166,11 @@ class TransactionController extends Controller
             $rid = $rid->emp_id;
         }
         $referring_name = DB::select(DB::raw('SELECT CONCAT(emp_fname," ",emp_mname," ",emp_lname ) as Name FROM employee_tbl  WHERE emp_id = '.$rid));
+        if(count($referring_name) == 0)
+        {
+            $referring_name[0]['Name'] = 'N/A';
+        }
+        
         $emp_name = DB::select(DB::raw('SELECT CONCAT(emp_fname," ",emp_mname," ",emp_lname ) as Name FROM employee_tbl  WHERE emp_id = '.$emp_id));
         $patient_name = DB::select(DB::raw('SELECT CONCAT(patient_fname," ",patient_mname," ",patient_lname ) as Name FROM patient_tbl WHERE patient_id ='.$patient_id));
         $claimCode = DB::table('patient_tbl')->select('claimCode')->where('patient_id',$patient_id)->get();

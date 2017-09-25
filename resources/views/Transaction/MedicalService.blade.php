@@ -25,7 +25,7 @@
         <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Confirmation</h4>
       </div>
         <div class="modal-body">
-					<pre id = "recieptDetails"></pre>
+			<pre id = "recieptDetails"></pre>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn pull-left" data-dismiss="modal">Not yet</button>

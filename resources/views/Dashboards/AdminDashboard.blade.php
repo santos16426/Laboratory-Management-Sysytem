@@ -23,24 +23,11 @@
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol terques">
-                              <i class="fa fa-user"></i>
+                              <i class="fa fa-user-md"></i>
                           </div>
                           <div class="value">
                               <h1 class="emp_count">
                                   
-                              </h1>
-                              <p>Patients</p>
-                          </div>
-                      </section>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                      <section class="panel">
-                          <div class="symbol red">
-                              <i class="fa fa-tags"></i>
-                          </div>
-                          <div class="value">
-                              <h1 class=" patient_count">
-                                    
                               </h1>
                               <p>Employee</p>
                           </div>
@@ -48,8 +35,21 @@
                   </div>
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
+                          <div class="symbol red">
+                              <i class="fa fa-users"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class=" patient_count">
+                                    
+                              </h1>
+                              <p>Patients</p>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
                           <div class="symbol yellow">
-                              <i class="fa fa-shopping-cart"></i>
+                              <i class="fa fa-heartbeat"></i>
                           </div>
                           <div class="value">
                               <h1 class=" service_count">

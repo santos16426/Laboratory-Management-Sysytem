@@ -35,6 +35,7 @@ class AdminController extends Controller
             ->where('LabStatus',null)
             ->count();
         $patientcount = DB::table('patient_tbl')->count();
+        
     	return view('Dashboards.AdminDashboard',['patient_count'=>$patientcount,'service_count'=>$service_count,'emp_count'=>$emp_count]);
     	
     }

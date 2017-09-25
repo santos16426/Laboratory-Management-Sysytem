@@ -196,27 +196,30 @@
 			<div class="modal-header btn-warning">
 				<h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Update employee type</h4>
 			</div>
-			<form class="form-horizontal" id="EmployeeType2" method="POST" action="/update_empType">
 				<div class="modal-body">
-					<div class="form-group"  >
-						<div class="col-md-10 col-md-offset-1">
-							<div class="input-group">
-								<div class="input-group-addon">
-									Employee Type<sup style="color: red">*</sup>
+					<form class="form-horizontal" id="EmployeeType2" method="POST" action="/update_empType">
+						<div class="box-body">
+							<div class="form-group"  >
+							<div class="col-md-10 col-md-offset-1">
+								<div class="input-group">
+									<div class="input-group-addon">
+										Employee Type<sup style="color: red">*</sup>
+									</div>
+									<input type="hidden" name="upemptype_id" value="" id="typefield_id">
+								<input type="text" class="form-control" name="updateemptype" value = "" id="typefield_name">
 								</div>
-								<input type="hidden" name="upemptype_id" value="" id="typefield_id">
-							<input type="text" class="form-control" name="updateemptype" value = "" id="typefield_name">
-							</div>
-						</div>  
-					</div>
-			
-				{{ csrf_field() }}
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn pull-left" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-warning"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Update</button>
-				</div>
-			</form>
+							</div>  
+						</div>
+				
+						{{ csrf_field() }}
+						</div>
+						<hr>
+						<div class="box-footer">
+							<button  data-dismiss="modal" class="btn btn-default">Cancel</button>
+							<button type="submit" class="btn btn-warning pull-right">Update</button>
+						</div>
+				</form>
+			</div>
 		</div>  
 	</div>
 </div>

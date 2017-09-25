@@ -49,7 +49,7 @@
 			          <td>{{ $emp1->emp_mname }}</td>
 			          <td>{{ $emp1->role_name }}</td>
 			          <td>
-                @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1 or $emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == null)
+                @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1 or $emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus === null)
 			            <button class="btn btn-warning btn-xs empupdateModalbtn" data-target="#updateModal" data-id="{{ $emp1->emp_id }}" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</button>
 			            <button class="btn btn-info btn-xs empviewModalbtn" data-target="#viewModal"  data-id="{{ $emp1->emp_id }}" data-toggle="modal"><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp; View</button>
 			            <button class="btn btn-danger btn-xs empdeleteModalbtn" data-id="{{ $emp1->emp_id }}" ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
@@ -60,7 +60,7 @@
                 @endif
 			          </td>
                 <td>
-                @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1 or $emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == null)
+                @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1 or $emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus === null)
                 <span class="badge bg-success">Available</span>
                 @else
                 <span class="badge bg-important">Unavailable</span>
@@ -179,7 +179,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn pull-left" data-dismiss="modal">Close</button>
-          <button  class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+          <button  class="btn btn-success" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
         </div>
         {{ csrf_field() }}
       </form>
@@ -301,13 +301,14 @@ $('.employeeTypeDropDown').on('change',function(){
             name += data.name;
           })
           $('.geninfo').empty(); 
-
+          $('.accountinfo').empty();
           if(rank==1){
             $('.geninfo').append('<div class="form-group" id="medtechrank"><div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Position <sup>*</sup></div> <select class="form-control select2" name="rank_id" style="width: 100%;"> @php $ranks1 = $ranks @endphp  @foreach($ranks1 as $ranks1) <option value="{{ $ranks1->rank_id }}">{{ $ranks1->rank_name }}</option> @endforeach </select> </div> </div> </div>'); 
           }
           if(name==1){
 
             $('.geninfo').append('<legend>General Information</legend><div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">First Name <sup style="color:red">*</sup></div> <input type="text" class="form-control ff2" name="firstname" placeholder="e.g. Juan" required> </div> </div> </div> <div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Middle Name </div> <input type="text" class="form-control mm2" name="middlename" placeholder="e.g. Martinez"> </div> </div> </div> <div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Last Name <sup style="color:red">*</sup></div> <input type="text" class="form-control ll2" name="lastname" placeholder="e.g. Dela Cruz"> </div> </div> </div>');
+
           }
           if(address==1){
             $('.geninfo').append('<div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Address <sup style="color:red">*</sup></div> <input type="text" class="form-control" name="address" placeholder="e.g. 173 L. Pascual Street, Q.C."> </div> </div> </div>');
@@ -319,143 +320,18 @@ $('.employeeTypeDropDown').on('change',function(){
             $('.geninfo').append(' <div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">License Number <sup>*</sup></div> <input type="text" class="form-control" name="license" placeholder="e.g. HH-DH-8876"> </div> </div> </div>');
           }
 
-          $('.accountinfo').empty();
+          
           if((username==1)&&(password==1)){
           $('.accountinfo').append(' <legend>Account Information</legend><div class="form-group"><div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Username <sup style="color:red">*</sup></div><input type="text" class="form-control" name="username" placeholder="Username"></div></div></div><div class="form-group"><div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Password <sup style="color:red">*</sup></div><input type="password" class="form-control" name="password" placeholder="Password"></div></div></div><div class="form-group"><div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Confirm Password <sup style="color:red">*</sup></div><input type="password" class="form-control" name="confirmpass" placeholder="Confirm Password"></div></div></div>');
           }
-          $('.accountinfo').append('<label class="control-label col-md-3 col-md-offset-1">Image Upload</label> <div class="col-md-8"> <div class="fileupload fileupload-new" data-provides="fileupload"> <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"> <img src="{{ asset("/Employee_images/default.jpg") }}" alt="" /> </div> <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div> <div> <span class="btn btn-white btn-file"> <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span> <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span> <input type="file" class="default" name="emp_pic"> </span> <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a> </div> </div> </div>')
+          if(name == 1)
+          {
+            $('.accountinfo').append('<label class="control-label col-md-3 col-md-offset-1">Image Upload</label> <div class="col-md-8"> <div class="fileupload fileupload-new" data-provides="fileupload"> <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"> <img src="{{ asset("/Employee_images/default.jpg") }}" alt="" /> </div> <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div> <div> <span class="btn btn-white btn-file"> <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span> <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span> <input type="file" class="default" name="emp_pic"> </span> <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a> </div> </div> </div>')
+          }
+          
         }
       });
- $('#EmpLicense').bootstrapValidator({
-            feedbackIcons: {
-              valid: 'glyphicon glyphicon-ok',
-              invalid: 'glyphicon glyphicon-remove',
-              validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-              rank_id: {
-                validators: {
-                  regexp: {
-                    regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,
-                    message: 'Special characters are not allowed.'
-                  },
-                }
-              }, 
-              firstname: {
-                validators: {
-                  stringLength: {
-                    min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
-                  },
-                  regexp: {
-                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
-                    message: 'This field should contain alphabetical letters only.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  },
-                }
-              }, 
-              middlename: {
-                validators: {
-                  stringLength: {
-                    max: 20,
-                    message:'Middle name should not exceed 20 characters.'
-                  },
-                  regexp: {
-                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
-                    message: 'This field should contain alphabetical letters only.'
-                  },
-                }
-              },      
-              lastname: {
-                validators: {
-                  stringLength: {
-                    min: 2,
-                    max: 20,
-                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
-                  },
-                  regexp: {
-                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
-                    message: 'This field should contain alphabetical letters only.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
-                }
-              }, 
-              address: {
-                validators: {
-                  regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
-                    message: 'Invalid Input.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
-                }
-              }, 
-              contact: {
-                validators: {
-                  regexp: {
-                    regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
-                }
-              }, 
-              username: {
-                validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Please enter at least 2 characters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
-                }
-              },     
-              password: {
-                validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  },
-                }
-              },      
-              confirmpass: {
-                validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
-                }
-              }, 
-              license: {
-                validators: {
-                  regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
-                    message: 'Invalid License Number Format.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
-                }
-              },                                             
-            }
-          });
+ 
     });
 
 
@@ -503,14 +379,6 @@ $('.empviewModalbtn').click(function(){
 
       $('.geninfoview').empty(); 
           if(name==1){
-
-            // var firstdiv = document.createElement('div');
-            // firstdiv.setAttribute('class','form-group firstdiv');
-            // $('.geninfoview').append(firstdiv);
-
-            // var labelfname = document.createElement('label');
-            // labelfname.setAttribute('class','col-xs-3 control-label fnamelabel');
-            // $('.firstdiv').append(labelfname);
 
             
 
@@ -563,6 +431,7 @@ $('.empupdateModalbtn').click(function(){
   var license_no  =     "";
   var emp_id      =     "";
   var emp_type_id =     "";
+  var emp_pic = "";
   $.ajax
   ({
     url: '/updateEmpDetails',
@@ -589,31 +458,31 @@ $('.empupdateModalbtn').click(function(){
         emp_contact += data.emp_contact;
         license_no  += data.license_no;
         emp_id += data.emp_id;
-        emp_type_id += data.emp_type_id
+        emp_type_id += data.emp_type_id;
+        emp_pic +=data.emp_pic;
         $('#update_emp_id').val(emp_id);
         $('#update_emp_type').val(emp_type_id);
       })
       $('.geninfoupdate').empty(); 
           if(rank==1){
-            $('.geninfoupdate').append('<div class="form-group" id="medtechrank"> <label class="col-xs-3 control-label">Position</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-id-badge" aria-hidden="true"></i></div> <select class="form-control" id="selranks" name="rank_id" style="width: 100%;"> @php $ranks2 = $ranks @endphp @foreach($ranks2 as $ranks) <option value="{{ $ranks->rank_id }}" >{{ $ranks->rank_name }}</option> @endforeach </select> </div> </div> </div>'); 
+            $('.geninfoupdate').append('<div class="form-group" id="medtechrank">  <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Position <sup>*</sup></div> <select class="form-control" id="selranks" name="rank_id" style="width: 100%;"> @php $ranks2 = $ranks @endphp @foreach($ranks2 as $ranks) <option value="{{ $ranks->rank_id }}" >{{ $ranks->rank_name }}</option> @endforeach </select> </div> </div> </div>'); 
             $('#selranks').val(rank_id);
             
           }
-          
-
           if(name==1){
-            $('.geninfoupdate').append('<legend>General Information</legend><div class="form-group"> <label class="col-xs-3 control-label">First Name</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-user-o" aria-hidden="true"></i></div> <input  value="'+emp_fname+'" type="text" class="form-control ff2" name="firstname"> </div> </div> </div> <div class="form-group"> <label class="col-xs-3 control-label">Middle Name</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-user-o" aria-hidden="true"></i></div> <input type="text" class="form-control mm2"  value="'+emp_mname+'" name="middlename"> </div> </div> </div> <div class="form-group"> <label class="col-xs-3 control-label">Last Name</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-user-o" aria-hidden="true"></i></div> <input type="text" class="form-control ll2"  value="'+emp_lname+'" name="lastname"> </div> </div> </div>');
+            $('.geninfoupdate').append('<legend>General Information</legend><div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">First Name <sup>*</sup></div> <input  value="'+emp_fname+'" type="text" class="form-control ff2" name="firstname"> </div> </div> </div> <div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Middle Name</div> <input type="text" class="form-control mm2"  value="'+emp_mname+'" name="middlename"> </div> </div> </div> <div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Last Name <sup>*</sup></div> <input type="text" class="form-control ll2"  value="'+emp_lname+'" name="lastname"> </div> </div> </div>');
           }
           if(address==1){
-            $('.geninfoupdate').append('<div class="form-group"> <label class="col-xs-3 control-label">Address</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-address-card-o" aria-hidden="true"></i></div> <input type="text" class="form-control"  value="'+emp_address+'" name="address"> </div> </div> </div>');
+            $('.geninfoupdate').append('<div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Address <sup>*</sup></div> <input type="text" class="form-control"  value="'+emp_address+'" name="address"> </div> </div> </div>');
           }
           if(contact==1){
-            $('.geninfoupdate').append('<div class="form-group"> <label class="col-xs-3 control-label">Contact Number</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div> <input type="text" class="form-control"  value="'+emp_contact+'" name="contact"> </div> </div> </div>');
+            $('.geninfoupdate').append('<div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Contact Number <sup>*</sup></div> <input type="text" class="form-control"  value="'+emp_contact+'" name="contact"> </div> </div> </div>');
           }
           if(license==1){
-            $('.geninfoupdate').append(' <div class="form-group"> <label class="col-xs-3 control-label">License Number</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div> <input type="text" class="form-control"  value="'+license_no+'" name="license"> </div> </div> </div>');
+            $('.geninfoupdate').append(' <div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">License No. <sup>*</sup></div> <input type="text" class="form-control"  value="'+license_no+'" name="license"> </div> </div> </div>');
           }
-
+          
+          $('.geninfoupdate').append('<label class="control-label col-md-3 col-md-offset-1">Image Upload</label> <div class="col-md-8"> <div class="fileupload fileupload-new" data-provides="fileupload"> <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"> <img src="/Employee_images/'+emp_pic+'" alt="" /> </div> <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div> <div> <span class="btn btn-white btn-file"> <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span> <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span> <input type="file" class="default" name="emp_pic" value="'+emp_pic+'"> </span> <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a> </div> </div> </div>')
 
     }
 
