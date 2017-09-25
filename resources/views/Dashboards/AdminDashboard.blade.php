@@ -9,11 +9,12 @@
 @section('maintenanceactive')
 <a href="" class="">
 @endsection
+@section('dashboard','active')
 @section('content')
+<input type="hidden" id="newuser" value ="200">
 <div class="row">
-	<div class="col-lg-12">
-		<section class="main-content">
-			
+  <div class="col-lg-12">
+    <section class="main-content" >
               <!--state overview start-->
               <div class="row state-overview">
                   <div class="col-lg-3 col-sm-6">
@@ -228,11 +229,37 @@
                   </div>
               </div>
             
-		</section>
-	</div>
+    </section>
+  </div>
 </div>
 @endsection
 @section('additional')
+<script type="text/javascript">
+  $(document).ready(function(){
+    var count = $('#newuser').val();
+    countUp(count);
+    function countUp(count)
+    {
+        var div_by = 100,
+            speed = Math.round(count / div_by),
+            $display = $('.count'),
+            run_count = 1,
+            int_speed = 24;
+
+        var int = setInterval(function() {
+            if(run_count < div_by){
+                $display.text(speed * run_count);
+                run_count++;
+            } else if(parseInt($display.text()) < count) {
+                var curr_count = parseInt($display.text()) + 1;
+                $display.text(curr_count);
+            } else {
+                clearInterval(int);
+            }
+        }, int_speed);
+    }
+  });
+</script>
 @if(Session::has('transaction'))
 <input type="hidden" name="" value="{{ Session::get('trans_id') }}" id="transaction_id">
 <script type="text/javascript">

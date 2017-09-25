@@ -73,80 +73,64 @@
                 </div>              
               </div>
             </div>
+            <div class="form-group" style="margin-left:33% ">
+              <div class="col-md-12">
+                <div class="form-group">
+                    <div class="checkbox">
+                      <label><input type="checkbox" name="upexam" id="" value="Yes">Include Physical Exam.</label>
+                  </div>
+                </div>
+              </div>  
+            </div> 
             <fieldset>
               <legend>Conditions</legend>
               
-              <div class="col-md-6 col-md-offset-1">
-                <div class="col-md-3"><h4>Age:</h4></div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="Male">
-                          <input type="radio" id="upMale" name="gender" value="1"> Male
-                        </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="Female">
-                          <input type="radio" id="upFemale" name="gender" value="2"> Female
-                        </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="Both">
-                          <input type="radio" id="upBoth" name="gender" value="3"> Both
-                        </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12"></div>
-              
-              <div class="col-md-12">
-                <div class="col-md-2 col-md-offset-1"><h4>Gender:</h4></div>  
-                <div class="col-md-1">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="Teen">
-                          <input type="radio" id="upTeen" name="age" value="Teen"> Teen
-                        </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-1">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="Adult">
-                          <input type="radio" id="upAdult" name="age" value="Adult"> Adult
-                        </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-1">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="Senior">
-                          <input type="radio" id="upSenior" name="age" value="Senior"> Senior
-                        </label>
-                    </div>
-                  </div>
-                </div>
-                  <div class="col-md-1">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="All Ages">
-                          <input type="radio" id="upAllAges" name="age" value="All"> All Ages
-                        </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="form-group">
+                            <label class="col-lg-1 col-md-offset-1 control-label">Gender:</label>
+                            <div class="col-lg-5">
+                                <div class="radio">
+                                    <label for="Male">
+                                        <input type="radio" id="upMale" name="gender" value="Male" /> Male
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="Female">
+                                        <input type="radio" id="upFemale" name="gender" value="Female" /> Female
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="Both">
+                                        <input type="radio" id="upBoth" name="gender" value="Both" /> Both
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                <div class="form-group">
+                            <label class="col-lg-1 col-md-offset-1 control-label">Age:</label>
+                            <div class="col-lg-5">
+                                <div class="radio">
+                                    <label for="Teen">
+                                        <input type="radio" id="upTeen" name="age" value="Teen" /> Teen
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="Adult">
+                                        <input type="radio" id="upAdult" name="age" value="Adult" /> Adult
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="Senior">
+                                        <input type="radio" id="upSenior" name="age" value="Senior" /> Senior
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="All Ages">
+                                        <input type="radio" id="upAllAges" name="age" value="All Ages" /> All Ages
+                                    </label>
+                                </div>
+                            </div>
+                        </div>  
             </fieldset>
             <div class="modal-footer">
             <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
@@ -217,80 +201,64 @@
                 </div>              
               </div>
             </div>
+            <div class="form-group" style="margin-left:33% ">
+              <div class="col-md-12">
+                <div class="form-group">
+                    <div class="checkbox">
+                      <label><input type="checkbox" name="exam" id="exam" value="Yes">Include Physical Exam.</label>
+                  </div>
+                </div>
+              </div>  
+            </div>  
             <fieldset>
               <legend>Conditions</legend>
               
-              <div class="col-md-6 col-md-offset-1">
-                <div class="col-md-3"><h4>Age:</h4></div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="Male">
-                          <input type="radio" id="Male" name="gender" value="1"> Male
-                        </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="Female">
-                          <input type="radio" id="Female" name="gender" value="2"> Female
-                        </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="Both">
-                          <input type="radio" id="Both" name="gender" value="3"> Both
-                        </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12"></div>
-              
-              <div class="col-md-12">
-                <div class="col-md-2 col-md-offset-1"><h4>Gender:</h4></div>  
-                <div class="col-md-1">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="Teen">
-                          <input type="radio" id="Teen" name="age" value="Teen"> Teen
-                        </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-1">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="Adult">
-                          <input type="radio" id="Adult" name="age" value="Adult"> Adult
-                        </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-1">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="Senior">
-                          <input type="radio" id="Senior" name="age" value="Senior"> Senior
-                        </label>
-                    </div>
-                  </div>
-                </div>
-                  <div class="col-md-1">
-                  <div class="form-group">
-                      <div class="radio">
-                        <label class="" for="All Ages">
-                          <input type="radio" id="All Ages" name="age" value="All"> All Ages
-                        </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div class="form-group">
+                            <label class="col-lg-1 col-md-offset-1 control-label">Gender:</label>
+                            <div class="col-lg-5">
+                                <div class="radio">
+                                    <label for="Male">
+                                        <input type="radio" id="Male" name="gender" value="1" /> Male
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="Female">
+                                        <input type="radio" id="Female" name="gender" value="2" /> Female
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="Both">
+                                        <input type="radio" id="Both" name="gender" value="3" /> Both
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                <div class="form-group">
+                            <label class="col-lg-1 col-md-offset-1 control-label">Age:</label>
+                            <div class="col-lg-5">
+                                <div class="radio">
+                                    <label for="Teen">
+                                        <input type="radio" id="Teen" name="age" value="Teen" /> Teen
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="Adult">
+                                        <input type="radio" id="Adult" name="age" value="Adult" /> Adult
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="Senior">
+                                        <input type="radio" id="Senior" name="age" value="Senior" /> Senior
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="All Ages">
+                                        <input type="radio" id="All Ages" name="age" value="All Ages" /> All Ages
+                                    </label>
+                                </div>
+                            </div>
+                        </div> 
             </fieldset>
             <div class="modal-footer">
             <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>

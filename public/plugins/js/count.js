@@ -42,6 +42,7 @@ countUp1();
     }, int_speed);
 }
 
+<<<<<<< HEAD
 countUp(495);*/
 
 function countUp2()
@@ -67,6 +68,9 @@ function countUp2()
 }
 
 countUp2();
+=======
+
+>>>>>>> f8df7dbc0d734daac16e954472d6809705e0fec2
 
 /* function countUp2(count)
 {

@@ -17,7 +17,7 @@
 @section ('breadactivePage','Avail Medical Services')
 
 @section('content')
-<form action="/proceed_Payment" method="POST" enctype="multipart/form-data">
+<form action="/proceed_Payment" method="POST" id="price" enctype="multipart/form-data">
 <div class="modal fade" id = "myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -29,7 +29,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn pull-left" data-dismiss="modal">Not yet</button>
-          <button  class="btn btn-primary" id="yesPrintBtn"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Yes, Print Reciept</button>
+          <button  class="btn btn-primary" id="yesPrintBtn"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Yes, Print Receipt</button>
         </div>
     </div>  
   </div>

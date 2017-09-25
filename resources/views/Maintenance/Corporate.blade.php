@@ -191,7 +191,7 @@
 		                  <div class="input-group-addon">
 		                   Email Address <sup>*</sup>
 		                 </div>
-		                <input  name="email" id="email" type="email" placeholder="Email Address" class="form-control input-md" required>
+		                <input  name="email" id="email" type="text" placeholder="Email Address" class="form-control input-md" required>
 		             </div>
 		          </div>  
 		       </div>

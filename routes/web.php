@@ -103,8 +103,30 @@ Route::get('/getDataService','TransactionController@getDataService');
 Route::get('/getCompanyPackage','TransactionController@getCompanyPackage');
 Route::post('/proceed_Payment','TransactionController@proceed_Payment');
 Route::get('/Transaction/CorporateBilling/ViewTransactions','TransactionController@viewCorpTrans');
-
+Route::post('/saveCorporatePayment','TransactionController@saveCorporatePayment');
 Route::get('/Transactions/CorporateBilling','TransactionController@corpbilling');
+Route::get('/Transactions/RebateBilling','TransactionController@rebatebilling');
+Route::get('/Transaction/Rebate/ViewTransactions','TransactionController@viewrebatetrans');
+Route::post('/saveEmpRebatePayment','TransactionController@saveRebatePayment');
+
+//Layouts
+Route::get('/medicalReport','ResultController@medicalReport');
+Route::get('/ecg','ResultController@ecg');
+Route::get('/uploadResult','ResultController@uploadResult');
+Route::get('/ultra','ResultController@ultra');
+Route::get('/xray','ResultController@xray');
+Route::get('/medservice','ResultController@medservice');
+
+//Results
+Route::get('/Transactions/EncodeResults','ResultController@encoderesults');
+Route::get('/Transactions/UploadOfResults','ResultController@uploadresults');
+Route::get('/Transactions/ResultDashboard','ResultController@resultdashboard');
+Route::get('/getTransactionperGroup','ResultController@getTransactionperGroup');
+Route::get('/AddLayout','ResultController@AddLayout');
+Route::get('/Transaction/PatientTransaction','ResultController@PatientTransaction');
+Route::post('/uploadResultFile','ResultController@uploadResultFile');
+Route::get('/uploadFileResuls','ResultController@uploadFileResuls');
+
 //Remote Validation
 Route::get('/checkEmpType','RemoteController@checkEmpType');
 Route::get('/checkServgrp','RemoteController@checkServgrp');
@@ -121,3 +143,19 @@ Route::get('/retrieveReciept','TransactionController@retrieveReciept');
 
 //email
 Route::get('sendmail', 'SendMailController@sendMail');
+
+// Reports
+Route::get('/Reports/CorporateReports','ReportController@corporatereports');
+Route::get('/allTransactionReport','ReportController@allTransactionReport');
+Route::get('/Reports/TransactionReports','ReportController@transactionreport');
+Route::get('/dailyTransactionReport','ReportController@dailyTransactionReport');
+Route::get('/weeklyTransactionReport','ReportController@weeklyTransactionReport');
+Route::get('/monthlyTransactionReport','ReportController@monthlyTransactionReport');
+Route::get('/yearlyTransactionReport','ReportController@yearlyTransactionReport');
+Route::get('/rangeTransactionReport','ReportController@rangeTransactionReport');
+
+// Utilities
+Route::get('/Utilities/Reactivation','UtilitiesController@reactivation');
+Route::get('/Utilities/CompanyDetails','UtilitiesController@companydetails');
+
+Route::get('/sendCorporateEmail','SendMailController@sendcorpemail');

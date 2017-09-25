@@ -89,7 +89,7 @@ class CorporateAccountController extends Controller
       $packname = $_POST['packname'];
       $packprice = $_POST['packprice'];
       $services = $_POST['services'];
-      $exam = $_POST['exam'];
+      $exam = "No";
       $gender = 3;
       $age =  'All' ;
       if(isset($_POST['gender']))
@@ -99,6 +99,10 @@ class CorporateAccountController extends Controller
       if(isset($_POST['age']))
       {
         $age = $_POST['age'];
+      }
+      if(isset($_POST['exam']))
+      {
+        $exam = $_POST['exam'];
       }
       DB::table('corp_package_tbl')
         ->insert([

@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class OrderShipped extends Mailable
+class SendCorporateMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,10 +16,13 @@ class OrderShipped extends Mailable
      *
      * @return void
      */
-    public function __construct($content)
+    public function __construct($content,$total)
     {
         $this->content = $content;
+        $this->total = $total;
     }
+
+ 
 
     /**
      * Build the message.
@@ -28,7 +31,7 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.orders.shipped')
-                        ->with('content',$this->content);
+        return $this->markdown('CorporateEmail.CorporateEmail')->with('content',$this->content)->with('total',$this->total);    
     }
 }
+  

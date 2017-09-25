@@ -26,7 +26,7 @@
 			<div class="panel-body">
 				<div class="clearfix">
 					<div class="btn-group pull-right">
-						<a class="btn btn-info" style="margin-left: -20%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="patientTbl">
 			      <thead>
@@ -174,11 +174,17 @@
 									<div class="input-group-addon">
 										Birthday <sup>*</sup>
 									</div>
-									<input  name="birthday" type="date" id="birthday" class="form-control form-control-inline input-medium default-date-picker" onblur="getage()" required>
+									<div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="12-02-2012"  class="input-append date dpYears">
+										<input class="form-control form-control-inline input-medium default-date-picker" onblur="getage()" name="birthday" id="birthday" size="16" type="text" required>
+									</div>
 								</div>
 							</div>  
 						</div>
 					</div>
+				
+					
+					 
+					
 					<div class="col-md-5">
 						<div class="form-group">
 							<div class="col-md-7 col-md-offset-1">
@@ -199,12 +205,12 @@
                             <div class="col-lg-5">
                                 <div class="radio">
                                     <label for="upMale">
-                                        <input type="radio" id="upMale" name="gender" value="current" /> Male
+                                        <input type="radio" id="upMale" name="gender" value="Male" /> Male
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label for="upFemale">
-                                        <input type="radio" id="upFemale" name="gender" value="new" /> Female
+                                        <input type="radio" id="upFemale" name="gender" value="Female" /> Female
                                     </label>
                                 </div>
                             </div>
@@ -215,22 +221,22 @@
                             <div class="col-lg-5">
                                 <div class="radio">
                                     <label for="upSingle">
-                                        <input type="radio" id="upSingle" name="civil_status" value="current" /> Single
+                                        <input type="radio" id="upSingle" name="civil_status" value="Single" /> Single
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label for="upMarried">
-                                        <input type="radio" id="upMarried" name="civil_status" value="new" /> Married
+                                        <input type="radio" id="upMarried" name="civil_status" value="Married" /> Married
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label for="upDivorced">
-                                        <input type="radio" id="upDivorced" name="civil_status" value="new" /> Divorced
+                                        <input type="radio" id="upDivorced" name="civil_status" value="Divorced" /> Divorced
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label for="upWidowed">
-                                        <input type="radio" id="upWidowed" name="civil_status" value="new" /> Widowed
+                                        <input type="radio" id="upWidowed" name="civil_status" value="Widowed" /> Widowed
                                     </label>
                                 </div>
                             </div>

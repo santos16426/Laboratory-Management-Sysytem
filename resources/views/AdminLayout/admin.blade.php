@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="plugins/img/favicon.png">
+        <link rel="shortcut icon" href="{{ asset('/plugins/img/favicon.png') }}">
         <title>E-Diagnostic Center</title>
 
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/bootstrap.min.css') }}">
@@ -22,8 +22,14 @@
         <link rel="stylesheet" href="{{ asset('/plugins/select2/dist/css/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('/bootstrapvalidator/dist/css/bootstrapValidator.css') }}">
         <link rel="stylesheet" href="{{ asset('/sweetalert-master/dist/sweetalert.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/fancybox/source/jquery.fancybox.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/gallery.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/assets/bootstrap-datepicker/css/datepicker.css') }}">
         <script src="{{ asset('/sweetalert-master/dist/sweetalert.min.js') }}"></script>
+        <link href="{{ asset('/plugins/css/style.css') }}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/style-responsive.css') }}">
         <style type="text/css">
+          .datepicker{z-index:1151 !important;}
           sup
           {
             color: red;
@@ -34,7 +40,7 @@
           }
         </style>
     </head>
-  <body>
+<body>
 <section id="container" >
     <header class="header white-bg">
         <div class="sidebar-toggle-box">
@@ -45,8 +51,8 @@
             <ul class="nav pull-right top-menu">
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" src="plugins/img/avatar1_small.jpg">
-                        <span class="username">Jhon Doue</span>
+                        <img alt="" src="/plugins/img/images.jpg" style="max-width: 20px">
+                        <span class="username">Administrator</span>
                     </a>
                 </li>
             </ul>
@@ -56,14 +62,11 @@
         <div id="sidebar"  class="nav-collapse ">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a href="/Admin/Dashboard">
+                    <a href="/Admin/Dashboard" class="@yield('dashboard')">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-                
-                
-
                 <li class="sub-menu">
                   @yield('maintenanceactive')
                       <i class="fa fa-cogs"></i>
@@ -135,10 +138,10 @@
                       <li class="@yield('corporatetrans')"><a  href="/Transactions/CorporateBilling"><i class="fa fa-users" aria-hidden="true"></i> Corporate Account Billing</a></li>
                       <li class="@yield('rebatetrans')"><a  href="/Transactions/RebateBilling"><i class="fa fa-percent" aria-hidden="true"></i> Rebate Employee Billing</a></li>
                       <li class="sub-menu">
-                          <a  href=""><i class="fa fa-file-o" aria-hidden="true"></i> Results</a>
+                          <a  href="" class="@yield('transresultactive')"><i class="fa fa-file-o" aria-hidden="true"></i> Results</a>
                           <ul class="sub">
-                              <li><a  href="/Transactions/EncodeResults">Enconding of Results</a></li>
-                              <li><a  href="/Transactions/UploadResults">Uploading of Results</a></li>
+                              <li class="@yield('encodeactive')"><a  href="/Transactions/ResultDashboard">Enconding of Results</a></li>
+                              <li class="@yield('uploadactive')"><a  href="/Transactions/UploadOfResults">Uploading of Results</a></li>
                           </ul>
                       </li>
 
@@ -146,23 +149,26 @@
                 </li>
 
                 <li class="sub-menu">
-                  <a href="" >
-                      <i class="fa fa-clipboard"></i>
+                  <a class="@yield('reportactive')">
+                      <i class="fa fa-area-chart" aria-hidden="true"></i>
                       <span>Reports</span>
                   </a>
                   <ul class="sub">
-                      <li><a  href="">Census</a></li>
+                      <li class="@yield('censusactive')"><a  href=""><i class="fa fa-line-chart" aria-hidden="true"></i> Census Reports</a></li>
+                      <li class="@yield('transactionactive')"><a  href="/Reports/TransactionReports"><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Transaction Reports</a></li>
+                      <li class="@yield('censusactive')"><a  href="/Reports/CorporateReports"><i class="fa fa-pie-chart" aria-hidden="true"></i> Corporate Reports</a></li>
+
                   </ul>
                 </li>
 
                 <li class="sub-menu">
-                  <a href="" >
+                  <a href="" class="@yield('utilitiesactive')" >
                       <i class="fa fa-wrench"></i>
                       <span>Utilities</span>
                   </a>
                   <ul class="sub">
-                      <li><a  href="">Reactivation</a></li>
-                      <li><a  href="">Company Details</a></li>
+                      <li class="@yield('reactivation')"><a  href="/Utilities/Reactivation"><span><i class="fa fa-recycle" aria-hidden="true"></i></span> Reactivation</a></li>
+                      <li class="@yield('companydetails')"><a  href="/Utilities/CompanyDetails"><span><i class="fa fa-address-card" aria-hidden="true"></i></span>Company Details</a></li>
                   </ul>
                 </li>
 
@@ -214,6 +220,8 @@
 <script src="{{ asset('/plugins/select2/dist/js/select2.full.min.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/bootstrap-switch.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.tagsinput.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-daterangepicker/date.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
@@ -222,11 +230,22 @@
 <script type="text/javascript" src="{{ asset('/plugins/js/form-component.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/gritter.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/Toastr/toastr.js') }}" ></script>
+<script src="{{ asset('/plugins/assets/fancybox/source/jquery.fancybox.js') }}"></script>
+<script src="{{ asset('/plugins/js/modernizr.custom.js') }}"></script>
+<script src="{{ asset('/plugins/js/toucheffects.js') }}"></script>
 <script src="{{ asset('/plugins/js/val.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/plugins/js/advanced-form-components.js') }}"></script>
+<script type="text/javascript">
+      $(function() {
+        //    fancybox
+          jQuery(".fancybox").fancybox();
+      });
 
+  </script>
 
 @if (Session::has('add'))
 <script type="text/javascript">
+  
   $( document ).ready(function() 
   {
     
