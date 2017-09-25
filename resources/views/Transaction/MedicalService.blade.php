@@ -280,6 +280,18 @@
 		<div class="col-md-4 pull-right">
 			<section class="panel">
 				<header class="panel-heading">
+					<strong>Discount</strong>
+				</header>
+				<div class="panel-body">
+					<a  class="btn btn-primary btn-sm col-md-5" id="seniormodal">Senior <i class="" aria-hidden="true"></i></a>
+					<a  class="btn btn-primary btn-sm col-md-5 col-md-offset-2" id="pwdmodal">PWD<i class="" aria-hidden="true"></i></a>
+				</div>
+			</section>
+		</div>
+
+		<div class="col-md-4 pull-right">
+			<section class="panel">
+				<header class="panel-heading">
 					<strong>Bill</strong>
 				</header>
 				<div class="panel-body">
