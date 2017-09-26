@@ -233,7 +233,7 @@
 <script src="{{ asset('/plugins/assets/fancybox/source/jquery.fancybox.js') }}"></script>
 <script src="{{ asset('/plugins/js/modernizr.custom.js') }}"></script>
 <script src="{{ asset('/plugins/js/toucheffects.js') }}"></script>
-<!-- <script src="{{ asset('/plugins/js/val.js') }}"></script> -->
+<script src="{{ asset('/plugins/js/val.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/advanced-form-components.js') }}"></script>
 <script type="text/javascript">
       $(function() {

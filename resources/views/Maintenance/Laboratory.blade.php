@@ -121,7 +121,7 @@
 					</div>
         <div class="modal-footer">
           <button type="button" class="btn pull-left" data-dismiss="modal">Close</button>
-          <button  class="btn btn-success" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+          <button  class="btn btn-success" id="addemptype" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
         </div>
         {{ @csrf_field() }}
         </form>
@@ -154,7 +154,11 @@
 </div>
 @endsection
 @section('additional')
+<script type="text/javascript">
+  $('#addemptype').click(function(){
 
+  });
+</script>
 <script type="text/javascript">
 	$('#labTbl').DataTable({
 		'paging'      : true,

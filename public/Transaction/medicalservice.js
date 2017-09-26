@@ -6,7 +6,10 @@ var t = $('#medicalRequest').DataTable({
 	'info'        : false,
 	'autoWidth'   : true,
 });
-
+$('#seniormodal').click(function(){
+	
+	t.fnDeleteRow(t.$('#idniyato')[0]);
+});
 $(document).ready(function() {
 	$(window).keydown(function(event)
 	{
