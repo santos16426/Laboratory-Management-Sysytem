@@ -190,7 +190,14 @@
               @yield('content')
         </section>
     </section>
-</section>
+    <footer class="site-footer">
+          <div class="text-center">
+              2017 &copy; Poging Billy Joe
+              <a href="#" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+          </div>
+      </footer>
 
 
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.js') }}" ></script>
