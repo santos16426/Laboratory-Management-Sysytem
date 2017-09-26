@@ -114,6 +114,14 @@
              </div>
           </div>  
        </div> 
+       <div class="form-group" style="margin-right:% ">
+              <div class="col-md-10 col-md-offset-3">
+                <div class="input-group">
+                   <small><sup>*</sup>Note:<br>&nbsp;Package price should be below/equal to total price.<div id="totalprice">&nbsp;Total price: 
+                    0 </div></small>
+              </div>
+          </div>  
+        </div>
        <div class="modal-footer">
           <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-xs btn-warning" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Update</button>
@@ -184,6 +192,14 @@
              </div>
           </div>  
        </div> 
+        <div class="form-group" style="margin-right:% ">
+              <div class="col-md-10 col-md-offset-3">
+                <div class="input-group">
+                   <small><sup>*</sup>Note:<br>&nbsp;Package price should be below/equal to total price.<div id="totalprice">&nbsp;Total price: 
+                    0 </div></small>
+              </div>
+          </div>  
+        </div> 
        <div class="modal-footer">
           <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-xs btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>

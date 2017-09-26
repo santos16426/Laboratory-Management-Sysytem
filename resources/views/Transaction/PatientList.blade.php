@@ -58,7 +58,8 @@
 			          <td>{{ $table->patient_civilstatus }}</td>
 			          <td>{{ $table->patient_gender }}</td>
 			          <td>
-			            <a class="btn btn-info btn-xs upservtype" onclick="availserv({{ $table->patient_id }})" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Avail Service </a>
+			           <!--  <a class="btn btn-info btn-xs upservtype" onclick="availserv({{ $table->patient_id }})" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Avail Service </a> -->
+			            <a class="btn btn-info btn-xs upservtype" data-target ="#homeservModal" data-toggle="modal" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Avail Service </a>
 			          </td>
 			        </tr>
 			        @endforeach
@@ -257,6 +258,22 @@
 	<input type="hidden" name="patient_id" value="" id="patient_id">
 	{{ csrf_field() }}
 </form>
+<div class="modal fade" id="homeservModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <h4><center>Avail Where?</center></h4>
+      <div class="modal-footer">
+        <button type="button" class="btn pull-left" data-dismiss="modal" style="width: 48%" id="payDirect"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 100px"></i><br><h3>Globalhealth</h3></button>
+        <button type="button" class="btn pull-right " data-dismiss="modal" style="width: 48%" id="payCorp"><i class="fa fa-home" aria-hidden="true" style="font-size: 100px"></i><br><h3>Home Service</h3></button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script type="text/javascript" src="{{ asset('/Transaction/availservice.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/Transaction/addpatient.js') }}"></script>
 @endsection
