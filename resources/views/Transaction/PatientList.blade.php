@@ -59,7 +59,7 @@
 			          <td>{{ $table->patient_gender }}</td>
 			          <td>
 			           <!--  <a class="btn btn-info btn-xs upservtype" onclick="availserv({{ $table->patient_id }})" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Avail Service </a> -->
-			            <a class="btn btn-info btn-xs upservtype" data-target ="#homeservModal" data-toggle="modal" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Avail Service </a>
+			            <a class="btn btn-info btn-xs availservice" data-patientid="{{ $table->patient_id }}"  ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Avail Service </a>
 			          </td>
 			        </tr>
 			        @endforeach
@@ -256,6 +256,7 @@
 </div>
 <form action="/Transaction/AvailService" method="GET" id="proceedtoService">
 	<input type="hidden" name="patient_id" value="" id="patient_id">
+	<input type="hidden" name="transactwhere" value="" id="transactwhere">
 	{{ csrf_field() }}
 </form>
 <div class="modal fade" id="homeservModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -267,19 +268,35 @@
       <div class="modal-body">
         <h4><center>Avail Where?</center></h4>
       <div class="modal-footer">
-        <button type="button" class="btn pull-left" data-dismiss="modal" style="width: 48%" id="payDirect"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 100px"></i><br><h3>Globalhealth</h3></button>
-        <button type="button" class="btn pull-right " data-dismiss="modal" style="width: 48%" id="payCorp"><i class="fa fa-home" aria-hidden="true" style="font-size: 100px"></i><br><h3>Home Service</h3></button>
+      	<input type="hidden" name="transpatient_id" id="transpatient_id">
+        <button type="button" class="btn pull-left" data-dismiss="modal" style="width: 48%" id="transacthere"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 100px"></i><br><h3>Globalhealth</h3></button>
+        <button type="button" class="btn pull-right " data-dismiss="modal" style="width: 48%" id="transacthome"><i class="fa fa-home" aria-hidden="true" style="font-size: 100px"></i><br><h3>Home Service</h3></button>
       </div>
       </div>
     </div>
   </div>
 </div>
-<script type="text/javascript" src="{{ asset('/Transaction/availservice.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/Transaction/addpatient.js') }}"></script>
 @endsection
 
 @section('additional')
 <script type="text/javascript">
+$('.availservice').click(function(){
+	$('#transpatient_id').val($(this).data('patientid'));
+	$('#homeservModal').modal('show');
+});
+$('#transacthere').click(function(){
+	var pid = $('#transpatient_id').val();
+	$('#patient_id').val(pid);
+	$('#transactwhere').val('here');
+	$('#proceedtoService').submit();
+});
+$('#transacthome').click(function(){
+	var pid = $('#transpatient_id').val();
+	$('#patient_id').val(pid);
+	$('#transactwhere').val('home');
+	$('#proceedtoService').submit();
+});
 $('.select2').select2();
 $('#patientTbl').DataTable({
   'paging'      : true,

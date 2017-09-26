@@ -577,7 +577,7 @@ class TransactionController extends Controller
     }
     public function medicalservice(){
         $pid = $_GET['patient_id'];
-
+        $transactwhere = $_GET['transactwhere'];
         $emp_rebates = DB::table('employee_tbl')
             ->leftjoin('rolefields_tbl','rolefields_tbl.role_id','=','employee_tbl.emp_type_id')
             ->leftjoin('emp_rebate_tbl','emp_rebate_tbl.emp_id','=','employee_tbl.emp_id')
@@ -643,7 +643,7 @@ class TransactionController extends Controller
         }
         $corppackage = DB::table('corp_package_tbl')->where('corp_id',$corpid)->where('CorpPackStatus',1)->get();
 
-        return view('Transaction.MedicalService',['patientinfo'=>$patientinfo,'service'=>$service,'emp_rebates'=>$emp_rebates,'ptype_id'=>$ptype_id,'servicegroup'=>$servicegroup,'package'=>$package,'corp'=>$corp,'corppackage'=>$corppackage,'patient_age'=>$patient_age,'patient_gender'=>$patient_gender]);
+        return view('Transaction.MedicalService',['patientinfo'=>$patientinfo,'service'=>$service,'emp_rebates'=>$emp_rebates,'ptype_id'=>$ptype_id,'servicegroup'=>$servicegroup,'package'=>$package,'corp'=>$corp,'corppackage'=>$corppackage,'patient_age'=>$patient_age,'patient_gender'=>$patient_gender,'transactwhere'=>$transactwhere]);
     }
     function patient()
     {

@@ -49,60 +49,122 @@ $('#procpaymentmodal').click(function(){
 var payment = $('#paymentinput').val();
 var total = $('#totalpriceinput').val();
 var payWhere = $('#payWhere').val();
+var transactwhere = $('#transactwhere').val();
+
 total = total *1;
 payment = payment *1;
 
-	if(total == 0 && payWhere == undefined)
+	if(transactwhere == 'here')
 	{
-		total = null;
-		payment=null;
-		toastr.clear()
-		toastr.options = {
-		  "closeButton": true,
-		  "debug": false,
-		  "positionClass": "toast-top-right",
-		  "onclick": null,
-		  "showDuration": "3000",
-		  "hideDuration": "100",
-		  "timeOut": "3000",
-		  "extendedTimeOut": "0",
-		  "showEasing": "swing",
-		  "hideEasing": "swing",
-		  "showMethod": "show",
-		  "hideMethod": "hide"
+		if(total == 0 && payWhere == undefined)
+		{
+			total = null;
+			payment=null;
+			toastr.clear()
+			toastr.options = {
+			  "closeButton": true,
+			  "debug": false,
+			  "positionClass": "toast-top-right",
+			  "onclick": null,
+			  "showDuration": "3000",
+			  "hideDuration": "100",
+			  "timeOut": "3000",
+			  "extendedTimeOut": "0",
+			  "showEasing": "swing",
+			  "hideEasing": "swing",
+			  "showMethod": "show",
+			  "hideMethod": "hide"
+			}
+			toastr.error("Error! You need to add a service");
 		}
-		toastr.error("Error! You need to add a service");
-	}
 
-	if(total > payment && total > 0)
-	{
-		total = null;
-		payment=null;
-		toastr.options = {
-		  "closeButton": true,
-		  "debug": false,
-		  "positionClass": "toast-top-right",
-		  "onclick": null,
-		  "showDuration": "3000",
-		  "hideDuration": "100",
-		  "timeOut": "3000",
-		  "extendedTimeOut": "0",
-		  "showEasing": "swing",
-		  "hideEasing": "swing",
-		  "showMethod": "show",
-		  "hideMethod": "hide"
+		if(total > payment && total > 0)
+		{
+			total = null;
+			payment=null;
+			toastr.options = {
+			  "closeButton": true,
+			  "debug": false,
+			  "positionClass": "toast-top-right",
+			  "onclick": null,
+			  "showDuration": "3000",
+			  "hideDuration": "100",
+			  "timeOut": "3000",
+			  "extendedTimeOut": "0",
+			  "showEasing": "swing",
+			  "hideEasing": "swing",
+			  "showMethod": "show",
+			  "hideMethod": "hide"
+			}
+			toastr.warning("Sorry! Insufficient payment");
 		}
-		toastr.warning("Sorry! Insufficient payment");
-	}
 
-	if( payment > 0 && payment >= total && total != 0 || payWhere == 1)
+		if( payment > 0 && payment >= total && total != 0 || payWhere == 1)
+		{
+			$('#recieptDetails').empty();
+			$('#recieptDetails').append('<center>Reciept</center>');
+			$('#recieptDetails').append('<div class="pull-right" style="text-align:right""><hr>Grand Total: '+total+'<br><hr>Payment:'+payment+' <br>Change : '+(payment-total)+'</div>')
+			$('#myModal').modal('show');
+			total = null;
+			payment=null;
+		}
+	}
+	else
 	{
-		$('#recieptDetails').empty();
-		$('#recieptDetails').append('<center>Sales</center>');
-		$('#recieptDetails').append('Total : '+total+'<br>Payment:'+payment+' <br>Change : '+(payment-total)+'')
-		$('#myModal').modal('show');
-		total = null;
-		payment=null;
+		if(total == 200 && payWhere == undefined)
+		{
+			total = 200;
+			payment=null;
+			toastr.clear()
+			toastr.options = {
+			  "closeButton": true,
+			  "debug": false,
+			  "positionClass": "toast-top-right",
+			  "onclick": null,
+			  "showDuration": "3000",
+			  "hideDuration": "100",
+			  "timeOut": "3000",
+			  "extendedTimeOut": "0",
+			  "showEasing": "swing",
+			  "hideEasing": "swing",
+			  "showMethod": "show",
+			  "hideMethod": "hide"
+			}
+			toastr.error("Error! You need to add a service");
+		}
+
+		if(total > payment && total > 200)
+		{
+			total = 200;
+			payment=null;
+			toastr.options = {
+			  "closeButton": true,
+			  "debug": false,
+			  "positionClass": "toast-top-right",
+			  "onclick": null,
+			  "showDuration": "3000",
+			  "hideDuration": "100",
+			  "timeOut": "3000",
+			  "extendedTimeOut": "0",
+			  "showEasing": "swing",
+			  "hideEasing": "swing",
+			  "showMethod": "show",
+			  "hideMethod": "hide"
+			}
+			toastr.warning("Sorry! Insufficient payment");
+		}
+
+		if( payment > 200 && payment >= total && total != 200 || payWhere == 1)
+		{
+			var semitotal = total -200;
+			$('#recieptDetails').empty();
+			$('#recieptDetails').append('<center>Reciept</center><hr>');
+			$('#recieptDetails').append('Services sana dito');
+			$('#recieptDetails').append('<div class="pull-right" style="text-align:right""><hr>Sub-Total : '+semitotal+'<br>Home Service Fee: 200 <br><hr>Grand Total: '+total+'<br><hr>Payment:'+payment+' <br>Change : '+(payment-total)+'</div>')
+			$('#myModal').modal('show');
+			total = 200;
+			payment=null;
+		}
 	}
 });
 

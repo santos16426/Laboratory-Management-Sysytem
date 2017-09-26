@@ -17,6 +17,7 @@
 @section ('breadactivePage','Avail Medical Services')
 
 @section('content')
+<input type="hidden" name="transactwhere" id="transactwhere" value="{{ $transactwhere }}">
 <form action="/proceed_Payment" method="POST" id="price" enctype="multipart/form-data">
 <div class="modal fade" id = "myModal">
   <div class="modal-dialog">
@@ -237,12 +238,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr id="idniyato">
-										<td>sad</td>
-										<td>ada</td>
-										<td>dsad</td>
-										<td>asdsa</td>
-									</tr>
+									
 								</tbody>
 							</table>
 							<div class="col-md-12">
@@ -302,11 +298,16 @@
 				</header>
 				<div class="panel-body">
 				 <div class="form-group">
-	          <label >Total</label><input type="text" class="form-control" id="totalpriceinput"  name="totalpriceinput" value ="0"  readonly="">
+	          <label >Total</label><input type="text" class="form-control" id="totalpriceinput"  name="totalpriceinput" value ="@if($transactwhere =='home')200 @else 0 @endif"  readonly="">
 	        </div>
 	        <div class="form-group">
 	          <label  >Payment</label><input type="text" class="form-control" id="paymentinput"  name="paymentinput">
 	        </div>
+	        @if($transactwhere == 'home')
+	        <div class="form-group">
+	        	<label><sup>*</sup>Note:</label><br>&emsp;Additional two hundred pesos for <b>Home Service</b> <u>(200.00)</u>
+	        </div>
+	        @endif
 					<a  class="btn btn-primary btn-sm col-md-12" id="procpaymentmodal">Proceed to payment <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 				</div>
 			</section>
