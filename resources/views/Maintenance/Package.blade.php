@@ -26,7 +26,7 @@
 				<div class="clearfix">
 					<div class="btn-group pull-right">
 					
-					<a class="btn btn-info" style="margin-left: -20%" href="#addModal" data-toggle="modal" id="addEmpBtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+					<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="addEmpBtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="empTable">
 						<thead>
@@ -117,7 +117,7 @@
        <div class="form-group" style="margin-right:% ">
               <div class="col-md-10 col-md-offset-3">
                 <div class="input-group">
-                   <small><sup>*</sup>Note:<br>&nbsp;Package price should be below/equal to total price.<div id="totalprice">&nbsp;Total price: 
+                   <small><sup>*</sup>Note:<br>&nbsp;Package price should be below/equal to total price.<div id="uptotalprice">&nbsp;Total price: 
                     0 </div></small>
               </div>
           </div>  
@@ -136,7 +136,7 @@
 
 
 <div class="modal fade" id = "addModal">
-  <div class="modal-dialog" style="width: 70%">
+  <div class="modal-dialog" >
     <div class="modal-content">
       <div class="modal-header btn-primary">
         <h4 class="modal-title"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Package</h4>
@@ -192,7 +192,7 @@
              </div>
           </div>  
        </div> 
-        <div class="form-group" style="margin-right:% ">
+        <div class="form-group">
               <div class="col-md-10 col-md-offset-3">
                 <div class="input-group">
                    <small><sup>*</sup>Note:<br>&nbsp;Package price should be below/equal to total price.<div id="totalprice">&nbsp;Total price: 
@@ -327,7 +327,56 @@
   </script>
 
 <script type="text/javascript">
-
+$('.packservice').change(function(){
+  var service_id = $('.packservice').val();
+  if(service_id == null || service_id == '')
+  {
+    $('#totalprice').empty();
+    $('#totalprice').append('Total price: 0');
+  }
+  else
+  {
+    $.ajax
+    ({
+      url: '/getTotalPrice',
+      type: 'get',
+      data:{id:service_id},
+      dataType: 'json',
+      success:function(response)
+      {
+        response.forEach(function(data){
+          $('#totalprice').empty();
+          $('#totalprice').append('Total price: '+data.total+'');
+        })
+      }
+    });
+  }
+});
+$('.updatepackservice').change(function(){
+  var service_id = $('.updatepackservice').val();
+  if(service_id == null || service_id == '')
+  {
+    $('#uptotalprice').empty();
+    $('#uptotalprice').append('Total price: 0');
+  }
+  else
+  {
+    $.ajax
+    ({
+      url: '/getTotalPrice',
+      type: 'get',
+      data:{id:service_id},
+      dataType: 'json',
+      success:function(response)
+      {
+        response.forEach(function(data){
+          $('#uptotalprice').empty();
+          $('#uptotalprice').append('Total price: '+data.total+'');
+        })
+      }
+    });
+  }
+});
 $('.select2').select2();
 $('.packservice').select2({
   placeholder: 'Services offered'

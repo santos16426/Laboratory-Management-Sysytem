@@ -7,6 +7,11 @@ use DB;
 use Session;
 class PackageController extends Controller
 {
+    public function getTotalPrice(Request $req)
+    {
+      $var1 = DB::table('service_tbl')->select(DB::raw('SUM(service_price) as total'))->whereIn('service_id',$req->id)->get();
+      return response()->json($var1);
+    }
     public function getServiceUnderPackage(Request $req){
 
         $package_id = DB::table('package_tbl')->select('pack_id')->where('pack_name',$req->package_name)->get();

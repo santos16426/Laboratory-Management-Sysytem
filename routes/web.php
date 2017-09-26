@@ -79,6 +79,7 @@ Route::post('/deletePackage','PackageController@deletePackage');
 Route::post('/update_package','PackageController@update_package');
 Route::post('/save_package','PackageController@save_package');
 Route::get('/getServiceUnderPackage','PackageController@getServiceUnderPackage');
+Route::get('/getTotalPrice','PackageController@getTotalPrice');
 
 //Corporate
 Route::get('/Maintenance/Corporate','CorporateAccountController@corp');

@@ -76,7 +76,7 @@
             <div class="form-group" style="margin-right:% ">
               <div class="col-md-10 col-md-offset-3">
                 <div class="input-group">
-                   <small><sup>*</sup>Note:<br>&nbsp;Package price should be below/equal to total price.<div id="totalprice">&nbsp;Total price: 
+                   <small><sup>*</sup>Note:<br>&nbsp;Package price should be below/equal to total price.<div id="uptotalprice">&nbsp;Total price: 
                     0 </div></small>
               </div>
           </div>  
@@ -363,6 +363,58 @@
 @endsection
 @section('additional')
 <script type="text/javascript">
+
+  $('.uppackservice').change(function(){
+    var service_id = $('.uppackservice').val();
+    if(service_id == null || service_id == '')
+    {
+      $('#uptotalprice').empty();
+      $('#uptotalprice').append('Total price: 0');
+    }
+    else
+    {
+      $.ajax
+      ({
+        url: '/getTotalPrice',
+        type: 'get',
+        data:{id:service_id},
+        dataType: 'json',
+        success:function(response)
+        {
+          response.forEach(function(data){
+            $('#uptotalprice').empty();
+            $('#uptotalprice').append('Total price: '+data.total+'');
+          })
+        }
+      });
+    }
+  });
+
+  $('.packservice').change(function(){
+    var service_id = $('.packservice').val();
+    if(service_id == null || service_id == '')
+    {
+      $('#totalprice').empty();
+      $('#totalprice').append('Total price: 0');
+    }
+    else
+    {
+      $.ajax
+      ({
+        url: '/getTotalPrice',
+        type: 'get',
+        data:{id:service_id},
+        dataType: 'json',
+        success:function(response)
+        {
+          response.forEach(function(data){
+            $('#totalprice').empty();
+            $('#totalprice').append('Total price: '+data.total+'');
+          })
+        }
+      });
+    }
+  });
   $('#corpPacktbl').DataTable({
   'paging'      : true,
   'lengthChange': true,
