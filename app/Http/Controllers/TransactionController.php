@@ -559,7 +559,31 @@ class TransactionController extends Controller
         $package = DB::table('package_tbl')
             ->where('pack_id',$req->id)
             ->get();
-        return response()->json($package);
+        $services = DB::table('package_service_tbl')
+            ->leftjoin('service_tbl','service_tbl.service_id','=','package_service_tbl.pack_serv_serv_id')
+            ->leftjoin('service_group_tbl','service_group_tbl.servgroup_id','=','service_tbl.service_group_id')
+            ->leftjoin('service_type_tbl','service_type_tbl.service_type_id','=','service_tbl.service_type_id')
+            ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+            ->where('ServiceStatus',1)
+            ->where('ServTypeStatus',1)
+            ->where('ServGroupStatus',1)
+            ->where('LabStatus',1)
+            ->where('pack_serv_package_id',$req->id)
+
+            ->orWhere('ServiceStatus',1)
+            ->where('ServTypeStatus',null)
+            ->where('ServGroupStatus',1)
+            ->where('LabStatus',1)
+            ->where('pack_serv_package_id',$req->id)
+
+            ->orWhere('ServiceStatus',1)
+            ->where('ServTypeStatus',null)
+            ->where('ServGroupStatus',null)
+            ->where('LabStatus',null)
+            ->where('pack_serv_package_id',$req->id)
+            ->get();
+        // dd($services);
+        return response()->json([$package,$services]);
     }
     public function getDataService(Request $req){
         $servicedetails = DB::table('service_tbl')

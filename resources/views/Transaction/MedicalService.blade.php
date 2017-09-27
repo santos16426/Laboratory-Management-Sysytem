@@ -17,7 +17,9 @@
 @section ('breadactivePage','Avail Medical Services')
 
 @section('content')
+<input type="hidden" name="discount" id="discount" value="0">
 <input type="hidden" name="transactwhere" id="transactwhere" value="{{ $transactwhere }}">
+<input type="hidden" name="originalprice" id="originalprice" value="0">
 <form action="/proceed_Payment" method="POST" id="price" enctype="multipart/form-data">
 <div class="modal fade" id = "myModal">
   <div class="modal-dialog">
@@ -287,6 +289,8 @@
 				<div class="panel-body">
 					<a  class="btn btn-primary btn-sm col-md-5" id="seniormodal">Senior <i class="" aria-hidden="true"></i></a>
 					<a  class="btn btn-primary btn-sm col-md-5 col-md-offset-2" id="pwdmodal">PWD<i class="" aria-hidden="true"></i></a>
+					<hr>
+					<a  class="btn btn-primary btn-sm col-md-5" id="test">test<i class="" aria-hidden="true"></i></a>
 				</div>
 			</section>
 		</div>

@@ -1,3 +1,100 @@
+$('#totalpriceinput').change(function()
+{
+	alert();
+})
+var medservice = [];
+var seniormodal = document.getElementById('seniormodal');
+var pwdmodal = document.getElementById('pwdmodal');
+$('#seniormodal').click(function(){
+	if(seniormodal.className == "btn btn-primary btn-sm col-md-5")
+	{
+		$('#discount').val(32);
+		seniormodal.className = "btn btn-success btn-sm col-md-5 active";
+		pwdmodal.className = "btn btn-primary btn-sm col-md-5 col-md-offset-2 disabled"
+		toastr.options = {
+		  "closeButton": true,
+		  "debug": false,
+		  "positionClass": "toast-top-right",
+		  "onclick": null,
+		  "showDuration": "3000",
+		  "hideDuration": "100",
+		  "timeOut": "3000",
+		  "extendedTimeOut": "0",
+		  "showEasing": "swing",
+		  "hideEasing": "swing",
+		  "showMethod": "show",
+		  "hideMethod": "hide"
+		}
+		toastr.success("Discount activated!");
+	}
+	else
+	{
+		$('#discount').val(0);
+		seniormodal.className = "btn btn-primary btn-sm col-md-5";
+		pwdmodal.className = "btn btn-primary btn-sm col-md-5 col-md-offset-2"
+		toastr.options = {
+		  "closeButton": true,
+		  "debug": false,
+		  "positionClass": "toast-top-right",
+		  "onclick": null,
+		  "showDuration": "3000",
+		  "hideDuration": "100",
+		  "timeOut": "3000",
+		  "extendedTimeOut": "0",
+		  "showEasing": "swing",
+		  "hideEasing": "swing",
+		  "showMethod": "show",
+		  "hideMethod": "hide"
+		}
+		toastr.warning("Discount removed!");
+	}
+
+});
+$('#pwdmodal').click(function(){
+	if(pwdmodal.className == "btn btn-primary btn-sm col-md-5 col-md-offset-2")
+	{
+		$('#discount').val(32);
+		pwdmodal.className = "btn btn-success btn-sm col-md-5 col-md-offset-2 active";
+		seniormodal.className = "btn btn-primary btn-sm col-md-5 disabled";
+		toastr.options = {
+		  "closeButton": true,
+		  "debug": false,
+		  "positionClass": "toast-top-right",
+		  "onclick": null,
+		  "showDuration": "3000",
+		  "hideDuration": "100",
+		  "timeOut": "3000",
+		  "extendedTimeOut": "0",
+		  "showEasing": "swing",
+		  "hideEasing": "swing",
+		  "showMethod": "show",
+		  "hideMethod": "hide"
+		}
+		toastr.success("Discount activated!");
+	}
+	else
+	{
+		$('#discount').val(0);
+		pwdmodal.className = "btn btn-primary btn-sm col-md-5 col-md-offset-2";
+		seniormodal.className = "btn btn-primary btn-sm col-md-5";
+		toastr.options = {
+		  "closeButton": true,
+		  "debug": false,
+		  "positionClass": "toast-top-right",
+		  "onclick": null,
+		  "showDuration": "3000",
+		  "hideDuration": "100",
+		  "timeOut": "3000",
+		  "extendedTimeOut": "0",
+		  "showEasing": "swing",
+		  "hideEasing": "swing",
+		  "showMethod": "show",
+		  "hideMethod": "hide"
+		}
+		toastr.warning("Discount removed!");
+	}
+});
+
 var t = $('#medicalRequest').DataTable({
 	'paging'      : false,
 	'lengthChange': false,
@@ -6,10 +103,7 @@ var t = $('#medicalRequest').DataTable({
 	'info'        : false,
 	'autoWidth'   : true,
 });
-$('#seniormodal').click(function(){
-	
-	t.fnDeleteRow(t.$('#idniyato')[0]);
-});
+
 $(document).ready(function() {
 	$(window).keydown(function(event)
 	{
@@ -298,6 +392,7 @@ $('#addpackageBtn').click(function(){
 	var package_id = $('#package_id').val();
 	var total = $('#totalpriceinput').val();
 	var price = 0*1;
+	var service_names = [];
 	$.ajax
 	({
 		url: '/getCompanyPackage',
@@ -305,9 +400,12 @@ $('#addpackageBtn').click(function(){
 		data: { id: package_id },
 		dataType : 'json',
 		success:function(response){
-			response.forEach(function(data){
+			response[1].forEach(function(data){
+				service_names.push(data.service_name);
+			});
+			response[0].forEach(function(data){
 				t.row.add([
-				data.pack_name + " (Package)" ,
+				data.pack_name + " (Package)<br>"+'&emsp;&emsp;&emsp;'+"("+service_names+")",
 				'',
 				data.pack_price,
 				'<a class="btn btn-danger btn-xs remove_package'+package_id+'" data-id="'+package_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="package_id[]" value="'+package_id+'"><input type="hidden" name="packprice" id="packprice'+package_id+' value ='+data.pack_price+' ">'
@@ -362,6 +460,7 @@ $('#addpackageBtn').click(function(){
 
 $('#addservice').click(function(){
 	var total = $('#totalpriceinput').val();
+	var origprice = $('#originalprice').val();
 	var service_name = "";
 	var service_price="";
 	var service_id = $('#srvc_id').val();
@@ -382,7 +481,7 @@ $('#addservice').click(function(){
 					data.service_name ,
 					data.servgroup_name,
 					data.service_price,
-					'<a class="btn btn-danger btn-xs remove_service'+service_id+'" data-id="'+service_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="medservice_id[]" value="'+service_id+'"><input type="hidden" name="serviceprice" value='+data.service_price+' id="serviceprice'+service_id+'">'
+					'<a class="btn btn-danger btn-xs remove_service'+service_id+'" data-id="'+service_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="medservice_id[]" value="'+service_id+'" class="medservice"><input type="hidden" name="serviceprice" value='+data.service_price+' id="serviceprice'+service_id+'">'
 					]).draw(false);
 					toastr.options = {
 					  "closeButton": true,
@@ -399,6 +498,7 @@ $('#addservice').click(function(){
 					  "hideMethod": "hide"
 					}
 					toastr.success(data.service_name + " is successfully added");
+					medservice.push(data.service_id);
 					if(data.service_notes != null)
 					{
 						$('#service_notes').append(data.service_notes + "<br>");
@@ -416,8 +516,8 @@ $('#addservice').click(function(){
 						len = str.length;
 						$('#service_notes').text(str.substring(len));
 					}
-
 					var remServ_id = $(this).data("id");
+					
 					$('#totalpriceinput').val($('#totalpriceinput').val() - price);
 					toastr.options = {
 					  "closeButton": true,
@@ -459,6 +559,7 @@ $('#addservice').click(function(){
 							data.service_price,
 							'<a class="btn btn-danger btn-xs remove_service'+service_id+'" data-id="'+service_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="medservice_id[]" value="'+service_id+'"><input type="hidden" name="serviceprice" value='+data.service_price+' id="serviceprice'+service_id+'">'
 							]).draw(false);
+
 							toastr.options = {
 						      "closeButton": true,
 						      "debug": false,
@@ -474,17 +575,18 @@ $('#addservice').click(function(){
 						      "hideMethod": "hide"
 						    }
 						    toastr.success(data.service_name + " is successfully added");
+						    medservice.push(data.service_id);
 						    if(data.service_notes != null)
 							{
 								$('#service_notes').append(data.service_notes + "<br>");
 							}
-							
 							$("#ServiceOPTION"+service_id).attr("disabled","disabled");
 							total = total *1;
 							price = ($('#serviceprice'+service_id+'').val()*1);
 							total = total + price;
 							$('#totalpriceinput').val(total);
 							$('.remove_service'+service_id).click(function(){
+								
 								if(data.service_notes != null)
 								{
 									var str = $('#service_notes').text().replace(data.service_notes + "<br>", ' ');

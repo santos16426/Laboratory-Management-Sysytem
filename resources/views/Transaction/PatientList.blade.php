@@ -255,7 +255,9 @@
   </div>
 </div>
 <form action="/Transaction/AvailService" method="GET" id="proceedtoService">
+	{{ csrf_field() }}
 	<input type="hidden" name="patient_id" value="" id="patient_id">
+	{{ csrf_field() }}
 	<input type="hidden" name="transactwhere" value="" id="transactwhere">
 	{{ csrf_field() }}
 </form>
