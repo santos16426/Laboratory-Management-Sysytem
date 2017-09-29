@@ -927,33 +927,33 @@ $('#corppackedit').bootstrapValidator({
         ;
 
 //Medical Service Price
-$('#price').bootstrapValidator({
-        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            paymentinput: {
-                validators: {
-                        regexp: {
-                            regexp: /^\d+(?:\.\d{1,2})?$/,
-                            message: 'Invalid Input.'
-                    },
-                    stringLength: {
-                        max: 9,
-                        message:'Price limit reached'
-                    },
-                        notEmpty: {
-                        message: 'This field is required.'
-                    }
-                }
-            },                                  
-            }
-        })
+// $('#price').bootstrapValidator({
+//         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+//         feedbackIcons: {
+//             valid: 'glyphicon glyphicon-ok',
+//             invalid: 'glyphicon glyphicon-remove',
+//             validating: 'glyphicon glyphicon-refresh'
+//         },
+//         fields: {
+//             paymentinput: {
+//                 validators: {
+//                         regexp: {
+//                             regexp: /^\d+(?:\.\d{1,2})?$/,
+//                             message: 'Invalid Input.'
+//                     },
+//                     stringLength: {
+//                         max: 9,
+//                         message:'Price limit reached'
+//                     },
+//                         notEmpty: {
+//                         message: 'This field is required.'
+//                     }
+//                 }
+//             },                                  
+//             }
+//         })
 
-        ;
+//         ;
 
 
 // rebate percentage

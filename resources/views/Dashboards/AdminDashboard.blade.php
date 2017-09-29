@@ -324,9 +324,16 @@ $( document ).ready(function() {
         success:function(response) { 
           response[0].forEach(function(data){
             date = data.trans_date;
+            date = new Date(date);
+            date = date.toDateString();
             total = data.trans_total;
             payment = data.trans_payment;
             change = data.trans_change;
+
+            total = parseFloat(total).toFixed(2);
+            payment= parseFloat(payment).toFixed(2);
+            change =parseFloat(change).toFixed(2);
+
           })
           response[1].forEach(function(data) { 
             emp_name = data.Name;
@@ -363,15 +370,18 @@ $( document ).ready(function() {
       frameDoc.document.write('<tr class="heading"> <td> Service </td> <td> Fee </td></tr>');
 
       response[5].forEach(function(data){
-
-        frameDoc.document.write('<tr><td>'+data.serv_name+'</td><td>Php '+data.service_price+'</td></tr>');
+        price = data.service_price
+        price = parseFloat(price).toFixed(2);
+        frameDoc.document.write('<tr><td>'+data.serv_name+'</td><td>Php '+price+'</td></tr>');
       })
       
       response[6].forEach(function(data){
         var charge = data.charge;
         if(charge == 0)
         {
-          frameDoc.document.write('<tr class="item"><td>'+data.corpPack_name+' (Corporate Package)</td><td>Php '+data.price+'</td></tr>');
+          price = data.price
+          price = parseFloat(price).toFixed(2);
+          frameDoc.document.write('<tr class="item"><td>'+data.corpPack_name+' (Corporate Package)</td><td>Php '+price+'</td></tr>');
         }
         if(charge != 0)
         {
@@ -383,7 +393,9 @@ $( document ).ready(function() {
 
       })
       response[8].forEach(function(data){
-        frameDoc.document.write('<tr><td>'+data.pack_name+'</td><td>Php '+data.pack_price+'</td></tr>');
+        price = data.pack_price;
+        price = parseFloat(price).toFixed(2);
+        frameDoc.document.write('<tr><td>'+data.pack_name+'</td><td>Php '+price+'</td></tr>');
         response[9].forEach(function(data){
           frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
         })

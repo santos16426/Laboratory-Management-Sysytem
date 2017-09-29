@@ -364,7 +364,7 @@ $('#payDirect').click(function(){
 				else
 				{
 					total = (origprice*1);
-					price = $('#serviceprice'+service_id+'').val()*1;
+					price = ($('#corppackprice'+data.corpPack_id).val()*1);
 					total = total + price;
 					total = total - total * (discount/100);
 					total = total +200;
