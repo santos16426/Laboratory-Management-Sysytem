@@ -6,9 +6,26 @@ var medservice = [];
 var seniormodal = document.getElementById('seniormodal');
 var pwdmodal = document.getElementById('pwdmodal');
 $('#seniormodal').click(function(){
+	var origprice = $('#originalprice').val();
+	var transactwhere = $('#transactwhere').val();
+	var discount = $('#discount').val();
+	var total = $('#totalpriceinput').val();
 	if(seniormodal.className == "btn btn-primary btn-sm col-md-5")
 	{
 		$('#discount').val(32);
+		if(transactwhere == 'here')
+		{
+			discount = $('#discount').val();
+			total = origprice *1;
+			total = total - (total * (discount/100));
+		}
+		else
+		{
+			discount = $('#discount').val();
+			total = origprice *1;
+			total = total - (total * (discount/100))+200;
+		}
+		$('#totalpriceinput').val(total);
 		seniormodal.className = "btn btn-success btn-sm col-md-5 active";
 		pwdmodal.className = "btn btn-primary btn-sm col-md-5 col-md-offset-2 disabled"
 		toastr.options = {
@@ -30,6 +47,14 @@ $('#seniormodal').click(function(){
 	else
 	{
 		$('#discount').val(0);
+		if(transactwhere == 'here')
+		{
+			$('#totalpriceinput').val($('#originalprice').val());
+		}
+		else
+		{
+			$('#totalpriceinput').val(($('#originalprice').val()*1)+200);
+		}
 		seniormodal.className = "btn btn-primary btn-sm col-md-5";
 		pwdmodal.className = "btn btn-primary btn-sm col-md-5 col-md-offset-2"
 		toastr.options = {
@@ -51,9 +76,28 @@ $('#seniormodal').click(function(){
 
 });
 $('#pwdmodal').click(function(){
+	var origprice = $('#originalprice').val();
+	var transactwhere = $('#transactwhere').val();
+	var discount = $('#discount').val();
+	var total = $('#totalpriceinput').val();
 	if(pwdmodal.className == "btn btn-primary btn-sm col-md-5 col-md-offset-2")
 	{
 		$('#discount').val(32);
+		if(transactwhere == 'here')
+		{
+				
+			discount = $('#discount').val();
+			total = origprice *1;
+			total = total - (total * (discount/100));
+			
+		}
+		else
+		{
+			discount = $('#discount').val();
+			total = origprice *1;
+			total = total - (total * (discount/100))+200;
+		}
+		$('#totalpriceinput').val(total);
 		pwdmodal.className = "btn btn-success btn-sm col-md-5 col-md-offset-2 active";
 		seniormodal.className = "btn btn-primary btn-sm col-md-5 disabled";
 		toastr.options = {
@@ -75,6 +119,14 @@ $('#pwdmodal').click(function(){
 	else
 	{
 		$('#discount').val(0);
+		if(transactwhere == 'here')
+		{
+			$('#totalpriceinput').val($('#originalprice').val());
+		}
+		else
+		{
+			$('#totalpriceinput').val(($('#originalprice').val()*1)+200);
+		}
 		pwdmodal.className = "btn btn-primary btn-sm col-md-5 col-md-offset-2";
 		seniormodal.className = "btn btn-primary btn-sm col-md-5";
 		toastr.options = {
@@ -140,14 +192,26 @@ $('#activecorppack').click(function(){
 	}
 });
 $('#procpaymentmodal').click(function(){
+var discount = $('#discount').val();
+var origprice = $('#originalprice').val();
 var payment = $('#paymentinput').val();
 var total = $('#totalpriceinput').val();
 var payWhere = $('#payWhere').val();
 var transactwhere = $('#transactwhere').val();
-
+if(discount == 0)
+{
+	discount = "N/A";
+}
+else
+{
+	discount = discount + "%";
+}
 total = total *1;
+total = parseFloat((total).toFixed(2));
 payment = payment *1;
-
+payment = parseFloat((payment).toFixed(2));
+change = payment-total;
+change = parseFloat((change).toFixed(2));
 	if(transactwhere == 'here')
 	{
 		if(total == 0 && payWhere == undefined)
@@ -197,7 +261,7 @@ payment = payment *1;
 		{
 			$('#recieptDetails').empty();
 			$('#recieptDetails').append('<center>Reciept</center>');
-			$('#recieptDetails').append('<div class="pull-right" style="text-align:right""><hr>Grand Total: '+total+'<br><hr>Payment:'+payment+' <br>Change : '+(payment-total)+'</div>')
+			$('#recieptDetails').append('<div><hr>Sub-Total: '+origprice+'<hr>Discount: '+discount+'<hr>Grand Total: '+total+'<br><hr>Payment:'+payment+' <br>Change : '+change+'</div>')
 			$('#myModal').modal('show');
 			total = null;
 			payment=null;
@@ -251,10 +315,10 @@ payment = payment *1;
 		if( payment > 200 && payment >= total && total != 200 || payWhere == 1)
 		{
 			var semitotal = total -200;
+			semitotal = parseFloat(semitotal).toFixed(2);
 			$('#recieptDetails').empty();
 			$('#recieptDetails').append('<center>Reciept</center><hr>');
-			$('#recieptDetails').append('Services sana dito');
-			$('#recieptDetails').append('<div class="pull-right" style="text-align:right""><hr>Sub-Total : '+semitotal+'<br>Home Service Fee: 200 <br><hr>Grand Total: '+total+'<br><hr>Payment:'+payment+' <br>Change : '+(payment-total)+'</div>')
+			$('#recieptDetails').append('<div><hr>Sub-Total : '+origprice+'<br>Discount: '+discount+'<br>Home Service Fee: 200 <br><hr>Grand Total: '+total+'<br><hr>Payment:'+payment+' <br>Change : '+change+'</div>')
 			$('#myModal').modal('show');
 			total = 200;
 			payment=null;
@@ -267,6 +331,9 @@ payment = payment *1;
 
 $('#payDirect').click(function(){	
 	$('#payWhere').val('0');
+	var origprice = $('#originalprice').val();
+	var transactwhere = $('#transactwhere').val();
+	var discount = $('#discount').val();
 	var total = $('#totalpriceinput').val();
 	var corpPack_id = $('#corppack_id').val();
 	var addpackagebtn = document.getElementById('activecorppack');
@@ -287,11 +354,26 @@ $('#payDirect').click(function(){
 				data.price,
 				'<input type="hidden" id="corppackprice'+data.corpPack_id+'" value='+data.price+' name="corppackprice" /><a class="btn btn-danger btn-xs corpremove_package'+data.corpPack_id+'" data-id="'+data.corpPack_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="corppackage_id" value="'+data.corpPack_id+'"><input type="hidden" name="payWhere" id="payWhere" value="0"><input type="hidden" name="corp_id" id="corp_id" value='+data.corp_id+'>'
 				]).draw(false);
-				total = total * 1;
-				price = ($('#corppackprice'+data.corpPack_id).val()*1);
-				total = total + price;
-
+				if(transactwhere == 'here')
+				{
+					total = origprice *1;
+					price = ($('#corppackprice'+data.corpPack_id).val()*1);
+					total = total + price;
+					total = total - total * (discount/100);
+				}
+				else
+				{
+					total = (origprice*1);
+					price = $('#serviceprice'+service_id+'').val()*1;
+					total = total + price;
+					total = total - total * (discount/100);
+					total = total +200;
+				}
+				origprice = origprice *1;
+				origprice = origprice + price;
+				$('#originalprice').val(origprice);
 				$('#totalpriceinput').val(total);
+
 				toastr.options = {
 				  "closeButton": true,
 				  "debug": false,
@@ -310,7 +392,26 @@ $('#payDirect').click(function(){
 				$('.corpremove_package'+data.corpPack_id+'').click(function()
 				{
 					var remPack_id = $(this).data("id");
-					$('#totalpriceinput').val($('#totalpriceinput').val() - price);
+					if(transactwhere == 'here')
+					{
+						price = (price*1);
+						total = origprice *1;
+						total = total - price;
+						total = total - total *(discount/100);
+						origprice = origprice *1;
+						origprice = origprice - price;
+					}
+					else
+					{
+						price = ($('#serviceprice'+service_id+'').val()*1);
+						total = origprice *1;
+						total = total - price;
+						total = total - total *(discount/100) + 200;
+						origprice = origprice *1;
+						origprice = origprice - price;
+					}
+					$('#originalprice').val(origprice);
+					$('#totalpriceinput').val(total);
 					t.row($(this).parents('tr')).remove().draw();
 					return true;
 					toastr.options = {
@@ -337,6 +438,9 @@ $('#payDirect').click(function(){
 
 $('#payCorp').click(function(){
 	var total = $('#totalpriceinput').val();
+	var origprice = $('#originalprice').val();
+	var transactwhere = $('#transactwhere').val();
+	var discount = $('#discount').val();
 	var addpackagebtn = document.getElementById('activecorppack');
 	$('#payWhere').val('1');
 	var corpPack_id = $('#corppack_id').val();
@@ -355,9 +459,24 @@ $('#payCorp').click(function(){
 				data.price + " (c/o "+data.corp_name+")",
 				'<input type="hidden" id="corppackprice'+data.corpPack_id+'" value='+data.price+' name="corppackprice" /><a class="btn btn-danger btn-xs corpremove_package'+data.corpPack_id+'" data-id="'+data.corpPack_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="corppackage_id" value="'+data.corpPack_id+'"><input type="hidden" name="payWhere" id="payWhere" value="1"><input type="hidden" name="corp_id" id="corp_id" value='+data.corp_id+'>'
 				]).draw(false);
-				total = total*1;
-				price = 0;
-				total = total + price;
+				if(transactwhere == 'here')
+				{
+					total = origprice *1;
+					price = 0;
+					total = total + price;
+					total = total - total * (discount/100);
+				}
+				else
+				{
+					total = (origprice*1);
+					price = 0;
+					total = total + price;
+					total = total - total * (discount/100);
+					total = total +200;
+				}
+				origprice = origprice *1;
+				origprice = origprice + price;
+				$('#originalprice').val(origprice);
 				$('#totalpriceinput').val(total);
 				toastr.options = {
 			      "closeButton": true,
@@ -376,8 +495,26 @@ $('#payCorp').click(function(){
 			    toastr.success(data.corpPack_name + " is successfully added");
 				$('.corpremove_package'+data.corpPack_id+'').click(function(){
 					var remPack_id = $(this).data("id");
-					
-					$('#totalpriceinput').val($('#totalpriceinput').val() - price);
+					if(transactwhere == 'here')
+					{
+						price = (price*1);
+						total = origprice *1;
+						total = total - price;
+						total = total - total *(discount/100);
+						origprice = origprice *1;
+						origprice = origprice - price;
+					}
+					else
+					{
+						price = ($('#serviceprice'+service_id+'').val()*1);
+						total = origprice *1;
+						total = total - price;
+						total = total - total *(discount/100) + 200;
+						origprice = origprice *1;
+						origprice = origprice - price;
+					}
+					$('#originalprice').val(origprice);
+					$('#totalpriceinput').val(total);
 					console.log("Remove Service ID:" + remPack_id);
 					t.row($(this).parents('tr')).remove().draw();
 					return true;
@@ -389,10 +526,15 @@ $('#payCorp').click(function(){
 });
 
 $('#addpackageBtn').click(function(){
+	var total = $('#totalpriceinput').val();
+	var origprice = $('#originalprice').val();
+	var transactwhere = $('#transactwhere').val();
+	var discount = $('#discount').val();
 	var package_id = $('#package_id').val();
 	var total = $('#totalpriceinput').val();
 	var price = 0*1;
 	var service_names = [];
+	var serv= "";
 	$.ajax
 	({
 		url: '/getCompanyPackage',
@@ -403,9 +545,14 @@ $('#addpackageBtn').click(function(){
 			response[1].forEach(function(data){
 				service_names.push(data.service_name);
 			});
+			for(var i = 0; i<service_names.length; i++)
+			{
+				serv+='&emsp;&emsp;'+"-"+service_names[i]+"<br>";
+			}
 			response[0].forEach(function(data){
 				t.row.add([
-				data.pack_name + " (Package)<br>"+'&emsp;&emsp;&emsp;'+"("+service_names+")",
+				data.pack_name + " (Package)<br>"+serv
+				,
 				'',
 				data.pack_price,
 				'<a class="btn btn-danger btn-xs remove_package'+package_id+'" data-id="'+package_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="package_id[]" value="'+package_id+'"><input type="hidden" name="packprice" id="packprice'+package_id+' value ='+data.pack_price+' ">'
@@ -426,10 +573,27 @@ $('#addpackageBtn').click(function(){
 			    }
 			    toastr.success(data.pack_name + " is successfully added");
 				$("#PackageID"+package_id).attr("disabled","disabled");
-				total = total *1;
-				price = data.pack_price;
-				total = total + price;
+				
+				if(transactwhere == 'here')
+				{
+					total = origprice *1;
+					price = data.pack_price;
+					total = total + price;
+					total = total - total * (discount/100);
+				}
+				else
+				{
+					total = (origprice*1);
+					price = $('#serviceprice'+service_id+'').val()*1;
+					total = total + price;
+					total = total - total * (discount/100);
+					total = total +200;
+				}
+				origprice = origprice *1;
+				origprice = origprice + price;
+				$('#originalprice').val(origprice);
 				$('#totalpriceinput').val(total);
+
 				$('.remove_package'+package_id+'').click(function(){
 					var remPack_id = $(this).data("id");
 					toastr.options = {
@@ -447,7 +611,26 @@ $('#addpackageBtn').click(function(){
 				      "hideMethod": "hide"
 				    }
 				    toastr.success(data.pack_name + " is successfully removed");
-					$('#totalpriceinput').val($('#totalpriceinput').val() - price);
+					if(transactwhere == 'here')
+					{
+						price = (price*1);
+						total = origprice *1;
+						total = total - price;
+						total = total - total *(discount/100);
+						origprice = origprice *1;
+						origprice = origprice - price;
+					}
+					else
+					{
+						price = ($('#serviceprice'+service_id+'').val()*1);
+						total = origprice *1;
+						total = total - price;
+						total = total - total *(discount/100) + 200;
+						origprice = origprice *1;
+						origprice = origprice - price;
+					}
+					$('#originalprice').val(origprice);
+					$('#totalpriceinput').val(total);
 					$("#PackageID"+package_id).removeAttr("disabled","disabled");
 					t.row($(this).parents('tr')).remove().draw();
 					return true;
@@ -461,6 +644,8 @@ $('#addpackageBtn').click(function(){
 $('#addservice').click(function(){
 	var total = $('#totalpriceinput').val();
 	var origprice = $('#originalprice').val();
+	var transactwhere = $('#transactwhere').val();
+	var discount = $('#discount').val();
 	var service_name = "";
 	var service_price="";
 	var service_id = $('#srvc_id').val();
@@ -504,39 +689,75 @@ $('#addservice').click(function(){
 						$('#service_notes').append(data.service_notes + "<br>");
 					}
 					$("#ServiceOPTION"+service_id).attr("disabled","disabled");
-					total = total *1;
-					price = ($('#serviceprice'+service_id+'').val()*1);
-					total = total + price;
-					$('#totalpriceinput').val(total);
-					$('.remove_service'+service_id+'').click(function(){
-
-					if(data.service_notes != null)
-					{
-						var str = $('#service_notes').text().replace(data.service_notes + "<br>", ' ');
-						len = str.length;
-						$('#service_notes').text(str.substring(len));
-					}
-					var remServ_id = $(this).data("id");
 					
-					$('#totalpriceinput').val($('#totalpriceinput').val() - price);
-					toastr.options = {
-					  "closeButton": true,
-					  "debug": false,
-					  "positionClass": "toast-top-right",
-					  "onclick": null,
-					  "showDuration": "3000",
-					  "hideDuration": "100",
-					  "timeOut": "3000",
-					  "extendedTimeOut": "0",
-					  "showEasing": "swing",
-					  "hideEasing": "swing",
-					  "showMethod": "show",
-					  "hideMethod": "hide"
+					if(transactwhere == 'here')
+					{
+						total = origprice *1;
+						price = ($('#serviceprice'+service_id+'').val()*1);
+						total = total + price;
+						total = total - total * (discount/100);
 					}
-					toastr.success(data.service_name + " is successfully removed");
-					$("#ServiceOPTION"+remServ_id).removeAttr("disabled","disabled");
-					t.row($(this).parents('tr')).remove().draw();
-					return true;
+					else
+					{
+						total = (origprice*1);
+						price = $('#serviceprice'+service_id+'').val()*1;
+						total = total + price;
+						total = total - total * (discount/100);
+						total = total +200;
+					}
+
+					origprice = origprice *1;
+					origprice = origprice + price;
+					$('#originalprice').val(origprice);
+					$('#totalpriceinput').val(total);
+
+					$('.remove_service'+service_id+'').click(function(){
+						if(transactwhere == 'here')
+						{
+							price = ($('#serviceprice'+service_id+'').val()*1);
+							total = origprice *1;
+							total = total - price;
+							total = total - total *(discount/100);
+							origprice = origprice *1;
+							origprice = origprice - price;
+							
+						}
+						else
+						{
+							price = ($('#serviceprice'+service_id+'').val()*1);
+							total = origprice *1;
+							total = total - price;
+							total = total - total *(discount/100) + 200;
+							origprice = origprice *1;
+							origprice = origprice - price;
+						}
+						$('#originalprice').val(origprice);
+						$('#totalpriceinput').val(total);
+						if(data.service_notes != null)
+						{
+							var str = $('#service_notes').text().replace(data.service_notes + "<br>", ' ');
+							len = str.length;
+							$('#service_notes').text(str.substring(len));
+						}
+						var remServ_id = $(this).data("id");
+						toastr.options = {
+						  "closeButton": true,
+						  "debug": false,
+						  "positionClass": "toast-top-right",
+						  "onclick": null,
+						  "showDuration": "3000",
+						  "hideDuration": "100",
+						  "timeOut": "3000",
+						  "extendedTimeOut": "0",
+						  "showEasing": "swing",
+						  "hideEasing": "swing",
+						  "showMethod": "show",
+						  "hideMethod": "hide"
+						}
+						toastr.success(data.service_name + " is successfully removed");
+						$("#ServiceOPTION"+remServ_id).removeAttr("disabled","disabled");
+						t.row($(this).parents('tr')).remove().draw();
+						return true;
 					});
 				}
 				else{
@@ -581,9 +802,24 @@ $('#addservice').click(function(){
 								$('#service_notes').append(data.service_notes + "<br>");
 							}
 							$("#ServiceOPTION"+service_id).attr("disabled","disabled");
-							total = total *1;
-							price = ($('#serviceprice'+service_id+'').val()*1);
-							total = total + price;
+							if(transactwhere == 'here')
+							{
+								total = origprice *1;
+								price = ($('#serviceprice'+service_id+'').val()*1);
+								total = total + price;
+								total = total - total * (discount/100);
+							}
+							else
+							{
+								total = (origprice*1);
+								price = $('#serviceprice'+service_id+'').val()*1;
+								total = total + price;
+								total = total - total * (discount/100);
+								total = total +200;
+							}
+							origprice = origprice *1;
+							origprice = origprice + price;
+							$('#originalprice').val(origprice);
 							$('#totalpriceinput').val(total);
 							$('.remove_service'+service_id).click(function(){
 								
@@ -593,9 +829,28 @@ $('#addservice').click(function(){
 									len = str.length;
 									$('#service_notes').text(str.substring(len));
 								}
-
+								if(transactwhere == 'here')
+								{
+									price = ($('#serviceprice'+service_id+'').val()*1);
+									total = origprice *1;
+									total = total - price;
+									total = total - total *(discount/100);
+									origprice = origprice *1;
+									origprice = origprice - price;
+									
+								}
+								else
+								{
+									price = ($('#serviceprice'+service_id+'').val()*1);
+									total = origprice *1;
+									total = total - price;
+									total = total - total *(discount/100) + 200;
+									origprice = origprice *1;
+									origprice = origprice - price;
+								}
+								$('#originalprice').val(origprice);
+								$('#totalpriceinput').val(total);
 								var remServ_id = $(this).data("id");
-								$('#totalpriceinput').val($('#totalpriceinput').val() - price);
 								toastr.options = {
 							      "closeButton": true,
 							      "debug": false,

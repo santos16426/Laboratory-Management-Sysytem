@@ -15,7 +15,6 @@
 @section('transaction','active')
 @section('medicalservice','active')
 @section ('breadactivePage','Avail Medical Services')
-
 @section('content')
 <input type="hidden" name="discount" id="discount" value="0">
 <input type="hidden" name="transactwhere" id="transactwhere" value="{{ $transactwhere }}">
