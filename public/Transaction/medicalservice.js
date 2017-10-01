@@ -451,6 +451,7 @@ $('#payDirect').click(function(){
 					var remPack_id = $(this).data("id");
 					if(transactwhere == 'here')
 					{
+						origprice = $('#originalprice').val();
 						price = (price*1);
 						total = origprice *1;
 						total = total - price;
@@ -460,6 +461,7 @@ $('#payDirect').click(function(){
 					}
 					else
 					{
+						origprice = $('#originalprice').val();
 						price = ($('#corppackprice'+data.corpPack_id).val()*1);
 						total = origprice *1;
 						total = total - price;
@@ -554,6 +556,7 @@ $('#payCorp').click(function(){
 					var remPack_id = $(this).data("id");
 					if(transactwhere == 'here')
 					{
+						origprice = $('#originalprice').val();	
 						price = (price*1);
 						total = origprice *1;
 						total = total - price;
@@ -563,6 +566,7 @@ $('#payCorp').click(function(){
 					}
 					else
 					{
+						origprice = $('#originalprice').val();
 						price = ($('#serviceprice'+service_id+'').val()*1);
 						total = origprice *1;
 						total = total - price;
@@ -670,7 +674,7 @@ $('#addpackageBtn').click(function(){
 				    toastr.success(data.pack_name + " is successfully removed");
 					if(transactwhere == 'here')
 					{
-						price = (price*1);
+						origprice = $('#originalprice').val();
 						total = origprice *1;
 						total = total - price;
 						total = total - total *(discount/100);
@@ -679,7 +683,7 @@ $('#addpackageBtn').click(function(){
 					}
 					else
 					{
-						price = data.pack_price*1;
+						origprice = $('#originalprice').val();
 						total = origprice *1;
 						total = total - price;
 						total = total - total *(discount/100) + 200;
@@ -771,6 +775,7 @@ $('#addservice').click(function(){
 					$('.remove_service'+service_id+'').click(function(){
 						if(transactwhere == 'here')
 						{
+							origprice = $('#originalprice').val();
 							price = ($('#serviceprice'+service_id+'').val()*1);
 							total = origprice *1;
 							total = total - price;
@@ -781,6 +786,7 @@ $('#addservice').click(function(){
 						}
 						else
 						{
+							origprice = $('#originalprice').val();
 							price = ($('#serviceprice'+service_id+'').val()*1);
 							total = origprice *1;
 							total = total - price;
@@ -888,6 +894,7 @@ $('#addservice').click(function(){
 								}
 								if(transactwhere == 'here')
 								{
+									origprice = $('#originalprice').val();
 									price = ($('#serviceprice'+service_id+'').val()*1);
 									total = origprice *1;
 									total = total - price;
@@ -898,6 +905,7 @@ $('#addservice').click(function(){
 								}
 								else
 								{
+									origprice = $('#originalprice').val();
 									price = ($('#serviceprice'+service_id+'').val()*1);
 									total = origprice *1;
 									total = total - price;
