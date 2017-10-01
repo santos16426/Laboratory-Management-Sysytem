@@ -84,7 +84,7 @@
         
         <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Update</h4>
       </div>
-      <form action="/update_employee" method="POST" class="form-horizontal">
+      <form action="/update_employee" method="POST" class="form-horizontal" enctype="multipart/form-data">
       <input type="hidden" name="update_emp_type" id="update_emp_type">
       <input type="hidden" name="update_emp_id" id = "update_emp_id">
         <div class="modal-body">
@@ -483,6 +483,7 @@ $('.empupdateModalbtn').click(function(){
           }
           
           $('.geninfoupdate').append('<label class="control-label col-md-3 col-md-offset-1">Image Upload</label> <div class="col-md-8"> <div class="fileupload fileupload-new" data-provides="fileupload"> <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"> <img src="/Employee_images/'+emp_pic+'" alt="" /> </div> <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div> <div> <span class="btn btn-white btn-file"> <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span> <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span> <input type="file" class="default" name="emp_pic" value="'+emp_pic+'"> </span> <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a> </div> </div> </div>')
+          $('.geninfoupdate').append('<input type="hidden" value="'+emp_pic+'" name="defaultemp">')
 
     }
 

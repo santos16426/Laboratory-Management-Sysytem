@@ -129,60 +129,91 @@ class EmployeeController extends Controller
       return response()->json($empdata);
     }
     public function update_employee(){
-      $empid = ($_POST['update_emp_id'])*1;
-      $emp_type = $_POST['update_emp_type'];
-      $checkfields = DB::table('rolefields_tbl')->where('role_id',$emp_type)->get();
-      $firstname = $_POST['firstname'];
-      $middlename = $_POST['middlename'];
-      $lastname = $_POST['lastname'];
-      $rank_id = null;
-      $address = null;
-      $contact = null;
-      $license = null;
-      $username = null;
-      $password = null;
-     
-      if($checkfields[0]->address==1){
-        $address = $_POST['address'];
-      }
-      
-      if($checkfields[0]->license==1){
-        $license = $_POST['license'];
-        
-      }
-      if($checkfields[0]->contact==1){
-        $contact = $_POST['contact'];
-      }
-      if($checkfields[0]->rank==1)
-      {
-        $rank_id = $_POST['rank_id'];
-      }
-      
-      DB::table('employee_tbl')->where('emp_id',$empid)
-      ->update([
-        'emp_fname'=>$firstname,
-        'emp_mname'=>$middlename,
-        'emp_lname'=>$lastname,
-        'emp_address'=>$address,
-        'license_no'=>$license,
-        'emp_contact'=>$contact,
-        'emp_medtech_rank_id'=>$rank_id
-      ]);
+
+		$empid = ($_POST['update_emp_id'])*1;
+		$emp_type = $_POST['update_emp_type'];
+		$checkfields = DB::table('rolefields_tbl')->where('role_id',$emp_type)->get();
+		$firstname = $_POST['firstname'];
+		$middlename = $_POST['middlename'];
+		$lastname = $_POST['lastname'];
+		$rank_id = null;
+		$address = null;
+		$contact = null;
+		$license = null;
+		$username = null;
+		$password = null;
+	     
+		if($checkfields[0]->address==1){
+			$address = $_POST['address'];
+		}
+
+		if($checkfields[0]->license==1){
+			$license = $_POST['license'];
+
+		}
+		if($checkfields[0]->contact==1){
+			$contact = $_POST['contact'];
+		}
+		if($checkfields[0]->rank==1)
+		{
+			$rank_id = $_POST['rank_id'];
+		}
+		$file_name_new = $_POST['defaultemp'];
+		if(isset($_FILES['emp_pic']))
+		{
+
+			$file = $_FILES['emp_pic'];
+			$file_error = $file['error'];
+			// File properties
+			$file_name = $file['name'];
+			$file_tmp = $file['tmp_name'];
+			$file_size = $file['size'];
+
+			//Work out the file extension
+			$file_ext = explode('.',$file_name);
+			$file_ext = strtolower(end($file_ext));
+
+			$allowed = array('jpg','png','jpeg','bmp');
+			if(in_array($file_ext,$allowed))
+			{
+			    if($file_error === 0)
+			    {
+			        if($file_size <= 2097152)
+			        {
+			            $file_name_new = uniqid('',true) . '.' . $file_ext;
+			            $file_destination = 'Employee_images/' . $file_name_new;
+			           	move_uploaded_file($file_tmp, $file_destination);
+			        }
+			    }
+			}
+		} 
+		DB::table('employee_tbl')->where('emp_id',$empid)
+		->update([
+			'emp_fname'=>$firstname,
+			'emp_mname'=>$middlename,
+			'emp_lname'=>$lastname,
+			'emp_address'=>$address,
+			'license_no'=>$license,
+			'emp_contact'=>$contact,
+			'emp_medtech_rank_id'=>$rank_id,
+			'emp_pic'=>$file_name_new
+		]);
 
       
 
-      DB::table('employee_log_tbl')->insert
-      ([
-        'emp_id'=>$empid,
-        'emp_fname'=>$firstname,
-        'emp_mname'=>$middlename,
-        'emp_lname'=>$lastname,
-        'emp_address'=>$address,
-        'license_no'=>$license,
-        'emp_contact'=>$contact,
-        'emp_medtech_rank_id'=>$rank_id,
-        'updated_at'=>date_create('now')
-        ]);
+		DB::table('employee_log_tbl')->insert
+		([
+			'emp_id'=>$empid,
+			'emp_fname'=>$firstname,
+			'emp_mname'=>$middlename,
+			'emp_lname'=>$lastname,
+			'emp_address'=>$address,
+			'license_no'=>$license,
+			'emp_contact'=>$contact,
+			'emp_medtech_rank_id'=>$rank_id,
+			'updated_at'=>date_create('now'),
+			'emp_pic'=>$file_name_new
+		]);
     	Session::flash('update', 'true');
     	return redirect()->back();
     }
