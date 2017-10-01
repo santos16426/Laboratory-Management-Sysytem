@@ -26,7 +26,7 @@
 			<div class="panel-body">
 				<div class="clearfix">
 					<div class="btn-group pull-right">
-						<a class="btn btn-info" style="margin-left: -20%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New</a>
+						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New</a>
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="rebateTbl">
 						<thead>
@@ -57,7 +57,7 @@
       <div class="modal-header btn-primary">
         <h4 class="modal-title"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Employee Rebate</h4>
       </div>
-      <form action="/save_empRebate" method="POST" class="form-horizontal">
+      <form action="/save_empRebate" id="EmployeeRebadd" method="POST" class="form-horizontal">
         <div class="modal-body">
         	<div class="form-group" style="padding: 5%">
 	            
@@ -106,6 +106,14 @@
 @endsection
 @section('additional')
 <script type="text/javascript">
+	$('#newbtn').click(function(){
+		$('#EmployeeRebadd').bootstrapValidator('resetForm',true);
+		$('#EmployeeRebadd div').removeClass('has-error');
+		$('#EmployeeRebadd div').removeClass('has-success');
+		$('#EmployeeRebadd i').removeClass('glyphicon glyphicon-ok');
+		$('#EmployeeRebadd i').removeClass('glyphicon glyphicon-remove');
+		$('#EmployeeRebadd .help-block').remove();
+	});
 	$('#rebateTbl').DataTable({
 	  'paging'      : true,
 	  'lengthChange': true,

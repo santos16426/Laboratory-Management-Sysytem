@@ -26,7 +26,7 @@
 			<div class="panel-body">
 				<div class="clearfix">
 					<div class="btn-group pull-right">
-						<a class="btn btn-info" style="margin-left: -20%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="servicesTbl">
 				      	<thead>
@@ -345,6 +345,14 @@
       } );
 </script>
 <script>
+  $('#newbtn').click(function(){
+      $('#servadd').bootstrapValidator('resetForm',true);
+      $('#servadd div').removeClass('has-error');
+      $('#servadd div').removeClass('has-success');
+      $('#servadd i').removeClass('glyphicon glyphicon-ok');
+      $('#servadd i').removeClass('glyphicon glyphicon-remove');
+      $('#servadd .help-block').remove();
+    });
 $(function () {
 
 

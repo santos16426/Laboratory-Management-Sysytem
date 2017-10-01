@@ -26,7 +26,7 @@
 			<div class="panel-body">
 				<div class="clearfix">
 					<div class="btn-group pull-right">
-						<a class="btn btn-info" style="margin-left: -20%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="servGroup">
 				      <thead>
@@ -173,6 +173,14 @@
 @endsection
 @section('additional')
 <script type="text/javascript">
+   $('#newbtn').click(function(){
+      $('#servgrpadd').bootstrapValidator('resetForm',true);
+      $('#servgrpadd div').removeClass('has-error');
+      $('#servgrpadd div').removeClass('has-success');
+      $('#servgrpadd i').removeClass('glyphicon glyphicon-ok');
+      $('#servgrpadd i').removeClass('glyphicon glyphicon-remove');
+      $('#servgrpadd .help-block').remove();
+    });
   $('#dropLABID').select2();
 	$('#servGroup').DataTable({
 		'paging'      : true,

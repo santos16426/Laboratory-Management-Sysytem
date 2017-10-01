@@ -23,7 +23,7 @@
 				<div class="clearfix">
 					<div class="btn-group pull-right">
 					
-					<a class="btn btn-info" style="margin-left: -20%" href="#addModal" data-toggle="modal" id="addEmpBtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+					<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="addEmpBtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="corpTbl">
 					  <thead>
@@ -43,7 +43,6 @@
 					      <td>{{ $corporates->corp_contactperson }}</td>
 					      <td>{{ $corporates->corp_email }}</td>
 					      <td>{{ $corporates->corp_contact }}</td>
-
 					      
 					      <td>
 					      @if($corporates->CorpStatus == 1)
@@ -236,6 +235,14 @@
 @endsection
 @section('additional')
 <script type="text/javascript">
+	$('#addEmpBtn').click(function(){
+		$('#corpadd').bootstrapValidator('resetForm',true);
+		$('#corpadd div').removeClass('has-error');
+		$('#corpadd div').removeClass('has-success');
+		$('#corpadd i').removeClass('glyphicon glyphicon-ok');
+		$('#corpadd i').removeClass('glyphicon glyphicon-remove');
+		$('#corpadd .help-block').remove();
+	});
 	$('.corppackages').click(function(){
 	$('#corp_id').val($(this).data('id'));
 	$('#createcorppackage').submit();

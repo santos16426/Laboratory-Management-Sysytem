@@ -25,7 +25,7 @@
   			<div class="panel-body">
           <div class="clearfix">
             <div class="btn-group pull-right">
-                <a class="btn btn-info" style="margin-left: -20%" href="#addEmpType" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+                <a class="btn btn-info" style="margin-left: -40%" href="#addEmpType" data-toggle="modal" id="newbtn"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
             </div>
         </div>
 				<table class="table table-bordered table-hover" id="emptype">
@@ -226,6 +226,14 @@
 @endsection
 @section('additional')
 <script type="text/javascript">
+	$('#newbtn').click(function(){
+		$('#EmployeeTypeadd').bootstrapValidator('resetForm',true);
+		$('#EmployeeTypeadd div').removeClass('has-error');
+		$('#EmployeeTypeadd div').removeClass('has-success');
+		$('#EmployeeTypeadd i').removeClass('glyphicon glyphicon-ok');
+		$('#EmployeeTypeadd i').removeClass('glyphicon glyphicon-remove');
+		$('#EmployeeTypeadd .help-block').remove();
+	});
 	$('#emptype').dataTable( {
 		'paging'      : true,
 		'lengthChange': true,

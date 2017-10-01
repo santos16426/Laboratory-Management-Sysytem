@@ -320,7 +320,7 @@
         <div class="clearfix">
           <div class="btn-group pull-right">
           
-          <a class="btn btn-info" style="margin-left: -20%" href="#addModal" data-toggle="modal" id="addEmpBtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+          <a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="addEmpBtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
           </div>
           <table class="table table-bordered table-hover dataTable" id="corpPacktbl">
             <thead>
@@ -365,7 +365,14 @@
 @endsection
 @section('additional')
 <script type="text/javascript">
-
+  $('#addEmpBtn').click(function(){
+    $('#corppackadd').bootstrapValidator('resetForm',true);
+    $('#corppackadd div').removeClass('has-error');
+    $('#corppackadd div').removeClass('has-success');
+    $('#corppackadd i').removeClass('glyphicon glyphicon-ok');
+    $('#corppackadd i').removeClass('glyphicon glyphicon-remove');
+    $('#corppackadd .help-block').remove();
+  });
   $('.uppackservice').change(function(){
     var service_id = $('.uppackservice').val();
     if(service_id == null || service_id == '')

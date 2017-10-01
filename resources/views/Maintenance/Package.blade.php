@@ -26,7 +26,7 @@
 				<div class="clearfix">
 					<div class="btn-group pull-right">
 					
-					<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="addEmpBtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+					<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="empTable">
 						<thead>
@@ -327,6 +327,14 @@
   </script>
 
 <script type="text/javascript">
+  $('#newbtn').click(function(){
+    $('#packageadd').bootstrapValidator('resetForm',true);
+    $('#packageadd div').removeClass('has-error');
+    $('#packageadd div').removeClass('has-success');
+    $('#packageadd i').removeClass('glyphicon glyphicon-ok');
+    $('#packageadd i').removeClass('glyphicon glyphicon-remove');
+    $('#packageadd .help-block').remove();
+  });
 $('.packservice').change(function(){
   var service_id = $('.packservice').val();
   if(service_id == null || service_id == '')

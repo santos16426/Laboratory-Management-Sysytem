@@ -26,7 +26,7 @@
 			<div class="panel-body">
 				<div class="clearfix">
 					<div class="btn-group pull-right">
-						<a class="btn btn-info" style="margin-left: -20%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="rebateTbl">
 					  <thead>
@@ -82,6 +82,14 @@
 @endsection
 @section('additional')
 <script type="text/javascript">
+	$('#newbtn').click(function(){
+	    $('#rebate').bootstrapValidator('resetForm',true);
+	    $('#rebate div').removeClass('has-error');
+	    $('#rebate div').removeClass('has-success');
+	    $('#rebate i').removeClass('glyphicon glyphicon-ok');
+	    $('#rebate i').removeClass('glyphicon glyphicon-remove');
+	    $('#rebate .help-block').remove();
+	  });
 	$('#rebateTbl').DataTable({
 	  'paging'      : true,
 	  'lengthChange': true,

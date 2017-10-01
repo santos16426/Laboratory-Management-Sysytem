@@ -24,7 +24,7 @@
 			<div class="panel-body">
 				<div class="clearfix">
 					<div class="btn-group pull-right">
-						<a class="btn btn-info" style="margin-left: -20%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="labTbl">
 				      <thead>
@@ -155,9 +155,14 @@
 @endsection
 @section('additional')
 <script type="text/javascript">
-  $('#addemptype').click(function(){
-
-  });
+ $('#newbtn').click(function(){
+  $('#save_lab').bootstrapValidator('resetForm',true);
+  $('#save_lab div').removeClass('has-error');
+  $('#save_lab div').removeClass('has-success');
+  $('#save_lab i').removeClass('glyphicon glyphicon-ok');
+  $('#save_lab i').removeClass('glyphicon glyphicon-remove');
+  $('#save_lab .help-block').remove();
+ });
 </script>
 <script type="text/javascript">
 	$('#labTbl').DataTable({
