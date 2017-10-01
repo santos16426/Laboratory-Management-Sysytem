@@ -530,7 +530,7 @@ class TransactionController extends Controller
             }
         }
         
-        Session::flash('transaction',true);
+        Session::put('transaction',true);
         $transactionDetails = DB::table('transaction_tbl')->get();
         $transaction_id=0;
         $employee_id = 0;
@@ -550,7 +550,7 @@ class TransactionController extends Controller
             $trans_date = $t->trans_date;
         }
         
-        Session::flash('trans_id',$transaction_id);
+        Session::put('trans_id',$transaction_id);
         return redirect('/Admin/Dashboard');
     
     }
