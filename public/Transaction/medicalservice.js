@@ -12,6 +12,7 @@ $('#seniormodal').click(function(){
 	var total = $('#totalpriceinput').val();
 	if(seniormodal.className == "btn btn-primary btn-sm col-md-5")
 	{
+		$('#disctype').val('Senior Citizen ');
 		$('#discount').val(32);
 		if(transactwhere == 'here')
 		{
@@ -47,6 +48,7 @@ $('#seniormodal').click(function(){
 	else
 	{
 		$('#discount').val(0);
+		$('#disctype').val("");
 		if(transactwhere == 'here')
 		{
 			$('#totalpriceinput').val($('#originalprice').val());
@@ -82,6 +84,7 @@ $('#pwdmodal').click(function(){
 	var total = $('#totalpriceinput').val();
 	if(pwdmodal.className == "btn btn-primary btn-sm col-md-5 col-md-offset-2")
 	{
+		$('#disctype').val('PWD ');
 		$('#discount').val(32);
 		if(transactwhere == 'here')
 		{
@@ -118,6 +121,7 @@ $('#pwdmodal').click(function(){
 	}
 	else
 	{
+		$('#disctype').val('');
 		$('#discount').val(0);
 		if(transactwhere == 'here')
 		{
@@ -261,7 +265,14 @@ change = parseFloat((change).toFixed(2));
 		{
 			$('#recieptDetails').empty();
 			$('#recieptDetails').append('<center>Reciept</center>');
-			$('#recieptDetails').append('<div><hr>Sub-Total: '+origprice+'<hr>Discount: '+discount+'<hr>Grand Total: '+total+'<br><hr>Payment:'+payment+' <br>Change : '+change+'</div>')
+			$('#recieptDetails').append('<div>')
+			$('#recieptDetails').append('<hr>Sub-Total: '+origprice+'');
+			$('#recieptDetails').append('<hr>Discount: '+discount+'');
+			$('#recieptDetails').append('<hr>Grand Total: '+total+'<br>');
+			$('#recieptDetails').append('<hr>Payment:'+payment+' ');
+			$('#recieptDetails').append('<br>Change : '+change+'');
+			$('#recieptDetails').append('</div>');
+
 			$('#myModal').modal('show');
 			total = null;
 			payment=null;
@@ -314,11 +325,57 @@ change = parseFloat((change).toFixed(2));
 
 		if( payment > 200 && payment >= total && total != 200 || payWhere == 1)
 		{
+			var disctype = $('#disctype').val();
+			var disc = $('#discount').val();
 			var semitotal = total -200;
-			semitotal = parseFloat(semitotal).toFixed(2);
+			var temp = 0;
+			var temporig = 0;
+			var totaldiscount = 0;
 			$('#recieptDetails').empty();
 			$('#recieptDetails').append('<center>Reciept</center><hr>');
-			$('#recieptDetails').append('<div><hr>Sub-Total : '+origprice+'<br>Discount: '+discount+'<br>Home Service Fee: 200 <br><hr>Grand Total: '+total+'<br><hr>Payment:'+payment+' <br>Change : '+change+'</div>')
+			$('#recieptDetails').append('<div>')
+			
+			if(disctype == 'PWD ')
+			{
+				temp = origprice * (12/100);
+				temporig = origprice - temp;
+				totaldiscount = origprice * (20/100);
+
+				totaldiscount = parseFloat(totaldiscount).toFixed(2);
+				temp = parseFloat(temp).toFixed(2);
+				temporig = parseFloat(temporig).toFixed(2);
+				semitotal = parseFloat(semitotal).toFixed(2);
+				$('#recieptDetails').append('<hr>Sub-Total : '+temporig+'<hr>');
+				$('#recieptDetails').append('<br>PWD Discount(20%): '+totaldiscount);
+				$('#recieptDetails').append('<br>VAT(12%): -'+temp+'');
+			}
+			else if(disctype =='Senior Citizen ')
+			{
+				temp = origprice * (12/100);
+				temporig = origprice - temp;
+				totaldiscount = origprice * (20/100);
+
+				totaldiscount = parseFloat(totaldiscount).toFixed(2);
+				temp = parseFloat(temp).toFixed(2);
+				temporig = parseFloat(temporig).toFixed(2);
+				semitotal = parseFloat(semitotal).toFixed(2);
+				$('#recieptDetails').append('<hr>Sub-Total : '+temporig+'<hr>');
+				$('#recieptDetails').append('<br>Senior Citizen Discount(20%): -'+totaldiscount);
+				temp = origprice * (12/100);
+				$('#recieptDetails').append('<br>VAT(12%): '+temp+'');
+			}
+			else
+			{
+				temp = origprice * (12/100);
+				temporig = origprice - temp;
+				$('#recieptDetails').append('<hr>Sub-Total : '+temporig+'');
+				$('#recieptDetails').append('<br>VAT(12%): '+temp+'');
+			}
+			$('#recieptDetails').append('<br>Home Service Fee: 200 <br>');
+			$('#recieptDetails').append('<hr>Grand Total: '+total+'<br>')
+			$('#recieptDetails').append('<hr>Payment:'+payment+' ');
+			$('#recieptDetails').append('<br>Change : '+change+'');
+			$('#recieptDetails').append('</div>');
 			$('#myModal').modal('show');
 			total = 200;
 			payment=null;
@@ -403,7 +460,7 @@ $('#payDirect').click(function(){
 					}
 					else
 					{
-						price = ($('#serviceprice'+service_id+'').val()*1);
+						price = ($('#corppackprice'+data.corpPack_id).val()*1);
 						total = origprice *1;
 						total = total - price;
 						total = total - total *(discount/100) + 200;
@@ -584,7 +641,7 @@ $('#addpackageBtn').click(function(){
 				else
 				{
 					total = (origprice*1);
-					price = $('#serviceprice'+service_id+'').val()*1;
+					price = data.pack_price*1;
 					total = total + price;
 					total = total - total * (discount/100);
 					total = total +200;
@@ -622,7 +679,7 @@ $('#addpackageBtn').click(function(){
 					}
 					else
 					{
-						price = ($('#serviceprice'+service_id+'').val()*1);
+						price = data.pack_price*1;
 						total = origprice *1;
 						total = total - price;
 						total = total - total *(discount/100) + 200;

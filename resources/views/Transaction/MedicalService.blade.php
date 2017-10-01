@@ -19,6 +19,7 @@
 <input type="hidden" name="discount" id="discount" value="0">
 <input type="hidden" name="transactwhere" id="transactwhere" value="{{ $transactwhere }}">
 <input type="hidden" name="originalprice" id="originalprice" value="0">
+<input type="hidden" name="disctype" id="disctype" value="">
 <form action="/proceed_Payment" method="POST" enctype="multipart/form-data">
 <div class="modal fade" id = "myModal">
   <div class="modal-dialog">
