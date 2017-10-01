@@ -281,6 +281,7 @@ $('.employeeTypeDropDown').select2({
     $('#empid').val($(this).data('id'));
     $('#deleteModal').modal('show');
   });
+$('.employeeTypeDropDown').on('change',function(){ }
 $('.employeeTypeDropDown').on('change',function(){ 
       var address = ""; 
       var username = ""; 
@@ -336,10 +337,2060 @@ $('.employeeTypeDropDown').on('change',function(){
           {
             $('.accountinfo').append('<label class="control-label col-md-3 col-md-offset-1">Image Upload</label> <div class="col-md-8"> <div class="fileupload fileupload-new" data-provides="fileupload"> <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"> <img src="{{ asset("/Employee_images/default.jpg") }}" alt="" /> </div> <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div> <div> <span class="btn btn-white btn-file"> <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span> <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span> <input type="file" class="default" name="emp_pic"> </span> <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a> </div> </div> </div>')
           }
-          
+         if(rank == 1 &&  license == 1 && address == 1 && contact == 1 && username == 1)
+            {
+              
+              document.getElementById('EmpLicense').className = "form-horizontal 11111";
+              
+// 11111
+            
+            $('.11111').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              rank_id: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,
+                    message: 'Special characters are not allowed.'
+                  },
+                }
+              }, 
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              address: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    message: 'Invalid Input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              contact: {
+                validators: {
+                  regexp: {
+                    regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
+                    message: 'Invalid input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              username: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Please enter at least 2 characters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },     
+              password: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },      
+              confirmpass: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              license: {
+                validators: {
+                  regexp: {
+                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    message: 'Invalid License Number Format.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                             
+            }
+          });
+        
+              
+            }
+
+             if(rank == 0 &&  license == 0 && address == 0 && contact == 0 && username == 0)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 00000";
+
+              $('.00000').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                           
+            }
+          });
+
+            }
+
+             if(rank == 0 &&  license == 1 && address == 1 && contact == 1 && username == 1)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 01111";
+              $('.01111').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              address: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    message: 'Invalid Input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              contact: {
+                validators: {
+                  regexp: {
+                    regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
+                    message: 'Invalid input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              username: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Please enter at least 2 characters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },     
+              password: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },      
+              confirmpass: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              license: {
+                validators: {
+                  regexp: {
+                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    message: 'Invalid License Number Format.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                             
+            }
+          });
+            }
+
+             if(rank == 1 &&  license == 0 && address == 1 && contact == 1 && username == 1)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 10111";
+              $('.10111').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              rank_id: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,
+                    message: 'Special characters are not allowed.'
+                  },
+                }
+              }, 
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              address: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    message: 'Invalid Input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              contact: {
+                validators: {
+                  regexp: {
+                    regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
+                    message: 'Invalid input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              username: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Please enter at least 2 characters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },     
+              password: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },      
+              confirmpass: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                            
+            }
+          });
+
+            }
+
+             if(rank == 1 &&  license == 1 && address == 0 && contact == 1 && username == 1)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 11011";
+              $('.11011').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              rank_id: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,
+                    message: 'Special characters are not allowed.'
+                  },
+                }
+              }, 
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              contact: {
+                validators: {
+                  regexp: {
+                    regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
+                    message: 'Invalid input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              username: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Please enter at least 2 characters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },     
+              password: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },      
+              confirmpass: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              license: {
+                validators: {
+                  regexp: {
+                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    message: 'Invalid License Number Format.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                             
+            }
+          });
+
+            }
+
+             if(rank == 1 &&  license == 1 && address == 1 && contact == 0 && username == 1)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 11101";
+              $('.11101').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              rank_id: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,
+                    message: 'Special characters are not allowed.'
+                  },
+                }
+              }, 
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              address: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    message: 'Invalid Input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              username: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Please enter at least 2 characters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },     
+              password: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },      
+              confirmpass: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              license: {
+                validators: {
+                  regexp: {
+                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    message: 'Invalid License Number Format.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                             
+            }
+          });
+            }
+
+             if(rank == 1 &&  license == 1 && address == 1 && contact == 1 && username == 0)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 11110";
+              $('.11110').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              rank_id: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,
+                    message: 'Special characters are not allowed.'
+                  },
+                }
+              }, 
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              address: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    message: 'Invalid Input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              contact: {
+                validators: {
+                  regexp: {
+                    regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
+                    message: 'Invalid input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              license: {
+                validators: {
+                  regexp: {
+                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    message: 'Invalid License Number Format.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                             
+            }
+          });
+            }
+
+             if(rank == 0 &&  license == 0 && address == 1 && contact == 1 && username == 1)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 00111";
+              $('.00111').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              address: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    message: 'Invalid Input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              contact: {
+                validators: {
+                  regexp: {
+                    regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
+                    message: 'Invalid input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              username: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Please enter at least 2 characters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },     
+              password: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },      
+              confirmpass: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                       
+            }
+          });
+            }
+
+             if(rank == 1 &&  license == 0 && address == 0 && contact == 1 && username == 1)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 10011";
+              $('.10011').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              rank_id: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,
+                    message: 'Special characters are not allowed.'
+                  },
+                }
+              }, 
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              contact: {
+                validators: {
+                  regexp: {
+                    regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
+                    message: 'Invalid input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },  
+              username: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Please enter at least 2 characters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },     
+              password: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },      
+              confirmpass: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                        
+            }
+          });
+            }
+
+             if(rank == 1 &&  license == 1 && address == 0 && contact == 0 && username == 1)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 11001";
+              $('.11001').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              rank_id: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,
+                    message: 'Special characters are not allowed.'
+                  },
+                }
+              }, 
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              username: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Please enter at least 2 characters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },     
+              password: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },      
+              confirmpass: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              license: {
+                validators: {
+                  regexp: {
+                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    message: 'Invalid License Number Format.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                             
+            }
+          });
+            }
+
+             if(rank == 1 &&  license == 1 && address == 1 && contact == 0 && username == 0)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 11100";
+              $('.11100').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              rank_id: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,
+                    message: 'Special characters are not allowed.'
+                  },
+                }
+              }, 
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              address: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    message: 'Invalid Input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              license: {
+                validators: {
+                  regexp: {
+                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    message: 'Invalid License Number Format.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                             
+            }
+          });
+            }
+
+             if(rank == 0 &&  license == 0 && address == 0 && contact == 1 && username == 1)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 00011";
+              $('.00011').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              address: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    message: 'Invalid Input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              license: {
+                validators: {
+                  regexp: {
+                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    message: 'Invalid License Number Format.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                             
+            }
+          });
+            }
+
+             if(rank == 1 &&  license == 0 && address == 0 && contact == 0 && username == 1)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 10001";
+              $('.10001').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              rank_id: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,
+                    message: 'Special characters are not allowed.'
+                  },
+                }
+              }, 
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              username: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Please enter at least 2 characters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },     
+              password: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },      
+              confirmpass: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                          
+            }
+          });
+            }
+
+             if(rank == 1 &&  license == 1 && address == 0 && contact == 0 && username == 0)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 11000";
+              $('.11000').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              rank_id: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,
+                    message: 'Special characters are not allowed.'
+                  },
+                }
+              }, 
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              license: {
+                validators: {
+                  regexp: {
+                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    message: 'Invalid License Number Format.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                             
+            }
+          });
+            }
+
+             if(rank == 1 &&  license == 0 && address == 0 && contact == 0 && username == 0)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 10000";
+              $('.10000').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              rank_id: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,
+                    message: 'Special characters are not allowed.'
+                  },
+                }
+              }, 
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                               
+            }
+          });
+            }
+
+             if(rank == 0 &&  license == 1 && address == 0 && contact == 0 && username == 0)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 01000";
+              $('.01000').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              license: {
+                validators: {
+                  regexp: {
+                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    message: 'Invalid License Number Format.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                             
+            }
+          });
+            }
+
+             if(rank == 0 &&  license == 0 && address == 1 && contact == 0 && username == 0)
+            {
+              document.getElementById('emp_address').className = "form-horizontal 00100";
+              $('.00100').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              address: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    message: 'Invalid Input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                      
+            }
+          });
+            }
+
+             if(rank == 0 &&  license == 0 && address == 0 && contact == 1 && username == 0)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 00010";
+              $('.00010').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              contact: {
+                validators: {
+                  regexp: {
+                    regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
+                    message: 'Invalid input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                             
+            }
+          });
+            }
+
+             if(rank == 0 &&  license == 0 && address == 0 && contact == 0 && username == 1)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 00001";
+              $('.00001').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },  
+              username: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Please enter at least 2 characters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },     
+              password: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },      
+              confirmpass: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                             
+            }
+          });
+            }
+
+             if(rank == 1 &&  license == 0 && address == 1 && contact == 0 && username == 1)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 10101";
+              $('.10101').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              rank_id: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,
+                    message: 'Special characters are not allowed.'
+                  },
+                }
+              }, 
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              address: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    message: 'Invalid Input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },  
+              username: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Please enter at least 2 characters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },     
+              password: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },      
+              confirmpass: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                          
+            }
+          });
+            }
+
+             if(rank == 0 &&  license == 1 && address == 0 && contact == 1 && username == 0)
+            {
+              document.getElementById('EmpLicense').className = "form-horizontal 01010";
+              $('.01010').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              contact: {
+                validators: {
+                  regexp: {
+                    regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
+                    message: 'Invalid input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              license: {
+                validators: {
+                  regexp: {
+                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    message: 'Invalid License Number Format.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                             
+            }
+          });
+            }
+
+
+
         }
       });
- 
     });
 
 
