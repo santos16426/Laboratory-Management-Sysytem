@@ -134,7 +134,7 @@ class PackageController extends Controller
       return redirect()->back();
     }
     public function deletePackage(){
-      DB::table('package_tbl')->where('pack_id',$_POST['id'])->update(['status'=>0]);
+      DB::table('package_tbl')->where('pack_id',$_POST['id'])->update(['PackStatus'=>0]);
       Session::flash('delete', true);
       return redirect()->back();
     }
