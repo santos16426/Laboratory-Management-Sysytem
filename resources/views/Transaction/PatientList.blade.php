@@ -50,7 +50,11 @@
 			          <td>{{ $table->patient_lname }}</td>
 			          <td>{{ $table->patient_fname }}</td>
 			          <td>{{ $table->patient_mname }}</td>
-			          <td>{{ $table->ptype_name }}</td>
+			          <td>{{ $table->ptype_name }}
+			          	@if($table->ptype_name == 'Corporate')
+			          	({{ $table->corp_name }})
+			          	@endif
+			          </td>
 			          <td>{{ $table->patient_address }}</td>
 			          <td>{{ $table->patient_birthdate }}</td>
 			          <td>{{ $table->age }}</td>

@@ -684,7 +684,8 @@ class TransactionController extends Controller
             ->get();
 
     	$table = DB::table('patient_tbl')
-            ->join('patient_type_tbl','patient_type_tbl.ptype_id','=','patient_tbl.patient_type_id')
+            ->leftjoin('patient_type_tbl','patient_type_tbl.ptype_id','=','patient_tbl.patient_type_id')
+            ->leftjoin('corporate_accounts_tbl','corporate_accounts_tbl.corp_id','=','patient_tbl.patient_corp_id')
             ->get();
 
     	return view('Transaction.PatientList',['patienttype'=>$patienttype,'corps'=>$corps,'table'=>$table]);
