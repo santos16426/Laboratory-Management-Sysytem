@@ -666,8 +666,12 @@ class TransactionController extends Controller
             $corpid = $corp_id;
         }
         $corppackage = DB::table('corp_package_tbl')->where('corp_id',$corpid)->where('CorpPackStatus',1)->get();
-
-        return view('Transaction.MedicalService',['patientinfo'=>$patientinfo,'service'=>$service,'emp_rebates'=>$emp_rebates,'ptype_id'=>$ptype_id,'servicegroup'=>$servicegroup,'package'=>$package,'corp'=>$corp,'corppackage'=>$corppackage,'patient_age'=>$patient_age,'patient_gender'=>$patient_gender,'transactwhere'=>$transactwhere]);
+        $corpname = DB::table('corporate_accounts_tbl')->where('corp_id',$corpid)->get();
+        foreach($corpname as $cn)
+        {
+            $corpname = $cn->corp_name;
+        }
+        return view('Transaction.MedicalService',['patientinfo'=>$patientinfo,'service'=>$service,'emp_rebates'=>$emp_rebates,'ptype_id'=>$ptype_id,'servicegroup'=>$servicegroup,'package'=>$package,'corp'=>$corp,'corppackage'=>$corppackage,'patient_age'=>$patient_age,'patient_gender'=>$patient_gender,'transactwhere'=>$transactwhere,'corpname'=>$corpname]);
     }
     function patient()
     {

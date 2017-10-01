@@ -18,7 +18,7 @@
 @section('content')
 <input type="hidden" name="discount" id="discount" value="0">
 <input type="hidden" name="transactwhere" id="transactwhere" value="{{ $transactwhere }}">
-<input type="" name="originalprice" id="originalprice" value="0">
+<input type="hidden" name="originalprice" id="originalprice" value="0">
 <input type="hidden" name="disctype" id="disctype" value="">
 <form action="/proceed_Payment" method="POST" enctype="multipart/form-data">
 <div class="modal fade" id = "myModal">
@@ -108,6 +108,7 @@
 											<div class="col-md-12">
 												<div class="col-md-12" >
 													<div class="input-group" >
+														<span class="input-group-addon">{{ $corpname }} Packages</span>
 														<select class="form-control corppack_id select2" name="corppack_id" id="corppack_id" style="width: 100%" >
 															@foreach($corppackage as $corppack)
 															@if($corppack->age == 'All' and $corppack->gender==3)
@@ -154,6 +155,7 @@
 										<div class="col-md-12">
 											<div class="col-md-12" >
 												<div class="input-group" >
+													<span class="input-group-addon">Company Packages</span>
 													<select class="form-control package_id select2" name="package_id_dropdown" id="package_id" style="width: 100%" >
 														@foreach($package as $pcknm)
 															<option id="PackageID{{ $pcknm->pack_id }}" value="{{ $pcknm->pack_id }}">{{ $pcknm->pack_name }}</option>
@@ -172,6 +174,7 @@
 										<div class="col-md-12">
 											<div class="col-md-12" >
 												<div class="input-group" >
+													<span class="input-group-addon">Services</span>
 													<select class="form-control srvc_id select2" name="srvc_id" id="srvc_id" style="width: 100%">
 														@foreach($servicegroup as $s)
 															<optgroup label="{{ $s->servgroup_name }}">
@@ -202,12 +205,15 @@
 									<div class="form-group" style="padding-top: 2%">
 										<div class="col-md-12">
 											<div class="col-md-12">
-												<select class="form-control emp_id select2" name="emp_id" id="emp_id" style="width: 100%" >
-													<option value="null">Referred by (Optional)</option>
-													@foreach($emp_rebates as $emp_rebates)
-														<option value="{{$emp_rebates->emp_id}}">{{ $emp_rebates->emp_fname }} {{ $emp_rebates->emp_mname }} {{ $emp_rebates->emp_lname }}</option>
-													@endforeach
-												</select>
+												<div class="input-group">
+													<span class="input-group-addon">Employee Rebate</span>
+													<select class="form-control emp_id select2" name="emp_id" id="emp_id" style="width: 100%" >
+														<option value="null">Referred by (Optional)</option>
+														@foreach($emp_rebates as $emp_rebates)
+															<option value="{{$emp_rebates->emp_id}}">{{ $emp_rebates->emp_fname }} {{ $emp_rebates->emp_mname }} {{ $emp_rebates->emp_lname }}</option>
+														@endforeach
+													</select>
+												</div>
 											</div>
 										</div>
 									</div>
