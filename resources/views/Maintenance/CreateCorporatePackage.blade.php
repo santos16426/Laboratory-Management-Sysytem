@@ -35,16 +35,7 @@
               </div>
             </div>  
           </div>
-          <div class="form-group">
-            <div class="col-md-10 col-md-offset-1">
-              <div class="input-group">
-                <div class="input-group-addon">
-                  Package Price <sup>*</sup>
-                </div>
-                <input  name="uppackprice" id="uppackprice"  type="text" placeholder="Package Price" class="form-control input-md" required>
-              </div>
-            </div>  
-          </div>
+         
           <div class="form-group">
             <div class="col-md-10 col-md-offset-1">
               <div class="input-group">
@@ -73,6 +64,16 @@
                 </div>              
               </div>
             </div>
+             <div class="form-group">
+            <div class="col-md-10 col-md-offset-1">
+              <div class="input-group">
+                <div class="input-group-addon">
+                  Package Price <sup>*</sup>
+                </div>
+                <input  name="uppackprice" id="uppackprice"  type="text" placeholder="Package Price" class="form-control input-md" required>
+              </div>
+            </div>  
+          </div>
             <div class="form-group" style="margin-right:% ">
               <div class="col-md-10 col-md-offset-3">
                 <div class="input-group">
@@ -171,16 +172,7 @@
               </div>
             </div>  
           </div>
-          <div class="form-group">
-            <div class="col-md-10 col-md-offset-1">
-              <div class="input-group">
-                <div class="input-group-addon">
-                  Package Price <sup>*</sup>
-                </div>
-                <input  name="packprice"  type="text" placeholder="Package Price" class="form-control input-md" required>
-              </div>
-            </div>  
-          </div>
+          
           <div class="form-group">
             <div class="col-md-10 col-md-offset-1">
               <div class="input-group">
@@ -209,6 +201,16 @@
                 </div>              
               </div>
             </div>
+            <div class="form-group">
+            <div class="col-md-10 col-md-offset-1">
+              <div class="input-group">
+                <div class="input-group-addon">
+                  Package Price <sup>*</sup>
+                </div>
+                <input  name="packprice"  type="text" placeholder="Package Price" class="form-control input-md" required>
+              </div>
+            </div>  
+          </div>
             <div class="form-group" style="margin-right:% ">
               <div class="col-md-10 col-md-offset-3">
                 <div class="input-group">

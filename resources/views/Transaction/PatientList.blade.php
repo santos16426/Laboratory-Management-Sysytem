@@ -193,7 +193,7 @@
 									<div class="input-group-addon">
 										Age <sup>*</sup>
 									</div>
-									<input  name="age" id="age" type="text"  class="form-control">
+									<input  name="age" id="age" type="text"  class="form-control" readonly="">
 								</div>
 							</div>  
 						</div>
