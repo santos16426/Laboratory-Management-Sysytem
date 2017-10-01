@@ -340,8 +340,7 @@ $('.employeeTypeDropDown').on('change',function(){
          if(rank == 1 &&  license == 1 && address == 1 && contact == 1 && username == 1)
             {
               
-              document.getElementById('EmpLicense').className = "form-horizontal 11111";
-              
+              document.getElementById('EmpLicense').className = "form-horizontal 11111";  
 // 11111
             
             $('.11111').bootstrapValidator({
