@@ -240,8 +240,9 @@
 								<thead>
 									<tr>
 										<th style="width:40%">Service</th>
-										<th style="width:30%">Service Group</th>
-										<th style="width:20%">Price</th>
+										<th style="width:20%">Service Group</th>
+										<th style="width:10%">Price</th>
+										<th style="width:20%">Service Prescriptions</th>
 										<th style="width:10%">Action</th>
 									</tr>
 								</thead>
