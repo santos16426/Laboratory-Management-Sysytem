@@ -281,7 +281,7 @@ $('.employeeTypeDropDown').select2({
     $('#empid').val($(this).data('id'));
     $('#deleteModal').modal('show');
   });
-$('.employeeTypeDropDown').on('change',function(){ }
+
 $('.employeeTypeDropDown').on('change',function(){ 
       var address = ""; 
       var username = ""; 
