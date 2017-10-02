@@ -34,6 +34,7 @@
 								<th>Package Name</th>
 								<th>Price</th>
 								<th>Action</th>
+                <th hidden>Services</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -45,6 +46,13 @@
 									<a class="btn btn-warning btn-xs  updateModal" href="#updateModal" data-toggle="modal" data-id="{{$packages->pack_id}}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 									<a class="btn btn-danger btn-xs delbtn" data-id="{{$packages->pack_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
 									</td>
+                  <td hidden>
+                    @foreach($services as $packserv)
+                      @if($packages->pack_id == $packserv->pack_serv_package_id)
+                        {{ $packserv->service_name }},
+                      @endif
+                    @endforeach
+                  </td>
 								</tr>
 							@endforeach
 						</tbody>
@@ -241,34 +249,17 @@
       names = "";
       function fnFormatDetails ( oTable, nTr )
       {
-          servicename = [];
-          
-          aData = oTable.fnGetData( nTr );
+          var aData = oTable.fnGetData( nTr );
+          var service =[];
+          service = aData[4];
+          var servs = service.split(',');
 
-          $.ajax
-          ({
-            url: '/getServiceUnderPackage',
-            type: 'GET',
-            data:{package_name:aData[1]},
-            dataType: 'json',
-            success:function(response)
-            {
-
-              response.forEach(function(data){
-                servicename.push(data.service_name);
-              })
-              names = servicename;
-              sOut = '<table cellpadding="5" cellspacing="1" border="1 style="padding-left:10px;">';
-              sOut += '<tr><td>Package Name: '+ aData[1]+ '</td></tr>'
-              sOut += '<tr><td>Package Price: '+ aData[2]+ '</td></tr>'
-              sOut += '<tr><td>Services under this package :</td></tr>';
-              sOut += '<tr><td>'+names+'</td></tr>';
-              sOut += '</table>';
-          
-            }
-          });
- return sOut;
-          
+          var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+          sOut += '<tr><td>Package Name: '+aData[1]+'</td></tr>';
+          sOut += '<tr><td>Price: '+aData[2]+'</td></tr>';
+          sOut += '<tr><td>Services: '+servs+'</td></tr>';
+          sOut += '</table>';
+          return sOut;
       }
  
       $(document).ready(function() {

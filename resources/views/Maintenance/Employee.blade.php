@@ -17,48 +17,48 @@
 
 @section('content')
 <div class="row">
-	<div class="col-lg-12">
-		<section class="panel">
-			<header class="panel-heading">
-				Employee
-			</header>
-			<div class="panel-body">
-				<div class="clearfix">
-					<div class="btn-group pull-right">
-					
-					<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="addEmpBtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
-					</div>
-					<table class="table table-bordered table-hover dataTable" id="empTable">
-			      <thead>
-			        <tr>
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+        Employee
+      </header>
+      <div class="panel-body">
+        <div class="clearfix">
+          <div class="btn-group pull-right">
+          
+          <a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="addEmpBtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+          </div>
+          <table class="table table-bordered table-hover dataTable" id="empTable">
+            <thead>
+              <tr>
                 <th>Image</th>
-			          <th>Last Name</th>
-			          <th>First Name</th>
-			          <th>Middle Name</th>
-			          <th>Employee Type</th>
-			          <th>Action</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Employee Type</th>
+                <th>Action</th>
                 <th>Status</th>
-			        </tr>
-			      </thead>
-			      <tbody>
-			        @foreach($emp1 as $emp1)
-			        <tr>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($emp1 as $emp1)
+              <tr>
                 <td><img src="/Employee_images/{{ $emp1->emp_pic }}" style="height: 40px;display: block"></td>
-			          <td>{{ $emp1->emp_lname }}</td>
-			          <td>{{ $emp1->emp_fname }}</td>
-			          <td>{{ $emp1->emp_mname }}</td>
-			          <td>{{ $emp1->role_name }}</td>
-			          <td>
+                <td>{{ $emp1->emp_lname }}</td>
+                <td>{{ $emp1->emp_fname }}</td>
+                <td>{{ $emp1->emp_mname }}</td>
+                <td>{{ $emp1->role_name }}</td>
+                <td>
                 @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1 or $emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus === null)
-			            <button class="btn btn-warning btn-xs empupdateModalbtn" data-target="#updateModal" data-id="{{ $emp1->emp_id }}" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</button>
-			            <button class="btn btn-info btn-xs empviewModalbtn" data-target="#viewModal"  data-id="{{ $emp1->emp_id }}" data-toggle="modal"><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp; View</button>
-			            <button class="btn btn-danger btn-xs empdeleteModalbtn" data-id="{{ $emp1->emp_id }}" ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
+                  <button class="btn btn-warning btn-xs empupdateModalbtn" data-target="#updateModal" data-id="{{ $emp1->emp_id }}" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</button>
+                  <button class="btn btn-info btn-xs empviewModalbtn" data-target="#viewModal"  data-id="{{ $emp1->emp_id }}" data-toggle="modal"><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp; View</button>
+                  <button class="btn btn-danger btn-xs empdeleteModalbtn" data-id="{{ $emp1->emp_id }}" ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
                 @else
                   <button class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</button>
                   <button class="btn btn-info btn-xs" disabled ><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp; View</button>
                   <button class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
                 @endif
-			          </td>
+                </td>
                 <td>
                 @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1 or $emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus === null)
                 <span class="badge bg-success">Available</span>
@@ -66,16 +66,16 @@
                 <span class="badge bg-important">Unavailable</span>
                 @endif
                 </td>
-			        </tr>
+              </tr>
 
-			       
-			        @endforeach
-			      </tbody>
-			    </table>
-				</div>
-			</div>
-		</section>
-	</div>
+             
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
 <div class="modal fade" id = "updateModal">
   <div class="modal-dialog" style="width: 60%">
