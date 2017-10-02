@@ -822,7 +822,7 @@ $('#corppackedit').bootstrapValidator({
                             message: 'Invalid Input.'
                     },
                     stringLength: {
-                        max: 9,
+                        max: 3,
                         message:'Rebate limit reached'
                     },
                         notEmpty: {
