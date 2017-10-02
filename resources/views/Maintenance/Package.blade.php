@@ -203,8 +203,8 @@
         <div class="form-group">
               <div class="col-md-10 col-md-offset-3">
                 <div class="input-group">
-                   <small><sup>*</sup>Note:<br>&nbsp;Package price should be below/equal to total price.<div id="totalprice">&nbsp;Total price: 
-                    0 </div></small>
+                   <sup>*</sup>Note:<br>&nbsp;Package price should be below/equal to total price.<div id="totalprice">&nbsp;Total price: 
+                    0 </div>
               </div>
           </div>  
         </div> 
@@ -325,6 +325,9 @@
     $('#packageadd i').removeClass('glyphicon glyphicon-ok');
     $('#packageadd i').removeClass('glyphicon glyphicon-remove');
     $('#packageadd small').attr('style','display:none');
+    $('.packservice').val('').trigger('change');
+    $('#totalprice').empty();
+    $('#totalprice').append('Total price: 0');
   });
 $('.packservice').change(function(){
   var service_id = $('.packservice').val();
