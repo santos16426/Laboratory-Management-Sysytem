@@ -241,7 +241,7 @@
 		$('#corpadd div').removeClass('has-success');
 		$('#corpadd i').removeClass('glyphicon glyphicon-ok');
 		$('#corpadd i').removeClass('glyphicon glyphicon-remove');
-		$('#corpadd .help-block').remove();
+		$('#corpadd small').attr('style','display:none');
 	});
 	$('.corppackages').click(function(){
 	$('#corp_id').val($(this).data('id'));

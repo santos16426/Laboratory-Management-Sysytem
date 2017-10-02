@@ -164,7 +164,7 @@
       $('#servtypeadd div').removeClass('has-success');
       $('#servtypeadd i').removeClass('glyphicon glyphicon-ok');
       $('#servtypeadd i').removeClass('glyphicon glyphicon-remove');
-      $('#servtypeadd .help-block').remove();
+      $('#servtypeadd small').attr('style','display:none');
     });
   $('#servtypetbl').DataTable({
     'paging'      : true,

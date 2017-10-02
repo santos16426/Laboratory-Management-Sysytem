@@ -112,7 +112,7 @@
 		$('#EmployeeRebadd div').removeClass('has-success');
 		$('#EmployeeRebadd i').removeClass('glyphicon glyphicon-ok');
 		$('#EmployeeRebadd i').removeClass('glyphicon glyphicon-remove');
-		$('#EmployeeRebadd .help-block').remove();
+		$('#EmpLicense small').attr('style','display:none');
 	});
 	$('#rebateTbl').DataTable({
 	  'paging'      : true,

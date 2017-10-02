@@ -485,7 +485,7 @@
     $('#corppackadd div').removeClass('has-success');
     $('#corppackadd i').removeClass('glyphicon glyphicon-ok');
     $('#corppackadd i').removeClass('glyphicon glyphicon-remove');
-    $('#corppackadd .help-block').remove();
+    $('#corppackadd small').attr('style','display:none');
   });
   $('.uppackservice').change(function(){
     var service_id = $('.uppackservice').val();

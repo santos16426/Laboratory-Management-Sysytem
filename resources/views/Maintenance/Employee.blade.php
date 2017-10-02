@@ -275,7 +275,7 @@ $('.employeeTypeDropDown').select2({
     $('#EmpLicense div').removeClass('has-success');
     $('#EmpLicense i').removeClass('glyphicon glyphicon-ok');
     $('#EmpLicense i').removeClass('glyphicon glyphicon-remove');
-    $('#EmpLicense .help-block').remove();
+    corppackadd
   });
   $('.empdeleteModalbtn').click(function(){
     $('#empid').val($(this).data('id'));

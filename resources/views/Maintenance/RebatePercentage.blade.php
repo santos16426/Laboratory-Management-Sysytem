@@ -56,7 +56,7 @@
       <div class="modal-header btn-primary">
         <h4 class="modal-title"><i class="fa fa-user-plus" aria-hidden="true"></i> Edit Rebate</h4>
       </div>
-      <form action="/save_rebatePercentage" method="POST" class="form-horizontal" id="rebates">
+      <form action="/save_rebatePercentage" method="POST" class="form-horizontal rebate" id="rebates">
         <div class="modal-body" >
         	<div class="form-group" >
 	              <div class="col-sm-10 col-md-offset-1">
@@ -82,12 +82,12 @@
 @section('additional')
 <script type="text/javascript">
 	$('#newbtn').click(function(){
-	    $('#rebate').bootstrapValidator('resetForm',true);
-	    $('#rebate div').removeClass('has-error');
-	    $('#rebate div').removeClass('has-success');
-	    $('#rebate i').removeClass('glyphicon glyphicon-ok');
-	    $('#rebate i').removeClass('glyphicon glyphicon-remove');
-	    $('#rebate .help-block').remove();
+	    $('.rebate')[0].reset();
+	    $('.rebate div').removeClass('has-error');
+	    $('.rebate div').removeClass('has-success');
+	    $('.rebate i').removeClass('glyphicon glyphicon-ok');
+	    $('.rebate i').removeClass('glyphicon glyphicon-remove');
+	    $('.rebate small').attr('style','display:none');
 	  });
 	$('#rebateTbl').DataTable({
 	  'paging'      : true,

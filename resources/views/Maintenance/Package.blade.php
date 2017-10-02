@@ -324,7 +324,7 @@
     $('#packageadd div').removeClass('has-success');
     $('#packageadd i').removeClass('glyphicon glyphicon-ok');
     $('#packageadd i').removeClass('glyphicon glyphicon-remove');
-    $('#packageadd .help-block').remove();
+    $('#save_lab small').attr('style','display:none');
   });
 $('.packservice').change(function(){
   var service_id = $('.packservice').val();

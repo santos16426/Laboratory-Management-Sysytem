@@ -179,7 +179,7 @@
       $('#servgrpadd div').removeClass('has-success');
       $('#servgrpadd i').removeClass('glyphicon glyphicon-ok');
       $('#servgrpadd i').removeClass('glyphicon glyphicon-remove');
-      $('#servgrpadd .help-block').remove();
+      $('#servgrpadd small').attr('style','display:none');
     });
   $('#dropLABID').select2();
 	$('#servGroup').DataTable({
