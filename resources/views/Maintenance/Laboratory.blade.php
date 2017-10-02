@@ -161,7 +161,7 @@
   $('#save_lab div').removeClass('has-success');
   $('#save_lab i').removeClass('glyphicon glyphicon-ok');
   $('#save_lab i').removeClass('glyphicon glyphicon-remove');
-  $('#save_lab .help-block').remove();
+  $('#save_lab small').attr('style','display:none');
  });
 </script>
 <script type="text/javascript">

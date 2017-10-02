@@ -232,7 +232,7 @@
 		$('#EmployeeTypeadd div').removeClass('has-success');
 		$('#EmployeeTypeadd i').removeClass('glyphicon glyphicon-ok');
 		$('#EmployeeTypeadd i').removeClass('glyphicon glyphicon-remove');
-		$('#EmployeeRebadd small').attr('style','display:none');
+		$('#EmployeeTypeadd small').attr('style','display:none');
 	});
 	$('#emptype').dataTable( {
 		'paging'      : true,

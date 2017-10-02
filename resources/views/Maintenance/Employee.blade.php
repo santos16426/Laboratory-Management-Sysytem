@@ -270,6 +270,7 @@ $('.employeeTypeDropDown').select2({
 </script>
 <script type="text/javascript">
   $('#addEmpBtn').click(function(){
+    
     $('#EmpLicense div').removeClass('has-error');
     $('#EmpLicense div').removeClass('has-success');
     $('#EmpLicense i').removeClass('glyphicon glyphicon-ok');
