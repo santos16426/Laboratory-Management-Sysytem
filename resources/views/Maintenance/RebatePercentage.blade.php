@@ -56,7 +56,7 @@
       <div class="modal-header btn-primary">
         <h4 class="modal-title"><i class="fa fa-user-plus" aria-hidden="true"></i> Edit Rebate</h4>
       </div>
-      <form action="/save_rebatePercentage" method="POST" class="form-horizontal" id="rebate">
+      <form action="/save_rebatePercentage" method="POST" class="form-horizontal" id="rebates">
         <div class="modal-body" >
         	<div class="form-group" >
 	              <div class="col-sm-10 col-md-offset-1">
