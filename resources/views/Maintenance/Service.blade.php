@@ -38,6 +38,7 @@
 								<th>Price</th>
 								<th>Action</th>
                 <th>Status</th>
+                <th hidden></th>
 							</tr>
 				      	</thead>
 						<tbody>
@@ -64,6 +65,7 @@
                     <span class="badge bg-important">Unavailable</span>
                     @endif
                   </td>
+                  <td hidden>{{ $service->service_notes }}</td>
 								</tr>
 						@endforeach
 						</tbody>
@@ -280,11 +282,35 @@
           names = "";
           aData = oTable.fnGetData( nTr );
           sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-          sOut += '<tr><td>Package Name: '+ aData[1]+ '</td></tr>'
-          sOut += '<tr><td>Package Price: '+ aData[2]+ '</td></tr>'
-          sOut += '<tr><td>Services under this package :</td></tr>';
-        
-          sOut += '<tr><td></td></tr>';
+          sOut += '<tr><td>Service Name: '+ aData[1]+ '</td></tr>'
+          sOut += '<tr><td>Price: '+ aData[5]+ '</td></tr>'
+          if(aData[2] == '' || aData[2]==null )
+          {
+            sOut += '<tr><td>Service Group: N/A</td></tr>';
+          }
+          else
+          {
+            sOut += '<tr><td>Service Group: '+aData[2]+'</td></tr>';
+          }
+          if(aData[3] == '' || aData[3]==null )
+          {
+            sOut += '<tr><td>Service Type: N/A</td></tr>';
+          }
+          else
+          {
+            sOut += '<tr><td>Service Type: '+aData[3]+'</td></tr>';
+          }
+          sOut += '<tr><td>Medical Request: '+aData[4]+'</td></tr>';
+
+
+          if(aData[8] == ''|| aData[8]==null)
+          {
+            sOut += '<tr><td>Prescription: N/A</td></tr>';
+          }
+          else
+          {
+            sOut += '<tr><td>Prescription: '+aData[8]+'</td></tr>';
+          }
           sOut += '</table>';
 
           return sOut;
