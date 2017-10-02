@@ -823,7 +823,10 @@ $('#corppackedit').bootstrapValidator({
                     },
                     stringLength: {
                         max: 5,
+<<<<<<< HEAD
                         max: 9,
+=======
+>>>>>>> 4251114637ccc491785bc5895cd03735bcdbec74
                         message:'Rebate limit reached'
                     },
                         notEmpty: {
