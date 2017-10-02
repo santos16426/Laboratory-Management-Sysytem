@@ -105,7 +105,7 @@
         		<h4 class="modal-title">Rebate Payment</h4>
       		</div>
       		<div class="modal-body">
-         		<form class="form-horizontal" method="post" action="/saveEmpRebatePayment" id="paymentForm" enctype="multipart/form-data">
+         		<form class="form-horizontal rebatebill" method="post" action="/saveEmpRebatePayment" id="paymentForm" enctype="multipart/form-data">
           			<div class="box-body">
             			<input type="hidden" name="emp_id" id="PAYemp_id" value="">
             			<input type="hidden" name="checkAmount" id="checkAmount" value="">

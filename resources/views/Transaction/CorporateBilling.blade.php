@@ -117,7 +117,7 @@
         		<h4 class="modal-title">Corporate Payment</h4>
       		</div>
       		<div class="modal-body">
-         		<form class="form-horizontal" method="post" action="/saveCorporatePayment" id="paymentForm" enctype="multipart/form-data">
+         		<form class="form-horizontal corpbill" method="post" action="/saveCorporatePayment" id="paymentForm" enctype="multipart/form-data">
           			<div class="box-body">
             			<input type="hidden" name="corp_id" id="PAYcorp_id" value="">
             			<input type="hidden" name="checkAmount" id="checkAmount" value="">

@@ -967,3 +967,91 @@ $('#patientinfo')
         })
 
         ;
+
+
+
+//CorporateBill//
+// $('.form-horizontal.corpbill').bootstrapValidator({
+//         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+//         feedbackIcons: {
+//             valid: 'glyphicon glyphicon-ok',
+//             invalid: 'glyphicon glyphicon-remove',
+//             validating: 'glyphicon glyphicon-refresh'
+//         },
+//         fields: {
+
+//            amount: {
+//                 validators: {
+//                     regexp: {
+//                             regexp: /^([1-9]|[.1-9]\d)(?:\.\d{1,1})?$/,
+//                             message: 'Special characters are not allowed.'
+//                     },
+//                         notEmpty: {
+//                         message: 'This field is required.'
+//                     }
+//                 },
+//             },                                         
+//             }
+//         });
+
+ $('.form-horizontal.corpbill').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {    
+            amount: {
+                validators: {
+                        regexp: {
+                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            message: 'Invalid Input.'
+                    },
+                        notEmpty: {
+                        message: 'This field is required.'
+                    }
+                }
+            },  
+            payment_img: {
+                validators: {
+                    notEmpty: {
+                        message: 'This field is required.'
+                    }
+                }
+            },                   
+            }
+        })
+
+        ;
+
+$('.form-horizontal.rebatebill').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {    
+            amount: {
+                validators: {
+                        regexp: {
+                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            message: 'Invalid Input.'
+                    },
+                        notEmpty: {
+                        message: 'This field is required.'
+                    }
+                }
+            },  
+            payment_img: {
+                validators: {
+                    notEmpty: {
+                        message: 'This field is required.'
+                    }
+                }
+            },                   
+            }
+        })
+
+        ;
