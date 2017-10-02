@@ -112,7 +112,6 @@ $('#EmployeeTypeadd').bootstrapValidator({
             }
         });
 
-
 // service group ADD
     $('#servgrpadd').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
