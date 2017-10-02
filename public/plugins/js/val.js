@@ -1,6 +1,3 @@
-
-
-
 // Laboratory add
 $('#save_lab')   
        
