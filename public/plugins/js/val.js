@@ -550,7 +550,7 @@ $('#packageedit')
                     //     message: 'Shing',
                     // },
                         regexp: {
-                            regexp: /^[a-zA-Z0-9_.-]+@(yahoo|ymail|rocketmail|gmail)\.(uk|co|com|com.ph|in|co\.uk|net)$/,
+                            regexp: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                             message: 'Enter a valid email.'
                     },
                         notEmpty: {
@@ -632,7 +632,7 @@ $('#packageedit')
             upemail: {
                 validators: {
                         regexp: {
-                            regexp: /^[a-zA-Z0-9_.-]+@(yahoo|ymail|rocketmail|gmail)\.(uk|co|com|com.ph|in|co\.uk|net)$/,
+                            regexp: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                             message: 'Enter a valid email.'
                     },
                         notEmpty: {
@@ -818,11 +818,11 @@ $('#corppackedit').bootstrapValidator({
             rebatepercent: {
                 validators: {
                         regexp: {
-                            regexp: /^([1-9]|[1-9]\d)(?:\.\d{1,2})?$/,
+                            regexp: /^([1-9]|[.1-9]\d)(?:\.\d{1,1})?$/,
                             message: 'Invalid Input.'
                     },
                     stringLength: {
-                        max: 3,
+                        max: 5,
                         message:'Rebate limit reached'
                     },
                         notEmpty: {
@@ -917,7 +917,7 @@ $('#patientinfo')
               patient_email: {
                 validators: {
                         regexp: {
-                            regexp: /^[a-zA-Z0-9_.-]+@(yahoo|ymail|rocketmail|gmail)\.(uk|co|com|com.ph|in|co\.uk|net)$/,
+                            regexp: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                             message: 'Enter a valid email.'
                     },
                         notEmpty: {
