@@ -405,7 +405,7 @@ $('.employeeTypeDropDown').on('change',function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -429,13 +429,13 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -463,7 +463,7 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -594,7 +594,7 @@ $('.employeeTypeDropDown').on('change',function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -618,13 +618,13 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -652,7 +652,7 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -729,7 +729,7 @@ $('.employeeTypeDropDown').on('change',function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -753,13 +753,13 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -774,16 +774,12 @@ $('.employeeTypeDropDown').on('change',function(){
               },      
               confirmpass: {
                 validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
+                    notEmpty: {},
+                    identical: {
+                        field: 'password'
+                    },
                 }
-              },                                            
+            },                                         
             }
           });
 
@@ -867,13 +863,13 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -901,7 +897,7 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -979,7 +975,7 @@ $('.employeeTypeDropDown').on('change',function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -992,13 +988,13 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -1026,7 +1022,7 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -1103,7 +1099,7 @@ $('.employeeTypeDropDown').on('change',function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -1125,7 +1121,7 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -1194,7 +1190,7 @@ $('.employeeTypeDropDown').on('change',function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -1218,13 +1214,13 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -1239,16 +1235,12 @@ $('.employeeTypeDropDown').on('change',function(){
               },      
               confirmpass: {
                 validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
+                    notEmpty: {},
+                    identical: {
+                        field: 'password'
+                    },
                 }
-              },                                       
+            },                                    
             }
           });
             }
@@ -1331,13 +1323,13 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -1352,16 +1344,12 @@ $('.employeeTypeDropDown').on('change',function(){
               },      
               confirmpass: {
                 validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
+                    notEmpty: {},
+                    identical: {
+                        field: 'password'
+                    },
                 }
-              },                                        
+            },                                     
             }
           });
             }
@@ -1433,13 +1421,13 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -1467,7 +1455,7 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -1544,7 +1532,7 @@ $('.employeeTypeDropDown').on('change',function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -1555,7 +1543,7 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -1624,7 +1612,7 @@ $('.employeeTypeDropDown').on('change',function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -1635,7 +1623,7 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -1714,13 +1702,13 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -1735,16 +1723,12 @@ $('.employeeTypeDropDown').on('change',function(){
               },      
               confirmpass: {
                 validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
+                    notEmpty: {},
+                    identical: {
+                        field: 'password'
+                    },
                 }
-              },                                          
+            },                                       
             }
           });
             }
@@ -1814,7 +1798,7 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -1949,7 +1933,7 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -2018,7 +2002,7 @@ $('.employeeTypeDropDown').on('change',function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -2158,13 +2142,13 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -2179,16 +2163,12 @@ $('.employeeTypeDropDown').on('change',function(){
               },      
               confirmpass: {
                 validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
+                    notEmpty: {},
+                    identical: {
+                        field: 'password'
+                    },
                 }
-              },                                             
+            },                                          
             }
           });
             }
@@ -2258,7 +2238,7 @@ $('.employeeTypeDropDown').on('change',function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -2271,13 +2251,13 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -2292,16 +2272,12 @@ $('.employeeTypeDropDown').on('change',function(){
               },      
               confirmpass: {
                 validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
+                    notEmpty: {},
+                    identical: {
+                        field: 'password'
+                    },
                 }
-              },                                          
+            },                                       
             }
           });
             }
@@ -2374,7 +2350,7 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -2611,7 +2587,7 @@ $('.empupdateModalbtn').click(function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -2635,13 +2611,13 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -2669,7 +2645,7 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -2800,7 +2776,7 @@ $('.empupdateModalbtn').click(function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -2824,13 +2800,13 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -2858,7 +2834,7 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -2935,7 +2911,7 @@ $('.empupdateModalbtn').click(function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -2959,13 +2935,13 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -2980,16 +2956,12 @@ $('.empupdateModalbtn').click(function(){
               },      
               confirmpass: {
                 validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
+                    notEmpty: {},
+                    identical: {
+                        field: 'password'
+                    },
                 }
-              },                                            
+            },                                         
             }
           });
 
@@ -3073,13 +3045,13 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -3107,7 +3079,7 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -3185,7 +3157,7 @@ $('.empupdateModalbtn').click(function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -3198,13 +3170,13 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -3232,7 +3204,7 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -3309,7 +3281,7 @@ $('.empupdateModalbtn').click(function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -3331,7 +3303,7 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -3400,7 +3372,7 @@ $('.empupdateModalbtn').click(function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -3424,13 +3396,13 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -3445,16 +3417,12 @@ $('.empupdateModalbtn').click(function(){
               },      
               confirmpass: {
                 validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
+                    notEmpty: {},
+                    identical: {
+                        field: 'password'
+                    },
                 }
-              },                                       
+            },                                    
             }
           });
             }
@@ -3537,13 +3505,13 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -3558,16 +3526,12 @@ $('.empupdateModalbtn').click(function(){
               },      
               confirmpass: {
                 validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
+                    notEmpty: {},
+                    identical: {
+                        field: 'password'
+                    },
                 }
-              },                                        
+            },                                     
             }
           });
             }
@@ -3639,13 +3603,13 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -3673,7 +3637,7 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -3750,7 +3714,7 @@ $('.empupdateModalbtn').click(function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -3761,7 +3725,7 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -3830,7 +3794,7 @@ $('.empupdateModalbtn').click(function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -3841,7 +3805,7 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -3920,13 +3884,13 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -3941,16 +3905,12 @@ $('.empupdateModalbtn').click(function(){
               },      
               confirmpass: {
                 validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
+                    notEmpty: {},
+                    identical: {
+                        field: 'password'
+                    },
                 }
-              },                                          
+            },                                       
             }
           });
             }
@@ -4020,7 +3980,7 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -4155,7 +4115,7 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
@@ -4224,7 +4184,7 @@ $('.empupdateModalbtn').click(function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -4364,13 +4324,13 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -4385,16 +4345,12 @@ $('.empupdateModalbtn').click(function(){
               },      
               confirmpass: {
                 validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
+                    notEmpty: {},
+                    identical: {
+                        field: 'password'
+                    },
                 }
-              },                                             
+            },                                          
             }
           });
             }
@@ -4464,7 +4420,7 @@ $('.empupdateModalbtn').click(function(){
               address: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z'-a-z,]+[0-9-a-zA-Z,]+([,\s][,0-9-a-zA-Z'-]+)*$/,
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
                   },
                   notEmpty: {
@@ -4477,13 +4433,13 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 2 characters.'
+                    message:'Please enter at least 6 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },     
+              },      
               password: {
                 validators: {
                   stringLength: {
@@ -4498,16 +4454,12 @@ $('.empupdateModalbtn').click(function(){
               },      
               confirmpass: {
                 validators: {
-                  stringLength: {
-                    min: 6,
-                    max: 30,
-                    message:'Password must be atleast 6 charaters.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
+                    notEmpty: {},
+                    identical: {
+                        field: 'password'
+                    },
                 }
-              },                                          
+            },                                       
             }
           });
             }
@@ -4580,7 +4532,7 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}$/,
+                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
                     message: 'Invalid License Number Format.'
                   },
                   notEmpty: {
