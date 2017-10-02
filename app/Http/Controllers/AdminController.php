@@ -5,6 +5,10 @@ use Illuminate\Http\Request;
 use DB;
 class AdminController extends Controller
 {
+    function queue()
+    {
+        return view('Pages.Queueing');
+    }
     function dashboard()
     {
         $emp_count = DB::table('employee_tbl')

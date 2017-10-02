@@ -171,7 +171,12 @@
                       <li class="@yield('companydetails')"><a  href="/Utilities/CompanyDetails"><span><i class="fa fa-address-card" aria-hidden="true"></i></span>Company Details</a></li>
                   </ul>
                 </li>
-
+                <li>
+                    <a href="/Queue" class="@yield('queue')">
+                        <i class="fa fa-desktop"></i>
+                        <span>Queueing</span>
+                    </a>
+                </li>
               </ul>
           </div>
       </aside>

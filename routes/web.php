@@ -19,7 +19,7 @@ Route::get('/', function () {
 Route::post('/doLogin','LoginController@doLogin');
 // dashboard
 Route::get('/Admin/Dashboard','AdminController@dashboard');
-
+Route::get('/Queue','AdminController@queue');
 
 // Department
 Route::get('/Maintenance/Laboratory','LaboratoryController@lab');

@@ -270,12 +270,11 @@ $('.employeeTypeDropDown').select2({
 </script>
 <script type="text/javascript">
   $('#addEmpBtn').click(function(){
-    $('#EmpLicense').bootstrapValidator('resetForm',true);
     $('#EmpLicense div').removeClass('has-error');
     $('#EmpLicense div').removeClass('has-success');
     $('#EmpLicense i').removeClass('glyphicon glyphicon-ok');
     $('#EmpLicense i').removeClass('glyphicon glyphicon-remove');
-    corppackadd
+    $('#EmpLicense small').attr('style','display:none');
   });
   $('.empdeleteModalbtn').click(function(){
     $('#empid').val($(this).data('id'));
@@ -283,6 +282,7 @@ $('.employeeTypeDropDown').select2({
   });
 
 $('.employeeTypeDropDown').on('change',function(){ 
+      $('#EmpLicense').bootstrapValidator('destroy',true);
       var address = ""; 
       var username = ""; 
       var formChanges = ""; 
@@ -339,10 +339,9 @@ $('.employeeTypeDropDown').on('change',function(){
           }
          if(rank == 1 &&  license == 1 && address == 1 && contact == 1 && username == 1)
             {
-              
+    
               document.getElementById('EmpLicense').className = "form-horizontal 11111";  
 // 11111
-            
             $('.11111').bootstrapValidator({
             feedbackIcons: {
               valid: 'glyphicon glyphicon-ok',

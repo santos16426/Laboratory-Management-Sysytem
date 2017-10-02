@@ -32,8 +32,8 @@
 				      	<thead>
 							<tr>
 								<th>Service Name</th>
-								<th>Service Group</th>
-								<th>Service Type</th>
+								<th hidden>Service Group</th>
+								<th hidden>Service Type</th>
 								<th>Medical Request</th>
 								<th>Price</th>
 								<th>Action</th>
@@ -45,8 +45,8 @@
 							@foreach($service as $service)
 								<tr>
 									<td>{{ $service->service_name }}</td>
-									<td>{{ $service->servgroup_name }}</td>
-									<td>{{ $service->service_type_name }}</td>
+									<td hidden>{{ $service->servgroup_name }}</td>
+									<td hidden>{{ $service->service_type_name }}</td>
 									<td>{{ $service->medical_request }}</td>
 									<td>{{ $service->service_price }}</td>
 									<td>
@@ -282,7 +282,6 @@
           names = "";
           aData = oTable.fnGetData( nTr );
           sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-          sOut += '<tr><td>Service Name: '+ aData[1]+ '</td></tr>'
           sOut += '<tr><td>Price: '+ aData[5]+ '</td></tr>'
           if(aData[2] == '' || aData[2]==null )
           {
@@ -300,6 +299,7 @@
           {
             sOut += '<tr><td>Service Type: '+aData[3]+'</td></tr>';
           }
+          sOut += '<tr><td>Service Name: <u><b>'+ aData[1]+ '</b></u></td></tr>'
           sOut += '<tr><td>Medical Request: '+aData[4]+'</td></tr>';
 
 
@@ -377,7 +377,7 @@
       $('#servadd div').removeClass('has-success');
       $('#servadd i').removeClass('glyphicon glyphicon-ok');
       $('#servadd i').removeClass('glyphicon glyphicon-remove');
-      $('#servadd .help-block').remove();
+      $('#servadd small').attr('style','display:none');
     });
 $(function () {
 
