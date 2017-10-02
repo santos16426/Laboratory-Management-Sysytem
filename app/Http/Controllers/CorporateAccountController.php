@@ -14,9 +14,13 @@ class CorporateAccountController extends Controller
       $uppackname = $_POST['uppackname'];
       $uppackprice = $_POST['uppackprice'];
       $upservices = $_POST['upservices'];
-      $upexam = $_POST['upexam'];
+      $upexam = 1;
       $gender = 3;
       $age =  'All' ;
+      if(isset($_POST['upexam']))
+      {
+        $upexam = $_POST['upexam'];
+      }
       if(isset($_POST['gender']))
       {
         $gender = $_POST['gender'];
@@ -89,7 +93,7 @@ class CorporateAccountController extends Controller
       $packname = $_POST['packname'];
       $packprice = $_POST['packprice'];
       $services = $_POST['services'];
-      $exam = 2;
+      $exam = 1;
       $gender = 3;
       $age =  'All' ;
       if(isset($_POST['gender']))
@@ -167,7 +171,24 @@ class CorporateAccountController extends Controller
       ->where('service_group_tbl.ServGroupStatus',1)
       ->where('service_type_tbl.ServTypeStatus',null)
       ->get();
-
+    $services = DB::table('corp_packserv_tbl')
+                ->leftjoin('service_tbl','service_tbl.service_id','=','corp_packserv_tbl.service_id')
+                ->leftjoin('service_group_tbl','service_group_tbl.servgroup_id','=','service_tbl.service_group_id')
+                ->leftjoin('service_type_tbl','service_type_tbl.service_type_id','=','service_tbl.service_type_id')
+                ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+                ->where('service_tbl.ServiceStatus',1)
+                ->where('laboratory_tbl.LabStatus',1)
+                ->where('service_group_tbl.ServGroupStatus',1)
+                ->where('service_type_tbl.ServTypeStatus',1)
+                ->orWhere('service_tbl.ServiceStatus',1)
+                ->where('laboratory_tbl.LabStatus',null)
+                ->where('service_group_tbl.ServGroupStatus',null)
+                ->where('service_type_tbl.ServTypeStatus',null)
+                ->orWhere('service_tbl.ServiceStatus',1)
+                ->where('laboratory_tbl.LabStatus',1)
+                ->where('service_group_tbl.ServGroupStatus',1)
+                ->where('service_type_tbl.ServTypeStatus',null)
+                ->get();
       $corp_id = $_GET['corp_id'];
       $corp_name = DB::table('corporate_accounts_tbl')->where('corp_id',$corp_id)->select('corp_name')->get();
       foreach($corp_name as $c)
@@ -176,7 +197,7 @@ class CorporateAccountController extends Controller
       }
 
       $table = DB::table('corp_package_tbl')->where('corp_id',$corp_id)->get();
-      return view('Maintenance.CreateCorporatePackage',['corp_name'=>$corp_name,'table'=>$table,'serviceoffer'=>$serviceoffer,'servicegroup'=>$servicegroup,'corp_id'=>$corp_id]);
+      return view('Maintenance.CreateCorporatePackage',['corp_name'=>$corp_name,'table'=>$table,'serviceoffer'=>$serviceoffer,'servicegroup'=>$servicegroup,'corp_id'=>$corp_id,'services'=>$services]);
     }
     function corp()
     {

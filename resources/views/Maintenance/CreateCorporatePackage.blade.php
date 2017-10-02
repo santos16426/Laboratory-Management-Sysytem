@@ -86,7 +86,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                     <div class="checkbox">
-                      <label><input type="checkbox" name="upexam" id="" value="1">Include Physical Exam.</label>
+                      <label><input type="checkbox" name="upexam" id="upexam" value="2">Include Physical Exam.</label>
                   </div>
                 </div>
               </div>  
@@ -98,18 +98,18 @@
                             <label class="col-lg-1 col-md-offset-1 control-label">Gender:</label>
                             <div class="col-lg-5">
                                 <div class="radio">
-                                    <label for="Male">
-                                        <input type="radio" id="upMale" name="gender" value="Male" /> Male
+                                    <label for="upMale">
+                                        <input type="radio" id="upMale" name="gender" value="1" /> Male
                                     </label>
                                 </div>
                                 <div class="radio">
-                                    <label for="Female">
-                                        <input type="radio" id="upFemale" name="gender" value="Female" /> Female
+                                    <label for="upFemale">
+                                        <input type="radio" id="upFemale" name="gender" value="2" /> Female
                                     </label>
                                 </div>
                                 <div class="radio">
-                                    <label for="Both">
-                                        <input type="radio" id="upBoth" name="gender" value="Both" /> Both
+                                    <label for="upBoth">
+                                        <input type="radio" id="upBoth" name="gender" value="3" /> Both
                                     </label>
                                 </div>
                             </div>
@@ -119,22 +119,22 @@
                             <label class="col-lg-1 col-md-offset-1 control-label">Age:</label>
                             <div class="col-lg-5">
                                 <div class="radio">
-                                    <label for="Teen">
+                                    <label for="upTeen">
                                         <input type="radio" id="upTeen" name="age" value="Teen" /> Teen
                                     </label>
                                 </div>
                                 <div class="radio">
-                                    <label for="Adult">
+                                    <label for="upAdult">
                                         <input type="radio" id="upAdult" name="age" value="Adult" /> Adult
                                     </label>
                                 </div>
                                 <div class="radio">
-                                    <label for="Senior">
+                                    <label for="upSenior">
                                         <input type="radio" id="upSenior" name="age" value="Senior" /> Senior
                                     </label>
                                 </div>
                                 <div class="radio">
-                                    <label for="All Ages">
+                                    <label for="upAllAges">
                                         <input type="radio" id="upAllAges" name="age" value="All" /> All Ages
                                     </label>
                                 </div>
@@ -223,7 +223,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                     <div class="checkbox">
-                      <label><input type="checkbox" name="exam" id="exam" value="Yes">Include Physical Exam.</label>
+                      <label><input type="checkbox" name="exam" id="exam" value="2">Include Physical Exam.</label>
                   </div>
                 </div>
               </div>  
@@ -329,6 +329,8 @@
                 <th>Package Price</th>
                 <th>Action</th>
                 <th>Status</th>
+                <th hidden></th>
+                <th hidden></th>
               </tr>
             </thead>
             <tbody>
@@ -353,6 +355,20 @@
                   <span class="badge bg-important">Unavailable</span>
                   @endif
                 </td>
+                <td hidden>
+                  @foreach($services as $corpserv)
+                    @if($packages->corpPack_id == $corpserv->corpPack_id)
+                      {{ $corpserv->service_name }},
+                    @endif
+                  @endforeach
+                </td>
+                <td hidden>
+                  @if($packages->physical_exam == 2)
+                  Yes
+                  @else
+                  No
+                  @endif
+                </td>
               </tr>
               @endforeach
             </tbody>
@@ -364,6 +380,79 @@
 </div>
 @endsection
 @section('additional')
+<script type="text/javascript">
+
+      function fnFormatDetails ( oTable, nTr )
+      {
+          var aData = oTable.fnGetData( nTr );
+          var service =[];
+          service = aData[5];
+          var servs = service.split(',');
+
+          var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+          sOut += '<tr><td>Package Name: '+aData[1]+'</td></tr>';
+          sOut += '<tr><td>Price: '+aData[2]+'</td></tr>';
+          sOut += '<tr><td>Services: '+servs+'</td></tr>';
+          sOut += '<tr><td>Physical Exam: '+aData[6]+'</td></tr>';
+          sOut += '</table>';
+          return sOut;
+      }
+ 
+      $(document).ready(function() {
+          /*
+           * Insert a 'details' column to the table
+           */
+          var nCloneTh = document.createElement( 'th' );
+          var nCloneTd = document.createElement( 'td' );
+          nCloneTd.innerHTML = '<img src="/plugins/assets/advanced-datatable/examples/examples_support/details_open.png">';
+          nCloneTd.className = "center";
+
+          $('#corpPacktbl thead tr').each( function () {
+              this.insertBefore( nCloneTh, this.childNodes[0] );
+          } );
+
+          $('#corpPacktbl tbody tr').each( function () {
+              this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+          } );
+
+          /*
+           * Initialse DataTables, with no sorting on the 'details' column
+           */
+          var oTable = $('#corpPacktbl').dataTable( {
+            'paging'      : true,
+            'lengthChange': true,
+            'searching'   : true,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : true,
+              "aoColumnDefs": [
+                  { "bSortable": false, "aTargets": [ 0 ] }
+              ],
+              "aaSorting": [[1, 'asc']]
+          });
+
+          /* Add event listener for opening and closing details
+           * Note that the indicator for showing which row is open is not controlled by DataTables,
+           * rather it is done here
+           */
+          $('#corpPacktbl tbody td img').live('click', function () {
+              var nTr = $(this).parents('tr')[0];
+              if ( oTable.fnIsOpen(nTr) )
+              {
+                  /* This row is already open - close it */
+                  this.src = "/plugins/assets/advanced-datatable/examples/examples_support/details_open.png";
+                  oTable.fnClose( nTr );
+              }
+              else
+              {
+                  /* Open this row */
+                  this.src = "/plugins/assets/advanced-datatable/examples/examples_support/details_close.png";
+                  oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
+              }
+          } );
+      } );
+
+</script>
 <script type="text/javascript">
   $('#addEmpBtn').click(function(){
     $('#corppackadd').bootstrapValidator('resetForm',true);
@@ -424,15 +513,7 @@
       });
     }
   });
-  $('#corpPacktbl').DataTable({
-  'paging'      : true,
-  'lengthChange': true,
-  'searching'   : true,
-  'ordering'    : true,
-  'info'        : true,
-  'autoWidth'   : true
-
-});
+ 
   $('.delbtn').click(function(){
 $('#cid').val($(this).data('id'));
 $('#deleteModal').modal('show');
@@ -487,7 +568,12 @@ $('.updateModal').click(function(){
         {
           $('#upAllAges').prop('checked',true);
         }
+        if(data.physical_exam == 2)
+        {
+          $('#upexam').prop('checked',true);
+        }  
          })
+        
         
         },
       error:function(){

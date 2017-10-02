@@ -246,7 +246,7 @@
 
 <script type="text/javascript">
       /* Formating function for row details */
-      names = "";
+      
       function fnFormatDetails ( oTable, nTr )
       {
           var aData = oTable.fnGetData( nTr );
