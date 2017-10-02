@@ -331,6 +331,8 @@
                 <th>Status</th>
                 <th hidden></th>
                 <th hidden></th>
+                <th hidden></th>
+                <th hidden></th>
               </tr>
             </thead>
             <tbody>
@@ -369,6 +371,26 @@
                   No
                   @endif
                 </td>
+                <td hidden>
+                  @if($packages->age == 'All')
+                  Available for all ages
+                  @elseif($packages->age == 'Senior')
+                  Available for Senior Citizen Only (Ages 60 above)
+                  @elseif($packages->age == 'Adult')
+                  Available for Adults Only (Ages 19-59)
+                  @elseif($packages->age == 'Teen')
+                  Available for Teens Only (Ages 12-18)
+                  @endif
+                </td>
+                <td hidden>
+                  @if($packages->gender == 1)
+                  Available for Male Employee only
+                  @elseif($packages->gender == 2)
+                  Available for Female Employee only
+                  @elseif($packages->gender == 3)
+                  Available for both male and female
+                  @endif
+                </td>
               </tr>
               @endforeach
             </tbody>
@@ -394,6 +416,9 @@
           sOut += '<tr><td>Price: '+aData[2]+'</td></tr>';
           sOut += '<tr><td>Services: '+servs+'</td></tr>';
           sOut += '<tr><td>Physical Exam: '+aData[6]+'</td></tr>';
+          sOut += '<tr><td>Conditions:</td></tr>';
+          sOut += '<tr><td>&emsp;-'+aData[7]+'</td></tr>';
+          sOut += '<tr><td>&emsp;-'+aData[8]+'</td></tr>';
           sOut += '</table>';
           return sOut;
       }
