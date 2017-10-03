@@ -109,7 +109,7 @@ Route::get('/Transactions/CorporateBilling','TransactionController@corpbilling')
 Route::get('/Transactions/RebateBilling','TransactionController@rebatebilling');
 Route::get('/Transaction/Rebate/ViewTransactions','TransactionController@viewrebatetrans');
 Route::post('/saveEmpRebatePayment','TransactionController@saveRebatePayment');
-
+Route::get('/maximumAmount','RemoteController@maximumAmount');
 //Layouts
 Route::get('/medicalReport','ResultController@medicalReport');
 Route::get('/ecg','ResultController@ecg');

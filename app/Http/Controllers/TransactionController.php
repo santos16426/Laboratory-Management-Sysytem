@@ -7,6 +7,7 @@ use DB;
 use Session;
 class TransactionController extends Controller
 {
+    
     function viewrebatetrans()
     {
         $emp_id = $_GET['emp_id'];

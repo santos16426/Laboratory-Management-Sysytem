@@ -127,7 +127,7 @@
 								<div class="input-group-addon">
 									Amount <sup>*</sup>
 								</div>
-								<input  name="amount" id="amount" type="text" class="form-control input-md" required>
+								<input  name="amount" id="amount" type="number" class="form-control input-md" required step="any" pattern="^\d+(?:\.\d{1,2})?$">
 								</div>
 							</div>  
 						</div> 
@@ -142,7 +142,7 @@
             						<span class="btn btn-white btn-file"> 
 	            						<span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
 	            						<span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-	            						<input type="file" class="default" name="payment_img"> 
+	            						<input type="file" class="default" name="payment_img" required> 
             						</span> 
             						<a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a> 
             					</div> 
@@ -249,6 +249,10 @@ $('.sendEmail').click(function(){
 $('.payCorp').click(function(){
 	$('#PAYcorp_id').val($(this).data('id'));
 	$('#checkAmount').val($(this).data('amount'));
+
+	$('#amount').prop('min',1);
+	$('#amount').prop('max',$(this).data('amount'));
+
 	$('#paymentModal').modal('show');
 });
 $('.viewTrans').click(function(){

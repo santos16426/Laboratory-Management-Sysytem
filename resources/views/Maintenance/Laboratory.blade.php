@@ -165,14 +165,17 @@
  });
 </script>
 <script type="text/javascript">
-	$('#labTbl').DataTable({
-		'paging'      : true,
-		'lengthChange': true,
-		'searching'   : true,
-		'ordering'    : true,
-		'info'        : true,
-		'autoWidth'   : true,
-	});
+	
+  $(document).ready(function(){
+    $('#labTbl').dataTable({
+    'paging'      : true,
+    'lengthChange': true,
+    'searching'   : true,
+    'ordering'    : true,
+    'info'        : true,
+    'autoWidth'   : true,
+  });
+  });
 	$('.delbtn').click(function(){
     $('#labid').val($(this).data('id'));
     $('#deleteModal').modal('show');

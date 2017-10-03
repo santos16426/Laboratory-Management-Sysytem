@@ -6,7 +6,22 @@ use Illuminate\Http\Request;
 use DB;
 class RemoteController extends Controller
 {
-    
+    function maximumAmount(Request $req)
+    {
+        $maxinput = $req->checkAmount;
+        $amount = $req->amount;
+        dd($req);
+        if($amount <= $maxinput)
+        {
+            $isAvailable = true;
+        }
+        else
+        {
+            $isAvailable = false;
+        }
+        echo json_encode(array('valid' => $isAvailable,));
+    }
+
     public function checkEmpType()
     {
     	$firstcheck = DB::table('employee_role_tbl')
