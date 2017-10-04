@@ -147,6 +147,10 @@ Route::get('sendmail', 'SendMailController@sendMail');
 
 // Reports
 Route::get('/Result/medrequest','TransactionController@medrequest');
+Route::get('/Result/ecg','TransactionController@ecg');
+Route::get('/Result/ultra','TransactionController@ultra');
+Route::get('/Result/xray','TransactionController@xray');
+Route::get('/Result/medserve','TransactionController@medserve');
 
 
 

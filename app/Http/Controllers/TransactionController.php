@@ -10,6 +10,18 @@ class TransactionController extends Controller
     function medrequest(){
         return view ('Result.MedicalRequest');
     }
+    function ecg(){
+        return view ('Result.Ecg');
+    }
+     function ultra(){
+        return view ('Result.Ultrasound');
+    }
+    function xray(){
+        return view ('Result.Xray');
+    }
+    function medserve(){
+        return view ('Result.MedicalService');
+    }
     function viewrebatetrans()
     {
         $emp_id = $_GET['emp_id'];
