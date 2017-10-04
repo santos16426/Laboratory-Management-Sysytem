@@ -10,8 +10,16 @@
 <a href="" class="">
 @endsection
 @section('reportactive','active')
-@section('transactionactive','active')
+@section('corpactive','active')
 @section('content')
+<style type="text/css">
+	#linechart {
+	min-width: 310px;
+	max-width: 800px;
+	height: 400px;
+	margin: 0 auto
+}
+</style>
 <div class="row">
 	<div class="col-lg-6">
 		<section class="panel">
@@ -105,19 +113,7 @@
 			</header>
 			<div class="panel-body">
 				<div class="clearfix">
-					<table class="table table-bordered table-hover dataTable" id="transTbl">
-						<thead>
-							<tr>
-								<th>Transaction ID</th>
-								<th>Transaction Date</th>
-								<th>Total</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							
-						</tbody>
-					</table>
+					<div id="linechart"></div>
 				</div> 
 			</div>
 			<div class="panel-footer">
@@ -128,7 +124,64 @@
 </div>			
 @endsection
 @section('additional')
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
 <script type="text/javascript">
+	$('#generatebtn').click(function(){
+		Highcharts.chart('linechart', {
+
+		    title: {
+		        text: 'Solar Employment Growth by Sector, 2010-2016'
+		    },
+
+		    subtitle: {
+		        text: 'Source: thesolarfoundation.com'
+		    },
+
+		    yAxis: {
+		        title: {
+		            text: 'Number of Employees'
+		        }
+		    },
+		    legend: {
+		        layout: 'vertical',
+		        align: 'right',
+		        verticalAlign: 'middle'
+		    },
+
+		    plotOptions: {
+		        series: {
+		            label: {
+		                connectorAllowed: false
+		            },
+		            pointStart: 2013
+		        }
+		    },
+
+		    series: [{
+		        name: 'Transaction',
+		        data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 21111]
+		    }],
+
+		    responsive: {
+		        rules: [{
+		            condition: {
+		                maxWidth: 300
+		            },
+		            chartOptions: {
+		                legend: {
+		                    layout: 'horizontal',
+		                    align: 'center',
+		                    verticalAlign: 'bottom'
+		                }
+		            }
+		        }]
+		    }
+
+		});	
+	})
 	$('#selectrange').change(function(){
 		var report = $(this).val();
 		var startdate = document.getElementById('startdate');

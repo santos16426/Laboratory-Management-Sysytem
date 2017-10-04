@@ -12,6 +12,14 @@
 @section('reportactive','active')
 @section('transactionactive','active')
 @section('content')
+<style type="text/css">
+	#linechart {
+	min-width: 310px;
+	max-width: 800px;
+	height: 400px;
+	margin: 0 auto
+}
+</style>
 <div class="row">
 	<div class="col-lg-6">
 		<section class="panel">
@@ -105,19 +113,36 @@
 			</header>
 			<div class="panel-body">
 				<div class="clearfix">
-					<table class="table table-bordered table-hover dataTable" id="transTbl">
-						<thead>
-							<tr>
-								<th>Transaction ID</th>
-								<th>Transaction Date</th>
-								<th>Total</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							
-						</tbody>
-					</table>
+					<header class="panel-heading btn-info ">
+						<ul class="nav nav-tabs">
+				          	<li>
+				              	<a data-toggle="tab" href="#tables">Tables</a>
+				          	</li>
+				          	<li class="active">
+				              	<a data-toggle="tab" href="#charts">Chart</a>
+				          	</li>
+				      	</ul>
+			      	</header>
+					<div class="tab-content">
+						<div class="tab-pane" id="tables">
+							<table class="table table-bordered table-hover dataTable" id="transTbl">
+								<thead>
+									<tr>
+										<th>Transaction ID</th>
+										<th>Transaction Date</th>
+										<th>Total</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+						<div class="tab-pane active" id="charts">
+							<div id="linechart"></div>
+						</div>
+					</div>
 				</div> 
 			</div>
 			<div class="panel-footer">
@@ -125,11 +150,56 @@
 			</div>
 		</section>
 	</div>
-</div>			
+</div>	
+
 @endsection
 @section('additional')
-
 <script type="text/javascript">
+	Highcharts.chart('linechart', {
+
+	    title: {
+	        text: 'Transaction Report'
+	    },
+
+	    yAxis: {
+	        title: {
+	            text: 'Total Income'
+	        }
+	    },
+	    
+
+	    plotOptions: {
+	        series: {
+	            label: {
+	                connectorAllowed: false
+	            },
+	            pointStart: 2013
+	        }
+	    },
+
+	    series: [{
+	        name: 'Income',
+	    }],
+
+	    responsive: {
+	        rules: [{
+	            condition: {
+	                maxWidth: 300
+	            },
+	            chartOptions: {
+	                legend: {
+	                    layout: 'horizontal',
+	                    align: 'center',
+	                    verticalAlign: 'bottom'
+	                }
+	            }
+	        }]
+	    }
+
+	});
+</script>
+<script type="text/javascript">
+
 	var t = $('#transTbl').DataTable({
 	  'paging'      : true,
 	  'lengthChange': true,
@@ -169,11 +239,11 @@
 	    var yearly = $('#yearly_date').val();
 	    var rangestart = $('#rangestart_date').val();
     	var rangeend = $('#rangeend_date').val();
-
 		if(report == 'daily')
 		{
 			if(start_date != '')
 			{
+				
 				t.clear().draw();
 				$.ajax
 				({

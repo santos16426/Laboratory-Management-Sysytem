@@ -39,6 +39,7 @@
             color: black
           }
         </style>
+
     </head>
 <body>
 <section id="container" >
@@ -156,7 +157,7 @@
                   <ul class="sub">
                       <li class="@yield('censusactive')"><a  href=""><i class="fa fa-line-chart" aria-hidden="true"></i> Census Reports</a></li>
                       <li class="@yield('transactionactive')"><a  href="/Reports/TransactionReports"><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Transaction Reports</a></li>
-                      <li class="@yield('censusactive')"><a  href="/Reports/CorporateReports"><i class="fa fa-pie-chart" aria-hidden="true"></i> Corporate Reports</a></li>
+                      <li class="@yield('corpactive')"><a  href="/Reports/CorporateReports"><i class="fa fa-pie-chart" aria-hidden="true"></i> Corporate Reports</a></li>
 
                   </ul>
                 </li>
@@ -247,6 +248,9 @@
 <script src="{{ asset('/plugins/js/toucheffects.js') }}"></script>
 <script src="{{ asset('/plugins/js/val.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/advanced-form-components.js') }}"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script type="text/javascript">
       $(function() {
         //    fancybox
