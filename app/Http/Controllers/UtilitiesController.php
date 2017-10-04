@@ -7,6 +7,61 @@ use DB;
 use Session;
 class UtilitiesController extends Controller
 {
+	function activatecorppack()
+	{
+		DB::table('corp_package_tbl')->where('corpPack_id',$_POST['id'])->update(['CorpPackStatus'=>1]);
+		Session::flash('reactivate',true);
+		return redirect()->back();
+	}
+	function activecorp()
+	{
+		DB::table('corporate_accounts_tbl')->where('corp_id',$_POST['id'])->update(['CorpStatus'=>1]);
+      	Session::flash('reactivate',true);
+      	return redirect()->back();
+	}
+	function activatePack()
+	{
+		DB::table('package_tbl')->where('pack_id',$_POST['id'])->update(['PackStatus'=>1]);
+      	Session::flash('reactivate', true);
+      	return redirect()->back();
+	}
+	function activateServGroup()
+	{
+		DB::table('service_group_tbl')->where('servgroup_id',$_POST['id'])->update(['ServGroupStatus'=>1]);
+	      Session::flash('reactivate',true);
+	      return redirect()->back();
+	}
+	function activateServtype()
+	{
+		DB::table('service_type_tbl')->where('service_type_id',$_POST['id'])->update(['ServTypeStatus'=>1]);
+      	Session::flash('reactivate', true);
+      	return redirect()->back();
+	}
+	function activateServ()
+	{
+		DB::table('service_tbl')->where('service_id',$_POST['id'])->update(['ServiceStatus'=>1]);
+		Session::flash('reactivate', true);
+		return redirect()->back();
+	}	
+	function activateEmp()
+	{
+		DB::table('employee_tbl')->where('emp_id',$_POST['id'])->update(['EmpStatus'=>1]);
+      	Session::flash('reactivate',true);
+      	return redirect()->back();
+	}
+	function activateEmpType()
+	{
+		DB::table('employee_role_tbl')->where('role_id',$_POST['id'])->update(['RoleStatus'=>1]);
+		Session::flash('reactivate', 'true');
+		return redirect()->back();
+	}
+	function activateLab()
+	{
+		DB::table('laboratory_tbl')->where('lab_id',$_POST['id'])->update(['LabStatus'=>1]);
+        Session::flash('reactivate', true);
+        return redirect()->back();
+	}
+
     function reactivation()
     {
     	$lab = DB::table('laboratory_tbl')->where('LabStatus',0)->get();

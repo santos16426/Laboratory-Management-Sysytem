@@ -165,3 +165,16 @@ Route::get('/Utilities/Reactivation','UtilitiesController@reactivation');
 Route::get('/Utilities/CompanyDetails','UtilitiesController@companydetails');
 
 Route::get('/sendCorporateEmail','SendMailController@sendcorpemail');
+
+
+// Reactivation
+Route::post('/activateLab','UtilitiesController@activateLab');
+Route::post('/activateEmpType','UtilitiesController@activateEmpType');
+Route::post('/activateEmp','UtilitiesController@activateEmp');
+
+Route::post('/activateServGroup','UtilitiesController@activateServGroup');
+Route::post('/activateServtype','UtilitiesController@activateServtype');
+Route::post('/activateServ','UtilitiesController@activateServ');
+Route::post('/activatePack','UtilitiesController@activatePack');
+Route::post('/activatecorp','UtilitiesController@activatecorp');
+Route::post('/activatecorppack','UtilitiesController@activatecorppack');

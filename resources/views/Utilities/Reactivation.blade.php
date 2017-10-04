@@ -265,6 +265,182 @@
     </div>  
   </div>
 </div>
+
+<div class="modal fade" id = "emptypemodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header btn-success">
+        <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Reactivate Record</h4>
+      </div>
+      <form method="post" action="/activateEmpType" id="activateEmpType">
+      {{ csrf_field()  }}
+        <div class="modal-body">
+          <h4></h4>
+          <input type="text" class="hidden" name="id" id="emptypeid" value="">
+          Are you sure you want to restore this record?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
+          <button  class="btn btn-xs btn-success" type="submit"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Activate</button>
+        </div>
+      </form>
+    </div>  
+  </div>
+</div>
+
+<div class="modal fade" id = "empmodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header btn-success">
+        <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Reactivate Record</h4>
+      </div>
+      <form method="post" action="/activateEmp" id="activateEmp">
+      {{ csrf_field()  }}
+        <div class="modal-body">
+          <h4></h4>
+          <input type="text" class="hidden" name="id" id="empid" value="">
+          Are you sure you want to restore this record?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
+          <button  class="btn btn-xs btn-success" type="submit"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Activate</button>
+        </div>
+      </form>
+    </div>  
+  </div>
+</div>
+
+<div class="modal fade" id = "servgroupmodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header btn-success">
+        <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Reactivate Record</h4>
+      </div>
+      <form method="post" action="/activateServGroup" id="activateServGroup">
+      {{ csrf_field()  }}
+        <div class="modal-body">
+          <h4></h4>
+          <input type="text" class="hidden" name="id" id="servgroupid" value="">
+          Are you sure you want to restore this record?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
+          <button  class="btn btn-xs btn-success" type="submit"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Activate</button>
+        </div>
+      </form>
+    </div>  
+  </div>
+</div>
+
+<div class="modal fade" id = "servtypemodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header btn-success">
+        <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Reactivate Record</h4>
+      </div>
+      <form method="post" action="/activateServtype" id="activateServtype">
+      {{ csrf_field()  }}
+        <div class="modal-body">
+          <h4></h4>
+          <input type="text" class="hidden" name="id" id="servtypeid" value="">
+          Are you sure you want to restore this record?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
+          <button  class="btn btn-xs btn-success" type="submit"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Activate</button>
+        </div>
+      </form>
+    </div>  
+  </div>
+</div>
+
+<div class="modal fade" id = "servmodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header btn-success">
+        <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Reactivate Record</h4>
+      </div>
+      <form method="post" action="/activateServ" id="activateServ">
+      {{ csrf_field()  }}
+        <div class="modal-body">
+          <h4></h4>
+          <input type="text" class="hidden" name="id" id="servid" value="">
+          Are you sure you want to restore this record?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
+          <button  class="btn btn-xs btn-success" type="submit"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Activate</button>
+        </div>
+      </form>
+    </div>  
+  </div>
+</div>
+
+<div class="modal fade" id = "packmodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header btn-success">
+        <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Reactivate Record</h4>
+      </div>
+      <form method="post" action="/activatePack" id="activatePack">
+      {{ csrf_field()  }}
+        <div class="modal-body">
+          <h4></h4>
+          <input type="text" class="hidden" name="id" id="packid" value="">
+          Are you sure you want to restore this record?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
+          <button  class="btn btn-xs btn-success" type="submit"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Activate</button>
+        </div>
+      </form>
+    </div>  
+  </div>
+</div>
+
+<div class="modal fade" id = "corpmodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header btn-success">
+        <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Reactivate Record</h4>
+      </div>
+      <form method="post" action="/activatecorp" id="activatecorp">
+      {{ csrf_field()  }}
+        <div class="modal-body">
+          <h4></h4>
+          <input type="text" class="hidden" name="id" id="corpid" value="">
+          Are you sure you want to restore this record?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
+          <button  class="btn btn-xs btn-success" type="submit"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Activate</button>
+        </div>
+      </form>
+    </div>  
+  </div>
+</div>
+
+<div class="modal fade" id = "corppackmodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header btn-success">
+        <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Reactivate Record</h4>
+      </div>
+      <form method="post" action="/activatecorppack" id="activatecorppack">
+      {{ csrf_field()  }}
+        <div class="modal-body">
+          <h4></h4>
+          <input type="text" class="hidden" name="id" id="corppackid" value="">
+          Are you sure you want to restore this record?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
+          <button  class="btn btn-xs btn-success" type="submit"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Activate</button>
+        </div>
+      </form>
+    </div>  
+  </div>
+</div>
 @endsection
 @section('additional')
 <script type="text/javascript">
@@ -276,27 +452,44 @@
 		});
 		$('.emptypebtn').click(function(){
 			var id = $(this).data('id');
+			$('#emptypeid').val(id);
+			$('#emptypemodal').modal('show');
 		});
 		$('.empbtn').click(function(){
 			var id = $(this).data('id');
+			$('#empid').val(id);
+			$('#empmodal').modal('show');
 		});
 		$('.sergroupbtn').click(function(){
 			var id = $(this).data('id');
+			$('#servgroupid').val(id);
+			$('#servgroupmodal').modal('show');
 		});
 		$('.sertypebtn').click(function(){
 			var id = $(this).data('id');
+			$('#servtypeid').val(id);
+			$('#servtypemodal').modal('show');
 		});
 		$('.serbtn').click(function(){
 			var id = $(this).data('id');
+			$('#servid').val(id);
+			$('#servmodal').modal('show');
 		});
 		$('.packbtn').click(function(){
 			var id = $(this).data('id');
+			$('#packid').val(id);
+			$('#packmodal').modal('show');
 		});
 		$('.corpbtn').click(function(){
 			var id = $(this).data('id');
+			$('#corpid').val(id);
+			$('#corpmodal').modal('show');
+
 		});
 		$('.corppackbtn').click(function(){
 			var id = $(this).data('id');
+			$('#corppackid').val(id);
+			$('#corppackmodal').modal('show');
 		});
   	$('#labTbl').dataTable({
 	    'paging'      : true,
