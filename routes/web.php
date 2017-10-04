@@ -146,6 +146,11 @@ Route::get('/retrieveReciept','TransactionController@retrieveReciept');
 Route::get('sendmail', 'SendMailController@sendMail');
 
 // Reports
+Route::get('/Result/medrequest','TransactionController@medrequest');
+
+
+
+
 Route::get('/Reports/CorporateReports','ReportController@corporatereports');
 Route::get('/allTransactionReport','ReportController@allTransactionReport');
 Route::get('/Reports/TransactionReports','ReportController@transactionreport');

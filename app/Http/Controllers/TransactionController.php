@@ -7,7 +7,9 @@ use DB;
 use Session;
 class TransactionController extends Controller
 {
-    
+    function medrequest(){
+        return view ('Result.MedicalRequest');
+    }
     function viewrebatetrans()
     {
         $emp_id = $_GET['emp_id'];

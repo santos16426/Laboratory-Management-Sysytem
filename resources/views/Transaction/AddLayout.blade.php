@@ -37,7 +37,7 @@
                                       <h3>Medical Request</h3>
                                      <div class="btn-group pull-right" role="group" style="padding-top: 3%">
                                         <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/medicalrequest.jpg') }}">View</a>
-                                        <a type="button" class="btn" href="/medicalReport?id={{ $id }}">Use</a>
+                                        <a type="button" class="btn" href="/Result/medrequest">Use</a>
                                       </div>
                                   </figcaption>
                               </figure>
