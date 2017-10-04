@@ -19,6 +19,7 @@ class EmployeeController extends Controller
     {
     	$emp1 = DB::table('employee_tbl')
     		->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
+    		->leftjoin('medtech_rank','rank_id','=','emp_medtech_rank_id')
     		->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
     		->get();
         $empTypes = DB::table('employee_role_tbl')

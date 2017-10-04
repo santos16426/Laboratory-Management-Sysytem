@@ -38,6 +38,10 @@
                 <th>Employee Type</th>
                 <th>Action</th>
                 <th>Status</th>
+                <th hidden></th>
+                <th hidden></th>
+                <th hidden></th>
+                <th hidden></th>
               </tr>
             </thead>
             <tbody>
@@ -51,11 +55,9 @@
                 <td>
                 @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1 or $emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus === null)
                   <button class="btn btn-warning btn-xs empupdateModalbtn" data-target="#updateModal" data-id="{{ $emp1->emp_id }}" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</button>
-                  <button class="btn btn-info btn-xs empviewModalbtn" data-target="#viewModal"  data-id="{{ $emp1->emp_id }}" data-toggle="modal"><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp; View</button>
                   <button class="btn btn-danger btn-xs empdeleteModalbtn" data-id="{{ $emp1->emp_id }}" ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
                 @else
                   <button class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</button>
-                  <button class="btn btn-info btn-xs" disabled ><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp; View</button>
                   <button class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
                 @endif
                 </td>
@@ -66,6 +68,10 @@
                 <span class="badge bg-important">Unavailable</span>
                 @endif
                 </td>
+                <td hidden>@if($emp1->license_no != null){{ $emp1->license_no }}@else null @endif</td>
+                <td hidden>@if($emp1->emp_address != null){{ $emp1->emp_address }}@else null @endif</td>
+                <td hidden>@if($emp1->rank_name != null){{ $emp1->rank_name }}@else null @endif</td>
+                <td hidden>@if($emp1->emp_contact != null){{ $emp1->emp_contact }}@else null @endif</td>
               </tr>
 
              
@@ -103,29 +109,6 @@
   </div>
 </div>
 
-<div class="modal fade" id = "viewModal">
-  <div class="modal-dialog" style="width: 60%">
-    <div class="modal-content">
-      <div class="modal-header btn-info">
-        <h4 class="modal-title"><i class="fa fa-info-circle" aria-hidden="true"></i> View Record</h4>
-      </div>
-      <form action="/save_employee" method="POST" class="form-horizontal">
-        <div class="modal-body">
-          <div class="form-group">
-          </div>        
-          <fieldset class="geninfoview">
-          </fieldset>
-          <fieldset class="accountinfoview">
-        </fieldset> 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn  pull-left" data-dismiss="modal">Close</button>
-        </div>
-        {{ csrf_field() }}
-      </form>
-    </div>  
-  </div>
-</div>
 
 <div class="modal fade" id = "deleteModal">
   <div class="modal-dialog">
@@ -195,9 +178,24 @@
       {
           var aData = oTable.fnGetData( nTr );
           var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-          
-          sOut += '<tr><td>Link to source:</td><td>Could provide a link here</td></tr>';
-          sOut += '<tr><td>Extra info:</td><td>And any further details here (images etc)</td></tr>';
+          sOut += '<tr><td>Name: <b><u>'+' '+aData[3]+' ' +aData[4]+' ' +aData[2]+'</u></b></td></tr>';
+          sOut += '<tr><td>Employee Type: '+aData[5]+'</td></tr>';
+          if(aData[8] != 'null')
+          {
+            sOut += '<tr><td>License Number: '+aData[8]+'</td></tr>';
+          }
+          if(aData[9] != 'null')
+          {
+            sOut += '<tr><td>Address: '+aData[9]+'</td></tr>';
+          }
+          if(aData[10] != 'null')
+          {
+            sOut += '<tr><td>Rank: '+aData[10]+'</td></tr>';
+          }
+          if(aData[11] != 'null')
+          {
+            sOut += '<tr><td>Contact Number: '+aData[11]+'</td></tr>';
+          }
           sOut += '</table>';
 
           return sOut;
@@ -2368,81 +2366,6 @@ $('.employeeTypeDropDown').on('change',function(){
       });
     });
 
-
-$('.empviewModalbtn').click(function(){
-  var address     =     ""; 
-  var username    =     ""; 
-  var formChanges =     ""; 
-  var password    =     ""; 
-  var rank        =     ""; 
-  var license     =     ""; 
-  var contact     =     ""; 
-  var name        =     "";
-  var rank_name   =     "";
-  var emp_fname   =     "";
-  var emp_mname   =     "";
-  var emp_lname   =     "";
-  var emp_address =     "";
-  var emp_contact =     "";
-  var license_no  =     "";
-  $.ajax
-  ({
-    url: '/viewEmpDetails',
-    type: 'get',
-    data:  { id:$(this).data('id')},
-    dataType : 'json',
-
-    success:function(response){
-
-        response.forEach(function(data){
-        address += data.address;
-        username  += data.username;
-        password  += data.password;
-        rank  += data.rank;
-        license += data.license;
-        contact += data.contact;
-        name += data.name;
-        rank_name += data.rank_name;
-        emp_fname +=  data.emp_fname;
-        emp_mname +=  data.emp_mname;
-        emp_lname +=  data.emp_lname;
-        emp_address += data.emp_address;
-        emp_contact += data.emp_contact;
-        license_no  += data.license_no;
-      })
-
-      $('.geninfoview').empty(); 
-          if(name==1){
-
-            
-
-            $('.geninfoview').append('<legend>General Information</legend><div class="form-group"> <label class="col-xs-3 control-label">First Name</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-user-o" aria-hidden="true"></i></div> <input disabled value="'+emp_fname+'" type="text" class="form-control ff2" name="firstname"> </div> </div> </div> <div class="form-group"> <label class="col-xs-3 control-label">Middle Name</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-user-o" aria-hidden="true"></i></div> <input type="text" class="form-control mm2" disabled value="'+emp_mname+'"> </div> </div> </div> <div class="form-group"> <label class="col-xs-3 control-label">Last Name</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-user-o" aria-hidden="true"></i></div> <input type="text" class="form-control ll2" disabled value="'+emp_lname+'"> </div> </div> </div>');
-          }
-
-          if(rank==1){
-
-            $('.geninfoview').append('<div class="form-group" id="medtechrank"> <label class="col-xs-3 control-label">Position</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-id-badge" aria-hidden="true"></i></div>  <input type="text" class="form-control rankNameView" value="'+rank_name+'" disabled> </div> </div> </div>'); 
-
-          }
-          
-
-          
-          if(address==1){
-            $('.geninfoview').append('<div class="form-group"> <label class="col-xs-3 control-label">Address</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-address-card-o" aria-hidden="true"></i></div> <input type="text" class="form-control" disabled value="'+emp_address+'"> </div> </div> </div>');
-          }
-          if(contact==1){
-            $('.geninfoview').append('<div class="form-group"> <label class="col-xs-3 control-label">Contact Number</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div> <input type="text" class="form-control" disabled value="'+emp_contact+'"> </div> </div> </div>');
-          }
-          if(license==1){
-            $('.geninfoview').append(' <div class="form-group"> <label class="col-xs-3 control-label">License Number</label> <div class="col-md-7"> <div class="input-group"> <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div> <input type="text" class="form-control" disabled value="'+license_no+'"> </div> </div> </div>');
-          }
-
-
-    }
-
-  });
-  return true;
-});
 
 
 
