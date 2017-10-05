@@ -105,7 +105,7 @@
 	<div class="col-lg-12">
 		<section class="panel">
 			<header class="panel-heading">
-				Corporate Accounts Report
+				Transaction Report
 				<span class="tools pull-right">
 		          <a class="fa fa-chevron-down" href="javascript:;"></a>
 		          <a class="fa fa-times" href="javascript:;"></a>
@@ -113,7 +113,72 @@
 			</header>
 			<div class="panel-body">
 				<div class="clearfix">
-					<div id="linechart"></div>
+					<header class="panel-heading btn-info ">
+						<ul class="nav nav-tabs">
+				          	<li class="active">
+				              	<a data-toggle="tab" href="#tables">Tables</a>
+				          	</li>
+				          	<li>
+				              	<a data-toggle="tab" href="#charts">Charts</a>
+				          	</li>
+				          	
+				      	</ul>
+			      	</header>
+					<div class="tab-content">
+						<div class="tab-pane active" id="tables">
+							<table class="table table-bordered table-hover dataTable" id="transTbl">
+								<thead>
+									<tr>
+										<th>Transaction ID</th>
+										<th>Transaction Date</th>
+										<th>Total</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+						<div class="tab-pane" id="charts">
+							<br>
+							<div class="row">
+								<div class="col-md-6">
+									<section class="panel">
+										<header class="panel-heading btn-info">
+											Bar Chart											
+										</header>
+										<div class="panel-body bg-info">
+											<div id="barcharts">Not Available</div>
+										</div>
+									</section>
+								</div>
+
+								<div class="col-md-6">
+									<section class="panel">
+										<header class="panel-heading btn-info">
+											Pie Chart											
+										</header>
+										<div class="panel-body bg-info">
+											<div id="piecharts">Not Available</div>
+										</div>
+									</section>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<section class="panel">
+										<header class="panel-heading btn-info">
+											Line Chart											
+										</header>
+										<div class="panel-body bg-info">
+											<div id="linecharts">Not Available</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div> 
 			</div>
 			<div class="panel-footer">
@@ -124,113 +189,22 @@
 </div>			
 @endsection
 @section('additional')
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/series-label.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-
+<script type="text/javascript" src="{{ asset('/Reports/corpgeneratebtn.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/Reports/corpselectrange.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/Reports/corpprintbtn.js') }}"></script>
 <script type="text/javascript">
-	$('#generatebtn').click(function(){
-		Highcharts.chart('linechart', {
 
-		    title: {
-		        text: 'Solar Employment Growth by Sector, 2010-2016'
-		    },
-
-		    subtitle: {
-		        text: 'Source: thesolarfoundation.com'
-		    },
-
-		    yAxis: {
-		        title: {
-		            text: 'Number of Employees'
-		        }
-		    },
-		    legend: {
-		        layout: 'vertical',
-		        align: 'right',
-		        verticalAlign: 'middle'
-		    },
-
-		    plotOptions: {
-		        series: {
-		            label: {
-		                connectorAllowed: false
-		            },
-		            pointStart: 2013
-		        }
-		    },
-
-		    series: [{
-		        name: 'Transaction',
-		        data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 21111]
-		    }],
-
-		    responsive: {
-		        rules: [{
-		            condition: {
-		                maxWidth: 300
-		            },
-		            chartOptions: {
-		                legend: {
-		                    layout: 'horizontal',
-		                    align: 'center',
-		                    verticalAlign: 'bottom'
-		                }
-		            }
-		        }]
-		    }
-
-		});	
-	})
-	$('#selectrange').change(function(){
-		var report = $(this).val();
-		var startdate = document.getElementById('startdate');
-		var monthly = document.getElementById('monthly');
-		var yearly = document.getElementById('yearly');
-		var rangepicker = document.getElementById('rangepicker');
-		if(report == 'daily')
-		{
-			startdate.className = "form-group";
-			monthly.className = "form-group hidden";
-			yearly.className = "form-group hidden";
-			rangepicker.className = "form-group hidden";
-
-		}
-		else if(report == 'weekly')
-		{
-			startdate.className = "form-group";
-			monthly.className = "form-group hidden";
-			yearly.className = "form-group hidden";
-			rangepicker.className = "form-group hidden";
-		}
-		else if(report == 'monthly')
-		{
-			startdate.className = "form-group hidden";
-			monthly.className = "form-group ";
-			yearly.className = "form-group hidden";
-			rangepicker.className = "form-group hidden";
-		}
-		else if(report == 'yearly')
-		{
-			startdate.className = "form-group hidden";
-			monthly.className = "form-group hidden";
-			yearly.className = "form-group ";
-			rangepicker.className = "form-group hidden";
-		}
-		else if(report == 'range')
-		{
-			startdate.className = "form-group hidden";
-			monthly.className = "form-group hidden";
-			yearly.className = "form-group hidden";
-			rangepicker.className = "form-group ";
-		}
-		else if(report == 'all')
-		{
-			startdate.className = "form-group hidden";
-			monthly.className = "form-group hidden";
-			yearly.className = "form-group hidden";
-			rangepicker.className = "form-group hidden";
-		}
+	var t = $('#transTbl').DataTable({
+	  'paging'      : true,
+	  'lengthChange': true,
+	  'searching'   : true,
+	  'ordering'    : false,
+	  'info'        : true,
+	  'autoWidth'   : true,
+	  'bSort'		: false
 	});
+	
+	
+	
 </script>
 @endsection

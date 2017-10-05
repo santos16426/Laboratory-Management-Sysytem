@@ -24,19 +24,79 @@ class ReportController extends Controller
     		->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
             ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
     		->whereDate('trans_date',$startdate)->get();
-
     	$total = DB::table('transaction_tbl')
             ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
             ->select(DB::raw('SUM(charge) as charge'),DB::raw('SUM(trans_total)as total'))  
             ->whereDate('trans_date',$startdate)->get();
-    	return response()->json([$total,$var]);
+        $totaltransaction  = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereDate('trans_date',$startdate)->count();
+
+        $corporate = DB::table('transaction_tbl')
+            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','trans_patient_id')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->where('patient_type_id',2)
+            ->whereDate('trans_date',$startdate)->count();
+        $individual = DB::table('transaction_tbl')
+            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','trans_patient_id')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->where('patient_type_id',1)
+            ->whereDate('trans_date',$startdate)->count();
+        
+        $corporate = ((($totaltransaction-$corporate) / $totaltransaction)*100);
+        $individual= ((($totaltransaction-$individual) / $totaltransaction)*100);
+    	return response()->json([$total,$var,$corporate,$individual]);
     }
     function weeklyTransactionReport(Request $req)
     {
     	$startdate = $req->startdate;
+        $secdate = $req->secdate;
+        $thirddate = $req->thirddate;
+        $fourthdate = $req->fourthdate;
+        $fifthdate = $req->fifthdate;
+        $sixdate = $req->sixdate;
     	$enddate = $req->enddate;
     	$var = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id WHERE trans_date >= "'.$startdate.'" AND trans_date <= "'.$enddate.'"'));
-    	return response()->json($var);	
+
+        $firsttotal = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select(DB::raw('SUM(charge) as charge'),DB::raw('SUM(trans_total)as total'))  
+            ->whereDate('trans_date',$startdate)->get();
+        
+        $secondtotal  = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select(DB::raw('SUM(charge) as charge'),DB::raw('SUM(trans_total)as total'))  
+            ->whereDate('trans_date',$secdate)->get();  
+
+        $thirdtotal  = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select(DB::raw('SUM(charge) as charge'),DB::raw('SUM(trans_total)as total'))  
+            ->whereDate('trans_date',$thirddate)->get(); 
+
+        $fourthtotal  = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select(DB::raw('SUM(charge) as charge'),DB::raw('SUM(trans_total)as total'))  
+            ->whereDate('trans_date',$fourthdate)->get(); 
+
+        $fifthtotal  = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select(DB::raw('SUM(charge) as charge'),DB::raw('SUM(trans_total)as total'))  
+            ->whereDate('trans_date',$fifthdate)->get(); 
+
+        $sixtotal  = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select(DB::raw('SUM(charge) as charge'),DB::raw('SUM(trans_total)as total'))  
+            ->whereDate('trans_date',$sixdate)->get(); 
+
+        $seventotal  = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select(DB::raw('SUM(charge) as charge'),DB::raw('SUM(trans_total)as total'))  
+            ->whereDate('trans_date',$enddate)->get(); 
+               
+    	return response()->json([$var,$firsttotal,$secondtotal,$thirdtotal,$fourthtotal,$fifthtotal,$sixtotal,$seventotal]);	
     }
     function allTransactionReport()
     {
