@@ -24,8 +24,12 @@ class ReportController extends Controller
     		->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
             ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
     		->whereDate('trans_date',$startdate)->get();
-    	
-    	return response()->json($var);
+
+    	$total = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select(DB::raw('SUM(charge) as charge'),DB::raw('SUM(trans_total)as total'))  
+            ->whereDate('trans_date',$startdate)->get();
+    	return response()->json([$total,$var]);
     }
     function weeklyTransactionReport(Request $req)
     {

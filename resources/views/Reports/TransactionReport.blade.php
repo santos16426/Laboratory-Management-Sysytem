@@ -239,6 +239,8 @@
 	    var yearly = $('#yearly_date').val();
 	    var rangestart = $('#rangestart_date').val();
     	var rangeend = $('#rangeend_date').val();
+    	var total = 0;
+    	var charge = 0;
 		if(report == 'daily')
 		{
 			if(start_date != '')
@@ -252,7 +254,52 @@
 					data:  { start_date:start_date},
 					dataType : 'json',
 					success:function(response){
-						response.forEach(function(data){
+						response[0].forEach(function(data){
+							total = data.total*1;
+							charge = data.charge *1;
+							total = total +charge;
+							Highcharts.chart('linechart', {
+							    chart: {
+							        type: 'column'
+							    },
+							    title: {
+							        text: 'Daily Transaction as of '+ start_date
+							    },
+							    
+							    xAxis: {
+							        categories: [
+							            start_date
+							        ],
+							        crosshair: true
+							    },
+							    yAxis: {
+							        min: 0,
+							        title: {
+							            text: 'Income (pesos)'
+							        }
+							    },
+							    tooltip: {
+							        headerFormat: '<span style="font-size:10px">Date: {point.key}</span><table>',
+							        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+							            '<td style="padding:0"><b>{point.y:.2f} pesos</b></td></tr>',
+							        footerFormat: '</table>',
+							        shared: true,
+							        useHTML: true
+							    },
+							    plotOptions: {
+							        column: {
+							            pointPadding: 0.2,
+							            borderWidth: 0
+							        }
+							    },
+							    series: [{
+							        name: 'Total Income',
+							        data: [total]
+
+							    }]
+							});
+						})//end for function response
+						response[1].forEach(function(data){
 							t.row.add([
 								data.trans_id,
 								data.trans_date,
@@ -261,7 +308,7 @@
 							]).draw(false);	
 						})//end for function response
 						$('.printTrans').click(function(){
-								var date="";
+							var date="";
 							var total="";
 							var payment="";
 							var change="";
@@ -422,8 +469,54 @@
 						enddate:enddate
 					},
 					dataType : 'json',
+
 					success:function(response){
-						response.forEach(function(data){
+						response[0].forEach(function(data){
+							total = data.total*1;
+							charge = data.charge *1;
+							total = total +charge;
+							Highcharts.chart('linechart', {
+							    chart: {
+							        type: 'column'
+							    },
+							    title: {
+							        text: 'Daily Transaction as of '+ start_date
+							    },
+							    
+							    xAxis: {
+							        categories: [
+							            start_date
+							        ],
+							        crosshair: true
+							    },
+							    yAxis: {
+							        min: 0,
+							        title: {
+							            text: 'Income (pesos)'
+							        }
+							    },
+							    tooltip: {
+							        headerFormat: '<span style="font-size:10px">Date: {point.key}</span><table>',
+							        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+							            '<td style="padding:0"><b>{point.y:.2f} pesos</b></td></tr>',
+							        footerFormat: '</table>',
+							        shared: true,
+							        useHTML: true
+							    },
+							    plotOptions: {
+							        column: {
+							            pointPadding: 0.2,
+							            borderWidth: 0
+							        }
+							    },
+							    series: [{
+							        name: 'Total Income',
+							        data: [total]
+
+							    }]
+							});
+						})//end for function response
+						response[1].forEach(function(data){
 							t.row.add([
 								data.trans_id,
 								data.trans_date,
