@@ -30,18 +30,6 @@
                   </header>
                   <div class="panel-body">
                       <ul class="grid cs-style-3">
-                          <li>
-                              <figure >
-                                  <img src="{{ asset('/ResultImage/medicalrequest2.jpg') }}" alt="img04">
-                                  <figcaption>
-                                      <h3>Medical Request</h3>
-                                     <div class="btn-group pull-right" role="group" style="padding-top: 3%">
-                                        <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/medicalrequest.jpg') }}">View</a>
-                                        <a type="button" class="btn" href="/Result/medrequest">Use</a>
-                                      </div>
-                                  </figcaption>
-                              </figure>
-                          </li>
 
                           <li>
                               <figure>
@@ -83,10 +71,36 @@
                               <figure>
                                   <img src="{{ asset('/ResultImage/medservicesample2.jpg') }}" alt="img03">
                                   <figcaption>
-                                      <h3>Medical Service</h3>
+                                      <h3>Medical Service 1</h3>
                                       <div class="btn-group pull-right" role="group" style="padding-top: 3%">
                                         <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/medservicesample.jpg') }}">View</a>
                                         <a type="button" class="btn" href="/Result/medserve">Use</a>
+                                      </div>
+                                  </figcaption>
+                              </figure>
+                          </li>
+
+                          <li>
+                              <figure >
+                                  <img src="{{ asset('/ResultImage/medicalrequest2.jpg') }}" alt="img04">
+                                  <figcaption>
+                                      <h3>Medical Request 2</h3>
+                                     <div class="btn-group pull-right" role="group" style="padding-top: 3%">
+                                        <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/medicalrequest.jpg') }}">View</a>
+                                        <a type="button" class="btn" href="/Result/medrequest">Use</a>
+                                      </div>
+                                  </figcaption>
+                              </figure>
+                          </li>
+
+                          <li>
+                              <figure >
+                                  <img src="{{ asset('/ResultImage/medicalrequest2.jpg') }}" alt="img04">
+                                  <figcaption>
+                                      <h3>Drug Test</h3>
+                                     <div class="btn-group pull-right" role="group" style="padding-top: 3%">
+                                        <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/medicalrequest.jpg') }}">View</a>
+                                        <a type="button" class="btn" href="/Result/medrequest">Use</a>
                                       </div>
                                   </figcaption>
                               </figure>

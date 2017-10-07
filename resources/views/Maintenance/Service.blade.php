@@ -18,46 +18,46 @@
 
 @section('content')
 <div class="row">
-	<div class="col-lg-12">
-		<section class="panel">
-			<header class="panel-heading">
-				<strong>Service List</strong>
-			</header>
-			<div class="panel-body">
-				<div class="clearfix">
-					<div class="btn-group pull-right">
-						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
-					</div>
-					<table class="table table-bordered table-hover dataTable" id="servicesTbl">
-				      	<thead>
-							<tr>
-								<th>Service Name</th>
-								<th hidden>Service Group</th>
-								<th hidden>Service Type</th>
-								<th>Medical Request</th>
-								<th>Price</th>
-								<th>Action</th>
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+        <strong>Service List</strong>
+      </header>
+      <div class="panel-body">
+        <div class="clearfix">
+          <div class="btn-group pull-right">
+            <a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+          </div>
+          <table class="table table-bordered table-hover dataTable" id="servicesTbl">
+                <thead>
+              <tr>
+                <th>Service Name</th>
+                <th hidden>Service Group</th>
+                <th hidden>Service Type</th>
+                <th>Medical Request</th>
+                <th>Price</th>
+                <th>Action</th>
                 <th>Status</th>
                 <th hidden></th>
-							</tr>
-				      	</thead>
-						<tbody>
-							@foreach($service as $service)
-								<tr>
-									<td>{{ $service->service_name }}</td>
-									<td hidden>{{ $service->servgroup_name }}</td>
-									<td hidden>{{ $service->service_type_name }}</td>
-									<td>{{ $service->medical_request }}</td>
-									<td>{{ $service->service_price }}</td>
-									<td>
+              </tr>
+                </thead>
+            <tbody>
+              @foreach($service as $service)
+                <tr>
+                  <td>{{ $service->service_name }}</td>
+                  <td hidden>{{ $service->servgroup_name }}</td>
+                  <td hidden>{{ $service->service_type_name }}</td>
+                  <td>{{ $service->medical_request }}</td>
+                  <td>{{ $service->service_price }}</td>
+                  <td>
                   @if($service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus == 1 and $service->ServiceStatus == 1 or $service->LabStatus == null and $service->ServGroupStatus == null and $service->ServTypeStatus == null and $service->ServiceStatus == 1 or $service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus === null and $service->ServiceStatus == 1)
-									<a class="btn btn-warning btn-xs editsrvc" href="#updateModal" data-id="{{ $service->service_id }}" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
-									<a class="btn btn-danger btn-xs delbtn"  data-id="{{$service->service_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                  <a class="btn btn-warning btn-xs editsrvc" href="#updateModal" data-id="{{ $service->service_id }}" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                  <a class="btn btn-danger btn-xs delbtn"  data-id="{{$service->service_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
                   @else
                   <a class="btn btn-warning btn-xs disabled" ><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
                   <a class="btn btn-danger btn-xs disabled"  ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
                   @endif
-									</td>
+                  </td>
                   <td>
                     @if($service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus == 1 and $service->ServiceStatus == 1 or $service->LabStatus == null and $service->ServGroupStatus == null and $service->ServTypeStatus == null and $service->ServiceStatus == 1 or $service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus === null and $service->ServiceStatus == 1)
                     <span class="badge bg-success">Available</span>
@@ -66,14 +66,14 @@
                     @endif
                   </td>
                   <td hidden>{{ $service->service_notes }}</td>
-								</tr>
-						@endforeach
-						</tbody>
-				    </table>
-				</div>
-			</div>
-		</section>
-	</div>
+                </tr>
+            @endforeach
+            </tbody>
+            </table>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
 <div class="modal fade" id = "updateModal">
   <div class="modal-dialog">
@@ -152,6 +152,23 @@
             </div>
           </div>  
         </div>  
+        <hr>
+        <div class="form-group" style="padding-left: 16px">
+              <div class="col-sm-10 col-md-offset-1">
+                <div class="input-group">
+                  <label><strong>Result Layout</strong><sup>*</sup></label><br>
+                  <div style="padding-left: 20px">
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Medical Service 1&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Medical Service 2&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;ECG&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;X-Ray&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Ultrasound&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Drug Test&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button>
+
+                </div>
+              </div>
+            </div>  
+         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
           <button class="btn btn-xs btn-success" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Update</button>
@@ -207,8 +224,8 @@
                   </select>
             </div>
           </div>  
-        </div> 
-         <div class="form-group" >
+        </div>
+          <div class="form-group" >
             <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">
                 <div class="input-group-addon">
@@ -239,6 +256,23 @@
             </div>
           </div>  
         </div>  
+        <hr>
+        <div class="form-group" style="padding-left: 16px">
+              <div class="col-sm-10 col-md-offset-1">
+                <div class="input-group">
+                  <label><strong>Result Layout</strong><sup>*</sup></label><br>
+                  <div style="padding-left: 20px">
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Medical Service 1&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Medical Service 2&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;ECG&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;X-Ray&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Ultrasound&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Drug Test&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button>
+
+                </div>
+              </div>
+            </div>  
+         </div>
 
 
         <div class="modal-footer">
