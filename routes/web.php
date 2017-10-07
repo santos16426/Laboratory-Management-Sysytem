@@ -154,7 +154,7 @@ Route::get('/Result/medserve','TransactionController@medserve');
 
 
 
-
+// Transaction Reports
 Route::get('/Reports/CorporateReports','ReportController@corporatereports');
 Route::get('/allTransactionReport','ReportController@allTransactionReport');
 Route::get('/Reports/TransactionReports','ReportController@transactionreport');
@@ -163,6 +163,9 @@ Route::get('/weeklyTransactionReport','ReportController@weeklyTransactionReport'
 Route::get('/monthlyTransactionReport','ReportController@monthlyTransactionReport');
 Route::get('/yearlyTransactionReport','ReportController@yearlyTransactionReport');
 Route::get('/rangeTransactionReport','ReportController@rangeTransactionReport');
+// Corporate Reports
+Route::get('/dailyCorporateReport','ReportController@dailyCorporateReport');
+Route::get('/dailyCorporateReportPieChart','ReportController@dailyCorporateReportPieChart');
 
 // Utilities
 Route::get('/Utilities/Reactivation','UtilitiesController@reactivation');

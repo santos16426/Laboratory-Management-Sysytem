@@ -105,7 +105,7 @@
 	<div class="col-lg-12">
 		<section class="panel">
 			<header class="panel-heading">
-				Transaction Report
+				Corporate Accounts Report
 				<span class="tools pull-right">
 		          <a class="fa fa-chevron-down" href="javascript:;"></a>
 		          <a class="fa fa-times" href="javascript:;"></a>

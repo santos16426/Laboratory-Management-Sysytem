@@ -161,7 +161,12 @@
 
                   </ul>
                 </li>
-
+                <li>
+                  <a href="/Queries" class="@yield('query')">
+                    <i class="fa fa-terminal" aria-hidden="true"></i>
+                    <span>Queries</span>
+                  </a>
+                </li>
                 <li class="sub-menu">
                   <a href="" class="@yield('utilitiesactive')" >
                       <i class="fa fa-wrench"></i>
@@ -173,10 +178,10 @@
                   </ul>
                 </li>
                 <li>
-                    <a href="/Queue" class="@yield('queue')">
-                        <i class="fa fa-desktop"></i>
-                        <span>Queueing</span>
-                    </a>
+                  <a href="/Queue" class="@yield('queue')">
+                    <i class="fa fa-desktop"></i>
+                    <span>Queueing</span>
+                  </a>
                 </li>
               </ul>
           </div>

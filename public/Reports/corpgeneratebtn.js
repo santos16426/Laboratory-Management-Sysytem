@@ -11,30 +11,31 @@ $('#generatebtn').click(function(){
 		{
 			if(start_date != '')
 			{
-				
 				t.clear().draw();
 				$.ajax
 				({
-					url: '/dailyTransactionReport',
+					url: '/dailyCorporateReport',
 					type: 'get',
 					data:  { start_date:start_date},
 					dataType : 'json',
 					success:function(response){
 						response[0].forEach(function(data){
+							corporatename();
+							rowcount();
 							total = data.total*1;
 							charge = data.charge *1;
 							total = total +charge;
-							Highcharts.chart('linechart', {
+							Highcharts.chart('barcharts', {
 							    chart: {
 							        type: 'column'
 							    },
 							    title: {
-							        text: 'Daily Transaction as of '+ start_date
+							        text: 'Daily Corporate Report as of '+ start_date
 							    },
 							    
 							    xAxis: {
 							        categories: [
-							            start_date
+							            "dsada"
 							        ],
 							        crosshair: true
 							    },
@@ -60,11 +61,30 @@ $('#generatebtn').click(function(){
 							    },
 							    series: [{
 							        name: 'Total Income',
-							        data: [total]
+							        data: [0]
 
 							    }]
 							});
 						})//end for function response
+						
+						function corporatename()
+						{
+							var corpnames = [];
+							response[0].forEach(function(data){
+								corpnames.push(data.corp_name);
+							});
+							alert();
+							return corpnames;
+						}
+						function rowcount()
+						{
+							var corpcount = [];
+							response[0].forEach(function(data){
+								corpnames.push(data.row_count);
+							});
+							alert();
+							return rowcount()
+						}
 						response[1].forEach(function(data){
 							t.row.add([
 								data.trans_id,

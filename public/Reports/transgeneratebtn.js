@@ -322,7 +322,42 @@ $('#generatebtn').click(function(){
 				dataType : 'json',
 
 				success:function(response){
-					
+						Highcharts.chart('piecharts', {
+					        chart: {
+					            plotBackgroundColor: null,
+					            plotBorderWidth: null,
+					            plotShadow: false,
+					            type: 'pie'
+					        },
+					        title: {
+					            text: 'Transaction Report as of '+start_date+ ' to ' +enddate
+					        },
+					        tooltip: {
+					            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+					        },
+					        plotOptions: {
+					            pie: {
+					                allowPointSelect: true,
+					                cursor: 'pointer',
+					                dataLabels: {
+					                    enabled: false
+					                },
+					                showInLegend: true
+					            }
+					        },
+					        series: [{
+					            name: 'Patient Type',
+					            colorByPoint: true,
+					            data: 
+					            [{
+				                	name: 'Corporate Patient',
+				                	y: corporate()
+				                },{
+				                	name: 'Individual Patient',
+				                	y: individual()
+					            }]
+					        }]
+					    });
 						Highcharts.chart('barcharts', {
 						    chart: {
 						        type: 'column'
@@ -377,7 +412,14 @@ $('#generatebtn').click(function(){
 
 						    }]
 						});
-
+						function corporate()
+						{
+							return response[9];
+						}
+						function individual()
+						{
+							return response[10];
+						}
 						function firsttotal()
 						{
 							response[1].forEach(function(data){
@@ -599,7 +641,112 @@ $('#generatebtn').click(function(){
 				},
 				dataType : 'json',
 				success:function(response){
-					response.forEach(function(data){
+					Highcharts.chart('piecharts', {
+				        chart: {
+				            plotBackgroundColor: null,
+				            plotBorderWidth: null,
+				            plotShadow: false,
+				            type: 'pie'
+				        },
+				        title: {
+				            text: 'Monthly Transaction Report as of '+smm + ' '+sy
+				        },
+				        tooltip: {
+				            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+				        },
+				        plotOptions: {
+				            pie: {
+				                allowPointSelect: true,
+				                cursor: 'pointer',
+				                dataLabels: {
+				                    enabled: false
+				                },
+				                showInLegend: true
+				            }
+				        },
+				        series: [{
+				            name: 'Patient Type',
+				            colorByPoint: true,
+				            data: 
+				            [{
+			                	name: 'Corporate Patient',
+			                	y: corporate()
+			                },{
+			                	name: 'Individual Patient',
+			                	y: individual()
+				            }]
+				        }]
+				    });
+				    var x = [];
+				    var y = [];
+				    
+				    Highcharts.chart('barcharts', {
+						    chart: {
+						        type: 'column'
+						    },
+						    title: {
+						        text: 'Weekly Transaction as of '+ start_date +' to '+enddate
+						    },
+						    
+						    xAxis: {
+						        categories: [
+						        xvalues()
+						        ],
+						        crosshair: true
+						    },
+						    yAxis: {
+						        min: 0,
+						        title: {
+						            text: 'Income (pesos)'
+						        }
+						    },
+						    tooltip: {
+						        headerFormat: '<span style="font-size:10px">Date: {point.key}</span><table>',
+						        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+						            '<td style="padding:0"><b>{point.y:.2f} pesos</b></td></tr>',
+						        footerFormat: '</table>',
+						        shared: true,
+						        useHTML: true
+						    },
+						    plotOptions: {
+						        column: {
+						            pointPadding: 0.2,
+						            borderWidth: 0
+						        }
+						    },
+						    series: [{
+						        name: 'Total Income',
+						        data: [
+						        yvalues()
+						        ]
+
+						    }]
+						});
+				    function xvalues(){
+				    	response[4].forEach(function(data){
+				    		var total =0;
+				    		total = data.trans_total + charge
+					    	x.push(total);
+					    })
+					    alert(x);
+					    return x;
+				    }
+				    function yvalues()
+				    {
+				    	response[4].forEach(function(data){
+					    	y.push("'"+data.trans_date+"'");
+					    })
+					    return y;
+				    }
+					function corporate()
+					{
+						return response[2];
+					}
+					function individual()
+					{
+						return response[3];
+					}
+					response[0].forEach(function(data){
 						t.row.add([
 							data.trans_id,
 							data.trans_date,
