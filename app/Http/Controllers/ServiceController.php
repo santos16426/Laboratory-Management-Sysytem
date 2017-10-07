@@ -110,8 +110,12 @@ class ServiceController extends Controller
     }
     function serv()
     {
-      $groupdropdown = DB::table('service_group_tbl')->where('ServGroupStatus',1)->get();
-        $typedropdown = DB::table('service_group_tbl')->join('service_type_tbl','service_type_tbl.service_type_group_id','=','service_group_tbl.servgroup_id')->get();
+      $groupdropdown = DB::table('service_group_tbl')
+        ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+        ->where('LabStatus',1)
+        ->where('ServGroupStatus',1)
+        ->get();
+      $typedropdown = DB::table('service_group_tbl')->join('service_type_tbl','service_type_tbl.service_type_group_id','=','service_group_tbl.servgroup_id')->get();
         
         $service = DB::table('service_tbl')
         ->leftjoin('service_group_tbl','service_group_tbl.servgroup_id','=','service_tbl.service_group_id')
@@ -123,7 +127,9 @@ class ServiceController extends Controller
       
     }
     public function getServiceType(Request $req){
-      $var = DB::table('service_type_tbl')->where('service_type_group_id',$req->ID)->get();
+      $var = DB::table('service_type_tbl')
+        ->where('service_type_group_id',$req->ID)
+        ->where('ServTypeStatus',1)->get();
       return response()->json($var);
     }
     public function getService(Request $req){
@@ -159,6 +165,36 @@ class ServiceController extends Controller
       $srvc_price = $_POST['srvc_price'];
       $med_request = "No";
       $service_notes = $_POST['service_notes'];
+      $medserv1 = 0;      
+      $medserv2 = 0;
+      $ecg = 0;
+      $xray = 0;
+      $ultrasound = 0;
+      $drugtest = 0;
+      if(isset($_POST['medserv1']))
+      {
+        $medserv1 = $_POST['medserv1'];
+      }
+      if(isset($_POST['medserv2']))
+      {
+        $medserv2 = $_POST['medserv2'];
+      }
+      if(isset($_POST['ecg']))
+      {
+        $ecg = $_POST['ecg'];
+      }
+      if(isset($_POST['xray']))
+      {
+        $xray = $_POST['xray'];
+      }
+      if(isset($_POST['ultrasound']))
+      {
+        $ultrasound = $_POST['ultrasound'];
+      }
+      if(isset($_POST['drugtest']))      
+      {
+        $drugtest = $_POST['drugtest'];
+      }
       if(isset($_POST['med_req']))
       {
         $med_request = $_POST['med_req'];
@@ -176,7 +212,13 @@ class ServiceController extends Controller
         'service_name'=>$srvcname,
         'service_group_id'=>$srvcgrp_id,
         'service_type_id'=>$srvctyp_id,
-        'service_price'=>$srvc_price
+        'service_price'=>$srvc_price,
+        'result_medserv1'=>$medserv1,
+        'result_medserv2'=>$medserv2,
+        'result_ecg'=>$ecg,
+        'result_xray'=>$xray,
+        'result_ultra'=>$ultrasound,
+        'result_drug'=>$drugtest
       ]);
       $service_id = DB::table('service_tbl')->select('service_id')->max('service_id');
       DB::table('service_log_tbl')->insert(
@@ -193,15 +235,52 @@ class ServiceController extends Controller
     }
     public function update_service(){
       $med_req='No';
+      $medserv1 = 0;      
+      $medserv2 = 0;
+      $ecg = 0;
+      $xray = 0;
+      $ultrasound = 0;
+      $drugtest = 0;
+      if(isset($_POST['upmedserv1']))
+      {
+        $medserv1 = $_POST['upmedserv1'];
+      }
+      if(isset($_POST['upmedserv2']))
+      {
+        $medserv2 = $_POST['upmedserv2'];
+      }
+      if(isset($_POST['upecg']))
+      {
+        $ecg = $_POST['upecg'];
+      }
+      if(isset($_POST['upxray']))
+      {
+        $xray = $_POST['upxray'];
+      }
+      if(isset($_POST['upultrasound']))
+      {
+        $ultrasound = $_POST['upultrasound'];
+      }
+      if(isset($_POST['updrugtest']))      
+      {
+        $drugtest = $_POST['updrugtest'];
+      }
       if(isset($_POST['med_req']))
       {
         $med_req = 'Yes';
       }
+
       DB::table('service_tbl')->where('service_id',$_POST['srvcid'])->update([
             'service_name' => $_POST['srvcname'],
             'service_price' => $_POST['srvc_price'],
             'medical_request'=>$med_req,
-            'service_notes'=>$_POST['service_notes']
+            'service_notes'=>$_POST['service_notes'],
+            'result_medserv1'=>$medserv1,
+            'result_medserv2'=>$medserv2,
+            'result_ecg'=>$ecg,
+            'result_xray'=>$xray,
+            'result_ultra'=>$ultrasound,
+            'result_drug'=>$drugtest
             ]);
       DB::table('service_log_tbl')
         ->insert([
