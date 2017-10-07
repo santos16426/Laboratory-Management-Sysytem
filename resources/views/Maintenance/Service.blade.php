@@ -262,12 +262,12 @@
                 <div class="input-group">
                   <label><strong>Result Layout</strong><sup>*</sup></label><br>
                   <div style="padding-left: 20px">
-                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Medical Service 1&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
-                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Medical Service 2&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
-                    <input type="checkbox" name="med_req" value="Yes">&nbsp;ECG&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
-                    <input type="checkbox" name="med_req" value="Yes">&nbsp;X-Ray&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
-                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Ultrasound&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button><br>
-                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Drug Test&nbsp;&nbsp;<button class="btn btn-xs btn-success">View</button>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Medical Service 1&nbsp;&nbsp;<a class="btn btn-xs btn-success">View</a><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Medical Service 2&nbsp;&nbsp;<a class="btn btn-xs btn-success">View</a><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;ECG&nbsp;&nbsp;<a class="btn btn-xs btn-success">View</a><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;X-Ray&nbsp;&nbsp;<a class="btn btn-xs btn-success">View</a><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Ultrasound&nbsp;&nbsp;<a class="btn btn-xs btn-success">View</a><br>
+                    <input type="checkbox" name="med_req" value="Yes">&nbsp;Drug Test&nbsp;&nbsp;<a class="btn btn-xs btn-success">View</a>
 
                 </div>
               </div>
