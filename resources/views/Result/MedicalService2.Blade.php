@@ -22,7 +22,7 @@
 	<div class="col-lg-12">
 		<section class="panel">
 			<header class="panel-heading">
-				Medical Service 1
+				Medical Service
 			</header>
 			<div class="panel-body">
 				<form action="" method="" id=""><br>
@@ -138,7 +138,7 @@
 			</big></strong></header></center><br>
 
 		    <div class="col-md-12">
-				<div class="col-md-6">
+				<div class="col-md-4">
 			        <div class="form-group">
 			              <div class="col-md-12">
 			                 <div class="input-group">
@@ -148,20 +148,94 @@
 			                <input readonly="" name="test" id="test" type="text" placeholder="Test" class="form-control input-md" required>
 			             </div>
 			          </div>  
-			       </div><br><br>
+			       </div><br><br><br>
 			 	 </div>
-			 	 <div class="col-md-6">
+		    </div>
+
+		    <center><header><strong><big>
+				System International
+			</big></strong></header></center><br>
+
+		    <div class="col-md-12">
+				<div class="col-md-4">
 			        <div class="form-group">
 			              <div class="col-md-12">
 			                 <div class="input-group">
 			                  <div class="input-group-addon">
 			                   Result
 			                 </div>
-			                <input name="result" id="result" placeholder="Result" class="form-control input-md" required>
+			                <input name="intresult" id="intresult" type="text" placeholder="Result" class="form-control input-md" required>
+			             </div>
+			          </div>  
+			       </div><br><br>
+			 	 </div>
+			 	 <div class="col-md-4">
+			        <div class="form-group">
+			              <div class="col-md-12">
+			                 <div class="input-group">
+			                  <div class="input-group-addon">
+			                   Unit
+			                 </div>
+			                <input name="intunit" id="intunit" placeholder="Unit" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br><br><br>
-		        </div> 
+		        </div>
+		        <div class="col-md-4">
+			        <div class="form-group">
+			              <div class="col-md-12">
+			                 <div class="input-group">
+			                  <div class="input-group-addon">
+			                   Reference
+			                 </div>
+			                <input name="intref" id="intref" placeholder="Reference" class="form-control input-md" required>
+			             </div>
+			          </div>  
+			       </div><br><br><br><br>
+		        </div>  
+		    </div>
+
+		    <center><header><strong><big>
+				Conventional
+			</big></strong></header></center><br>
+
+		    <div class="col-md-12">
+				<div class="col-md-4">
+			        <div class="form-group">
+			              <div class="col-md-12">
+			                 <div class="input-group">
+			                  <div class="input-group-addon">
+			                   Result
+			                 </div>
+			                <input name="conresult" id="conresult" type="text" placeholder="Result" class="form-control input-md" required>
+			             </div>
+			          </div>  
+			       </div><br><br>
+			 	 </div>
+			 	 <div class="col-md-4">
+			        <div class="form-group">
+			              <div class="col-md-12">
+			                 <div class="input-group">
+			                  <div class="input-group-addon">
+			                   Unit
+			                 </div>
+			                <input name="conunit" id="conunit" placeholder="Unit" class="form-control input-md" required>
+			             </div>
+			          </div>  
+			       </div><br><br><br><br>
+		        </div>
+		        <div class="col-md-4">
+			        <div class="form-group">
+			              <div class="col-md-12">
+			                 <div class="input-group">
+			                  <div class="input-group-addon">
+			                   Reference
+			                 </div>
+			                <input name="conref" id="conref" placeholder="Reference" class="form-control input-md" required>
+			             </div>
+			          </div>  
+			       </div><br><br><br><br>
+		        </div>  
 		    </div>
 
 		    <div class="col-md-12">

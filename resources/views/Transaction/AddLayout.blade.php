@@ -30,7 +30,18 @@
                   </header>
                   <div class="panel-body">
                       <ul class="grid cs-style-3">
-
+                          <li>
+                              <figure >
+                                  <img src="{{ asset('/ResultImage/medicalrequest2.jpg') }}" alt="img04">
+                                  <figcaption>
+                                      <h3>Physical Exam</h3>
+                                     <div class="btn-group pull-right" role="group" style="padding-top: 3%">
+                                        <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/medicalrequest.jpg') }}">View</a>
+                                        <a type="button" class="btn" href="/Result/medrequest">Use</a>
+                                      </div>
+                                  </figcaption>
+                              </figure>
+                          </li>
                           <li>
                               <figure>
                                   <img src="{{ asset('/ResultImage/ecgsample.jpg') }}" alt="img01">
@@ -74,7 +85,7 @@
                                       <h3>Medical Service 1</h3>
                                       <div class="btn-group pull-right" role="group" style="padding-top: 3%">
                                         <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/medservicesample.jpg') }}">View</a>
-                                        <a type="button" class="btn" href="/Result/medserve">Use</a>
+                                        <a type="button" class="btn" href="/Result/medservice">Use</a>
                                       </div>
                                   </figcaption>
                               </figure>
@@ -82,12 +93,12 @@
 
                           <li>
                               <figure >
-                                  <img src="{{ asset('/ResultImage/medicalrequest2.jpg') }}" alt="img04">
+                                  <img src="{{ asset('/ResultImage/medserv22.png') }}" alt="img04">
                                   <figcaption>
                                       <h3>Medical Request 2</h3>
                                      <div class="btn-group pull-right" role="group" style="padding-top: 3%">
-                                        <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/medicalrequest.jpg') }}">View</a>
-                                        <a type="button" class="btn" href="/Result/medrequest">Use</a>
+                                        <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/medserv2.png') }}">View</a>
+                                        <a type="button" class="btn" href="/Result/medservice2">Use</a>
                                       </div>
                                   </figcaption>
                               </figure>
@@ -95,12 +106,12 @@
 
                           <li>
                               <figure >
-                                  <img src="{{ asset('/ResultImage/medicalrequest2.jpg') }}" alt="img04">
+                                  <img src="{{ asset('/ResultImage/drugtest2.png') }}" alt="img04">
                                   <figcaption>
                                       <h3>Drug Test</h3>
                                      <div class="btn-group pull-right" role="group" style="padding-top: 3%">
-                                        <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/medicalrequest.jpg') }}">View</a>
-                                        <a type="button" class="btn" href="/Result/medrequest">Use</a>
+                                        <a class="btn fancybox" rel="group" href="{{ asset('/ResultImage/drugtest.png') }}">View</a>
+                                        <a type="button" class="btn" href="/Result/drugtest">Use</a>
                                       </div>
                                   </figcaption>
                               </figure>

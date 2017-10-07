@@ -19,8 +19,14 @@ class TransactionController extends Controller
     function xray(){
         return view ('Result.Xray');
     }
-    function medserve(){
+    function medservice(){
         return view ('Result.MedicalService');
+    }
+    function medservice2(){
+        return view ('Result.MedicalService2');
+    }
+    function drugtest(){
+        return view ('Result.DrugTest');
     }
     function viewrebatetrans()
     {

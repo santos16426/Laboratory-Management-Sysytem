@@ -145,14 +145,14 @@ Route::get('/retrieveReciept','TransactionController@retrieveReciept');
 //email
 Route::get('sendmail', 'SendMailController@sendMail');
 
-// Reports
+// Results
 Route::get('/Result/medrequest','TransactionController@medrequest');
 Route::get('/Result/ecg','TransactionController@ecg');
 Route::get('/Result/ultra','TransactionController@ultra');
 Route::get('/Result/xray','TransactionController@xray');
-Route::get('/Result/medserve','TransactionController@medserve');
-
-
+Route::get('/Result/medservice','TransactionController@medservice');
+Route::get('/Result/medservice2','TransactionController@medservice2');
+Route::get('/Result/drugtest','TransactionController@drugtest');
 
 // Transaction Reports
 Route::get('/Reports/CorporateReports','ReportController@corporatereports');
