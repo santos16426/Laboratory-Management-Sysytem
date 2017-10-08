@@ -322,7 +322,7 @@ class EmployeeController extends Controller
 		DB::table('users')->insert(
 		[
 		'username'  =>  $username,
-		'password'  =>  bcrypt($password),
+		'password'  =>  ($password),
 		'role_id'   =>  $emp_type,
 		'display_name'  =>  $firstname,
 		'created_at'  =>  date_create('now'),

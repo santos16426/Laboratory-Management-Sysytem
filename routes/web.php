@@ -10,12 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//pang debug eton route
-Route::get('/sam',  'AdminController@empCount');
-//
-Route::get('/', function () {
-    return view('Pages.Login');
-});
+
+Route::get('/','LoginController@showLoginForm');
 Route::post('/doLogin','LoginController@doLogin');
 // dashboard
 Route::get('/Admin/Dashboard','AdminController@dashboard');
@@ -185,3 +181,8 @@ Route::post('/activateServ','UtilitiesController@activateServ');
 Route::post('/activatePack','UtilitiesController@activatePack');
 Route::post('/activatecorp','UtilitiesController@activatecorp');
 Route::post('/activatecorppack','UtilitiesController@activatecorppack');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

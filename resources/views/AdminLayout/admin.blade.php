@@ -55,10 +55,15 @@
                         <img alt="" src="/plugins/img/images.jpg" style="max-width: 20px">
                         <span class="username">Administrator</span>
                     </a>
+                    <ul class="dropdown-menu extended logout">
+                      <div class="log-arrow-up"></div>
+                      <li><a href="/"><i class="fa fa-key"></i> Log Out</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
     </header>
+    
     <aside>
         <div id="sidebar"  class="nav-collapse ">
             <ul class="sidebar-menu" id="nav-accordion">
