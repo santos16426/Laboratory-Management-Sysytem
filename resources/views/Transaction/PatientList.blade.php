@@ -1,4 +1,4 @@
-@if((Session::get('addpatient')!= 1)||(Session::get('availserv')!= 1))
+@if((Session::get('addpatient')!= 1)&&(Session::get('availserv')!= 1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
@@ -31,7 +31,9 @@
 			<div class="panel-body">
 				<div class="clearfix">
 					<div class="btn-group pull-right">
+						@if(Session::get('addpatient')==1)
 						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+						@endif
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="patientTbl">
 			      <thead>
@@ -68,7 +70,9 @@
 			          <td>{{ $table->patient_gender }}</td>
 			          <td>
 			           <!--  <a class="btn btn-info btn-xs upservtype" onclick="availserv({{ $table->patient_id }})" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Avail Service </a> -->
+			           @if(Session::get('availserv')==1)
 			            <a class="btn btn-info btn-xs availservice" data-patientid="{{ $table->patient_id }}"  ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Avail Service </a>
+			            @endif
 			          </td>
 			        </tr>
 			        @endforeach

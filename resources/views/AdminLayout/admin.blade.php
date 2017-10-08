@@ -185,6 +185,7 @@
                       @if((Session::get('rebatebill')==1))
                       <li class="@yield('rebatetrans')"><a  href="/Transactions/RebateBilling"><i class="fa fa-percent" aria-hidden="true"></i> Rebate Employee Billing</a></li>
                       @endif
+                      
                       @if((Session::get('addresult')==1)||(Session::get('upresult')==1))
                       <li class="sub-menu">
                           <a  href="" class="@yield('transresultactive')"><i class="fa fa-file-o" aria-hidden="true"></i> Results</a>
