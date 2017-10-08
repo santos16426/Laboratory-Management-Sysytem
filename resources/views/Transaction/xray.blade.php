@@ -1,3 +1,8 @@
+@if((Session::get('addresult')!= 1))
+<script type="text/javascript">
+    window.location = "{{ url('/PageNotFound') }}";
+</script>
+@endif
 <!DOCTYPE html>
 <html >
 
