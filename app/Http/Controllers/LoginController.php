@@ -11,7 +11,7 @@ class LoginController extends Controller
 	function logout()
 	{
 		Session::flush();
-		return view('Pages.Login');
+		return redirect('/');
 	}
 	function showLoginForm()
 	{
