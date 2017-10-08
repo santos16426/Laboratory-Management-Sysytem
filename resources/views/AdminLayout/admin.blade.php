@@ -179,7 +179,7 @@
                   </a>
                   <ul class="sub">
                       <li class="@yield('reactivation')"><a  href="/Utilities/Reactivation"><span><i class="fa fa-recycle" aria-hidden="true"></i></span> Reactivation</a></li>
-                      <li class="@yield('reactivation')"><a  href="/Utilities/Useraccess"><span><i class="fa fa-recycle" aria-hidden="true"></i></span> User Access</a></li>
+                      <li class="@yield('useraccess')"><a  href="/Utilities/Useraccess"><span><i class="fa fa-key" aria-hidden="true"></i></span> User Access</a></li>
                       <li class="@yield('companydetails')"><a  href="/Utilities/CompanyDetails"><span><i class="fa fa-address-card" aria-hidden="true"></i></span>Company Details</a></li>
                   </ul>
                 </li>
