@@ -13,6 +13,8 @@
 
 Route::get('/','LoginController@showLoginForm');
 Route::post('/doLogin','LoginController@doLogin');
+Route::get('/logout','LoginController@logout');
+Route::get('/PageNotFound','AdminController@pagenotfound');
 // dashboard
 Route::get('/Admin/Dashboard','AdminController@dashboard');
 Route::get('/Queue','AdminController@queue');

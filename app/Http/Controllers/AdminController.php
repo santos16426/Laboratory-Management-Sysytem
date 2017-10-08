@@ -5,6 +5,10 @@ use Illuminate\Http\Request;
 use DB;
 class AdminController extends Controller
 {
+    function pagenotfound()
+    {
+        return view('Pages.PageNotFound');
+    }
     function queue()
     {
         return view('Pages.Queueing');

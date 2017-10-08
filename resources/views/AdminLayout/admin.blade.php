@@ -1,3 +1,14 @@
+
+@if(Session::has('loggedin'))
+
+@else
+{{Session::flash('cantlog',true)}}
+<script type="text/javascript">
+    window.location = "{{ url('/') }}";
+</script>
+@endif
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -52,12 +63,12 @@
             <ul class="nav pull-right top-menu">
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" src="/plugins/img/images.jpg" style="max-width: 20px">
-                        <span class="username">Administrator</span>
+                        <img alt="" src="/Employee_images/{{ Session::get('emp_pic') }}" style="max-width: 20px">
+                        <span class="username">{{ Session::get('display_name') }}</span>
                     </a>
                     <ul class="dropdown-menu extended logout">
                       <div class="log-arrow-up"></div>
-                      <li><a href="/"><i class="fa fa-key"></i> Log Out</a></li>
+                      <li><a href="/logout"><i class="fa fa-key"></i> Log Out</a></li>
                     </ul>
                 </li>
             </ul>
@@ -166,12 +177,15 @@
 
                   </ul>
                 </li>
+                @if(Session::get('type') != 0)
                 <li>
                   <a href="/Queries" class="@yield('query')">
                     <i class="fa fa-terminal" aria-hidden="true"></i>
                     <span>Queries</span>
                   </a>
                 </li>
+                @endif
+                @if(Session::get('type') == 0)
                 <li class="sub-menu">
                   <a href="" class="@yield('utilitiesactive')" >
                       <i class="fa fa-wrench"></i>
@@ -183,6 +197,7 @@
                       <li class="@yield('companydetails')"><a  href="/Utilities/CompanyDetails"><span><i class="fa fa-address-card" aria-hidden="true"></i></span>Company Details</a></li>
                   </ul>
                 </li>
+                @endif
                 <li>
                   <a href="/Queue" class="@yield('queue')">
                     <i class="fa fa-desktop"></i>
