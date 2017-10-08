@@ -144,31 +144,34 @@
 			</big></strong></header></center><br>
 
 		    <div class="col-md-12">
-				<table class="inventory" style="">
-			<tr>
-			    <th width="10%" rowspan="2" colspan="1"><center>TEST</center></th>
-			    <th width="10%" colspan="3"><center>SYSTEM INTERNATIONAL</center></th>
-			    <th width="10%" colspan="3"><center>CONVENTIONAL</center></th>
-			  </tr>
-			  <tr>
-			    <th><center>RESULT</center></th>
-			    <th><center>UNIT</center></th>
-			    <th><center>REFERENCE</center></th>
-			    <th><center>RESULT</center></th>
-			    <th><center>UNIT</center></th>
-			    <th><center>REFERENCE</center></th>
-			  </tr>
-			  <tr>
-			    <td><center>Service Name</center></td>
-			    <td><input type="text" name="" value=""></td>
-			    <td><input type="text" name="" value=""></td>
-			    <td><input type="text" name="" value=""></td>
-			    <td><input type="text" name="" value=""></td>
-			    <td><input type="text" name="" value=""></td>
-			    <td><input type="text" name="" value=""></td>
-			  </tr>
-		</table>
+		    	<div class="form-group">
+					<table class="inventory" style="">
+						<tr>
+						    <th width="10%" rowspan="2" colspan="1"><center>TEST</center></th>
+						    <th width="10%" colspan="3"><center>SYSTEM INTERNATIONAL</center></th>
+						    <th width="10%" colspan="3"><center>CONVENTIONAL</center></th>
+						  </tr>
+						  <tr>
+						    <th><center>RESULT</center></th>
+						    <th><center>UNIT</center></th>
+						    <th><center>REFERENCE</center></th>
+						    <th><center>RESULT</center></th>
+						    <th><center>UNIT</center></th>
+						    <th><center>REFERENCE</center></th>
+						  </tr>
+						  <tr>
+						    <td><center>Service Name</center></td>
+						    <td><input type="text" name="intresult" id="intresult" value=""></td>
+						    <td><input type="text" name="intunit" id="intunit" value=""></td>
+						    <td><input type="text" name="intref" id="intref" value=""></td>
+						    <td><input type="text" name="conresult" id="conresult" value=""></td>
+						    <td><input type="text" name="conunit" id="conunit" value=""></td>
+						    <td><input type="text" name="conref" id="conref" value=""></td>
+						  </tr>
+					</table>
+				</div>
 		    </div>
+
 		    <div ></div><br><br><br><br><br><br>
 		    <center><header><strong><big>
 				System International
@@ -368,9 +371,9 @@
 				</form>
 			</div>
 			<center>
-				<button type="button" class="btn btn-xs" style="width: 6%">Close</button>
-				<button type="button" class="btn btn-xs btn-info" style="width: 6%">View</button>
-		        <button class="btn btn-xs btn-success" type="submit" style="width: 6%">Print</button>
+				<button type="button" class="btn btn-xs" style="width: 8%">Back</button>
+				<button type="button" class="btn btn-xs btn-info" style="width: 8%">View</button>
+		        <button type="submit" class="btn btn-xs btn-success"  style="width: 8%">Save & Print</button>
 		    </center>
 		</section>
 	</div>

@@ -186,9 +186,9 @@
 				</form>
 			</div>
 			<center>
-				<button type="button" class="btn btn-xs" style="width: 6%">Close</button>
-				<button type="button" class="btn btn-xs btn-info" style="width: 6%">View</button>
-		        <button class="btn btn-xs btn-success" type="submit" style="width: 6%">Print</button>
+				<button type="button" class="btn btn-xs" style="width: 8%">Back</button>
+				<button type="button" class="btn btn-xs btn-info" style="width: 8%">View</button>
+		        <button type="submit" class="btn btn-xs btn-success"  style="width: 8%">Save & Print</button>
 		    </center>
 		</section>
 	</div>
