@@ -18,6 +18,12 @@
 
 @section ('content')
 
+<style type="text/css">
+	input {
+		text-align: center;
+	}
+</style>
+
 <div class="row">
 	<div class="col-lg-12">
 		<section class="panel">
@@ -138,20 +144,32 @@
 			</big></strong></header></center><br>
 
 		    <div class="col-md-12">
-				<div class="col-md-4">
-			        <div class="form-group">
-			              <div class="col-md-12">
-			                 <div class="input-group">
-			                  <div class="input-group-addon">
-			                   Test
-			                 </div>
-			                <input readonly="" name="test" id="test" type="text" placeholder="Test" class="form-control input-md" required>
-			             </div>
-			          </div>  
-			       </div><br><br><br>
-			 	 </div>
+				<table class="inventory" style="">
+			<tr>
+			    <th width="10%" rowspan="2" colspan="1"><center>TEST</center></th>
+			    <th width="10%" colspan="3"><center>SYSTEM INTERNATIONAL</center></th>
+			    <th width="10%" colspan="3"><center>CONVENTIONAL</center></th>
+			  </tr>
+			  <tr>
+			    <th><center>RESULT</center></th>
+			    <th><center>UNIT</center></th>
+			    <th><center>REFERENCE</center></th>
+			    <th><center>RESULT</center></th>
+			    <th><center>UNIT</center></th>
+			    <th><center>REFERENCE</center></th>
+			  </tr>
+			  <tr>
+			    <td><center>Service Name</center></td>
+			    <td><input type="text" name="" value=""></td>
+			    <td><input type="text" name="" value=""></td>
+			    <td><input type="text" name="" value=""></td>
+			    <td><input type="text" name="" value=""></td>
+			    <td><input type="text" name="" value=""></td>
+			    <td><input type="text" name="" value=""></td>
+			  </tr>
+		</table>
 		    </div>
-
+		    <div ></div><br><br><br><br><br><br>
 		    <center><header><strong><big>
 				System International
 			</big></strong></header></center><br>
