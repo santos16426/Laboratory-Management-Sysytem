@@ -7,6 +7,9 @@ use DB;
 use Session;
 class UtilitiesController extends Controller
 {
+	function Useraccess(){
+        return view ('Utilities.UserAccess');
+    }
 	function activatecorppack()
 	{
 		DB::table('corp_package_tbl')->where('corpPack_id',$_POST['id'])->update(['CorpPackStatus'=>1]);

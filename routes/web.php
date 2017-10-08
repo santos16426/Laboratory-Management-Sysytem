@@ -165,6 +165,7 @@ Route::get('/dailyCorporateReportPieChart','ReportController@dailyCorporateRepor
 
 // Utilities
 Route::get('/Utilities/Reactivation','UtilitiesController@reactivation');
+Route::get('/Utilities/Useraccess','UtilitiesController@Useraccess');
 Route::get('/Utilities/CompanyDetails','UtilitiesController@companydetails');
 
 Route::get('/sendCorporateEmail','SendMailController@sendcorpemail');
