@@ -71,37 +71,69 @@
 	</div>
 </div>
 <div class="modal fade" id = "updateModal">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header btn-warning">
         <h4 class="modal-title"><i class="fa fa-user-plus" aria-hidden="true"></i> User Access</h4>
       </div>
-      <form action="/save_rebatePercentage" method="POST" class="form-horizontal rebate" id="rebates">
         <div class="modal-body" >
-        	 <div class="form-group" style="padding-left: 16px">
-              <div class="col-sm-10 col-md-offset-1">
-                <div class="input-group">
-                  <div style="padding-left: 20px">
-                    <input type="checkbox" name="upmedserv1" value="1" id="upmedserv1"><label for="upmedserv1">&nbsp;Add Patient&nbsp;&nbsp;</label><br>
-                    <input type="checkbox" name="upmedserv2" value="1" id="upmedserv2"><label for="upmedserv2">&nbsp;Avail Service&nbsp;&nbsp;</label><br>
-                    <input type="checkbox" name="upecg" value="1" id="upecg"><label for="upecg">&nbsp;Corporate Billing&nbsp;&nbsp;</label>
-                    <br>
-                    <input type="checkbox" name="upxray" id="upxray" value="1"><label for="upxray">&nbsp;Rebate Billing&nbsp;&nbsp;</label>
-                    <br>
-                    <input type="checkbox" name="upultrasound" id="upultrasound" value="1"><label for="upultrasound">&nbsp;Ultrasound&nbsp;&nbsp;</label>
-                    <br>
-                    <input type="checkbox" name="updrugtest" id="updrugtest" value="1"><label for="updrugtest">&nbsp;Drug Test&nbsp;&nbsp;</label>
-                </div>
-              </div>
-            </div>  
-         </div>
-	        <div class="modal-footer">
-	          <button type="button" class="btn pull-left" data-dismiss="modal">Close</button>
-	          <button  type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
-	        </div>
-        </div>
-        {{ csrf_field() }}
-      </form>
+        	<form action="/save_rebatePercentage" method="POST" class="form-horizontal rebate" id="rebates">
+    	 	<div class="col-md-12">
+    	 		<div class="col-md-4">
+    	 			<div class="form-group">
+		            	<div class="col-sm-10 col-md-offset-1">
+		                	<div class="input-group">
+		                		<label><strong>Medical Service</strong><sup>*</sup></label><br>
+		                  		<div style="padding-left: 20px">
+		                    		<input type="checkbox" name="upmedserv1" value="1" id="upmedserv1"><label for="upmedserv1">&nbsp;Add Patient&nbsp;&nbsp;</label><br>
+		                    		<input type="checkbox" name="upmedserv2" value="1" id="upmedserv2"><label for="upmedserv2">&nbsp;Avail Service&nbsp;&nbsp;</label><br>
+		                		</div>
+		              		</div>
+		           		</div>  
+		         	</div>
+    	 		</div>
+
+				<div class="col-md-4">
+					<div class="form-group">
+						<div class="col-sm-10 col-md-offset-1">
+							<div class="input-group">
+								<label><strong>Billing</strong><sup>*</sup></label><br>
+								<div style="padding-left: 20px">
+									<input type="checkbox" name="upecg" value="1" id="upecg"><label for="upecg">&nbsp;Corporate Billing&nbsp;&nbsp;</label>
+									<br>
+									<input type="checkbox" name="upxray" id="upxray" value="1"><label for="upxray">&nbsp;Rebate Billing&nbsp;&nbsp;</label>
+									<br>
+								</div>
+							</div>  
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="form-group">
+						<div class="col-sm-10 col-md-offset-1">
+							<div class="input-group">
+								<label><strong>Result</strong><sup>*</sup></label><br>
+								<div style="padding-left: 20px">
+									<input type="checkbox" name="upultrasound" id="upultrasound" value="1"><label for="upultrasound">&nbsp;Add Result&nbsp;&nbsp;</label>
+									<br>
+									<input type="checkbox" name="updrugtest" id="updrugtest" value="1"><label for="updrugtest">&nbsp;Upload Result&nbsp;&nbsp;</label>
+								</div>
+							</div>
+						</div>  
+					</div>
+				</div>
+	    	 	</div>
+	    	 	
+
+		        <div class="box-footer">
+		        	
+		          <button type="button" class="btn" data-dismiss="modal">Close</button>
+		          <button  type="submit" class="btn btn-success pull-right"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+		        </div>
+	        	{{ csrf_field() }}
+      		</form>
+        </div> 
     </div>  
   </div>
 </div>
