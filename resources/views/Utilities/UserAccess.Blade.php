@@ -1,22 +1,18 @@
 @extends('AdminLayout.admin')
 
 @section ('breadrootName')
-<i class="fa fa-cogs" aria-hidden="true"></i><span> Maintenance</span>
+<i class="fa fa-wrench" aria-hidden="true"></i><span> Utilities</span>
 @endsection
-
-@section ('breadParentName')
-<i class="fa fa-percent" aria-hidden="true"></i><span> Rebate</span>
+@section('breadParentName')
+<i class="fa fa-recycle" aria-hidden="true"></i><span> Reactivation</span>
 @endsection
-
 @section('maintenanceactive')
-<a href="" class="active">
+<a href="" class="">
 @endsection
-@section('rebate','active')
-@section('rebactive','active')
-
-@section ('breadactivePage','Rebate Percentage')
-
+@section('useraccess','active')
+@section('utilitiesactive','active')
 @section('content')
+
 
 <style type="text/css">
 	th {
@@ -78,56 +74,59 @@
       </div>
         <div class="modal-body" >
         	<form action="/save_rebatePercentage" method="POST" class="form-horizontal rebate" id="rebates">
-    	 	<div class="col-md-12">
-    	 		<div class="col-md-4">
-    	 			<div class="form-group">
-		            	<div class="col-sm-10 col-md-offset-1">
-		                	<div class="input-group">
-		                		<label><strong>Medical Service</strong><sup>*</sup></label><br>
-		                  		<div style="padding-left: 20px">
-		                    		<input type="checkbox" name="upmedserv1" value="1" id="upmedserv1"><label for="upmedserv1">&nbsp;Add Patient&nbsp;&nbsp;</label><br>
-		                    		<input type="checkbox" name="upmedserv2" value="1" id="upmedserv2"><label for="upmedserv2">&nbsp;Avail Service&nbsp;&nbsp;</label><br>
-		                		</div>
-		              		</div>
-		           		</div>  
-		         	</div>
-    	 		</div>
+    	 	<fieldset>
+    	 		<legend>Transactions</legend>
+    	 		<div class="col-md-12">
+	    	 		<div class="col-md-4">
+	    	 			<div class="form-group">
+			            	<div class="col-sm-10 col-md-offset-1">
+			                	<div class="input-group">
+			                		<label><strong>Medical Service</strong><sup>*</sup></label><br>
+			                  		<div style="padding-left: 20px">
+			                    		<input type="checkbox" name="upmedserv1" value="1" id="upmedserv1"><label for="upmedserv1">&nbsp;Add Patient&nbsp;&nbsp;</label><br>
+			                    		<input type="checkbox" name="upmedserv2" value="1" id="upmedserv2"><label for="upmedserv2">&nbsp;Avail Service&nbsp;&nbsp;</label><br>
+			                		</div>
+			              		</div>
+			           		</div>  
+			         	</div>
+	    	 		</div>
 
-				<div class="col-md-4">
-					<div class="form-group">
-						<div class="col-sm-10 col-md-offset-1">
-							<div class="input-group">
-								<label><strong>Billing</strong><sup>*</sup></label><br>
-								<div style="padding-left: 20px">
-									<input type="checkbox" name="upecg" value="1" id="upecg"><label for="upecg">&nbsp;Corporate Billing&nbsp;&nbsp;</label>
-									<br>
-									<input type="checkbox" name="upxray" id="upxray" value="1"><label for="upxray">&nbsp;Rebate Billing&nbsp;&nbsp;</label>
-									<br>
+					<div class="col-md-4">
+						<div class="form-group">
+							<div class="col-sm-10 col-md-offset-1">
+								<div class="input-group">
+									<label><strong>Billing</strong><sup>*</sup></label><br>
+									<div style="padding-left: 20px">
+										<input type="checkbox" name="upecg" value="1" id="upecg"><label for="upecg">&nbsp;Corporate Billing&nbsp;&nbsp;</label>
+										<br>
+										<input type="checkbox" name="upxray" id="upxray" value="1"><label for="upxray">&nbsp;Rebate Billing&nbsp;&nbsp;</label>
+										<br>
+									</div>
+								</div>  
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="form-group">
+							<div class="col-sm-10 col-md-offset-1">
+								<div class="input-group">
+									<label><strong>Result</strong><sup>*</sup></label><br>
+									<div style="padding-left: 20px">
+										<input type="checkbox" name="upultrasound" id="upultrasound" value="1"><label for="upultrasound">&nbsp;Add Result&nbsp;&nbsp;</label>
+										<br>
+										<input type="checkbox" name="updrugtest" id="updrugtest" value="1"><label for="updrugtest">&nbsp;Upload Result&nbsp;&nbsp;</label>
+									</div>
 								</div>
 							</div>  
 						</div>
 					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="form-group">
-						<div class="col-sm-10 col-md-offset-1">
-							<div class="input-group">
-								<label><strong>Result</strong><sup>*</sup></label><br>
-								<div style="padding-left: 20px">
-									<input type="checkbox" name="upultrasound" id="upultrasound" value="1"><label for="upultrasound">&nbsp;Add Result&nbsp;&nbsp;</label>
-									<br>
-									<input type="checkbox" name="updrugtest" id="updrugtest" value="1"><label for="updrugtest">&nbsp;Upload Result&nbsp;&nbsp;</label>
-								</div>
-							</div>
-						</div>  
-					</div>
-				</div>
-	    	 	</div>
+		    	 	</div>	
+    	 	</fieldset>
 	    	 	
 
 		        <div class="box-footer">
-		        	
+
 		          <button type="button" class="btn" data-dismiss="modal">Close</button>
 		          <button  type="submit" class="btn btn-success pull-right"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
 		        </div>
