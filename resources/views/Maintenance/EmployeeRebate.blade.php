@@ -1,3 +1,8 @@
+@if((Session::get('addempreb')!=1)||(Session::get('delempreb')!=1))
+<script type="text/javascript">
+    window.location = "{{ url('/PageNotFound') }}";
+</script>
+@endif
 @extends('AdminLayout.admin')
 
 @section ('breadrootName')
@@ -26,7 +31,9 @@
 			<div class="panel-body">
 				<div class="clearfix">
 					<div class="btn-group pull-right">
+						@if(Session::get('addempreb')==1)
 						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New</a>
+						@endif
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="rebateTbl">
 						<thead>
@@ -41,7 +48,11 @@
 						<tr>
 						  <td>{{ $emp_rebates->emp_fname }} {{ $emp_rebates->emp_mname }} {{ $emp_rebates->emp_lname }}</td>
 						  <td>{{ $emp_rebates->role_name }}</td>
-						  <td><a class="btn btn-danger btn-xs delEtypebtn"  data-toggle="modal" data-id="{{$emp_rebates->emp_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Remove</a></td>
+						  <td>
+						  	@if(Session::get('delempreb')==1)
+						  	<a class="btn btn-danger btn-xs delEtypebtn"  data-toggle="modal" data-id="{{$emp_rebates->emp_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Remove</a>
+						  	@endif
+						  </td>
 						</tr>
 						@endforeach
 						</tbody>

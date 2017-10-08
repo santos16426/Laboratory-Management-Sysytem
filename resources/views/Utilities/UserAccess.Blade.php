@@ -4,7 +4,7 @@
 <i class="fa fa-wrench" aria-hidden="true"></i><span> Utilities</span>
 @endsection
 @section('breadParentName')
-<i class="fa fa-recycle" aria-hidden="true"></i><span> Reactivation</span>
+<i class="fa fa-key" aria-hidden="true"></i><span> User Access</span>
 @endsection
 @section('maintenanceactive')
 <a href="" class="">
@@ -18,6 +18,10 @@
 	th {
 		text-align: center;
 		font-size: 9px
+	}
+	.fa-check
+	{
+		color:green;
 	}
 </style>
 
@@ -55,26 +59,160 @@
 						    <th>Rebate</th>
 						    <th>Anoda</th>
 						  </tr>
-						  
-						  <tr>
-						  	<td></td>
-						  	<td></td>
-						  	<td></td>
-						  	<td></td>
-						  	<td></td>
-						  	<td></td>
+						  @foreach($admin as $admin)
+						  <tr align="center">
+						  	<td>Admin</td>
+						  	<td>
+						  		@if($admin->addlab == 1 || $admin->uplab == 1 || $admin->dellab == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						  	</td>
+						  	<td>
+						  		@if($admin->addemp == 1 || $admin->upemp == 1 || $admin->delemp == 1 || $admin->addemptype || $admin->upemptype || $admin->delemptype)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						  	</td>
+						  	<td>
+						  		@if($admin->editpercent == 1 || $admin->addempreb == 1 || $admin->delempreb == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						  	</td>
+						  	<td>
+						  		@if($admin->addserv == 1 || $admin->upserv == 1 || $admin->delserv == 1 || $admin->addservtype == 1 || $admin->upservtype == 1 || $admin->delservtype == 1 || $admin->addservgrp == 1 || $admin->upservgrp == 1 || $admin->delservgrp == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						  	</td>
+						  	<td>
+						  		@if($admin->addpack == 1 || $admin->uppack == 1 || $admin->delpack == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						  	</td>
+						    <td>
+						    	@if($admin->addcorp == 1 || $admin->upcorp == 1 || $admin->delcorp == 1 || $admin->addcorppack == 1 || $admin->upcorppack == 1 || $admin->delcorppack == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($admin->addpatient == 1 || $admin->availserv == 1 )
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($admin->corpbill == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($admin->rebatebill == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($admin->addresult == 1 || $admin->upresult)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($admin->census == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($admin->trans == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($admin->corprep == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($admin->rebaterep == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
 						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td><a class="btn btn-warning btn-xs  updateModal" href="#updateModal" data-toggle="modal" data-id=""><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+						    <td><a class="btn btn-warning btn-xs  updateModal" href="#updateModal" data-toggle="modal" data-id="0"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 						  </tr>
+						  @endforeach
+						  @foreach($users as $users)
+						  <tr align="center">
+						  	<td>{{ $users->role_name }}</td>
+						  	<td>
+						  		@if($users->addlab == 1 || $users->uplab == 1 || $users->dellab == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						  	</td>
+						  	<td>
+						  		@if($users->addemp == 1 || $users->upemp == 1 || $users->delemp == 1 || $users->addemptype || $users->upemptype || $users->delemptype)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						  	</td>
+						  	<td>
+						  		@if($users->editpercent == 1 || $users->addempreb == 1 || $users->delempreb == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						  	</td>
+						  	<td>
+						  		@if($users->addserv == 1 || $users->upserv == 1 || $users->delserv == 1 || $users->addservtype == 1 || $users->upservtype == 1 || $users->delservtype == 1 || $users->addservgrp == 1 || $users->upservgrp == 1 || $users->delservgrp == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						  	</td>
+						  	<td>
+						  		@if($users->addpack == 1 || $users->uppack == 1 || $users->delpack == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						  	</td>
+						    <td>
+						    	@if($users->addcorp == 1 || $users->upcorp == 1 || $users->delcorp == 1 || $users->addcorppack == 1 || $users->upcorppack == 1 || $users->delcorppack == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($users->addpatient == 1 || $users->availserv == 1 )
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($users->corpbill == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($users->rebatebill == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($users->addresult == 1 || $users->upresult)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($users->census == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($users->trans == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($users->corprep == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td>
+						    	@if($users->rebaterep == 1)
+						  			<i class="fa fa-check" aria-hidden="true"></i> 
+						  		@endif
+						    </td>
+						    <td></td>
+						    <td><a class="btn btn-warning btn-xs  updateModal" href="#updateModal" data-toggle="modal" data-id="{{ $users->emp_type_id }}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+						  </tr>
+						  @endforeach
 						</table>
 					</div>
 				</div>
@@ -89,9 +227,10 @@
         <h4 class="modal-title"><i class="fa fa-user-plus" aria-hidden="true"></i> User Access</h4>
       </div>
         <div class="modal-body" >
-        	<form action="/save_rebatePercentage" method="POST" class="form-horizontal rebate" id="rebates">
+        	<form action="/save_userAccess" method="POST" class="form-horizontal" id="useraccessform">
+        	<input type="hidden" name="emp_type_id" value="" id="emp_type_id">
     	 	<fieldset>
-    	 		<legend><input type="checkbox" name="mastermaintenance" class="mastermaintenance"  value="1" id="mastermaintenance"><label for="mastermaintenance">&nbsp;Maintenance&nbsp;&nbsp;</label></legend>
+    	 		<legend>Maintenance</legend>
     	 		<div class="col-md-12">
 	    	 		<div class="col-md-4">
 	    	 			<div class="form-group">
@@ -161,9 +300,9 @@
 								<div class="input-group">
 									<label><strong>Employee's Rebate</strong></label><br>
 									<div style="padding-left: 20px">
-										<input type="checkbox" name="addempreb" value="1" id="addempreb"><label for="addempreb">&nbsp;Add Employee Rebate&nbsp;&nbsp;</label>
+										<input type="checkbox" name="addempreb" value="1" id="addempreb" class="maintenance"><label for="addempreb">&nbsp;Add Employee Rebate&nbsp;&nbsp;</label>
 										<br>
-										<input type="checkbox" name="delempreb" id="delempreb" value="1"><label for="delempreb">&nbsp;Delete Employee Rebate&nbsp;&nbsp;</label>
+										<input type="checkbox" name="delempreb" id="delempreb" value="1" class="maintenance"><label for="delempreb">&nbsp;Delete Employee Rebate&nbsp;&nbsp;</label>
 										<br>
 									</div>
 								</div>  
@@ -279,7 +418,7 @@
     	 	</fieldset>
 
     	 	<fieldset>
-    	 		<legend><input type="checkbox" name="mastertransaction" class="mastertransaction" value="1" id="mastertransaction"><label for="mastertransaction">&nbsp;Transaction&nbsp;&nbsp;</label></legend>
+    	 		<legend>Transaction</legend>
     	 		<div class="col-md-12">
 	    	 		<div class="col-md-4">
 	    	 			<div class="form-group">
@@ -288,7 +427,7 @@
 			                		<label><strong>Medical Service</strong></label><br>
 			                  		<div style="padding-left: 20px">
 			                    		<input type="checkbox" name="addpatient" class="transaction" value="1" id="addpatient"><label for="addpatient">&nbsp;Add Patient&nbsp;&nbsp;</label><br>
-			                    		<input type="checkbox" name="availserv" value="1" id="availserv"><label for="availserv">&nbsp;Avail Service&nbsp;&nbsp;</label><br>
+			                    		<input type="checkbox" name="availserv" class="transaction" value="1" id="availserv"><label for="availserv">&nbsp;Avail Service&nbsp;&nbsp;</label><br>
 			                		</div>
 			              		</div>
 			           		</div>  
@@ -329,7 +468,7 @@
     	 	</fieldset>
 
     	 	<fieldset>
-    	 		<legend><input type="checkbox" name="masterreport" class="masterreport" value="1" id="masterreport"><label for="masterreport">&nbsp;Reports&nbsp;&nbsp;</label></legend>
+    	 		<legend>Reports</legend>
     	 		<div class="col-md-12">
 	    	 		<div class="col-md-4">
 	    	 			<div class="form-group">
@@ -361,7 +500,7 @@
 							<div class="col-sm-10 col-md-offset-1">
 								<div class="input-group">
 									<div style="">
-										<input type="checkbox" name="coprrep" class="report"  value="1" id="coprrep"><label for="coprrep">&nbsp;<strong>Corporate Report</strong>&nbsp;&nbsp;</label>
+										<input type="checkbox" name="corprep" class="report"  value="1" id="corprep"><label for="corprep">&nbsp;<strong>Corporate Report</strong>&nbsp;&nbsp;</label>
 									</div>
 								</div>
 							</div>  
@@ -382,19 +521,7 @@
 			         	</div>
 	    	 		</div>
 
-					<div class="col-md-4">
-						<div class="form-group">
-							<div class="col-sm-10 col-md-offset-1">
-								<div class="input-group">
-									<div style="">
-										<input type="checkbox" name="upmedserv1" class="report"  value="1" id="upmedserv1"><label for="upmedserv1">&nbsp;<strong>Wala pa Report</strong>&nbsp;&nbsp;</label>
-										<br>
-									</div>
-								</div>  
-							</div>
-						</div>
-					</div>
-
+					
 					<div class="col-md-4">
 					</div>
 		    	 	</div>		
@@ -432,5 +559,190 @@
 	  'autoWidth'   : true,
 	  'bSort'		: false
 	});
+
+	$('.updateModal').click(function(){
+		$('.maintenance').removeAttr('checked','checked');
+		$('.report').removeAttr('checked','checked');
+		$('.transaction').removeAttr('checked','checked');
+		$.ajax
+		({
+			url : '/retrieveAccess',
+			data : {emp_type_id:$(this).data('id')},
+			dataType : 'json',
+			type : 'get',
+			success:function(response)
+			{
+				response.forEach(function(data){
+					$('#emp_type_id').val(data.emp_type_id);
+					if(data.addlab == 1)
+					{
+						$('#addlab').attr('checked','checked')
+					}
+					if(data.uplab == 1)
+					{
+						$('#uplab').attr('checked','checked')
+					}
+					if(data.dellab == 1)
+					{
+						$('#dellab').attr('checked','checked')
+					}
+					if(data.addemp == 1)
+					{
+						$('#addemp').attr('checked','checked')
+					}
+					if(data.upemp == 1)
+					{
+						$('#upemp').attr('checked','checked')
+					}
+					if(data.delemp == 1)
+					{
+						$('#delemp').attr('checked','checked')
+					}
+					if(data.addemptype == 1)
+					{
+						$('#addemptype').attr('checked','checked')
+					}
+					if(data.upemptype == 1)
+					{
+						$('#upemptype').attr('checked','checked')
+					}
+					if(data.delemptype == 1)
+					{
+						$('#delemptype').attr('checked','checked')
+					}
+					if(data.editpercent == 1)
+					{
+						$('#editpercent').attr('checked','checked')
+					}
+					if(data.addempreb == 1)
+					{
+						$('#addempreb').attr('checked','checked')
+					}
+					if(data.delempreb == 1)
+					{
+						$('#delempreb').attr('checked','checked')
+					}
+					if(data.addserv == 1)
+					{
+						$('#addserv').attr('checked','checked')
+					}
+					if(data.upserv == 1)
+					{
+						$('#upserv').attr('checked','checked')
+					}
+					if(data.delserv == 1)
+					{
+						$('#delserv').attr('checked','checked')
+					}
+					if(data.addservtype == 1)
+					{
+						$('#addservtype').attr('checked','checked')
+					}
+					if(data.upservtype == 1)
+					{
+						$('#upservtype').attr('checked','checked')
+					}
+					if(data.delservtype == 1)
+					{
+						$('#delservtype').attr('checked','checked')
+					}
+					if(data.addservgrp == 1)
+					{
+						$('#addservgrp').attr('checked','checked')
+					}
+					if(data.upservgrp == 1)
+					{
+						$('#upservgrp').attr('checked','checked')
+					}
+					if(data.delservgrp == 1)
+					{
+						$('#delservgrp').attr('checked','checked')
+					}
+					if(data.addpack == 1)
+					{
+						$('#addpack').attr('checked','checked')
+					}
+					if(data.uppack == 1)
+					{
+						$('#uppack').attr('checked','checked')
+					}
+					if(data.delpack == 1)
+					{
+						$('#delpack').attr('checked','checked')
+					}
+					if(data.addcorp == 1)
+					{
+						$('#addcorp').attr('checked','checked')
+					}
+					if(data.upcorp == 1)
+					{
+						$('#upcorp').attr('checked','checked')
+					}
+					if(data.delcorp == 1)
+					{
+						$('#delcorp').attr('checked','checked')
+					}
+					if(data.addcorppack == 1)
+					{
+						$('#addcorppack').attr('checked','checked')
+					}
+					if(data.upcorppack == 1)
+					{
+						$('#upcorppack').attr('checked','checked')
+					}
+					if(data.delcorppack == 1)
+					{
+						$('#delcorppack').attr('checked','checked')
+					}
+					if(data.addpatient == 1)
+					{
+						$('#addpatient').attr('checked','checked')
+					}
+					if(data.availserv == 1)
+					{
+						$('#availserv').attr('checked','checked')
+					}
+					if(data.corpbill == 1)
+					{
+						$('#corpbill').attr('checked','checked')
+					}
+					if(data.rebatebill == 1)
+					{
+						$('#rebatebill').attr('checked','checked')
+					}
+					if(data.addresult == 1)
+					{
+						$('#addresult').attr('checked','checked')
+					}
+					if(data.upresult == 1)
+					{
+						$('#upresult').attr('checked','checked')
+					}
+					if(data.census == 1)
+					{
+						$('#census').attr('checked','checked')
+					}
+					if(data.trans == 1)
+					{
+						$('#trans').attr('checked','checked')
+					}
+					if(data.corprep == 1)
+					{
+						$('#corprep').attr('checked','checked')
+					}
+					if(data.rebaterep == 1)
+					{
+						$('#rebaterep').attr('checked','checked')
+					}
+					
+				})
+			}
+		});
+
+	});
+
 </script>
+
+
+
 @endsection

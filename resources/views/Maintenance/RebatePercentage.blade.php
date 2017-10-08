@@ -1,3 +1,8 @@
+@if((Session::get('editpercent')!=1))
+<script type="text/javascript">
+    window.location = "{{ url('/PageNotFound') }}";
+</script>
+@endif
 @extends('AdminLayout.admin')
 
 @section ('breadrootName')
@@ -26,7 +31,9 @@
 			<div class="panel-body">
 				<div class="clearfix">
 					<div class="btn-group pull-right">
+						@if(Session::get('editpercent')==1)
 						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+						@endif
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="rebateTbl">
 					  <thead>

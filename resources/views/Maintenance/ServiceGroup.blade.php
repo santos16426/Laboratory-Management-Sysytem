@@ -1,3 +1,8 @@
+@if((Session::get('addservgrp')!=1)||(Session::get('upservgrp')!=1)||(Session::get('delservgrp')!=1))
+<script type="text/javascript">
+    window.location = "{{ url('/PageNotFound') }}";
+</script>
+@endif
 @extends('AdminLayout.admin')
 
 @section ('breadrootName')
@@ -26,7 +31,9 @@
 			<div class="panel-body">
 				<div class="clearfix">
 					<div class="btn-group pull-right">
+            @if(Session::get('addservgrp')==1)
 						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+            @endif
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="servGroup">
 				      <thead>
@@ -44,13 +51,21 @@
                   <td>{{ $serviceGroups->lab_name }}</td>
 				          <td>
                   @if($serviceGroups->ServGroupStatus == 1 and $serviceGroups->LabStatus == 1)
+                    @if(Session::get('upservgrp')==1)
 				            <a class="btn btn-warning btn-xs servgroupupbtn" href="#updateModal" data-toggle="modal" data-id="{{ $serviceGroups->servgroup_id }}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                    @endif 
+                    @if(Session::get('delservgrp')==1)
 				            <a class="btn btn-danger btn-xs delbtn" data-id="{{ $serviceGroups->servgroup_id }}" ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                    @endif
                     
                   @endif
                   @if($serviceGroups->ServGroupStatus == 0 or $serviceGroups->LabStatus == 0)
+                    @if(Session::get('upservgrp')==1)
                     <a class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                    @endif 
+                    @if(Session::get('delservgrp')==1)
                     <a class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                    @endif
                   @endif
 				          </td>
                   <td>

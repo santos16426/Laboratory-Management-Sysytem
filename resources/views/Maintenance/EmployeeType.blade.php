@@ -1,3 +1,8 @@
+@if((Session::get('addemptype')!=1)||(Session::get('upemptype')!=1)||(Session::get('delemptype')!=1))
+<script type="text/javascript">
+    window.location = "{{ url('/PageNotFound') }}";
+</script>
+@endif
 @extends('AdminLayout.admin')
 
 @section ('breadrootName')
@@ -25,7 +30,9 @@
   			<div class="panel-body">
           <div class="clearfix">
             <div class="btn-group pull-right">
+            	@if(Session::get('addemptype')==1)
                 <a class="btn btn-info" style="margin-left: -40%" href="#addEmpType" data-toggle="modal" id="newbtn"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+                @endif
             </div>
         </div>
 				<table class="table table-bordered table-hover" id="emptype">
@@ -44,11 +51,19 @@
 		      				<td>{{ $emptype->lab_name }}</td>
 		      				<td>
 		      			@if($emptype->RoleStatus == 1 and $emptype->LabStatus == 1 or $emptype->RoleStatus == 1 and $emptype->LabStatus == null)
+		      				@if(Session::get('upemptype')==1)
 							<a class="btn btn-warning btn-xs upEtypebtn" data-toggle="modal" href="#EmployeeTypeedit" data-id="{{ $emptype->role_id }}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+							@endif
+							@if(Session::get('delemptype')==1)
 							<button type="button" class="btn btn-danger btn-xs delEtypebtn" data-id="{{ $emptype->role_id }}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
+							@endif
 		                @else
+		                	@if(Session::get('updateemptype')==1)
 							<a class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+							@endif
+							@if(Session::get('delemptype')==1)
 							<button type="button" class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
+							@endif
 		                @endif
 		      				</td>
 		      				<td>

@@ -1,3 +1,8 @@
+@if((Session::get('addservtype')!=1)||(Session::get('upservtype')!=1)||(Session::get('delservtype')!=1))
+<script type="text/javascript">
+    window.location = "{{ url('/PageNotFound') }}";
+</script>
+@endif
 @extends('AdminLayout.admin')
 
 @section ('breadrootName')
@@ -26,7 +31,9 @@
 			<div class="panel-body">
 				<div class="clearfix">
 					<div class="btn-group pull-right">
+            @if(Session::get('addservtype')==1)
 						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+            @endif
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="servtypetbl">
             <thead>
@@ -44,12 +51,20 @@
                 <td>{{ $serviceType->servgroup_name }}</td>
                 <td>
                 @if($serviceType->LabStatus == 1 and $serviceType->ServTypeStatus == 1 and $serviceType->ServGroupStatus == 1)
+                  @if(Session::get('upservtype')==1)
                   <a class="btn btn-warning btn-xs upservtype" href="#updateModal"  data-toggle="modal" data-id="{{ $serviceType->service_type_id }}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                  @endif
+                  @if(Session::get('delservtype')==1)
                   <a class="btn btn-danger btn-xs delbtn" data-id="{{ $serviceType->service_type_id }}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                  @endif
                 </td>
                 @else
+                @if(Session::get('upservtype')==1)
                   <a class="btn btn-warning btn-xs disabled" ><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                  @endif
+                  @if(Session::get('delservtype')==1)
                   <a class="btn btn-danger btn-xs disabled"  ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                  @endif
                 @endif
                 <td>
                   @if($serviceType->LabStatus == 1 and $serviceType->ServTypeStatus == 1 and $serviceType->ServGroupStatus == 1)

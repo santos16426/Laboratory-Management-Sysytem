@@ -169,9 +169,9 @@ Route::get('/dailyCorporateReportPieChart','ReportController@dailyCorporateRepor
 Route::get('/Utilities/Reactivation','UtilitiesController@reactivation');
 Route::get('/Utilities/Useraccess','UtilitiesController@Useraccess');
 Route::get('/Utilities/CompanyDetails','UtilitiesController@companydetails');
-
+Route::get('/retrieveAccess','UtilitiesController@retrieveAccess');
 Route::get('/sendCorporateEmail','SendMailController@sendcorpemail');
-
+Route::post('/save_userAccess','UtilitiesController@save_userAccess');
 
 // Reactivation
 Route::post('/activateLab','UtilitiesController@activateLab');

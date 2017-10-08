@@ -84,108 +84,150 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                @if((Session::get('addlab')== 1)||(Session::get('uplab')== 1)||(Session::get('dellab')== 1)||(Session::get('addemptype')==1)||(Session::get('upemptype')==1)||(Session::get('delemptype')==1)||(Session::get('addemp')==1)||(Session::get('upemp')==1)||(Session::get('delemp')==1)||(Session::get('editpercent')==1)||(Session::get('addempreb')==1)||(Session::get('delempreb')==1)||(Session::get('addserv')==1)||(Session::get('upserv')==1)||(Session::get('delserv')==1)||(Session::get('addservtype')==1)||(Session::get('upservtype')==1)||(Session::get('delservtype')==1)||(Session::get('addservgrp')==1)||(Session::get('upservgrp')==1)||(Session::get('delservgrp')==1)||(Session::get('addpack')==1)||(Session::get('uppack')==1)||(Session::get('delpack')==1)||(Session::get('addcorp')==1)||(Session::get('upcorp')==1)||(Session::get('delcorp')==1)||(Session::get('addcorppack')==1)||(Session::get('upcorppack')==1)||(Session::get('delcorppack')==1))
                 <li class="sub-menu">
                   @yield('maintenanceactive')
                       <i class="fa fa-cogs"></i>
                       <span>Maintenance</span>
                   </a>
                   <ul class="sub">
+                      @if((Session::get('addlab')== 1)||(Session::get('uplab')== 1)||(Session::get('dellab')== 1))
                       <li class="@yield('laboratoryactive')">
                         <a  href="/Maintenance/Laboratory">
                             <i class="fa fa-building-o" aria-hidden="true"></i>
                             <span>Laboratory</span>    
                         </a>
                       </li>
-
+                      @endif
+                      @if((Session::get('addemptype')==1)||(Session::get('upemptype')==1)||(Session::get('delemptype')==1)||(Session::get('addemp')==1)||(Session::get('upemp')==1)||(Session::get('delemp')==1))
                       <li class="sub-menu" >
                           <a  href="" class="@yield('employee')">
                               <i class="fa fa-user-o " aria-hidden="true" ></i>
                               <span>Employee</span>
                           </a>
                           <ul class="sub">
+                              @if((Session::get('addemptype')==1)||(Session::get('upemptype')==1)||(Session::get('delemptype')==1))
                               <li class="@yield('emptypeactive')"><a   href="/Maintenance/EmployeeType">Employee Type</a></li>
+                              @endif
+                              @if((Session::get('addemp')==1)||(Session::get('upemp')==1)||(Session::get('delemp')==1))
                               <li class="@yield('empactive')"><a  href="/Maintenance/Employee">Employee List</a></li>
+                              @endif
                           </ul>
                       </li>
-
+                      @endif
+                      @if((Session::get('editpercent')==1)||(Session::get('addempreb')==1)||(Session::get('delempreb')==1))
                       <li class="sub-menu">
                           <a  href="" class="@yield('rebate')">
                               <i class="fa fa-percent" aria-hidden="true"></i>
                               <span>Rebate</span>
                           </a>
                           <ul class="sub">
+                              @if((Session::get('editpercent')==1))
                               <li class="@yield('rebactive')"><a  href="/Maintenance/RebatePercentage">Rebate Percentage</a></li>
+                              @endif
+                              @if((Session::get('addempreb')==1)||(Session::get('delempreb')==1))
                               <li class="@yield('emprebactive')"><a  href="/Maintenance/EmployeeRebate">Employee's Rebate</a></li>
+                              @endif
                           </ul>
                       </li>
-
+                      @endif
+                      @if((Session::get('addserv')==1)||(Session::get('upserv')==1)||(Session::get('delserv')==1)||(Session::get('addservtype')==1)||(Session::get('upservtype')==1)||(Session::get('delservtype')==1)||(Session::get('addservgrp')==1)||(Session::get('upservgrp')==1)||(Session::get('delservgrp')==1))
                       <li class="sub-menu">
                           <a  href="" class="@yield('service')">
                               <i class="fa fa-heartbeat" aria-hidden="true"></i>
                               <span>Service</span>
                           </a>
                           <ul class="sub">
+                              @if((Session::get('addserv')==1)||(Session::get('upserv')==1)||(Session::get('delserv')==1))
                               <li class="@yield('servicegroupactive')"><a  href="/Maintenance/ServiceGroup">Service Group</a></li>
+                              @endif
+                              @if((Session::get('addservtype')==1)||(Session::get('upservtype')==1)||(Session::get('delservtype')==1))
                               <li class="@yield('servicetypeactive')"><a  href="/Maintenance/ServiceType">Service Type</a></li>
+                              @endif
+                              @if((Session::get('addservgrp')==1)||(Session::get('upservgrp')==1)||(Session::get('delservgrp')==1))
                               <li class="@yield('serviceactive')"><a  href="/Maintenance/Service">Service List</a></li>
+                              @endif
                           </ul>
                       </li>
-
+                      @endif
+                      @if((Session::get('addpack')==1)||(Session::get('uppack')==1)||(Session::get('delpack')==1))
                       <li  class="@yield('packactive')">
-                        <a  href="/Maintenance/Package">
-                            <i class="fa fa-dropbox" aria-hidden="true"></i>
-                            <span>Package</span>
-                        </a>
-                    </li>
+                          <a  href="/Maintenance/Package">
+                              <i class="fa fa-dropbox" aria-hidden="true"></i>
+                              <span>Package</span>
+                          </a>
+                      </li>
+                      @endif
+                      @if((Session::get('addcorp')==1)||(Session::get('upcorp')==1)||(Session::get('delcorp')==1)||(Session::get('addcorppack')==1)||(Session::get('upcorppack')==1)||(Session::get('delcorppack')==1))
                       <li class="@yield('corpactive')">
                         <a  href="/Maintenance/Corporate">
                             <i class="fa fa-users" aria-hidden="true"></i>
                             <span>Corporate Accounts</span>
                         </a>
                       </li>
+                      @endif
                   </ul>
                 </li>
+                @endif
+                @if((Session::get('addpatient')==1)||(Session::get('availserv')==1)||(Session::get('corpbill')==1)||(Session::get('rebatebill')==1)||(Session::get('addresult')==1)||(Session::get('upresult')==1))
                 <li class="sub-menu">
                   <a href="" class="@yield('transaction')">
                       <i class="fa fa-handshake-o"></i>
                       <span>Transactions</span>
                   </a>
                   <ul class="sub">
+                      @if((Session::get('addpatient')==1)||(Session::get('availserv')==1))
                       <li class="@yield('medicalservice')"><a  href="/Transactions/PatientList"><i class="fa fa-heartbeat" aria-hidden="true"></i> Medical Services</a></li>
+                      @endif
+                      @if((Session::get('corpbill')==1))
                       <li class="@yield('corporatetrans')"><a  href="/Transactions/CorporateBilling"><i class="fa fa-users" aria-hidden="true"></i> Corporate Account Billing</a></li>
+                      @endif
+                      @if((Session::get('rebatebill')==1))
                       <li class="@yield('rebatetrans')"><a  href="/Transactions/RebateBilling"><i class="fa fa-percent" aria-hidden="true"></i> Rebate Employee Billing</a></li>
+                      @endif
+                      @if((Session::get('addresult')==1)||(Session::get('upresult')==1))
                       <li class="sub-menu">
                           <a  href="" class="@yield('transresultactive')"><i class="fa fa-file-o" aria-hidden="true"></i> Results</a>
                           <ul class="sub">
+                              @if((Session::get('addresult')==1))
                               <li class="@yield('encodeactive')"><a  href="/Transactions/ResultDashboard">Enconding of Results</a></li>
+                              @endif
+                              @if((Session::get('upresult')==1))
                               <li class="@yield('uploadactive')"><a  href="/Transactions/UploadOfResults">Uploading of Results</a></li>
+                              @endif
                           </ul>
                       </li>
-
+                      @endif
                   </ul>
                 </li>
-
+                @endif
+                @if((Session::get('census')==1)||(Session::get('trans')==1)||(Session::get('corprep')==1)||(Session::get('rebaterep')==1))
                 <li class="sub-menu">
                   <a class="@yield('reportactive')">
                       <i class="fa fa-area-chart" aria-hidden="true"></i>
                       <span>Reports</span>
                   </a>
                   <ul class="sub">
+                      @if((Session::get('census')==1))
                       <li class="@yield('censusactive')"><a  href=""><i class="fa fa-line-chart" aria-hidden="true"></i> Census Reports</a></li>
+                      @endif
+                      @if((Session::get('trans')==1))
                       <li class="@yield('transactionactive')"><a  href="/Reports/TransactionReports"><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Transaction Reports</a></li>
+                      @endif
+                      @if((Session::get('corprep')==1))
                       <li class="@yield('corpactive')"><a  href="/Reports/CorporateReports"><i class="fa fa-pie-chart" aria-hidden="true"></i> Corporate Reports</a></li>
+                      @endif
 
                   </ul>
                 </li>
-                @if(Session::get('type') != 0)
+                @endif
+                @if(Session::get('type') == 0)
                 <li>
                   <a href="/Queries" class="@yield('query')">
                     <i class="fa fa-terminal" aria-hidden="true"></i>
                     <span>Queries</span>
                   </a>
                 </li>
-                @endif
-                @if(Session::get('type') == 0)
                 <li class="sub-menu">
                   <a href="" class="@yield('utilitiesactive')" >
                       <i class="fa fa-wrench"></i>
@@ -198,12 +240,6 @@
                   </ul>
                 </li>
                 @endif
-                <li>
-                  <a href="/Queue" class="@yield('queue')">
-                    <i class="fa fa-desktop"></i>
-                    <span>Queueing</span>
-                  </a>
-                </li>
               </ul>
           </div>
       </aside>

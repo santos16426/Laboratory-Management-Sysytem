@@ -1,3 +1,9 @@
+@if((Session::get('addemp')!=1)||(Session::get('upemp')!=1)||(Session::get('delemp')!=1))
+<script type="text/javascript">
+    window.location = "{{ url('/PageNotFound') }}";
+</script>
+@endif
+
 @extends('AdminLayout.admin')
 
 @section ('breadrootName')
@@ -25,8 +31,9 @@
       <div class="panel-body">
         <div class="clearfix">
           <div class="btn-group pull-right">
-          
+          @if(Session::get('addemp')==1)
           <a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="addEmpBtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+          @endif
           </div>
           <table class="table table-bordered table-hover dataTable" id="empTable">
             <thead>
@@ -54,11 +61,19 @@
                 <td>{{ $emp1->role_name }}</td>
                 <td>
                 @if($emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus == 1 or $emp1->RoleStatus == 1 and $emp1->EmpStatus == 1 and $emp1->LabStatus === null)
+                  @if(Session::get('upemp')==1)
                   <button class="btn btn-warning btn-xs empupdateModalbtn" data-target="#updateModal" data-id="{{ $emp1->emp_id }}" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</button>
+                  @endif
+                  @if(Session::get('delemp')==1)
                   <button class="btn btn-danger btn-xs empdeleteModalbtn" data-id="{{ $emp1->emp_id }}" ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
+                  @endif
                 @else
-                  <button class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</button>
-                  <button class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
+                @if(Session::get('upemp')==1)
+                <button class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</button>
+                @endif
+                @if(Session::get('delemp')==1)
+                <button class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
+                @endif
                 @endif
                 </td>
                 <td>

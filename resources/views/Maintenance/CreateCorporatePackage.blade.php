@@ -1,3 +1,9 @@
+@if((Session::get('addcorp')!=1)||(Session::get('upcorp')!=1)||(Session::get('delcorp')!=1)||(Session::get('addcorppack')!=1)||(Session::get('upcorppack')!=1)||(Session::get('delcorppack')!=1))
+<script type="text/javascript">
+    window.location = "{{ url('/PageNotFound') }}";
+</script>
+@endif
+
 @extends('AdminLayout.admin')
 
 @section ('breadrootName')
@@ -319,8 +325,9 @@
       <div class="panel-body">
         <div class="clearfix">
           <div class="btn-group pull-right">
-          
+          @if(Session::get('addcorppack')==1)
           <a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="addEmpBtn" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+          @endif
           </div>
           <table class="table table-bordered table-hover dataTable" id="corpPacktbl">
             <thead>
@@ -342,12 +349,20 @@
                 <td>{{ $packages->price }}</td>
                 <td>
                   @if($packages->CorpPackStatus == 1)
+                  @if(Session::get('upcorppack')==1)
                   <a class="btn btn-warning btn-xs updateModal" data-id="{{$packages->corpPack_id}}" href="#updateModal" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                  @endif
+                  @if(Session::get('delcorppack')==1)
                   <a class="btn btn-danger btn-xs delbtn" data-id="{{$packages->corpPack_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                  @endif
                   
                  @else
-                 <a class="btn btn-warning btn-xs"  disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
-                  <a class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                @if(Session::get('upcorppack')==1)
+                <a class="btn btn-warning btn-xs"  disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                @endif
+                @if(Session::get('delcorppack')==1)
+                <a class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                @endif
                  @endif
                 </td>
                 <td>

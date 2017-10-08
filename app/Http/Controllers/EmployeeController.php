@@ -90,6 +90,10 @@ class EmployeeController extends Controller
 				'license'=>$x[3],
 				'rebate'=>$x[6]
 			]);
+		DB::table('employee_useraccess_tbl')
+			->insert([
+				'emp_type_id'=>$role_id
+			]);
 		Session::flash('add', 'true');
 	return redirect()->back();
    	}

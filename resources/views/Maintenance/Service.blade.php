@@ -1,3 +1,8 @@
+@if((Session::get('addserv')!=1)||(Session::get('upserv')!=1)||(Session::get('delserv')!=1))
+<script type="text/javascript">
+    window.location = "{{ url('/PageNotFound') }}";
+</script>
+@endif
 @extends('AdminLayout.admin')
 
 @section ('breadrootName')
@@ -26,7 +31,9 @@
       <div class="panel-body">
         <div class="clearfix">
           <div class="btn-group pull-right">
+            @if(Session::get('addserv')==1)
             <a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+            @endif
           </div>
           <table class="table table-bordered table-hover dataTable" id="servicesTbl">
                 <thead>
@@ -51,11 +58,19 @@
                   <td>{{ $service->service_price }}</td>
                   <td>
                   @if($service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus == 1 and $service->ServiceStatus == 1 or $service->LabStatus == null and $service->ServGroupStatus == null and $service->ServTypeStatus == null and $service->ServiceStatus == 1 or $service->LabStatus == 1 and $service->ServGroupStatus == 1 and $service->ServTypeStatus === null and $service->ServiceStatus == 1)
+                  @if(Session::get('upserv')==1)
                   <a class="btn btn-warning btn-xs editsrvc" href="#updateModal" data-id="{{ $service->service_id }}" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                  @endif
+                  @if(Session::get('delserv')==1)
                   <a class="btn btn-danger btn-xs delbtn"  data-id="{{$service->service_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                  @endif
                   @else
+                  @if(Session::get('upserv')==1)
                   <a class="btn btn-warning btn-xs disabled" ><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                  @endif
+                  @if(Session::get('delserv')==1)
                   <a class="btn btn-danger btn-xs disabled"  ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                  @endif
                   @endif
                   </td>
                   <td>

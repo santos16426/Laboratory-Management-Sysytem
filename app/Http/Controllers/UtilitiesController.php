@@ -7,8 +7,273 @@ use DB;
 use Session;
 class UtilitiesController extends Controller
 {
+	function save_userAccess()
+	{
+		$addlab = 0;
+		$uplab = 0;
+		$dellab = 0;
+		$addemp = 0;
+		$upemp = 0;
+		$delemp = 0;
+		$addemptype = 0;
+		$upemptype = 0;
+		$delemptype = 0;
+		$editpercent = 0;
+		$addempreb = 0;
+		$delempreb = 0;
+		$addserv = 0;
+		$upserv = 0;
+		$delserv = 0;
+		$addservtype = 0;
+		$upservtype = 0;
+		$delservtype = 0;
+		$addservgrp = 0;
+		$upservgrp = 0;
+		$delservgrp = 0;
+		$addpack = 0;
+		$uppack = 0;
+		$delpack = 0;
+		$addcorp = 0;
+		$upcorp = 0;
+		$delcorp = 0;
+		$addcorppack = 0;
+		$upcorppack = 0;
+		$delcorppack = 0;
+		$addpatient = 0;
+		$availserv = 0;
+		$corpbill = 0;
+		$rebatebill = 0;
+		$addresult = 0;
+		$upresult = 0;
+		$census = 0;
+		$trans = 0;
+		$corprep = 0;
+		$rebaterep = 0;
+		if(isset($_POST['addlab']))
+		{
+			$addlab = 1;
+		}
+		if(isset($_POST['uplab']))
+		{
+			$uplab = 1;
+		}
+		if(isset($_POST['dellab']))
+		{
+			$dellab = 1;
+		}
+		if(isset($_POST['addemp']))
+		{
+			$addemp = 1;
+		}
+		if(isset($_POST['upemp']))
+		{
+			$upemp = 1;
+		}
+		if(isset($_POST['delemp']))
+		{
+			$delemp = 1;
+		}
+		if(isset($_POST['addemptype']))
+		{
+			$addemptype = 1;
+		}
+		if(isset($_POST['upemptype']))
+		{
+			$upemptype = 1;
+		}
+		if(isset($_POST['delemptype']))
+		{
+			$delemptype = 1;
+		}
+		if(isset($_POST['editpercent']))
+		{
+			$editpercent = 1;
+		}
+		if(isset($_POST['addempreb']))
+		{
+			$addempreb = 1;
+		}
+		if(isset($_POST['delempreb']))
+		{
+			$delempreb = 1;
+		}
+		if(isset($_POST['addserv']))
+		{
+			$addserv = 1;
+		}
+		if(isset($_POST['upserv']))
+		{
+			$upserv = 1;
+		}
+		if(isset($_POST['delserv']))
+		{
+			$delserv = 1;
+		}
+		if(isset($_POST['addservtype']))
+		{
+			$addservtype = 1;
+		}
+		if(isset($_POST['upservtype']))
+		{
+			$upservtype = 1;
+		}
+		if(isset($_POST['delservtype']))
+		{
+			$delservtype = 1;
+		}
+		if(isset($_POST['addservgrp']))
+		{
+			$addservgrp = 1;
+		}
+		if(isset($_POST['upservgrp']))
+		{
+			$upservgrp = 1;
+		}
+		if(isset($_POST['delservgrp']))
+		{
+			$delservgrp = 1;
+		}
+		if(isset($_POST['addpack']))
+		{
+			$addpack = 1;
+		}
+		if(isset($_POST['uppack']))
+		{
+			$uppack = 1;
+		}
+		if(isset($_POST['delpack']))
+		{
+			$delpack = 1;
+		}
+		if(isset($_POST['addcorp']))
+		{
+			$addcorp = 1;
+		}
+		if(isset($_POST['upcorp']))
+		{
+			$upcorp = 1;
+		}
+		if(isset($_POST['delcorp']))
+		{
+			$delcorp = 1;
+		}
+		if(isset($_POST['addcorppack']))
+		{
+			$addcorppack = 1;
+		}
+		if(isset($_POST['upcorppack']))
+		{
+			$upcorppack = 1;
+		}
+		if(isset($_POST['delcorppack']))
+		{
+			$delcorppack = 1;
+		}
+		if(isset($_POST['addpatient']))
+		{
+			$addpatient = 1;
+		}
+		if(isset($_POST['availserv']))
+		{
+			$availserv = 1;
+		}
+		if(isset($_POST['corpbill']))
+		{
+			$corpbill = 1;
+		}
+		if(isset($_POST['rebatebill']))
+		{
+			$rebatebill = 1;
+		}
+		if(isset($_POST['addresult']))
+		{
+			$addresult = 1;
+		}
+		if(isset($_POST['upresult']))
+		{
+			$upresult = 1;
+		}
+		if(isset($_POST['census']))
+		{
+			$census = 1;
+		}
+		if(isset($_POST['trans']))
+		{
+			$trans = 1;
+		}
+		if(isset($_POST['corprep']))
+		{
+			$corprep = 1;
+		}
+		if(isset($_POST['rebaterep']))
+		{
+			$rebaterep = 1;
+		}
+		DB::table('employee_useraccess_tbl')->where('emp_type_id',$_POST['emp_type_id'])->update([
+			'addlab'=>$addlab,
+			'uplab'=>$uplab,
+			'dellab'=>$dellab,
+			'addemp'=>$addemp,
+			'upemp'=>$upemp,
+			'delemp'=>$delemp,
+			'addemptype'=>$addemptype,
+			'upemptype'=>$upemptype,
+			'delemptype'=>$delemptype,
+			'editpercent'=>$editpercent,
+			'addempreb'=>$addempreb,
+			'delempreb'=>$delempreb,
+			'addserv'=>$addserv,
+			'upserv'=>$upserv,
+			'delserv'=>$delserv,
+			'addservtype'=>$addservtype,
+			'upservtype'=>$upservtype,
+			'delservtype'=>$delservtype,
+			'addservgrp'=>$addservgrp,
+			'upservgrp'=>$upservgrp,
+			'delservgrp'=>$delservgrp,
+			'addpack'=>$addpack,
+			'uppack'=>$uppack,
+			'delpack'=>$delpack,
+			'addcorp'=>$addcorp,
+			'upcorp'=>$upcorp,
+			'delcorp'=>$delcorp,
+			'addcorppack'=>$addcorppack,
+			'upcorppack'=>$upcorppack,
+			'delcorppack'=>$delcorppack,
+			'addpatient'=>$addpatient,
+			'availserv'=>$availserv,
+			'corpbill'=>$corpbill,
+			'rebatebill'=>$rebatebill,
+			'addresult'=>$addresult,
+			'upresult'=>$upresult,
+			'census'=>$census,
+			'trans'=>$trans,
+			'corprep'=>$corprep,
+			'rebaterep'=>$rebaterep
+		]);
+		Session::flash('update',true);
+		return redirect()->back();
+	}
+	function retrieveAccess(Request $req)
+	{
+		$emp_type_id = $req->emp_type_id;
+		$var = DB::table('employee_useraccess_tbl')->where('emp_type_id',$emp_type_id)->get();
+		return response()->json($var);
+	}
 	function Useraccess(){
-        return view ('Utilities.UserAccess');
+		$adminaccess = DB::table('employee_useraccess_tbl')->where('emp_type_id',0)->get();
+		$useraccess = DB::table('employee_useraccess_tbl')
+			->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','emp_type_id')
+			->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+			->where('RoleStatus',1)
+			->where('LabStatus',1)
+			->whereNotIn('emp_type_id',[0])
+			->orWhere('RoleStatus',1)
+			->where('LabStatus',null)
+			->whereNotIn('emp_type_id',[0])
+			
+			->get();
+        return view ('Utilities.UserAccess',['admin'=>$adminaccess,'users'=>$useraccess]);
     }
 	function activatecorppack()
 	{

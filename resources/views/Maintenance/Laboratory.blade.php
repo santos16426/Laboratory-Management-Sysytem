@@ -1,3 +1,8 @@
+@if((Session::get('addlab')!=1)||(Session::get('uplab')!=1)||(Session::get('dellab')!=1))
+<script type="text/javascript">
+    window.location = "{{ url('/PageNotFound') }}";
+</script>
+@endif
 @extends('AdminLayout.admin')
 
 @section ('breadrootName')
@@ -24,7 +29,9 @@
 			<div class="panel-body">
 				<div class="clearfix">
 					<div class="btn-group pull-right">
+            @if(Session::get('addlab')==1)
 						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" id="newbtn"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+            @endif
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="labTbl">
 				      <thead>
@@ -42,12 +49,20 @@
 				          <td>{{ $t->lab_name }}</td>
 				          <td>
                     @if($t->LabStatus == 1)
+                      @if(Session::get('uplab')==1)
                       <a class="btn btn-warning btn-xs uplabbtn" href="#updateModal" data-toggle="modal" data-id="{{ $t->lab_id }}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                      @endif
+                      @if(Session::get('dellab')==1)
                       <a class="btn btn-danger btn-xs delbtn" data-id="{{ $t->lab_id }}" ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                      @endif
                     @endif
                     @if($t->LabStatus == 0)
+                      @if(Session::get('uplab')==1)
                       <a class="btn btn-warning btn-xs disabled" ><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
+                      @endif
+                      @if(Session::get('dellab')==1)
                       <a class="btn btn-danger btn-xs disabled"  ><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+                      @endif
                     @endif
 				          </td>
                   <td>

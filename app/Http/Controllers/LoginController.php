@@ -41,6 +41,7 @@ class LoginController extends Controller
     	}
     	if($access == 1)
     	{
+
     		if($type == 0)
     		{
 	    		$emp_details = DB::table('employee_tbl')->where('emp_id',$emp_id)->get();
@@ -57,6 +58,50 @@ class LoginController extends Controller
     			Session::put('emp_type_id',$type);
     			Session::put('display_name',$displayname);
     		}
+            $access = DB::table('employee_useraccess_tbl')->where('emp_type_id',$type)->get();
+            foreach($access as $access)
+            {
+                Session::put('addlab',$access->addlab);
+                Session::put('uplab',$access->uplab);
+                Session::put('dellab',$access->dellab);
+                Session::put('addemp',$access->addemp);
+                Session::put('upemp',$access->upemp);
+                Session::put('delemp',$access->delemp);
+                Session::put('addemptype',$access->addemptype);
+                Session::put('upemptype',$access->upemptype);
+                Session::put('delemptype',$access->delemptype);
+                Session::put('editpercent',$access->editpercent);
+                Session::put('addempreb',$access->addempreb);
+                Session::put('delempreb',$access->delempreb);
+                Session::put('addserv',$access->addserv);
+                Session::put('upserv',$access->upserv);
+                Session::put('delserv',$access->delserv);
+                Session::put('addservtype',$access->addservtype);
+                Session::put('upservtype',$access->upservtype);
+                Session::put('delservtype',$access->delservtype);
+                Session::put('addservgrp',$access->addservgrp);
+                Session::put('upservgrp',$access->upservgrp);
+                Session::put('delservgrp',$access->delservgrp);
+                Session::put('addpack',$access->addpack);
+                Session::put('uppack',$access->uppack);
+                Session::put('delpack',$access->delpack);
+                Session::put('addcorp',$access->addcorp);
+                Session::put('upcorp',$access->upcorp);
+                Session::put('delcorp',$access->delcorp);
+                Session::put('addcorppack',$access->addcorppack);
+                Session::put('upcorppack',$access->upcorppack);
+                Session::put('delcorppack',$access->delcorppack);
+                Session::put('addpatient',$access->addpatient);
+                Session::put('availserv',$access->availserv);
+                Session::put('corpbill',$access->corpbill);
+                Session::put('rebatebill',$access->rebatebill);
+                Session::put('addresult',$access->addresult);
+                Session::put('upresult',$access->upresult);
+                Session::put('census',$access->census);
+                Session::put('trans',$access->trans);
+                Session::put('corprep',$access->corprep);
+                Session::put('rebaterep',$access->rebaterep);
+            }
     		Session::put('loggedin',true);
     		return redirect('/Admin/Dashboard');
     	}
