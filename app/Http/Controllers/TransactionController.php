@@ -55,27 +55,7 @@ class TransactionController extends Controller
         $patient = DB::table('patient_tbl')->where('patient_id',$patient_id)->get();
         return response()->json($patient);
     }
-    function medrequest(){
-        return view ('Result.MedicalRequest');
-    }
-    function ecg(){
-        return view ('Result.Ecg');
-    }
-     function ultra(){
-        return view ('Result.Ultrasound');
-    }
-    function xray(){
-        return view ('Result.Xray');
-    }
-    function medservice(){
-        return view ('Result.MedicalService');
-    }
-    function medservice2(){
-        return view ('Result.MedicalService2');
-    }
-    function drugtest(){
-        return view ('Result.DrugTest');
-    }
+    
     function viewrebatetrans()
     {
         $emp_id = $_GET['emp_id'];
@@ -666,7 +646,31 @@ class TransactionController extends Controller
             ->leftjoin('corporate_accounts_tbl','corporate_accounts_tbl.corp_id','=','corp_package_tbl.corp_id')
             ->where('corp_package_tbl.corpPack_id',$req->id)
             ->get();
-        return response()->json($packagedetails);
+        $service = DB::table('corp_packserv_tbl')
+                    ->leftjoin('service_tbl','service_tbl.service_id','=','corp_packserv_tbl.service_id')
+                    ->leftjoin('service_group_tbl','service_group_tbl.servgroup_id','=','service_tbl.service_group_id')
+                    ->leftjoin('service_type_tbl','service_type_tbl.service_type_id','=','service_tbl.service_type_id')
+                    ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+                    ->where('ServiceStatus',1)
+                    ->where('ServTypeStatus',1)
+                    ->where('ServGroupStatus',1)
+                    ->where('LabStatus',1)
+                    ->where('corpPack_id',$req->id)
+
+                    ->orWhere('ServiceStatus',1)
+                    ->where('ServTypeStatus',null)
+                    ->where('ServGroupStatus',1)
+                    ->where('LabStatus',1)
+                    ->where('corpPack_id',$req->id)
+
+                    ->orWhere('ServiceStatus',1)
+                    ->where('ServTypeStatus',null)
+                    ->where('ServGroupStatus',null)
+                    ->where('LabStatus',null)
+                    ->where('corpPack_id',$req->id)
+                    ->distinct()
+                    ->get();
+        return response()->json([$packagedetails,$service]);
     }
     public function medicalservice(){
         $pid = $_GET['patient_id'];

@@ -8,8 +8,28 @@ use Session;
 
 class ResultController extends Controller
 {
+    function getLicense(Request $req)
+    {
+        $emp_id = $req->id;
+        $emp = DB::table('employee_tbl')->where('emp_id',$emp_id)->get();
+        foreach($emp as $e)
+        {
+            $license = $e->license_no;
+        }
+        return response()->json($license);
+    }
      public function resultdashboard(){
-        $servgroup = DB::table('service_group_tbl')->where('ServGroupStatus',1)->get();
+        $emp_type_id = Session::get('emp_type_id');
+        $lab_id = DB::table('employee_role_tbl')->select('lab_id')->where('role_id',$emp_type_id)->get();
+        foreach($lab_id as $lab)
+        {
+            $labid = $lab->lab_id;
+        }
+        $servgroup = DB::table('service_group_tbl')
+                        ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+                        ->where('service_group_tbl.lab_id',$labid)
+                        ->where('ServGroupStatus',1)
+                        ->get();
         return view('Transaction.ResultDashboard',['servgroup'=>$servgroup]);
     }
     public function uploadresults()
@@ -19,10 +39,12 @@ class ResultController extends Controller
                             ->leftjoin('transresult_tbl','transresult_tbl.trans_id','=','transaction_tbl.trans_id')
                             ->where('transresult_tbl.status','PENDING')
                             ->get();
+
         return view('Transaction.UploadOfResults',['transactions'=>$transactions]);
     }
     public function getTransactionperGroup(Request $req)
     {
+
         $serv_group_id = $req->id;
         $result_id = DB::table('trans_result_service_tbl')
                         ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_result_service_tbl.result_id')
@@ -46,43 +68,200 @@ class ResultController extends Controller
     {
         $id = $_GET['trans_id'];
         $gid = $_GET['group_id'];
-        return view('Transaction.AddLayout',['id'=>$id,'gid'=>$gid]);
+        $servid = [];
+        $enableLayout = array(
+            'result_medserv1'   => 0,
+            'result_medserv2'   => 0,
+            'result_ecg'        => 0,
+            'result_xray'       => 0,
+            'result_ultra'      => 0,
+            'result_drug'       => 0
+        );
+        $result_id = DB::table('transresult_tbl')->select('result_id')->where('trans_id',$id)->get();
+        foreach($result_id as $re)
+        {
+            $resultid = $re->result_id;
+        }
+        $serv_id = DB::table('trans_result_service_tbl')->select('service_id')->where('result_id',$resultid)->where('service_group_id',$gid)->get();
+        foreach($serv_id as $servs)
+        {
+            array_push($servid,$servs->service_id);
+        }
+        $services = DB::table('service_tbl')->whereIn('service_id',$servid)->get();
+        foreach($services as $check)
+        {
+            if($check->result_medserv1 == 1)
+            {
+                $enableLayout['result_medserv1'] =1;
+            }
+            if($check->result_medserv2 == 1)
+            {
+                $enableLayout['result_medserv2'] =1;
+            }
+            if($check->result_ecg == 1)
+            {
+                $enableLayout['result_ecg'] =1;
+            }
+            if($check->result_xray == 1)
+            {
+                $enableLayout['result_xray'] =1;
+            }
+            if($check->result_ultra == 1)
+            {
+                $enableLayout['result_ultra'] =1;
+            }
+            if($check->result_drug == 1)
+            {
+                $enableLayout['result_drug'] = 1;
+            }
+        }
+        $corp = DB::table('transcorp_tbl')->where('trans_id',$id)->get();
+        if(count($corp)>0)
+        {
+            foreach($corp as $corp)
+            {
+                $corpPack_id = $corp->corpPack_id;
+            }
+            $check = DB::table('corp_package_tbl')->where('corpPack_id',$corpPack_id)->get();
+            foreach($check as $exam)
+            {
+                if($exam->physical_exam == 1)
+                {
+                    $physicalexam = 1;
+                }
+                else
+                {
+                    $physicalexam=0;
+                }
+            }
+        }
+        else
+        {
+            $physicalexam = 0;
+        }
+        
+        
+        return view('Transaction.AddLayout',['id'=>$id,'gid'=>$gid,'enableLayout'=>$enableLayout,'physicalexam'=>$physicalexam]);
     }
 
-    public function ecg(){
-        $trans_id = $_GET['id'];
-        $patientinfo = DB::table('transaction_tbl')
-            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
-            ->where('trans_id',$trans_id)
-            ->get();
-        return view('Transaction.ecg',['patientinfo'=>$patientinfo]);
+    function medrequest(){
+        return view ('Result.MedicalRequest');
     }
-    public function ultra(){
-        $trans_id = $_GET['id'];
-        $patientinfo = DB::table('transaction_tbl')
-            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
-            ->where('trans_id',$trans_id)
-            ->get();
-        return view('Transaction.ultra',['patientinfo'=>$patientinfo]);
+    function ecg(){
+        return view ('Result.Ecg');
     }
-    public function xray(){
-        $trans_id = $_GET['id'];
-        $patientinfo = DB::table('transaction_tbl')
-            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
-            ->where('trans_id',$trans_id)
-            ->get();
-        return view('Transaction.xray',['patientinfo'=>$patientinfo]);
+     function ultra(){
+        return view ('Result.Ultrasound');
     }
-    public function medicalReport()
-    {
-        $trans_id = $_GET['id'];
+    function xray(){
+        return view ('Result.Xray');
+    }
+    function medservice(){
+        return view ('Result.MedicalService');
+    }
+    function medservice2(){
+        $trans_id = $_GET['trans_id'];
+        $group_id = $_GET['group_id'];  
         $patientinfo = DB::table('transaction_tbl')
-            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
-            ->where('trans_id',$trans_id)
-            ->get();
+                        ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+                        ->where('trans_id',$trans_id)
+                        ->get();
+        foreach($patientinfo as $p)
+        {
+            $corp_id = $p->patient_corp_id;
+            if($corp_id != null)
+            {
+                $corpn = DB::table('corporate_accounts_tbl')->where('corp_id',$corp_id)->get();
+                foreach ($corpn as $cor) {
+                    $corp_name = $cor->corp_name;
+                }
+            }
+            else
+            {
+                $corp_name = "N/A";
+            }
+        }
+        $ref_id = DB::table('trans_emprebate_tbl')
+                    ->leftjoin('employee_tbl','employee_tbl.emp_id','=','trans_emprebate_tbl.emp_id')
+                    ->where('trans_id',$trans_id)->get();
+        if(count($ref_id)>0)
+        {
+            foreach($ref_id as $emp)
+            {
+                $empReb_name = $emp->emp_fname . " " . $emp->emp_mname . "" . $emp->emp_lname;
+            }
+        }
+        else
+        {
+            $empReb_name = "N/A";
+        }
+        $trans_date = DB::table('transaction_tbl')->where('trans_id',$trans_id)->get();
+        foreach($trans_date as $d)
+        {
+            $trans_date=$d->trans_date;
+        }
+        $tdate = date('F jS, Y',strtotime($trans_date));
+        $date = date('F jS, Y',strtotime('now'));
+        $resultd = DB::table('transresult_tbl')->where('trans_id',$trans_id)->get();
+        foreach($resultd as $r)
+        {
+            $result_id = $r->result_id;
+        }
+        $services = DB::table('trans_result_service_tbl')
+                        ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                        ->where('service_tbl.service_group_id',$group_id)
+                        ->where('result_id',$result_id)
+                        ->where('result_medserv2',1)
+                        ->get();
+        $medtech = DB::table('employee_tbl')
+                    ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
+                    ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+                    ->where('role_name','Medical Techonologist')
+                    ->get();
+        $patho = DB::table('employee_tbl')
+                    ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
+                    ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+                    ->where('role_name','Pathologist')
+                    ->get();
+        return view ('Result.MedicalService2',['patient'=>$patientinfo,'tdate'=>$tdate,'datenow'=>$date,'empReb_name'=>$empReb_name,'corp_name'=>$corp_name,'services'=>$services,'medtech'=>$medtech,'patho'=>$patho]);
+    }
+    function drugtest(){
+        return view ('Result.DrugTest');
+    }
+    // public function ecg(){
+    //     $trans_id = $_GET['id'];
+    //     $patientinfo = DB::table('transaction_tbl')
+    //         ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+    //         ->where('trans_id',$trans_id)
+    //         ->get();
+    //     return view('Transaction.ecg',['patientinfo'=>$patientinfo]);
+    // }
+    // public function ultra(){
+    //     $trans_id = $_GET['id'];
+    //     $patientinfo = DB::table('transaction_tbl')
+    //         ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+    //         ->where('trans_id',$trans_id)
+    //         ->get();
+    //     return view('Transaction.ultra',['patientinfo'=>$patientinfo]);
+    // }
+    // public function xray(){
+    //     $trans_id = $_GET['id'];
+    //     $patientinfo = DB::table('transaction_tbl')
+    //         ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+    //         ->where('trans_id',$trans_id)
+    //         ->get();
+    //     return view('Transaction.xray',['patientinfo'=>$patientinfo]);
+    // }
+    // public function medicalReport()
+    // {
+    //     $trans_id = $_GET['id'];
+    //     $patientinfo = DB::table('transaction_tbl')
+    //         ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+    //         ->where('trans_id',$trans_id)
+    //         ->get();
 
-        return view('Transaction.medicalReport',['patientinfo'=>$patientinfo]);
-    }
+    //     return view('Transaction.medicalReport',['patientinfo'=>$patientinfo]);
+    // }
     public function PatientTransaction()
     {
         $trans_id = $_GET['id'];

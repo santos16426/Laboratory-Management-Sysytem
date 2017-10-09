@@ -222,7 +222,7 @@
                   </ul>
                 </li>
                 @endif
-                @if(Session::get('type') == 0)
+                @if(Session::get('emp_type_id') == 0)
                 <li>
                   <a href="/Queries" class="@yield('query')">
                     <i class="fa fa-terminal" aria-hidden="true"></i>
@@ -315,6 +315,7 @@
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script type="text/javascript">
+
       $(function() {
         //    fancybox
           jQuery(".fancybox").fancybox();

@@ -24,67 +24,71 @@
 @section ('content')
 
 <section class="panel">
-  <header class="panel-heading btn-primary ">
-      <ul class="nav nav-tabs">
-	@foreach($servgroup as $sg)
-		<li><a href="#{{ $sg->servgroup_id }}" class="tabs" data-id="{{ $sg->servgroup_id }}" data-toggle="tab">{{ $sg->servgroup_name }}</a></li>
-	@endforeach
-		<li><a href="#Others" class="tabs" data-id='null' data-toggle="tab">Others</a></li>
-	</ul>
-  </header>
+ @if(count($servgroup)>0)
+	<header class="panel-heading btn-primary ">
+	  	<ul class="nav nav-tabs">
+			@foreach($servgroup as $sg)
+				<li><a href="#{{ $sg->servgroup_id }}" class="tabs" data-id="{{ $sg->servgroup_id }}" data-toggle="tab">{{ $sg->servgroup_name }}</a></li>
+			@endforeach
+			@if(count($servgroup)>0)
+				<li><a href="#Others" class="tabs" data-id='null' data-toggle="tab">Others</a></li>
+			@endif
+		</ul>
+	</header>
+  @endif
+  @if(count($servgroup)>0)
   <div class="tab-content">
-	            	@foreach($servgroup as $servegroup_id)
-	            	<div class="tab-pane" id="{{ $servegroup_id->servgroup_id }}">
-	            	
-	            		<div class="box box-primary">
-						    <div class="box-body">
-						      <h3><center>{{ $servegroup_id->servgroup_name }}</center></h3>
-						      <table class="table table-bordered table-hover dataTable" id="result_tbl{{ $servegroup_id->servgroup_id }}">
-						      <thead>
-						        <tr>
-						          <th>Transaction Date</th>
-						          <th>Patient Last Name</th>
-						          <th>Patient Middle Name</th>
-						          <th>Patient First Name</th>
-						          <th>Action</th>
-						        </tr>
-						      </thead>
-						      <tbody>
-						      </tbody>
-						    </table>
-						    </div>
-						  </div>
-	            	
-	            	</div>
-	            	@endforeach
-	            	<div class="tab-pane" id="Others">
-	            		<div class="box box-primary">
-						    <div class="box-body">
-						      <h3><center>Others</center></h3>
-						      <table class="table table-bordered table-hover dataTable" id="result_tblnull">
-						      <thead>
-						        <tr>
-						          <th>Transaction Date</th>
-						          <th>Patient Last Name</th>
-						          <th>Patient Middle Name</th>
-						          <th>Patient First Name</th>
-						          <th>Action</th>
-						        </tr>
-						      </thead>
-						      <tbody>
-						      </tbody>
-						    </table>
-						    </div>
-						  </div>
-	            	</div>
-	          	</div>
-  <div class="panel-body">
-      <div class="tab-content">
-          <div id="home" class="tab-pane active">
-              
-          </div>
-      </div>
-  </div>
+    	@foreach($servgroup as $servegroup_id)
+	    	<div class="tab-pane" id="{{ $servegroup_id->servgroup_id }}">
+	    		<div class="box box-primary">
+				    <div class="box-body">
+				      <h3><center>{{ $servegroup_id->servgroup_name }}</center></h3>
+				      <table class="table table-bordered table-hover dataTable" id="result_tbl{{ $servegroup_id->servgroup_id }}">
+					      <thead>
+					        <tr>
+					          <th>Transaction Date</th>
+					          <th>Patient Last Name</th>
+					          <th>Patient Middle Name</th>
+					          <th>Patient First Name</th>
+					          <th>Action</th>
+					        </tr>
+					      </thead>
+					      <tbody>
+					      </tbody>
+					    </table>
+				    </div>
+				</div>
+	    	</div>
+    	@endforeach
+    	@if(count($servgroup)>0)
+    	<div class="tab-pane" id="Others">
+    		<div class="box box-primary">
+			    <div class="box-body">
+			      <h3><center>Others</center></h3>
+			      <table class="table table-bordered table-hover dataTable" id="result_tblnull">
+			      <thead>
+			        <tr>
+			          <th>Transaction Date</th>
+			          <th>Patient Last Name</th>
+			          <th>Patient Middle Name</th>
+			          <th>Patient First Name</th>
+			          <th>Action</th>
+			        </tr>
+			      </thead>
+			      <tbody>
+			      </tbody>
+			    </table>
+			    </div>
+			  </div>
+    	</div>
+    	@endif
+  	</div>
+  	@else
+  	<div class="panel-body">
+		<center><h1>No Service Group Assigned to this Employee Type</h1></center>
+		<center><h3 style="color:blue"><u>Ask admin for help</u></h3></center>
+	</div>
+	@endif      	
 </section>
 @endsection
 @section('additional')
@@ -92,7 +96,6 @@
 	
 	$.fn.dataTable.ext.errMode = 'none';
 	$('.tabs').click(function(){
-
 		var servgroup_id = $(this).data('id');
 		var t = $('#result_tbl'+servgroup_id).DataTable({
 			'paging'      : false,
@@ -102,6 +105,7 @@
 			'info'        : false,
 			'autoWidth'   : true,
 			});
+		t.clear();
 		$.ajax
 		({
 			url: '/getTransactionperGroup',
@@ -110,7 +114,7 @@
 			dataType: 'json',
 			success:function(response){
 				response.forEach(function(data){
-					t.clear();
+					
 					t.row.add([
 						data.trans_date,
 						data.patient_lname,

@@ -267,15 +267,17 @@
 	$('#corp_id').val($(this).data('id'));
 	$('#createcorppackage').submit();
 });
-$('#corpTbl').DataTable({
-  'paging'      : true,
-  'lengthChange': true,
-  'searching'   : true,
-  'ordering'    : true,
-  'info'        : true,
-  'autoWidth'   : true
+$(document).ready(function(){
+	$('#corpTbl').DataTable({
+	  'paging'      : true,
+	  'lengthChange': true,
+	  'searching'   : true,
+	  'ordering'    : true,
+	  'info'        : true,
+	  'autoWidth'   : true
 
-});
+	});
+})
 $('.select2').select2();	
 $('.packservice').select2({
   placeholder: 'Services offered'

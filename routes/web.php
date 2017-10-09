@@ -112,12 +112,12 @@ Route::get('/Transaction/Rebate/ViewTransactions','TransactionController@viewreb
 Route::post('/saveEmpRebatePayment','TransactionController@saveRebatePayment');
 Route::get('/maximumAmount','RemoteController@maximumAmount');
 //Layouts
-Route::get('/medicalReport','ResultController@medicalReport');
-Route::get('/ecg','ResultController@ecg');
-Route::get('/uploadResult','ResultController@uploadResult');
-Route::get('/ultra','ResultController@ultra');
-Route::get('/xray','ResultController@xray');
-Route::get('/medservice','ResultController@medservice');
+// Route::get('/medicalReport','ResultController@medicalReport');
+// Route::get('/ecg','ResultController@ecg');
+// Route::get('/uploadResult','ResultController@uploadResult');
+// Route::get('/ultra','ResultController@ultra');
+// Route::get('/xray','ResultController@xray');
+// Route::get('/medservice','ResultController@medservice');
 
 //Results
 Route::get('/Transactions/EncodeResults','ResultController@encoderesults');
@@ -148,13 +148,13 @@ Route::get('/retrieveReciept','TransactionController@retrieveReciept');
 Route::get('sendmail', 'SendMailController@sendMail');
 
 // Results
-Route::get('/Result/medrequest','TransactionController@medrequest');
-Route::get('/Result/ecg','TransactionController@ecg');
-Route::get('/Result/ultra','TransactionController@ultra');
-Route::get('/Result/xray','TransactionController@xray');
-Route::get('/Result/medservice','TransactionController@medservice');
-Route::get('/Result/medservice2','TransactionController@medservice2');
-Route::get('/Result/drugtest','TransactionController@drugtest');
+Route::get('/Result/medrequest','ResultController@medrequest');
+Route::get('/Result/ecg','ResultController@ecg');
+Route::get('/Result/ultra','ResultController@ultra');
+Route::get('/Result/xray','ResultController@xray');
+Route::get('/Result/medservice','ResultController@medservice');
+Route::get('/Result/medservice2','ResultController@medservice2');
+Route::get('/Result/drugtest','ResultController@drugtest');
 
 // Transaction Reports
 Route::get('/Reports/CorporateReports','ReportController@corporatereports');
@@ -190,6 +190,5 @@ Route::post('/activatecorp','UtilitiesController@activatecorp');
 Route::post('/activatecorppack','UtilitiesController@activatecorppack');
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+// Results
+Route::get('/getLicense','ResultController@getLicense');

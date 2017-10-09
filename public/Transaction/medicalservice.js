@@ -395,6 +395,8 @@ $('#payDirect').click(function(){
 	var corpPack_id = $('#corppack_id').val();
 	var addpackagebtn = document.getElementById('activecorppack');
 	var price = 0*1;
+	var service_names = [];
+	var serv = "";
 	$.ajax
 	({
 		url: '/getDataPackage',
@@ -403,10 +405,17 @@ $('#payDirect').click(function(){
 		dataType : 'json',
 		success:function(response)
 		{
-			response.forEach(function(data)
+			response[1].forEach(function(data){
+				service_names.push(data.service_name);
+			});
+			for(var i = 0; i<service_names.length; i++)
+			{
+				serv+='&emsp;&emsp;'+"-"+service_names[i]+"<br>";
+			}
+			response[0].forEach(function(data)
 			{
 				t.row.add([
-				data.corpPack_name,
+				data.corpPack_name +"<br>"+serv,
 				'',
 				data.price,
 				'',
@@ -505,6 +514,8 @@ $('#payCorp').click(function(){
 	$('#payWhere').val('1');
 	var corpPack_id = $('#corppack_id').val();
 	var price = 0*1;
+	var service_names = [];
+	var serv = "";
 	$.ajax
 	({
 		url: '/getDataPackage',
@@ -512,9 +523,16 @@ $('#payCorp').click(function(){
 		data: { id: corpPack_id },
 		dataType : 'json',
 		success:function(response){
-			response.forEach(function(data){
+			response[1].forEach(function(data){
+				service_names.push(data.service_name);
+			});
+			for(var i = 0; i<service_names.length; i++)
+			{
+				serv+='&emsp;&emsp;'+"-"+service_names[i]+"<br>";
+			}
+			response[0].forEach(function(data){
 				t.row.add([
-				data.corpPack_name,
+				data.corpPack_name +"<br>"+serv,
 				'',
 				data.price + " (c/o "+data.corp_name+")",
 				'',
