@@ -97,6 +97,7 @@ Route::post('/update_corpPackage','CorporateAccountController@update_corpPackage
 Route::get('/Transactions/PatientList','TransactionController@patient');
 Route::post('/save_patient','TransactionController@save_patient');
 Route::post('/update_patient','TransactionController@update_patient');
+Route::post('/deletePatient','TransactionController@deletePatient');
 Route::get('/retrievePatient','TransactionController@retrievePatient');
 Route::get('/Transaction/AvailService','TransactionController@medicalservice');
 Route::get('/getDataPackage','TransactionController@getDataPackage');	

@@ -7,6 +7,13 @@ use DB;
 use Session;
 class TransactionController extends Controller
 {
+    function deletePatient()
+    {
+        $patient_id = $_POST['id'];
+        DB::table('patient_tbl')->where('patient_id',$patient_id)->update(['PatientStatus'=>0]);
+        Session::flash('delete',true);
+        return redirect()->back();
+    }
     function update_patient()
     {
         $upgender = $_POST['upgender'];
@@ -748,6 +755,10 @@ class TransactionController extends Controller
     	$table = DB::table('patient_tbl')
             ->leftjoin('patient_type_tbl','patient_type_tbl.ptype_id','=','patient_tbl.patient_type_id')
             ->leftjoin('corporate_accounts_tbl','corporate_accounts_tbl.corp_id','=','patient_tbl.patient_corp_id')
+            ->where('PatientStatus',1)
+            ->where('CorpStatus',1)
+            ->orWhere('PatientStatus',1)
+            ->where('CorpStatus',null)
             ->get();
 
     	return view('Transaction.PatientList',['patienttype'=>$patienttype,'corps'=>$corps,'table'=>$table]);
