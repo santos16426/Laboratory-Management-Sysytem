@@ -191,7 +191,7 @@
                           <a  href="" class="@yield('transresultactive')"><i class="fa fa-file-o" aria-hidden="true"></i> Results</a>
                           <ul class="sub">
                               @if((Session::get('addresult')==1))
-                              <li class="@yield('encodeactive')"><a  href="/Transactions/ResultDashboard">Enconding of Results</a></li>
+                              <li class="@yield('encodeactive')"><a  href="/Transactions/ResultDashboard">Encoding of Results</a></li>
                               @endif
                               @if((Session::get('upresult')==1))
                               <li class="@yield('uploadactive')"><a  href="/Transactions/UploadOfResults">Uploading of Results</a></li>

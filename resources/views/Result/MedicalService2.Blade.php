@@ -150,7 +150,7 @@
 
 		    <div class="col-md-12">
 		    	<div class="form-group">
-					<table class="inventory" style="">
+					<table class="table table-bordered">
 						<tr>
 						    <th width="10%" rowspan="2" colspan="1"><center>TEST</center></th>
 						    <th width="10%" colspan="3"><center>SYSTEM INTERNATIONAL</center></th>
@@ -166,102 +166,15 @@
 						  </tr>
 						  <tr>
 						    <td><center>Service Name</center></td>
-						    <td><input type="text" name="intresult" id="intresult" value=""></td>
-						    <td><input type="text" name="intunit" id="intunit" value=""></td>
-						    <td><input type="text" name="intref" id="intref" value=""></td>
-						    <td><input type="text" name="conresult" id="conresult" value=""></td>
-						    <td><input type="text" name="conunit" id="conunit" value=""></td>
-						    <td><input type="text" name="conref" id="conref" value=""></td>
+						    <td><input class="form-control" type="text" name="intresult" id="intresult" value=""></td>
+						    <td><input class="form-control" type="text" name="intunit" id="intunit" value=""></td>
+						    <td><input class="form-control" type="text" name="intref" id="intref" value=""></td>
+						    <td><input class="form-control" type="text" name="conresult" id="conresult" value=""></td>
+						    <td><input class="form-control" type="text" name="conunit" id="conunit" value=""></td>
+						    <td><input class="form-control" type="text" name="conref" id="conref" value=""></td>
 						  </tr>
 					</table>
 				</div>
-		    </div>
-
-		    <div ></div><br><br><br><br><br><br>
-		    <center><header><strong><big>
-				System International
-			</big></strong></header></center><br>
-
-		    <div class="col-md-12">
-				<div class="col-md-4">
-			        <div class="form-group">
-			              <div class="col-md-12">
-			                 <div class="input-group">
-			                  <div class="input-group-addon">
-			                   Result
-			                 </div>
-			                <input name="intresult" id="intresult" type="text" placeholder="Result" class="form-control input-md" required>
-			             </div>
-			          </div>  
-			       </div><br><br>
-			 	 </div>
-			 	 <div class="col-md-4">
-			        <div class="form-group">
-			              <div class="col-md-12">
-			                 <div class="input-group">
-			                  <div class="input-group-addon">
-			                   Unit
-			                 </div>
-			                <input name="intunit" id="intunit" placeholder="Unit" class="form-control input-md" required>
-			             </div>
-			          </div>  
-			       </div><br><br><br><br>
-		        </div>
-		        <div class="col-md-4">
-			        <div class="form-group">
-			              <div class="col-md-12">
-			                 <div class="input-group">
-			                  <div class="input-group-addon">
-			                   Reference
-			                 </div>
-			                <input name="intref" id="intref" placeholder="Reference" class="form-control input-md" required>
-			             </div>
-			          </div>  
-			       </div><br><br><br><br>
-		        </div>  
-		    </div>
-
-		    <center><header><strong><big>
-				Conventional
-			</big></strong></header></center><br>
-
-		    <div class="col-md-12">
-				<div class="col-md-4">
-			        <div class="form-group">
-			              <div class="col-md-12">
-			                 <div class="input-group">
-			                  <div class="input-group-addon">
-			                   Result
-			                 </div>
-			                <input name="conresult" id="conresult" type="text" placeholder="Result" class="form-control input-md" required>
-			             </div>
-			          </div>  
-			       </div><br><br>
-			 	 </div>
-			 	 <div class="col-md-4">
-			        <div class="form-group">
-			              <div class="col-md-12">
-			                 <div class="input-group">
-			                  <div class="input-group-addon">
-			                   Unit
-			                 </div>
-			                <input name="conunit" id="conunit" placeholder="Unit" class="form-control input-md" required>
-			             </div>
-			          </div>  
-			       </div><br><br><br><br>
-		        </div>
-		        <div class="col-md-4">
-			        <div class="form-group">
-			              <div class="col-md-12">
-			                 <div class="input-group">
-			                  <div class="input-group-addon">
-			                   Reference
-			                 </div>
-			                <input name="conref" id="conref" placeholder="Reference" class="form-control input-md" required>
-			             </div>
-			          </div>  
-			       </div><br><br><br><br>
-		        </div>  
 		    </div>
 
 		    <div class="col-md-12">
