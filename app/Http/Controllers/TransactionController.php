@@ -7,6 +7,47 @@ use DB;
 use Session;
 class TransactionController extends Controller
 {
+    function update_patient()
+    {
+        $upgender = $_POST['upgender'];
+        $upcivil_status = $_POST['upcivil_status'];
+        $ppatient_id = $_POST['uppatient_id'];
+        $uppatienttype = $_POST['uppatienttype'];
+        $upcorpid = $_POST['upcorpid'];
+        $uppatient_fname = $_POST['uppatient_fname'];
+        $uppatient_mname = $_POST['uppatient_mname'];
+        $uppatient_lname = $_POST['uppatient_lname'];
+        $uppatient_address = $_POST['uppatient_address'];
+        $uppatient_contact = $_POST['uppatient_contact'];
+        $uppatient_email = $_POST['uppatient_email'];
+        $upbirthday = $_POST['upbirthday'];
+        $upage = $_POST['upage'];
+        DB::table('patient_tbl')
+            ->where('patient_id',$ppatient_id)
+            ->update([
+                'patient_gender'  =>$upgender,             
+                'patient_civilstatus'  =>$upcivil_status,
+                'patient_type_id'  =>$uppatienttype,
+                'patient_corp_id'  =>$upcorpid,
+                'patient_fname'  =>$uppatient_fname,
+                'patient_mname'  =>$uppatient_mname,
+                'patient_lname'  =>$uppatient_lname,
+                'patient_address'  =>$uppatient_address,
+                'patient_contact'  =>$uppatient_contact,
+                'patient_email'  =>$uppatient_email,
+                'patient_birthdate'  =>$upbirthday,
+                'age'  =>$upage
+            ]);
+        Session::flash('update',true);
+        return redirect()->back();
+
+    }
+    function retrievePatient(Request $req)
+    {
+        $patient_id = $req->id;
+        $patient = DB::table('patient_tbl')->where('patient_id',$patient_id)->get();
+        return response()->json($patient);
+    }
     function medrequest(){
         return view ('Result.MedicalRequest');
     }

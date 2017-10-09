@@ -98,6 +98,7 @@
 			<div class="modal-body">
 				<form class="form-horizontal" id="updatepatientinfo" method="POST" action="/update_patient">
 					{{ csrf_field() }}
+					<input type="hidden" name="uppatient_id" id="uppatient_id" value="">
 					<div class="form-group" style="margin-right: 39%">
 						<div class="col-md-10 col-md-offset-2 input-group">
 							<span class="input-group-addon">Patient Type <sup>*</sup></span>
@@ -125,7 +126,7 @@
 								<div class="input-group-addon">
 									First Name <sup>*</sup>
 								</div>
-								<input  name="uppatient_fname" type="text" placeholder="First Name" class="form-control input-md" required>
+								<input  name="uppatient_fname" id="uppatient_fname" type="text" placeholder="First Name" class="form-control input-md" required>
 							</div>
 						</div>  
 					</div>      
@@ -136,7 +137,7 @@
 								<div class="input-group-addon">
 									Middle Name
 								</div>
-								<input  name="uppatient_mname" type="text" placeholder="Middle Name" class="form-control input-md">
+								<input  name="uppatient_mname" id="uppatient_mname" type="text" placeholder="Middle Name" class="form-control input-md">
 							</div>
 						</div>  
 					</div> 
@@ -147,7 +148,7 @@
 								<div class="input-group-addon">
 									Last Name <sup>*</sup>
 								</div>
-								<input  name="uppatient_lname" type="text" placeholder="Last Name" class="form-control input-md" required>
+								<input  name="uppatient_lname" id="uppatient_lname" type="text" placeholder="Last Name" class="form-control input-md" required>
 							</div>
 						</div>  
 					</div> 
@@ -158,7 +159,7 @@
 								<div class="input-group-addon">
 									Address <sup>*</sup>
 								</div>
-								<input  name="uppatient_address" type="text" placeholder="Address" class="form-control input-md" required>
+								<input  name="uppatient_address" id="uppatient_address" type="text" placeholder="Address" class="form-control input-md" required>
 							</div>
 						</div>  
 					</div> 
@@ -169,7 +170,7 @@
 								<div class="input-group-addon">
 									Contact Number <sup>*</sup>
 								</div>
-								<input  name="uppatient_contact" type="text" placeholder="Contact Number" class="form-control input-md" required>
+								<input  name="uppatient_contact" id="uppatient_contact" type="text" placeholder="Contact Number" class="form-control input-md" required>
 							</div>
 						</div>  
 					</div>
@@ -180,7 +181,7 @@
 								<div class="input-group-addon">
 									Email Address
 								</div>
-								<input  name="uppatient_email" type="text" placeholder="Email Address" class="form-control input-md" required>
+								<input  name="uppatient_email" id="uppatient_email" type="text" placeholder="Email Address" class="form-control input-md" required>
 							</div>
 						</div>  
 					</div>
@@ -526,6 +527,7 @@ $('#transacthome').click(function(){
 	$('#proceedtoService').submit();
 });
 $('.select2').select2();
+$(document).ready(function(){
 $('#patientTbl').DataTable({
   'paging'      : true,
   'lengthChange': true,
@@ -533,8 +535,59 @@ $('#patientTbl').DataTable({
   'ordering'    : true,
   'info'        : true,
   'autoWidth'   : true
+});	
 
-});
+})
+$('.uppatientbtn').click(function(){
+	
+	$.ajax
+	({
+		url : '/retrievePatient',
+		data : {id:$(this).data('id')},
+		dataType : 'json',
+		type : 'GET',
+		success:function(reponse)
+		{
+			reponse.forEach(function(data){
+				$('#uppatient_id').val(data.patient_id);
+				$('#uppatienttype').val(data.patient_type_id).trigger('change');
+				$('#upcorpid').val(data.patient_corp_id).trigger('change');
+				$('#uppatient_fname').val(data.patient_fname);
+				$('#uppatient_mname').val(data.patient_mname);
+				$('#uppatient_lname').val(data.patient_lname);
+				$('#uppatient_address').val(data.patient_address);
+				$('#uppatient_contact').val(data.patient_contact);
+				$('#uppatient_email').val(data.patient_email);
+				$('#upbirthday').val(data.patient_birthdate);
+				$('#upage').val(data.age);
+				if(data.patient_gender == 'Male')
+				{
+					$('#upupMale').prop('checked',true);
+				}
+				else
+				{
+					$('#upupMFemale').prop('checked',true);
+				}
+				if(data.patient_civilstatus == 'Single')
+				{
+					$('#upupSingle').prop('checked',true);
+				}
+				else if(data.patient_civilstatus == 'Married')
+				{
+					$('#upupMarried').prop('checked',true);
+				}
+				else if(data.patient_civilstatus == 'Divorced')
+				{
+					$('#upupDivorced').prop('checked',true);
+				}
+				else if(data.patient_civilstatus == 'Widowed')
+				{
+					$('#upupWidowed').prop('checked',true);
+				}
+			})			
+		}
+	});
+})
 
 </script>
 
