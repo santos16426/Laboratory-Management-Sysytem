@@ -98,7 +98,7 @@
 						  		@endif
 						    </td>
 						    <td>
-						    	@if($users->addpatient == 1 || $users->availserv == 1 || $users->delpatient || $users->uppatient == 1)
+						    	@if($admin->addpatient == 1 || $admin->availserv == 1 || $admin->delpatient==1 || $admin->uppatient == 1)
 						  			<i class="fa fa-check" aria-hidden="true"></i> 
 						  		@endif
 						    </td>
@@ -175,7 +175,7 @@
 						  		@endif
 						    </td>
 						    <td>
-						    	@if($users->addpatient == 1 || $users->availserv == 1 || $users->delpatient || $users->uppatient == 1)
+						    	@if($users->addpatient == 1 || $users->availserv == 1 || $users->delpatient == 1 || $users->uppatient == 1)
 						  			<i class="fa fa-check" aria-hidden="true"></i> 
 						  		@endif
 						    </td>

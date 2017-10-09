@@ -24,6 +24,32 @@ function getage(){
 
           document.getElementById("age").value=a;
   }
+  function upgetage(){
+      var dnow
+      var bday
+          var a 
+          var checker
+          var temp
+          var yr
+          var dt
+          var gbday = document.getElementById("upbirthday").value
+
+          bday = new Date(gbday)
+          dnow = new Date()
+          a = dnow.getFullYear() - bday.getFullYear()
+          yr = bday.getFullYear() + a
+          dt = (dnow.getMonth() + 1) + "/" + dnow.getDate() + "/" + dnow.getFullYear()
+          checker = (bday.getMonth() + 1) + "/" + bday.getDate() + "/" + yr
+         
+          if(Date.parse(dt) < Date.parse(checker)){
+       a = a - 1
+          }
+         if(a<0){
+          a=0
+         }
+
+          document.getElementById("upage").value=a;
+  }
   function getage2(id){
       var dnow
       var bday
@@ -63,6 +89,22 @@ function getage(){
     else if(userInput == '1')
     {
      document.getElementById('addcorp').className = ('form-group hidden')
+     
+    }
+  }
+  function upshowCorpadd(){
+    var selectBox = document.getElementById('uppatienttype')
+    var userInput = selectBox.options[selectBox.selectedIndex].value
+
+    if(userInput == '2')
+    {
+      
+      document.getElementById('upcorp').className = ('form-group')
+      
+    }
+    else if(userInput == '1')
+    {
+     document.getElementById('upcorp').className = ('form-group hidden')
      
     }
   }

@@ -102,6 +102,8 @@ class LoginController extends Controller
                 Session::put('trans',$accessmodules->trans);
                 Session::put('corprep',$accessmodules->corprep);
                 Session::put('rebaterep',$accessmodules->rebaterep);
+                Session::put('uppatient',$accessmodules->uppatient);
+                Session::put('delpatient',$accessmodules->delpatient);
             }
     		Session::put('loggedin',true);
     		return redirect('/Admin/Dashboard');
