@@ -11,12 +11,6 @@ $('#save_lab')
         fields: {    
             labname: {
                 validators: {
-                   // remote: {
-                   //      type: 'GET',
-                   //      url: '/checkPackage',
-                   //      data:{ packagename:$('#packagename').val()},
-                   //      message: 'Shing',
-                   //  },
                     regexp: {
                         regexp: /^[a-zA-Z0-9]+([-'_\s][a-zA-Z0-9]+)*$/,
                         message: 'Special characters are not allowed.'
@@ -24,7 +18,13 @@ $('#save_lab')
                     stringLength: {
                         min: 2,
                         max: 20,
-                        message:'Laboratory name should be at least 2 characters and not exceed 20 characters.'
+                        message:'Department name should be at least 2 characters and not exceed 20 characters.'
+                    },
+                    remote: {
+                        type: 'GET',
+                        url: '/checkDept',
+                        data:{ labname:$('#labname').val()},
+                        message: 'Depaartment Name already exist.',
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -62,7 +62,7 @@ $('#labedit')
                     stringLength: {
                         min: 2,
                         max: 20,
-                        message:'Laboratory name should be at least 2 characters and not exceed 20 characters.'
+                        message:'Department name should be at least 2 characters and not exceed 20 characters.'
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -131,7 +131,7 @@ $('#EmployeeTypeedit').bootstrapValidator({
                     remote: {
                         type: 'GET',
                         url: '/checkEmpType',
-                        data:{ updateemptype:$('#updateemptype').val()},
+                        data:{ updateemptype:$('#emptype').val()},
                         message: 'Employee Type already exist.',
                     },
                         notEmpty: {
@@ -153,12 +153,12 @@ $('#EmployeeTypeedit').bootstrapValidator({
         fields: {        
             servicegroup: {
                 validators: {
-                  // remote: {
-                  //       type: 'GET',
-                  //       url: '/checkServgrp',
-                  //       data:{ servicegroup:$('#servicegroup').val()},
-                  //       message: 'Shing',
-                  //   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkServgrp',
+                        data:{ servicegroup:$('#servicegroup').val()},
+                        message: 'Service Group already exit.',
+                    },
                     regexp: {
                             regexp: /^[a-zA-Z0-9.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
@@ -209,15 +209,15 @@ $('#EmployeeTypeedit').bootstrapValidator({
         fields: {        
             servTypeName: {
                 validators: {
-                  // remote: {
-                  //       type: 'GET',
-                  //       url: '/checkServtype',
-                  //       data:{ servTypeName:$('#servTypeName').val()},
-                  //       message: 'Shing',
-                  //   },
                     regexp: {
                             regexp: /^[a-zA-Z0-9.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
+                    },
+                    remote: {
+                        type: 'GET',
+                        url: '/checkServtype',
+                        data:{ servTypeName:$('#servTypeName').val()},
+                        message: 'Service Type already exist.',
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -274,11 +274,11 @@ $('#EmployeeTypeedit').bootstrapValidator({
         fields: {    
             srvcname: {
                 validators: {
-                    //  remote   type: 'GET',
-                    //     url: '/checkService',
-                    //     data:{ srvcname:$('#srvcname').val()},
-                    //     message: 'Shing',
-                    // },
+                     remote   type: 'GET',
+                        url: '/checkService',
+                        data:{ srvcname:$('#srvcname').val()},
+                        message: 'Service already exist',
+                    },
                         regexp: {
                             regexp: /^[a-zA-Z0-9.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
@@ -405,12 +405,12 @@ $('#EmployeeTypeedit').bootstrapValidator({
         fields: {    
             packagename: {
                 validators: {
-                   // remote: {
-                   //      type: 'GET',
-                   //      url: '/checkPackage',
-                   //      data:{ packagename:$('#packagename').val()},
-                   //      message: 'Shing',
-                   //  },
+                   remote: {
+                        type: 'GET',
+                        url: '/checkPackage',
+                        data:{ packagename:$('#packagename').val()},
+                        message: 'Package already exist.',
+                    },
                     regexp: {
                         regexp: /^[a-zA-Z0-9]+([-'_\s][a-zA-Z0-9]+)*$/,
                         message: 'Special characters are not allowed.'

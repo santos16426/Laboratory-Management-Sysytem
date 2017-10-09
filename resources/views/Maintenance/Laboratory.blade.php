@@ -10,7 +10,7 @@
 @endsection
 
 @section ('breadParentName')
-<i class="fa fa-building" aria-hidden="true"></i><span> Laboratory</span>
+<i class="fa fa-building" aria-hidden="true"></i><span> Department</span>
 @endsection
 
 @section('maintenanceactive')
@@ -24,7 +24,7 @@
 	<div class="col-lg-12">
 		<section class="panel">
 			<header class="panel-heading">
-				<strong>Laboratories</strong>
+				<strong>Department</strong>
 			</header>
 			<div class="panel-body">
 				<div class="clearfix">
@@ -36,8 +36,8 @@
 					<table class="table table-bordered table-hover dataTable" id="labTbl">
 				      <thead>
 				        <tr>
-				          <th>Laboratory ID</th>
-				          <th>Laboratory Name</th>
+				          <th>Department ID</th>
+				          <th>Department Name</th>
 				          <th>Action</th>
                   <th>Status</th>
 				        </tr>
@@ -97,10 +97,10 @@
                 <div class="col-md-10 col-md-offset-1">
                    <div class="input-group">
                     <div class="input-group-addon">
-                    Laboratory Name<sup style="color: red">*</sup>
+                    Department Name<sup style="color: red">*</sup>
                    </div>
                   <input name="uplab_id" type="hidden" id="uplab_id">
-                  <input  name="uplab_name" type="text" id="uplab_name" placeholder="Laboratory Name" class="form-control input-md" required>
+                  <input  name="uplab_name" type="text" id="uplab_name" placeholder="Department Name" class="form-control input-md" required>
                </div>
             </div>  
          </div>
@@ -120,7 +120,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header btn-primary">
-        <h4 class="modal-title"><i class="fa fa-plus" aria-hidden="true"></i> New Laboratory</h4>
+        <h4 class="modal-title"><i class="fa fa-plus" aria-hidden="true"></i> New Department</h4>
       </div>
       <div class="modal-body">
         <form action="/save_Lab" method="POST" class="form-horizontal" id="save_lab">
@@ -128,9 +128,9 @@
 						<div class="col-md-10 col-md-offset-1">
 							<div class="input-group">
 								<div class="input-group-addon">
-									Laboratory Name<sup style="color: red">*</sup>
+									Department Name<sup style="color: red">*</sup>
 								</div>
-								<input  name="labname" id="labname" type="text" placeholder="Laboratory Name" class="form-control input-md" required>
+								<input  name="labname" id="labname" type="text" placeholder="Department Name" class="form-control input-md" required>
 							</div>
 						</div>  
 					</div>

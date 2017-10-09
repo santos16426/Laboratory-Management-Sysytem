@@ -136,6 +136,7 @@ Route::get('/checkCorpName','RemoteController@checkCorpName');
 Route::get('/checkContacts','RemoteController@checkContacts');
 Route::get('/checkEmail','RemoteController@checkEmail');
 Route::get('/checkUpPack','RemoteController@checkUpPack');
+Route::get('/checkDept','RemoteController@checkDept');
 
 // Reciept
 Route::get('/retrieveReciept','TransactionController@retrieveReciept');

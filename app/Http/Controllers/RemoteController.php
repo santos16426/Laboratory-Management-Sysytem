@@ -40,6 +40,24 @@ class RemoteController extends Controller
     	echo json_encode(array('valid' => $isAvailable,));
     }
 
+    public function checkDept()
+    {
+        $firstcheck = DB::table('laboratory_tbl')
+            ->where('lab_name',$_GET['labname'])
+            ->count();
+            
+        
+        if($firstcheck == 0)
+        {
+            $isAvailable = true;
+        }
+        else
+        {
+            $isAvailable = false;
+        }
+        echo json_encode(array('valid' => $isAvailable,));
+    }
+
     public function checkServgrp()
     {
     	$firstcheck = DB::table('service_group_tbl')

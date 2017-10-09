@@ -95,7 +95,7 @@
                       <li class="@yield('laboratoryactive')">
                         <a  href="/Maintenance/Laboratory">
                             <i class="fa fa-building-o" aria-hidden="true"></i>
-                            <span>Laboratory</span>    
+                            <span>Department</span>    
                         </a>
                       </li>
                       @endif
