@@ -39,7 +39,7 @@
 				      <thead>
 				        <tr>
 				          <th>Service Group</th>
-                  <th>Laboratory Name</th>
+                  <th>Department Name</th>
 				          <th>Action</th>
                   <th>Status</th>
 				        </tr>
@@ -130,7 +130,7 @@
             <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">
                 <div class="input-group-addon">
-                  Laboratory Name <sup style="color: red">*</sup>
+                  Department Name <sup style="color: red">*</sup>
                 </div>
                 <select class="form-control select2" name="lab_id" id="dropLABID" style="width: 100%">
                   @foreach($labs as $gd) 

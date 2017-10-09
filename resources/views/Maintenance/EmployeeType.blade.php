@@ -39,7 +39,7 @@
 		      		<thead>
 		      			<tr>
 		      				<th>Employee Types</th>
-		      				<th>Laboratory Name</th>
+		      				<th>Department Name</th>
 		      				<th>Action</th>
 		      				<th>Status</th>
 		      			</tr>
@@ -107,10 +107,10 @@
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group">
 												<div class="input-group-addon">
-													Laboratory Name
+													Department Name
 												</div>
 												<select class="form-control select2" name="lab_id" id="dropLABID" style="width: 100%">
-													<option value=Null>Select a laboratory</option>
+													<option value=Null>Select a Department</option>
 													@foreach($labs as $gd) 
 														<option value="{{$gd->lab_id}}">{{$gd->lab_name}}</option>
 													@endforeach
