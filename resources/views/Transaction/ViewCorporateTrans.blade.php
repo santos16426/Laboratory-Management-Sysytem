@@ -49,7 +49,7 @@
 					  <thead>
 					    <tr>
 
-					    	<th>Transaction ID</th>
+					    	
 					    	<th>Transaction Date</th>
 					    	<th>Transaction Charge</th>
 					    	<th>Corporate Patient</th>
@@ -59,8 +59,8 @@
 					  <tbody>
 					  	@foreach($transactions as $transact)
 					    <tr>
-						      <td>{{ $transact->trans_id }}</td>
-						      <td>{{ $transact->date }}</td>
+						      
+						      <td>{{ date('F jS, Y',strtotime($transact->date)) }}</td>
 						      <td>{{ $transact->charge }}</td>
 						      <td>
 						      	{{ $transact->patient_fname }}  {{ $transact->patient_mname }} {{ $transact->patient_lname }}
@@ -89,7 +89,6 @@
 				<table class="table table-bordered table-hover dataTable" id="corpPayment">
 					<thead>
 					    <tr>
-					    	<th>Payment ID</th>
 					    	<th>Payment Date</th>
 					    	<th>Amount</th>
 					    	<th>Action</th>
@@ -98,8 +97,7 @@
 					  <tbody>
 					  	@foreach($payments as $payments)
 					    <tr>
-					      <td>{{ $payments->corpPayment_id }}</td>
-					      <td>{{ $payments->corpPayment_date }}</td>
+					      <td>{{ date('F jS, Y',strtotime($payments->corpPayment_date)) }}</td>
 					      <td>{{ $payments->corpPayment_bill }}</td>
 					      <td>
 					      	<a class="btn btn-primary btn-xs printPayment" href="{{ URL::to( '/CorporatePayments/'.$payments->corpPayment_img)  }}" target="_blank"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a>

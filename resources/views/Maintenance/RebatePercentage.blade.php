@@ -47,7 +47,7 @@
 					   @foreach($rebate as $rebate)
 					    <tr>
 					      <td>{{ $rebate->percentage }}</td>
-					      <td>{{ $rebate->created_at }}</td>
+					      <td>{{ date('F jS, Y',strtotime($rebate->created_at)) }}</td>
 					    </tr>
 					  @endforeach
 					  </tbody>

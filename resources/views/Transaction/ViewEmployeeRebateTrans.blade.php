@@ -59,7 +59,6 @@
 					<table class="table table-bordered table-hover dataTable" id="corpTrans">
 					  <thead>
 					    <tr>
-					    	<th>Transaction ID</th>
 					    	<th>Transaction Date</th>
 					    	<th>Transaction Total</th>
 					    	<th>Patient</th>
@@ -69,8 +68,7 @@
 					  <tbody>
 					  	@foreach($transactions as $trans)
 					    <tr>
-						      <td>{{ $trans->trans_id }}</td>
-						      <td>{{ $trans->date }}</td>
+						      <td>{{ date('F jS, Y',strtotime($trans->date)) }}</td>
 						      <td>{{ $trans->trans_total }}</td>
 						      <td>{{ $trans->patient_fname }} {{ $trans->patient_mname }} {{ $trans->patient_lname }}</td>
 						      <td>
@@ -97,7 +95,6 @@
 				<table class="table table-bordered table-hover dataTable" id="corpPayment">
 					<thead>
 					    <tr>
-					    	<th>Payment ID</th>
 					    	<th>Payment Date</th>
 					    	<th>Amount</th>
 					    	<th>Action</th>
@@ -106,8 +103,7 @@
 					  <tbody>
 					  	@foreach($payments as $pay)
 					    <tr>
-					      <td>{{ $pay->transRebPay_id }}</td>
-					      <td>{{ $pay->transRebPay_date }}</td>
+					      <td>{{ date('F jS, Y',strtotime($pay->transRebPay_date)) }}</td>
 					      <td>{{ $pay->transRebPay_amount }}</td>
 					      <td>
 					      	<a class="btn btn-primary btn-xs printPayment" href="{{ URL::to( '/Rebate_payments/'.$pay->transRebPay_img)  }}" target="_blank" data-id=""><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a>
