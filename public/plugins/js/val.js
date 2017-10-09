@@ -95,12 +95,45 @@ $('#EmployeeTypeadd').bootstrapValidator({
                         max: 25,
                         message:'You cannot exceed 25 characters.'
                     },
-                    // remote: {
-                    //     type: 'GET',
-                    //     url: '/checkEmpType',
-                    //     data:{ emptype:$('#emptype').val()},
-                    //     message: 'Shing',
-                    // },
+                    remote: {
+                        type: 'GET',
+                        url: '/checkEmpType',
+                        data:{ emptype:$('#emptype').val()},
+                        message: 'Employee Type already exist.',
+                    },
+                        notEmpty: {
+                        message: 'This field is required.'
+                    }
+                }
+            },                                         
+            }
+        });
+
+$('#EmployeeTypeedit').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+
+           updateemptype: {
+                validators: {
+                    regexp: {
+                            regexp: /^[a-zA-Z.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
+                            message: 'Special characters are not allowed.'
+                    },
+                    stringLength: {
+                        max: 25,
+                        message:'You cannot exceed 25 characters.'
+                    },
+                    remote: {
+                        type: 'GET',
+                        url: '/checkEmpType',
+                        data:{ updateemptype:$('#updateemptype').val()},
+                        message: 'Employee Type already exist.',
+                    },
                         notEmpty: {
                         message: 'This field is required.'
                     }
