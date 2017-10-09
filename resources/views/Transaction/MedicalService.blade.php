@@ -1,4 +1,4 @@
-@if(Session::get('addresult')!= 1)
+@if(Session::get('availserv')!= 1)
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
