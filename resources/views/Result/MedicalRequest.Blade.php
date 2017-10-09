@@ -121,7 +121,7 @@
 							<div class="col-md-12" >
 								<div class="input-group" >
 									<span class="input-group-addon">Examining Physicain</span>
-									<select class="form-control package_id select2" name="package_id_dropdown" id="package_id" style="width: 100%" >
+									<select class="form-control package_id select2" name="examphysician" id="examphysician" style="width: 100%" >
 									</select>
 								</div>
 							</div>

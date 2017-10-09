@@ -210,7 +210,7 @@
             						<span class="btn btn-white btn-file"> 
 	            						<span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
 	            						<span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-	            						<input type="file" class="default" name="eng_image" required> 
+	            						<input type="file" class="default" name="ecg_image" required> 
             						</span> 
             						<a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a> 
             					</div> 

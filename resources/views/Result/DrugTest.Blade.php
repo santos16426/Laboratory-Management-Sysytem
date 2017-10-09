@@ -283,7 +283,7 @@
 			              <div class="col-md-12">
 			                 <div class="input-group" >
 									<span class="input-group-addon">Analyst</span>
-									<select class="form-control package_id select2" name="referred" id="referred" style="width: 100%" >
+									<select class="form-control package_id select2" name="referred1" id="referred1" style="width: 100%" >
 									</select>
 								</div>
 			          		</div>  
@@ -294,7 +294,7 @@
 			              <div class="col-md-12">
 			                 <div class="input-group" >
 									<span class="input-group-addon">Analyst</span>
-									<select class="form-control package_id select2" name="referred" id="referred" style="width: 100%" >
+									<select class="form-control package_id select2" name="referred2" id="referred2" style="width: 100%" >
 									</select>
 								</div>
 			          		</div>  
