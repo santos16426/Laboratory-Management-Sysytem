@@ -409,7 +409,7 @@
 			                  		<div style="padding-left: 20px">
 			                    		<input type="checkbox" name="addcorppack" class="maintenance"  value="1" id="addcorppack"><label for="addcorppack">&nbsp;Add Corporate Package&nbsp;&nbsp;</label>
 										<br>
-										<input type="checkbox" name="upcorppack" class="maintenance"  id="upcorppack " value="1"><label for="upcorppack ">&nbsp;Update Corporate Package&nbsp;&nbsp;</label><br>
+										<input type="checkbox" name="upcorppack" class="maintenance"  id="upcorppack" value="1"><label for="upcorppack ">&nbsp;Update Corporate Package&nbsp;&nbsp;</label><br>
 										<input type="checkbox" name="delcorppack"  class="maintenance" id="delcorppack" value="1"><label for="delcorppack">&nbsp;Delete Corporate Package&nbsp;&nbsp;</label>
 			                		</div>
 			              		</div>
