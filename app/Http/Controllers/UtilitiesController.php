@@ -50,6 +50,10 @@ class UtilitiesController extends Controller
 		$trans = 0;
 		$corprep = 0;
 		$rebaterep = 0;
+		$uppatient = 0;
+		$delpatient = 0;
+
+
 		if(isset($_POST['addlab']))
 		{
 			$addlab = 1;
@@ -173,6 +177,14 @@ class UtilitiesController extends Controller
 		if(isset($_POST['addpatient']))
 		{
 			$addpatient = 1;
+		}	
+		if(isset($_POST['uppatient']))
+		{
+			$uppatient = 1;
+		}
+		if(isset($_POST['delpatient']))
+		{
+			$delpatient = 1;
 		}
 		if(isset($_POST['availserv']))
 		{
@@ -282,6 +294,8 @@ class UtilitiesController extends Controller
 			'upcorppack'=>$upcorppack,
 			'delcorppack'=>$delcorppack,
 			'addpatient'=>$addpatient,
+			'uppatient'=>$uppatient,
+			'delpatient'=>$delpatient,
 			'availserv'=>$availserv,
 			'corpbill'=>$corpbill,
 			'rebatebill'=>$rebatebill,

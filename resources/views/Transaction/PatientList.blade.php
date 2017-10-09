@@ -1,4 +1,4 @@
-@if((Session::get('addpatient')!= 1)&&(Session::get('availserv')!= 1))
+@if((Session::get('addpatient')!= 1)&&(Session::get('availserv')!= 1)&&(Session::get('delpatient')== 1 )&&(Session::get('uppatient')==1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
@@ -73,6 +73,12 @@
 			           @if(Session::get('availserv')==1)
 			            <a class="btn btn-info btn-xs availservice" data-patientid="{{ $table->patient_id }}"  ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Avail Service </a>
 			            @endif
+			           	@if(Session::get('uppatient')==1)
+
+			           	@endif
+			           	@if(Session::get('delpatient')==1)
+			           	
+			           	@endif
 			          </td>
 			        </tr>
 			        @endforeach

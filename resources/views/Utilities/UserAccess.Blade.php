@@ -98,7 +98,7 @@
 						  		@endif
 						    </td>
 						    <td>
-						    	@if($admin->addpatient == 1 || $admin->availserv == 1 )
+						    	@if($users->addpatient == 1 || $users->availserv == 1 || $users->delpatient || $users->uppatient == 1)
 						  			<i class="fa fa-check" aria-hidden="true"></i> 
 						  		@endif
 						    </td>
@@ -175,7 +175,7 @@
 						  		@endif
 						    </td>
 						    <td>
-						    	@if($users->addpatient == 1 || $users->availserv == 1 )
+						    	@if($users->addpatient == 1 || $users->availserv == 1 || $users->delpatient || $users->uppatient == 1)
 						  			<i class="fa fa-check" aria-hidden="true"></i> 
 						  		@endif
 						    </td>
@@ -431,8 +431,12 @@
 			                	<div class="input-group">
 			                		<label><strong>Medical Service</strong></label><br>
 			                  		<div style="padding-left: 20px">
-			                    		<input type="checkbox" name="addpatient" class="transaction" value="1" id="addpatient"><label for="addpatient">&nbsp;Add Patient&nbsp;&nbsp;</label><br>
+			                    		<input type="checkbox" name="addpatient" class="transaction" value="1" id="addpatient"><label for="
+			                    		addpatient">&nbsp;Add Patient&nbsp;&nbsp;</label><br>
+			                    		<input type="checkbox" name="uppatient" class="transaction" value="1" id="uppatient"><label for="uppatient">&nbsp;Update Patient&nbsp;&nbsp;</label><br>
+			                    		<input type="checkbox" name="delpatient" class="transaction" value="1" id="delpatient"><label for="delpatient">&nbsp;Delete Patient&nbsp;&nbsp;</label><br>
 			                    		<input type="checkbox" name="availserv" class="transaction" value="1" id="availserv"><label for="availserv">&nbsp;Avail Service&nbsp;&nbsp;</label><br>
+
 			                		</div>
 			              		</div>
 			           		</div>  
@@ -702,6 +706,14 @@
 					if(data.addpatient == 1)
 					{
 						$('#addpatient').attr('checked','checked')
+					}
+					if(data.uppatient == 1)
+					{
+						$('#uppatient').attr('checked','checked')
+					}
+					if(data.delpatient == 1)
+					{
+						$('#delpatient').attr('checked','checked')
 					}
 					if(data.availserv == 1)
 					{
