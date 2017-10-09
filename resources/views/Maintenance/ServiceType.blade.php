@@ -89,7 +89,7 @@
         <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Update</h4>
       </div>
       <div class="modal-body">
-        <form action="/update_servType" method="POST" class="form-horizontal" id="servtypeedit">
+        <form action="/update_servType" method="POST" class="form-horizontal servtypeedit" id="servtypeedit">
           <div class="form-group">
               <div class="col-md-10 col-md-offset-1">
                  <div class="input-group">
@@ -121,22 +121,29 @@
       </div>
       <div class="modal-body">
         <form action="/save_servType" method="POST" class="form-horizontal" id="servtypeadd">
-          <div class="form-group">
-            <div class="col-md-10 col-md-offset-1 input-group">
+          <div class="form-group" style="margin-right:5% ">
+            <div class="col-md-10 col-md-offset-1">
+              <div class="input-group">
                 <span class="input-group-addon">Service Group <sup>*</sup></span>
-                <select class="form-control select2" name="servGroup_id" id="emp_type" style="width: 100%;">
+                <select class="form-control select2" name="servGroup_id" id="emp_type" style="width: 105%;">
                 @foreach($serviceGroup as $serviceGroup)
                   <option value="{{ $serviceGroup->servgroup_id }}">{{ $serviceGroup->servgroup_name }}</option>
                 @endforeach
                 </select>
+             </div>
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-md-10 col-md-offset-1 input-group">
-                <span class="input-group-addon">Service Type Name <sup>*</sup></span>
+
+          <div class="form-group" style="margin-right:2% ">
+              <div class="col-md-10 col-md-offset-1">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                   Service Type Name <sup>*</sup>
+                </div>
                 <input  name="servTypeName" id="servTypeName" type="text" placeholder="Service Type Name" class="form-control input-md" required>
-            </div>
-          </div>
+              </div>
+          </div>  
+        </div>
           
         {{ @csrf_field() }}
         <div class="modal-footer">

@@ -237,7 +237,7 @@ $('#EmployeeTypeedit').bootstrapValidator({
         ;
 
 // Service type EDIT
-    $('#servtypeedit').bootstrapValidator({
+     $('#servtypeedit').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -274,7 +274,8 @@ $('#EmployeeTypeedit').bootstrapValidator({
         fields: {    
             srvcname: {
                 validators: {
-                     remote   type: 'GET',
+                     remote: {
+                        type: 'GET',
                         url: '/checkService',
                         data:{ srvcname:$('#srvcname').val()},
                         message: 'Service already exist',
@@ -424,12 +425,15 @@ $('#EmployeeTypeedit').bootstrapValidator({
                         message: 'This field is required.'
                     },
                 }
-            },   
-             services: {
+            }, 
+            'services[]': {
                 validators: {
-                       message: 'This field is required.' 
+                    choice: {
+                        min: 3,
+                        message: 'Please choose at least 3 services.'
+                    }
                 }
-            },   
+            },  
             packageprice: {
                 validators: {
                         regexp: {
@@ -486,11 +490,14 @@ $('#packageedit')
                     }
                 }
             },   
-             services: {
+              'services[]': {
                 validators: {
-                       message: 'This field is required.' 
+                    choice: {
+                        min: 3,
+                        message: 'Please choose at least 3 services.'
+                    }
                 }
-            },   
+            },
             packageprice: {
                 validators: {
                         regexp: {
@@ -538,12 +545,12 @@ $('#packageedit')
             }, 
            companyname: {
                 validators: {
-                    // remote: {
-                    //     type: 'GET',
-                    //     url: '/checkCorpName',
-                    //     data:{ companyname:$('#companyname').val()},
-                    //     message: 'Shing',
-                    // },
+                    remote: {
+                        type: 'GET',
+                        url: '/checkCorpName',
+                        data:{ companyname:$('#companyname').val()},
+                        message: 'Company name already exist.',
+                    },
                     regexp: {
                             regexp: /^[a-zA-Z0-9]+([-'_\s][a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
@@ -559,12 +566,12 @@ $('#packageedit')
             },   
             contactnumber: {
                 validators: {
-                    //     remote: {
-                    //     type: 'GET',
-                    //     url: '/checkContacts',
-                    //     data:{ contactnumber:$('#contactnumber').val()},
-                    //     message: 'Shing',
-                    // },
+                        remote: {
+                        type: 'GET',
+                        url: '/checkContacts',
+                        data:{ contactnumber:$('#contactnumber').val()},
+                        message: 'Contact Number already exist.',
+                    },
                         regexp: {
                             regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                             message: 'Invalid Format.'
@@ -576,12 +583,12 @@ $('#packageedit')
             },
             email: {
                 validators: {
-                    //     remote: {
-                    //     type: 'GET',
-                    //     url: '/checkEmail',
-                    //     data:{ email:$('#email').val()},
-                    //     message: 'Shing',
-                    // },
+                        remote: {
+                        type: 'GET',
+                        url: '/checkEmail',
+                        data:{ email:$('#email').val()},
+                        message: 'Email already exist.',
+                    },
                         regexp: {
                             regexp: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                             message: 'Enter a valid email.'
@@ -710,6 +717,14 @@ $('#corppackadd').bootstrapValidator({
                     }
                 }
             },
+             'services[]': {
+                validators: {
+                    choice: {
+                        min: 3,
+                        message: 'Please choose at least 3 services.'
+                    }
+                }
+            },
             packprice: {
                 validators: {
                         regexp: {
@@ -772,6 +787,14 @@ $('#corppackedit').bootstrapValidator({
                     },
                         notEmpty: {
                         message: 'This field is required.'
+                    }
+                }
+            },
+             'upservices[]': {
+                validators: {
+                    choice: {
+                        min: 3,
+                        message: 'Please choose at least 3 services.'
                     }
                 }
             },
