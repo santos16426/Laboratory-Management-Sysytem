@@ -8,6 +8,10 @@ use Session;
 
 class LaboratoryController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Singapore');
+    }
     function lab()
     {
     	$table = DB::table('laboratory_tbl')->get();

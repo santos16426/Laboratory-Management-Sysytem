@@ -7,6 +7,10 @@ use DB;
 use Session;
 class PackageController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Singapore');
+    }
     public function getTotalPrice(Request $req)
     {
       $var1 = DB::table('service_tbl')->select(DB::raw('SUM(service_price) as total'))->whereIn('service_id',$req->id)->get();

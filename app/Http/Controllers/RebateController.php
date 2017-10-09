@@ -7,6 +7,10 @@ use DB;
 use Session;
 class RebateController extends Controller
 {
+	public function __construct()
+    {
+        date_default_timezone_set('Singapore');
+    }
     public function rebatepercent()
     {
 		$rebate = DB::table('rebate_tbl')->orderBy('created_at','desc')->get();

@@ -7,6 +7,10 @@ use DB;
 use Session;
 class ServiceController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Singapore');
+    }
     function servgroup()
     {
     $labs = DB::table('laboratory_tbl')->where('LabStatus',1)->get();

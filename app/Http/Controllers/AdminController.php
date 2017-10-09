@@ -5,6 +5,10 @@ use Illuminate\Http\Request;
 use DB;
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Singapore');
+    }
     function pagenotfound()
     {
         return view('Pages.PageNotFound');

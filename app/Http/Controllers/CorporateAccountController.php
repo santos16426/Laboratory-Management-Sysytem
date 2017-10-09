@@ -7,6 +7,10 @@ use DB;
 use Session;
 class CorporateAccountController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Singapore');
+    }
     public function update_corpPackage()
     {
       $corpid = $_POST['corpid'];

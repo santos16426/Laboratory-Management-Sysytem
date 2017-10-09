@@ -7,6 +7,10 @@ use DB;
 use DateTime;
 class ReportController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Singapore');
+    }
     function corporatereports()
     {
         return view('Reports.CorporateReports');

@@ -8,6 +8,10 @@ use Session;
 
 class ResultController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Singapore');
+    }
     function getLicense(Request $req)
     {
         $emp_id = $req->id;
@@ -160,6 +164,7 @@ class ResultController extends Controller
         return view ('Result.MedicalService');
     }
     function medservice2(){
+
         $trans_id = $_GET['trans_id'];
         $group_id = $_GET['group_id'];  
         $patientinfo = DB::table('transaction_tbl')

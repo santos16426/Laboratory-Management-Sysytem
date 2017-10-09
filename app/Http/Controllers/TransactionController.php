@@ -7,6 +7,10 @@ use DB;
 use Session;
 class TransactionController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Singapore');
+    }
     function deletePatient()
     {
         $patient_id = $_POST['id'];
