@@ -1,4 +1,4 @@
-@if((Session::get('addservtype')!=1)||(Session::get('upservtype')!=1)||(Session::get('delservtype')!=1))
+@if((Session::get('addservtype')!=1)&&(Session::get('upservtype')!=1)&&(Session::get('delservtype')!=1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
@@ -181,7 +181,9 @@
       $('#servtypeadd i').removeClass('glyphicon glyphicon-remove');
       $('#servtypeadd small').attr('style','display:none');
     });
-  $('#servtypetbl').DataTable({
+  $(document).ready(function()
+  {
+    $('#servtypetbl').dataTable({
     'paging'      : true,
     'lengthChange': true,
     'searching'   : true,
@@ -189,6 +191,7 @@
     'info'        : true,
     'autoWidth'   : true
   });
+  })
   $('.delbtn').click(function(){
     $('#stid').val($(this).data('id'));
     $('#deleteModal').modal('show');

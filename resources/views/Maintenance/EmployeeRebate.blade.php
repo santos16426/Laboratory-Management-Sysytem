@@ -1,4 +1,4 @@
-@if((Session::get('addempreb')!=1)||(Session::get('delempreb')!=1))
+@if((Session::get('addempreb')!=1)&&(Session::get('delempreb')!=1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
@@ -63,7 +63,7 @@
 	</div>
 </div>
 <div class="modal fade" id = "addModal">
-  <div class="modal-dialog" style="width: 50%">
+  <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header btn-primary">
         <h4 class="modal-title"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Employee Rebate</h4>
@@ -82,8 +82,8 @@
 	            </div>
 	          </div> 
 	        <div class="modal-footer">
-	          <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
-	          <button  class="btn btn-xs btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+	          <button type="button" class="btn pull-left" data-dismiss="modal">Close</button>
+	          <button type="submit"  class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
 	        </div>
         </div>
         {{ csrf_field() }}

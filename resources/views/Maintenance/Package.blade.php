@@ -1,4 +1,4 @@
-@if((Session::get('addpack')!=1)||(Session::get('uppack')!=1)||(Session::get('delpack')!=1))
+@if((Session::get('addpack')!=1)&&(Session::get('uppack')!=1)&&(Session::get('delpack')!=1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>

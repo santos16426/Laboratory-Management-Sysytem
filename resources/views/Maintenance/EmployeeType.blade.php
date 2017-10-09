@@ -1,4 +1,4 @@
-@if((Session::get('addemptype')!=1)||(Session::get('upemptype')!=1)||(Session::get('delemptype')!=1))
+@if((Session::get('addemptype')!=1)&&(Session::get('upemptype')!=1)&&(Session::get('delemptype')!=1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
@@ -249,6 +249,7 @@
 		$('#EmployeeTypeadd i').removeClass('glyphicon glyphicon-remove');
 		$('#EmployeeTypeadd small').attr('style','display:none');
 	});
+	$(document).ready(function(){
 	$('#emptype').dataTable( {
 		'paging'      : true,
 		'lengthChange': true,
@@ -256,6 +257,7 @@
 		'ordering'    : true,
 		'info'        : true,
 		'autoWidth'   : true
+	});
 	});
 	$('#dropLABID').select2();
 	$('.delEtypebtn').click(function(){

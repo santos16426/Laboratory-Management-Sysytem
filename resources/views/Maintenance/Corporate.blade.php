@@ -1,4 +1,4 @@
-@if((Session::get('addcorp')!=1)||(Session::get('upcorp')!=1)||(Session::get('delcorp')!=1)||(Session::get('addcorppack')!=1)||(Session::get('upcorppack')!=1)||(Session::get('delcorppack')!=1))
+@if((Session::get('addcorp')!=1)&&(Session::get('upcorp')!=1)&&(Session::get('delcorp')!=1)&&(Session::get('addcorppack')!=1)&&(Session::get('upcorppack')!=1)&&(Session::get('delcorppack')!=1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
@@ -55,19 +55,22 @@
 					      	@if((Session::get('upcorp')==1))
 					        <a class="btn btn-warning btn-xs updateModal" data-id="{{$corporates->corp_id}}" href="#updateModal" data-toggle="modal"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 					        @endif
-					        @if((Session::get('delcorp')==1)
+					        @if(Session::get('delcorp')==1)
 					        <a class="btn btn-danger btn-xs delbtn" data-id="{{$corporates->corp_id}}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
 					        @endif
-					        @if((Session::get('addcorppack')==1||(Session::get('upcorppack')==1)||(Session::get('delcorppack')==1))
+					        @if((Session::get('addcorppack')==1)||(Session::get('upcorppack')==1)||(Session::get('delcorppack')==1))
 					        <a class="btn btn-info btn-xs corppackages" data-id="{{ $corporates->corp_id }}"><i class="fa fa-dropbox" aria-hidden="true"></i>&nbsp; Packages</a>
 					        @endif
 
 					       @else
-							@if((Session::get('upcorp')==1)
+							@if(Session::get('upcorp')==1)
 							<a class="btn btn-warning btn-xs"  disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 							@endif
-							@if((Session::get('delcorp')==1)
+							@if(Session::get('delcorp')==1)
 					       	<a class="btn btn-danger btn-xs" disabled><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
+					        @endif
+					        @if((Session::get('addcorppack')==1)||(Session::get('upcorppack')==1)||(Session::get('delcorppack')==1))
+					        <a class="btn btn-info btn-xs disabled"><i class="fa fa-dropbox" aria-hidden="true"></i>&nbsp; Packages</a>
 					        @endif
 					       @endif
 					      </td>

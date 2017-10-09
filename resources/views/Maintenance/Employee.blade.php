@@ -1,4 +1,4 @@
-@if((Session::get('addemp')!=1)||(Session::get('upemp')!=1)||(Session::get('delemp')!=1))
+@if((Session::get('addemp')!=1)&&(Session::get('upemp')!=1)&&(Session::get('delemp')!=1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>

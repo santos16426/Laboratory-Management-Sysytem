@@ -9,6 +9,7 @@ class UtilitiesController extends Controller
 {
 	function save_userAccess()
 	{
+
 		$addlab = 0;
 		$uplab = 0;
 		$dellab = 0;
@@ -209,6 +210,46 @@ class UtilitiesController extends Controller
 		{
 			$rebaterep = 1;
 		}
+		Session::put('addlab',$addlab);
+		Session::put('uplab',$uplab);
+		Session::put('dellab',$dellab);
+		Session::put('addemp',$addemp);
+		Session::put('upemp',$upemp);
+		Session::put('delemp',$delemp);
+		Session::put('addemptype',$addemptype);
+		Session::put('upemptype',$upemptype);
+		Session::put('delemptype',$delemptype);
+		Session::put('editpercent',$editpercent);
+		Session::put('addempreb',$addempreb);
+		Session::put('delempreb',$delempreb);
+		Session::put('addserv',$addserv);
+		Session::put('upserv',$upserv);
+		Session::put('delserv',$delserv);
+		Session::put('addservtype',$addservtype);
+		Session::put('upservtype',$upservtype);
+		Session::put('delservtype',$delservtype);
+		Session::put('addservgrp',$addservgrp);
+		Session::put('upservgrp',$upservgrp);
+		Session::put('delservgrp',$delservgrp);
+		Session::put('addpack',$addpack);
+		Session::put('uppack',$uppack);
+		Session::put('delpack',$delpack);
+		Session::put('addcorp',$addcorp);
+		Session::put('upcorp',$upcorp);
+		Session::put('delcorp',$delcorp);
+		Session::put('addcorppack',$addcorppack);
+		Session::put('upcorppack',$upcorppack);
+		Session::put('delcorppack',$delcorppack);
+		Session::put('addpatient',$addpatient);
+		Session::put('availserv',$availserv);
+		Session::put('corpbill',$corpbill);
+		Session::put('rebatebill',$rebatebill);
+		Session::put('addresult',$addresult);
+		Session::put('upresult',$upresult);
+		Session::put('census',$census);
+		Session::put('trans',$trans);
+		Session::put('corprep',$corprep);
+		Session::put('rebaterep',$rebaterep);
 		DB::table('employee_useraccess_tbl')->where('emp_type_id',$_POST['emp_type_id'])->update([
 			'addlab'=>$addlab,
 			'uplab'=>$uplab,

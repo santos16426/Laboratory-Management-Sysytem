@@ -1,4 +1,4 @@
-@if((Session::get('addservgrp')!=1)||(Session::get('upservgrp')!=1)||(Session::get('delservgrp')!=1))
+@if((Session::get('addservgrp')!=1)&&(Session::get('upservgrp')!=1)&&(Session::get('delservgrp')!=1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
@@ -197,14 +197,18 @@
       $('#servgrpadd small').attr('style','display:none');
     });
   $('#dropLABID').select2();
-	$('#servGroup').DataTable({
-		'paging'      : true,
-		'lengthChange': true,
-		'searching'   : true,
-		'ordering'    : true,
-		'info'        : true,
-		'autoWidth'   : true
-	});
+
+	$(document).ready(function(){
+    $('#servGroup').dataTable({
+    'paging'      : true,
+    'lengthChange': true,
+    'searching'   : true,
+    'ordering'    : true,
+    'info'        : true,
+    'autoWidth'   : true
+  });
+  })
+
 	$('.delbtn').click(function(){
     $('#sgid').val($(this).data('id'));
     $('#deleteModal').modal('show');
