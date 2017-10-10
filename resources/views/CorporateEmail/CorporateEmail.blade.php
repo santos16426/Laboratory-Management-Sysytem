@@ -1,9 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
 @component('mail::message')
-#  Order Shipped
+<br>
+<div>
+<img src="https://lh3.googleusercontent.com/-NRd3QRHAmkg/Wdybi4ulmtI/AAAAAAAAABw/TBX4Zs7zbnkYS38cn9DKI4Rj-rAslMlQgCJoC/w530-h179-n-rw/banner.jpg" 
+alt="" / style="width:300px; height:100px;margin-left: 97px;"><br><br><br>
+</div>		
 
-Your unsettled balance: 
-Total is: {{ $total }}
+<p>Greetings from GlobalHealth Diagnostic Center! <br> <br> 
+
+	  Below is the summary of transactions made under your corporate account from October 5 to October 10.</p><br><br>
+</head>
+<body>
+<h1><center>olytechnic University of The Philippines</center></h1> </center> 
+
+@component('mail::table')
+|  Transaction Date |     Patient       |     Charge    |
+|: -----------------|:-------------:    | --------:     |
+| October 5, 2017   | Dannica Moises    |  {{ $total }} |
+| October 10, 2017  | Joseph Gallardo   |  {{ $total }} |
+| October 5, 2017   | Dannica Moises    |  {{ $total }} |
+| October 10, 2017  | Joseph Gallardo   |  {{ $total }} |
+|					|					|  Total= {{$total}}|
+										
+@endcomponent
 
 
-Thanks,
-GlobalHealth Diagnostic Center
+		<p>Please settle the above balances as soon as you can.</p><br>
+</body>
+
+
+<p>Thanks,<br>
+GlobalHealth Diagnostic Center</p><br><br>
+
+<footer>
+  <p> <center> N. Domingo Street,San Juan,Metro Manila</p> </center>
+  </footer>
+
+@endcomponent
+
+
+</html>
