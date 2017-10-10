@@ -32,11 +32,13 @@
 <div class="row">
 	<div class="col-lg-12">
 		<section class="panel">
+			<form method="POST" action="/save_Medserv2"  enctype="multipart/form-data">
+				<input type="hidden" name="result_id" value="{{ $result_id }}">
 			<header class="panel-heading">
 				Medical Service
 			</header>
 			<div class="panel-body">
-				<form action="" method="" id=""><br>
+				
 			<div class="col-md-12">
 				<div class="col-md-6">
 			        <div class="form-group">
@@ -165,6 +167,7 @@
 						  </tr>
 						  @foreach($services as $serv)
 						  <tr>
+						  	<input type="hidden" name="service_id[]" value="{{ $serv->service_id }}">
 						    <td><center>{{ $serv->service_name}}</center></td>
 						    <td><input class="form-control" type="text" name="intresult{{ $serv->service_id }}" id="intresult{{ $serv->service_id }}" value=""></td>
 						    <td><input class="form-control" type="text" name="intunit{{ $serv->service_id }}" id="intunit{{ $serv->service_id }}" value=""></td>
@@ -177,7 +180,7 @@
 					</table>
 				</div>
 		    </div>
-
+		    
 		    <div class="col-md-12">
 				<div class="col-md-6">
 			        <div class="form-group">
@@ -285,23 +288,16 @@
 			       </div><br><br>
 			 	 </div>
 			 	 <div class="col-md-6">
-			        <div class="form-group"> 
-			       </div><br><br>
+			    
 		        </div> 
-		    </div>
-
-	        </div>
-
-	        {{ csrf_field() }}
-	      </div>
-					
-				</form>
-			</div>
+    			</div>
+	        		</div>
+	      	{{ csrf_field() }}
 			<center>
 				<button type="button" class="btn btn-xs" style="width: 8%">Back</button>
-				<button type="button" class="btn btn-xs btn-info" style="width: 8%">View</button>
 		        <button type="submit" class="btn btn-xs btn-success"  style="width: 8%">Save & Print</button>
 		    </center>
+		    </form>
 		</section>
 	</div>
 </div>
