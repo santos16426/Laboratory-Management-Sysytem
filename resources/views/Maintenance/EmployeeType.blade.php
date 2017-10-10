@@ -58,7 +58,7 @@
 							<button type="button" class="btn btn-danger btn-xs delEtypebtn" data-id="{{ $emptype->role_id }}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
 							@endif
 		                @else
-		                	@if(Session::get('updateemptype')==1)
+		                	@if(Session::get('upemptype')==1)
 							<a class="btn btn-warning btn-xs" disabled><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 							@endif
 							@if(Session::get('delemptype')==1)

@@ -526,29 +526,29 @@ class TransactionController extends Controller
                         ]);
                 }
             }
-            $companypackserv = DB::table('package_service_tbl')
-                ->whereIn('pack_serv_package_id',$companypackage_id)
-                ->get();
+            // $companypackserv = DB::table('package_service_tbl')
+            //     ->whereIn('pack_serv_package_id',$companypackage_id)
+            //     ->get();
 
-            foreach($companypackserv as $cps)
-            {
-                $companypackservice_id = $cps->pack_serv_serv_id;
-                $companypackservicedetails = DB::table('service_tbl')->where('service_id',$companypackservice_id)->get();
-                foreach($companypackservicedetails as $cpsdetails)
-                {
-                    $comservice_id = $cpsdetails->service_id;
-                    $comservgroup_id = $cpsdetails->service_group_id;
-                    $comservname = $cpsdetails->service_name;
-                    DB::table('trans_result_service_tbl')
-                        ->insert([
-                            'service_id'    =>  $comservice_id,
-                            'service_name'  =>  $comservname,
-                            'date'          =>  date_create('now'),
-                            'result_id'     =>  $result_id,
-                            'service_group_id'  =>  $comservgroup_id
-                        ]);
-                }
-            }
+            // foreach($companypackserv as $cps)
+            // {
+            //     $companypackservice_id = $cps->pack_serv_serv_id;
+            //     $companypackservicedetails = DB::table('service_tbl')->where('service_id',$companypackservice_id)->get();
+            //     foreach($companypackservicedetails as $cpsdetails)
+            //     {
+            //         $comservice_id = $cpsdetails->service_id;
+            //         $comservgroup_id = $cpsdetails->service_group_id;
+            //         $comservname = $cpsdetails->service_name;
+            //         DB::table('trans_result_service_tbl')
+            //             ->insert([
+            //                 'service_id'    =>  $comservice_id,
+            //                 'service_name'  =>  $comservname,
+            //                 'date'          =>  date_create('now'),
+            //                 'result_id'     =>  $result_id,
+            //                 'service_group_id'  =>  $comservgroup_id
+            //             ]);
+            //     }
+            // }
             
                 
             

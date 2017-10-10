@@ -72,19 +72,23 @@
 		</aside> -->
 		<footer>
 		<header>
+			@foreach($getMedtech as $med)
 			<address style="padding-left: 70px">
 			<center>
-			<p>Name</p>
-			<p>Medical Technologist<br>License No.:</p>
+			<p>{{ $med->emp_fname }} {{ $med->emp_mname }} {{ $med->emp_lname }}</p>
+			<p>Medical Technologist<br>License No.: {{ $med->license_no }}</p>
 			</center>
 			</address>
+			@endforeach
+			@foreach($getPatho as $path)
 			<address style="padding-left: 350px">
 			<center>
 			<p><span contenteditabl></span></p>
-			<p>Name</p>
-			<p>Pathologist</p>
+			<p>{{ $path->emp_fname }} {{ $path->emp_mname }} {{ $path->emp_lname }}</p>
+			<p>Pathologist<br>License No.: {{ $med->license_no }}</p>
 			</center>
 			</address>
+			@endforeach
 		</header><br><br>
 		<header>
 			<address style="">

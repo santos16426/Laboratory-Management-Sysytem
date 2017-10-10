@@ -16,63 +16,44 @@
 			<header>
 				<img alt="" src="banner.jpg">
 			</header>
-		</center><br>
+		</center><br><br>
 		<article>
-			<center>
-				<p>{{ $servgroup_name }}</p>
-			</center><br><br>
 
 		<header>
-		@foreach($patientinfo as $ps)
 			<address style="float: left">
-			<p>Transaction Date:&nbsp;{{ $ps->trans_date }}</p>
-			<p>Name:&nbsp;{{ $ps->patient_fname }} {{ $ps->patient_mname }} {{ $ps->patient_lname }} </p>
-			<p>Refered Employee:&nbsp;</p>
+			@foreach($getPatient as $patient)
+			<p>Name:&nbsp;{{ $patient->patient_fname }} {{ $patient->patient_mname }} {{ $patient->patient_lname }}</p>
+			<p>Age:&nbsp;{{ $patient->age }}</p>
+			<p>Gender:&nbsp;{{ $patient->patient_gender }}</p><br><br>
+			@endforeach
 			</address>
 			<address style="float: right;">
-			<p>Print Date:&nbsp;{{ $date }}</p>
-			<p>Age:&nbsp;{{ $ps->age }}&nbsp;&nbsp;Sex:&nbsp;{{ $ps->patient_gender }}</p>
-			<p>Address:&nbsp;{{ $ps->patient_address }}</p>
-			<p>Company:&nbsp;{{ $ps->corp_name }}</p>
+			<p>Company:&nbsp;{{ $corp_name }}</p>
+			<p>Date:&nbsp;{{ $trans_date }}</p>
 			</address>
-		@endforeach
-			<!-- <table class="meta">
-				<tr>
-					<th><span contenteditable>Invoice #</span></th>
-					<td><span contenteditable>101138</span></td>
-				</tr>
-				<tr>
-					<th><span contenteditable>Date</span></th>
-					<td><span contenteditable>January 1, 2012</span></td>
-				</tr>
-				<tr>
-					<th><span contenteditable>Amount Due</span></th>
-					<td><span id="prefix" contenteditable>$</span><span>600.00</span></td>
-				</tr>
-			</table> -->
-
-			<table class="meta2" style="padding-top: 20px;">
-				<tbody>
-					<tr>
-						<td>TEST</td>
-						<td>RESULT</td>
-						
-					</tr>
-					@foreach($services as $serv)
-					<tr>
-					
-						<td>{{ $serv->service_name }}</td>
-						<td><span contenteditable></span></td>
-					
-					</tr>
-					@endforeach
-				</tbody>
-			</table>
+		</header>
+		<header>			
+				<center>{{ $group_name }}</center>
+			<br><br>
+		</header>
+		<header>
+		<table class="inventory" style="width: 200px">
+			<tr>
+			    <th>Service</th>
+			    <th>Result</th>
+			  </tr>
+			  @foreach($service_results as $service)
+			  <tr>
+			    <td>{{ $service->service_name }}</td>
+			    <td>{{ $service->medserv1_result }}</td>
+			  </tr>
+			  @endforeach
+		</table>
 		</header>
 		</article>
 		<!-- <aside>
-			<h1><span contenteditable>Additional Notes</span></h1>
-			<div contenteditable>
+			<h1><span>Additional Notes</span></h1>
+			<div>
 				<p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
 			</div>
 		</aside> -->
@@ -80,8 +61,8 @@
 		<header style="padding-top: 20%">
 			<address style="float: left">
 			<center>
-			<p><span contenteditable>NAME</span></p>
-			<p>Medical Technologist<br>License No.:<span contenteditable></span></p>
+			<p><span>NAME</span></p>
+			<p>Medical Technologist<br>License No.:<span></span></p>
 			</center>
 			<br>
 				<p>San Juan City</p>
@@ -91,8 +72,8 @@
 			</address>
 			<address style="float: right;">
 			<center>
-			<p><span contenteditable>NAME</span></p>
-			<p>Pathologist<br>License No.:<span contenteditable></span><p></p>
+			<p><span>NAME</span></p>
+			<p>Pathologist<br>License No.:<span></span><p></p>
 			</center>
 			<br>
 				<p>Quezon City</p>

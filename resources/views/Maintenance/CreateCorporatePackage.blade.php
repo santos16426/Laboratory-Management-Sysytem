@@ -277,8 +277,8 @@
                                     </label>
                                 </div>
                                 <div class="radio">
-                                    <label for="All Ages">
-                                        <input type="radio" id="All Ages" name="age" value="All Ages" /> All Ages
+                                    <label for="All">
+                                        <input type="radio" id="All" name="age" value="All" /> All Ages
                                     </label>
                                 </div>
                             </div>

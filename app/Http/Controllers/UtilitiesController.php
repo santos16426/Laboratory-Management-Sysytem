@@ -326,14 +326,9 @@ class UtilitiesController extends Controller
 		$adminaccess = DB::table('employee_useraccess_tbl')->where('emp_type_id',0)->get();
 		$useraccess = DB::table('employee_useraccess_tbl')
 			->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','emp_type_id')
-			->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
 			->where('RoleStatus',1)
-			->where('LabStatus',1)
 			->whereNotIn('emp_type_id',[0])
-			->orWhere('RoleStatus',1)
-			->where('LabStatus',null)
-			->whereNotIn('emp_type_id',[0])
-			
+			->distinct()
 			->get();
         return view ('Utilities.UserAccess',['admin'=>$adminaccess,'users'=>$useraccess]);
     }

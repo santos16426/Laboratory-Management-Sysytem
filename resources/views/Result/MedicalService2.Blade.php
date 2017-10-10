@@ -33,7 +33,7 @@
 	<div class="col-lg-12">
 		<section class="panel">
 			<form method="POST" action="/save_Medserv2"  enctype="multipart/form-data">
-				<input type="hidden" name="result_id" value="{{ $result_id }}">
+			<input type="hidden" name="result_id" value="{{ $result_id }}">
 			<header class="panel-heading">
 				Medical Service
 			</header>
@@ -169,12 +169,12 @@
 						  <tr>
 						  	<input type="hidden" name="service_id[]" value="{{ $serv->service_id }}">
 						    <td><center>{{ $serv->service_name}}</center></td>
-						    <td><input class="form-control" type="text" name="intresult{{ $serv->service_id }}" id="intresult{{ $serv->service_id }}" value=""></td>
-						    <td><input class="form-control" type="text" name="intunit{{ $serv->service_id }}" id="intunit{{ $serv->service_id }}" value=""></td>
-						    <td><input class="form-control" type="text" name="intref{{ $serv->service_id }}" id="intref{{ $serv->service_id }}" value=""></td>
-						    <td><input class="form-control" type="text" name="conresult{{ $serv->service_id }}" id="conresult{{ $serv->service_id }}" value=""></td>
-						    <td><input class="form-control" type="text" name="conunit{{ $serv->service_id }}" id="conunit{{ $serv->service_id }}" value=""></td>
-						    <td><input class="form-control" type="text" name="conref{{ $serv->service_id }}" id="conref{{ $serv->service_id }}" value=""></td>
+						    <td><input class="form-control" type="text" name="intresult{{ $serv->service_id }}" id="intresult{{ $serv->service_id }}" value="{{ $serv->Medserv2_intresult }}"></td>
+						    <td><input class="form-control" type="text" name="intunit{{ $serv->service_id }}" id="intunit{{ $serv->service_id }}" value="{{ $serv->Medserv2_intunit }}"></td>
+						    <td><input class="form-control" type="text" name="intref{{ $serv->service_id }}" id="intref{{ $serv->service_id }}" value="{{ $serv->Medserv2_intref }}"></td>
+						    <td><input class="form-control" type="text" name="conresult{{ $serv->service_id }}" id="conresult{{ $serv->service_id }}" value="{{ $serv->Medserv2_conresult }}"></td>
+						    <td><input class="form-control" type="text" name="conunit{{ $serv->service_id }}" id="conunit{{ $serv->service_id }}" value="{{ $serv->Medserv2_conunit }}"></td>
+						    <td><input class="form-control" type="text" name="conref{{ $serv->service_id }}" id="conref{{ $serv->service_id }}" value="{{ $serv->Medserv2_conref }}"></td>
 						  </tr>
 						  @endforeach
 					</table>

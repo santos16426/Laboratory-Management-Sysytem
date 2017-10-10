@@ -30,9 +30,7 @@
 			@foreach($servgroup as $sg)
 				<li><a href="#{{ $sg->servgroup_id }}" class="tabs" data-id="{{ $sg->servgroup_id }}" data-toggle="tab">{{ $sg->servgroup_name }}</a></li>
 			@endforeach
-			@if(count($servgroup)>0)
-				<li><a href="#Others" class="tabs" data-id='null' data-toggle="tab">Others</a></li>
-			@endif
+			
 		</ul>
 	</header>
   @endif
@@ -60,28 +58,6 @@
 				</div>
 	    	</div>
     	@endforeach
-    	@if(count($servgroup)>0)
-    	<div class="tab-pane" id="Others">
-    		<div class="box box-primary">
-			    <div class="box-body">
-			      <h3><center>Others</center></h3>
-			      <table class="table table-bordered table-hover dataTable" id="result_tblnull">
-			      <thead>
-			        <tr>
-			          <th>Transaction Date</th>
-			          <th>Patient Last Name</th>
-			          <th>Patient Middle Name</th>
-			          <th>Patient First Name</th>
-			          <th>Action</th>
-			        </tr>
-			      </thead>
-			      <tbody>
-			      </tbody>
-			    </table>
-			    </div>
-			  </div>
-    	</div>
-    	@endif
   	</div>
   	@else
   	<div class="panel-body">

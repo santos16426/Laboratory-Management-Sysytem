@@ -31,6 +31,8 @@
 <div class="row">
 	<div class="col-lg-12">
 		<section class="panel">
+			<form method="POST" action="/save_Medserv1"  enctype="multipart/form-data">
+			<input type="hidden" name="result_id" value="{{ $result_id }}">
 			<header class="panel-heading">
 				Medical Service 1
 			</header>
@@ -161,7 +163,7 @@
 						  <tr>
 						  	<input type="hidden" name="service_id[]" value="{{ $serv->service_id }}">
 						    <td><center>{{ $serv->service_name}}</center></td>
-						    <td><input class="form-control" type="text" name="result{{ $serv->service_id }}" id="result{{ $serv->service_id }}" value=""></td>
+						    <td><input class="form-control" value="{{ $serv->medserv1_result }}" type="text" name="result{{ $serv->service_id }}" id="result{{ $serv->service_id }}"></td>
 						  </tr>
 						  @endforeach
 					</table>
@@ -287,9 +289,10 @@
 			</div>
 			<center>
 				<button type="button" class="btn btn-xs" style="width: 8%">Back</button>
-				<button type="button" class="btn btn-xs btn-info" style="width: 8%">View</button>
 		        <button type="submit" class="btn btn-xs btn-success"  style="width: 8%">Save & Print</button>
 		    </center>
+		    {{ csrf_field() }}
+		</form>
 		</section>
 	</div>
 </div>

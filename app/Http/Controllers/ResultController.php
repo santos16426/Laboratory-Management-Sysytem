@@ -48,7 +48,59 @@ class ResultController extends Controller
             }
         }
         $service_results = DB::table('trans_result_service_tbl')->whereIn('service_id',$service_id)->where('result_id',$result_id)->get();
-        return view('Transaction.ResultLayout.MedicalService2',['service_results'=>$service_results,'group_name'=>$group_name,'corp_name'=>$corp_name,'getPatient'=>$getPatient,'trans_date'=>$trans_date]);
+        foreach($service_results as $med)
+        {
+            $med_id = $med->medserv1_medtech;
+            $path_id = $med->medserv1_pathologist;
+        }
+        $getMedtech = DB::table('employee_tbl')->where('emp_id',$med_id)->get();
+        $getPatho = DB::table('employee_tbl')->where('emp_id',$path_id)->get();
+        return view('Transaction.ResultLayout.MedicalService2',['service_results'=>$service_results,'group_name'=>$group_name,'corp_name'=>$corp_name,'getPatient'=>$getPatient,'trans_date'=>$trans_date,'getMedtech'=>$getMedtech,'getPatho'=>$getPatho]);
+    }
+    function printMedserv1()
+    {
+        $result_id = Session::get('result_id');
+        $service_id = Session::get('service_ids');
+        $getTrans_id = DB::table('transresult_tbl')->where('result_id',$result_id)->get();
+        foreach($getTrans_id as $trans)
+        {
+            $trans_id = $trans->trans_id;
+        }
+        $getPatient = DB::table('transaction_tbl')
+                        ->leftjoin('patient_tbl','patient_tbl.patient_id','=','trans_patient_id')
+                        ->where('trans_id',$trans_id)
+                        ->get();
+        $corp_name = "N/A";
+        $getGroupName = DB::table('service_tbl')
+                            ->leftjoin('service_group_tbl','servgroup_id','=','service_group_id')
+                            ->whereIn('service_id',$service_id)
+                            ->get();
+        foreach($getGroupName as $group)
+        {
+            $group_name = $group->servgroup_name;
+        }
+        foreach($getPatient as $pid)
+        {
+            $trans_date = date('F jS, Y',strtotime($pid->trans_date));
+            $patient_id = $pid->patient_id;
+            if($pid->patient_corp_id != null)
+            {
+                $getCorpName = DB::table('corporate_accounts_tbl')->where('corp_id',$pid->patient_corp_id)->get();
+                foreach($getCorpName as $corp)
+                {
+                    $corp_name = $corp->corp_name;
+                }
+            }
+        }
+        $service_results = DB::table('trans_result_service_tbl')->whereIn('service_id',$service_id)->where('result_id',$result_id)->get();
+        foreach($service_results as $med)
+        {
+            $med_id = $med->medserv1_medtech;
+            $path_id = $med->medserv1_pathologist;
+        }
+        $getMedtech = DB::table('employee_tbl')->where('emp_id',$med_id)->get();
+        $getPatho = DB::table('employee_tbl')->where('emp_id',$path_id)->get();
+        return view('Transaction.ResultLayout.MedicalService',['service_results'=>$service_results,'group_name'=>$group_name,'corp_name'=>$corp_name,'getPatient'=>$getPatient,'trans_date'=>$trans_date,'getMedtech'=>$getMedtech,'getPatho'=>$getPatho]);
     }
     function save_Medserv2()
     {
@@ -125,6 +177,77 @@ class ResultController extends Controller
         Session::put('service_ids',$service_ids);
 
         return redirect('/Transactions/ResultLayout/MedicalService2');
+    }
+    function save_Medserv1()
+    {
+        $service_ids = $_POST['service_id'];
+        $result_id = $_POST['result_id'];
+        $file = $_FILES['medtech_img'];
+        $file_error = $file['error'];
+        // File properties
+        $file_name = $file['name'];
+        $file_tmp = $file['tmp_name'];
+        $file_size = $file['size'];
+
+        //Work out the file extension
+        $file_ext = explode('.',$file_name);
+        $file_ext = strtolower(end($file_ext));
+
+        $allowed = array('jpg','png','jpeg','bmp');
+        if(in_array($file_ext,$allowed))
+        {
+            if($file_error === 0)
+            {
+                if($file_size <= 2097152)
+                {
+                    $medtechsign = uniqid('',true) . '.' . $file_ext;
+                    $file_destination = 'Employee_signatures/' . $medtechsign;
+                    move_uploaded_file($file_tmp, $file_destination);
+                }
+            }
+        }
+        $patho = $_FILES['pathologist_img'];
+        $patho_error = $patho['error'];
+        // File properties
+        $patho_name = $patho['name'];
+        $patho_tmp = $patho['tmp_name'];
+        $patho_size = $patho['size'];
+
+        //Work out the file extension
+        $patho_ext = explode('.',$patho_name);
+        $patho_ext = strtolower(end($patho_ext));
+
+        $allowed = array('jpg','png','jpeg','bmp');
+        if(in_array($patho_ext,$allowed))
+        {
+            if($patho_error === 0)
+            {
+                if($patho_size <= 2097152)
+                {
+                    $pathosign = uniqid('',true) . '.' . $patho_ext;
+                    $patho_destination = 'Employee_signatures/' . $pathosign;
+                    move_uploaded_file($patho_tmp, $patho_destination);
+                }
+            }
+        }
+        for ($i=0; $i < count($service_ids); $i++) { 
+            DB::table('trans_result_service_tbl')
+                ->where('service_id',$service_ids[$i])
+                ->where('result_id',$result_id)
+                ->update([
+                    'medserv1_printdate'=>date_create('now'),
+                    'medserv1_result'=>$_POST['result'.$service_ids[$i]],
+                    'medserv1_medtech_img'=>$medtechsign,
+                    'medserv1_medtech'=>$_POST['medtech'],
+                    'medserv1_pathologist_img'=>$pathosign,
+                    'medserv1_pathologist'=>$_POST['pathologist'],
+                ]);
+        }
+        Session::put('printResult',true);
+        Session::put('result_id',$result_id);
+        Session::put('service_ids',$service_ids);
+
+        return redirect('/Transactions/ResultLayout/MedicalService');
     }
     function getLicense(Request $req)
     {
@@ -327,6 +450,7 @@ class ResultController extends Controller
                         ->where('service_tbl.service_group_id',$group_id)
                         ->where('result_id',$result_id)
                         ->where('result_medserv1',1)
+                        ->distinct()
                         ->get();
         $medtech = DB::table('employee_tbl')
                     ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
@@ -395,6 +519,7 @@ class ResultController extends Controller
                         ->where('service_tbl.service_group_id',$group_id)
                         ->where('result_id',$result_id)
                         ->where('result_medserv2',1)
+                        ->distinct()
                         ->get();
         $medtech = DB::table('employee_tbl')
                     ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
