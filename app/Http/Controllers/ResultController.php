@@ -356,7 +356,9 @@ class ResultController extends Controller
                 $enableLayout['result_drug'] = 1;
             }
         }
+
         $corp = DB::table('transcorp_tbl')->where('trans_id',$id)->get();
+        
         if(count($corp)>0)
         {
             foreach($corp as $corp)
@@ -364,9 +366,10 @@ class ResultController extends Controller
                 $corpPack_id = $corp->corpPack_id;
             }
             $check = DB::table('corp_package_tbl')->where('corpPack_id',$corpPack_id)->get();
+
             foreach($check as $exam)
             {
-                if($exam->physical_exam == 1)
+                if($exam->physical_exam == 2)
                 {
                     $physicalexam = 1;
                 }
@@ -395,7 +398,63 @@ class ResultController extends Controller
         return view ('Result.Ultrasound');
     }
     function xray(){
-        return view ('Result.Xray');
+        $emp_type_id = Session::get('emp_type_id');
+        $getLab_id = DB::table('employee_role_tbl')
+                        ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+                        ->where('role_id',$emp_type_id)
+                        ->get();
+        foreach($getLab_id as $lab)
+        {
+            $lab_id = $lab->lab_id;
+        }
+        $trans_id = $_GET['trans_id'];
+        $group_id = $_GET['group_id'];  
+        $patientinfo = DB::table('transaction_tbl')
+                        ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+                        ->where('trans_id',$trans_id)
+                        ->get();
+        foreach($patientinfo as $p)
+        {
+            $corp_id = $p->patient_corp_id;
+            if($corp_id != null)
+            {
+                $corpn = DB::table('corporate_accounts_tbl')->where('corp_id',$corp_id)->get();
+                foreach ($corpn as $cor) {
+                    $corp_name = $cor->corp_name;
+                }
+            }
+            else
+            {
+                $corp_name = "N/A";
+            }
+        }
+        $ref_id = DB::table('trans_emprebate_tbl')
+                    ->leftjoin('employee_tbl','employee_tbl.emp_id','=','trans_emprebate_tbl.emp_id')
+                    ->where('trans_id',$trans_id)->get();
+        if(count($ref_id)>0)
+        {
+            foreach($ref_id as $emp)
+            {
+                $empReb_name = $emp->emp_fname . " " . $emp->emp_mname . "" . $emp->emp_lname;
+            }
+        }
+        else
+        {
+            $empReb_name = "N/A";
+        }
+        $trans_date = DB::table('transaction_tbl')->where('trans_id',$trans_id)->get();
+        foreach($trans_date as $d)
+        {
+            $trans_date=$d->trans_date;
+        }
+        $tdate = date('F jS, Y',strtotime($trans_date));
+        $date = date('F jS, Y',strtotime('now'));
+        $resultd = DB::table('transresult_tbl')->where('trans_id',$trans_id)->get();
+        foreach($resultd as $r)
+        {
+            $result_id = $r->result_id;
+        }
+        return view ('Result.Xray',['patient'=>$patientinfo,'tdate'=>$tdate,'datenow'=>$date,'empReb_name'=>$empReb_name,'corp_name'=>$corp_name,'result_id'=>$result_id,'lab_id'=>$lab_id]);
     }
     function medservice(){
         $trans_id = $_GET['trans_id'];

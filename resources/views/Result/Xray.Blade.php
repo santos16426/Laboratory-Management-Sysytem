@@ -26,11 +26,12 @@
 <div class="row">
 	<div class="col-lg-12">
 		<section class="panel">
+			<form method="POST" action="/save_xrayResult"  enctype="multipart/form-data">
 			<header class="panel-heading">
 				X-Ray
 			</header>
 			<div class="panel-body">
-				<form action="" method="" id=""><br>
+			@foreach($patient as $patientinfo)
 			<div class="col-md-12">
 				<div class="col-md-6">
 			        <div class="form-group">
@@ -39,7 +40,7 @@
 			                  <div class="input-group-addon">
 			                   Name
 			                 </div>
-			                <input readonly="" name="name" id="name" type="ecgno" placeholder="Name" class="form-control input-md" required>
+			                <input readonly="" name="name" id="name" value="{{ $patientinfo->patient_fname }} {{ $patientinfo->patient_mname }} {{ $patientinfo->patient_lname }}"  type="text" placeholder="Name" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -51,7 +52,7 @@
 			                  <div class="input-group-addon">
 			                  Laboratory No.
 			                 </div>
-			                <input name="labno" id="labno" placeholder="Laboratory No." class="form-control input-md" required>
+			                <input readonly="" value="{{ $lab_id }}" name="labno" id="labno" placeholder="Laboratory No." class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -66,7 +67,7 @@
 			                  <div class="input-group-addon">
 			                   Age
 			                 </div>
-			                <input readonly="" name="age" id="age" type="text" placeholder="Age" class="form-control input-md" required>
+			                <input readonly="" name="age" id="age" value="{{ $patientinfo->age }}" placeholder="Age" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -76,9 +77,9 @@
 			              <div class="col-md-12">
 			                 <div class="input-group">
 			                  <div class="input-group-addon">
-			                   Date
+			                   Print Date
 			                 </div>
-			                <input readonly="" name="date" id="date" placeholder="Date" class="form-control input-md" required>
+			                <input readonly="" name="printdate" id="printdate" value="{{ $datenow }}" placeholder="Print Date" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -93,7 +94,7 @@
 			                  <div class="input-group-addon">
 			                   Gender
 			                 </div>
-			                <input readonly="" name="gender" id="gender" type="text" placeholder="Gender" class="form-control input-md" required>
+			                <input readonly="" name="sex" id="sex" value="{{ $patientinfo->patient_gender }}" type="text" placeholder="Sex" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -103,7 +104,7 @@
 			       </div><br><br><br>
 		        </div> 
 		    </div>  
-
+		    @endforeach
 		    <div class="col-md-12">
 				<div class="col-md-6">
 			        <div class="form-group">
@@ -240,13 +241,12 @@
 	        {{ csrf_field() }}
 	      </div>
 					
-				</form>
 			</div>
 			<center>
 				<button type="button" class="btn btn-xs" style="width: 8%">Back</button>
-				<button type="button" class="btn btn-xs btn-info" style="width: 8%">View</button>
 		        <button type="submit" class="btn btn-xs btn-success"  style="width: 8%">Save & Print</button>
 		    </center>
+		</form>
 		</section>
 	</div>
 </div>
