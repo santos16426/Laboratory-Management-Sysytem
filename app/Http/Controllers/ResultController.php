@@ -12,6 +12,44 @@ class ResultController extends Controller
     {
         date_default_timezone_set('Singapore');
     }
+    function printMedreq()
+    {
+        $result_id = Session::get('result_id');
+        $corppack_id = Session::get('corppack_id');
+        $getTrans_id = DB::table('transresult_tbl')->where('result_id',$result_id)->get();
+        foreach($getTrans_id as $trans)
+        {
+            $trans_id = $trans->trans_id;
+        }
+        $getPatient = DB::table('transaction_tbl')
+                        ->leftjoin('patient_tbl','patient_tbl.patient_id','=','trans_patient_id')
+                        ->where('trans_id',$trans_id)
+                        ->get();
+        $corp_name = "N/A";
+        
+        foreach($getPatient as $pid)
+        {
+            $trans_date = date('F jS, Y',strtotime($pid->trans_date));
+            $patient_id = $pid->patient_id;
+            if($pid->patient_corp_id != null)
+            {
+                $getCorpName = DB::table('corporate_accounts_tbl')->where('corp_id',$pid->patient_corp_id)->get();
+                foreach($getCorpName as $corp)
+                {
+                    $corp_name = $corp->corp_name;
+                }
+            }
+        }
+        $details = DB::table('trans_result_service_tbl')->where('corppack_id',$corppack_id)->where('result_id',$result_id)->get();
+        foreach($details as $emp_id)
+        {
+            $physician = $emp_id->medreq_examphysician;
+            $eval = $emp_id->medreq_evaluated;
+        }
+        $physicianName = DB::table('employee_tbl')->where('emp_id',$physician)->get();
+        $evalName = DB::table('employee_tbl')->where('emp_id',$eval)->get();
+        return view('Transaction.ResultLayout.MedicalRequest',['corp_name'=>$corp_name,'getPatient'=>$getPatient,'trans_date'=>$trans_date,'details'=>$details,'physicianName'=>$physicianName,'evalName'=>$evalName]);
+    }
     function printMedserv2()
     {
         $result_id = Session::get('result_id');
@@ -101,6 +139,64 @@ class ResultController extends Controller
         $getMedtech = DB::table('employee_tbl')->where('emp_id',$med_id)->get();
         $getPatho = DB::table('employee_tbl')->where('emp_id',$path_id)->get();
         return view('Transaction.ResultLayout.MedicalService',['service_results'=>$service_results,'group_name'=>$group_name,'corp_name'=>$corp_name,'getPatient'=>$getPatient,'trans_date'=>$trans_date,'getMedtech'=>$getMedtech,'getPatho'=>$getPatho]);
+    }
+    function save_medreq()
+    {
+        $corppack_id = $_POST['corppack_id'];
+        $result_id = $_POST['result_id'];
+        DB::table('trans_result_service_tbl')
+            ->where('corppack_id',$corppack_id)
+            ->where('result_id',$result_id)
+            ->update([
+                'medreq_dateofexam'=> date_create('now'),
+                'medreq_examphysician'=>$_POST['examphysician'],
+                'medreq_evaluated'=>$_POST['eval'],
+                'medreq_history'=>$_POST['history'],
+                'medreq_datediag'=>date_create($_POST['datediag']),
+                'medreq_illness'=>$_POST['illness'],
+                'medreq_medication'=>$_POST['medication'],
+                'medreq_remarks1'=>$_POST['remark1'],
+                'medreq_famhisto1'=>$_POST['famhisto1'],
+                'medreq_famhisto2'=>$_POST['famhisto2'],
+                'medreq_smoker'=>$_POST['smoker'],
+                'medreq_sticks'=>$_POST['sticks'],
+                'medreq_remarks2'=>$_POST['remarks2'],
+                'medreq_packyears'=>$_POST['packyears'],
+                'medreq_alcohol'=>$_POST['alcohol'],
+                'medreq_bottles'=>$_POST['bottles'],
+                'medreq_remarks3'=>$_POST['remarks3'],
+                'medreq_shots'=>$_POST['shots'],
+                'medreq_obstetric1'=>$_POST['obstetric1'],
+                'medreq_obstetric2'=>$_POST['obstetric2'],
+                'medreq_visual'=>$_POST['visual'],
+                'medreq_temp'=>$_POST['temp'],
+                'medreq_height'=>$_POST['height'],
+                'medreq_weight'=>$_POST['weight'],
+                'medreq_pulse'=>$_POST['pulse'],
+                'medreq_bloodpressure'=>$_POST['bloodpressure'],
+                'medreq_genapp'=>$_POST['genapp'],
+                'medreq_eyes'=>$_POST['eyes'],
+                'medreq_ear'=>$_POST['ear'],
+                'medreq_neck'=>$_POST['neck'],
+                'medreq_breast'=>$_POST['breast'],
+                'medreq_chest'=>$_POST['chest'],
+                'medreq_heart'=>$_POST['heart'],
+                'medreq_abdomen'=>$_POST['abdomen'],
+                'medreq_exanal'=>$_POST['exanal'],
+                'medreq_exgen'=>$_POST['exgen'],
+                'medreq_extermities'=>$_POST['extermities'],
+                'medreq_cbc'=>$_POST['cbc'],
+                'medreq_fecalysis'=>$_POST['fecalysis'],
+                'medreq_urinalysis'=>$_POST['urinalysis'],
+                'medreq_xray'=>$_POST['xray'],
+                'medreq_drugtest'=>$_POST['drugtest'],
+                'medreq_assess'=>$_POST['assess'],
+            ]);
+            Session::put('printResult',true);
+            Session::put('result_id',$result_id);
+            Session::put('corppack_id',$corppack_id);
+
+        return redirect('/Transactions/ResultLayout/MedicalRequest');
     }
     function save_Medserv2()
     {
@@ -260,17 +356,27 @@ class ResultController extends Controller
         return response()->json($license);
     }
      public function resultdashboard(){
-        $emp_type_id = Session::get('emp_type_id');
-        $lab_id = DB::table('employee_role_tbl')->select('lab_id')->where('role_id',$emp_type_id)->get();
-        foreach($lab_id as $lab)
+        if(Session::get('emp_type_id')== 0)
         {
-            $labid = $lab->lab_id;
+            $servgroup = DB::table('service_group_tbl')
+                            ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+                            ->where('ServGroupStatus',1)
+                            ->get();
         }
-        $servgroup = DB::table('service_group_tbl')
-                        ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
-                        ->where('service_group_tbl.lab_id',$labid)
-                        ->where('ServGroupStatus',1)
-                        ->get();
+        else
+        {
+            $emp_type_id = Session::get('emp_type_id');
+            $lab_id = DB::table('employee_role_tbl')->select('lab_id')->where('role_id',$emp_type_id)->get();
+            foreach($lab_id as $lab)
+            {
+                $labid = $lab->lab_id;
+            }
+            $servgroup = DB::table('service_group_tbl')
+                            ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','service_group_tbl.lab_id')
+                            ->where('service_group_tbl.lab_id',$labid)
+                            ->where('ServGroupStatus',1)
+                            ->get();
+        }
         return view('Transaction.ResultDashboard',['servgroup'=>$servgroup]);
     }
     public function uploadresults()
@@ -436,12 +542,10 @@ class ResultController extends Controller
         {
             $result_id = $r->result_id;
         }
-        $services = DB::table('trans_result_service_tbl')
-                        ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
-                        ->where('service_tbl.service_group_id',$group_id)
+        $corppack_id = DB::table('trans_result_service_tbl')
+                        ->select('corppack_id')
                         ->where('result_id',$result_id)
-                        ->where('result_medserv1',1)
-                        ->distinct()
+                        ->where('service_id',null)
                         ->get();
         $doctor = DB::table('employee_tbl')
                     ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
@@ -450,7 +554,7 @@ class ResultController extends Controller
                     ->get();
         
         
-        return view ('Result.MedicalRequest',['patient'=>$patientinfo,'tdate'=>$tdate,'datenow'=>$date,'empReb_name'=>$empReb_name,'corp_name'=>$corp_name,'services'=>$services,'doctor'=>$doctor,'result_id'=>$result_id]);
+        return view ('Result.MedicalRequest',['patient'=>$patientinfo,'tdate'=>$tdate,'datenow'=>$date,'empReb_name'=>$empReb_name,'corp_name'=>$corp_name,'corppack_id'=>$corppack_id,'doctor'=>$doctor,'result_id'=>$result_id]);
     }
     function ecg(){
         return view ('Result.Ecg');

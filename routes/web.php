@@ -194,5 +194,7 @@ Route::post('/activatecorppack','UtilitiesController@activatecorppack');
 Route::get('/getLicense','ResultController@getLicense');
 Route::post('/save_Medserv2','ResultController@save_Medserv2');
 Route::post('/save_Medserv1','ResultController@save_Medserv1');
+Route::post('/save_medreq','ResultController@save_medreq');
 Route::get('/Transactions/ResultLayout/MedicalService','ResultController@printMedserv1');
 Route::get('/Transactions/ResultLayout/MedicalService2','ResultController@printMedserv2');
+Route::get('/Transactions/ResultLayout/MedicalRequest','ResultController@printMedreq');

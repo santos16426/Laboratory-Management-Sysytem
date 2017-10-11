@@ -1,3 +1,12 @@
+
+
+@if(Session::has('loggedin'))
+<script type="text/javascript">
+    window.location = "{{ url('/Admin/Dashboard') }}";
+</script>
+@else
+
+@endif
 <!DOCTYPE html>
 <html lang="en">
 <head>

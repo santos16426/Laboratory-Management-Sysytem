@@ -27,6 +27,10 @@
 	<div class="col-lg-12">
 		<section class="panel">
 			<form method="POST" action="/save_medreq">
+				@foreach($corppack_id as $corpid)
+					<input type="hidden" name="corppack_id" value="{{ $corpid->corppack_id }}">
+				@endforeach
+					<input type="hidden" name="result_id" value="{{ $result_id }}">
 			<header class="panel-heading">
 				Medical Request
 			</header>
@@ -151,7 +155,7 @@
 							<div class="col-md-12" >
 								<div class="input-group" >
 									<span class="input-group-addon">Evaluated By</span>
-									<select class="form-control package_id select2" name="package_id_dropdown" id="package_id" style="width: 100%" >
+									<select class="form-control eval select2" name="eval" id="eval" style="width: 100%" >
 									@foreach($doctor as $doc1)
 										<option value="{{ $doc1->emp_id }}">{{ $doc1->emp_fname }} {{ $doc1->emp_mname }} {{ $doc1->emp_lname }}</option>
 									@endforeach
@@ -203,7 +207,7 @@
 			                  <div class="input-group-addon">
 			                   Date of Diagnosis
 			                 </div>
-			                <input  name="datediag" id="datediag" type="text" placeholder="Date of Diagnosis" class="form-control input-md" required>
+			                <input  name="datediag" id="datediag" type="text" placeholder="Date of Diagnosis" class="form-control input-md default-date-picker" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -397,7 +401,7 @@
 			 	 <div class="col-md-6">
 			        <div class="form-group">
 		              	<div class="col-md-12">
-			                <textarea  name=obstetric2"" id="obstetric2" type="text" placeholder="" class="form-control input-md" required></textarea>
+			                <textarea  name="obstetric2" id="obstetric2" type="text" placeholder="" class="form-control input-md" required></textarea>
 			          	</div>  
 			       </div><br><br><br>
 		        </div> 

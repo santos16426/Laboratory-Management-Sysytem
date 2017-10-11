@@ -440,6 +440,12 @@ class TransactionController extends Controller
                     'charge'  =>  $corpcharge
 
             ]);
+            DB::table('trans_result_service_tbl')
+                ->insert([
+                    'corppack_id'=>$corppackage_id,
+                    'result_id'=>$result_id,
+                    'date'=>date_create('now')
+                ]);
             $corpPack_id = $_POST['corppackage_id'];
             $srv = DB::table('corp_packserv_tbl')
                 ->leftjoin('service_tbl','service_tbl.service_id','=','corp_packserv_tbl.service_id')
