@@ -26,11 +26,16 @@
 <div class="row">
 	<div class="col-lg-12">
 		<section class="panel">
+			<form method="POST" action="/save_ecg"  enctype="multipart/form-data">
+			<input type="hidden" name="result_id" value="{{ $result_id }}">
+			@foreach($services as $serv)
+			<input type="hidden" name="service_id" value="{{ $serv->service_id }}">
+			@endforeach	
 			<header class="panel-heading">
 				ECG
 			</header>
 			<div class="panel-body">
-				<form action="" method="" id=""><br>
+			@foreach($patient as $p)	
 			<div class="col-md-12">
 				<div class="col-md-6">
 			        <div class="form-group">
@@ -51,7 +56,7 @@
 			                  <div class="input-group-addon">
 			                  Name
 			                 </div>
-			                <input readonly="" name="name" id="name" placeholder="Name" class="form-control input-md" required>
+			                <input readonly="" name="name" id="name" value="{{ $p->patient_fname }} {{ $p->patient_mname }} {{ $p->patient_lname }}" placeholder="Name" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -119,6 +124,9 @@
 								<div class="input-group" >
 									<span class="input-group-addon">Doctor</span>
 									<select class="form-control package_id select2" name="doctor" id="doctor" style="width: 100%" >
+										@foreach($doctors as $doc)
+											<option value="{{ $doc->emp_id }}">{{ $doc->emp_fname }} {{ $doc->emp_mname }} {{ $doc->emp_lname }}</option>
+										@endforeach
 									</select>
 								</div>
 							</div>  
@@ -146,7 +154,7 @@
 			                  <div class="input-group-addon">
 			                   Sex
 			                 </div>
-			                <input readonly="" name="sex" id="sex" type="text" placeholder="Sex" class="form-control input-md" required>
+			                <input readonly="" name="sex" value="{{ $p->patient_gender }}" id="sex" type="text" placeholder="Sex" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -158,13 +166,13 @@
 			                  <div class="input-group-addon">
 			                   Age
 			                 </div>
-			                <input readonly="" name="age" id="age" placeholder="Age" class="form-control input-md" required>
+			                <input readonly="" name="age" id="age" value="{{ $p->age }}" placeholder="Age" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
 		        </div> 
 		    </div>
-
+		    @endforeach
 		    <div class="col-md-12">
 				<div class="col-md-6">
 			        <div class="form-group">
@@ -225,13 +233,13 @@
 	        {{ csrf_field() }}
 	      </div>
 					
-				</form>
+				
 			</div>
 			<center>
 				<button type="button" class="btn btn-xs" style="width: 8%">Back</button>
-				<button type="button" class="btn btn-xs btn-info" style="width: 8%">View</button>
 		        <button type="submit" class="btn btn-xs btn-success"  style="width: 8%">Save & Print</button>
 		    </center>
+		</form>
 		</section>
 	</div>
 </div>

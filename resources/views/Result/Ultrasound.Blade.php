@@ -26,11 +26,16 @@
 <div class="row">
 	<div class="col-lg-12">
 		<section class="panel">
+			<form method="POST" action="/save_ultrasound"  enctype="multipart/form-data">
 			<header class="panel-heading">
 				Ultrasound
 			</header>
 			<div class="panel-body">
-				<form action="" method="" id=""><br>
+			<input type="hidden" name="result_id" value="{{ $result_id }}">
+			@foreach($services as $serv)
+			<input type="hidden" name="service_id[]" value="{{ $serv->service_id }}">
+			@endforeach
+			@foreach($patient as $patientinfo)
 			<div class="col-md-12">
 				<div class="col-md-6">
 			        <div class="form-group">
@@ -39,7 +44,7 @@
 			                  <div class="input-group-addon">
 			                   Name
 			                 </div>
-			                <input readonly="" name="name" id="name" type="ecgno" placeholder="Name" class="form-control input-md" required>
+			                <input readonly="" name="name" id="name" value="{{ $patientinfo->patient_fname }} {{ $patientinfo->patient_mname }} {{ $patientinfo->patient_lname }}"  type="text" placeholder="Name" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -51,7 +56,7 @@
 			                  <div class="input-group-addon">
 			                  Laboratory No.
 			                 </div>
-			                <input readonly="" name="labno" id="labno" placeholder="Laboratory No." class="form-control input-md" required>
+			                <input readonly="" value="{{ $lab_id }}" name="labno" id="labno" placeholder="Laboratory No." class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -66,7 +71,7 @@
 			                  <div class="input-group-addon">
 			                   Age
 			                 </div>
-			                <input readonly="" name="age" id="age" type="text" placeholder="Age" class="form-control input-md" required>
+			                <input readonly="" name="age" id="age" value="{{ $patientinfo->age }}" placeholder="Age" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -76,9 +81,9 @@
 			              <div class="col-md-12">
 			                 <div class="input-group">
 			                  <div class="input-group-addon">
-			                   Date
+			                   Print Date
 			                 </div>
-			                <input readonly="" name="date" id="date" placeholder="Date" class="form-control input-md" required>
+			                <input readonly="" name="printdate" id="printdate" value="{{ $datenow }}" placeholder="Print Date" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -93,7 +98,7 @@
 			                  <div class="input-group-addon">
 			                   Gender
 			                 </div>
-			                <input readonly="" name="gender" id="gender" type="text" placeholder="Gender" class="form-control input-md" required>
+			                <input readonly="" name="sex" id="sex" value="{{ $patientinfo->patient_gender }}" type="text" placeholder="Sex" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -103,7 +108,7 @@
 			       </div><br><br><br>
 		        </div> 
 		    </div>  
-
+		    @endforeach
 		    <div class="col-md-12">
 				<div class="col-md-6">
 			        <div class="form-group">
@@ -112,7 +117,7 @@
 			                  <div class="input-group-addon">
 			                   Title
 			                 </div>
-			                <input readonly="" name="title" id="title" type="text" placeholder="Title" class="form-control input-md" required>
+			                <input name="title" id="title" type="text" placeholder="Title" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -128,8 +133,7 @@
 			        <div class="form-group">
 			              <div class="col-md-12">
 			                 <label>Impression</label> 
-			                <textarea  name="impression" id="impression" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
+			                <textarea  name="impression" id="impression" type="text" placeholder="" class="form-control input-md" required></textarea>
 			          </div>  
 			       </div><br><br>
 			 	 </div>
@@ -144,8 +148,11 @@
 			        <div class="form-group">
 			              <div class="col-md-12">
 			                 <div class="input-group" >
-									<span class="input-group-addon">Radiologist</span>
-									<select class="form-control package_id select2" name="radiologist" id="radiologist" style="width: 100%" >
+									<span class="input-group-addon">Sonologist</span>
+									<select class="form-control package_id select2" name="sonologist" id="sonologist" style="width: 100%" >
+										@foreach($sonologist as $sono)
+											<option value="{{ $sono->emp_id }}">{{ $sono->emp_fname }} {{ $sono->emp_mname }} {{ $sono->emp_lname }}</option>
+										@endforeach
 									</select>
 								</div>
 			          		</div>  
@@ -170,7 +177,7 @@
             						<span class="btn btn-white btn-file"> 
 	            						<span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
 	            						<span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-	            						<input type="file" class="default" name="payment_img" required> 
+	            						<input type="file" class="default" name="sono_signature" required> 
             						</span> 
             						<a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a> 
             					</div> 
@@ -188,13 +195,12 @@
 	        {{ csrf_field() }}
 	      </div>
 					
-				</form>
 			</div>
 			<center>
 				<button type="button" class="btn btn-xs" style="width: 8%">Back</button>
-				<button type="button" class="btn btn-xs btn-info" style="width: 8%">View</button>
 		        <button type="submit" class="btn btn-xs btn-success"  style="width: 8%">Save & Print</button>
 		    </center>
+		</form>
 		</section>
 	</div>
 </div>

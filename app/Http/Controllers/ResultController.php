@@ -12,6 +12,212 @@ class ResultController extends Controller
     {
         date_default_timezone_set('Singapore');
     }
+    function printxray()
+    {
+        $result_id = Session::get('result_id');
+        $getTrans_id = DB::table('transresult_tbl')->where('result_id',$result_id)->get();
+        foreach($getTrans_id as $trans)
+        {
+            $trans_id = $trans->trans_id;
+        }
+        $getPatient = DB::table('transaction_tbl')
+                        ->leftjoin('patient_tbl','patient_tbl.patient_id','=','trans_patient_id')
+                        ->where('trans_id',$trans_id)
+                        ->get();
+       
+        return view('Transaction.ResultLayout.Xray',['patientinfo'=>$getPatient,'trans_id'=>$trans_id]);
+    }
+    function save_xray()
+    {
+        $file = $_FILES['radiologic_img'];
+        $file_error = $file['error'];
+        // File properties
+        $file_name = $file['name'];
+        $file_tmp = $file['tmp_name'];
+        $file_size = $file['size'];
+
+        //Work out the file extension
+        $file_ext = explode('.',$file_name);
+        $file_ext = strtolower(end($file_ext));
+
+        $allowed = array('jpg','png','jpeg','bmp');
+        if(in_array($file_ext,$allowed))
+        {
+            if($file_error === 0)
+            {
+                if($file_size <= 2097152)
+                {
+                    $radiologic_img = uniqid('',true) . '.' . $file_ext;
+                    $file_destination = 'Employee_signatures/' . $radiologic_img;
+                    move_uploaded_file($file_tmp, $file_destination);
+                }
+            }
+        }
+        $radiologist = $_FILES['radiologist_img'];
+        $radiologist_error = $radiologist['error'];
+        // File properties
+        $radiologist_name = $radiologist['name'];
+        $radiologist_tmp = $radiologist['tmp_name'];
+        $radiologist_size = $radiologist['size'];
+
+        //Work out the file extension
+        $radiologist_ext = explode('.',$radiologist_name);
+        $radiologist_ext = strtolower(end($radiologist_ext));
+
+        $allowed = array('jpg','png','jpeg','bmp');
+        if(in_array($radiologist_ext,$allowed))
+        {
+            if($radiologist_error === 0)
+            {
+                if($radiologist_size <= 2097152)
+                {
+                    $radiologistsign = uniqid('',true) . '.' . $radiologist_ext;
+                    $radiologist_destination = 'Employee_signatures/' . $radiologistsign;
+                    move_uploaded_file($radiologist_tmp, $radiologist_destination);
+                }
+            }
+        }
+        DB::table('trans_result_service_tbl')
+            ->where('result_id',$_POST['result_id'])
+            ->whereIn('service_id',[$_POST['service_id']])
+            ->update([
+                'xray_date'=>date_create('now'),
+                'xray_title'=>$_POST['title'],
+                'xray_findings'=>$_POST['findings'],
+                'xray_radiologic'=>$_POST['radiologic'],
+                'xray_radiologic_img'=>$radiologic_img,
+                'xray_radiologist'=>$_POST['radiologist'],
+                'xray_radiologist_img'=>$radiologistsign
+            ]);
+        Session::put('printResult',true);
+        Session::put('result_id',$_POST['result_id']);
+        Session::put('service_id',$_POST['service_id']);
+        return redirect('/Transactions/ResultLayout/Xray');
+    }
+    function printultrasound()
+    {
+        $result_id = Session::get('result_id');
+        $corppack_id = Session::get('corppack_id');
+        $getTrans_id = DB::table('transresult_tbl')->where('result_id',$result_id)->get();
+        foreach($getTrans_id as $trans)
+        {
+            $trans_id = $trans->trans_id;
+        }
+        $getPatient = DB::table('transaction_tbl')
+                        ->leftjoin('patient_tbl','patient_tbl.patient_id','=','trans_patient_id')
+                        ->where('trans_id',$trans_id)
+                        ->get();
+        Session::put('printResult',true);
+        Session::put('result_id',$_POST['result_id']);
+        Session::put('service_id',$_POST['service_id']);
+        return view('Transaction.ResultLayout.Ultrasound',['patientinfo'=>$getPatient,'trans_id'=>$trans_id]);
+    }
+    function printECG()
+    {
+        $result_id = Session::get('result_id');
+        $corppack_id = Session::get('corppack_id');
+        $getTrans_id = DB::table('transresult_tbl')->where('result_id',$result_id)->get();
+        foreach($getTrans_id as $trans)
+        {
+            $trans_id = $trans->trans_id;
+        }
+        $getPatient = DB::table('transaction_tbl')
+                        ->leftjoin('patient_tbl','patient_tbl.patient_id','=','trans_patient_id')
+                        ->where('trans_id',$trans_id)
+                        ->get();
+        return view('Transaction.ResultLayout.ECG',['patientinfo'=>$getPatient,'trans_id'=>$trans_id]);
+    }
+    function save_ultrasound()
+    {
+        $file = $_FILES['sono_signature'];
+        $file_error = $file['error'];
+        // File properties
+        $file_name = $file['name'];
+        $file_tmp = $file['tmp_name'];
+        $file_size = $file['size'];
+
+        //Work out the file extension
+        $file_ext = explode('.',$file_name);
+        $file_ext = strtolower(end($file_ext));
+
+        $allowed = array('jpg','png','jpeg','bmp');
+        if(in_array($file_ext,$allowed))
+        {
+            if($file_error === 0)
+            {
+                if($file_size <= 2097152)
+                {
+                    $sono_signature = uniqid('',true) . '.' . $file_ext;
+                    $file_destination = 'Employee_signatures/' . $sono_signature;
+                    move_uploaded_file($file_tmp, $file_destination);
+                }
+            }
+        }
+        DB::table('trans_result_service_tbl')
+            ->whereIn('service_id',[$_POST['service_id']])
+            ->where('result_id',$_POST['result_id'])
+            ->update([
+                'ultra_impression'=>$_POST['impression'],
+                'ultra_sonologist'=>$_POST['sonologist'],
+                'ultra_sonologist_img'=>$sono_signature,
+                'ultra_date'=>date_create('now')
+            ]);
+        Session::put('printResult',true);
+        Session::put('result_id',$_POST['result_id']);
+        Session::put('service_id',$_POST['service_id']);
+        return redirect('/Transactions/ResultLayout/Ultrasound');
+    }
+    function save_ecg()
+    {
+        
+        $service_id = $_POST['service_id'];
+        $result_id = $_POST['result_id'];
+
+        $file = $_FILES['ecg_image'];
+        $file_error = $file['error'];
+        // File properties
+        $file_name = $file['name'];
+        $file_tmp = $file['tmp_name'];
+        $file_size = $file['size'];
+
+        //Work out the file extension
+        $file_ext = explode('.',$file_name);
+        $file_ext = strtolower(end($file_ext));
+
+        $allowed = array('jpg','png','jpeg','bmp');
+        if(in_array($file_ext,$allowed))
+        {
+            if($file_error === 0)
+            {
+                if($file_size <= 2097152)
+                {
+                    $ecg_image = uniqid('',true) . '.' . $file_ext;
+                    $file_destination = 'Result_ECG/' . $ecg_image;
+                    move_uploaded_file($file_tmp, $file_destination);
+                }
+            }
+        }
+        DB::table('trans_result_service_tbl')
+            ->where('service_id',$service_id)
+            ->where('result_id',$result_id)
+            ->update([
+               'Ecg_ecgno'=>$_POST['ecgno'],
+               'Ecg_rate'=>$_POST['rate'],
+               'Ecg_ppr'=>$_POST['ppr'],
+               'Ecg_qrs'=>$_POST['qrs'],
+               'Ecg_qtqtc'=>$_POST['qtqtc'],
+               'Ecg_doctor'=>$_POST['doctor'],
+               'Ecg_pqrs'=>$_POST['pqrst'],
+               'Ecg_minesota'=>$_POST['minesota'],
+               'Ecg_diagnosis'=>$_POST['diagnosis'],
+               'Ecg_ecg_image'=>$ecg_image
+
+            ]);
+            Session::put('printResult',true);
+            Session::put('result_id',$result_id);
+            Session::put('service_id',$service_id);
+            return redirect('/Transactions/ResultLayout/ECG');
+    }
     function printMedreq()
     {
         $result_id = Session::get('result_id');
@@ -557,10 +763,101 @@ class ResultController extends Controller
         return view ('Result.MedicalRequest',['patient'=>$patientinfo,'tdate'=>$tdate,'datenow'=>$date,'empReb_name'=>$empReb_name,'corp_name'=>$corp_name,'corppack_id'=>$corppack_id,'doctor'=>$doctor,'result_id'=>$result_id]);
     }
     function ecg(){
-        return view ('Result.Ecg');
+        $trans_id = $_GET['trans_id'];
+        $group_id = $_GET['group_id']; 
+        $resultd = DB::table('transresult_tbl')->where('trans_id',$trans_id)->get();
+        foreach($resultd as $r)
+        {
+            $result_id = $r->result_id;
+        }
+        $services = DB::table('trans_result_service_tbl')
+                        ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                        ->where('service_tbl.service_group_id',$group_id)
+                        ->where('result_id',$result_id)
+                        ->where('result_ecg',1)
+                        ->distinct()
+                        ->get();
+        $patientinfo = DB::table('transaction_tbl')
+                        ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+                        ->where('trans_id',$trans_id)
+                        ->get();
+        $doctor = DB::table('employee_tbl')
+                    ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
+                    ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+                    ->where('role_name','Doctor')
+                    ->get();
+        return view ('Result.Ecg',['patient'=>$patientinfo,'doctors'=>$doctor,'services'=>$services,'result_id'=>$result_id]);
     }
      function ultra(){
-        return view ('Result.Ultrasound');
+        $emp_type_id = Session::get('emp_type_id');
+        $getLab_id = DB::table('employee_role_tbl')
+                        ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+                        ->where('role_id',$emp_type_id)
+                        ->get();
+        foreach($getLab_id as $lab)
+        {
+            $lab_id = $lab->lab_id;
+        }
+        $trans_id = $_GET['trans_id'];
+        $group_id = $_GET['group_id'];  
+        $patientinfo = DB::table('transaction_tbl')
+                        ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+                        ->where('trans_id',$trans_id)
+                        ->get();
+        foreach($patientinfo as $p)
+        {
+            $corp_id = $p->patient_corp_id;
+            if($corp_id != null)
+            {
+                $corpn = DB::table('corporate_accounts_tbl')->where('corp_id',$corp_id)->get();
+                foreach ($corpn as $cor) {
+                    $corp_name = $cor->corp_name;
+                }
+            }
+            else
+            {
+                $corp_name = "N/A";
+            }
+        }
+        $ref_id = DB::table('trans_emprebate_tbl')
+                    ->leftjoin('employee_tbl','employee_tbl.emp_id','=','trans_emprebate_tbl.emp_id')
+                    ->where('trans_id',$trans_id)->get();
+        if(count($ref_id)>0)
+        {
+            foreach($ref_id as $emp)
+            {
+                $empReb_name = $emp->emp_fname . " " . $emp->emp_mname . "" . $emp->emp_lname;
+            }
+        }
+        else
+        {
+            $empReb_name = "N/A";
+        }
+        $trans_date = DB::table('transaction_tbl')->where('trans_id',$trans_id)->get();
+        foreach($trans_date as $d)
+        {
+            $trans_date=$d->trans_date;
+        }
+        $tdate = date('F jS, Y',strtotime($trans_date));
+        $date = date('F jS, Y',strtotime('now'));
+        $resultd = DB::table('transresult_tbl')->where('trans_id',$trans_id)->get();
+        foreach($resultd as $r)
+        {
+            $result_id = $r->result_id;
+        }
+        $services = DB::table('trans_result_service_tbl')
+                        ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                        ->where('service_tbl.service_group_id',$group_id)
+                        ->where('result_id',$result_id)
+                        ->where('result_ultra',1)
+                        ->distinct()
+                        ->get();
+        $sonologist = DB::table('employee_tbl')
+                        ->leftjoin('employee_role_tbl','role_id','=','emp_type_id')
+                        ->where('role_name','Sonologist')
+                        ->get();
+        return view ('Result.Ultrasound',['patient'=>$patientinfo,'tdate'=>$tdate,'datenow'=>$date,'empReb_name'=>$empReb_name,'corp_name'=>$corp_name,'result_id'=>$result_id,'lab_id'=>$lab_id,'sonologist'=>$sonologist,'services'=>$services]);
+    
     }
     function xray(){
         $emp_type_id = Session::get('emp_type_id');
@@ -619,7 +916,22 @@ class ResultController extends Controller
         {
             $result_id = $r->result_id;
         }
-        return view ('Result.Xray',['patient'=>$patientinfo,'tdate'=>$tdate,'datenow'=>$date,'empReb_name'=>$empReb_name,'corp_name'=>$corp_name,'result_id'=>$result_id,'lab_id'=>$lab_id]);
+        $radtech = DB::table('employee_tbl')
+                    ->leftjoin('employee_role_tbl','role_id','=','emp_type_id')
+                    ->where('role_name','Radio Technologist')
+                    ->get();
+        $radiologist = DB::table('employee_tbl')
+                    ->leftjoin('employee_role_tbl','role_id','=','emp_type_id')
+                    ->where('role_name','Radiologist')
+                    ->get();
+        $services = DB::table('trans_result_service_tbl')
+                        ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                        ->where('service_tbl.service_group_id',$group_id)
+                        ->where('result_id',$result_id)
+                        ->where('result_xray',1)
+                        ->distinct()
+                        ->get();
+        return view ('Result.Xray',['patient'=>$patientinfo,'tdate'=>$tdate,'datenow'=>$date,'empReb_name'=>$empReb_name,'corp_name'=>$corp_name,'result_id'=>$result_id,'lab_id'=>$lab_id,'radtech'=>$radtech,'radiologist'=>$radiologist,'services'=>$services]);
     }
     function medservice(){
         $trans_id = $_GET['trans_id'];

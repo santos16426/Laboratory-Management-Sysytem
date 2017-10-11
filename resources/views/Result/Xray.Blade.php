@@ -26,11 +26,15 @@
 <div class="row">
 	<div class="col-lg-12">
 		<section class="panel">
-			<form method="POST" action="/save_xrayResult"  enctype="multipart/form-data">
+			<form method="POST" action="/save_xray"  enctype="multipart/form-data">
 			<header class="panel-heading">
 				X-Ray
 			</header>
 			<div class="panel-body">
+				<input type="hidden" name="result_id" value='{{ $result_id }}'>
+				@foreach($services as $serv)
+				<input type="hidden" name="service_id[]" value="{{ $serv->service_id }}">
+				@endforeach
 			@foreach($patient as $patientinfo)
 			<div class="col-md-12">
 				<div class="col-md-6">
@@ -129,8 +133,7 @@
 			        <div class="form-group">
 			              <div class="col-md-12">
 			                 <label>Findings</label> 
-			                <textarea  name="findings" id="findings" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
+			                <textarea  name="findings" id="findings" type="text" placeholder="" class="form-control input-md" required></textarea>
 			          </div>  
 			       </div><br><br>
 			 	 </div>
@@ -147,6 +150,9 @@
 			                 <div class="input-group" >
 									<span class="input-group-addon">Radiologic Technologist</span>
 									<select class="form-control package_id select2" name="radiologic" id="radiologic" style="width: 100%" >
+										@foreach($radtech as $rad)
+											<option value="{{ $rad->emp_id }}">{{ $rad->emp_fname }} {{ $rad->emp_mname }} {{ $rad->emp_lname }}</option>
+										@endforeach
 									</select>
 								</div>
 			          		</div>  
@@ -159,7 +165,7 @@
 			                  <div class="input-group-addon">
 			                   License No.
 			                 </div>
-			                <input readonly="" name="license" id="license" type="text" placeholder="License No." class="form-control input-md" required>
+			                <input readonly="" name="radlicense" id="radlicense" type="text" placeholder="License No." class="form-control input-md" required>
 			             </div>
 			          </div>
 			       </div><br><br>
@@ -199,6 +205,9 @@
 			                 <div class="input-group" >
 									<span class="input-group-addon">Radiologist</span>
 									<select class="form-control package_id select2" name="radiologist" id="radiologist" style="width: 100%" >
+										@foreach($radiologist as $rads)
+											<option value="{{ $rads->emp_id }}">{{ $rads->emp_fname }} {{ $rads->emp_mname }} {{ $rads->emp_lname }}</option>
+										@endforeach
 									</select>
 								</div>
 			          		</div>  
@@ -250,4 +259,22 @@
 		</section>
 	</div>
 </div>
+@endsection
+@section('additional')
+<script type="text/javascript">
+	$('#radiologic').click(function(){
+		var id =$('#radiologic').val();
+		$.ajax
+		({
+			url : '/getLicense',
+			data: {id:id},
+			dataType : 'json',
+			type: 'get',
+			success:function(response)
+			{
+				$('#radlicense').val(response);
+			}
+		})
+	})
+</script>
 @endsection
