@@ -7,7 +7,7 @@
 <html >
 	<head>
 		<meta charset="utf-8">
-		<title>Medical Report</title>
+		<title>Physical Exam</title>
 		<link rel="stylesheet" type="text/css" href="{{ asset('/plugins/medreq.css') }}">
 		<script src="{{ asset('/plugins/index.js') }}" ></script>
 	</head>

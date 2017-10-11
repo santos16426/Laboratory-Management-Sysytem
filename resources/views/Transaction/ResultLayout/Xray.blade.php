@@ -11,7 +11,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>Invoice</title>
+		<title>X-Ray</title>
 		<link rel="stylesheet" href="{{ asset('/plugins/xray.css') }}">
 		
 	</head>
@@ -58,7 +58,7 @@
 		</aside> -->
 
 		<header style="padding-top: 415px; font-size: 20px">
-			<address style="float: left">
+			<address style="float: left; padding-left: 40px">
 			<center>
 			<img alt="" src="/banner.jpg" style="width: 150px; height: 90px float: left; max-height: 90px; max-width: 150px;">
 			<p><span>NAME</span></p>
@@ -66,7 +66,7 @@
 			</center>
 			</address>
 
-			<address style="float: right;">
+			<address style="float: right; padding-right: 40px">
 			<center>
 			<img alt="" src="/banner.jpg" style="width: 150px; height: 90px float: left; max-height: 90px; max-width: 150px;">
 			<p><span>NAME</span></p>
@@ -95,7 +95,6 @@
 				<p>Email: globalhealth_anonas@yahoo.com</p>
 			</address>
 		</header>
-		</footer>
 	</body>
 </html>
   

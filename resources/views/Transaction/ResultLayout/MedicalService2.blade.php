@@ -8,7 +8,7 @@
 <html >
 	<head>
 		<meta charset="UTF-8">
-  		<title>Medical Service 2 Result Layout</title>
+  		<title>Medical Service</title>
       	<link rel="stylesheet" href="{{ asset('/plugins/medserv2style.css') }}">
       	<script src="{{ asset('/plugins/medserv2index.js') }}"></script>
 	</head>
