@@ -389,7 +389,68 @@ class ResultController extends Controller
     }
 
     function medrequest(){
-        return view ('Result.MedicalRequest');
+        $trans_id = $_GET['trans_id'];
+        $group_id = $_GET['group_id'];  
+        $patientinfo = DB::table('transaction_tbl')
+                        ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+                        ->where('trans_id',$trans_id)
+                        ->get();
+        foreach($patientinfo as $p)
+        {
+            $corp_id = $p->patient_corp_id;
+            if($corp_id != null)
+            {
+                $corpn = DB::table('corporate_accounts_tbl')->where('corp_id',$corp_id)->get();
+                foreach ($corpn as $cor) {
+                    $corp_name = $cor->corp_name;
+                }
+            }
+            else
+            {
+                $corp_name = "N/A";
+            }
+        }
+        $ref_id = DB::table('trans_emprebate_tbl')
+                    ->leftjoin('employee_tbl','employee_tbl.emp_id','=','trans_emprebate_tbl.emp_id')
+                    ->where('trans_id',$trans_id)->get();
+        if(count($ref_id)>0)
+        {
+            foreach($ref_id as $emp)
+            {
+                $empReb_name = $emp->emp_fname . " " . $emp->emp_mname . "" . $emp->emp_lname;
+            }
+        }
+        else
+        {
+            $empReb_name = "N/A";
+        }
+        $trans_date = DB::table('transaction_tbl')->where('trans_id',$trans_id)->get();
+        foreach($trans_date as $d)
+        {
+            $trans_date=$d->trans_date;
+        }
+        $tdate = date('F jS, Y',strtotime($trans_date));
+        $date = date('F jS, Y',strtotime('now'));
+        $resultd = DB::table('transresult_tbl')->where('trans_id',$trans_id)->get();
+        foreach($resultd as $r)
+        {
+            $result_id = $r->result_id;
+        }
+        $services = DB::table('trans_result_service_tbl')
+                        ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                        ->where('service_tbl.service_group_id',$group_id)
+                        ->where('result_id',$result_id)
+                        ->where('result_medserv1',1)
+                        ->distinct()
+                        ->get();
+        $doctor = DB::table('employee_tbl')
+                    ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
+                    ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+                    ->where('role_name','Doctor')
+                    ->get();
+        
+        
+        return view ('Result.MedicalRequest',['patient'=>$patientinfo,'tdate'=>$tdate,'datenow'=>$date,'empReb_name'=>$empReb_name,'corp_name'=>$corp_name,'services'=>$services,'doctor'=>$doctor,'result_id'=>$result_id]);
     }
     function ecg(){
         return view ('Result.Ecg');

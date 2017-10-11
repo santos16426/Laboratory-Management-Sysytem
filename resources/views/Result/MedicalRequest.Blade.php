@@ -26,15 +26,16 @@
 <div class="row">
 	<div class="col-lg-12">
 		<section class="panel">
+			<form method="POST" action="/save_medreq">
 			<header class="panel-heading">
 				Medical Request
 			</header>
 			<div class="panel-body">
-				<form action="" method="" id="">
 			<center><header><strong><big>
 				Patient Information
 			</big></strong></header></center><br>
 			<div class="col-md-12">
+				@foreach($patient as $patientinfo)
 				<div class="col-md-6">
 			        <div class="form-group">
 			              <div class="col-md-12">
@@ -42,7 +43,7 @@
 			                  <div class="input-group-addon">
 			                   Name 
 			                 </div>
-			                <input readonly="" name="name" id="name" type="text" placeholder="Name" class="form-control input-md" required>
+			                <input readonly="" name="name" id="name" value="{{ $patientinfo->patient_fname }} {{ $patientinfo->patient_mname }} {{ $patientinfo->patient_lname }}"  type="text" placeholder="Name" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -54,7 +55,7 @@
 			                  <div class="input-group-addon">
 			                  Date of Examination
 			                 </div>
-			                <input  name="dateofexam" id="dateofexam" placeholder="Date of Examination" class="form-control input-md" required>
+			                <input readonly="" value="{{ $tdate }}" name="transdate" id="transdate" type="text" placeholder="Transaction Date" class="form-control form-control-inline" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -69,7 +70,7 @@
 			                  <div class="input-group-addon">
 			                   Address
 			                 </div>
-			                <input readonly=""  name="address" id="address" type="text" placeholder="Address" class="form-control input-md" required>
+			                <input readonly="" name="address" id="address" value="{{ $patientinfo->patient_address }}" type="text" placeholder="Address" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -81,7 +82,7 @@
 			                  <div class="input-group-addon">
 			                   Civil Status
 			                 </div>
-			                <input readonly=""  name="civilstatus" id="civilstatus" placeholder="Civil Status" class="form-control input-md" required>
+			                <input readonly=""  name="civilstatus" id="civilstatus" value="{{ $patientinfo->patient_civilstatus }}" placeholder="Civil Status" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -96,7 +97,7 @@
 			                  <div class="input-group-addon">
 			                   Company
 			                 </div>
-			                <input readonly=""  name="company" id="company" type="text" placeholder="Company" class="form-control input-md" required>
+			                <input readonly="" name="company" id="company" value="{{ $corp_name }}" placeholder="Company" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -108,7 +109,7 @@
 			                  <div class="input-group-addon">
 			                   Birthdate
 			                 </div>
-			                <input readonly=""  name="birthdate" id="birthdate" placeholder="Birthdate" class="form-control input-md" required>
+			                <input readonly=""  name="birthdate" id="birthdate" value="{{ date('F jS, Y',strtotime($patientinfo->patient_birthdate)) }}" placeholder="Birthdate" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -120,8 +121,11 @@
 			        <div class="form-group">
 							<div class="col-md-12" >
 								<div class="input-group" >
-									<span class="input-group-addon">Examining Physicain</span>
-									<select class="form-control package_id select2" name="examphysician" id="examphysician" style="width: 100%" >
+									<span class="input-group-addon">Examining Physician</span>
+									<select class="form-control emp_id select2" name="examphysician" id="examphysician" style="width: 100%" >
+										@foreach($doctor as $doc)
+											<option value="{{ $doc->emp_id }}">{{ $doc->emp_fname }} {{ $doc->emp_mname }} {{ $doc->emp_lname }}</option>
+										@endforeach
 									</select>
 								</div>
 							</div>
@@ -134,7 +138,7 @@
 			                  <div class="input-group-addon">
 			                   Age 
 			                 </div>
-			                <input readonly=""  name="age" id="age" placeholder="Age" class="form-control input-md" required>
+			                <input readonly="" name="age" id="age" value="{{ $patientinfo->age }}" placeholder="Age" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -148,6 +152,9 @@
 								<div class="input-group" >
 									<span class="input-group-addon">Evaluated By</span>
 									<select class="form-control package_id select2" name="package_id_dropdown" id="package_id" style="width: 100%" >
+									@foreach($doctor as $doc1)
+										<option value="{{ $doc1->emp_id }}">{{ $doc1->emp_fname }} {{ $doc1->emp_mname }} {{ $doc1->emp_lname }}</option>
+									@endforeach
 									</select>
 								</div>
 							</div>
@@ -160,11 +167,12 @@
 			                  <div class="input-group-addon">
 			                   Gender 
 			                 </div>
-			                <input readonly=""  name="gender" id="gender" placeholder="Gender" class="form-control input-md" required>
+			                <input readonly="" name="sex" id="sex" value="{{ $patientinfo->patient_gender }}" type="text" placeholder="Sex" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
 		        </div> 
+		        @endforeach
 		    </div>  
 
 		    <center><header><strong><big>
@@ -175,9 +183,7 @@
 				<div class="col-md-6">
 			        <div class="form-group">
 			              <div class="col-md-12">
-			                  
-			                <textarea  name="history" id="history" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
+			                <textarea  name="history" id="history" type="text" placeholder="" class="form-control input-md" required></textarea>
 			          </div>  
 			       </div><br><br><br>
 			 	 </div>
@@ -251,19 +257,15 @@
 				<div class="col-md-6">
 			        <div class="form-group">
 			              <div class="col-md-12">
-			                  
-			                <textarea  name="famhisto1" id="" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
+			                <textarea  name="famhisto1" id="" type="text" placeholder="" class="form-control input-md" required></textarea>
 			          </div>  
 			       </div><br><br><br>
 			 	 </div>
 			 	 <div class="col-md-6">
 			        <div class="form-group">
-			              <div class="col-md-12">
-			                  
-			                <textarea  name="famhisto2" id="" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
-			          </div>  
+			            <div class="col-md-12">
+			                <textarea  name="famhisto2" id="" type="text" placeholder="" class="form-control input-md" required></textarea>
+			          	</div>  
 			       </div><br><br><br>
 		        </div> 
 		    </div> 
@@ -387,20 +389,16 @@
 		    <div class="col-md-12">
 				<div class="col-md-6">
 			        <div class="form-group">
-			              <div class="col-md-12">
-			                  
-			                <textarea  name="obstetric1" id="obstetric1" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
-			          </div>  
+		              	<div class="col-md-12">
+			                <textarea  name="obstetric1" id="obstetric1" type="text" placeholder="" class="form-control input-md" required></textarea>
+			          	</div>  
 			       </div><br><br><br>
 			 	 </div>
 			 	 <div class="col-md-6">
 			        <div class="form-group">
-			              <div class="col-md-12">
-			                  
-			                <textarea  name=obstetric2"" id="obstetric2" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
-			          </div>  
+		              	<div class="col-md-12">
+			                <textarea  name=obstetric2"" id="obstetric2" type="text" placeholder="" class="form-control input-md" required></textarea>
+			          	</div>  
 			       </div><br><br><br>
 		        </div> 
 		    </div> 
@@ -729,11 +727,9 @@
 		    <div class="col-md-12">
 				<div class="col-md-6">
 			        <div class="form-group">
-			              <div class="col-md-12">
-			                  
-			                <textarea  name="assess" id="assess" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
-			          </div> 
+		              	<div class="col-md-12">
+			                <textarea  name="assess" id="assess" type="text" placeholder="" class="form-control input-md" required></textarea>
+			          	</div> 
 			       </div><br><br>
 			 	 </div>
 			 	 <div class="col-md-6">
@@ -744,17 +740,14 @@
 		        
 	          
 	        </div>
-
 	        {{ csrf_field() }}
-	      </div>
-					
-				</form>
+	      	</div>
 			</div>
 			<center>
 				<button type="button" class="btn btn-xs" style="width: 8%">Back</button>
-				<button type="button" class="btn btn-xs btn-info" style="width: 8%">View</button>
 		        <button type="submit" class="btn btn-xs btn-success"  style="width: 8%">Save & Print</button>
 		    </center>
+		    </form>
 		</section>
 	</div>
 </div>
