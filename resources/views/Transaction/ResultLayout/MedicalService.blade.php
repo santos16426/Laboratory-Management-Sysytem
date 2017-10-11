@@ -8,15 +8,19 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Medical Report</title>
-		<link rel="stylesheet" type="text/css" href="{{ asset('/plugins/style.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('/plugins/medserv1.css') }}">
 		<script src="{{ asset('/plugins/index.js') }}" ></script>
 	</head>
 	<body>
-		<center>
-			<header>
-				<img alt="" src="banner.jpg">
-			</header>
-		</center><br><br>
+		<header>
+			<address rightinfo style="padding-bottom: 20px">
+				<p style="padding-bottom: 8px"><strong>Company Name:</strong>Globalhealth Diagnostics Center,Inc.</p>
+				<p style="padding-bottom: 8px"><strong>Address:</strong>156 N. Domingo Street, San Juan City, Metro Manila</p>
+				<p style="padding-bottom: 8px"><strong>Contact Number:</strong> 722-4544/436-2057</p>
+				<p style="padding-bottom: 8px"><strong>Email: globalhealth_sj@yahoo.com</strong></p><br>
+			</address>
+			<span><img alt="" src="/banner.jpg" style="width: 500px; height: 250px float: left; max-height: 112px; max-width: 330px;"></span>
+		</header><br><br>
 		<article>
 
 		<header>
@@ -33,19 +37,19 @@
 			</address>
 		</header>
 		<header>			
-				<center>{{ $group_name }}</center>
+				<center><p>{{ $group_name }}</p></center>
 			<br><br>
 		</header>
 		<header>
-		<table class="inventory" style="width: 200px">
+		<table class="inventory" style="width: 725px">
 			<tr>
-			    <th>Service</th>
-			    <th>Result</th>
+			    <th style="text-align: center;">Service</th>
+			    <th style="text-align: center;">Result</th>
 			  </tr>
 			  @foreach($service_results as $service)
 			  <tr>
-			    <td>{{ $service->service_name }}</td>
-			    <td>{{ $service->medserv1_result }}</td>
+			    <td style="text-align: center;">{{ $service->service_name }}</td>
+			    <td style="text-align: center;">{{ $service->medserv1_result }}</td>
 			  </tr>
 			  @endforeach
 		</table>
@@ -58,9 +62,10 @@
 			</div>
 		</aside> -->
 		
-		<header style="padding-top: 20%">
+		<header style="padding-top: 385px; font-size: 20px">
 			<address style="float: left">
 			<center>
+			<img alt="" src="/banner.jpg" style="width: 150px; height: 90px float: left; max-height: 90px; max-width: 150px;">
 			<p><span>NAME</span></p>
 			<p>Medical Technologist<br>License No.:<span></span></p>
 			</center>
@@ -72,6 +77,7 @@
 			</address>
 			<address style="float: right;">
 			<center>
+			<img alt="" src="/banner.jpg" style="width: 150px; height: 90px float: left; max-height: 90px; max-width: 150px;">
 			<p><span>NAME</span></p>
 			<p>Pathologist<br>License No.:<span></span><p></p>
 			</center>

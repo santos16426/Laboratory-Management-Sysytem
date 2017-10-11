@@ -13,11 +13,15 @@
       	<script src="{{ asset('/plugins/medserv2index.js') }}"></script>
 	</head>
 	<body>
-		<center>
-			<header>
-				<img alt="" src="banner.jpg">
-			</header>
-		</center><br><br>
+		<header>
+			<address rightinfo style="padding-bottom: 20px">
+				<p style="padding-bottom: 8px"><strong>Company Name:</strong>Globalhealth Diagnostics Center,Inc.</p>
+				<p style="padding-bottom: 8px"><strong>Address:</strong>156 N. Domingo Street, San Juan City, Metro Manila</p>
+				<p style="padding-bottom: 8px"><strong>Contact Number:</strong> 722-4544/436-2057</p>
+				<p style="padding-bottom: 8px"><strong>Email: globalhealth_sj@yahoo.com</strong></p><br>
+			</address>
+			<span><img alt="" src="/banner.jpg" style="width: 500px; height: 250px float: left; max-height: 112px; max-width: 330px;"></span>
+		</header><br><br>
 		<article>
 
 		<header>
@@ -34,7 +38,7 @@
 			</address>
 		</header>
 		<header>			
-				<center>{{ $group_name }}</center>
+				<center><p>{{ $group_name }}</p></center>
 			<br><br>
 		</header>
 		<table class="inventory" style="width: 200px">
@@ -70,43 +74,38 @@
 				<p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
 			</div>
 		</aside> -->
-		<footer>
-		<header>
+
+
+		<header style="padding-top: 345px; font-size: 20px">
 			@foreach($getMedtech as $med)
-			<address style="padding-left: 70px">
+			<address style="float: left">
 			<center>
-			<p>{{ $med->emp_fname }} {{ $med->emp_mname }} {{ $med->emp_lname }}</p>
+			<img alt="" src="/banner.jpg" style="width: 150px; height: 90px float: left; max-height: 90px; max-width: 150px;">
+			<p><span>{{ $med->emp_fname }} {{ $med->emp_mname }} {{ $med->emp_lname }}</span></p>
 			<p>Medical Technologist<br>License No.: {{ $med->license_no }}</p>
 			</center>
-			</address>
-			@endforeach
-			@foreach($getPatho as $path)
-			<address style="padding-left: 350px">
-			<center>
-			<p><span contenteditabl></span></p>
-			<p>{{ $path->emp_fname }} {{ $path->emp_mname }} {{ $path->emp_lname }}</p>
-			<p>Pathologist<br>License No.: {{ $med->license_no }}</p>
-			</center>
-			</address>
-			@endforeach
-		</header><br><br>
-		<header>
-			<address style="">
 			<br>
 				<p>San Juan City</p>
 				<p>156 N. Domingo Street, San Juan City</p>
 				<p>Tel No. 576-5357</p>
 				<p>Email: globalhealth_anonas@yahoo.com</p>
 			</address>
-			<address style="padding-left: 230px">
+			@endforeach
+			@foreach($getPatho as $path)
+			<address style="float: right;">
+			<center>
+			<img alt="" src="/banner.jpg" style="width: 150px; height: 90px float: left; max-height: 90px; max-width: 150px;">
+			<p><span>{{ $path->emp_fname }} {{ $path->emp_mname }} {{ $path->emp_lname }}</span></p>
+			<p>Pathologist<br>License No.: {{ $med->license_no }}<p></p>
+			</center>
 			<br>
 				<p>Quezon City</p>
 				<p>Deofranz Plaza Bldng #2 Anonas Ext cor. V Luna  </p>
 				<p>Road, Quezon City Tel No. 436-2057</p>
 				<p>Email: globalhealth_anonas@yahoo.com</p>
 			</address>
+			@endforeach
 		</header>
-		</footer>
 	</body>
 </html>
   
