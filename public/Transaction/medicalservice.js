@@ -396,6 +396,7 @@ $('#payDirect').click(function(){
 	var addpackagebtn = document.getElementById('activecorppack');
 	var price = 0*1;
 	var service_names = [];
+	var service_id = [];
 	var serv = "";
 	$.ajax
 	({
@@ -407,6 +408,8 @@ $('#payDirect').click(function(){
 		{
 			response[1].forEach(function(data){
 				service_names.push(data.service_name);
+				service_id.push(data.service_id);
+				$("#ServiceOPTION"+data.service_id).attr("disabled","disabled");
 			});
 			for(var i = 0; i<service_names.length; i++)
 			{
@@ -458,6 +461,11 @@ $('#payDirect').click(function(){
 				toastr.success("Success! Corporate Package added!");
 				$('.corpremove_package'+data.corpPack_id+'').click(function()
 				{
+					for(var i = 0; i<service_names.length; i++)
+					{
+						$("#ServiceOPTION"+service_id[i]).removeAttr("disabled","disabled");
+					}	
+					
 					var remPack_id = $(this).data("id");
 					if(transactwhere == 'here')
 					{
@@ -515,6 +523,7 @@ $('#payCorp').click(function(){
 	var corpPack_id = $('#corppack_id').val();
 	var price = 0*1;
 	var service_names = [];
+	var service_id = [];
 	var serv = "";
 	$.ajax
 	({
@@ -525,6 +534,8 @@ $('#payCorp').click(function(){
 		success:function(response){
 			response[1].forEach(function(data){
 				service_names.push(data.service_name);
+				service_id.push(data.service_id);
+				$("#ServiceOPTION"+data.service_id).attr("disabled","disabled");
 			});
 			for(var i = 0; i<service_names.length; i++)
 			{
@@ -573,6 +584,10 @@ $('#payCorp').click(function(){
 			    }
 			    toastr.success(data.corpPack_name + " is successfully added");
 				$('.corpremove_package'+data.corpPack_id+'').click(function(){
+					for(var i = 0; i<service_names.length; i++)
+					{
+						$("#ServiceOPTION"+service_id[i]).removeAttr("disabled","disabled");
+					}
 					var remPack_id = $(this).data("id");
 					if(transactwhere == 'here')
 					{
@@ -615,6 +630,7 @@ $('#addpackageBtn').click(function(){
 	var total = $('#totalpriceinput').val();
 	var price = 0*1;
 	var service_names = [];
+	var service_id = [];
 	var serv= "";
 	$.ajax
 	({
@@ -625,6 +641,8 @@ $('#addpackageBtn').click(function(){
 		success:function(response){
 			response[1].forEach(function(data){
 				service_names.push(data.service_name);
+				service_id.push(data.service_id);
+				$("#ServiceOPTION"+data.service_id).attr("disabled","disabled");
 			});
 			for(var i = 0; i<service_names.length; i++)
 			{
@@ -677,6 +695,10 @@ $('#addpackageBtn').click(function(){
 				$('#totalpriceinput').val(total);
 
 				$('.remove_package'+package_id+'').click(function(){
+					for(var i = 0; i<service_names.length; i++)
+					{
+						$("#ServiceOPTION"+service_id[i]).removeAttr("disabled","disabled");
+					}
 					var remPack_id = $(this).data("id");
 					toastr.options = {
 				      "closeButton": true,

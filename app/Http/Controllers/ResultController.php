@@ -107,9 +107,6 @@ class ResultController extends Controller
                         ->leftjoin('patient_tbl','patient_tbl.patient_id','=','trans_patient_id')
                         ->where('trans_id',$trans_id)
                         ->get();
-        Session::put('printResult',true);
-        Session::put('result_id',$_POST['result_id']);
-        Session::put('service_id',$_POST['service_id']);
         return view('Transaction.ResultLayout.Ultrasound',['patientinfo'=>$getPatient,'trans_id'=>$trans_id]);
     }
     function printECG()
