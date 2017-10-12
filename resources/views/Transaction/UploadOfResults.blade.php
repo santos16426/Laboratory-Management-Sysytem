@@ -34,32 +34,64 @@
 					<table class="table table-bordered table-hover dataTable" id="rebateTbl">
 				      <thead>
 				        <tr>
-				          
-				          
-				          <th>Transaction Date</th>
-				          <th>Patient Last Name</th>
-				          <th>Patient Middle Name</th>
-				          <th>Patient First Name</th>
-				          <th>No. of files</th>
-				          <th>Action</th>
-				          <th>Progress</th>
+				          <th width="15%">Transaction Date</th>
+				          <th width="15%">Patient Last Name</th>
+				          <th width="15%">Patient Middle Name</th>
+				          <th width="15%">Patient First Name</th>
+				          <th width="5%">No. of files</th>
+				          <th width="20%">Progress</th>
+				          <th width="15%">Action</th>
 				        </tr>
 				      </thead>
 
 				      <tbody>
 				        @foreach($transactions as $transact)
 				        <tr>
-				          <td>{{ $transact->trans_date }}</td>
+				          <td>{{  date('F jS, Y',strtotime($transact->trans_date)) }}</td>
 				          <td>{{ $transact->patient_lname }}</td>
 				          <td>{{ $transact->patient_mname }}</td>
 				          <td>{{ $transact->patient_fname }}</td>
-				          <td></td>
+				          <td>
+				          	@foreach($nooffiles as $nof)
+				          		@if($nof->result_id == $transact->result_id)
+				          		{{ $nof->count_row }}
+				          		@else
+				          		0
+				          		@endif
+				          	@endforeach
+				          </td>
+				          <td>
+				          	@foreach($totaltrans as $totals)
+				          		@if($totals->result_id == $transact->result_id)
+					          		@foreach($donetrans as $dones)
+					          			@if($dones->result_id == $transact->result_id)
+					          				<?php $total = floor(($dones->count_row/$totals->count_row)*100) ?>
+								          	<div class="progress progress-striped active progress-md">
+				                                  <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{ $total }}%">
+				                                      <span>{{ $total }}% Complete</span>
+				                                  </div>
+				                            </div>
+
+			                            @else
+			                            <div class="progress progress-striped active progress-md">
+			                                  <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 1%">
+			                                      <span style="color:black"></span>
+			                                  </div>
+			                            </div>
+			                            @endif
+
+		                            @endforeach
+	                            @endif
+                              @endforeach
+				          </td>
 				          <td>
 				            <a class="btn btn-warning btn-xs" href="/Transaction/PatientTransaction?id={{ $transact->trans_id }}"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;  Add Files</a>
+				            @if($total == 100)
 				            <a class="btn btn-primary btn-xs" href="/uploadFileResuls?id={{ $transact->trans_id }}"><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;  Upload Result</a>
+				            @endif
 				          </td>
-				          <td></td>
 				        </tr>
+				        <?php $total=0; ?>
 				        @endforeach
 				      </tbody>
 				    </table>

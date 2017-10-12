@@ -100,16 +100,7 @@
         <form action="/update_Service" method="POST" class="form-horizontal" id="servedit" >
         <input type="hidden" name="srvcid" id="srvcid">
          {{ csrf_field() }}
-          <div class="form-group">
-              <div class="col-sm-10 col-md-offset-1">
-                 <div class="input-group">
-                  <div class="input-group-addon">
-                  Service Name <sup>*</sup>
-                 </div>
-                <input  name="srvcname" id="srvcname" type="text" placeholder="Service Name" class="form-control input-md" required>
-              </div>
-            </div>  
-         </div>
+         
          <div class="form-group">
             <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">
@@ -136,6 +127,16 @@
             </div>
           </div>  
         </div> 
+         <div class="form-group">
+              <div class="col-sm-10 col-md-offset-1">
+                 <div class="input-group">
+                  <div class="input-group-addon">
+                  Service Name <sup>*</sup>
+                 </div>
+                <input  name="srvcname" id="srvcname" type="text" placeholder="Service Name" class="form-control input-md" required>
+              </div>
+            </div>  
+         </div>
          <div class="form-group">
             <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">
@@ -204,16 +205,7 @@
       <div class="modal-body">
         <form action="/save_Service" method="POST" class="form-horizontal" id="servadd">
          {{ csrf_field() }}
-          <div class="form-group" >
-              <div class="col-sm-10 col-md-offset-1">
-                 <div class="input-group">
-                  <div class="input-group-addon">
-                  Service Name <sup>*</sup>
-                 </div>
-                <input  name="srvcname" id="srvcname" type="text" placeholder="Service Name" class="form-control input-md" required>
-              </div>
-            </div>  
-         </div>
+          
          <div class="form-group" >
             <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">
@@ -241,6 +233,16 @@
             </div>
           </div>  
         </div>
+        <div class="form-group" >
+              <div class="col-sm-10 col-md-offset-1">
+                 <div class="input-group">
+                  <div class="input-group-addon">
+                  Service Name <sup>*</sup>
+                 </div>
+                <input  name="srvcname" id="srvcname" type="text" placeholder="Service Name" class="form-control input-md" required>
+              </div>
+            </div>  
+         </div>
           <div class="form-group" >
             <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">

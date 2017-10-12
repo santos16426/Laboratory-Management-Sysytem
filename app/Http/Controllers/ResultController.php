@@ -1109,17 +1109,25 @@ class ResultController extends Controller
                         ->where('transresult_tbl.status','PENDING')
                         ->whereIn('trans_result_service_tbl.service_group_id',$group_id)
                         ->get();
-        $res_id = array();
+        
+        $res_id = [];
         foreach($result_id as $r)
         {
-            $res_id[] = $r->result_id;
-        }
+            array_push($res_id,$r->result_id);
+
+        } 
         $transactions = DB::table('transaction_tbl')
             ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
             ->leftjoin('transresult_tbl','transresult_tbl.trans_id','=','transaction_tbl.trans_id')
             ->whereIn('transresult_tbl.result_id',$res_id)
             ->get();
-         return view('Transaction.UploadOfResults',['transactions'=>$transactions]);
+        $nooffiles = DB::table('trans_resultfiles_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->where('status',1)->get();
+        
+        $totaltransaction = DB::table('trans_result_service_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->get();
+        $doneTransaction = DB::table('trans_result_service_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->where('status','DONE')->get();
+        $total = 0;
+        $done = 0;
+         return view('Transaction.UploadOfResults',['transactions'=>$transactions,'totaltrans'=>$totaltransaction,'donetrans'=>$doneTransaction,'total'=>$total,'done'=>$done,'nooffiles'=>$nooffiles]);
     }
     public function PatientTransaction()
     {
@@ -1227,8 +1235,76 @@ class ResultController extends Controller
                     'status'=>'PENDING'
                 ]);
 
-            DB::table('trans_resultfiles_tbl')->where('file_id',$file_id)->update(['status',0]);
+            DB::table('trans_resultfiles_tbl')->where('file_id',$file_id)->update(['status'=>0]);
         }
+        if($result_type == 'Medical Service 1')
+        {
+            DB::table('trans_result_service_tbl')
+                ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                ->where('result_medserv1',1)
+                ->where('result_id',$result_id)
+                ->update([
+                    'status'=>'PENDING'
+                ]);
+                DB::table('trans_resultfiles_tbl')->where('file_id',$file_id)->update(['status'=>0]);
+        }
+        if($result_type == 'Medical Service 2')
+        {
+            DB::table('trans_result_service_tbl')
+                ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                ->where('result_medserv2',1)
+                ->where('result_id',$result_id)
+                ->update([
+                    'status'=>'PENDING'
+                ]);
+                DB::table('trans_resultfiles_tbl')->where('file_id',$file_id)->update(['status'=>0]);
+        }
+        if($result_type == 'ECG')
+        {
+            DB::table('trans_result_service_tbl')
+                ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                ->where('result_ecg',1)
+                ->where('result_id',$result_id)
+                ->update([
+                    'status'=>'PENDING'
+                ]);
+                DB::table('trans_resultfiles_tbl')->where('file_id',$file_id)->update(['status'=>0]);
+        }
+        if($result_type == 'Xray')
+        {
+            DB::table('trans_result_service_tbl')
+                ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                ->where('result_xray',1)
+                ->where('result_id',$result_id)
+                ->update([
+                    'status'=>'PENDING'
+                ]);
+                DB::table('trans_resultfiles_tbl')->where('file_id',$file_id)->update(['status'=>0]);
+        }
+        if($result_type == 'Ultrasound')
+        {
+            DB::table('trans_result_service_tbl')
+                ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                ->where('result_ultra',1)
+                ->where('result_id',$result_id)
+                ->update([
+                    'status'=>'PENDING'
+                ]);
+                DB::table('trans_resultfiles_tbl')->where('file_id',$file_id)->update(['status'=>0]);
+        }
+        if($result_type == 'Drug Test')
+        {
+            DB::table('trans_result_service_tbl')
+                ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                ->where('result_drug',1)
+                ->where('result_id',$result_id)
+                ->update([
+                    'status'=>'PENDING'
+                ]);
+                DB::table('trans_resultfiles_tbl')->where('file_id',$file_id)->update(['status'=>0]);
+        }
+        Session::flash('delete',true);
+        return redirect()->back();
     }
     public function uploadResultFile()
     {
@@ -1294,6 +1370,7 @@ class ResultController extends Controller
         }
         if($result_layout == 'ultra')
         {
+            $result_type = 'Ultrasound';
             if(isset($_POST['service_id']))
             {
                 DB::table('trans_result_service_tbl')->where('result_id',$result_id)->whereIn('service_id',$_POST['service_id'])
