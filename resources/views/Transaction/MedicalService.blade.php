@@ -282,7 +282,7 @@
 		<div class="col-md-6 pull-left">
 			<section class="panel">
 				<header class="panel-heading">
-					<strong>Medical Certificate</strong>
+					<strong>Medical Request</strong>
 				</header>
 				<div class="panel-body">
 					<section id="main-content col-md-12"> 
