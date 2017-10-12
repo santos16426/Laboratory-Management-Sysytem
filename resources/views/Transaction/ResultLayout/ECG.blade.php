@@ -11,38 +11,42 @@
 		<title>ECG</title>
 		<link rel="stylesheet" href="{{ asset('/plugins/ecg.css') }}">
 	</head>
+	@foreach($service as $serv)
 			<div class="col-md-12">
 				@foreach($patientinfo as $patient)
+				
 				<div class="col-md-4">
 					<address style="float: left;">
-						<p>ECG No.:&nbsp;<span></span></p>
+						<p>ECG No.:&nbsp;{{ $serv->Ecg_ecgno }}</p>
 						<p>Name:&nbsp;{{ $patient->patient_fname }} {{ $patient->patient_mname }} {{ $patient->patient_lname }}</p>
-						<p>Rate:&nbsp;<span></span></p>
-						<p>P/PR:&nbsp;<span></span></p>
-						<p>QRS:&nbsp;<span></span></p>
-						<p>QT/QTC:&nbsp;<span></span></p>
-						<p>P/QRS/T:&nbsp;<span></span></p>
+						<p>Rate:&nbsp;{{ $serv->Ecg_rate }}</p>
+						<p>P/PR:&nbsp;{{ $serv->Ecg_ppr }}</p>
+						<p>QRS:&nbsp;{{ $serv->Ecg_qrs }}</p>
+						<p>QT/QTC:&nbsp;{{ $serv->Ecg_qtqtc }}</p>
+						<p>P/QRS/T:&nbsp;{{ $serv->Ecg_pqrs }}</p>
 					</address>
 				</div>
 				<div class="col-md-4">
 					<address style="padding-left: 35%">
 						<p>Sex:&nbsp;{{ $patient->patient_gender }}</p>
 						<p>Age:&nbsp;{{ $patient->age }}</p>
-						<p>Doctor:&nbsp;<span></span></p>
-						<p>Minesota Code:&nbsp;<span></span></p>
+						<p>Doctor:&nbsp;{{ $serv->emp_fname }} {{ $serv->emp_mname }} {{ $serv->emp_lname }}</p>
+						<p>Minesota Code:&nbsp;{{ $serv->Ecg_minesota }}</p>
 					</address>
 				</div>
 				<div class="col-md-4">
 					<address style="padding-left: 65%">
-						<p>Diagnosis Info:&nbsp;<span></span></p>
+						<p>Diagnosis Info:&nbsp;{{ $serv->Ecg_diagnosis }}</p>
 					</address>
 				</div>
 				@endforeach
+				
 			</div>
 		<br><br>
 		<div >
-    		<img src="/add.png">
+    		<img src="/Result_ECG/{{ $serv->Ecg_ecg_image }}">
 		</div>
+		@endforeach
 	</body>
 </html>
   

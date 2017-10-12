@@ -130,7 +130,7 @@ class ResultController extends Controller
     function printECG()
     {
         $result_id = Session::get('result_id');
-        $corppack_id = Session::get('corppack_id');
+        $service_id = Session::get('service_id');
         $getTrans_id = DB::table('transresult_tbl')->where('result_id',$result_id)->get();
         foreach($getTrans_id as $trans)
         {
@@ -140,7 +140,12 @@ class ResultController extends Controller
                         ->leftjoin('patient_tbl','patient_tbl.patient_id','=','trans_patient_id')
                         ->where('trans_id',$trans_id)
                         ->get();
-        return view('Transaction.ResultLayout.ECG',['patientinfo'=>$getPatient,'trans_id'=>$trans_id]);
+        $service = DB::table('trans_result_service_tbl')
+                    ->leftjoin('employee_tbl','emp_id','=','Ecg_doctor')
+                    ->where('service_id',$service_id)
+                    ->where('result_id',$result_id)
+                    ->get();
+        return view('Transaction.ResultLayout.ECG',['patientinfo'=>$getPatient,'trans_id'=>$trans_id,'service'=>$service]);
     }
     function save_ultrasound()
     {

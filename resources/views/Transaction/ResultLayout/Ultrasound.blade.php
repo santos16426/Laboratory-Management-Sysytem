@@ -53,7 +53,7 @@
 		</header>
 		<header>
 			<address style="float: left; width: 500px; text-align: left;">
-				<p>Impression:&nbsp;<br><span style="width: 500px;">{{ $serv->ultra_impression }}</span></p><br>
+				<p>Impression:&nbsp;<br><span style="width: 500px;margin-left: 1in">{{ $serv->ultra_impression }}</span></p><br>
 			</address>
 			
 			<br><br>
