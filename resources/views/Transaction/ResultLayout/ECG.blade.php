@@ -42,9 +42,9 @@
 				@endforeach
 				
 			</div>
-		<br><br>
-		<div >
-    		<img src="/Result_ECG/{{ $serv->Ecg_ecg_image }}">
+		<br><br><br><br><br>
+		<div>
+    		<img src="/Result_ECG/{{ $serv->Ecg_ecg_image }}" style="height: 600px; width: 970px; max-height: 590px; max-width: 960px;">
 		</div>
 		@endforeach
 	</body>

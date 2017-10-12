@@ -3,64 +3,61 @@
     window.location = "{{ url('/PageNotFound') }}";
 </script>
 @endif
+
 <!DOCTYPE html>
 <html >
-
-
 	<body>
-
-	<head>
-		<meta charset="utf-8">
-		<title>Ultrasound</title>
-		<link rel="stylesheet" href="{{ asset('/plugins/ultra.css') }}">
-		
-	</head>
-		<center>
+		<head>
+			<meta charset="utf-8">
+			<title>Ultrasound</title>
+			<link rel="stylesheet" href="{{ asset('/plugins/ultra.css') }}">
+			
+		</head>
 			<header>
-			<address rightinfo style="padding-bottom: 20px">
-				<p style="padding-bottom: 8px"><strong>Company Name:</strong>Globalhealth Diagnostics Center,Inc.</p>
-				<p style="padding-bottom: 8px"><strong>Address:</strong>156 N. Domingo Street, San Juan City, Metro Manila</p>
-				<p style="padding-bottom: 8px"><strong>Contact Number:</strong> 722-4544/436-2057</p>
-				<p style="padding-bottom: 8px"><strong>Email: globalhealth_sj@yahoo.com</strong></p><br>
-			</address>
-			<span><img alt="" src="/banner.jpg" style="width: 450px; height: 250px; float: left; max-height: 112px; max-width: 300px;"></span>
-		</header><br><br>
+				<address rightinfo style="padding-bottom: 20px">
+					<p style="padding-bottom: 8px"><strong>Company Name:</strong>Globalhealth Diagnostics Center,Inc.</p>
+					<p style="padding-bottom: 8px"><strong>Address:</strong>156 N. Domingo Street, San Juan City, Metro Manila</p>
+					<p style="padding-bottom: 8px"><strong>Contact Number:</strong> 722-4544/436-2057</p>
+					<p style="padding-bottom: 8px"><strong>Email: globalhealth_sj@yahoo.com</strong></p><br>
+				</address>
+				<span><img alt="" src="/banner.jpg" style="width: 450px; height: 250px; float: left; max-height: 112px; max-width: 300px;"></span>
+			</header><br><br>
 		<article>
 		@foreach($patientinfo as $patient)
-		<header>
-			<address style="float: left; text-align: left;">
-			<p>Name:&nbsp;{{ $patient->patient_fname }} {{ $patient->patient_mname }} {{ $patient->patient_lname }}</p>
-			<p>Age:&nbsp;{{ $patient->age }}</p>
-			<p>Gender:&nbsp;{{ $patient->patient_gender }}</p><br><br>
-			
-			</address>
-			<address style="float: right; text-align: left;">
-			<p>Laboratory Number:&nbsp;{{ $lab_id }}</p>
-			<p>Date:&nbsp;{{ date('F jS, Y',strtotime($date)) }}</p>
-			</address>
-		</header>
-		@endforeach
-		<header>
-			@foreach($service as $serv)
-			<address style="float: left; width: 500px; text-align: left;">
-				<p>Ultrasound:&nbsp;{{ $serv->ultra_title }}</p><br>
-			</address>
-			
-			<br><br>
-		</header>
-		<header>
-			<p style="font-size: 90%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-		</header>
-		<header>
-			<address style="float: left; width: 500px; text-align: left;">
-				<p>Impression:&nbsp;<br><span style="width: 500px;margin-left: 1in">{{ $serv->ultra_impression }}</span></p><br>
-			</address>
-			
-			<br><br>
-		</header>
+			<header>
+				<address style="float: left; text-align: left;">
+				<p>Name:&nbsp;{{ $patient->patient_fname }} {{ $patient->patient_mname }} {{ $patient->patient_lname }}</p>
+				<p>Age:&nbsp;{{ $patient->age }}</p>
+				<p>Gender:&nbsp;{{ $patient->patient_gender }}</p><br><br>
+				
+				</address>
+				<address style="float: right; text-align: left;">
+				<p>Laboratory Number:&nbsp;{{ $lab_id }}</p>
+				<p>Date:&nbsp;{{ date('F jS, Y',strtotime($date)) }}</p>
+				</address>
+			</header>
+			@endforeach
+			<header>
+				@foreach($service as $serv)
+				<address style="float: left; width: 500px; text-align: left;">
+					<p>{{ $serv->ultra_title }}</p><br>
+				</address>
+				
+				<br><br>
+			</header>
+			<header>
+				<p style="font-size: 90%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+			</header>
+			<header>
+				<address style="float: left; width: 500px; text-align: left;">
+					<p>Impression:&nbsp;<br><span style="width: 500px;margin-left: 1in">{{ $serv->ultra_impression }}</span></p><br>
+				</address>
+				
+				<br><br>
+			</header>
 		</article>
 		
-		<header style="padding-top: 245px; font-size: 20px; padding-right: 50px">
+		<header style="padding-top: 355px; font-size: 20px; padding-right: 50px">
 			<address style="float: right;">
 			<center>
 			<img alt="" src="/Employee_signatures/{{ $serv->ultra_sonologist_img }}" style="width: 150px; height: 90px;float: left; max-height: 90px; max-width: 150px;">
@@ -68,7 +65,7 @@
 			<p>Sonologist</p>
 			</center>
 			</address><br><br><br><br><br><br>
-		</header>
+		</header><br>
 		@endforeach
 		<header style="font-size: 20px">
 			<center>
