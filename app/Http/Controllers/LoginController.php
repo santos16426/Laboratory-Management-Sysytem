@@ -32,7 +32,13 @@ class LoginController extends Controller
     			$displayname = $validusers->display_name;
                 if($type!=0)
                 {
-                    $checkEmp = DB::table('employee_tbl')->where('emp_id',$emp_id)->where('EmpStatus',1)->count();
+                    $checkEmp = DB::table('employee_tbl')
+                        ->leftjoin('employee_role_tbl','role_id','=','emp_type_id')
+                        ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+                        ->where('emp_id',$emp_id)
+                        ->where('RoleStatus',1)
+                        ->where('LabStatus',1)
+                        ->where('EmpStatus',1)->count();
                     if($checkEmp > 0)
                     {
                         $access = 1;
