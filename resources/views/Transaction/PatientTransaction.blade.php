@@ -117,7 +117,7 @@
               <div class="input-group-addon">
                 Result Layout <sup>*</sup>
               </div>
-              <select class="form-control select2" name="result_layout" style="width: 100%">
+              <select class="form-control select2" name="result_layout" style="width: 100%" required="">
                   @if($physicalexam == 1)
                     <option value="medreq">Medical Request</option>
                   @endif
@@ -151,7 +151,7 @@
                   <span class="btn btn-white btn-file">
                   <span class="fileupload-new col-md-"><i class="fa fa-paper-clip"></i> Select file</span>
                   <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-                  <input type="file" name="file" id="file">
+                  <input type="file" name="file" id="file" required="">
                   </span>
                     <span class="fileupload-preview" style="margin-left:5px;"></span>
                     <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none; margin-left:5px;"></a>
