@@ -1208,6 +1208,28 @@ class ResultController extends Controller
 
         return view('Transaction.PatientTransaction',['trans_id'=>$trans_id,'result_id'=>$result_id,'table'=>$table,'physicalexam'=>$physicalexam,'result_medserv1'=>$result_medserv1,'result_medserv2'=>$result_medserv2,'result_ecg'=>$result_ecg,'result_xray'=>$result_xray,'result_ultra'=>$result_ultra,'result_drug'=>$result_drug,'services'=>$services,'corppack_id'=>$corppack_id]);
     }
+    public function delete_resultfile()
+    {
+        $file_id = $_POST['file_id'];
+        $getTransResult_id = DB::table('trans_resultfiles_tbl')->where('file_id',$file_id)->get();
+        foreach($getTransResult_id as $ids)
+        {
+            $trans_id = $ids->trans_id;
+            $result_id = $ids->result_id;
+            $result_type = $ids->result_type;
+        }
+        if($result_type == 'Medical Request')
+        {
+            DB::table('trans_result_service_tbl')
+                ->where('result_id',$result_id)
+                ->where('service_id',null)
+                ->update([
+                    'status'=>'PENDING'
+                ]);
+
+            DB::table('trans_resultfiles_tbl')->where('file_id',$file_id)->update(['status',0]);
+        }
+    }
     public function uploadResultFile()
     {
            

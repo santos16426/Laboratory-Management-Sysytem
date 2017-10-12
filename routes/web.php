@@ -128,7 +128,7 @@ Route::get('/AddLayout','ResultController@AddLayout');
 Route::get('/Transaction/PatientTransaction','ResultController@PatientTransaction');
 Route::post('/uploadResultFile','ResultController@uploadResultFile');
 Route::get('/uploadFileResuls','ResultController@uploadFileResuls');
-
+Route::post('/delete_resultfile','ResultController@delete_resultfile');
 //Remote Validation
 Route::get('/checkEmpType','RemoteController@checkEmpType');
 Route::get('/checkServgrp','RemoteController@checkServgrp');
