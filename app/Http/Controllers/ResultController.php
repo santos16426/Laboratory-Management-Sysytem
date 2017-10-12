@@ -606,16 +606,7 @@ class ResultController extends Controller
         }
         return view('Transaction.ResultDashboard',['servgroup'=>$servgroup]);
     }
-    public function uploadresults()
-    {
-        $transactions = DB::table('transaction_tbl')
-                            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
-                            ->leftjoin('transresult_tbl','transresult_tbl.trans_id','=','transaction_tbl.trans_id')
-                            ->where('transresult_tbl.status','PENDING')
-                            ->get();
-
-        return view('Transaction.UploadOfResults',['transactions'=>$transactions]);
-    }
+    
     public function getTransactionperGroup(Request $req)
     {
 
@@ -1093,40 +1084,43 @@ class ResultController extends Controller
     function drugtest(){
         return view ('Result.DrugTest');
     }
-    // public function ecg(){
-    //     $trans_id = $_GET['id'];
-    //     $patientinfo = DB::table('transaction_tbl')
-    //         ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
-    //         ->where('trans_id',$trans_id)
-    //         ->get();
-    //     return view('Transaction.ecg',['patientinfo'=>$patientinfo]);
-    // }
-    // public function ultra(){
-    //     $trans_id = $_GET['id'];
-    //     $patientinfo = DB::table('transaction_tbl')
-    //         ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
-    //         ->where('trans_id',$trans_id)
-    //         ->get();
-    //     return view('Transaction.ultra',['patientinfo'=>$patientinfo]);
-    // }
-    // public function xray(){
-    //     $trans_id = $_GET['id'];
-    //     $patientinfo = DB::table('transaction_tbl')
-    //         ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
-    //         ->where('trans_id',$trans_id)
-    //         ->get();
-    //     return view('Transaction.xray',['patientinfo'=>$patientinfo]);
-    // }
-    // public function medicalReport()
-    // {
-    //     $trans_id = $_GET['id'];
-    //     $patientinfo = DB::table('transaction_tbl')
-    //         ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
-    //         ->where('trans_id',$trans_id)
-    //         ->get();
+    public function uploadresults()
+    {
+        // $transactions = DB::table('transaction_tbl')
+//                     ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+//                     ->leftjoin('transresult_tbl','transresult_tbl.trans_id','=','transaction_tbl.trans_id')
+//                     ->where('transresult_tbl.status','PENDING')
+//                     ->get();
+        $emp_type_id = Session::get('emp_type_id');
+        $getLab = DB::table('employee_role_tbl')
+                            ->leftjoin('laboratory_tbl','employee_role_tbl.lab_id','=','laboratory_tbl.lab_id')
+                            ->leftjoin('service_group_tbl','service_group_tbl.lab_id','=','laboratory_tbl.lab_id')
+                            ->where('role_id',$emp_type_id)
+                            ->get();
+        $group_id = [];
+        foreach($getLab as $lab)
+        {
+            $lab_id = $lab->lab_id;
+            array_push($group_id,$lab->servgroup_id);
+        }
 
-    //     return view('Transaction.medicalReport',['patientinfo'=>$patientinfo]);
-    // }
+        $result_id = DB::table('trans_result_service_tbl')
+                        ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_result_service_tbl.result_id')
+                        ->where('transresult_tbl.status','PENDING')
+                        ->whereIn('trans_result_service_tbl.service_group_id',$group_id)
+                        ->get();
+        $res_id = array();
+        foreach($result_id as $r)
+        {
+            $res_id[] = $r->result_id;
+        }
+        $transactions = DB::table('transaction_tbl')
+            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+            ->leftjoin('transresult_tbl','transresult_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->whereIn('transresult_tbl.result_id',$res_id)
+            ->get();
+         return view('Transaction.UploadOfResults',['transactions'=>$transactions]);
+    }
     public function PatientTransaction()
     {
         $trans_id = $_GET['id'];
@@ -1136,17 +1130,167 @@ class ResultController extends Controller
                     ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_resultfiles_tbl.result_id')
                     ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
                     ->where('trans_resultfiles_tbl.trans_id',$trans_id)
+                    ->where('trans_resultfiles_tbl.status',1)
                     ->get();
         foreach($result_id as $s)
         {
             $result_id = $s->result_id;
         }
-        return view('Transaction.PatientTransaction',['trans_id'=>$trans_id,'result_id'=>$result_id,'table'=>$table]);
+        $getResult_id = DB::table('transresult_tbl')->where('trans_id',$trans_id)->get();
+        foreach($getResult_id as $res)
+        {
+            $result_id = $res->result_id;
+        }
+        $service_id = [];
+        $getServices = DB::table('trans_result_service_tbl')->where('status','PENDING')->where('result_id',$result_id)->where('corppack_id',null)->get();
+        foreach($getServices as $servid)
+        {
+            array_push($service_id,$servid->service_id);
+        }
+        $corppack_id = DB::table('trans_result_service_tbl')
+                        ->select('corppack_id')
+                        ->where('result_id',$result_id)
+                        ->where('service_id',null)
+                        ->get();
+        $physicalexam = 0;
+        if(count($corppack_id)>0)
+        {
+            $physicalexam = 1;
+        }
+        $emp_type_id = Session::get('emp_type_id');
+        $getLab_id = DB::table('employee_role_tbl')
+                        ->where('role_id',$emp_type_id)
+                        ->get();
+        foreach($getLab_id as $lab)
+        {
+            $lab_id = $lab->lab_id;
+        }
+        $services = DB::table('service_tbl')
+                    ->leftjoin('service_group_tbl','servgroup_id','=','service_group_id')
+                    ->whereIn('service_id',$service_id)
+                    ->where('lab_id',$lab_id)
+                    ->get();
+        
+            $result_medserv1 = 0;
+            $result_medserv2 = 0;
+            $result_ecg      = 0;
+            $result_xray     = 0;
+            $result_ultra    = 0;
+            $result_drug     = 0;
+        
+        foreach($services as $check)
+        {
+            if($check->result_medserv1 == 1)
+            {
+                $result_medserv1=1;
+            }
+            if($check->result_medserv2 == 1)
+            {
+                $result_medserv2 = 1;
+            }
+            if($check->result_ecg == 1)
+            {
+                $result_ecg = 1;
+            }
+            if($check->result_xray == 1)
+            {
+                $result_xray = 1;
+            }
+            if($check->result_ultra == 1)
+            {
+                $result_ultra = 1;
+            }
+            if($check->result_drug == 1)
+            {
+                $result_drug = 1;
+            }
+        }
+
+        return view('Transaction.PatientTransaction',['trans_id'=>$trans_id,'result_id'=>$result_id,'table'=>$table,'physicalexam'=>$physicalexam,'result_medserv1'=>$result_medserv1,'result_medserv2'=>$result_medserv2,'result_ecg'=>$result_ecg,'result_xray'=>$result_xray,'result_ultra'=>$result_ultra,'result_drug'=>$result_drug,'services'=>$services,'corppack_id'=>$corppack_id]);
     }
     public function uploadResultFile()
     {
+           
         $trans_id = $_POST['transaction_id'];
         $result_id= $_POST['result_id'];
+        $result_layout = $_POST['result_layout'];
+        if($result_layout == 'medreq')
+        {
+            $result_type = "Medical Request";
+            if(isset($_POST['corppack_id']))
+            {
+                DB::table('trans_result_service_tbl')->where('result_id',$result_id)->where('corppack_id',$_POST['corppack_id'])
+                    ->update([
+                        'status'=>'DONE'
+                    ]);
+            }
+        }
+        if($result_layout == 'medserv1')
+        {
+            $result_type = "Medical Service 1";
+            if(isset($_POST['service_id']))
+            {
+                $service_id = [];
+                DB::table('trans_result_service_tbl')->where('result_id',$result_id)->whereIn('service_id',$_POST['service_id'])
+                    ->update([
+                        'status'=>'DONE'
+                    ]);
+            }
+        }
+        if($result_layout == 'medserv2')
+        {
+            $result_type = "Medical Service 2";
+            if(isset($_POST['service_id']))
+            {
+                DB::table('trans_result_service_tbl')->where('result_id',$result_id)->whereIn('service_id',$_POST['service_id'])
+                    ->update([
+                        'status'=>'DONE'
+                    ]);
+            }
+        }
+        if($result_layout == 'ecg')
+        {
+            $result_type = "ECG";
+            if(isset($_POST['service_id']))
+            {
+                DB::table('trans_result_service_tbl')->where('result_id',$result_id)->whereIn('service_id',$_POST['service_id'])
+                    ->update([
+                        'status'=>'DONE'
+                    ]);
+            }
+        }
+        if($result_layout == 'xray')
+        {
+            $result_type = "Xray";
+            if(isset($_POST['service_id']))
+            {
+                DB::table('trans_result_service_tbl')->where('result_id',$result_id)->whereIn('service_id',$_POST['service_id'])
+                    ->update([
+                        'status'=>'DONE'
+                    ]);
+            }
+        }
+        if($result_layout == 'ultra')
+        {
+            if(isset($_POST['service_id']))
+            {
+                DB::table('trans_result_service_tbl')->where('result_id',$result_id)->whereIn('service_id',$_POST['service_id'])
+                    ->update([
+                        'status'=>'DONE'
+                    ]);
+            }
+        }
+        if($result_layout == 'drug')
+        {
+            $result_type = "Drug Test";
+            if(isset($_POST['service_id']))
+            {
+                DB::table('trans_result_service_tbl')->where('result_id',$result_id)->whereIn('service_id',$_POST['service_id'])
+                    ->update([
+                        'status'=>'DONE'
+                    ]);
+            } 
+        }
 
         $file = $_FILES['file'];
         $file_error = $file['error'];
@@ -1159,7 +1303,7 @@ class ResultController extends Controller
         $file_ext = explode('.',$file_name);
         $file_ext = strtolower(end($file_ext));
 
-        $allowed = array('pdf','jpg','png');
+        $allowed = array('pdf','jpg','png','txt','doc','docx','xlsx','ppt','pptx');
         if(in_array($file_ext,$allowed))
         {
             if($file_error === 0)
@@ -1173,6 +1317,7 @@ class ResultController extends Controller
                     {
                         
                          DB::table('trans_resultfiles_tbl')->insert([
+                            'result_type'=>$result_type,
                             'trans_id'  =>  $trans_id,
                             'result_id' =>  $result_id,
                             'date'      =>  date_create('now'),
@@ -1182,8 +1327,8 @@ class ResultController extends Controller
                 }
             }
         }
-       
-    return redirect()->back();
+        Session::flash('add',true);
+        return redirect()->back();
     }
      public function uploadFileResuls()
     {

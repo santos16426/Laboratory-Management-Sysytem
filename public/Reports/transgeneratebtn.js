@@ -707,67 +707,7 @@ $('#generatebtn').click(function(){
 				            }]
 				        }]
 				    });
-				    var x = [];
-				    var y = [];
 				    
-				    Highcharts.chart('barcharts', {
-						    chart: {
-						        type: 'column'
-						    },
-						    title: {
-						        text: 'Weekly Transaction as of '+ start_date +' to '+enddate
-						    },
-						    
-						    xAxis: {
-						        categories: [
-						        xvalues()
-						        ],
-						        crosshair: true
-						    },
-						    yAxis: {
-						        min: 0,
-						        title: {
-						            text: 'Income (pesos)'
-						        }
-						    },
-						    tooltip: {
-						        headerFormat: '<span style="font-size:10px">Date: {point.key}</span><table>',
-						        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-						            '<td style="padding:0"><b>{point.y:.2f} pesos</b></td></tr>',
-						        footerFormat: '</table>',
-						        shared: true,
-						        useHTML: true
-						    },
-						    plotOptions: {
-						        column: {
-						            pointPadding: 0.2,
-						            borderWidth: 0
-						        }
-						    },
-						    series: [{
-						        name: 'Total Income',
-						        data: [
-						        yvalues()
-						        ]
-
-						    }]
-						});
-				    function xvalues(){
-				    	response[4].forEach(function(data){
-				    		var total =0;
-				    		total = data.trans_total + charge
-					    	x.push(total);
-					    })
-					    alert(x);
-					    return x;
-				    }
-				    function yvalues()
-				    {
-				    	response[4].forEach(function(data){
-					    	y.push("'"+data.trans_date+"'");
-					    })
-					    return y;
-				    }
 					function corporate()
 					{
 						return response[2];
