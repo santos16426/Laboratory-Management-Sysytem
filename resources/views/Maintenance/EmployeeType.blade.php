@@ -266,6 +266,12 @@
 	});
 
 	$('.upEtypebtn').click(function(){
+		$('#EmployeeTypeedit').bootstrapValidator('resetForm',true);
+		$('#EmployeeTypeedit div').removeClass('has-error');
+		$('#EmployeeTypeedit div').removeClass('has-success');
+		$('#EmployeeTypeedit i').removeClass('glyphicon glyphicon-ok');
+		$('#EmployeeTypeedit i').removeClass('glyphicon glyphicon-remove');
+		$('#EmployeeTypeedit small').attr('style','display:none');
 		$.ajax
 		({
 			url: '/updateEmployeeType',

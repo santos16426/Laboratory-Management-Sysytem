@@ -564,6 +564,15 @@ $('#deleteModal').modal('show');
 $('.packservice').select2();
 $('.uppackservice').select2();
 $('.updateModal').click(function(){
+    $('#corppackedit').bootstrapValidator('resetForm',true);
+    $('#corppackedit div').removeClass('has-error');
+    $('#corppackedit div').removeClass('has-success');
+    $('#corppackedit i').removeClass('glyphicon glyphicon-ok');
+    $('#corppackedit i').removeClass('glyphicon glyphicon-remove');
+    $('#corppackedit small').attr('style','display:none');
+    $('.packservice').val('').trigger('change');
+    $('#totalprice').empty();
+    $('#totalprice').append('Total price: 0');
   $.ajax
     ({
       url: '/updateCorporatePackage',

@@ -214,6 +214,12 @@
     $('#deleteModal').modal('show');
 	});
 	$('.servgroupupbtn').click(function(){
+    $('#servgrpadd').bootstrapValidator('resetForm',true);
+      $('#servgrpedit div').removeClass('has-error');
+      $('#servgrpedit div').removeClass('has-success');
+      $('#servgrpedit i').removeClass('glyphicon glyphicon-ok');
+      $('#servgrpedit i').removeClass('glyphicon glyphicon-remove');
+      $('#servgrpedit small').attr('style','display:none');
     $.ajax
     ({
       url: '/updateServGroup',

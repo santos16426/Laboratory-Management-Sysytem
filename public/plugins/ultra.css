@@ -20,13 +20,13 @@
 /* content editable */
 *[contenteditableleft] {text-align: left; float: left;}
 
-*[rightinfo] {text-align: left; float: right; font-size: 16px; width: 350px; text-align: fixed;}
-
 *[contenteditableright] {text-align: left; float: right;}
 
 *[contenteditable3] { border-radius: 0.25em; min-width: 1em; outline: 0; text-align: center}
 
 *[contenteditable2] { min-width: 1em; outline: 0; float: right;}
+
+*[rightinfo] {text-align: left; float: right; font-size: 16px; width: 350px; text-align: fixed;}
 
 *[contenteditable] { min-width: 1em; outline: 0; text-align: left}
 

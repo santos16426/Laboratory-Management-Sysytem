@@ -417,6 +417,15 @@ $('.packservice').select2({
 
 
   $('.updateModal').click(function(){
+     $('#packageedit').bootstrapValidator('resetForm',true);
+    $('#packageedit div').removeClass('has-error');
+    $('#packageedit div').removeClass('has-success');
+    $('#packageedit i').removeClass('glyphicon glyphicon-ok');
+    $('#packageedit i').removeClass('glyphicon glyphicon-remove');
+    $('#packageedit small').attr('style','display:none');
+    $('.packservice').val('').trigger('change');
+    $('#totalprice').empty();
+    $('#totalprice').append('Total price: 0');
     $.ajax
     ({
       url: '/updatePackage',

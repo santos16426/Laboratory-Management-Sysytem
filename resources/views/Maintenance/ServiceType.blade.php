@@ -204,7 +204,12 @@
     $('#deleteModal').modal('show');
   });
   $('.upservtype').click(function(){
-    
+    $('#servtypeedit').bootstrapValidator('resetForm',true);
+      $('#servtypeedit div').removeClass('has-error');
+      $('#servtypeedit div').removeClass('has-success');
+      $('#servtypeedit i').removeClass('glyphicon glyphicon-ok');
+      $('#servtypeedit i').removeClass('glyphicon glyphicon-remove');
+      $('#servtypeedit small').attr('style','display:none');
     $.ajax
     ({
       url: '/updateServType',

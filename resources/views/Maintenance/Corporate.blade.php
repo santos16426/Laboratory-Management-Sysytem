@@ -308,6 +308,12 @@ $('.delbtn').click(function(){
 	});
 });
     $('.updateModal').click(function(){
+    	$('#corpedit').bootstrapValidator('resetForm',true);
+		$('#corpedit div').removeClass('has-error');
+		$('#corpedit div').removeClass('has-success');
+		$('#corpedit i').removeClass('glyphicon glyphicon-ok');
+		$('#corpedit i').removeClass('glyphicon glyphicon-remove');
+		$('#corpedit small').attr('style','display:none');
     $.ajax
     ({
       url: '/updateCorporate',

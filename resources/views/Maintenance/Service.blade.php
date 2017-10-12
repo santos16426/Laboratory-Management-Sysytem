@@ -525,7 +525,12 @@ $('.delbtn').click(function(){
     $('#deleteModal').modal('show');
   });
 $('.editsrvc').on('click',function(){
-  
+    $('#servedit').bootstrapValidator('resetForm',true);
+      $('#servedit div').removeClass('has-error');
+      $('#servedit div').removeClass('has-success');
+      $('#servedit i').removeClass('glyphicon glyphicon-ok');
+      $('#servedit i').removeClass('glyphicon glyphicon-remove');
+      $('#servedit small').attr('style','display:none');
       $.ajax
       ({
         url: '/getService', //eto ung route para makuha ung mga service type na may parehong service type id
