@@ -97,7 +97,15 @@ class ResultController extends Controller
     function printultrasound()
     {
         $result_id = Session::get('result_id');
-        $corppack_id = Session::get('corppack_id');
+        $service_id = Session::get('service_id');
+        $labd = DB::table('service_tbl')
+                    ->leftjoin('service_group_tbl','servgroup_id','=','service_group_id')
+                    ->where('service_id',$service_id)
+                    ->get();
+        foreach($labd as $lab)
+            {
+                $lab_id = $lab->lab_id;
+            }
         $getTrans_id = DB::table('transresult_tbl')->where('result_id',$result_id)->get();
         foreach($getTrans_id as $trans)
         {
@@ -107,7 +115,17 @@ class ResultController extends Controller
                         ->leftjoin('patient_tbl','patient_tbl.patient_id','=','trans_patient_id')
                         ->where('trans_id',$trans_id)
                         ->get();
-        return view('Transaction.ResultLayout.Ultrasound',['patientinfo'=>$getPatient,'trans_id'=>$trans_id]);
+        $service = DB::table('trans_result_service_tbl')
+                    ->leftjoin('employee_tbl','emp_id','=','ultra_sonologist')
+                    ->whereIn('service_id',[$service_id])
+                    ->where('result_id',$result_id)
+                    ->get();
+        foreach($service as $services)
+        {
+            $date = $services->ultra_date;
+        }
+
+        return view('Transaction.ResultLayout.Ultrasound',['date'=>$date,'patientinfo'=>$getPatient,'trans_id'=>$trans_id,'lab_id'=>$lab_id,'service'=>$service]);
     }
     function printECG()
     {
@@ -154,6 +172,7 @@ class ResultController extends Controller
             ->whereIn('service_id',[$_POST['service_id']])
             ->where('result_id',$_POST['result_id'])
             ->update([
+                'ultra_title'=>$_POST['title'],
                 'ultra_impression'=>$_POST['impression'],
                 'ultra_sonologist'=>$_POST['sonologist'],
                 'ultra_sonologist_img'=>$sono_signature,

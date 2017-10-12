@@ -116,8 +116,7 @@
                 <div class="input-group-addon">
                   Service Group <sup>*</sup>
                 </div>
-                  <select class="form-control srvcgrp" name="srvcgrp_id" id="srvcgrpid" disabled="">
-                    <option value = "0">Service Group(Optional)</option> <!-- dito ididisplay lahat ng service group -->
+                  <select class="form-control srvcgrp" name="srvcgrp_id" id="srvcgrpid" disabled="">                    
                     @foreach($groupdropdown as $gd) 
                     <option value="{{$gd->servgroup_id}}">{{$gd->servgroup_name}}</option>
                     @endforeach

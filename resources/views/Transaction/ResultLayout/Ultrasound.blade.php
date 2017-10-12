@@ -23,7 +23,7 @@
 				<p style="padding-bottom: 8px"><strong>Contact Number:</strong> 722-4544/436-2057</p>
 				<p style="padding-bottom: 8px"><strong>Email: globalhealth_sj@yahoo.com</strong></p><br>
 			</address>
-			<span><img alt="" src="/banner.jpg" style="width: 500px; height: 250px float: left; max-height: 112px; max-width: 330px;"></span>
+			<span><img alt="" src="/banner.jpg" style="width: 450px; height: 250px; float: left; max-height: 112px; max-width: 300px;"></span>
 		</header><br><br>
 		<article>
 		@foreach($patientinfo as $patient)
@@ -35,45 +35,41 @@
 			
 			</address>
 			<address style="float: right; text-align: left;">
-			<p>Laboratory Number:&nbsp;<span contenteditable style="width: 100px"></span></p>
-			<p>Date:&nbsp;<span contenteditable style="width: 100px"></span></p>
+			<p>Laboratory Number:&nbsp;{{ $lab_id }}</p>
+			<p>Date:&nbsp;{{ date('F jS, Y',strtotime($date)) }}</p>
 			</address>
 		</header>
 		@endforeach
 		<header>
+			@foreach($service as $serv)
 			<address style="float: left; width: 500px; text-align: left;">
-				<p>Ultrasound:&nbsp;<span contenteditable style="width: 500px;"></span></p><br>
+				<p>Ultrasound:&nbsp;{{ $serv->ultra_title }}</p><br>
 			</address>
 			
 			<br><br>
 		</header>
 		<header>
-			<p contenteditable style="font-size: 90%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+			<p style="font-size: 90%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 		</header>
 		<header>
 			<address style="float: left; width: 500px; text-align: left;">
-				<p>Impression:&nbsp;<br><span contenteditable style="width: 500px;"></span></p><br>
+				<p>Impression:&nbsp;<br><span style="width: 500px;">{{ $serv->ultra_impression }}</span></p><br>
 			</address>
 			
 			<br><br>
 		</header>
 		</article>
-		<!-- <aside>
-			<h1><span contenteditable>Additional Notes</span></h1>
-			<div contenteditable>
-				<p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
-			</div>
-		</aside> -->
+		
 		<header style="padding-top: 245px; font-size: 20px; padding-right: 50px">
 			<address style="float: right;">
 			<center>
-			<img alt="" src="/banner.jpg" style="width: 150px; height: 90px float: left; max-height: 90px; max-width: 150px;">
-			<p><span>NAME</span></p>
-			<p>Radiologist</p>
+			<img alt="" src="/Employee_signatures/{{ $serv->ultra_sonologist_img }}" style="width: 150px; height: 90px;float: left; max-height: 90px; max-width: 150px;">
+			<p><span>{{ $serv->emp_fname }} {{ $serv->emp_mname }} {{ $serv->emp_lname }}</span></p>
+			<p>Sonologist</p>
 			</center>
 			</address><br><br><br><br><br><br>
 		</header>
-
+		@endforeach
 		<header style="font-size: 20px">
 			<center>
 				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This Report is a medical opinion is based on objective imaging findings and is best correlated with clinical, <br>Laboratory and other ancillary findings by the patient's attending physician. </p>
