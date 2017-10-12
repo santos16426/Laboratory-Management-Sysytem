@@ -56,7 +56,10 @@
 				          		@foreach($nooffiles as $nof)
 					          		@if($nof->result_id == $transact->result_id)
 					          		{{ $nof->count_row }}
+					          		@else
+					          		0
 					          		@endif
+
 				          		@endforeach
 				          	@else
 				          		0
@@ -74,6 +77,12 @@
 				                                      <span>{{ $total }}% Complete</span>
 				                                  </div>
 				                            </div>
+				                            @else
+									          	<div class="progress progress-striped active progress-md">
+													<div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+														<span>0% Complete</span>
+													</div>
+					                            </div>
 			                            @endif
 		                            @endforeach
 		                            @else
