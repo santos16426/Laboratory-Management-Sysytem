@@ -615,6 +615,7 @@ class ResultController extends Controller
                         ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_result_service_tbl.result_id')
                         ->where('transresult_tbl.status','PENDING')
                         ->where('trans_result_service_tbl.service_group_id',$serv_group_id)
+                        ->where('trans_result_service_tbl.status','PENDING')
                         ->get();
         $res_id = array();
         foreach($result_id as $r)

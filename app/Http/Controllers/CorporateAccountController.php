@@ -89,7 +89,7 @@ class CorporateAccountController extends Controller
         'CorpPackStatus'=>0
       ]);
       Session::flash('delete',true);
-      return redirect('/Maintenance/Corporate/CreatePackage?corp_id='.$id);
+      return redirect()->back();
     }
     function save_corpPackage()
     {

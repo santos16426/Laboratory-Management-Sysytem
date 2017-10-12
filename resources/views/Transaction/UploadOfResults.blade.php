@@ -52,17 +52,20 @@
 				          <td>{{ $transact->patient_mname }}</td>
 				          <td>{{ $transact->patient_fname }}</td>
 				          <td>
-				          	@foreach($nooffiles as $nof)
-				          		@if($nof->result_id == $transact->result_id)
-				          		{{ $nof->count_row }}
-				          		@else
+				          	@if(count($nooffiles)>0)
+				          		@foreach($nooffiles as $nof)
+					          		@if($nof->result_id == $transact->result_id)
+					          		{{ $nof->count_row }}
+					          		@endif
+				          		@endforeach
+				          	@else
 				          		0
-				          		@endif
-				          	@endforeach
+				          	@endif
 				          </td>
 				          <td>
 				          	@foreach($totaltrans as $totals)
 				          		@if($totals->result_id == $transact->result_id)
+				          			@if(count($donetrans)>0)
 					          		@foreach($donetrans as $dones)
 					          			@if($dones->result_id == $transact->result_id)
 					          				<?php $total = floor(($dones->count_row/$totals->count_row)*100) ?>
@@ -71,16 +74,15 @@
 				                                      <span>{{ $total }}% Complete</span>
 				                                  </div>
 				                            </div>
-
-			                            @else
-			                            <div class="progress progress-striped active progress-md">
-			                                  <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 1%">
-			                                      <span style="color:black"></span>
-			                                  </div>
-			                            </div>
 			                            @endif
-
 		                            @endforeach
+		                            @else
+							          	<div class="progress progress-striped active progress-md">
+											<div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+												<span>0% Complete</span>
+											</div>
+			                            </div>
+		                            @endif
 	                            @endif
                               @endforeach
 				          </td>
