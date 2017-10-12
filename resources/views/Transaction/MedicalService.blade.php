@@ -313,8 +313,7 @@
 					@endif
 					
 					<a  class="btn btn-primary btn-sm col-md-5 col-md-offset-2" id="pwdmodal">PWD<i class="" aria-hidden="true"></i></a>
-					<hr>
-					<a  class="btn btn-primary btn-sm col-md-5" id="test">test<i class="" aria-hidden="true"></i></a>
+					
 				</div>
 			</section>
 		</div>
