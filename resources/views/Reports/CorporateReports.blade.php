@@ -1,9 +1,10 @@
+@extends('AdminLayout.admin')
+
 @if((Session::get('corprep')!=1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
 @endif
-@extends('AdminLayout.admin')
 
 @section ('breadrootName')
 <i class="fa fa-area-chart" aria-hidden="true"></i><span> Reports</span>

@@ -1,9 +1,10 @@
+@extends('AdminLayout.admin')
+
 @if((Session::get('rebatebill')!= 1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
 @endif
-@extends('AdminLayout.admin')
 
 @section ('breadrootName')
 <i class="fa fa-handshake-o" aria-hidden="true"></i><span> Transaction</span>
@@ -43,7 +44,7 @@
 								<td>
 									@foreach($rebates as $rebate)
 										@if($empreb->emp_id == $rebate->emp_id)
-										<?php  $total += $rebate->percentage; ?>
+										<?php  $total += $rebate->percentage; $total += $rebate->charge?>
 										@endif
 									@endforeach
 									@foreach($paymentTransaction as $payments)
@@ -58,7 +59,7 @@
 								<td>
 									@foreach($rebates as $rebate)
 										@if($empreb->emp_id == $rebate->emp_id)
-										<?php  $total += $rebate->percentage; ?>
+										<?php  $total += $rebate->percentage;$total += $rebate->charge ?>
 										@endif
 									@endforeach
 									@foreach($paymentTransaction as $payments)
@@ -78,7 +79,7 @@
 								<td>
 									@foreach($rebates as $rebate)
 										@if($empreb->emp_id == $rebate->emp_id)
-										<?php  $total += $rebate->percentage; ?>
+										<?php  $total += $rebate->percentage;$total += $rebate->charge ?>
 										@endif
 									@endforeach
 									@foreach($paymentTransaction as $payments)

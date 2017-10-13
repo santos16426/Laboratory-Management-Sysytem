@@ -11,9 +11,6 @@
 @endsection
 @section('dashboard','active')
 @section('content')
-<input type="hidden" id="emp_count" value="{{ $emp_count }}">
-<input type="hidden" id="patient_count" value="{{ $patient_count }}">
-<input type="hidden" id="service_count" value="{{ $service_count }}">
 
 <div class="row">
   <div class="col-lg-12">
@@ -27,7 +24,7 @@
                           </div>
                           <div class="value">
                               <h1 class="emp_count">
-                                  
+                                  {{ number_format($emp_count) }}
                               </h1>
                               <p>Employee</p>
                           </div>
@@ -40,9 +37,9 @@
                           </div>
                           <div class="value">
                               <h1 class=" patient_count">
-                                    
+                                 {{ number_format($patient_count) }}
                               </h1>
-                              <p>Patients</p>
+                              <p>Total Patients</p>
                           </div>
                       </section>
                   </div>
@@ -53,7 +50,7 @@
                           </div>
                           <div class="value">
                               <h1 class=" service_count">
-                                  
+                                  {{ number_format($service_count) }}
                               </h1>
                               <p>Services</p>
                           </div>
@@ -65,164 +62,191 @@
                               <i class="fa fa-bar-chart-o"></i>
                           </div>
                           <div class="value">
-                              <h1 class=" count4">
-                                  0
+                              <h1 class="dayincome">
+                                  {{ number_format($dayincome) }}
                               </h1>
                               <p>Profit of the Day</p>
                           </div>
                       </section>
                   </div>
+
+              
+
+                  <div class="col-lg-3 col-sm-6">
+                    <section class="panel">
+                        <div class="symbol red">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <div class="value">
+                            <h1 class=" corporate">
+                                {{ number_format($corporate) }}
+                            </h1>
+                            <p>Corporate Accounts</p>
+                        </div>
+                    </section>
+                  </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol yellow">
+                              <i class="fa fa-rub"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class=" corppayment">
+                                  {{ number_format($corppay) }}
+                              </h1>
+                              <p>Unsettled Corporate Payments</p>
+                          </div>
+                      </section>
+                  </div>
+
+                   <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol blue">
+                              <i class="fa fa-percent"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class="emp_total">
+                                 {{ $rebate }}%
+                              </h1>
+                              <p>Current Rebate Percentage</p>
+                          </div>
+                      </section>
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol terques">
+                              <i class="fa fa-user-md"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class="rebatepayment">
+                                  {{ number_format($emp_total) }}
+                              </h1>
+                              <p>Unsettled Rebate Payment</p>
+                          </div>
+                      </section>
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol blue">
+                              <i class="fa fa-handshake-o"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class="daytransact">
+                                  {{ number_format($daytransact) }}
+                              </h1>
+                              <p>Transactions for the Day</p>
+                          </div>
+                      </section>
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol terques">
+                              <i class="fa fa-rub"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class="monthincome">
+                                  {{ number_format($monthincome) }}
+                              </h1>
+                              <p>Total Income for the month</p>
+                          </div>
+                      </section>
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol red">
+                              <i class="fa fa-rub"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class="unfinishtrans">
+                                  {{ number_format($unfinish) }}
+                              </h1>
+                              <p>Pending Results</p>
+                          </div>
+                      </section>
+                  </div>
+
               </div>
               <!--state overview end-->
 
               <div class="row">
-                  <div class="col-lg-8">
-                      <!--custom chart start-->
-                      <div class="border-head">
-                          <h3>Earning Graph</h3>
-                      </div>
-                      <div class="custom-bar-chart">
-                          <ul class="y-axis">
-                              <li><span>100</span></li>
-                              <li><span>80</span></li>
-                              <li><span>60</span></li>
-                              <li><span>40</span></li>
-                              <li><span>20</span></li>
-                              <li><span>0</span></li>
-                          </ul>
-                          <div class="bar">
-                              <div class="title">JAN</div>
-                              <div class="value tooltips" data-original-title="80%" data-toggle="tooltip" data-placement="top">80%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">FEB</div>
-                              <div class="value tooltips" data-original-title="50%" data-toggle="tooltip" data-placement="top">50%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">MAR</div>
-                              <div class="value tooltips" data-original-title="40%" data-toggle="tooltip" data-placement="top">40%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">APR</div>
-                              <div class="value tooltips" data-original-title="55%" data-toggle="tooltip" data-placement="top">55%</div>
-                          </div>
-                          <div class="bar">
-                              <div class="title">MAY</div>
-                              <div class="value tooltips" data-original-title="20%" data-toggle="tooltip" data-placement="top">20%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">JUN</div>
-                              <div class="value tooltips" data-original-title="39%" data-toggle="tooltip" data-placement="top">39%</div>
-                          </div>
-                          <div class="bar">
-                              <div class="title">JUL</div>
-                              <div class="value tooltips" data-original-title="75%" data-toggle="tooltip" data-placement="top">75%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">AUG</div>
-                              <div class="value tooltips" data-original-title="45%" data-toggle="tooltip" data-placement="top">45%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">SEP</div>
-                              <div class="value tooltips" data-original-title="50%" data-toggle="tooltip" data-placement="top">50%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">OCT</div>
-                              <div class="value tooltips" data-original-title="42%" data-toggle="tooltip" data-placement="top">42%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">NOV</div>
-                              <div class="value tooltips" data-original-title="60%" data-toggle="tooltip" data-placement="top">60%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">DEC</div>
-                              <div class="value tooltips" data-original-title="90%" data-toggle="tooltip" data-placement="top">90%</div>
-                          </div>
-                      </div>
-                      <!--custom chart end-->
-                  </div>
-                <div class="col-lg-4">
-                      <!--work progress start-->
+                <div class="col-lg-8">
+                      <!--user info table start-->
                       <section class="panel">
-                          <div class="panel-body progress-panel">
-                              <div class="task-progress">
-                                  <h1>Work Progress</h1>
-                                  <p>Anjelina Joli</p>
-                              </div>
-                              <div class="task-option">
-                                  <select class="styled">
-                                      <option>Anjelina Joli</option>
-                                      <option>Tom Crouse</option>
-                                      <option>Jhon Due</option>
-                                  </select>
-                              </div>
+                      	<header class="panel-heading">
+													Pending Results
+													<span class="tools pull-right">
+											          <a class="fa fa-chevron-down" href="javascript:;"></a>
+											      	</span>
+												</header>
+                          <div class="panel-body">
+	                          <table class="table table-hover personal-task">
+	                            <thead>
+	                              <tr>
+	                                <th>Transaction ID</th>
+	                                <th>Transaction Date</th>
+	                                <th>Patient Name</th>
+	                                <th>Progress</th>
+	                                @if((Session::get('upresult')==1))
+	                                <th>Action</th>
+	                                @endif
+	                              </tr>
+	                            </thead>
+	                            <tbody>
+	                              @foreach($transactions as $transact)
+	                              <tr>
+	                                <td>{{ $transact->trans_id }}</td>
+	                                <td>
+	                                    {{  date('F jS, Y',strtotime($transact->trans_date)) }}
+	                                </td>
+	                                <td>{{ $transact->patient_lname }} {{ $transact->patient_mname }} {{ $transact->patient_fname }}</td>
+	                                <td>
+	                                  @foreach($totaltrans as $totals)
+	                                    @if($totals->result_id == $transact->result_id)
+	                                      @if(count($donetrans)>0)
+	                                      @foreach($donetrans as $dones)
+	                                        @if($dones->result_id == $transact->result_id)
+	                                          <?php $total = floor(($dones->count_row/$totals->count_row)*100) ?>
+	                                          <div class="progress progress-striped active progress-md">
+	                                            <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{ $total }}%">
+	                                              <span>{{ $total }}% Complete</span>
+	                                            </div>
+	                                          </div>
+	                                          @else
+	                                            <div class="progress progress-striped active progress-md">
+			                                          <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+			                                            <span>0% Complete</span>
+			                                          </div>
+	                                            </div>
+	                                            @endif
+	                                          @endforeach
+	                                          @else
+	                                        <div class="progress progress-striped active progress-md">
+			                                      <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+			                                        <span>0% Complete</span>
+			                                      </div>
+	                                        </div>
+	                                        @endif
+	                                      @endif
+	                                    @endforeach
+	                                	</td>
+	                                  @if((Session::get('upresult')==1))
+	                                  @if($total == 100)
+	                                  <td>
+	                                      <a class="btn btn-primary btn-xs" href="/uploadFileResuls?id={{ $transact->trans_id }}"><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;  Upload Result</a>
+	                                  </td>
+	                                  @endif
+	                                  @endif
+	                              </tr>
+	                              @endforeach
+	                            </tbody>
+	                          </table>
                           </div>
-                          <table class="table table-hover personal-task">
-                              <tbody>
-                              <tr>
-                                  <td>1</td>
-                                  <td>
-                                      Target Sell
-                                  </td>
-                                  <td>
-                                      <span class="badge bg-important">75%</span>
-                                  </td>
-                                  <td>
-                                    <div id="work-progress1"></div>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>2</td>
-                                  <td>
-                                      Product Delivery
-                                  </td>
-                                  <td>
-                                      <span class="badge bg-success">43%</span>
-                                  </td>
-                                  <td>
-                                      <div id="work-progress2"></div>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>3</td>
-                                  <td>
-                                      Payment Collection
-                                  </td>
-                                  <td>
-                                      <span class="badge bg-info">67%</span>
-                                  </td>
-                                  <td>
-                                      <div id="work-progress3"></div>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>4</td>
-                                  <td>
-                                      Work Progress
-                                  </td>
-                                  <td>
-                                      <span class="badge bg-warning">30%</span>
-                                  </td>
-                                  <td>
-                                      <div id="work-progress4"></div>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>5</td>
-                                  <td>
-                                      Delivery Pending
-                                  </td>
-                                  <td>
-                                      <span class="badge bg-primary">15%</span>
-                                  </td>
-                                  <td>
-                                      <div id="work-progress5"></div>
-                                  </td>
-                              </tr>
-                              </tbody>
-                          </table>
                       </section>
-                      <!--work progress end-->
                   </div>
               </div>
             
@@ -232,76 +256,7 @@
 
 @endsection
 @section('additional')
-<script type="text/javascript">
-  $(document).ready(function(){
 
-    
-    patient_count($('#patient_count').val());
-    service_count($('#service_count').val());   
-    emp_count($('#emp_count').val());
-    function emp_count(emp_count)
-    {
-
-        var div_by = 100,
-            speed = Math.round(emp_count / div_by),
-            $display = $('.emp_count'),
-            run_count = 1,
-            int_speed = 24;
-
-        var int = setInterval(function() {
-            if(run_count < div_by){
-                $display.text(speed * run_count);
-                run_count++;
-            } else if(parseInt($display.text()) < emp_count) {
-                var curr_count = parseInt($display.text()) + 1;
-                $display.text(curr_count);
-            } else {
-                clearInterval(int);
-            }
-        }, int_speed);
-    }
-    function patient_count(patient_count)
-    {
-        var div_by = 100,
-            speed = Math.round(patient_count / div_by),
-            $display = $('.patient_count'),
-            run_count = 1,
-            int_speed = 24;
-
-        var int = setInterval(function() {
-            if(run_count < div_by){
-                $display.text(speed * run_count);
-                run_count++;
-            } else if(parseInt($display.text()) < patient_count) {
-                var curr_count = parseInt($display.text()) + 1;
-                $display.text(curr_count);
-            } else {
-                clearInterval(int);
-            }
-        }, int_speed);
-    }
-    function service_count(service_count)
-    {
-        var div_by = 100,
-            speed = Math.round(service_count / div_by),
-            $display = $('.service_count'),
-            run_count = 1,
-            int_speed = 24;
-
-        var int = setInterval(function() {
-            if(run_count < div_by){
-                $display.text(speed * run_count);
-                run_count++;
-            } else if(parseInt($display.text()) < service_count) {
-                var curr_count = parseInt($display.text()) + 1;
-                $display.text(curr_count);
-            } else {
-                clearInterval(int);
-            }
-        }, int_speed);
-    }
-  });
-</script>
 @if(Session::has('transaction'))
 <input type="hidden" name="" value="{{ Session::get('trans_id') }}" id="transaction_id">
 <script type="text/javascript">

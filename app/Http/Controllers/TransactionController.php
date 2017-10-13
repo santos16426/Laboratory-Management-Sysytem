@@ -87,7 +87,8 @@ class TransactionController extends Controller
             ->where('employee_tbl.EmpStatus',1)
             ->where('emp_rebate_tbl.EmpRebStatus',1)->get();
         $getRebateTransaction = DB::table('trans_emprebate_tbl')->get();
-        $rebates = DB::select(DB::raw('SELECT empr.emp_id,(t.trans_total * (r.percentage/100)) as percentage FROM trans_emprebate_tbl empr LEFT JOIN rebate_tbl r on empr.rebate_id = r.rebate_id LEFT JOIN employee_tbl e on empr.emp_id = e.emp_id LEFT JOIN transaction_tbl t ON t.trans_id = empr.trans_id '));
+        $rebates = DB::select(DB::raw('SELECT empr.emp_id,(t.trans_total * (r.percentage/100)) as percentage,charge FROM trans_emprebate_tbl empr LEFT JOIN rebate_tbl r on empr.rebate_id = r.rebate_id LEFT JOIN employee_tbl e on empr.emp_id = e.emp_id LEFT JOIN transaction_tbl t ON t.trans_id = empr.trans_id LEFT JOIN transcorp_tbl tc ON tc.trans_id = t.trans_id'));
+        
         $total = 0;
         $payments = 0;
         $getRebatePayments = DB::table('transrebate_payment_tbl')->get();

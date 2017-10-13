@@ -11,6 +11,7 @@ class ResultController extends Controller
     public function __construct()
     {
         date_default_timezone_set('Singapore');
+        ini_set('memory_limit','256M');
     }
     function printxray()
     {

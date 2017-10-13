@@ -1,9 +1,10 @@
+@extends('AdminLayout.admin')
+
 @if((Session::get('addpatient')!= 1)&&(Session::get('availserv')!= 1)&&(Session::get('delpatient')== 1 )&&(Session::get('uppatient')==1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
 @endif
-@extends('AdminLayout.admin')
 
 @section ('breadrootName')
 <i class="fa fa-handshake-o" aria-hidden="true"></i><span> Transaction</span>

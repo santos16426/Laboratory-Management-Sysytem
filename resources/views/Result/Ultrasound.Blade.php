@@ -1,9 +1,10 @@
+@extends('AdminLayout.admin')
+
 @if((Session::get('addresult')!= 1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
 @endif
-@extends('AdminLayout.admin')
 
 @section ('breadrootName')
 <i class="fa fa-handshake-o" aria-hidden="true"></i><span> Transaction</span>

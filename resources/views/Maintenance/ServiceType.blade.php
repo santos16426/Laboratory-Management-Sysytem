@@ -1,9 +1,10 @@
+@extends('AdminLayout.admin')
+
 @if((Session::get('addservtype')!=1)&&(Session::get('upservtype')!=1)&&(Session::get('delservtype')!=1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
 @endif
-@extends('AdminLayout.admin')
 
 @section ('breadrootName')
 <i class="fa fa-cogs" aria-hidden="true"></i><span> Maintenance</span>
