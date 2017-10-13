@@ -26,12 +26,15 @@
 <div class="row">
 	<div class="col-lg-12">
 		<section class="panel">
+			<form method="POST" action="/save_drugtest"  enctype="multipart/form-data">
+				@foreach($services as $serv)
+					<input type="hidden" name="service_id[]" value="{{ $serv->service_id }}">
+				@endforeach
+				<input type="hidden" name="result_id" value="{{ $result_id }}">
 			<header class="panel-heading">
 				Drug Test
 			</header>
 			<div class="panel-body">
-				<form action="" method="" id=""><br>
-
 			 <div class="col-md-12">
 				<div class="col-md-6">
 			        <div class="form-group" style="padding-left: 16px">
@@ -86,6 +89,7 @@
 		    </div>  
 
 		    <div class="col-md-12">
+		    	@foreach($patient as $patientinfo)
 				<div class="col-md-6">
 			        <div class="form-group">
 			              <div class="col-md-12">
@@ -93,7 +97,7 @@
 			                  <div class="input-group-addon">
 			                   Name
 			                 </div>
-			                <input readonly="" name="name" id="name" type="text" placeholder="Name" class="form-control input-md" required>
+			                <input readonly="" name="name" id="name" value="{{ $patientinfo->patient_fname }} {{ $patientinfo->patient_mname }} {{ $patientinfo->patient_lname }}"  type="text" placeholder="Name" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -105,7 +109,7 @@
 			                  <div class="input-group-addon">
 			                   Birthday
 			                 </div>
-			                <input readonly="" name="birthday" id="birthday" placeholder="Birthday" class="form-control input-md" required>
+			                <input readonly="" value="{{ $patientinfo->patient_birthdate }}" name="birthday" id="birthday" placeholder="Birthday" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -120,7 +124,7 @@
 			                  <div class="input-group-addon">
 			                   Age
 			                 </div>
-			                <input readonly="" name="age" id="age" type="text" placeholder="Age" class="form-control input-md" required>
+			                <input readonly="" name="age" id="age" value="{{ $patientinfo->age }}" placeholder="Age" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -132,13 +136,13 @@
 			                  <div class="input-group-addon">
 			                   Gender
 			                 </div>
-			                <input readonly="" name="gender" id="gender" placeholder="Gender" class="form-control input-md" required>
+			                <input readonly="" name="sex" id="sex" value="{{ $patientinfo->patient_gender }}" type="text" placeholder="Sex" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
 		        </div> 
 		    </div>
-
+		    @endforeach
 
 			<div class="col-md-12">
 				<div class="col-md-6">
@@ -148,7 +152,7 @@
 			                  <div class="input-group-addon">
 			                   Transaction Date Time
 			                 </div>
-			                <input name="trans" id="trans" type="text" placeholder="Transaction Date Time" class="form-control input-md" required>
+			                <input name="trans" value="{{ $tdate }}" readonly id="trans" type="text" placeholder="Transaction Date Time" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -160,7 +164,7 @@
 			                  <div class="input-group-addon">
 			                   Report Date Time
 			                 </div>
-			                <input name="report" id="report" placeholder="Report Date Time" class="form-control input-md" required>
+			                <input name="reportdate" value="{{ $datenow }}" readonly id="reportdate" placeholder="Report Date Time" class="form-control input-md" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -222,8 +226,7 @@
 			        <div class="form-group">
 			              <div class="col-md-12">
 			                <label>Drug/Metabolite</label>
-			                <textarea  name="drugmet1" id="drugmet1" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
+			                <textarea  name="drugmet1" id="drugmet1" type="text" placeholder="" class="form-control input-md" required></textarea>
 			          </div>  
 			       </div><br><br><br><br>
 			 	 </div>
@@ -231,8 +234,7 @@
 			        <div class="form-group">
 			              <div class="col-md-12">
 			                <label>Result</label>
-			                <textarea  name="result1" id="result1" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
+			                <textarea  name="result1" id="result1" type="text" placeholder="" class="form-control input-md" required></textarea>
 			          </div>  
 			       </div><br><br><br><br>
 			 	 </div>
@@ -240,8 +242,7 @@
 			        <div class="form-group">
 			              <div class="col-md-12">
 			                <label>Remarks</label>
-			                <textarea  name="remarks1" id="remarks1" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
+			                <textarea  name="remarks1" id="remarks1" type="text" placeholder="" class="form-control input-md" required></textarea>
 			          </div>  
 			       </div><br><br><br><br>
 			 	 </div>
@@ -250,24 +251,21 @@
 				<div class="col-md-4">
 			        <div class="form-group">
 			              <div class="col-md-12">
-			                <textarea  name="drugmet2" id="drugmet2" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
+			                <textarea  name="drugmet2" id="drugmet2" type="text" placeholder="" class="form-control input-md" required></textarea>
 			          </div>  
 			       </div><br><br><br><br>
 			 	 </div>
 			 	<div class="col-md-4">
 			        <div class="form-group">
 			              <div class="col-md-12">
-			                <textarea  name="result2" id="result2" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
+			                <textarea  name="result2" id="result2" type="text" placeholder="" class="form-control input-md" required></textarea>
 			          </div>  
 			       </div><br><br><br><br>
 			 	 </div>
 			 	 <div class="col-md-4">
 			        <div class="form-group">
 			              <div class="col-md-12">
-			                <textarea  name="remarks2" id="remarks2" type="text" placeholder="" class="form-control input-md" required>
-			                </textarea>
+			                <textarea  name="remarks2" id="remarks2" type="text" placeholder="" class="form-control input-md" required></textarea>
 			          </div>  
 			       </div><br><br><br><br>
 			 	 </div>
@@ -284,6 +282,9 @@
 			                 <div class="input-group" >
 									<span class="input-group-addon">Analyst</span>
 									<select class="form-control package_id select2" name="referred1" id="referred1" style="width: 100%" >
+										@foreach($emp as $emps)
+											<option value="{{ $emps->emp_id }}">{{ $emps->emp_fname }} {{ $emps->emp_mname }} {{ $emps->emp_lname }}</option>
+										@endforeach
 									</select>
 								</div>
 			          		</div>  
@@ -295,6 +296,9 @@
 			                 <div class="input-group" >
 									<span class="input-group-addon">Analyst</span>
 									<select class="form-control package_id select2" name="referred2" id="referred2" style="width: 100%" >
+										@foreach($emp as $emp2)
+											<option value="{{ $emp2->emp_id }}">{{ $emp2->emp_fname }} {{ $emp2->emp_mname }} {{ $emp2->emp_lname }}</option>
+										@endforeach
 									</select>
 								</div>
 			          		</div>  
@@ -307,14 +311,12 @@
 
 	        {{ csrf_field() }}
 	      </div>
-					
-				</form>
 			</div>
 			<center>
 				<button type="button" class="btn btn-xs" style="width: 8%">Back</button>
-				<button type="button" class="btn btn-xs btn-info" style="width: 8%">View</button>
 		        <button type="submit" class="btn btn-xs btn-success"  style="width: 8%">Save & Print</button>
 		    </center>
+		</form>
 		</section>
 	</div>
 </div>

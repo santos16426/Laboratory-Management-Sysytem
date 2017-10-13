@@ -119,7 +119,7 @@
             <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">
                 <div class="input-group-addon">
-                  Service Type <sup>*</sup>
+                  Service Type
                 </div>
                   <select class="form-control" id="typesel" name="srvctyp_id" disabled=""> <!-- dito magaad ng service type everytime na mag onchange ung sa group -->
                     <option value = "0">Service Type(Optional)</option>
@@ -213,7 +213,6 @@
                   Service Group <sup>*</sup>
                 </div>
                   <select class="form-control srvcgrp" name="srvcgrp_id" id="servg" style="width: 100%">
-                    <option value = "0">Service Group(Optional)</option> <!-- dito ididisplay lahat ng service group -->
                     @foreach($groupdropdown as $gd) 
                     <option value="{{$gd->servgroup_id}}">{{$gd->servgroup_name}}</option>
                     @endforeach
@@ -225,7 +224,7 @@
             <div class="col-sm-10 col-md-offset-1">
               <div class="input-group">
                 <div class="input-group-addon">
-                  Service Type <sup>*</sup>
+                  Service Type
                 </div>
                   <select class="form-control"  name="srvctyp_id" id="servt" style="width: 100%"> <!-- dito magaad ng service type everytime na mag onchange ung sa group -->
                     <option value = "0">Service Type(Optional)</option>

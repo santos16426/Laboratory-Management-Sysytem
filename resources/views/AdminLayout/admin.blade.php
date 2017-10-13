@@ -1,4 +1,3 @@
-
 @if(Session::has('loggedin'))
 
 @else

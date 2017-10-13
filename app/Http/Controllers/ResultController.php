@@ -15,6 +15,7 @@ class ResultController extends Controller
     function printxray()
     {
         $result_id = Session::get('result_id');
+        $service_id = Session::get('service_id');
         $getTrans_id = DB::table('transresult_tbl')->where('result_id',$result_id)->get();
         foreach($getTrans_id as $trans)
         {
@@ -24,8 +25,86 @@ class ResultController extends Controller
                         ->leftjoin('patient_tbl','patient_tbl.patient_id','=','trans_patient_id')
                         ->where('trans_id',$trans_id)
                         ->get();
-       
+       $service = DB::table('trans_result_service_tbl')
+                    ->where('result_id',$result_id)
+                    ->where('service_id',$service_id)
+                    ->get();
         return view('Transaction.ResultLayout.Xray',['patientinfo'=>$getPatient,'trans_id'=>$trans_id]);
+    }
+    function printdrug()
+    {
+        $result_id = Session::get('result_id');
+        $getTrans_id = DB::table('transresult_tbl')->where('result_id',$result_id)->get();
+        $service_id = Session::get('service_id');
+
+        foreach($getTrans_id as $trans)
+        {
+            $trans_id = $trans->trans_id;
+            $trans_date = date('F jS, Y h:i a',strtotime($trans->date));
+        }
+
+        $datenow = date('F jS, Y h:i a',strtotime('now'));
+        $getPatient = DB::table('transaction_tbl')
+                        ->leftjoin('patient_tbl','patient_tbl.patient_id','=','trans_patient_id')
+                        ->where('trans_id',$trans_id)
+                        ->get();
+       $service = DB::table('trans_result_service_tbl')
+                    ->where('result_id',$result_id)
+                    ->where('service_id',$service_id)
+                    ->get();
+        $empname = DB::table('employee_tbl')->select(DB::raw('Concat(emp_fname," ",emp_mname," ",emp_lname) as name'),'emp_id')->get();
+        return view('Transaction.ResultLayout.DrugTest',['patientinfo'=>$getPatient,'trans_id'=>$trans_id,'trans_date'=>$trans_date,'datenow'=>$datenow,'service'=>$service,'empname'=>$empname]);
+    }
+    function save_drugtest()
+    {
+
+        $file = $_FILES['picture_img'];
+        $file_error = $file['error'];
+        // File properties
+        $file_name = $file['name'];
+        $file_tmp = $file['tmp_name'];
+        $file_size = $file['size'];
+
+        //Work out the file extension
+        $file_ext = explode('.',$file_name);
+        $file_ext = strtolower(end($file_ext));
+
+        $allowed = array('jpg','png','jpeg','bmp');
+        if(in_array($file_ext,$allowed))
+        {
+            if($file_error === 0)
+            {
+                if($file_size <= 2097152)
+                {
+                    $file_name_new = uniqid('',true) . '.' . $file_ext;
+                    $file_destination = 'DrugTest_img/' . $file_name_new;
+                    move_uploaded_file($file_tmp, $file_destination);
+                }
+            }
+        }
+        DB::table('trans_result_service_tbl')
+            ->where('result_id',$_POST['result_id'])
+            ->whereIn('service_id',$_POST['service_id'])
+            ->update([
+                'Drug_picture_img'=>$file_name_new,
+                'Drug_reportid'=>$_POST['reportid'],
+                'Drug_ccf'=>$_POST['ccf'],
+                'Drug_test'=>$_POST['test'],
+                'Drug_purpose'=>$_POST['purpose'],
+                'Drug_reqparties'=>$_POST['reqparties'],
+                'Drug_drugmet1'=>$_POST['drugmet1'],
+                'Drug_drugmet2'=>$_POST['drugmet2'],
+                'Drug_result1'=>$_POST['result1'],
+                'Drug_result2'=>$_POST['result2'],
+                'Drug_remarks1'=>$_POST['remarks1'],
+                'Drug_remarks2'=>$_POST['remarks2'],
+                'Drug_referred1'=>$_POST['referred1'],
+                'Drug_referred2'=>$_POST['referred2']
+            ]);
+        Session::put('printResult',true);
+        Session::put('result_id',$_POST['result_id']);
+        Session::put('service_id',$_POST['service_id']);
+        return redirect('/Transactions/ResultLayout/DrugTest');
     }
     function save_xray()
     {
@@ -77,6 +156,7 @@ class ResultController extends Controller
                 }
             }
         }
+
         DB::table('trans_result_service_tbl')
             ->where('result_id',$_POST['result_id'])
             ->whereIn('service_id',[$_POST['service_id']])
@@ -770,6 +850,9 @@ class ResultController extends Controller
                     ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
                     ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
                     ->where('role_name','Doctor')
+                    ->where('EmpStatus',1)                    
+                    ->where('RoleStatus',1)
+                    ->where('LabStatus',1)
                     ->get();
         
         
@@ -798,6 +881,9 @@ class ResultController extends Controller
                     ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
                     ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
                     ->where('role_name','Doctor')
+                    ->where('EmpStatus',1)                    
+                    ->where('RoleStatus',1)
+                    ->where('LabStatus',1)
                     ->get();
         return view ('Result.Ecg',['patient'=>$patientinfo,'doctors'=>$doctor,'services'=>$services,'result_id'=>$result_id]);
     }
@@ -868,6 +954,9 @@ class ResultController extends Controller
         $sonologist = DB::table('employee_tbl')
                         ->leftjoin('employee_role_tbl','role_id','=','emp_type_id')
                         ->where('role_name','Sonologist')
+                        ->where('EmpStatus',1)                    
+                        ->where('RoleStatus',1)
+                        ->where('LabStatus',1)
                         ->get();
         return view ('Result.Ultrasound',['patient'=>$patientinfo,'tdate'=>$tdate,'datenow'=>$date,'empReb_name'=>$empReb_name,'corp_name'=>$corp_name,'result_id'=>$result_id,'lab_id'=>$lab_id,'sonologist'=>$sonologist,'services'=>$services]);
     
@@ -932,10 +1021,16 @@ class ResultController extends Controller
         $radtech = DB::table('employee_tbl')
                     ->leftjoin('employee_role_tbl','role_id','=','emp_type_id')
                     ->where('role_name','Radio Technologist')
+                    ->where('EmpStatus',1)                    
+                    ->where('RoleStatus',1)
+                    ->where('LabStatus',1)
                     ->get();
         $radiologist = DB::table('employee_tbl')
                     ->leftjoin('employee_role_tbl','role_id','=','emp_type_id')
                     ->where('role_name','Radiologist')
+                    ->where('EmpStatus',1)                    
+                    ->where('RoleStatus',1)
+                    ->where('LabStatus',1)
                     ->get();
         $services = DB::table('trans_result_service_tbl')
                         ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
@@ -1005,11 +1100,17 @@ class ResultController extends Controller
                     ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
                     ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
                     ->where('role_name','Medical Techonologist')
+                    ->where('EmpStatus',1)                    
+                    ->where('RoleStatus',1)
+                    ->where('LabStatus',1)
                     ->get();
         $patho = DB::table('employee_tbl')
                     ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
                     ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
                     ->where('role_name','Pathologist')
+                    ->where('EmpStatus',1)                    
+                    ->where('RoleStatus',1)
+                    ->where('LabStatus',1)
                     ->get();
         
         return view ('Result.MedicalService',['patient'=>$patientinfo,'tdate'=>$tdate,'datenow'=>$date,'empReb_name'=>$empReb_name,'corp_name'=>$corp_name,'services'=>$services,'medtech'=>$medtech,'patho'=>$patho,'result_id'=>$result_id]);
@@ -1074,16 +1175,85 @@ class ResultController extends Controller
                     ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
                     ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
                     ->where('role_name','Medical Techonologist')
+                    ->where('EmpStatus',1)                    
+                    ->where('RoleStatus',1)
+                    ->where('LabStatus',1)
                     ->get();
         $patho = DB::table('employee_tbl')
                     ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
                     ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+                    ->where('EmpStatus',1)                    
+                    ->where('RoleStatus',1)
+                    ->where('LabStatus',1)
                     ->where('role_name','Pathologist')
                     ->get();
         return view ('Result.MedicalService2',['patient'=>$patientinfo,'tdate'=>$tdate,'datenow'=>$date,'empReb_name'=>$empReb_name,'corp_name'=>$corp_name,'services'=>$services,'medtech'=>$medtech,'patho'=>$patho,'result_id'=>$result_id]);
     }
     function drugtest(){
-        return view ('Result.DrugTest');
+        $trans_id = $_GET['trans_id'];
+        $group_id = $_GET['group_id'];  
+        $patientinfo = DB::table('transaction_tbl')
+                        ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+                        ->where('trans_id',$trans_id)
+                        ->get();
+        foreach($patientinfo as $p)
+        {
+            $corp_id = $p->patient_corp_id;
+            if($corp_id != null)
+            {
+                $corpn = DB::table('corporate_accounts_tbl')->where('corp_id',$corp_id)->get();
+                foreach ($corpn as $cor) {
+                    $corp_name = $cor->corp_name;
+                }
+            }
+            else
+            {
+                $corp_name = "N/A";
+            }
+        }
+        $ref_id = DB::table('trans_emprebate_tbl')
+                    ->leftjoin('employee_tbl','employee_tbl.emp_id','=','trans_emprebate_tbl.emp_id')
+                    ->where('trans_id',$trans_id)->get();
+        if(count($ref_id)>0)
+        {
+            foreach($ref_id as $emp)
+            {
+                $empReb_name = $emp->emp_fname . " " . $emp->emp_mname . "" . $emp->emp_lname;
+            }
+        }
+        else
+        {
+            $empReb_name = "N/A";
+        }
+        $trans_date = DB::table('transaction_tbl')->where('trans_id',$trans_id)->get();
+        foreach($trans_date as $d)
+        {
+            $trans_date=$d->trans_date;
+        }
+        $tdate = date('F jS, Y h:i a',strtotime($trans_date));
+        $date = date('F jS, Y h:i a',strtotime('now'));
+        $resultd = DB::table('transresult_tbl')->where('trans_id',$trans_id)->get();
+        foreach($resultd as $r)
+        {
+            $result_id = $r->result_id;
+        }
+        $services = DB::table('trans_result_service_tbl')
+                        ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                        ->where('service_tbl.service_group_id',$group_id)
+                        ->where('result_id',$result_id)
+                        ->where('result_drug',1)
+                        ->distinct()
+                        ->get();
+        $emp = DB::table('employee_tbl')
+                    ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
+                    ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+                    ->where('role_name','Analyst')
+                    ->where('EmpStatus',1)                    
+                    ->where('RoleStatus',1)
+                    ->where('LabStatus',1)
+                    ->get();
+
+        return view ('Result.DrugTest',['patient'=>$patientinfo,'tdate'=>$tdate,'datenow'=>$date,'empReb_name'=>$empReb_name,'corp_name'=>$corp_name,'services'=>$services,'result_id'=>$result_id,'emp'=>$emp]);
     }
     public function uploadresults()
     {
