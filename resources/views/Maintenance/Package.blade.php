@@ -152,8 +152,8 @@
        <div class="form-group" style="margin-right:% ">
               <div class="col-md-10 col-md-offset-3">
                 <div class="input-group">
-                   <small><sup>*</sup>Note:<br>&nbsp;Package price should be below/equal to total price.<div id="uptotalprice">&nbsp;Total price: 
-                    0 </div></small>
+                   <sup>*</sup>Note:<br>&nbsp;Package price should be below/equal to total price.<div id="uptotalprice">&nbsp;Total price: 
+                    0 </div>
               </div>
           </div>  
         </div>

@@ -30,20 +30,31 @@ class RebateController extends Controller
     function emprebate()
     {
 		$emp_worebates = DB::table('employee_tbl')
+			->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
+			->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
 			->leftjoin('rolefields_tbl','rolefields_tbl.role_id','=','employee_tbl.emp_type_id')
 			->leftjoin('emp_rebate_tbl','emp_rebate_tbl.emp_id','=','employee_tbl.emp_id')
 			->where('employee_tbl.EmpStatus',1)
 			->where('rolefields_tbl.rebate',1)
+			->where('LabStatus',1)
+			->where('RoleStatus',1)
 			->where('emp_rebate_tbl.EmpRebStatus',null)
 			->where('emp_rebate_tbl.emp_id',null)
 
-			->orwhere('rolefields_tbl.rebate',1)->where('employee_tbl.EmpStatus',1)
-			->where('emp_rebate_tbl.EmpRebStatus',0)->select('employee_tbl.emp_id as emp_id','emp_fname','emp_mname','emp_lname')->get();
+			->orwhere('rolefields_tbl.rebate',1)
+			->where('employee_tbl.EmpStatus',1)
+			->where('laboratory_tbl.LabStatus',1)
+			->where('employee_role_tbl.RoleStatus',1)
+			->where('emp_rebate_tbl.EmpRebStatus',0)
+			->select('employee_tbl.emp_id as emp_id','emp_fname','emp_mname','emp_lname')->get();
 
 		$emp_rebates = DB::table('employee_tbl')
-			->leftjoin('rolefields_tbl','rolefields_tbl.role_id','=','employee_tbl.emp_type_id')
+			->leftjoin('rolefields_tbl','rolefields_tbl.role_id','=','employee_tbl.emp_type_id')		
 			->leftjoin('emp_rebate_tbl','emp_rebate_tbl.emp_id','=','employee_tbl.emp_id')
 			->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
+			->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+			->where('LabStatus',1)
+			->where('RoleStatus',1)
 			->where('rolefields_tbl.rebate',1)
 			->where('employee_tbl.EmpStatus',1)
 			->where('emp_rebate_tbl.EmpRebStatus',1)->get();

@@ -53,7 +53,7 @@
           <td>{{ $tbl->patient_mname }}</td>
           <td>{{ $tbl->patient_fname }}</td>
           <td>
-            <a class="btn btn-info btn-xs" href="{{ URL::to( '/results/' . $tbl->file)  }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>&nbsp; Download</a>
+            <a class="btn btn-info btn-xs" href="{{ URL::to( '/PatientResults/' . $tbl->file)  }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>&nbsp; Download</a>
             
             <a class="btn btn-danger btn-xs delbtn" data-id="{{ $tbl->file_id }}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a>
           </td>

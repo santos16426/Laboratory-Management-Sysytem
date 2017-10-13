@@ -6,6 +6,8 @@ $('#selectrange').change(function(){
 		var rangepicker = document.getElementById('rangepicker');
 		if(report == 'daily')
 		{
+			$('#barcharts').empty();
+			$('#barcharts').append('No available')
 			startdate.className = "form-group";
 			monthly.className = "form-group hidden";
 			yearly.className = "form-group hidden";
@@ -14,6 +16,8 @@ $('#selectrange').change(function(){
 		}
 		else if(report == 'weekly')
 		{
+			$('#barcharts').empty();
+			$('#barcharts').append('No data');
 			startdate.className = "form-group";
 			monthly.className = "form-group hidden";
 			yearly.className = "form-group hidden";
@@ -21,6 +25,8 @@ $('#selectrange').change(function(){
 		}
 		else if(report == 'monthly')
 		{
+			$('#barcharts').empty();
+			$('#barcharts').append('No available');
 			startdate.className = "form-group hidden";
 			monthly.className = "form-group ";
 			yearly.className = "form-group hidden";
@@ -28,6 +34,8 @@ $('#selectrange').change(function(){
 		}
 		else if(report == 'yearly')
 		{
+			$('#barcharts').empty();
+			$('#barcharts').append('No available');
 			startdate.className = "form-group hidden";
 			monthly.className = "form-group hidden";
 			yearly.className = "form-group ";
@@ -35,6 +43,8 @@ $('#selectrange').change(function(){
 		}
 		else if(report == 'range')
 		{
+			$('#barcharts').empty();
+			$('#barcharts').append('No available');
 			startdate.className = "form-group hidden";
 			monthly.className = "form-group hidden";
 			yearly.className = "form-group hidden";
@@ -42,6 +52,8 @@ $('#selectrange').change(function(){
 		}
 		else if(report == 'all')
 		{
+			$('#barcharts').empty();
+			$('#barcharts').append('No available');
 			startdate.className = "form-group hidden";
 			monthly.className = "form-group hidden";
 			yearly.className = "form-group hidden";
