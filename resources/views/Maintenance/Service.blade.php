@@ -172,7 +172,7 @@
               <div class="col-sm-10 col-md-offset-1">
                 <div class="input-group">
                   <label><strong>Result Layout</strong><sup>*</sup></label><br>
-                  <div style="padding-left: 20px">
+                  <div style="padding-left: 20px" required>
                     <input type="checkbox" name="upmedserv1" value="1" id="upmedserv1"><label for="upmedserv1">&nbsp;Medical Service 1&nbsp;&nbsp;</label><a class="btn btn-xs btn-success medserv1view">View</a><br>
                     <input type="checkbox" name="upmedserv2" value="1" id="upmedserv2"><label for="upmedserv2">&nbsp;Medical Service 2&nbsp;&nbsp;</label><a class="btn btn-xs btn-success medserv2">View</a><br>
                     <input type="checkbox" name="upecg" value="1" id="upecg"><label for="upecg">&nbsp;ECG&nbsp;&nbsp;</label><a class="btn btn-xs btn-success ecgview">View</a>
@@ -277,8 +277,8 @@
         <div class="form-group" style="padding-left: 16px">
               <div class="col-sm-10 col-md-offset-1">
                 <div class="input-group">
-                  <label><strong>Result Layout</strong><sup>*</sup></label><br>
-                  <div style="padding-left: 20px">
+                  <label><strong>Result Layout</strong></label><br>
+                  <div style="padding-left: 20px" name="checkbox">
                     <input type="checkbox" name="medserv1" value="1" id="medserv1"><label for="medserv1">&nbsp;Medical Service 1&nbsp;&nbsp;</label><a class="btn btn-xs btn-success medserv1view">View</a><br>
                     <input type="checkbox" name="medserv2" value="1" id="medserv2"><label for="medserv2">&nbsp;Medical Service 2&nbsp;&nbsp;</label><a class="btn btn-xs btn-success medserv2">View</a><br>
                     <input type="checkbox" name="ecg" value="1" id="ecg"><label for="ecg">&nbsp;ECG&nbsp;&nbsp;</label><a class="btn btn-xs btn-success ecgview">View</a>

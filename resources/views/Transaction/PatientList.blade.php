@@ -32,7 +32,7 @@
 				<div class="clearfix">
 					<div class="btn-group pull-right">
 						@if(Session::get('addpatient')==1)
-						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+						<a class="btn btn-info addbtn" style="margin-left: -40%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
 						@endif
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="patientTbl">
@@ -538,8 +538,23 @@ $('#patientTbl').DataTable({
 });	
 
 })
-$('.uppatientbtn').click(function(){
+$('.addbtn').click(function()
+{
 	
+	$('#patientinfo').bootstrapValidator('resetForm',true);
+	$('#patientinfo div').removeClass('has-error');
+	$('#patientinfo div').removeClass('has-success');
+	$('#patientinfo i').removeClass('glyphicon glyphicon-ok');
+	$('#patientinfo i').removeClass('glyphicon glyphicon-remove');
+	$('#patientinfo small').attr('style','display:none');
+})
+$('.uppatientbtn').click(function(){
+	$('#updatepatientinfo').bootstrapValidator('resetForm',true);
+	$('#updatepatientinfo div').removeClass('has-error');
+	$('#updatepatientinfo div').removeClass('has-success');
+	$('#updatepatientinfo i').removeClass('glyphicon glyphicon-ok');
+	$('#updatepatientinfo i').removeClass('glyphicon glyphicon-remove');
+	$('#updatepatientinfo small').attr('style','display:none');
 	$.ajax
 	({
 		url : '/retrievePatient',
@@ -560,14 +575,16 @@ $('.uppatientbtn').click(function(){
 				$('#uppatient_email').val(data.patient_email);
 				$('#upbirthday').val(data.patient_birthdate);
 				$('#upage').val(data.age);
+
 				if(data.patient_gender == 'Male')
 				{
-					$('#upupMale').prop('checked',true);
+					$('#upupMale').prop('checked','checked');
 				}
-				else
+				else if(data.patient_gender == 'Female')
 				{
-					$('#upupMFemale').prop('checked',true);
+					$('#upupFemale').prop('checked','checked');
 				}
+
 				if(data.patient_civilstatus == 'Single')
 				{
 					$('#upupSingle').prop('checked',true);

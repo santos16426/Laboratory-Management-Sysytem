@@ -158,6 +158,10 @@ $('#EmployeeTypeedit').bootstrapValidator({
                             regexp: /^[a-zA-Z0-9.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
                     },
+                    stringLength: {
+                        max: 30,
+                        message:'Service Group should not exceed 30 characters.'
+                    },
                         notEmpty: {
                         message: 'This field is required.'
                     }
@@ -182,6 +186,10 @@ $('#EmployeeTypeedit').bootstrapValidator({
                   regexp: {
                             regexp: /^[a-zA-Z0-9.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
+                    },
+                    stringLength: {
+                        max: 30,
+                        message:'Service Group should not exceed 30 characters.'
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -214,6 +222,10 @@ $('#EmployeeTypeedit').bootstrapValidator({
                         data:{ servTypeName:$('#servTypeName').val()},
                         message: 'Service Type already exist.',
                     },
+                    stringLength: {
+                        max: 30,
+                        message:'Service Type Name should not exceed 30 characters.'
+                    },
                         notEmpty: {
                         message: 'This field is required.'
                     }
@@ -245,6 +257,10 @@ $('#EmployeeTypeedit').bootstrapValidator({
                   regexp: {
                             regexp: /^[a-zA-Z0-9.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
+                    },
+                    stringLength: {
+                        max: 30,
+                        message:'Service Type Name should not exceed 30 characters.'
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -281,8 +297,8 @@ $('#EmployeeTypeedit').bootstrapValidator({
                     },
                     stringLength: {
                         min: 2,
-                        max: 20,
-                        message:'Service name should be at least 2 characters and not exceed 20 characters.'
+                        max: 30,
+                        message:'Service name should be at least 2 characters and not exceed 30 characters.'
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -344,8 +360,8 @@ $('#EmployeeTypeedit').bootstrapValidator({
                     },
                     stringLength: {
                         min: 2,
-                        max: 20,
-                        message:'Service name should be at least 2 characters and not exceed 20 characters.'
+                        max: 30,
+                        message:'Service name should be at least 2 characters and not exceed 30 characters.'
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -588,6 +604,10 @@ $('#packageedit')
                             regexp: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                             message: 'Enter a valid email.'
                     },
+                    stringLength: {
+                        max: 30,
+                        message:'Email should not exceed 30 characters.'
+                    },
                         notEmpty: {
                         message: 'This field is required.'
                     }
@@ -669,6 +689,10 @@ $('#packageedit')
                         regexp: {
                             regexp: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                             message: 'Enter a valid email.'
+                    },
+                    stringLength: {
+                        max: 30,
+                        message:'Email should not exceed 30 characters.'
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -984,6 +1008,10 @@ $('#patientinfo')
                         data:{ patient_email:$('#patient_email').val()},
                         message: 'Email already exist.',
                     },
+                    stringLength: {
+                        max: 30,
+                        message:'Email should not exceed 30 characters.'
+                    },
                         notEmpty: {
                         message: 'This field is required.'
                     }
@@ -1115,6 +1143,10 @@ $('#updatepatientinfo')
                         regexp: {
                             regexp: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                             message: 'Enter a valid email.'
+                    },
+                    stringLength: {
+                        max: 30,
+                        message:'Email should not exceed 30 characters.'
                     },
                         notEmpty: {
                         message: 'This field is required.'

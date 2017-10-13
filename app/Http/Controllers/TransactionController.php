@@ -32,6 +32,7 @@ class TransactionController extends Controller
         $uppatient_contact = $_POST['uppatient_contact'];
         $uppatient_email = $_POST['uppatient_email'];
         $upbirthday = $_POST['upbirthday'];
+        $upbirthday = date('Y-m-d',strtotime($upbirthday));
         $upage = $_POST['upage'];
         DB::table('patient_tbl')
             ->where('patient_id',$ppatient_id)
