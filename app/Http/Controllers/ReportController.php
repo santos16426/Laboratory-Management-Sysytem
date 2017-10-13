@@ -19,6 +19,17 @@ class ReportController extends Controller
     {
         return view('Reports.CensusReports');
     }
+    function allCensusReports(Request $req)
+    {
+        $services = DB::table('trans_result_service_tbl')
+                    ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_result_service_tbl.result_id')
+                    ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                    ->select('service_tbl.service_name',DB::raw('COUNT(*) as row_count'))
+                    ->groupBy('service_tbl.service_name')
+                    ->where('corppack_id',null)
+                    ->get();
+        return response()->json([$services]);
+    }
     function yearlyCensusReport(Request $req)
     {
         $year = $req->sy;

@@ -502,7 +502,7 @@ $('#generatebtn').click(function(){
 			{
 				$.ajax
 				({
-					url: '/',
+					url: '/weeklyCensusReports',
 					type: 'get',
 					data:  { 
 						enddate : end_date,
@@ -586,6 +586,7 @@ $('#generatebtn').click(function(){
 					    }
 					    toastr.error("Error! Please try again later");
 					}
+			})
 			}
 			else
 			{
@@ -610,26 +611,86 @@ $('#generatebtn').click(function(){
 		{
 			$.ajax
 				({
-					url: '',
+					url: '/allCensusReports',
 					type: 'get',
 					dataType : 'json',
 					success:function(response){
+						response[0].forEach(function(data){
+							service.push(data.service_name);
+							servicecount.push(data.row_count);
+						})
+						Highcharts.chart('barcharts', {
+						    chart: {
+						        type: 'column'
+						    },
+						    title: {
+						        text: 'No. service availed as of '+start_date
+						    },
+						    
+						    xAxis: {
+						        categories:service,
+						        crosshair: true
+						    },
+						    yAxis: {
+						        min: 0,
+						        title: {
+						            text: 'No. times service is availed'
+						        }
+						    },
+						    tooltip: {
+						        headerFormat: '<span style="font-size:10px">Service Name: <b>{point.key}</b></span><table>',
+						        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+						            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+						        footerFormat: '</table>',
+						        shared: true,
+						        useHTML: true
+						    },
+						    plotOptions: {
+						        column: {
+						            pointPadding: 0.2,
+						            borderWidth: 0
+						        }
+						    },
+						    series: [{
+						        name: 'Count',
+						        data: servicecount
+
+						    }]
+						});
+						toastr.options = {
+					      "closeButton": true,
+					      "debug": false,
+					      "positionClass": "toast-top-right",
+					      "onclick": null,
+					      "showDuration": "3000",
+					      "hideDuration": "100",
+					      "timeOut": "3000",
+					      "extendedTimeOut": "0",
+					      "showEasing": "swing",
+					      "hideEasing": "swing",
+					      "showMethod": "show",
+					      "hideMethod": "hide"
+					    }
+					    toastr.success("Done!");
+					},
+					error:function()
+					{
+						toastr.options = {
+					      "closeButton": true,
+					      "debug": false,
+					      "positionClass": "toast-top-right",
+					      "onclick": null,
+					      "showDuration": "3000",
+					      "hideDuration": "100",
+					      "timeOut": "3000",
+					      "extendedTimeOut": "0",
+					      "showEasing": "swing",
+					      "hideEasing": "swing",
+					      "showMethod": "show",
+					      "hideMethod": "hide"
+					    }
+					    toastr.error("Error! Please try again later");
 					}
 				});
-				toastr.options = {
-			      "closeButton": true,
-			      "debug": false,
-			      "positionClass": "toast-top-right",
-			      "onclick": null,
-			      "showDuration": "3000",
-			      "hideDuration": "100",
-			      "timeOut": "3000",
-			      "extendedTimeOut": "0",
-			      "showEasing": "swing",
-			      "hideEasing": "swing",
-			      "showMethod": "show",
-			      "hideMethod": "hide"
-			    }
-			    toastr.success("Done!");
 		}
 	});

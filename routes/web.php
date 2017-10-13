@@ -180,6 +180,7 @@ Route::get('/dailyCensusReport','ReportController@dailyCensusReport');
 Route::get('/weeklyCensusReports','ReportController@weeklyCensusReports');
 Route::get('/monthlyCensusReport','ReportController@monthlyCensusReport');
 Route::get('/yearlyCensusReport','ReportController@yearlyCensusReport');
+Route::get('/allCensusReports','ReportController@allCensusReports');
 // Rebate Reports
 Route::get('/Reports/RebateReports','ReportController@rebatereports');
 // Utilities
