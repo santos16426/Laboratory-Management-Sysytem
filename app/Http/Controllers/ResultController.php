@@ -21,6 +21,14 @@ class ResultController extends Controller
         {
             $trans_id = $trans->trans_id;
         }
+        $labd = DB::table('service_tbl')
+                    ->leftjoin('service_group_tbl','servgroup_id','=','service_group_id')
+                    ->where('service_id',$service_id)
+                    ->get();
+        foreach($labd as $lab)
+            {
+                $lab_id = $lab->lab_id;
+            }
         $getPatient = DB::table('transaction_tbl')
                         ->leftjoin('patient_tbl','patient_tbl.patient_id','=','trans_patient_id')
                         ->where('trans_id',$trans_id)
@@ -29,7 +37,12 @@ class ResultController extends Controller
                     ->where('result_id',$result_id)
                     ->where('service_id',$service_id)
                     ->get();
-        return view('Transaction.ResultLayout.Xray',['patientinfo'=>$getPatient,'trans_id'=>$trans_id]);
+        foreach($service as $services)
+        {
+            $date = $services->xray_date;
+        }
+        $empname = DB::table('employee_tbl')->select(DB::raw('Concat(emp_fname," ",emp_mname," ",emp_lname) as name'),'emp_id','license_no')->get();
+        return view('Transaction.ResultLayout.Xray',['patientinfo'=>$getPatient,'trans_id'=>$trans_id,'service'=>$service,'lab_id'=>$lab_id,'date'=>$date,'emp'=>$empname]);
     }
     function printdrug()
     {
@@ -1020,6 +1033,7 @@ class ResultController extends Controller
         }
         $radtech = DB::table('employee_tbl')
                     ->leftjoin('employee_role_tbl','role_id','=','emp_type_id')
+                    ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
                     ->where('role_name','Radio Technologist')
                     ->where('EmpStatus',1)                    
                     ->where('RoleStatus',1)
@@ -1027,6 +1041,7 @@ class ResultController extends Controller
                     ->get();
         $radiologist = DB::table('employee_tbl')
                     ->leftjoin('employee_role_tbl','role_id','=','emp_type_id')
+                    ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
                     ->where('role_name','Radiologist')
                     ->where('EmpStatus',1)                    
                     ->where('RoleStatus',1)

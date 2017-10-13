@@ -34,48 +34,54 @@
 			
 			</address>
 			<address style="float: right;">
-			<p>Laboratory Number:&nbsp;<span contenteditable style="width: 100px"></span></p>
-			<p>Date:&nbsp;<span contenteditable style="width: 100px"></span></p>
+			<p>Laboratory Number:&nbsp;{{ $lab_id}}</p>
+			<p>Date:&nbsp;{{ date('F jS, Y',strtotime($date)) }}</p>
 			</address>
 			@endforeach
 		</header>
+		@foreach($service as $serv)
 		<header>
 			<address style="float: left; width: 500px;">
-				<p>X-Ray:&nbsp;<span contenteditable style="width: 500px;"></span></p><br>
+				<p>X-Ray:&nbsp;{{ $serv->xray_title }}</p><br>
 			</address>
 			
 			<br><br>
 		</header>
 		<header>
-			<p contenteditable style="font-size: 90%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		<address style="float: left; width: 500px;">
+			<p>Findings:&nbsp;<br><span style="margin-left: 1in">{{ $serv->xray_findings }}</span></p><br>
 		</header>
+		
 		</article>
-		<!-- <aside>
-			<h1><span contenteditable>Additional Notes</span></h1>
-			<div contenteditable>
-				<p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
-			</div>
-		</aside> -->
 
-		<header style="padding-top: 415px; font-size: 20px">
+		<header style="padding-top: 350px; font-size: 20px">
 			<address style="float: left; padding-left: 40px">
 			<center>
-			<img alt="" src="/banner.jpg" style="width: 150px; height: 90px float: left; max-height: 90px; max-width: 150px;">
-			<p><span>NAME</span></p>
-			<p>Radiologic Technologist<br>License No.:<span></span></p>
+			<img alt="" src="/Employee_signatures/{{ $serv->xray_radiologic_img }}" style="width: 250px; height: 90px; float: left; max-height: 90px; max-width: 350px;">
+			@foreach($emp as $radic)
+				@if($radic->emp_id == $serv->xray_radiologic)
+					<p><span style="text-decoration: underline;">{{ $radic->name }}</span></p>
+					<p>Radiologic Technologist<br>License No.:{{ $radic->license_no }}</p>
+				@endif
+			@endforeach
 			</center>
 			</address>
 
 			<address style="float: right; padding-right: 40px">
 			<center>
-			<img alt="" src="/banner.jpg" style="width: 150px; height: 90px float: left; max-height: 90px; max-width: 150px;">
-			<p><span>NAME</span></p>
-			<p>Radiologist</p>
+			<img alt="" src="/Employee_signatures/{{ $serv->xray_radiologist_img }}" style="width: 200px; height: 90px; float: left; max-height: 90px; max-width: 200px;">
+			@foreach($emp as $radic)
+				@if($radic->emp_id == $serv->xray_radiologist)
+					<p><span style="text-decoration: underline;">{{ $radic->name }}</span></p>
+					<p>Radiologist</p>
+				@endif
+			@endforeach
+			
 			</center>
 			</address><br><br><br><br><br><br>
 		</header>
-
-		<header style="font-size: 20px">
+		@endforeach
+		<header style="font-size: 20px;padding-top: 25px">
 			<center>
 				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This Report is a medical opinion is based on objective imaging findings and is best correlated with clinical, <br>Laboratory and other ancillary findings by the patient's attending physician. </p>
 			</center>
@@ -88,12 +94,7 @@
 				<p>Tel No. 576-5357</p>
 				<p>Email: globalhealth_anonas@yahoo.com</p>
 			</address>
-			<address style="float: right;">
-				<p>Quezon City</p>
-				<p>Deofranz Plaza Bldng #2 Anonas Ext cor. V Luna  </p>
-				<p>Road, Quezon City Tel No. 436-2057</p>
-				<p>Email: globalhealth_anonas@yahoo.com</p>
-			</address>
+			
 		</header>
 	</body>
 </html>
