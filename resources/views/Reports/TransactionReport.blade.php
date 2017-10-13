@@ -57,7 +57,7 @@
 			              <div class="col-md-10 col-md-offset-1 input-group">
 			              	<span class="input-group-addon">Starting Date <sup>*</sup></span>
 								<div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="yyyy-mm-dd"  class="input-append date dpYears">
-			                  		<input class="form-control form-control-inline input-medium default-date-picker" name="start_date" id="start_date_date"  size="16" type="text" value="" />
+			                  		<input class="form-control form-control-inline input-medium default-date-picker dpd1" name="start_date" id="start_date_date"  size="16" type="text" value="" />
 			                  	</div>
 			              </div>
 			          	</div>
@@ -151,10 +151,10 @@
 								<div class="col-md-6">
 									<section class="panel">
 										<header class="panel-heading btn-info">
-											Bar Chart											
+											Bar/Line Chart											
 										</header>
 										<div class="panel-body bg-info">
-											<div id="barcharts">Not Available</div>
+											<div id="barcharts">No data available</div>
 										</div>
 									</section>
 								</div>
@@ -165,23 +165,12 @@
 											Pie Chart											
 										</header>
 										<div class="panel-body bg-info">
-											<div id="piecharts">Not Available</div>
+											<div id="piecharts">No data available</div>
 										</div>
 									</section>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<section class="panel">
-										<header class="panel-heading btn-info">
-											Line Chart											
-										</header>
-										<div class="panel-body bg-info">
-											<div id="linecharts">Not Available</div>
-										</div>
-									</section>
-								</div>
-							</div>
+							
 						</div>
 					</div>
 					</div>

@@ -270,6 +270,7 @@ $( document ).ready(function() {
   var patient_name ="";
   var claimcode = '';
   var ref_name = "";
+  var prescriptions = "";
   $.ajax
       ({
         url: '/retrieveReciept', 
@@ -284,7 +285,7 @@ $( document ).ready(function() {
             total = data.trans_total;
             payment = data.trans_payment;
             change = data.trans_change;
-
+            prescriptions = data.prescriptions;
             total = parseFloat(total).toFixed(2);
             payment= parseFloat(payment).toFixed(2);
             change =parseFloat(change).toFixed(2);
@@ -358,7 +359,7 @@ $( document ).ready(function() {
           frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
           frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
           frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
-          frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td> CBC - Dito ang desc<br> Test - Dito ang desc<br> Test - Dito ang desc<br> </td> </tr> </table> ');
+          frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
           frameDoc.document.write('</div></body></html>');
           frameDoc.document.close();
           setTimeout(function () {

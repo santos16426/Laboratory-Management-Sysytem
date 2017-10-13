@@ -245,10 +245,21 @@ class ReportController extends Controller
             ->whereYear('trans_date',$req->year)
             ->groupBy('trans_date','charge','trans_total')
             ->get();
-        
+        $startdate = $req->startdate;
+        $firstweek = $req->firstweek;
+        $secondweek = $req->secondweek;
+        $thirdweek = $req->thirdweek;
+        $fourthweek = $req->fourthweek;
+
+        $firstweektotal = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id WHERE trans_date >= "'.$startdate.'" AND trans_date <= "'.$firstweek.'"'));
+        $secondweektotal = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id WHERE trans_date >= "'.$startdate.'" AND trans_date <= "'.$secondweek.'"'));
+        $thirdweektotal = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id WHERE trans_date >= "'.$startdate.'" AND trans_date <= "'.$thirdweek.'"'));
+
+        $fourthweektotal = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id WHERE trans_date >= "'.$startdate.'" AND trans_date <= "'.$fourthweek.'"'));
+
         $corporate = ((($totaltransaction-$corporate) / $totaltransaction)*100);
         $individual= ((($totaltransaction-$individual) / $totaltransaction)*100);
-        return response()->json([$var,$totaltransaction,$corporate,$individual,$transperday]);
+        return response()->json([$var,$totaltransaction,$corporate,$individual,$transperday,$firstweektotal,$secondweektotal,$thirdweektotal,$fourthweektotal]);
     }
     function yearlyTransactionReport(Request $req)
     {

@@ -163,8 +163,7 @@
                 <div class="input-group-addon">
                   Prescription
                 </div>
-              <textarea class="col-md-12" name="service_notes" id="service_notes">
-              </textarea>
+              <textarea class="col-md-12" name="service_notes" id="service_notes"></textarea>
             </div>
           </div>  
         </div>  
@@ -269,8 +268,7 @@
                 <div class="input-group-addon">
                   Prescription
                 </div>
-              <textarea class="col-md-12" name="service_notes">
-              </textarea>
+              <textarea class="col-md-12" name="service_notes"></textarea>
             </div>
           </div>  
         </div>  

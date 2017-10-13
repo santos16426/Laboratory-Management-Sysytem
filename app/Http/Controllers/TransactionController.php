@@ -385,7 +385,8 @@ class TransactionController extends Controller
                     'trans_patient_id'  =>  $patient_id,
                     'issuedBy_emp_id'   =>  $issuedBy,
                     'trans_change'  =>  ($paymentinput - $totalpriceinput),
-                    'trans_payment' =>  $paymentinput
+                    'trans_payment' =>  $paymentinput,
+                    'prescriptions'=>$_POST['prescriptions']
                 ]);
         $trans_id = DB::table('transaction_tbl')
                         ->select('trans_id')

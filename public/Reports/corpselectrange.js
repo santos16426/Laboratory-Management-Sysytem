@@ -7,7 +7,9 @@ $('#selectrange').change(function(){
 		if(report == 'daily')
 		{
 			$('#barcharts').empty();
-			$('#barcharts').append('No available')
+			$('#barcharts').append('No available data')
+			$('#piecharts').empty();
+			$('#piecharts').append('No available data')
 			startdate.className = "form-group";
 			monthly.className = "form-group hidden";
 			yearly.className = "form-group hidden";
@@ -17,7 +19,9 @@ $('#selectrange').change(function(){
 		else if(report == 'weekly')
 		{
 			$('#barcharts').empty();
-			$('#barcharts').append('No data');
+			$('#barcharts').append('No available data');
+			$('#piecharts').empty();
+			$('#piecharts').append('No available data')
 			startdate.className = "form-group";
 			monthly.className = "form-group hidden";
 			yearly.className = "form-group hidden";
@@ -26,7 +30,9 @@ $('#selectrange').change(function(){
 		else if(report == 'monthly')
 		{
 			$('#barcharts').empty();
-			$('#barcharts').append('No available');
+			$('#barcharts').append('No available data');
+			$('#piecharts').empty();
+			$('#piecharts').append('No available data')
 			startdate.className = "form-group hidden";
 			monthly.className = "form-group ";
 			yearly.className = "form-group hidden";
@@ -35,7 +41,9 @@ $('#selectrange').change(function(){
 		else if(report == 'yearly')
 		{
 			$('#barcharts').empty();
-			$('#barcharts').append('No available');
+			$('#barcharts').append('No available data');
+			$('#piecharts').empty();
+			$('#piecharts').append('No available data')
 			startdate.className = "form-group hidden";
 			monthly.className = "form-group hidden";
 			yearly.className = "form-group ";
@@ -44,7 +52,9 @@ $('#selectrange').change(function(){
 		else if(report == 'range')
 		{
 			$('#barcharts').empty();
-			$('#barcharts').append('No available');
+			$('#barcharts').append('No available data');
+			$('#piecharts').empty();
+			$('#piecharts').append('No available data')
 			startdate.className = "form-group hidden";
 			monthly.className = "form-group hidden";
 			yearly.className = "form-group hidden";
@@ -53,7 +63,9 @@ $('#selectrange').change(function(){
 		else if(report == 'all')
 		{
 			$('#barcharts').empty();
-			$('#barcharts').append('No available');
+			$('#barcharts').append('No available data');
+			$('#piecharts').empty();
+			$('#piecharts').append('No available data')
 			startdate.className = "form-group hidden";
 			monthly.className = "form-group hidden";
 			yearly.className = "form-group hidden";

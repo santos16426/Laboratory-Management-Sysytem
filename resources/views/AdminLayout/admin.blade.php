@@ -293,6 +293,8 @@
 <script type="text/javascript" src="{{ asset('/plugins/js/sparkline-chart.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/easy-pie-chart.js') }}" ></script>
 
+<script type="text/javascript" src="{{ asset('/js/moment.min.js') }}" ></script>
+
 <script type="text/javascript" src="{{ asset('/bootstrapvalidator/dist/js/bootstrapValidator.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/gritter/js/jquery.gritter.js') }}"></script>
 <script src="{{ asset('/plugins/select2/dist/js/select2.full.min.js') }}" ></script>

@@ -264,13 +264,7 @@
 									
 								</tbody>
 							</table>
-							<div class="col-md-12">
-								<hr>
-								<label><sup>*</sup>Note:</label>
-								<div id="service_notes">
-									
-								</div>
-							</div>
+							
 						</div>
 					</div>
 				</section>

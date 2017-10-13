@@ -11,7 +11,10 @@ $('#generatebtn').click(function(){
 	{
 		if(start_date != '')
 		{
-			
+			$('#piecharts').empty();
+			$('#piecharts').append('No data avaialbe');
+			$('#barcharts').empty();
+			$('#barcharts').append('No data avaialbe');
 			t.clear().draw();
 			$.ajax
 			({
@@ -23,7 +26,7 @@ $('#generatebtn').click(function(){
 					response[0].forEach(function(data){
 						total = data.total*1;
 						charge = data.charge *1;
-						total = total +charge;
+						total = (total +charge);
 
 						Highcharts.chart('piecharts', {
 					        chart: {
@@ -33,7 +36,7 @@ $('#generatebtn').click(function(){
 					            type: 'pie'
 					        },
 					        title: {
-					            text: 'Transaction Report as of '+start_date
+					            text: 'Transaction Report as of '+moment(start_date).format('Do of MMMM, YYYY')
 					        },
 					        tooltip: {
 					            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -66,12 +69,12 @@ $('#generatebtn').click(function(){
 						        type: 'column'
 						    },
 						    title: {
-						        text: 'Daily Transaction as of '+ start_date
+						        text: 'Transaction Report as of '+moment(start_date).format('Do of MMMM, YYYY')
 						    },
 						    
 						    xAxis: {
 						        categories: [
-						            start_date
+						            moment(start_date).format('Do of MMMM, YYYY')
 						        ],
 						        crosshair: true
 						    },
@@ -113,12 +116,13 @@ $('#generatebtn').click(function(){
 					response[1].forEach(function(data){
 						t.row.add([
 							data.trans_id,
-							data.trans_date,
-							data.trans_total + data.charge,
+							moment(data.trans_date).format('MMMM Do YYYY'),
+							total = (data.trans_total + data.charge).toLocaleString() +" pesos",
 							'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
 						]).draw(false);	
 					})//end for function response
 					$('.printTrans').click(function(){
+	
 						var date="";
 						var total="";
 						var payment="";
@@ -128,6 +132,7 @@ $('#generatebtn').click(function(){
 						var patient_name ="";
 						var claimcode = '';
 						var ref_name = "";
+						var prescriptions = '';
 						$.ajax
 						({
 						url: '/retrieveReciept', 
@@ -142,7 +147,7 @@ $('#generatebtn').click(function(){
 						total = data.trans_total;
 						payment = data.trans_payment;
 						change = data.trans_change;
-
+						prescriptions = data.prescriptions;
 						total = parseFloat(total).toFixed(2);
 						payment= parseFloat(payment).toFixed(2);
 						change =parseFloat(change).toFixed(2);
@@ -173,7 +178,7 @@ $('#generatebtn').click(function(){
 						frameDoc.document.write('<style>@page { margin: 2; } .invoice-box{ max-width:800px; margin:auto; padding:30px; font-size:16px; line-height:24px; font-family:Helvetica Neue, Helvetica, Helvetica, Arial, sans-serif; color:#555; } .invoice-box table{ width:100%; line-height:inherit; text-align:left; } .invoice-box table td{ padding:5px; vertical-align:top; } .invoice-box table tr td:nth-child(2){ text-align:right; } .invoice-box table tr td:nth-child(3){ text-align:left; padding-left:200px; } .invoice-box table tr.top table td{ padding-bottom:20px; } .invoice-box table tr.top table td.title{ font-size:45px; line-height:45px; color:#333; } .invoice-box table tr.information table td{ padding-bottom:40px; } .invoice-box table tr.heading td{ background:#eee; border-bottom:1px solid #ddd; font-weight:bold; } .invoice-box table tr.details td{ padding-bottom:20px; } .invoice-box table tr.item td{ border-bottom:1px solid #eee; } .invoice-box table tr.item.last td{ border-bottom:none; } .invoice-box table tr.total td:nth-child(2){ border-top:2px solid #eee; font-weight:bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top table td{ width:100%; display:block; text-align:center; } .invoice-box table tr.information table td{ width:100%; display:block; text-align:center; } } </style>');
 						frameDoc.document.write('<html><body> <div class="invoice-box"> <table cellpadding="0" cellspacing="0"> <tr class="top"> <td colspan="2">   ');
 						frameDoc.document.write('<table>');
-						frameDoc.document.write('<tr> <td> <img src="{{ asset("/banner.jpg") }}" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
+						frameDoc.document.write('<tr> <td> <img src="/banner.jpg" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
 						frameDoc.document.write('</table>');
 						frameDoc.document.write('<tr class="information"> <td colspan="2"> <table> <tr><td></td></tr>');
 						frameDoc.document.write('<tr> <td> <strong>Patient Name:</strong>'+patient_name+'<br> <strong> Claiming Code:</strong> '+claimcode+'<br> <strong>Website:</strong>www.ghdc-sj.com </td> <td> </td> <td style="padding-left: 33px"> <strong>Date:</strong> '+date+' <br> <strong>Receptionist:</strong>'+emp_name+'<br> <strong>Reffering Employee:</strong>'+ref_name+' </td></tr>');
@@ -216,7 +221,7 @@ $('#generatebtn').click(function(){
 						frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
 						frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
 						frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
-						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td> CBC - Dito ang desc<br> Test - Dito ang desc<br> Test - Dito ang desc<br> </td> </tr> </table> ');
+						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
 						frameDoc.document.write('</div></body></html>');
 						frameDoc.document.close();
 						setTimeout(function () {
@@ -226,24 +231,43 @@ $('#generatebtn').click(function(){
 						}, 500);
 						}
 						});
-					});//end ng click function printThis
+					})
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.success("Done!");
+				},
+				error:function()
+				{
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.error("Sorry! No data available");
 				}
 			});
-			toastr.options = {
-		      "closeButton": true,
-		      "debug": false,
-		      "positionClass": "toast-top-right",
-		      "onclick": null,
-		      "showDuration": "3000",
-		      "hideDuration": "100",
-		      "timeOut": "3000",
-		      "extendedTimeOut": "0",
-		      "showEasing": "swing",
-		      "hideEasing": "swing",
-		      "showMethod": "show",
-		      "hideMethod": "hide"
-		    }
-		    toastr.success("Done!");
+			
 		}
 		else
 		{
@@ -345,7 +369,7 @@ $('#generatebtn').click(function(){
 					            type: 'pie'
 					        },
 					        title: {
-					            text: 'Transaction Report as of '+start_date+ ' to ' +enddate
+					            text: 'Transaction Report as of '+moment(start_date).format('Do of MMMM, YYYY')+ ' to ' +moment(enddate).format('Do of MMMM, YYYY')
 					        },
 					        tooltip: {
 					            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -378,18 +402,18 @@ $('#generatebtn').click(function(){
 						        type: 'column'
 						    },
 						    title: {
-						        text: 'Weekly Transaction as of '+ start_date +' to '+enddate
+						        text: 'Transaction Report as of '+moment(start_date).format('Do of MMMM, YYYY')+ ' to ' +moment(enddate).format('Do of MMMM, YYYY')
 						    },
 						    
 						    xAxis: {
 						        categories: [
-						            start_date,
-						            secdate,
-						            thirddate,
-						            fourthdate,
-						            fifthdate,
-						            sixdate,
-						            enddate
+						            moment(start_date).format('MMMM Do'),
+						            moment(secdate).format('MMMM Do'),
+						            moment(thirddate).format('MMMM Do'),
+						            moment(fourthdate).format('MMMM Do'),
+						            moment(fifthdate).format('MMMM Do'),
+						            moment(sixdate).format('MMMM Do'),
+						            moment(enddate).format('MMMM Do')
 						        ],
 						        crosshair: true
 						    },
@@ -501,12 +525,13 @@ $('#generatebtn').click(function(){
 					response[0].forEach(function(data){
 						t.row.add([
 							data.trans_id,
-							data.trans_date,
-							data.trans_total + data.charge,
+							moment(data.trans_date).format('MMMM Do YYYY'),
+							total = (data.trans_total + data.charge).toLocaleString() +" pesos",
 							'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
 						]).draw(false);
 					})//end ng function response
 					$('.printTrans').click(function(){
+	
 						var date="";
 						var total="";
 						var payment="";
@@ -516,6 +541,7 @@ $('#generatebtn').click(function(){
 						var patient_name ="";
 						var claimcode = '';
 						var ref_name = "";
+						var prescriptions = '';
 						$.ajax
 						({
 						url: '/retrieveReciept', 
@@ -530,7 +556,7 @@ $('#generatebtn').click(function(){
 						total = data.trans_total;
 						payment = data.trans_payment;
 						change = data.trans_change;
-
+						prescriptions = data.prescriptions;
 						total = parseFloat(total).toFixed(2);
 						payment= parseFloat(payment).toFixed(2);
 						change =parseFloat(change).toFixed(2);
@@ -561,7 +587,7 @@ $('#generatebtn').click(function(){
 						frameDoc.document.write('<style>@page { margin: 2; } .invoice-box{ max-width:800px; margin:auto; padding:30px; font-size:16px; line-height:24px; font-family:Helvetica Neue, Helvetica, Helvetica, Arial, sans-serif; color:#555; } .invoice-box table{ width:100%; line-height:inherit; text-align:left; } .invoice-box table td{ padding:5px; vertical-align:top; } .invoice-box table tr td:nth-child(2){ text-align:right; } .invoice-box table tr td:nth-child(3){ text-align:left; padding-left:200px; } .invoice-box table tr.top table td{ padding-bottom:20px; } .invoice-box table tr.top table td.title{ font-size:45px; line-height:45px; color:#333; } .invoice-box table tr.information table td{ padding-bottom:40px; } .invoice-box table tr.heading td{ background:#eee; border-bottom:1px solid #ddd; font-weight:bold; } .invoice-box table tr.details td{ padding-bottom:20px; } .invoice-box table tr.item td{ border-bottom:1px solid #eee; } .invoice-box table tr.item.last td{ border-bottom:none; } .invoice-box table tr.total td:nth-child(2){ border-top:2px solid #eee; font-weight:bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top table td{ width:100%; display:block; text-align:center; } .invoice-box table tr.information table td{ width:100%; display:block; text-align:center; } } </style>');
 						frameDoc.document.write('<html><body> <div class="invoice-box"> <table cellpadding="0" cellspacing="0"> <tr class="top"> <td colspan="2">   ');
 						frameDoc.document.write('<table>');
-						frameDoc.document.write('<tr> <td> <img src="{{ asset("/banner.jpg") }}" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
+						frameDoc.document.write('<tr> <td> <img src="/banner.jpg" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
 						frameDoc.document.write('</table>');
 						frameDoc.document.write('<tr class="information"> <td colspan="2"> <table> <tr><td></td></tr>');
 						frameDoc.document.write('<tr> <td> <strong>Patient Name:</strong>'+patient_name+'<br> <strong> Claiming Code:</strong> '+claimcode+'<br> <strong>Website:</strong>www.ghdc-sj.com </td> <td> </td> <td style="padding-left: 33px"> <strong>Date:</strong> '+date+' <br> <strong>Receptionist:</strong>'+emp_name+'<br> <strong>Reffering Employee:</strong>'+ref_name+' </td></tr>');
@@ -604,7 +630,7 @@ $('#generatebtn').click(function(){
 						frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
 						frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
 						frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
-						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td> CBC - Dito ang desc<br> Test - Dito ang desc<br> Test - Dito ang desc<br> </td> </tr> </table> ');
+						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
 						frameDoc.document.write('</div></body></html>');
 						frameDoc.document.close();
 						setTimeout(function () {
@@ -614,24 +640,43 @@ $('#generatebtn').click(function(){
 						}, 500);
 						}
 						});
-					});//end ng click function printThis
+					})
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.success("Done!");
+				},
+				error:function()
+				{
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.error("Sorry! No data available");
 				}
 			});
-			toastr.options = {
-		      "closeButton": true,
-		      "debug": false,
-		      "positionClass": "toast-top-right",
-		      "onclick": null,
-		      "showDuration": "3000",
-		      "hideDuration": "100",
-		      "timeOut": "3000",
-		      "extendedTimeOut": "0",
-		      "showEasing": "swing",
-		      "hideEasing": "swing",
-		      "showMethod": "show",
-		      "hideMethod": "hide"
-		    }
-		    toastr.success("Done!");
+			
 		}
 		else
 		{
@@ -656,10 +701,21 @@ $('#generatebtn').click(function(){
 	{
 		if(monthly != 'mm/yyyy')		    
 		{
+
 			var date = new Date("01/"+monthly);
 		    var newdate = new Date(date);
 		    var smm = date.getDate();
 		    var sy = date.getFullYear();
+		    var lastDayOfMonth = new Date(date.getFullYear(), date.getDate(), 0);
+		    lastDayofMonth = lastDayOfMonth.getDate();
+		    var divweek = Math.ceil(lastDayofMonth/4)*1;
+		   
+		   	var startdate = sy + '-' + smm + '-' + 1;
+		    var firstweek = sy + '-' + smm + '-' + (1+divweek);
+		    var secondweek = sy + '-' + smm + '-' + (1+(divweek*2));
+		    var thirdweek = sy + '-' + smm + '-' + (1+(divweek*3));
+		    var fourthweek = sy + '-' + smm + '-' + lastDayofMonth;
+		    
 		    t.clear().draw();
 			$.ajax
 			({
@@ -667,10 +723,69 @@ $('#generatebtn').click(function(){
 				type: 'get',
 				data:  { 
 					month : smm,
-					year : sy
+					year : sy,
+					startdate:startdate,
+					firstweek:firstweek,
+					secondweek:secondweek,
+					thirdweek:thirdweek,
+					fourthweek:fourthweek
 				},
 				dataType : 'json',
 				success:function(response){
+					Highcharts.chart('barcharts', {
+					    title: {
+					        text: 'Monthly Transaction Report as of '+moment(smm +'/01/'+sy).format('MMMM') + ' '+moment(smm +'/01/'+sy).format('YYYY')
+					    },
+					    yAxis: {
+					        title: {
+					            text: 'Total income (Pesos)'
+					        }
+					    },
+					    legend: {
+					        layout: 'vertical',
+					        align: 'right',
+					        verticalAlign: 'middle'
+					    },
+
+					    xAxis: {
+					        categories: [
+					        	'Start 	Date',
+					        	'1st week',
+					        	'2nd week',
+					        	'3rd week',
+					        	'Last week'
+					        ],
+					        crosshair: true
+				    	},
+				    	
+					    series: [{
+					        name: 'Income',
+					        data: [
+					        		0,
+					        		firstweek(), 
+					        		secondweek(), 
+					        		thirdweek(), 
+					        		fourthweek()
+					        	  ]
+					    }],
+
+					    responsive: {
+					        rules: [{
+					            condition: {
+					                maxWidth: 500
+					            },
+					            chartOptions: {
+					                legend: {
+					                    layout: 'horizontal',
+					                    align: 'center',
+					                    verticalAlign: 'bottom'
+					                }
+					            }
+					        }]
+					    }
+
+					});
+
 					Highcharts.chart('piecharts', {
 				        chart: {
 				            plotBackgroundColor: null,
@@ -679,7 +794,7 @@ $('#generatebtn').click(function(){
 				            type: 'pie'
 				        },
 				        title: {
-				            text: 'Monthly Transaction Report as of '+smm + ' '+sy
+				            text: 'Monthly Transaction Report as of '+moment(smm +'/01/'+sy).format('MMMM') + ' '+moment(smm +'/01/'+sy).format('YYYY')
 				        },
 				        tooltip: {
 				            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -707,6 +822,7 @@ $('#generatebtn').click(function(){
 				            }]
 				        }]
 				    });
+
 				    
 					function corporate()
 					{
@@ -716,15 +832,65 @@ $('#generatebtn').click(function(){
 					{
 						return response[3];
 					}
+					function firstweek()
+					{
+						response[5].forEach(function(data){
+				        	if(data.charge == null)
+				        	{
+				        		data.charge = 0;
+				        	}
+				        	total = (data.trans_total *1) + (data.charge *1);	
+				        });
+				        
+				        return (total*1);
+					}
+					function secondweek()
+					{
+						response[6].forEach(function(data){
+				        	if(data.charge == null)
+				        	{
+				        		data.charge = 0;
+				        	}
+				        	total = (data.trans_total *1) + (data.charge *1);	
+				        });
+
+				        return (total*1);
+					}
+					function thirdweek()
+					{
+						response[7].forEach(function(data){
+				        	if(data.charge == null)
+				        	{
+				        		data.charge = 0;
+				        	}
+				        	total = (data.trans_total *1) + (data.charge *1);	
+				        });
+						
+				        return (total*1);
+					}
+					function fourthweek()
+					{
+						response[8].forEach(function(data){
+				        	
+				        	if(data.charge == null)
+				        	{
+				        		data.charge = 0;
+				        	}
+				        	total = (data.trans_total *1) + (data.charge *1);	
+				        });
+
+				        return (total*1);
+					}
 					response[0].forEach(function(data){
 						t.row.add([
 							data.trans_id,
-							data.trans_date,
-							data.trans_total + data.charge,
+							moment(data.trans_date).format('MMMM Do YYYY'),
+							total = (data.trans_total + data.charge).toLocaleString() +" pesos",
 							'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
 						]).draw(false);
 					})//end ng function response
 					$('.printTrans').click(function(){
+	
 						var date="";
 						var total="";
 						var payment="";
@@ -734,6 +900,7 @@ $('#generatebtn').click(function(){
 						var patient_name ="";
 						var claimcode = '';
 						var ref_name = "";
+						var prescriptions = '';
 						$.ajax
 						({
 						url: '/retrieveReciept', 
@@ -748,7 +915,7 @@ $('#generatebtn').click(function(){
 						total = data.trans_total;
 						payment = data.trans_payment;
 						change = data.trans_change;
-
+						prescriptions = data.prescriptions;
 						total = parseFloat(total).toFixed(2);
 						payment= parseFloat(payment).toFixed(2);
 						change =parseFloat(change).toFixed(2);
@@ -779,7 +946,7 @@ $('#generatebtn').click(function(){
 						frameDoc.document.write('<style>@page { margin: 2; } .invoice-box{ max-width:800px; margin:auto; padding:30px; font-size:16px; line-height:24px; font-family:Helvetica Neue, Helvetica, Helvetica, Arial, sans-serif; color:#555; } .invoice-box table{ width:100%; line-height:inherit; text-align:left; } .invoice-box table td{ padding:5px; vertical-align:top; } .invoice-box table tr td:nth-child(2){ text-align:right; } .invoice-box table tr td:nth-child(3){ text-align:left; padding-left:200px; } .invoice-box table tr.top table td{ padding-bottom:20px; } .invoice-box table tr.top table td.title{ font-size:45px; line-height:45px; color:#333; } .invoice-box table tr.information table td{ padding-bottom:40px; } .invoice-box table tr.heading td{ background:#eee; border-bottom:1px solid #ddd; font-weight:bold; } .invoice-box table tr.details td{ padding-bottom:20px; } .invoice-box table tr.item td{ border-bottom:1px solid #eee; } .invoice-box table tr.item.last td{ border-bottom:none; } .invoice-box table tr.total td:nth-child(2){ border-top:2px solid #eee; font-weight:bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top table td{ width:100%; display:block; text-align:center; } .invoice-box table tr.information table td{ width:100%; display:block; text-align:center; } } </style>');
 						frameDoc.document.write('<html><body> <div class="invoice-box"> <table cellpadding="0" cellspacing="0"> <tr class="top"> <td colspan="2">   ');
 						frameDoc.document.write('<table>');
-						frameDoc.document.write('<tr> <td> <img src="{{ asset("/banner.jpg") }}" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
+						frameDoc.document.write('<tr> <td> <img src="/banner.jpg" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
 						frameDoc.document.write('</table>');
 						frameDoc.document.write('<tr class="information"> <td colspan="2"> <table> <tr><td></td></tr>');
 						frameDoc.document.write('<tr> <td> <strong>Patient Name:</strong>'+patient_name+'<br> <strong> Claiming Code:</strong> '+claimcode+'<br> <strong>Website:</strong>www.ghdc-sj.com </td> <td> </td> <td style="padding-left: 33px"> <strong>Date:</strong> '+date+' <br> <strong>Receptionist:</strong>'+emp_name+'<br> <strong>Reffering Employee:</strong>'+ref_name+' </td></tr>');
@@ -822,7 +989,7 @@ $('#generatebtn').click(function(){
 						frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
 						frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
 						frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
-						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td> CBC - Dito ang desc<br> Test - Dito ang desc<br> Test - Dito ang desc<br> </td> </tr> </table> ');
+						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
 						frameDoc.document.write('</div></body></html>');
 						frameDoc.document.close();
 						setTimeout(function () {
@@ -832,24 +999,42 @@ $('#generatebtn').click(function(){
 						}, 500);
 						}
 						});
-					});//end ng click function printThis
+					})
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.success("Done!");
+				},
+				error:function()
+				{
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.error("Sorry! No data available");
 				}
 			});
-			toastr.options = {
-		      "closeButton": true,
-		      "debug": false,
-		      "positionClass": "toast-top-right",
-		      "onclick": null,
-		      "showDuration": "3000",
-		      "hideDuration": "100",
-		      "timeOut": "3000",
-		      "extendedTimeOut": "0",
-		      "showEasing": "swing",
-		      "hideEasing": "swing",
-		      "showMethod": "show",
-		      "hideMethod": "hide"
-		    }
-		    toastr.success("Done!");
 		}
 		else
 		{
@@ -892,12 +1077,13 @@ $('#generatebtn').click(function(){
 					response.forEach(function(data){
 						t.row.add([
 							data.trans_id,
-							data.trans_date,
-							data.trans_total + data.charge,
+							moment(data.trans_date).format('MMMM Do YYYY'),
+							total = (data.trans_total + data.charge).toLocaleString() +" pesos",
 							'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
 						]).draw(false);
 					})//end ng function response
 					$('.printTrans').click(function(){
+	
 						var date="";
 						var total="";
 						var payment="";
@@ -907,6 +1093,7 @@ $('#generatebtn').click(function(){
 						var patient_name ="";
 						var claimcode = '';
 						var ref_name = "";
+						var prescriptions = '';
 						$.ajax
 						({
 						url: '/retrieveReciept', 
@@ -921,7 +1108,7 @@ $('#generatebtn').click(function(){
 						total = data.trans_total;
 						payment = data.trans_payment;
 						change = data.trans_change;
-
+						prescriptions = data.prescriptions;
 						total = parseFloat(total).toFixed(2);
 						payment= parseFloat(payment).toFixed(2);
 						change =parseFloat(change).toFixed(2);
@@ -952,7 +1139,7 @@ $('#generatebtn').click(function(){
 						frameDoc.document.write('<style>@page { margin: 2; } .invoice-box{ max-width:800px; margin:auto; padding:30px; font-size:16px; line-height:24px; font-family:Helvetica Neue, Helvetica, Helvetica, Arial, sans-serif; color:#555; } .invoice-box table{ width:100%; line-height:inherit; text-align:left; } .invoice-box table td{ padding:5px; vertical-align:top; } .invoice-box table tr td:nth-child(2){ text-align:right; } .invoice-box table tr td:nth-child(3){ text-align:left; padding-left:200px; } .invoice-box table tr.top table td{ padding-bottom:20px; } .invoice-box table tr.top table td.title{ font-size:45px; line-height:45px; color:#333; } .invoice-box table tr.information table td{ padding-bottom:40px; } .invoice-box table tr.heading td{ background:#eee; border-bottom:1px solid #ddd; font-weight:bold; } .invoice-box table tr.details td{ padding-bottom:20px; } .invoice-box table tr.item td{ border-bottom:1px solid #eee; } .invoice-box table tr.item.last td{ border-bottom:none; } .invoice-box table tr.total td:nth-child(2){ border-top:2px solid #eee; font-weight:bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top table td{ width:100%; display:block; text-align:center; } .invoice-box table tr.information table td{ width:100%; display:block; text-align:center; } } </style>');
 						frameDoc.document.write('<html><body> <div class="invoice-box"> <table cellpadding="0" cellspacing="0"> <tr class="top"> <td colspan="2">   ');
 						frameDoc.document.write('<table>');
-						frameDoc.document.write('<tr> <td> <img src="{{ asset("/banner.jpg") }}" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
+						frameDoc.document.write('<tr> <td> <img src="/banner.jpg" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
 						frameDoc.document.write('</table>');
 						frameDoc.document.write('<tr class="information"> <td colspan="2"> <table> <tr><td></td></tr>');
 						frameDoc.document.write('<tr> <td> <strong>Patient Name:</strong>'+patient_name+'<br> <strong> Claiming Code:</strong> '+claimcode+'<br> <strong>Website:</strong>www.ghdc-sj.com </td> <td> </td> <td style="padding-left: 33px"> <strong>Date:</strong> '+date+' <br> <strong>Receptionist:</strong>'+emp_name+'<br> <strong>Reffering Employee:</strong>'+ref_name+' </td></tr>');
@@ -995,7 +1182,7 @@ $('#generatebtn').click(function(){
 						frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
 						frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
 						frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
-						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td> CBC - Dito ang desc<br> Test - Dito ang desc<br> Test - Dito ang desc<br> </td> </tr> </table> ');
+						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
 						frameDoc.document.write('</div></body></html>');
 						frameDoc.document.close();
 						setTimeout(function () {
@@ -1005,24 +1192,43 @@ $('#generatebtn').click(function(){
 						}, 500);
 						}
 						});
-					});//end ng click function printThis
+					})
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.success("Done!");
+				},
+				error:function()
+				{
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.error("Sorry! No data available");
 				}
 			});
-			toastr.options = {
-		      "closeButton": true,
-		      "debug": false,
-		      "positionClass": "toast-top-right",
-		      "onclick": null,
-		      "showDuration": "3000",
-		      "hideDuration": "100",
-		      "timeOut": "3000",
-		      "extendedTimeOut": "0",
-		      "showEasing": "swing",
-		      "hideEasing": "swing",
-		      "showMethod": "show",
-		      "hideMethod": "hide"
-		    }
-		    toastr.success("Done!");
+			
 		}
 		else
 		{
@@ -1073,12 +1279,13 @@ $('#generatebtn').click(function(){
 					response.forEach(function(data){
 						t.row.add([
 							data.trans_id,
-							data.trans_date,
-							data.trans_total + data.charge,
+							moment(data.trans_date).format('MMMM Do YYYY'),
+							total = (data.trans_total + data.charge).toLocaleString() +" pesos",
 							'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
 						]).draw(false);
 					})//end ng function response
 					$('.printTrans').click(function(){
+	
 						var date="";
 						var total="";
 						var payment="";
@@ -1088,6 +1295,7 @@ $('#generatebtn').click(function(){
 						var patient_name ="";
 						var claimcode = '';
 						var ref_name = "";
+						var prescriptions = '';
 						$.ajax
 						({
 						url: '/retrieveReciept', 
@@ -1102,7 +1310,7 @@ $('#generatebtn').click(function(){
 						total = data.trans_total;
 						payment = data.trans_payment;
 						change = data.trans_change;
-
+						prescriptions = data.prescriptions;
 						total = parseFloat(total).toFixed(2);
 						payment= parseFloat(payment).toFixed(2);
 						change =parseFloat(change).toFixed(2);
@@ -1133,7 +1341,7 @@ $('#generatebtn').click(function(){
 						frameDoc.document.write('<style>@page { margin: 2; } .invoice-box{ max-width:800px; margin:auto; padding:30px; font-size:16px; line-height:24px; font-family:Helvetica Neue, Helvetica, Helvetica, Arial, sans-serif; color:#555; } .invoice-box table{ width:100%; line-height:inherit; text-align:left; } .invoice-box table td{ padding:5px; vertical-align:top; } .invoice-box table tr td:nth-child(2){ text-align:right; } .invoice-box table tr td:nth-child(3){ text-align:left; padding-left:200px; } .invoice-box table tr.top table td{ padding-bottom:20px; } .invoice-box table tr.top table td.title{ font-size:45px; line-height:45px; color:#333; } .invoice-box table tr.information table td{ padding-bottom:40px; } .invoice-box table tr.heading td{ background:#eee; border-bottom:1px solid #ddd; font-weight:bold; } .invoice-box table tr.details td{ padding-bottom:20px; } .invoice-box table tr.item td{ border-bottom:1px solid #eee; } .invoice-box table tr.item.last td{ border-bottom:none; } .invoice-box table tr.total td:nth-child(2){ border-top:2px solid #eee; font-weight:bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top table td{ width:100%; display:block; text-align:center; } .invoice-box table tr.information table td{ width:100%; display:block; text-align:center; } } </style>');
 						frameDoc.document.write('<html><body> <div class="invoice-box"> <table cellpadding="0" cellspacing="0"> <tr class="top"> <td colspan="2">   ');
 						frameDoc.document.write('<table>');
-						frameDoc.document.write('<tr> <td> <img src="{{ asset("/banner.jpg") }}" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
+						frameDoc.document.write('<tr> <td> <img src="/banner.jpg" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
 						frameDoc.document.write('</table>');
 						frameDoc.document.write('<tr class="information"> <td colspan="2"> <table> <tr><td></td></tr>');
 						frameDoc.document.write('<tr> <td> <strong>Patient Name:</strong>'+patient_name+'<br> <strong> Claiming Code:</strong> '+claimcode+'<br> <strong>Website:</strong>www.ghdc-sj.com </td> <td> </td> <td style="padding-left: 33px"> <strong>Date:</strong> '+date+' <br> <strong>Receptionist:</strong>'+emp_name+'<br> <strong>Reffering Employee:</strong>'+ref_name+' </td></tr>');
@@ -1176,7 +1384,7 @@ $('#generatebtn').click(function(){
 						frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
 						frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
 						frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
-						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td> CBC - Dito ang desc<br> Test - Dito ang desc<br> Test - Dito ang desc<br> </td> </tr> </table> ');
+						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
 						frameDoc.document.write('</div></body></html>');
 						frameDoc.document.close();
 						setTimeout(function () {
@@ -1186,24 +1394,42 @@ $('#generatebtn').click(function(){
 						}, 500);
 						}
 						});
-					});//end ng click function printThis
+					})
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.success("Done!");
+				},
+				error:function()
+				{
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.error("Sorry! No data available");
 				}
 			});
-			toastr.options = {
-		      "closeButton": true,
-		      "debug": false,
-		      "positionClass": "toast-top-right",
-		      "onclick": null,
-		      "showDuration": "3000",
-		      "hideDuration": "100",
-		      "timeOut": "3000",
-		      "extendedTimeOut": "0",
-		      "showEasing": "swing",
-		      "hideEasing": "swing",
-		      "showMethod": "show",
-		      "hideMethod": "hide"
-		    }
-		    toastr.success("Done!");
 		}
 		else
 		{
@@ -1235,12 +1461,13 @@ $('#generatebtn').click(function(){
 					response.forEach(function(data){
 						t.row.add([
 							data.trans_id,
-							data.trans_date,
-							data.trans_total + data.charge,
+							moment(data.trans_date).format('MMMM Do YYYY'),
+							total = (data.trans_total + data.charge).toLocaleString() +" pesos",
 							'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
 						]).draw(false);
 					})//end ng function response
 					$('.printTrans').click(function(){
+	
 						var date="";
 						var total="";
 						var payment="";
@@ -1250,6 +1477,7 @@ $('#generatebtn').click(function(){
 						var patient_name ="";
 						var claimcode = '';
 						var ref_name = "";
+						var prescriptions = '';
 						$.ajax
 						({
 						url: '/retrieveReciept', 
@@ -1264,7 +1492,7 @@ $('#generatebtn').click(function(){
 						total = data.trans_total;
 						payment = data.trans_payment;
 						change = data.trans_change;
-
+						prescriptions = data.prescriptions;
 						total = parseFloat(total).toFixed(2);
 						payment= parseFloat(payment).toFixed(2);
 						change =parseFloat(change).toFixed(2);
@@ -1295,7 +1523,7 @@ $('#generatebtn').click(function(){
 						frameDoc.document.write('<style>@page { margin: 2; } .invoice-box{ max-width:800px; margin:auto; padding:30px; font-size:16px; line-height:24px; font-family:Helvetica Neue, Helvetica, Helvetica, Arial, sans-serif; color:#555; } .invoice-box table{ width:100%; line-height:inherit; text-align:left; } .invoice-box table td{ padding:5px; vertical-align:top; } .invoice-box table tr td:nth-child(2){ text-align:right; } .invoice-box table tr td:nth-child(3){ text-align:left; padding-left:200px; } .invoice-box table tr.top table td{ padding-bottom:20px; } .invoice-box table tr.top table td.title{ font-size:45px; line-height:45px; color:#333; } .invoice-box table tr.information table td{ padding-bottom:40px; } .invoice-box table tr.heading td{ background:#eee; border-bottom:1px solid #ddd; font-weight:bold; } .invoice-box table tr.details td{ padding-bottom:20px; } .invoice-box table tr.item td{ border-bottom:1px solid #eee; } .invoice-box table tr.item.last td{ border-bottom:none; } .invoice-box table tr.total td:nth-child(2){ border-top:2px solid #eee; font-weight:bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top table td{ width:100%; display:block; text-align:center; } .invoice-box table tr.information table td{ width:100%; display:block; text-align:center; } } </style>');
 						frameDoc.document.write('<html><body> <div class="invoice-box"> <table cellpadding="0" cellspacing="0"> <tr class="top"> <td colspan="2">   ');
 						frameDoc.document.write('<table>');
-						frameDoc.document.write('<tr> <td> <img src="{{ asset("/banner.jpg") }}" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
+						frameDoc.document.write('<tr> <td> <img src="/banner.jpg" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
 						frameDoc.document.write('</table>');
 						frameDoc.document.write('<tr class="information"> <td colspan="2"> <table> <tr><td></td></tr>');
 						frameDoc.document.write('<tr> <td> <strong>Patient Name:</strong>'+patient_name+'<br> <strong> Claiming Code:</strong> '+claimcode+'<br> <strong>Website:</strong>www.ghdc-sj.com </td> <td> </td> <td style="padding-left: 33px"> <strong>Date:</strong> '+date+' <br> <strong>Receptionist:</strong>'+emp_name+'<br> <strong>Reffering Employee:</strong>'+ref_name+' </td></tr>');
@@ -1338,7 +1566,7 @@ $('#generatebtn').click(function(){
 						frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
 						frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
 						frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
-						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td> CBC - Dito ang desc<br> Test - Dito ang desc<br> Test - Dito ang desc<br> </td> </tr> </table> ');
+						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
 						frameDoc.document.write('</div></body></html>');
 						frameDoc.document.close();
 						setTimeout(function () {
@@ -1348,23 +1576,42 @@ $('#generatebtn').click(function(){
 						}, 500);
 						}
 						});
-					});//end ng click function printThis
+					})
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.success("Done!");
+				},
+				error:function()
+				{
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.error("Sorry! No data available");
 				}
 			});
-			toastr.options = {
-		      "closeButton": true,
-		      "debug": false,
-		      "positionClass": "toast-top-right",
-		      "onclick": null,
-		      "showDuration": "3000",
-		      "hideDuration": "100",
-		      "timeOut": "3000",
-		      "extendedTimeOut": "0",
-		      "showEasing": "swing",
-		      "hideEasing": "swing",
-		      "showMethod": "show",
-		      "hideMethod": "hide"
-		    }
-		    toastr.success("Done!");
+			
 	}
 });
