@@ -163,7 +163,7 @@
 						  <tr>
 						  	<input type="hidden" name="service_id[]" value="{{ $serv->service_id }}">
 						    <td><center>{{ $serv->service_name}}</center></td>
-						    <td><input class="form-control" value="{{ $serv->medserv1_result }}" type="text" name="result{{ $serv->service_id }}" id="result{{ $serv->service_id }}" pattern="[a-zA-Z0-9./\=<>]{1,30}" title="Special characters are not allowed." required></td>
+						    <td><input class="form-control" value="{{ $serv->medserv1_result }}" type="text" name="result{{ $serv->service_id }}" id="result{{ $serv->service_id }}" pattern="[0-9.>/=\<-]{1,30}$" title="This Field is required. This Field should not exceed 30 characters." required></td>
 						  </tr>
 						  @endforeach
 					</table>

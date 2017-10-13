@@ -15,7 +15,7 @@
 		</header>
 		<header>
 			<div>
-    		<img src="/DrugTest_img/{{ $serv->Drug_picture_img }}"/>
+    		<img src="/DrugTest_img/{{ $serv->Drug_picture_img }}" style="width: 1000px; height: 1000px float: left; max-height: 150px; max-width: 150px;"/>
 		</div>
 
 		</header>

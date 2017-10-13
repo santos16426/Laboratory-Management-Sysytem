@@ -169,12 +169,12 @@
 						  <tr>
 						  	<input type="hidden" name="service_id[]" value="{{ $serv->service_id }}">
 						    <td><center>{{ $serv->service_name}}</center></td>
-						    <td><input class="form-control" type="text" name="intresult{{ $serv->service_id }}" id="intresult{{ $serv->service_id }}" value="{{ $serv->Medserv2_intresult }}" pattern="[a-zA-Z0-9./\=<>]{1,30}" title="Special characters are not allowed." required></td>
-						    <td><input class="form-control" type="text" name="intunit{{ $serv->service_id }}" id="intunit{{ $serv->service_id }}" value="{{ $serv->Medserv2_intunit }}" pattern="[a-zA-Z0-9./\=<>]{1,30}" title="Special characters are not allowed." required></td>
-						    <td><input class="form-control" type="text" name="intref{{ $serv->service_id }}" id="intref{{ $serv->service_id }}" value="{{ $serv->Medserv2_intref }}" pattern="[a-zA-Z0-9./\=<>]{1,30}" title="Special characters are not allowed." required></td>
-						    <td><input class="form-control" type="text" name="conresult{{ $serv->service_id }}" id="conresult{{ $serv->service_id }}" value="{{ $serv->Medserv2_conresult }}" pattern="[a-zA-Z0-9./\=<>]{1,30}" title="Special characters are not allowed." required></td>
-						    <td><input class="form-control" type="text" name="conunit{{ $serv->service_id }}" id="conunit{{ $serv->service_id }}" value="{{ $serv->Medserv2_conunit }}" pattern="[a-zA-Z0-9./\=<>]{1,30}" title="Special characters are not allowed." required></td>
-						    <td><input class="form-control" type="text" name="conref{{ $serv->service_id }}" id="conref{{ $serv->service_id }}" value="{{ $serv->Medserv2_conref }}" pattern="[a-zA-Z0-9./\=<>]{1,30}" title="Special characters are not allowed." required></td>
+						    <td><input class="form-control" type="text" name="intresult{{ $serv->service_id }}" id="intresult{{ $serv->service_id }}" value="{{ $serv->Medserv2_intresult }}" pattern="[0-9.>/=\<-]{1,15}$" title="This Field is required. This Field should not exceed 15 characters." required></td>
+						    <td><input class="form-control" type="text" name="intunit{{ $serv->service_id }}" id="intunit{{ $serv->service_id }}" value="{{ $serv->Medserv2_intunit }}" pattern="[a-zA-Z0-9.>/=\<-]{1,15}" title="This Field is required. This Field should not exceed 15 characters." required></td>
+						    <td><input class="form-control" type="text" name="intref{{ $serv->service_id }}" id="intref{{ $serv->service_id }}" value="{{ $serv->Medserv2_intref }}" pattern="[a-zA-Z0-9.>/=\<-]{1,20}" title="This Field is required. This Field should not exceed 20 characters." required></td>
+						    <td><input class="form-control" type="text" name="conresult{{ $serv->service_id }}" id="conresult{{ $serv->service_id }}" value="{{ $serv->Medserv2_conresult }}" pattern="[0-9.>/=\<-]{1,15}$" title="This Field is required. This Field should not exceed 15 characters." required></td>
+						    <td><input class="form-control" type="text" name="conunit{{ $serv->service_id }}" id="conunit{{ $serv->service_id }}" value="{{ $serv->Medserv2_conunit }}" pattern="[a-zA-Z0-9.>/=\<-]{1,15}" title="This Field is required. This Field should not exceed 15 characters." required></td>
+						    <td><input class="form-control" type="text" name="conref{{ $serv->service_id }}" id="conref{{ $serv->service_id }}" value="{{ $serv->Medserv2_conref }}" pattern="[a-zA-Z0-9.>/=\<-]{1,20}" title="This Field is required. This Field should not exceed 20 characters." required></td>
 						  </tr>
 						  @endforeach
 					</table>
