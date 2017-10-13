@@ -129,6 +129,7 @@ Route::get('/Transaction/PatientTransaction','ResultController@PatientTransactio
 Route::post('/uploadResultFile','ResultController@uploadResultFile');
 Route::get('/uploadFileResuls','ResultController@uploadFileResuls');
 Route::post('/delete_resultfile','ResultController@delete_resultfile');
+
 //Remote Validation
 Route::get('/checkEmpType','RemoteController@checkEmpType');
 Route::get('/checkServgrp','RemoteController@checkServgrp');
@@ -140,6 +141,9 @@ Route::get('/checkContacts','RemoteController@checkContacts');
 Route::get('/checkEmail','RemoteController@checkEmail');
 Route::get('/checkUpPack','RemoteController@checkUpPack');
 Route::get('/checkDept','RemoteController@checkDept');
+Route::get('/checkUsername','RemoteController@checkUsername');
+Route::get('/checkLicense','RemoteController@checkLicense');
+Route::get('/checkEmpcontact','RemoteController@checkEmpcontact');
 
 // Reciept
 Route::get('/retrieveReciept','TransactionController@retrieveReciept');

@@ -340,7 +340,7 @@ $('.employeeTypeDropDown').on('change',function(){
             $('.geninfo').append('<div class="form-group"><div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">Contact Number <sup style="color:red">*</sup></div> <input type="text" class="form-control" name="contact" placeholder="e.g. (63) 926 189 1291"> </div> </div> </div>');
           }
           if(license==1){
-            $('.geninfo').append(' <div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">License Number <sup>*</sup></div> <input type="text" class="form-control" name="license" placeholder="e.g. HH-DH-8876"> </div> </div> </div>');
+            $('.geninfo').append(' <div class="form-group"> <div class="col-md-10 col-md-offset-1"> <div class="input-group"> <div class="input-group-addon">License Number <sup>*</sup></div> <input type="text" class="form-control" name="license" placeholder="e.g. NH8735"> </div> </div> </div>');
           }
 
           
@@ -375,8 +375,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -386,7 +385,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -430,8 +429,14 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -442,13 +447,19 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -476,14 +487,20 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
         
@@ -505,8 +522,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -516,7 +532,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -564,8 +580,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -575,7 +590,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -619,8 +634,14 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -631,13 +652,19 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -665,14 +692,20 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -699,8 +732,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -710,7 +742,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -754,8 +786,14 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -766,13 +804,19 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -789,10 +833,11 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                     notEmpty: {},
                     identical: {
-                        field: 'password'
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },                                         
+            },                                     
             }
           });
 
@@ -820,8 +865,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -831,7 +875,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -864,8 +908,14 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -876,13 +926,19 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -910,14 +966,20 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
 
@@ -945,8 +1007,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -956,7 +1017,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -1001,13 +1062,19 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -1035,14 +1102,20 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -1069,8 +1142,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -1080,7 +1152,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -1124,8 +1196,14 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -1134,14 +1212,20 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -1160,8 +1244,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -1171,7 +1254,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -1215,8 +1298,14 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -1227,13 +1316,19 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -1250,10 +1345,11 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                     notEmpty: {},
                     identical: {
-                        field: 'password'
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },                                    
+            },                                
             }
           });
             }
@@ -1280,8 +1376,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -1291,7 +1386,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -1324,8 +1419,14 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -1336,13 +1437,19 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -1359,10 +1466,11 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                     notEmpty: {},
                     identical: {
-                        field: 'password'
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },                                     
+            },                                 
             }
           });
             }
@@ -1389,8 +1497,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -1400,7 +1507,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -1434,13 +1541,19 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -1468,14 +1581,20 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -1502,8 +1621,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -1513,7 +1631,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -1556,14 +1674,20 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -1582,8 +1706,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -1593,7 +1716,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -1636,14 +1759,20 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -1670,8 +1799,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -1681,7 +1809,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -1715,13 +1843,19 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -1738,10 +1872,11 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                     notEmpty: {},
                     identical: {
-                        field: 'password'
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },                                       
+            },                                   
             }
           });
             }
@@ -1768,8 +1903,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -1779,7 +1913,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -1811,14 +1945,20 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -1845,8 +1985,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -1856,7 +1995,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -1903,8 +2042,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -1914,7 +2052,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -1946,14 +2084,20 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -1972,8 +2116,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -1983,7 +2126,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -2041,8 +2184,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -2052,7 +2194,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -2085,8 +2227,14 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -2110,8 +2258,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -2121,7 +2268,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -2155,13 +2302,19 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -2178,10 +2331,11 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                     notEmpty: {},
                     identical: {
-                        field: 'password'
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },                                          
+            },                                      
             }
           });
             }
@@ -2208,8 +2362,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -2219,7 +2372,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -2264,13 +2417,19 @@ $('.employeeTypeDropDown').on('change',function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -2287,10 +2446,11 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                     notEmpty: {},
                     identical: {
-                        field: 'password'
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },                                       
+            },                                   
             }
           });
             }
@@ -2309,8 +2469,7 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -2320,7 +2479,7 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -2353,8 +2512,14 @@ $('.employeeTypeDropDown').on('change',function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -2363,14 +2528,20 @@ $('.employeeTypeDropDown').on('change',function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -2482,8 +2653,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -2493,7 +2663,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -2537,8 +2707,14 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -2549,13 +2725,19 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -2583,14 +2765,20 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
         
@@ -2612,8 +2800,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -2623,7 +2810,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -2671,8 +2858,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -2682,7 +2868,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -2726,8 +2912,14 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -2738,13 +2930,19 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -2772,14 +2970,20 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -2806,8 +3010,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -2817,7 +3020,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -2861,8 +3064,14 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -2873,13 +3082,19 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -2896,10 +3111,11 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                     notEmpty: {},
                     identical: {
-                        field: 'password'
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },                                         
+            },                                     
             }
           });
 
@@ -2927,8 +3143,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -2938,7 +3153,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -2971,8 +3186,14 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -2983,13 +3204,19 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -3017,14 +3244,20 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
 
@@ -3052,8 +3285,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -3063,7 +3295,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -3108,13 +3340,19 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -3142,14 +3380,20 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -3176,8 +3420,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -3187,7 +3430,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -3231,8 +3474,14 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -3241,14 +3490,20 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -3267,8 +3522,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -3278,7 +3532,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -3322,8 +3576,14 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -3334,13 +3594,19 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -3357,10 +3623,11 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                     notEmpty: {},
                     identical: {
-                        field: 'password'
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },                                    
+            },                                
             }
           });
             }
@@ -3387,8 +3654,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -3398,7 +3664,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -3431,8 +3697,14 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -3443,13 +3715,19 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -3466,10 +3744,11 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                     notEmpty: {},
                     identical: {
-                        field: 'password'
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },                                     
+            },                                 
             }
           });
             }
@@ -3496,8 +3775,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -3507,7 +3785,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -3541,13 +3819,19 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -3575,14 +3859,20 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -3609,8 +3899,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -3620,7 +3909,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -3663,14 +3952,20 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -3689,8 +3984,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -3700,7 +3994,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -3743,14 +4037,20 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -3777,8 +4077,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -3788,7 +4087,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -3822,13 +4121,19 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -3845,10 +4150,11 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                     notEmpty: {},
                     identical: {
-                        field: 'password'
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },                                       
+            },                                   
             }
           });
             }
@@ -3875,8 +4181,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -3886,7 +4191,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -3918,14 +4223,20 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -3952,8 +4263,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -3963,7 +4273,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -4010,8 +4320,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -4021,7 +4330,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -4053,14 +4362,20 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
@@ -4079,8 +4394,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -4090,7 +4404,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -4148,8 +4462,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -4159,7 +4472,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -4192,8 +4505,14 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -4217,8 +4536,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -4228,7 +4546,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -4262,13 +4580,19 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -4285,10 +4609,11 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                     notEmpty: {},
                     identical: {
-                        field: 'password'
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },                                          
+            },                                      
             }
           });
             }
@@ -4315,8 +4640,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -4326,7 +4650,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -4371,13 +4695,19 @@ $('.empupdateModalbtn').click(function(){
                   stringLength: {
                     min: 6,
                     max: 30,
-                    message:'Please enter at least 6 characters.'
+                    message:'Minimum of 6 characters.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },      
+              },    
               password: {
                 validators: {
                   stringLength: {
@@ -4394,10 +4724,11 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                     notEmpty: {},
                     identical: {
-                        field: 'password'
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },                                       
+            },                                   
             }
           });
             }
@@ -4416,8 +4747,7 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   stringLength: {
                     min: 2,
-                    max: 20,
-                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                    message:'First name should be at least 2 characters.'
                   },
                   regexp: {
                     regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
@@ -4427,7 +4757,7 @@ $('.empupdateModalbtn').click(function(){
                     message: 'This field is required.'
                   },
                 }
-              }, 
+              },  
               middlename: {
                 validators: {
                   stringLength: {
@@ -4460,8 +4790,14 @@ $('.empupdateModalbtn').click(function(){
                 validators: {
                   regexp: {
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
-                    message: 'Invalid input.'
+                    message: 'Invalid Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -4470,14 +4806,20 @@ $('.empupdateModalbtn').click(function(){
               license: {
                 validators: {
                   regexp: {
-                    regexp: /^[A-Z]{1,3}[0-9]{1,4}[A-Z]{1,1}$/,
+                    regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                             
+              },                                          
             }
           });
             }
