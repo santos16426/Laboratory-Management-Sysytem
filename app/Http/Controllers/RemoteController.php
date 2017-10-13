@@ -130,6 +130,42 @@ class RemoteController extends Controller
         echo json_encode(array('valid' => $isAvailable,));
     }
 
+    public function checkPatientcontact()
+    {
+        $firstcheck = DB::table('patient_log_tbl')
+            ->where('patient_contact',$_GET['patient_contact'])
+            ->count();
+            
+        
+        if($firstcheck == 0)
+        {
+            $isAvailable = true;
+        }
+        else
+        {
+            $isAvailable = false;
+        }
+        echo json_encode(array('valid' => $isAvailable,));
+    }
+
+    public function checkPatientemail()
+    {
+        $firstcheck = DB::table('patient_log_tbl')
+            ->where('patient_email',$_GET['patient_email'])
+            ->count();
+            
+        
+        if($firstcheck == 0)
+        {
+            $isAvailable = true;
+        }
+        else
+        {
+            $isAvailable = false;
+        }
+        echo json_encode(array('valid' => $isAvailable,));
+    }
+
     public function checkServtype()
     {
     	$firstcheck = DB::table('service_type_tbl')

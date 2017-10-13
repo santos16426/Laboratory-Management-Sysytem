@@ -152,7 +152,7 @@ $('#EmployeeTypeedit').bootstrapValidator({
                         type: 'GET',
                         url: '/checkServgrp',
                         data:{ servicegroup:$('#servicegroup').val()},
-                        message: 'Service Group already exit.',
+                        message: 'Service Group already exist.',
                     },
                     regexp: {
                             regexp: /^[a-zA-Z0-9.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
@@ -961,6 +961,12 @@ $('#patientinfo')
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                     message: 'Invalid input.'
                   },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkPatientcontact',
+                        data:{ patient_contact:$('#patient_contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -971,6 +977,12 @@ $('#patientinfo')
                         regexp: {
                             regexp: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                             message: 'Enter a valid email.'
+                    },
+                    remote: {
+                        type: 'GET',
+                        url: '/CheckPatientemail',
+                        data:{ patient_email:$('#patient_email').val()},
+                        message: 'Email already exist.',
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -1020,6 +1032,137 @@ $('#patientinfo')
 
         ;
 
+
+$('#updatepatientinfo')   
+       
+   .bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {    
+
+            uppatient_fname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'First name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              }, 
+              uppatient_mname: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              uppatient_lname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+             uppatient_address: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
+                    message: 'Invalid Input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              uppatient_contact: {
+                validators: {
+                  regexp: {
+                    regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
+                    message: 'Invalid input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },
+              uppatient_email: {
+                validators: {
+                        regexp: {
+                            regexp: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                            message: 'Enter a valid email.'
+                    },
+                        notEmpty: {
+                        message: 'This field is required.'
+                    }
+                }
+            }, 
+            upgender: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The gender is required'
+                        }
+                    }
+                },
+            upcivil_status: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The gender is required'
+                        }
+                    }
+                },
+            // birthday: {
+            //     validators: {
+                 
+            //       notEmpty: {
+            //         message: 'This field is required.'
+            //       }
+            //     }
+            //   }, 
+            // gender: {
+            //     validators: {
+            //          regexp: {
+            //                 regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,//wala lang to para lng magka check
+            //                 message: 'Special characters are not allowed.'
+            //         },
+            //     }
+            // }, 
+            //  civil_status: {
+            //     validators: {
+            //          regexp: {
+            //                 regexp: /^[a-zA-Z0-9]+([-.'_\s][a-zA-Z0-9]+)*$/,//wala lang to para lng magka check
+            //                 message: 'Special characters are not allowed.'
+            //         },
+            //     }
+            // },    
+            }
+        })
+
+        ;
 
 
 //CorporateBill//

@@ -42,7 +42,7 @@
 		@foreach($service as $serv)
 		<header>
 			<address style="float: left; width: 500px;">
-				<p>X-Ray:&nbsp;{{ $serv->xray_title }}</p><br>
+				<p>{{ $serv->xray_title }}</p><br>
 			</address>
 			
 			<br><br>
@@ -54,7 +54,7 @@
 		
 		</article>
 
-		<header style="padding-top: 350px; font-size: 20px">
+		<header style="padding-top: 330px; font-size: 20px">
 			<address style="float: left; padding-left: 40px">
 			<center>
 			<img alt="" src="/Employee_signatures/{{ $serv->xray_radiologic_img }}" style="width: 250px; height: 90px; float: left; max-height: 90px; max-width: 350px;">

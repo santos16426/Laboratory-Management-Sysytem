@@ -144,6 +144,8 @@ Route::get('/checkDept','RemoteController@checkDept');
 Route::get('/checkUsername','RemoteController@checkUsername');
 Route::get('/checkLicense','RemoteController@checkLicense');
 Route::get('/checkEmpcontact','RemoteController@checkEmpcontact');
+Route::get('/checkPatientcontact','RemoteController@checkPatientcontact');
+Route::get('/CheckPatientemail','RemoteController@CheckPatientemail');
 
 // Reciept
 Route::get('/retrieveReciept','TransactionController@retrieveReciept');
