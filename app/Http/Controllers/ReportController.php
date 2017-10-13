@@ -11,6 +11,64 @@ class ReportController extends Controller
     {
         date_default_timezone_set('Singapore');
     }
+    function rebatereports()
+    {
+        return view('Reports.RebateReports');
+    }
+    function censusreports()
+    {
+        return view('Reports.CensusReports');
+    }
+    function yearlyCensusReport(Request $req)
+    {
+        $year = $req->sy;
+        $services = DB::table('trans_result_service_tbl')
+                    ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_result_service_tbl.result_id')
+                    ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                    ->select('service_tbl.service_name',DB::raw('COUNT(*) as row_count'))
+                    ->groupBy('service_tbl.service_name')
+                    ->where('corppack_id',null)
+                    ->whereYear('transresult_tbl.date',$req->year)
+                    ->get();
+        return response()->json([$services]);
+    }
+    function monthlyCensusReport(Request $req)
+    {
+        $month = $req->smm;
+        $year = $req->sy;
+        $services = DB::table('trans_result_service_tbl')
+                    ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_result_service_tbl.result_id')
+                    ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                    ->select('service_tbl.service_name',DB::raw('COUNT(*) as row_count'))
+                    ->groupBy('service_tbl.service_name')
+                    ->where('corppack_id',null)
+                    ->whereMonth('transresult_tbl.date',$req->month)
+                    ->whereYear('transresult_tbl.date',$req->year)
+                    ->get();
+        return response()->json([$services]);
+    }
+    function weeklyCensusReports(Request $req)
+    {
+        $startdate = $req->startdate;
+        $enddate = $req->enddate;
+        $services = DB::select('SELECT service_tbl.service_name, COUNT(*) as row_count FROM trans_result_service_tbl LEFT OUTER JOIN transresult_tbl ON transresult_tbl.result_id = trans_result_service_tbl.result_id LEFT OUTER JOIN service_tbl ON service_tbl.service_id = trans_result_service_tbl.service_id WHERE corppack_id is null AND transresult_tbl.date >= "'.$startdate.'" AND transresult_tbl.date <= "'.$enddate.'" Group by service_tbl.service_name');
+        return response()->json([$services]);
+    }
+    function dailyCensusReport(Request $req)
+    {
+        $day = $req->start_date;
+        $date = explode('-',$day);
+        $startdate = $date[2] ."-".$date[0]."-".$date[1]." 00:00:00";
+        $services = DB::table('trans_result_service_tbl')
+                        ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_result_service_tbl.result_id')
+                        ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                        ->select('service_tbl.service_name',DB::raw('COUNT(*) as row_count'))
+                        ->groupBy('service_tbl.service_name')
+                        ->where('corppack_id',null)
+                        ->whereDate('transresult_tbl.date',$startdate)
+                        ->get();
+        return response()->json([$services]);
+    }
     function corporatereports()
     {
         return view('Reports.CorporateReports');

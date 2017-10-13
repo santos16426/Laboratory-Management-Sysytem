@@ -32,7 +32,7 @@
 				Corporate Accounts Report Generate
 				<span class="tools pull-right">
 		          <a class="fa fa-chevron-down" href="javascript:;"></a>
-		          <a class="fa fa-times" href="javascript:;"></a>
+		          
 		      	</span>
 			</header>
 			<div class="panel-body">
@@ -113,76 +113,24 @@
 				Corporate Accounts Report
 				<span class="tools pull-right">
 		          <a class="fa fa-chevron-down" href="javascript:;"></a>
-		          <a class="fa fa-times" href="javascript:;"></a>
+		          
 		      	</span>
 			</header>
 			<div class="panel-body">
 				<div class="clearfix">
-					<header class="panel-heading btn-info ">
-						<ul class="nav nav-tabs">
-				          	<li class="active">
-				              	<a data-toggle="tab" href="#tables">Tables</a>
-				          	</li>
-				          	<li>
-				              	<a data-toggle="tab" href="#charts">Charts</a>
-				          	</li>
-				          	
-				      	</ul>
-			      	</header>
-					<div class="tab-content">
-						<div class="tab-pane active" id="tables">
-							<table class="table table-bordered table-hover dataTable" id="transTbl">
-								<thead>
-									<tr>
-										<th>Transaction ID</th>
-										<th>Transaction Date</th>
-										<th>Total</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-								</tbody>
-							</table>
-						</div>
-						<div class="tab-pane" id="charts">
-							<br>
-							<div class="row">
-								<div class="col-md-6">
-									<section class="panel">
-										<header class="panel-heading btn-info">
-											Bar Chart											
-										</header>
-										<div class="panel-body bg-info">
-											<div id="barcharts">Not Available</div>
-										</div>
-									</section>
+					<br>
+					<div class="row">
+						<div class="col-md-12">
+							<section class="panel">
+								<header class="panel-heading btn-info">
+									Chart											
+								</header>
+								<div class="panel-body bg-info">
+									<div id="barcharts">Not Available</div>
 								</div>
+							</section>
+						</div>
 
-								<div class="col-md-6">
-									<section class="panel">
-										<header class="panel-heading btn-info">
-											Pie Chart											
-										</header>
-										<div class="panel-body bg-info">
-											<div id="piecharts">Not Available</div>
-										</div>
-									</section>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<section class="panel">
-										<header class="panel-heading btn-info">
-											Line Chart											
-										</header>
-										<div class="panel-body bg-info">
-											<div id="linecharts">Not Available</div>
-										</div>
-									</section>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div> 
 			</div>

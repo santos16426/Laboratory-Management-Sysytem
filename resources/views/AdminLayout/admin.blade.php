@@ -209,10 +209,13 @@
                   </a>
                   <ul class="sub">
                       @if((Session::get('census')==1))
-                      <li class="@yield('censusactive')"><a  href=""><i class="fa fa-line-chart" aria-hidden="true"></i> Census Reports</a></li>
+                      <li class="@yield('censusactive')"><a  href="/Reports/CensusReports"><i class="fa fa-line-chart" aria-hidden="true"></i> Census Reports</a></li>
                       @endif
                       @if((Session::get('trans')==1))
                       <li class="@yield('transactionactive')"><a  href="/Reports/TransactionReports"><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Transaction Reports</a></li>
+                      @endif
+                      @if((Session::get('rebaterep')==1))
+                      <li class="@yield('rebaterepactive')"><a  href="/Reports/RebateReports"><i class="fa fa-area-chart" aria-hidden="true"></i> Rebate Reports</a></li>
                       @endif
                       @if((Session::get('corprep')==1))
                       <li class="@yield('corpactive')"><a  href="/Reports/CorporateReports"><i class="fa fa-pie-chart" aria-hidden="true"></i> Corporate Reports</a></li>

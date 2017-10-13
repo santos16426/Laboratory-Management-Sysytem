@@ -174,7 +174,14 @@ Route::get('/rangeTransactionReport','ReportController@rangeTransactionReport');
 // Corporate Reports
 Route::get('/dailyCorporateReport','ReportController@dailyCorporateReport');
 Route::get('/dailyCorporateReportPieChart','ReportController@dailyCorporateReportPieChart');
-
+//  Census Reports
+Route::get('//Reports/CensusReports','ReportController@censusreports');
+Route::get('/dailyCensusReport','ReportController@dailyCensusReport');
+Route::get('/weeklyCensusReports','ReportController@weeklyCensusReports');
+Route::get('/monthlyCensusReport','ReportController@monthlyCensusReport');
+Route::get('/yearlyCensusReport','ReportController@yearlyCensusReport');
+// Rebate Reports
+Route::get('/Reports/RebateReports','ReportController@rebatereports');
 // Utilities
 Route::get('/Utilities/Reactivation','UtilitiesController@reactivation');
 Route::get('/Utilities/Useraccess','UtilitiesController@Useraccess');

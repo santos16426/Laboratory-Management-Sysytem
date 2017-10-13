@@ -1,4 +1,4 @@
-@if((Session::get('trans')!=1))
+@if((Session::get('corprep')!=1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
@@ -9,13 +9,13 @@
 <i class="fa fa-area-chart" aria-hidden="true"></i><span> Reports</span>
 @endsection
 @section('breadParentName')
-<i class="fa fa-bar-chart-o" aria-hidden="true"></i><span> Transaction Reports</span>
+<i class="fa fa-line-chart" aria-hidden="true"></i><span> Census Reports</span>
 @endsection
 @section('maintenanceactive')
 <a href="" class="">
 @endsection
 @section('reportactive','active')
-@section('transactionactive','active')
+@section('censusactive','active')
 @section('content')
 <style type="text/css">
 	#linechart {
@@ -29,7 +29,7 @@
 	<div class="col-lg-6">
 		<section class="panel">
 			<header class="panel-heading">
-				Transaction Report Generate
+				Census Report Generate
 				<span class="tools pull-right">
 		          <a class="fa fa-chevron-down" href="javascript:;"></a>
 		          
@@ -110,79 +110,26 @@
 	<div class="col-lg-12">
 		<section class="panel">
 			<header class="panel-heading">
-				Transaction Report
+				Census Report
 				<span class="tools pull-right">
 		          <a class="fa fa-chevron-down" href="javascript:;"></a>
-		          
 		      	</span>
 			</header>
 			<div class="panel-body">
 				<div class="clearfix">
-					<header class="panel-heading btn-info ">
-						<ul class="nav nav-tabs">
-				          	<li class="active">
-				              	<a data-toggle="tab" href="#tables">Tables</a>
-				          	</li>
-				          	<li>
-				              	<a data-toggle="tab" href="#charts">Chart</a>
-				          	</li>
-				      	</ul>
-			      	</header>
-					<div class="tab-content">
-						<div class="tab-pane active" id="tables">
-							<table class="table table-bordered table-hover dataTable" id="transTbl">
-								<thead>
-									<tr>
-										<th>Transaction ID</th>
-										<th>Transaction Date</th>
-										<th>Total</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-								</tbody>
-							</table>
-						</div>
-						<div class="tab-pane" id="charts">
-							<br>
-							<div class="row">
-								<div class="col-md-6">
-									<section class="panel">
-										<header class="panel-heading btn-info">
-											Bar Chart											
-										</header>
-										<div class="panel-body bg-info">
-											<div id="barcharts">Not Available</div>
-										</div>
-									</section>
+					<br>
+					<div class="row">
+						<div class="col-md-12">
+							<section class="panel">
+								<header class="panel-heading btn-info">
+									Chart											
+								</header>
+								<div class="panel-body bg-info">
+									<div id="barcharts">Not Available</div>
 								</div>
+							</section>
+						</div>
 
-								<div class="col-md-6">
-									<section class="panel">
-										<header class="panel-heading btn-info">
-											Pie Chart											
-										</header>
-										<div class="panel-body bg-info">
-											<div id="piecharts">Not Available</div>
-										</div>
-									</section>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<section class="panel">
-										<header class="panel-heading btn-info">
-											Line Chart											
-										</header>
-										<div class="panel-body bg-info">
-											<div id="linecharts">Not Available</div>
-										</div>
-									</section>
-								</div>
-							</div>
-						</div>
-					</div>
 					</div>
 				</div> 
 			</div>
@@ -191,26 +138,11 @@
 			</div>
 		</section>
 	</div>
-</div>	
-
+</div>			
 @endsection
 @section('additional')
-<script type="text/javascript" src="{{ asset('/Reports/transprintbtn.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/Reports/transgeneratebtn.js') }}"></script>
+
 <script type="text/javascript" src="{{ asset('/Reports/corpselectrange.js') }}"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="{{ asset('/Reports/censusgeneratebtn.js') }}"></script>
 
-	var t = $('#transTbl').DataTable({
-	  'paging'      : true,
-	  'lengthChange': true,
-	  'searching'   : true,
-	  'ordering'    : false,
-	  'info'        : true,
-	  'autoWidth'   : true,
-	  'bSort'		: false
-	});
-	
-	
-
-</script>
 @endsection
