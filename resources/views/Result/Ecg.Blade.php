@@ -44,7 +44,7 @@
 			                  <div class="input-group-addon">
 			                   ECG No. 
 			                 </div>
-			                <input name="ecgno" id="ecgno" type="ecgno" placeholder="ECG No." class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,10}" title="Special characters are not allowed." required>
+			                <input name="ecgno" id="ecgno" type="ecgno" placeholder="ECG No." class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,15}" title="This Field is required. This Field should not exceed 15 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -71,7 +71,7 @@
 			                  <div class="input-group-addon">
 			                   Rate
 			                 </div>
-			                <input name="rate" id="rate" type="text" placeholder="Rate" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,10}" title="Special characters are not allowed." required>
+			                <input name="rate" id="rate" type="text" placeholder="Rate" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,15}" title="This Field is required. This Field should not exceed 15 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -83,7 +83,7 @@
 			                  <div class="input-group-addon">
 			                   P/PR
 			                 </div>
-			                <input name="ppr" id="ppr" placeholder="P/PR" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,10}" title="Special characters are not allowed." required>
+			                <input name="ppr" id="ppr" placeholder="P/PR" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,15}" title="This Field is required. This Field should not exceed 15 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -98,7 +98,7 @@
 			                  <div class="input-group-addon">
 			                   QRS
 			                 </div>
-			                <input name="qrs" id="qrs" type="text" placeholder="QRS" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,10}" title="Special characters are not allowed." required>
+			                <input name="qrs" id="qrs" type="text" placeholder="QRS" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,15}" title="This Field is required. This Field should not exceed 15 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -110,7 +110,7 @@
 			                  <div class="input-group-addon">
 			                   QT/QTC
 			                 </div>
-			                <input name="qtqtc" id="qtqtc" placeholder="QT/QTC" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,10}" title="Special characters are not allowed." required>
+			                <input name="qtqtc" id="qtqtc" placeholder="QT/QTC" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,15}" title="This Field is required. This Field should not exceed 15 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -139,7 +139,7 @@
 			                  <div class="input-group-addon">
 			                   P/QRS/T
 			                 </div>
-			                <input name="pqrst" id="pqrst" placeholder="P/QRS/T" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,10}" title="Special characters are not allowed." required>
+			                <input name="pqrst" id="pqrst" placeholder="P/QRS/T" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,15}" title="This Field is required. This Field should not exceed 15 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -181,7 +181,7 @@
 			                  <div class="input-group-addon">
 			                   Minesota Code
 			                 </div>
-			                <input name="minesota" id="minesota" placeholder="Minesota Code" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,10}" title="Special characters are not allowed." required>
+			                <input name="minesota" id="minesota" placeholder="Minesota Code" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,15}" title="This Field is required. This Field should not exceed 15 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -193,7 +193,7 @@
 			                  <div class="input-group-addon">
 			                   Diagnosis Info
 			                 </div>
-			                <input name="diagnosis" id="diagnosis" type="text" placeholder="Diagnosis Info" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,200}" title="Special characters are not allowed." required>
+			                <input name="diagnosis" id="diagnosis" type="text" placeholder="Diagnosis Info" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>

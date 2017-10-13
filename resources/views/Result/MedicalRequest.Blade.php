@@ -187,7 +187,7 @@
 				<div class="col-md-6">
 			        <div class="form-group">
 			              <div class="col-md-12">
-			                <textarea  name="history" id="history" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,500}" title="Special characters are not allowed."  required></textarea>
+			                <textarea  name="history" id="history" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  title="This Field is required. This Field should not exceed 200 characters." required></textarea>
 			          </div>  
 			       </div><br><br><br>
 			 	 </div>
@@ -219,7 +219,7 @@
 			                  <div class="input-group-addon">
 			                   Illness/Operation
 			                 </div>
-			                <input  name="illness" id="illness" placeholder="Illness/Operation" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,200}" title="Special characters are not allowed."   required>
+			                <input  name="illness" id="illness" placeholder="Illness/Operation" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."   title="This Field is required. This Field should not exceed 200 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -234,7 +234,7 @@
 			                  <div class="input-group-addon">
 			                   Medication
 			                 </div>
-			                <input  name="medication" id="medication" type="text" placeholder="Medication" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,200}" title="Special characters are not allowed."  required>
+			                <input  name="medication" id="medication" type="text" placeholder="Medication" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  title="This Field is required. This Field should not exceed 200 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -246,7 +246,7 @@
 			                  <div class="input-group-addon">
 			                   Remark
 			                 </div>
-			                <input  name="remark1" id="remark1" placeholder="Remark" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,200}" title="Special characters are not allowed."  required>
+			                <input  name="remark1" id="remark1" placeholder="Remark" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -261,14 +261,14 @@
 				<div class="col-md-6">
 			        <div class="form-group">
 			              <div class="col-md-12">
-			                <textarea  name="famhisto1" id="" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,200}" title="Special characters are not allowed."  required></textarea>
+			                <textarea  name="famhisto1" id="" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required></textarea>
 			          </div>  
 			       </div><br><br><br>
 			 	 </div>
 			 	 <div class="col-md-6">
 			        <div class="form-group">
 			            <div class="col-md-12">
-			                <textarea  name="famhisto2" id="" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,200}" title="Special characters are not allowed."  required></textarea>
+			                <textarea  name="famhisto2" id="" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required></textarea>
 			          	</div>  
 			       </div><br><br><br>
 		        </div> 
@@ -301,7 +301,7 @@
 			                  <div class="input-group-addon">
 			                   No. of Sticks/Day
 			                 </div>
-			                <input  name="sticks" type="" id="sticks" placeholder="No. of Sticks/Day" class="form-control input-md" pattern="[0-9./\=]{1,10}" title="Special characters are not allowed." required>
+			                <input  name="sticks" type="" id="sticks" placeholder="No. of Sticks/Day" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -316,7 +316,7 @@
 			                  <div class="input-group-addon">
 			                   Remarks
 			                 </div>
-			                <input  name="remarks2" id="remarks2" type="text" placeholder="Remarks" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,200}" title="Special characters are not allowed."  required>
+			                <input  name="remarks2" id="remarks2" type="text" placeholder="Remarks" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required>
 			             </div>
 			          </div>  
 			       </div><br><br><br>
@@ -328,7 +328,7 @@
 			                  <div class="input-group-addon">
 			                   Pack Years
 			                 </div>
-			                <input  name="packyears" id="packyears" placeholder="Pack Years" class="form-control input-md" pattern="[0-9./\=]{1,10}" title="Special characters are not allowed." required>
+			                <input  name="packyears" id="packyears" placeholder="Pack Years" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only." required>
 			             </div>
 			          </div>  
 			       </div><br><br><br>
@@ -358,7 +358,7 @@
 			                  <div class="input-group-addon">
 			                   No. of Bottles
 			                 </div>
-			                <input  name="bottles" id="bottles" placeholder="No. of Bottles" class="form-control input-md" pattern="[0-9./\=]{1,10}" title="Special characters are not allowed." required>
+			                <input  name="bottles" id="bottles" placeholder="No. of Bottles" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -373,7 +373,7 @@
 			                  <div class="input-group-addon">
 			                   Remarks
 			                 </div>
-			                <input  name="remarks3" id="remarks3" type="text" placeholder="Remarks" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,20}" title="Special characters are not allowed." required>
+			                <input  name="remarks3" id="remarks3" type="text" placeholder="Remarks" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -400,14 +400,14 @@
 				<div class="col-md-6">
 			        <div class="form-group">
 		              	<div class="col-md-12">
-			                <textarea  name="obstetric1" id="obstetric1" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,100}" title="Special characters are not allowed." required></textarea>
+			                <textarea  name="obstetric1" id="obstetric1" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required></textarea>
 			          	</div>  
 			       </div><br><br><br>
 			 	 </div>
 			 	 <div class="col-md-6">
 			        <div class="form-group">
 		              	<div class="col-md-12">
-			                <textarea  name="obstetric2" id="obstetric2" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,100}" title="Special characters are not allowed." required></textarea>
+			                <textarea  name="obstetric2" id="obstetric2" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required></textarea>
 			          	</div>  
 			       </div><br><br><br>
 		        </div> 
@@ -423,9 +423,9 @@
 			              <div class="col-md-12">
 			                 <div class="input-group">
 			                  <div class="input-group-addon">
-			                   Visual Activity
+			                   Visual Acuity
 			                 </div>
-			                <input  name="visual" id="visual" type="text" placeholder="Visual Activity" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="visual" id="visual" type="text" placeholder="Visual Activity" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -437,7 +437,7 @@
 			                  <div class="input-group-addon">
 			                   Temperature
 			                 </div>
-			                <input  name="temp" id="temp" type="text" placeholder="Temperature" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="temp" id="temp" type="text" placeholder="Temperature" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -452,7 +452,7 @@
 			                  <div class="input-group-addon">
 			                   Height
 			                 </div>
-			                <input  name="height" id="height" type="text" placeholder="Height" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="height" id="height" type="text" placeholder="Height" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -464,7 +464,7 @@
 			                  <div class="input-group-addon">
 			                   Weight
 			                 </div>
-			                <input  name="weight" id="weight" placeholder="Weight" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="weight" id="weight" placeholder="Weight" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -479,7 +479,7 @@
 			                  <div class="input-group-addon">
 			                   Pulse Rate
 			                 </div>
-			                <input  name="pulse" id="pulse" type="text" placeholder="Pulse Rate" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="pulse" id="pulse" type="text" placeholder="Pulse Rate" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br><br>
@@ -491,7 +491,7 @@
 			                  <div class="input-group-addon">
 			                   Blood Pressure
 			                 </div>
-			                <input  name="bloodpressure" id="bloodpressure" placeholder="Blood Pressure" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="bloodpressure" id="bloodpressure" placeholder="Blood Pressure" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br><br>
@@ -507,7 +507,7 @@
 			                  <div class="input-group-addon">
 			                   General Appearance
 			                 </div>
-			                <input  name="genapp" id="genapp" type="text" placeholder="General Appearance" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="genapp" id="genapp" type="text" placeholder="General Appearance" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -519,7 +519,7 @@
 			                  <div class="input-group-addon">
 			                   Eyes
 			                 </div>
-			                <input  name="eyes" id="eyes" placeholder="Eyes" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="eyes" id="eyes" placeholder="Eyes" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -534,7 +534,7 @@
 			                  <div class="input-group-addon">
 			                   Ear/Nose/Throat
 			                 </div>
-			                <input  name="ear" id="ear" type="text" placeholder="Ear/Nose/Throat" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="ear" id="ear" type="text" placeholder="Ear/Nose/Throat" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -546,7 +546,7 @@
 			                  <div class="input-group-addon">
 			                   Neck
 			                 </div>
-			                <input  name="neck" id="neck" placeholder="Neck" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="neck" id="neck" placeholder="Neck" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -561,7 +561,7 @@
 			                  <div class="input-group-addon">
 			                   Breast
 			                 </div>
-			                <input  name="breast" id="breast" type="text" placeholder="Breast" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="breast" id="breast" type="text" placeholder="Breast" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -573,7 +573,7 @@
 			                  <div class="input-group-addon">
 			                   Chest/Lungs
 			                 </div>
-			                <input  name="chest" id="chest" placeholder="Chest/Lungs" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="chest" id="chest" placeholder="Chest/Lungs" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -588,7 +588,7 @@
 			                  <div class="input-group-addon">
 			                   Heart
 			                 </div>
-			                <input  name="heart" id="heart" type="text" placeholder="Heart" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="heart" id="heart" type="text" placeholder="Heart" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -600,7 +600,7 @@
 			                  <div class="input-group-addon">
 			                   Abdomen
 			                 </div>
-			                <input  name="abdomen" id="abdomen" placeholder="Abdomen" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="abdomen" id="abdomen" placeholder="Abdomen" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -615,7 +615,7 @@
 			                  <div class="input-group-addon">
 			                   External Anal
 			                 </div>
-			                <input  name="exanal" id="exanal" type="text" placeholder="External Anal" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="exanal" id="exanal" type="text" placeholder="External Anal" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -627,7 +627,7 @@
 			                  <div class="input-group-addon">
 			                   External Genitalia
 			                 </div>
-			                <input  name="exgen" id="exgen" placeholder="External Genitalia" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="exgen" id="exgen" placeholder="External Genitalia" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -642,7 +642,7 @@
 			                  <div class="input-group-addon">
 			                   Extermities
 			                 </div>
-			                <input  name="extermities" id="extermities" type="text" placeholder="Extermities" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="extermities" id="extermities" type="text" placeholder="Extermities" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -665,7 +665,7 @@
 			                  <div class="input-group-addon">
 			                   CBC
 			                 </div>
-			                <input  name="cbc" id="cbc" type="text" placeholder="CBC" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="cbc" id="cbc" type="text" placeholder="CBC" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -677,7 +677,7 @@
 			                  <div class="input-group-addon">
 			                   Routine Fecalysis
 			                 </div>
-			                <input  name="fecalysis" id="fecalysis" placeholder="Routine Fecalysis" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="fecalysis" id="fecalysis" placeholder="Routine Fecalysis" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -692,7 +692,7 @@
 			                  <div class="input-group-addon">
 			                   Routine Urinalysis
 			                 </div>
-			                <input  name="urinalysis" id="urinalysis" type="text" placeholder="Routine Urinalysis" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="urinalysis" id="urinalysis" type="text" placeholder="Routine Urinalysis" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -704,7 +704,7 @@
 			                  <div class="input-group-addon">
 			                   Chest X-Ray
 			                 </div>
-			                <input  name="xray" id="xray" placeholder="Chest X-Ray" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="xray" id="xray" placeholder="Chest X-Ray" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -719,7 +719,7 @@
 			                  <div class="input-group-addon">
 			                   Drug Test
 			                 </div>
-			                <input  name="drugtest" id="drugtest" type="text" placeholder="Drug Test" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed." required>
+			                <input  name="drugtest" id="drugtest" type="text" placeholder="Drug Test" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -738,7 +738,7 @@
 				<div class="col-md-6">
 			        <div class="form-group">
 		              	<div class="col-md-12">
-			                <textarea  name="assess" id="assess" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,200}" title="Special characters are not allowed." required></textarea>
+			                <textarea  name="assess" id="assess" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required></textarea>
 			          	</div> 
 			       </div><br><br>
 			 	 </div>
