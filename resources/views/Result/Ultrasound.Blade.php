@@ -117,7 +117,7 @@
 			                  <div class="input-group-addon">
 			                   Title
 			                 </div>
-			                <input name="title" id="title" type="text" placeholder="Title" class="form-control input-md" required>
+			                <input name="title" id="title" type="text" placeholder="Title" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" title="Special characters are not allowed."  required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -133,7 +133,7 @@
 			        <div class="form-group">
 			              <div class="col-md-12">
 			                 <label>Impression</label> 
-			                <textarea  name="impression" id="impression" type="text" placeholder="" class="form-control input-md" required></textarea>
+			                <textarea  name="impression" id="impression" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,2000}" title="Special characters are not allowed."  required></textarea>
 			          </div>  
 			       </div><br><br>
 			 	 </div>

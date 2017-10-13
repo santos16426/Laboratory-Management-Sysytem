@@ -69,7 +69,7 @@
 			                  <div class="input-group-addon">
 			                   Report ID
 			                 </div>
-			                <input name="reportid" id="reportid" type="ecgno" placeholder="Report ID" class="form-control input-md" required>
+			                <input name="reportid" id="reportid" type="ecgno" placeholder="Report ID" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,10}" title="Special characters are not allowed." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -81,7 +81,7 @@
 			                  <div class="input-group-addon">
 			                  CCF No.
 			                 </div>
-			                <input name="ccf" id="ccf" placeholder="CCF No." class="form-control input-md" required>
+			                <input name="ccf" id="ccf" placeholder="CCF No." class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,10}" title="Special characters are not allowed." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -179,7 +179,7 @@
 			                  <div class="input-group-addon">
 			                   Test Method
 			                 </div>
-			                <input name="test" id="test" type="text" placeholder="Test Method" class="form-control input-md" required>
+			                <input name="test" id="test" type="text" placeholder="Test Method" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,40}" title="Special characters are not allowed." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -191,7 +191,7 @@
 			                  <div class="input-group-addon">
 			                   Purpose
 			                 </div>
-			                <input name="purpose" id="purpose" placeholder="Purpose" class="form-control input-md" required>
+			                <input name="purpose" id="purpose" placeholder="Purpose" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,40}" title="Special characters are not allowed." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -206,7 +206,7 @@
 			                  <div class="input-group-addon">
 			                   Requesting Parties
 			                 </div>
-			                <input name="reqparties" id="reqparties" type="text" placeholder="Requesting Parties" class="form-control input-md" required>
+			                <input name="reqparties" id="reqparties" type="text" placeholder="Requesting Parties" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,40}" title="Special characters are not allowed." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -226,7 +226,7 @@
 			        <div class="form-group">
 			              <div class="col-md-12">
 			                <label>Drug/Metabolite</label>
-			                <textarea  name="drugmet1" id="drugmet1" type="text" placeholder="" class="form-control input-md" required></textarea>
+			                <textarea  name="drugmet1" id="drugmet1" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,300}" title="Special characters are not allowed." required></textarea>
 			          </div>  
 			       </div><br><br><br><br>
 			 	 </div>
@@ -234,7 +234,7 @@
 			        <div class="form-group">
 			              <div class="col-md-12">
 			                <label>Result</label>
-			                <textarea  name="result1" id="result1" type="text" placeholder="" class="form-control input-md" required></textarea>
+			                <textarea  name="result1" id="result1" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,300}" title="Special characters are not allowed." required></textarea>
 			          </div>  
 			       </div><br><br><br><br>
 			 	 </div>
@@ -242,7 +242,7 @@
 			        <div class="form-group">
 			              <div class="col-md-12">
 			                <label>Remarks</label>
-			                <textarea  name="remarks1" id="remarks1" type="text" placeholder="" class="form-control input-md" required></textarea>
+			                <textarea  name="remarks1" id="remarks1" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,300}" title="Special characters are not allowed." required></textarea>
 			          </div>  
 			       </div><br><br><br><br>
 			 	 </div>
@@ -251,21 +251,21 @@
 				<div class="col-md-4">
 			        <div class="form-group">
 			              <div class="col-md-12">
-			                <textarea  name="drugmet2" id="drugmet2" type="text" placeholder="" class="form-control input-md" required></textarea>
+			                <textarea  name="drugmet2" id="drugmet2" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,0}" title="Special characters are not allowed." required></textarea>
 			          </div>  
 			       </div><br><br><br><br>
 			 	 </div>
 			 	<div class="col-md-4">
 			        <div class="form-group">
 			              <div class="col-md-12">
-			                <textarea  name="result2" id="result2" type="text" placeholder="" class="form-control input-md" required></textarea>
+			                <textarea  name="result2" id="result2" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,300}" title="Special characters are not allowed." required></textarea>
 			          </div>  
 			       </div><br><br><br><br>
 			 	 </div>
 			 	 <div class="col-md-4">
 			        <div class="form-group">
 			              <div class="col-md-12">
-			                <textarea  name="remarks2" id="remarks2" type="text" placeholder="" class="form-control input-md" required></textarea>
+			                <textarea  name="remarks2" id="remarks2" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,300}" title="Special characters are not allowed." required></textarea>
 			          </div>  
 			       </div><br><br><br><br>
 			 	 </div>

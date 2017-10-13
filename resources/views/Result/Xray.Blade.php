@@ -117,7 +117,7 @@
 			                  <div class="input-group-addon">
 			                   Title
 			                 </div>
-			                <input name="title" id="title" type="text" placeholder="Title" class="form-control input-md" required>
+			                <input name="title" id="title" type="text" placeholder="Title" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,50}" required>
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -133,7 +133,7 @@
 			        <div class="form-group">
 			              <div class="col-md-12">
 			                 <label>Findings</label> 
-			                <textarea  name="findings" id="findings" type="text" placeholder="" class="form-control input-md" required></textarea>
+			                <textarea  name="findings" id="findings" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-Z0-9./\=]{1,500}" required></textarea>
 			          </div>  
 			       </div><br><br>
 			 	 </div>
