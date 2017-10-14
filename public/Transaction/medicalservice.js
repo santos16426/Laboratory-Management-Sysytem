@@ -410,7 +410,10 @@ $('#payDirect').click(function(){
 		{
 			response[1].forEach(function(data){
 				service_names.push(data.service_name);
-				prescriptions.push(data.service_notes);
+				if(data.service_notes != null)
+				{
+					prescriptions.push(data.service_notes);
+				}
 				$("#ServiceOPTION"+data.service_id).attr("disabled","disabled");
 			});
 			for (var i = prescriptions.length - 1; i >= 0; i--) {
@@ -541,7 +544,10 @@ $('#payCorp').click(function(){
 		success:function(response){
 			response[1].forEach(function(data){
 				service_names.push(data.service_name);
-				prescriptions.push(data.service_notes);
+				if(data.service_notes != null)
+				{
+					prescriptions.push(data.service_notes);
+				}
 				$("#ServiceOPTION"+data.service_id).attr("disabled","disabled");
 			});
 			for (var i = prescriptions.length - 1; i >= 0; i--) {
@@ -653,7 +659,10 @@ $('#addpackageBtn').click(function(){
 		success:function(response){
 			response[1].forEach(function(data){
 				service_names.push(data.service_name);
-				prescriptions.push(data.service_notes);
+				if(data.service_notes != null)
+				{
+					prescriptions.push(data.service_notes);
+				}
 				$("#ServiceOPTION"+data.service_id).attr("disabled","disabled");
 			});
 			for (var i = prescriptions.length - 1; i >= 0; i--) {
@@ -779,13 +788,21 @@ $('#addservice').click(function(){
 		success:function(response) {
 			response.forEach(function(data) { 
 
+				service_notes = data.service_notes;
+				if(service_notes == null){
+					service_notes = '';
+				}
+				else
+				{
+					service_notes = data.service_notes;
+				}
 				med_req = data.medical_request;
 				if(med_req == "No"){
 					t.row.add([
 					data.service_name ,
 					data.servgroup_name,
 					data.service_price,
-					data.service_notes+'<input type="hidden" name="prescriptions[]" value="'+data.service_notes+'">',
+					service_notes+'<input type="hidden" name="prescriptions[]" value="'+service_notes+'">',
 					'<a class="btn btn-danger btn-xs remove_service'+service_id+'" data-id="'+service_id+'"><i class="fa fa-trash" aria-hidden="true"></i></a><input type="hidden" name="medservice_id[]" value="'+service_id+'" class="medservice"><input type="hidden" name="serviceprice" value='+data.service_price+' id="serviceprice'+service_id+'">'
 					]).draw(false);
 					toastr.options = {
