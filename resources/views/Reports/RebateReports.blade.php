@@ -124,7 +124,7 @@
 				</div> 
 			</div>
 			<div class="panel-footer">
-				<button type="button" class="btn btn-success pull-right" id="printbtn">Print</button>
+				<button type="button" class="btn btn-success pull-right disabled" id="printbtn">Print</button>
 			</div>
 		</section>
 	</div>

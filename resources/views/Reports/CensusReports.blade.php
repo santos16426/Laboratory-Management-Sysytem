@@ -117,12 +117,11 @@
 								</div>
 							</section>
 						</div>
-
 					</div>
 				</div> 
 			</div>
 			<div class="panel-footer">
-				<button type="button" class="btn btn-success pull-right" id="printbtn">Print</button>
+				<button type="button" class="btn btn-success pull-right disabled" id="printbtn">Print</button>
 			</div>
 		</section>
 	</div>
@@ -132,5 +131,6 @@
 
 <script type="text/javascript" src="{{ asset('/Reports/corpselectrange.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/Reports/censusgeneratebtn.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/Reports/censusprintbtn.js') }}"></script>
 
 @endsection

@@ -247,6 +247,7 @@ $('#generatebtn').click(function(){
 				      "hideMethod": "hide"
 				    }
 				    toastr.success("Done!");
+				    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 				},
 				error:function()
 				{
@@ -684,6 +685,7 @@ $('#generatebtn').click(function(){
 				      "hideMethod": "hide"
 				    }
 				    toastr.success("Done!");
+				    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 				},
 				error:function()
 				{
@@ -1047,6 +1049,7 @@ $('#generatebtn').click(function(){
 				      "hideMethod": "hide"
 				    }
 				    toastr.success("Done!");
+				    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 				},
 				error:function()
 				{
@@ -1493,6 +1496,7 @@ $('#generatebtn').click(function(){
 				      "hideMethod": "hide"
 				    }
 				    toastr.success("Done!");
+				    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 				},
 				error:function()
 				{

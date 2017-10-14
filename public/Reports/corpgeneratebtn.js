@@ -3,8 +3,6 @@ $('#generatebtn').click(function(){
 	    var start_date = $('#start_date_date').val();
 	    var monthly = $('#monthly_date').val();
 	    var yearly = $('#yearly_date').val();
-	    var rangestart = $('#rangestart_date').val();
-    	var rangeend = $('#rangeend_date').val();
     	var total = 0;
     	var charge = 0;
 		if(report == 'daily')

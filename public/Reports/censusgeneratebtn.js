@@ -1,4 +1,6 @@
+
 $('#generatebtn').click(function(){
+
 		var report = $('#selectrange').val();
 	    var start_date = $('#start_date_date').val();
 	    var monthly = $('#monthly_date').val();
@@ -12,8 +14,7 @@ $('#generatebtn').click(function(){
 		if(report == 'daily')
 		{
 			if(start_date != '')
-			{
-				
+			{		
 				$.ajax
 				({
 					url: '/dailyCensusReport',
@@ -78,6 +79,7 @@ $('#generatebtn').click(function(){
 					      "hideMethod": "hide"
 					    }
 					    toastr.success("Done!");
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function()
 					{
@@ -210,6 +212,7 @@ $('#generatebtn').click(function(){
 					      "hideMethod": "hide"
 					    }
 					    toastr.success("Done!");
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function()
 					{
@@ -326,6 +329,7 @@ $('#generatebtn').click(function(){
 					      "hideMethod": "hide"
 					    }
 					    toastr.success("Done!");
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function()
 					{
@@ -443,6 +447,7 @@ $('#generatebtn').click(function(){
 					      "hideMethod": "hide"
 					    }
 					    toastr.success("Done!");
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function()
 					{

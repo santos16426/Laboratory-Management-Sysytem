@@ -3,7 +3,8 @@ $('#selectrange').change(function(){
 		var startdate = document.getElementById('startdate');
 		var monthly = document.getElementById('monthly');
 		var yearly = document.getElementById('yearly');
-		
+		t.clear().draw();
+		document.getElementById('printbtn').className = 'btn btn-success pull-right disabled';
 		if(report == 'daily')
 		{
 			$('#barcharts').empty();
