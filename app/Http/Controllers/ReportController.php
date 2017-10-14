@@ -102,14 +102,39 @@ class ReportController extends Controller
                 ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','transcorp_tbl.trans_id')
                 ->select(DB::raw('COUNT(*) as row_count,SUM(charge) as charge'),'corp_name')
                 ->groupBy('corp_name')
-                ->whereDate('trans_date',$startdate)
-                ->whereDate('trans_date',$secdate)
-                ->whereDate('trans_date',$thirddate)
-                ->whereDate('trans_date',$fourthdate)
-                ->whereDate('trans_date',$fifthdate)
-                ->whereDate('trans_date',$sixdate)
-                ->whereDate('trans_date',$enddate)
+                ->where('trans_date','>=',$startdate)
+                ->where('trans_date','<=',$enddate)
                 ->get();
+    
+        return response()->json([$var,]);
+    }
+    function monthlyCorporateReport(Request $req)
+    {
+        $year = $req->year;
+        $var = DB::table('corporate_accounts_tbl')
+                ->leftjoin('transcorp_tbl','transcorp_tbl.corp_id','=','corporate_accounts_tbl.corp_id')
+                ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','transcorp_tbl.trans_id')
+                ->select(DB::raw('COUNT(*) as row_count,SUM(charge) as charge'),'corp_name')
+                ->groupBy('corp_name')
+                ->whereYear('trans_date',$year)
+                ->get();
+        
+        return response()->json([$var,]);
+    }
+    function yearlyCorporateReport(Request $req)
+    {
+        $month = $req->month;
+        $year = $req->year;
+        $var = DB::table('corporate_accounts_tbl')
+                ->leftjoin('transcorp_tbl','transcorp_tbl.corp_id','=','corporate_accounts_tbl.corp_id')
+                ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','transcorp_tbl.trans_id')
+                ->select(DB::raw('COUNT(*) as row_count,SUM(charge) as charge'),'corp_name')
+                ->groupBy('corp_name')
+                ->whereMonth('trans_date',$month)
+                ->whereYear('trans_date',$year)
+                ->get();
+        
+        return response()->json([$var,]);
     }
     function dailyCorporateReport(Request $req)
     {
@@ -123,7 +148,6 @@ class ReportController extends Controller
                 ->groupBy('corp_name')
                 ->whereDate('trans_date',$startdate)
                 ->get();
-        
         return response()->json([$var,]);
     }
 

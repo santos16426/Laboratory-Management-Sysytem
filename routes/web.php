@@ -174,6 +174,8 @@ Route::get('/rangeTransactionReport','ReportController@rangeTransactionReport');
 // Corporate Reports
 Route::get('/dailyCorporateReport','ReportController@dailyCorporateReport');
 Route::get('/weeklyCorporateReport','ReportController@weeklyCorporateReport');
+Route::get('/monthlyCorporateReport','ReportController@monthlyCorporateReport');
+Route::get('/yearlyCorporateReport','ReportController@yearlyCorporateReport');
 //  Census Reports
 Route::get('//Reports/CensusReports','ReportController@censusreports');
 Route::get('/dailyCensusReport','ReportController@dailyCensusReport');

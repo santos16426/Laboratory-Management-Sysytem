@@ -1320,13 +1320,28 @@ class ResultController extends Controller
     {
         $trans_id = $_GET['id'];
         $result_id = DB::table('transresult_tbl')->select('result_id')->where('trans_id',$trans_id)->get();
-        $table = DB::table('trans_resultfiles_tbl')
+
+        if(Session::get('emp_type_id')== 0 )
+        {
+            $table = DB::table('trans_resultfiles_tbl')
+                ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','trans_resultfiles_tbl.trans_id')
+                ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_resultfiles_tbl.result_id')
+                ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+                ->where('trans_resultfiles_tbl.trans_id',$trans_id)
+                ->where('trans_resultfiles_tbl.status',1)
+                ->get();
+        }
+        else
+        {
+            $table = DB::table('trans_resultfiles_tbl')
                     ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','trans_resultfiles_tbl.trans_id')
                     ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_resultfiles_tbl.result_id')
                     ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
                     ->where('trans_resultfiles_tbl.trans_id',$trans_id)
                     ->where('trans_resultfiles_tbl.status',1)
+                    ->where('trans_resultfiles_tbl.emp_id',Session::get('emp_id'))
                     ->get();
+        }
         foreach($result_id as $s)
         {
             $result_id = $s->result_id;
@@ -1590,6 +1605,7 @@ class ResultController extends Controller
         $file_ext = strtolower(end($file_ext));
 
         $allowed = array('pdf','jpg','png','txt','doc','docx','xlsx','ppt','pptx');
+
         if(in_array($file_ext,$allowed))
         {
             if($file_error === 0)
@@ -1601,13 +1617,18 @@ class ResultController extends Controller
 
                     if(move_uploaded_file($file_tmp, $file_destination))
                     {
-                        
+                        $emp_id = 0;
+                        if(Session::has('emp_id'))
+                        {
+                            $emp_id = Sess::get('emp_id');
+                        }
                          DB::table('trans_resultfiles_tbl')->insert([
                             'result_type'=>$result_type,
                             'trans_id'  =>  $trans_id,
                             'result_id' =>  $result_id,
                             'date'      =>  date_create('now'),
-                            'file'      =>  $file_name_new
+                            'file'      =>  $file_name_new,
+                            'emp_id'    =>  $emp_id
                         ]);
                     }
                 }
