@@ -13,7 +13,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="{{ asset('/plugins/img/favicon.png') }}">
+        <link rel="shortcut icon" href="/plugins/img/favicon.ico">
         <title>E-Diagnostic Center</title>
 
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/bootstrap.min.css') }}">

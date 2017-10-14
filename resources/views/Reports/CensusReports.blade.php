@@ -54,7 +54,7 @@
 			              <div class="col-md-10 col-md-offset-1 input-group">
 			              	<span class="input-group-addon">Starting Date <sup>*</sup></span>
 								<div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="yyyy-mm-dd"  class="input-append date dpYears">
-			                  		<input class="form-control dpd1 form-control-inline input-medium default-date-picker" name="start_date" id="start_date_date"  size="16" type="text" value="" />
+			                  		<input class="form-control default-date-picker" name="start_date" id="start_date_date"  size="16" type="text" value="" />
 			                  	</div>
 			              </div>
 			          	</div>

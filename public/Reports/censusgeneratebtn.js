@@ -59,7 +59,7 @@ $('#generatebtn').click(function(){
 						        }
 						    },
 						    series: [{
-						        name: 'Count',
+						        name: 'Services',
 						        data: servicecount
 
 						    }]
@@ -192,7 +192,7 @@ $('#generatebtn').click(function(){
 						        }
 						    },
 						    series: [{
-						        name: 'Count',
+						        name: 'Services',
 						        data: servicecount
 
 						    }]
@@ -309,7 +309,7 @@ $('#generatebtn').click(function(){
 						        }
 						    },
 						    series: [{
-						        name: 'Count',
+						        name: 'Services',
 						        data: servicecount
 
 						    }]
@@ -426,7 +426,7 @@ $('#generatebtn').click(function(){
 						        }
 						    },
 						    series: [{
-						        name: 'Count',
+						        name: 'Services',
 						        data: servicecount
 
 						    }]

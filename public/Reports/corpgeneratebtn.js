@@ -9,7 +9,6 @@ $('#generatebtn').click(function(){
 		{
 			if(start_date != '')
 			{
-				t.clear().draw();
 				$.ajax
 				({
 					url: '/dailyCorporateReport',
@@ -17,7 +16,60 @@ $('#generatebtn').click(function(){
 					data:  { start_date:start_date},
 					dataType : 'json',
 					success:function(response){
-						
+						Highcharts.chart('barcharts', {
+						    chart: {
+						        type: 'column'
+						    },
+						    title: {
+						        text: 'Daily Corporate Account Reports as of '+ moment(start_date).format('Do of MMMM YYYY')
+						    },
+						    
+						    xAxis: {
+						        categories:['sa','2','3','4'],
+						        crosshair: true
+						    },
+						    yAxis: {
+						        min: 0,
+						        title: {
+						            text: 'No. times service is availed'
+						        }
+						    },
+						    tooltip: {
+						        headerFormat: '<span style="font-size:10px">Service Name: <b>{point.key}</b></span><table>',
+						        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+						            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+						        footerFormat: '</table>',
+						        shared: true,
+						        useHTML: true
+						    },
+						    plotOptions: {
+						        column: {
+						            pointPadding: 0.2,
+						            borderWidth: 0
+						        }
+						    },
+						    series: [{
+						        name: 'Corporate Account',
+						        data: [1,2,3,4]
+
+						    }]
+						});
+						toastr.options = {
+					      "closeButton": true,
+					      "debug": false,
+					      "positionClass": "toast-top-right",
+					      "onclick": null,
+					      "showDuration": "3000",
+					      "hideDuration": "100",
+					      "timeOut": "3000",
+					      "extendedTimeOut": "0",
+					      "showEasing": "swing",
+					      "hideEasing": "swing",
+					      "showMethod": "show",
+					      "hideMethod": "hide"
+					    }
+					    toastr.success("Done!");
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function(){
 						toastr.options = {
