@@ -104,6 +104,7 @@ class ReportController extends Controller
                 ->groupBy('corp_name')
                 ->where('trans_date','>=',$startdate)
                 ->where('trans_date','<=',$enddate)
+                ->where('charge','!=',0)
                 ->get();
     
         return response()->json([$var,]);
@@ -117,6 +118,7 @@ class ReportController extends Controller
                 ->select(DB::raw('COUNT(*) as row_count,SUM(charge) as charge'),'corp_name')
                 ->groupBy('corp_name')
                 ->whereYear('trans_date',$year)
+                ->where('charge','!=',0)
                 ->get();
         
         return response()->json([$var,]);
@@ -130,8 +132,8 @@ class ReportController extends Controller
                 ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','transcorp_tbl.trans_id')
                 ->select(DB::raw('COUNT(*) as row_count,SUM(charge) as charge'),'corp_name')
                 ->groupBy('corp_name')
-                ->whereMonth('trans_date',$month)
                 ->whereYear('trans_date',$year)
+                ->where('charge','!=',0)
                 ->get();
         
         return response()->json([$var,]);
@@ -147,6 +149,7 @@ class ReportController extends Controller
                 ->select(DB::raw('COUNT(*) as row_count,SUM(charge) as charge'),'corp_name')
                 ->groupBy('corp_name')
                 ->whereDate('trans_date',$startdate)
+                ->where('charge','!=',0)
                 ->get();
         return response()->json([$var,]);
     }

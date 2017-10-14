@@ -133,20 +133,6 @@
 @section('additional')
 
 <script type="text/javascript" src="{{ asset('/Reports/corpselectrange.js') }}"></script>
-
-<script type="text/javascript">
-
-	var t = $('#transTbl').DataTable({
-	  'paging'      : true,
-	  'lengthChange': true,
-	  'searching'   : true,
-	  'ordering'    : false,
-	  'info'        : true,
-	  'autoWidth'   : true,
-	  'bSort'		: false
-	});
-	
-	
-	
-</script>
+<script type="text/javascript" src="{{ asset('/Reports/rebategeneratebtn.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/Reports/rebateprintbtn.js') }}"></script>
 @endsection

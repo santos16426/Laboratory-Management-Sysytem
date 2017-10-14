@@ -13,57 +13,12 @@ $('#generatebtn').click(function(){
 			{
 				$.ajax
 				({
-					url: '/dailyCorporateReport',
+					url: '/dailyRebateReport',
 					type: 'get',
 					data:  { start_date:start_date},
 					dataType : 'json',
 					success:function(response){
-						response[0].forEach(function(data){
-							corpname.push(data.corp_name);
-							charge.push(data.charge *1);
-						})
-						Highcharts.chart('barcharts', {
-						    chart: {
-						        type: 'column'
-						    },
-						    title: {
-						        text: 'Daily Corporate Transaction Report'
-						    },
-						    subtitle:{
-						    	text: moment(start_date).format('Do of MMMM, YYYY')
-						    },
-						    
-						    xAxis: {
-						        categories:corpname,
-						        crosshair: true
-						    },
-						    yAxis: {
-						        min: 0,
-						        title: {
-						            text: 'Total Payment (pesos)'
-						        }
-						    },
-						    tooltip: {
-						        headerFormat: '<span style="font-size:10px">Service Name: <b>{point.key}</b></span><table>',
-						        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-						            '<td style="padding:0"><b>{point.y}</b></td></tr>',
-						        footerFormat: '</table>',
-						        shared: true,
-						        useHTML: true
-						    },
-						    plotOptions: {
-						        column: {
-						            pointPadding: 0.2,
-						            borderWidth: 0
-						        }
-						    },
-						    series: [{
-						        name: 'Payment',
-						        data: charge
-
-						    }]
-						});
-
+						
 						toastr.options = {
 					      "closeButton": true,
 					      "debug": false,
@@ -177,7 +132,7 @@ $('#generatebtn').click(function(){
 			    var sixdate = sixy + '-' + sixmm + '-' + sixdd;
 				$.ajax
 				({
-					url: '/weeklyCorporateReport',
+					url: '/weeklyRebateReport',
 					type: 'get',
 					data:  { 
 						startdate:startdate,
@@ -191,50 +146,7 @@ $('#generatebtn').click(function(){
 					dataType : 'json',
 
 					success:function(response){
-						response[0].forEach(function(data){
-							corpname.push(data.corp_name);
-							charge.push(data.charge *1);
-						})
-						Highcharts.chart('barcharts', {
-						    chart: {
-						        type: 'column'
-						    },
-						    title: {
-						        text: 'Weekly Corporate Transaction Report'
-						    },
-						    subtitle:{
-						    	text: moment(start_date).format('Do MMMM, YYYY') + ' to '+moment(enddate).format('Do MMMM, YYYY') 
-						    },
-						    xAxis: {
-						        categories:corpname,
-						        crosshair: true
-						    },
-						    yAxis: {
-						        min: 0,
-						        title: {
-						            text: 'Total Payment (pesos)'
-						        }
-						    },
-						    tooltip: {
-						        headerFormat: '<span style="font-size:10px">Service Name: <b>{point.key}</b></span><table>',
-						        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-						            '<td style="padding:0"><b>{point.y}</b></td></tr>',
-						        footerFormat: '</table>',
-						        shared: true,
-						        useHTML: true
-						    },
-						    plotOptions: {
-						        column: {
-						            pointPadding: 0.2,
-						            borderWidth: 0
-						        }
-						    },
-						    series: [{
-						        name: 'Payment',
-						        data: charge
-
-						    }]
-						});
+						
 						toastr.options = {
 					      "closeButton": true,
 					      "debug": false,
@@ -299,7 +211,7 @@ $('#generatebtn').click(function(){
 			    var sy = date.getFullYear();
 				$.ajax
 				({
-					url: '/monthlyCorporateReport',
+					url: '/monthlyRebateReport',
 					type: 'get',
 					data:  { 
 						month : smm,
@@ -307,50 +219,7 @@ $('#generatebtn').click(function(){
 					},
 					dataType : 'json',
 					success:function(response){
-						response[0].forEach(function(data){
-							corpname.push(data.corp_name);
-							charge.push(data.charge *1);
-						})
-						Highcharts.chart('barcharts', {
-						    chart: {
-						        type: 'column'
-						    },
-						    title: {
-						        text: 'Monthly Corporate Transaction Report'
-						    },
-						    subtitle:{
-						    	text: moment(start_date).format('Do MMMM, YYYY') + ' to '+moment(enddate).format('Do MMMM, YYYY') 
-						    },
-						    xAxis: {
-						        categories:corpname,
-						        crosshair: true
-						    },
-						    yAxis: {
-						        min: 0,
-						        title: {
-						            text: 'Total Payment (pesos)'
-						        }
-						    },
-						    tooltip: {
-						        headerFormat: '<span style="font-size:10px">Service Name: <b>{point.key}</b></span><table>',
-						        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-						            '<td style="padding:0"><b>{point.y}</b></td></tr>',
-						        footerFormat: '</table>',
-						        shared: true,
-						        useHTML: true
-						    },
-						    plotOptions: {
-						        column: {
-						            pointPadding: 0.2,
-						            borderWidth: 0
-						        }
-						    },
-						    series: [{
-						        name: 'Payment',
-						        data: charge
-
-						    }]
-						});
+						
 						toastr.options = {
 					      "closeButton": true,
 					      "debug": false,
@@ -417,7 +286,7 @@ $('#generatebtn').click(function(){
 			    t.clear().draw();
 				$.ajax
 				({
-					url: '/yearlyCorporateReport',
+					url: '/yearlyRebateReport',
 					type: 'get',
 					data:  { 
 						month : smm,
@@ -425,51 +294,7 @@ $('#generatebtn').click(function(){
 					},
 					dataType : 'json',
 					success:function(response){
-						response[0].forEach(function(data){
-							corpname.push(data.corp_name);
-							charge.push(data.charge *1);
-						})
-						Highcharts.chart('barcharts', {
-						    chart: {
-						        type: 'column'
-						    },
-						    title: {
-						        text: 'Yearly Corporate Transaction Report'
-						    },
-						    subtitle: {
-						        text: moment(start_date).format('Do MMMM, YYYY') + ' to '+moment(enddate).format('Do MMMM, YYYY') 
-						    },
-
-						    xAxis: {
-						        categories:corpname,
-						        crosshair: true
-						    },
-						    yAxis: {
-						        min: 0,
-						        title: {
-						            text: 'Total Payment (pesos)'
-						        }
-						    },
-						    tooltip: {
-						        headerFormat: '<span style="font-size:10px">Service Name: <b>{point.key}</b></span><table>',
-						        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-						            '<td style="padding:0"><b>{point.y}</b></td></tr>',
-						        footerFormat: '</table>',
-						        shared: true,
-						        useHTML: true
-						    },
-						    plotOptions: {
-						        column: {
-						            pointPadding: 0.2,
-						            borderWidth: 0
-						        }
-						    },
-						    series: [{
-						        name: 'Payment',
-						        data: charge
-
-						    }]
-						});
+						
 						toastr.options = {
 					      "closeButton": true,
 					      "debug": false,
