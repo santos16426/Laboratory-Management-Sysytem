@@ -287,14 +287,11 @@
 			                  <div class="input-group-addon">
 			                   Smoker
 			                 </div>
-			                 <select name="smoker" id="smoker" class="form-control m-bot15" required>
-	                              <option value="Yes">Yes</option>
-	                              <option value="No">No</option>
-	                          </select>
+			                <input  name="smoker" id="smoker" placeholder="Smoker" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
-			 	 </div>
+		        </div> 
 			 	 <div class="col-md-6">
 			        <div class="form-group">
 			              <div class="col-md-12">
@@ -342,16 +339,13 @@
 			              <div class="col-md-12">
 			                 <div class="input-group">
 			                  <div class="input-group-addon">
-			                   Alcohol Drinker
+			                   Alcohol
 			                 </div>
-			                <select name="alcohol" id="alcohol" class="form-control m-bot15" required>
-	                              <option value="Yes">Yes</option>
-	                              <option value="No">No</option>
-	                          </select>
+			                <input  name="alcohol" id="alcohol" placeholder="Alcohol" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
-			 	 </div>
+		        </div> 
 			 	 <div class="col-md-6">
 			        <div class="form-group">
 			              <div class="col-md-12">
