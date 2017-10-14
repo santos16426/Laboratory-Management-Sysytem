@@ -175,7 +175,7 @@
 @section('additional')
 <script type="text/javascript" src="{{ asset('/Reports/transprintbtn.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/Reports/transgeneratebtn.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/Reports/corpselectrange.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/Reports/transselectrange.js') }}"></script>
 <script type="text/javascript">
 
 	
