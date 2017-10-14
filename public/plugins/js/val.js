@@ -1012,9 +1012,6 @@ $('#patientinfo')
                         max: 30,
                         message:'Email should not exceed 30 characters.'
                     },
-                        notEmpty: {
-                        message: 'This field is required.'
-                    }
                 }
             }, 
             gender: {
@@ -1148,9 +1145,6 @@ $('#updatepatientinfo')
                         max: 30,
                         message:'Email should not exceed 30 characters.'
                     },
-                        notEmpty: {
-                        message: 'This field is required.'
-                    }
                 }
             }, 
             upgender: {

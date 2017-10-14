@@ -33,6 +33,57 @@
 
 <div class="row">
 	<div class="col-lg-12">
+
+		<section class="panel">
+			<header class="panel-heading">
+				<strong>Dashboard Access</strong>
+			</header>
+			<div class="panel-body">
+				<div class="clearfix">
+					<div class="col-md-12">
+						<table  style="border-radius: 120px" class="table table-bordered">
+						  <tr>
+						    <th width="4%" rowspan="2" colspan="1">Employee Type</th>
+						    <th width="10%" colspan="12">Dashboard Components</th>
+						    <th width="1%" rowspan="2" colspan="1">Action</th>
+						  </tr>
+						  <tr>
+						  	<th>Services</th>
+						    <th>Employee Count</th>
+						    <th>Corporate Accounts</th>
+						    <th>Total of Patients</th>
+						    <th>Profit of the day</th>
+						    <th>Pending Result</th>
+						    <th>Pending Result List</th>
+						    <th>Transaction for the day</th>
+						    <th>Current Rebate Percentage</th>
+						    <th>Total Income for the Month</th>
+						    <th>Unsettled Corporate Payment</th>
+						    <th>Unsettled Rebate Payment</th>
+						  </tr>
+						  
+						  <tr>
+						    <td></td>
+						    <td></td>
+						    <td></td>
+						    <td></td>
+						    <td></td>
+						    <td></td>
+						    <td></td>
+						    <td></td>
+						    <td></td>
+						    <td></td>
+						    <td></td>
+						    <td></td>
+						    <td></td>
+						    <td><center><a class="btn btn-warning btn-xs  updateModal" href="#updateModal" data-toggle="modal" data-id="0"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a></center></td>
+						  </tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section class="panel">
 			<header class="panel-heading">
 				<strong>Employee's Access Information</strong>
@@ -235,6 +286,163 @@
         <div class="modal-body" >
         	<form action="/save_userAccess" method="POST" class="form-horizontal" id="useraccessform">
         	<input type="hidden" name="emp_type_id" value="" id="emp_type_id">
+        	<fieldset>
+    	 		<legend>Dashboard</legend>
+    	 		<div class="col-md-12">
+	    	 		<div class="col-md-4">
+	    	 			<div class="form-group">
+			            	<div class="col-sm-10 col-md-offset-1">
+			                	<div class="input-group">
+			                  		<div style="">
+			                    		<input type="checkbox" name="service" class="dashboard"  value="1" id="service"><label for="service">&nbsp;<strong>Services</strong>&nbsp;&nbsp;</label>
+			                		</div>
+			              		</div>
+			           		</div>  
+			         	</div>
+	    	 		</div>
+
+					<div class="col-md-4">
+						<div class="form-group">
+							<div class="col-sm-10 col-md-offset-1">
+								<div class="input-group">
+									<div style="">
+										<input type="checkbox" name="empcount" class="dashboard"  value="1" id="empcount"><label for="empcount">&nbsp;<strong>Employee Count</strong>&nbsp;&nbsp;</label>
+										<br>
+									</div>
+								</div>  
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="form-group">
+							<div class="col-sm-10 col-md-offset-1">
+								<div class="input-group">
+									<div style="">
+										<input type="checkbox" name="corpaccounts" class="dashboard"  value="1" id="corpaccounts"><label for="corpaccounts">&nbsp;<strong>Corporate Accounts</strong>&nbsp;&nbsp;</label>
+									</div>
+								</div>
+							</div>  
+						</div>
+					</div>
+		    	 	</div>
+
+		    	 	<div class="col-md-12">
+	    	 		<div class="col-md-4">
+	    	 			<div class="form-group">
+			            	<div class="col-sm-10 col-md-offset-1">
+			                	<div class="input-group">
+			                  		<div style="">
+			                    		<input type="checkbox" name="totpatients" class="dashboard"  value="1" id="totpatients"><label for="totpatients">&nbsp;<strong>Total of Patients</strong>&nbsp;&nbsp;</label>
+			                		</div>
+			              		</div>
+			           		</div>  
+			         	</div>
+	    	 		</div>
+
+	    	 		<div class="col-md-4">
+	    	 			<div class="form-group">
+			            	<div class="col-sm-10 col-md-offset-1">
+			                	<div class="input-group">
+			                  		<div style="">
+			                    		<input type="checkbox" name="profit" class="dashboard"  value="1" id="profit"><label for="profit">&nbsp;<strong>Profit of the day</strong>&nbsp;&nbsp;</label>
+			                		</div>
+			              		</div>
+			           		</div>  
+			         	</div>
+	    	 		</div>
+
+	    	 		<div class="col-md-4">
+	    	 			<div class="form-group">
+			            	<div class="col-sm-10 col-md-offset-1">
+			                	<div class="input-group">
+			                  		<div style="">
+			                    		<input type="checkbox" name="Result" class="dashboard"  value="1" id="result"><label for="result">&nbsp;<strong>Pending Result</strong>&nbsp;&nbsp;</label>
+			                		</div>
+			              		</div>
+			           		</div>  
+			         	</div>
+	    	 		</div>
+	    	 		</div>
+
+	    	 		<div class="col-md-12">
+	    	 		<div class="col-md-4">
+	    	 			<div class="form-group">
+			            	<div class="col-sm-10 col-md-offset-1">
+			                	<div class="input-group">
+			                  		<div style="">
+			                    		<input type="checkbox" name="resultlist" class="dashboard"  value="1" id="resultlist"><label for="resultlist">&nbsp;<strong>Pending Result List</strong>&nbsp;&nbsp;</label>
+			                		</div>
+			              		</div>
+			           		</div>  
+			         	</div>
+	    	 		</div>
+
+	    	 		
+	    	 		<div class="col-md-4">
+	    	 			<div class="form-group">
+			            	<div class="col-sm-10 col-md-offset-1">
+			                	<div class="input-group">
+			                  		<div style="">
+			                    		<input type="checkbox" name="transaction" class="dashboard"  value="1" id="transaction"><label for="transaction">&nbsp;<strong>Transaction for the day</strong>&nbsp;&nbsp;</label>
+			                		</div>
+			              		</div>
+			           		</div>  
+			         	</div>
+	    	 		</div>
+
+	    	 		<div class="col-md-4">
+	    	 			<div class="form-group">
+			            	<div class="col-sm-10 col-md-offset-1">
+			                	<div class="input-group">
+			                  		<div style="">
+			                    		<input type="checkbox" name="rebatepercentage" class="dashboard"  value="1" id="rebatepercentage"><label for="rebatepercentage">&nbsp;<strong>Current Rebate Percentage</strong>&nbsp;&nbsp;</label>
+			                		</div>
+			              		</div>
+			           		</div>  
+			         	</div>
+	    	 		</div>
+	    	 		</div>
+
+	    	 		<div class="col-md-12">
+	    	 		<div class="col-md-4">
+	    	 			<div class="form-group">
+			            	<div class="col-sm-10 col-md-offset-1">
+			                	<div class="input-group">
+			                  		<div style="">
+			                    		<input type="checkbox" name="income" class="dashboard"  value="1" id="income"><label for="income">&nbsp;<strong>Total Income(Monthly)</strong>&nbsp;&nbsp;</label>
+			                		</div>
+			              		</div>
+			           		</div>  
+			         	</div>
+	    	 		</div>
+
+	    	 		
+	    	 		<div class="col-md-4">
+	    	 			<div class="form-group">
+			            	<div class="col-sm-10 col-md-offset-1">
+			                	<div class="input-group">
+			                  		<div style="">
+			                    		<input type="checkbox" name="corppayment" class="dashboard"  value="1" id="corppayment"><label for="corppayment">&nbsp;<strong>Unsettled Corporate</strong>&nbsp;&nbsp;</label>
+			                		</div>
+			              		</div>
+			           		</div>  
+			         	</div>
+	    	 		</div>
+
+	    	 		<div class="col-md-4">
+	    	 			<div class="form-group">
+			            	<div class="col-sm-10 col-md-offset-1">
+			                	<div class="input-group">
+			                  		<div style="">
+			                    		<input type="checkbox" name="rebatepayment" class="dashboard"  value="1" id="rebatepayment"><label for="rebatepayment">&nbsp;<strong>Unsettled Rebate</strong>&nbsp;&nbsp;</label>
+			                		</div>
+			              		</div>
+			           		</div>  
+			         	</div>
+	    	 		</div>
+		    	 	</div>		
+    	 	</fieldset>
     	 	<fieldset>
     	 		<legend>Maintenance</legend>
     	 		<div class="col-md-12">
