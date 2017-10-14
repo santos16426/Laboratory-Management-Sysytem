@@ -462,7 +462,7 @@ $('#generatebtn').click(function(){
 						function firsttotal()
 						{
 							response[1].forEach(function(data){
-								total = total *1;
+								total = 0;
 								if(data.charge == null)
 					        	{
 					        		data.charge = 0;
@@ -475,7 +475,7 @@ $('#generatebtn').click(function(){
 						function secondtotal()
 						{
 							response[2].forEach(function(data){
-								total = total *1;
+								total = 0;
 								if(data.charge == null)
 					        	{
 					        		data.charge = 0;
@@ -488,7 +488,7 @@ $('#generatebtn').click(function(){
 						function thirdtotal()
 						{
 							response[3].forEach(function(data){
-								total = total *1;
+								total = 0;
 								if(data.charge == null)
 					        	{
 					        		data.charge = 0;
@@ -501,7 +501,7 @@ $('#generatebtn').click(function(){
 						function fourthtotal()
 						{
 							response[4].forEach(function(data){
-								total = total *1;
+								total = 0;
 								if(data.charge == null)
 					        	{
 					        		data.charge = 0;
@@ -514,7 +514,7 @@ $('#generatebtn').click(function(){
 						function fifthtotal()
 						{
 							response[5].forEach(function(data){
-								total = total *1;
+								total = 0;
 								if(data.charge == null)
 					        	{
 					        		data.charge = 0;
@@ -527,7 +527,7 @@ $('#generatebtn').click(function(){
 						function sixtotal()
 						{
 							response[6].forEach(function(data){
-								total = total *1;
+								total = 0;
 								if(data.charge == null)
 					        	{
 					        		data.charge = 0;
@@ -540,7 +540,7 @@ $('#generatebtn').click(function(){
 						function seventotal()
 						{
 							response[7].forEach(function(data){
-								total = total *1;
+								total = 0;
 								if(data.charge == null)
 					        	{
 					        		data.charge = 0;
