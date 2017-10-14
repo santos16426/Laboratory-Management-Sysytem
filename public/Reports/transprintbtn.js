@@ -6,7 +6,7 @@ $('#printbtn').click(function(){
 			{		
 				$.ajax
 				({
-					url: '/dailyCensusReport',
+					url: '/dailyTransactionReport',
 					type: 'get',
 					data:  { start_date:start_date},
 					dataType : 'json',
@@ -85,7 +85,7 @@ $('#printbtn').click(function(){
 			    var enddate =  y + '-' + mm + '-' + dd ;
 				$.ajax
 				({
-					url: '/weeklyCensusReports',
+					url: '/weeklyTransactionReport',
 					type: 'get',
 					data:  { 
 						startdate:startdate,
@@ -162,7 +162,7 @@ $('#printbtn').click(function(){
 			    var sy = date.getFullYear();
 				$.ajax
 				({
-					url: '/monthlyCensusReport',
+					url: '/monthlyTransactionReport',
 					type: 'get',
 					data:  { 
 						month : smm,
@@ -237,7 +237,7 @@ $('#printbtn').click(function(){
 			    var sy = date.getFullYear();
 				$.ajax
 				({
-					url: '/yearlyCensusReport',
+					url: '/yearlyTransactionReport',
 					type: 'get',
 					data:  { 
 						month : smm,
