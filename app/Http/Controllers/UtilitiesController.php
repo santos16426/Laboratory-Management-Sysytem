@@ -56,8 +56,69 @@ class UtilitiesController extends Controller
 		$rebaterep = 0;
 		$uppatient = 0;
 		$delpatient = 0;
+		$service = 0;
+		$empcount = 0;
+		$corpaccounts = 0;
+		$totpatients = 0;
+		$profit = 0;
+		$result = 0;
+		$resultlist = 0;
+		$transaction = 0;
+		$rebatepercentage = 0;
+		$income = 0;
+		$corppayment = 0;
+		$rebatepayment = 0;
 
 
+
+		if(isset($_POST['service']))
+		{
+			$service = 1;
+		}
+		if(isset($_POST['empcount']))
+		{
+			$empcount = 1;
+		}
+		if(isset($_POST['corpaccounts']))
+		{
+			$corpaccounts = 1;
+		}
+		if(isset($_POST['totpatients']))
+		{
+			$totpatients = 1;
+		}
+		if(isset($_POST['profit']))
+		{
+			$profit = 1;
+		}
+		if(isset($_POST['result']))
+		{
+			$result = 1;
+		}
+		if(isset($_POST['resultlist']))
+		{
+			$resultlist = 1;
+		}
+		if(isset($_POST['transaction']))
+		{
+			$transaction = 1;
+		}
+		if(isset($_POST['rebatepercentage']))
+		{
+			$rebatepercentage = 1;
+		}
+		if(isset($_POST['income']))
+		{
+			$income = 1;
+		}
+		if(isset($_POST['corppayment']))
+		{
+			$corppayment = 1;
+		}
+		if(isset($_POST['rebatepayment']))
+		{
+			$rebatepayment = 1;
+		}
 		if(isset($_POST['addlab']))
 		{
 			$addlab = 1;
@@ -268,6 +329,18 @@ class UtilitiesController extends Controller
 				Session::put('trans',$trans);
 				Session::put('corprep',$corprep);
 				Session::put('rebaterep',$rebaterep);
+				Session::put('service',$service);
+				Session::put('empcount',$empcount);
+				Session::put('corpaccounts',$corpaccounts);
+				Session::put('totpatients',$totpatients);
+				Session::put('profit',$profit);
+				Session::put('result',$result);
+				Session::put('resultlist',$resultlist);
+				Session::put('transaction',$transaction);
+				Session::put('rebatepercentage',$rebatepercentage);
+				Session::put('income',$income);
+				Session::put('corppayment',$corppayment);
+				Session::put('rebatepayment',$rebatepayment);
 			}
 		DB::table('employee_useraccess_tbl')->where('emp_type_id',$_POST['emp_type_id'])->update([
 			'addlab'=>$addlab,
@@ -311,7 +384,20 @@ class UtilitiesController extends Controller
 			'census'=>$census,
 			'trans'=>$trans,
 			'corprep'=>$corprep,
-			'rebaterep'=>$rebaterep
+			'rebaterep'=>$rebaterep,
+			
+			'service'=>$service,
+			'empcount'=>$empcount,
+			'corpaccounts'=>$corpaccounts,
+			'totpatients'=>$totpatients,
+			'profit'=>$profit,
+			'result'=>$result,
+			'resultlist'=>$resultlist,
+			'transaction'=>$transaction,
+			'rebatepercentage'=>$rebatepercentage,
+			'income'=>$income,
+			'corppayment'=>$corppayment,
+			'rebatepayment'=>$rebatepayment
 		]);
 		Session::flash('update',true);
 		return redirect()->back();

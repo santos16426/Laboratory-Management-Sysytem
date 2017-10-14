@@ -374,6 +374,29 @@
   }); 
 </script>
 @endif
+@if(Session::has('log'))
+<input type="hidden" name="display_name" id="display_name" value="{{ Session::get('display_name') }}">
+<script type="text/javascript">
+  $( document ).ready(function() 
+  {
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "positionClass": "toast-top-right",
+      "onclick": null,
+      "showDuration": "3000",
+      "hideDuration": "100",
+      "timeOut": "3000",
+      "extendedTimeOut": "0",
+      "showEasing": "swing",
+      "hideEasing": "swing",
+      "showMethod": "show",
+      "hideMethod": "hide"
+    }
+    toastr.success("Welcome " + $('#display_name').val());
+  }); 
+</script>
+@endif
 @if (Session::has('update'))
 <script type="text/javascript">
   $( document ).ready(function() 

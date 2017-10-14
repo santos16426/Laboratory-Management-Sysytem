@@ -17,6 +17,7 @@
     <section class="main-content" >
               <!--state overview start-->
               <div class="row state-overview">
+                  @if(Session::get('empcount')==1)
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol terques">
@@ -30,6 +31,8 @@
                           </div>
                       </section>
                   </div>
+                  @endif
+                  @if(Session::get('totpatients')==1)
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol red">
@@ -43,6 +46,8 @@
                           </div>
                       </section>
                   </div>
+                  @endif
+                  @if(Session::get('service')==1)
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol yellow">
@@ -56,6 +61,8 @@
                           </div>
                       </section>
                   </div>
+                  @endif
+                  @if(Session::get('profit')==1)
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol blue">
@@ -69,9 +76,8 @@
                           </div>
                       </section>
                   </div>
-
-              
-
+                  @endif
+                  @if(Session::get('corpaccounts')==1)
                   <div class="col-lg-3 col-sm-6">
                     <section class="panel">
                         <div class="symbol red">
@@ -85,7 +91,8 @@
                         </div>
                     </section>
                   </div>
-
+                  @endif
+                  @if(Session::get('corppayment')==1)
                     <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol yellow">
@@ -99,7 +106,8 @@
                           </div>
                       </section>
                   </div>
-
+                  @endif
+                  @if(Session::get('rebatepercentage')==1)
                    <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol blue">
@@ -113,7 +121,8 @@
                           </div>
                       </section>
                   </div>
-
+                  @endif
+                  @if(Session::get('rebatepayment')==1)
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol terques">
@@ -127,7 +136,8 @@
                           </div>
                       </section>
                   </div>
-
+                  @endif
+                  @if(Session::get('transaction')==1)
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol blue">
@@ -141,7 +151,8 @@
                           </div>
                       </section>
                   </div>
-
+                  @endif
+                  @if(Session::get('income')==1)
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol terques">
@@ -155,7 +166,8 @@
                           </div>
                       </section>
                   </div>
-
+                  @endif
+                  @if(Session::get('result')==1)
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol red">
@@ -169,11 +181,12 @@
                           </div>
                       </section>
                   </div>
-
+                  @endif
               </div>
               <!--state overview end-->
 
               <div class="row">
+               @if(Session::get('result')==1)
                 <div class="col-lg-8">
                       <!--user info table start-->
                       <section class="panel">
@@ -247,7 +260,8 @@
 	                          </table>
                           </div>
                       </section>
-                  </div>
+                </div>
+                @endif
               </div>
             
     </section>

@@ -34,55 +34,6 @@
 <div class="row">
 	<div class="col-lg-12">
 
-		<section class="panel">
-			<header class="panel-heading">
-				<strong>Dashboard Access</strong>
-			</header>
-			<div class="panel-body">
-				<div class="clearfix">
-					<div class="col-md-12">
-						<table  style="border-radius: 120px" class="table table-bordered">
-						  <tr>
-						    <th width="4%" rowspan="2" colspan="1">Employee Type</th>
-						    <th width="10%" colspan="12">Dashboard Components</th>
-						    <th width="1%" rowspan="2" colspan="1">Action</th>
-						  </tr>
-						  <tr>
-						  	<th>Services</th>
-						    <th>Employee Count</th>
-						    <th>Corporate Accounts</th>
-						    <th>Total of Patients</th>
-						    <th>Profit of the day</th>
-						    <th>Pending Result</th>
-						    <th>Pending Result List</th>
-						    <th>Transaction for the day</th>
-						    <th>Current Rebate Percentage</th>
-						    <th>Total Income for the Month</th>
-						    <th>Unsettled Corporate Payment</th>
-						    <th>Unsettled Rebate Payment</th>
-						  </tr>
-						  
-						  <tr>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td></td>
-						    <td><center><a class="btn btn-warning btn-xs  updateModal" href="#updateModal" data-toggle="modal" data-id="0"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a></center></td>
-						  </tr>
-						</table>
-					</div>
-				</div>
-			</div>
-		</section>
 
 		<section class="panel">
 			<header class="panel-heading">
@@ -357,7 +308,7 @@
 			            	<div class="col-sm-10 col-md-offset-1">
 			                	<div class="input-group">
 			                  		<div style="">
-			                    		<input type="checkbox" name="Result" class="dashboard"  value="1" id="result"><label for="result">&nbsp;<strong>Pending Result</strong>&nbsp;&nbsp;</label>
+			                    		<input type="checkbox" name="result" class="dashboard"  value="1" id="result"><label for="result">&nbsp;<strong>Pending Result</strong>&nbsp;&nbsp;</label>
 			                		</div>
 			              		</div>
 			           		</div>  
@@ -958,6 +909,54 @@
 					if(data.rebaterep == 1)
 					{
 						$('#rebaterep').attr('checked','checked')
+					}
+					if(data.service == 1)
+					{
+						$('#service').attr('checked','checked')
+					}
+					if(data.empcount == 1)
+					{
+						$('#empcount').attr('checked','checked')
+					}
+					if(data.corpaccounts == 1)
+					{
+						$('#corpaccounts').attr('checked','checked')
+					}
+					if(data.totpatients == 1)
+					{
+						$('#totpatients').attr('checked','checked')
+					}
+					if(data.profit == 1)
+					{
+						$('#profit').attr('checked','checked')
+					}
+					if(data.result == 1)
+					{
+						$('#result').attr('checked','checked')
+					}
+					if(data.resultlist == 1)
+					{
+						$('#resultlist').attr('checked','checked')
+					}
+					if(data.transaction == 1)
+					{
+						$('#transaction').attr('checked','checked')
+					}
+					if(data.rebatepercentage == 1)
+					{
+						$('#rebatepercentage').attr('checked','checked')
+					}
+					if(data.income == 1)
+					{
+						$('#income').attr('checked','checked')
+					}
+					if(data.corppayment == 1)
+					{
+						$('#corppayment').attr('checked','checked')
+					}
+					if(data.rebatepayment == 1)
+					{
+						$('#rebatepayment').attr('checked','checked')
 					}
 					
 				})

@@ -125,8 +125,21 @@ class LoginController extends Controller
                 Session::put('rebaterep',$accessmodules->rebaterep);
                 Session::put('uppatient',$accessmodules->uppatient);
                 Session::put('delpatient',$accessmodules->delpatient);
+                Session::put('service',$accessmodules->service);
+                Session::put('empcount',$accessmodules->empcount);
+                Session::put('corpaccounts',$accessmodules->corpaccounts);
+                Session::put('totpatients',$accessmodules->totpatients);
+                Session::put('profit',$accessmodules->profit);
+                Session::put('result',$accessmodules->result);
+                Session::put('resultlist',$accessmodules->resultlist);
+                Session::put('transaction',$accessmodules->transaction);
+                Session::put('rebatepercentage',$accessmodules->rebatepercentage);
+                Session::put('income',$accessmodules->income);
+                Session::put('corppayment',$accessmodules->corppayment);
+                Session::put('rebatepayment',$accessmodules->rebatepayment);
             }
     		Session::put('loggedin',true);
+            Session::flash('log',Session::get('display_name'));
     		return redirect('/Admin/Dashboard');
     	}
     	else
