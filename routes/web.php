@@ -202,7 +202,7 @@ Route::post('/activateServ','UtilitiesController@activateServ');
 Route::post('/activatePack','UtilitiesController@activatePack');
 Route::post('/activatecorp','UtilitiesController@activatecorp');
 Route::post('/activatecorppack','UtilitiesController@activatecorppack');
-
+Route::post('/activatepatient','UtilitiesController@activatepatient');
 
 // Results
 Route::get('/getLicense','ResultController@getLicense');

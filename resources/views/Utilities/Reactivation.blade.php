@@ -50,6 +50,9 @@
           <li class="">
               <a data-toggle="tab" href="#corppack">Corporate Account Package</a>
           </li>
+          <li class="">
+              <a data-toggle="tab" href="#patient">Patient</a>
+          </li>
 
       </ul>
   	</header>
@@ -245,6 +248,28 @@
 			      </tbody>
 			    </table>
         </div>
+
+        <div class="tab-pane" id="patient">
+          <table class="table table-bordered table-hover dataTable" id="patienttbl">
+            <thead>
+              <tr>
+                <th>Patient Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($patient as $patients)
+              <tr>
+                <td>{{ $patients->patient_fname }} {{ $patients->patient_mname }} {{ $patients->patient_lname }}</td>
+                <td>
+                  <button type="button" class="btn btn-success btn-xs patientbtn" data-id="{{ $patients->patient_id }}"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp; Reactivate</button>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+
     	</div>
   	</div>
 	</section>
@@ -447,10 +472,38 @@
     </div>  
   </div>
 </div>
+
+<div class="modal fade" id = "patientmodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header btn-success">
+        <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Reactivate Record</h4>
+      </div>
+      <form method="post" action="/activatepatient" id="activatepatient">
+      {{ csrf_field()  }}
+        <div class="modal-body">
+          <h4></h4>
+          <input type="text" class="hidden" name="id" id="patient_id" value="">
+          Are you sure you want to restore this record?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-xs pull-left" data-dismiss="modal">Close</button>
+          <button  class="btn btn-xs btn-success" type="submit"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Activate</button>
+        </div>
+      </form>
+    </div>  
+  </div>
+</div>
+
 @endsection
 @section('additional')
 <script type="text/javascript">
 	$(document).ready(function(){
+    $('.patientbtn').click(function(){
+      var id = $(this).data('id');
+      $('#patient_id').val(id);
+      $('#patientmodal').modal('show');
+    });
 		$('.labbtn').click(function(){
 			var id = $(this).data('id');
 			$('#labid').val(id);
@@ -497,6 +550,15 @@
 			$('#corppackid').val(id);
 			$('#corppackmodal').modal('show');
 		});
+    
+    $('#patienttbl').dataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true,
+    });
   	$('#labTbl').dataTable({
 	    'paging'      : true,
 	    'lengthChange': true,

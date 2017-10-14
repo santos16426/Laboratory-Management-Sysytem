@@ -432,8 +432,7 @@
 			                	<div class="input-group">
 			                		<label><strong>Medical Service</strong></label><br>
 			                  		<div style="padding-left: 20px">
-			                    		<input type="checkbox" name="addpatient" class="transaction" value="1" id="addpatient"><label for="
-			                    		addpatient">&nbsp;Add Patient&nbsp;&nbsp;</label><br>
+			                    		<input type="checkbox" name="addpatient" class="transaction" value="1" id="addpatient"><label for="addpatient">&nbsp;Add Patient&nbsp;&nbsp;</label><br>
 			                    		<input type="checkbox" name="uppatient" class="transaction" value="1" id="uppatient"><label for="uppatient">&nbsp;Update Patient&nbsp;&nbsp;</label><br>
 			                    		<input type="checkbox" name="delpatient" class="transaction" value="1" id="delpatient"><label for="delpatient">&nbsp;Delete Patient&nbsp;&nbsp;</label><br>
 			                    		<input type="checkbox" name="availserv" class="transaction" value="1" id="availserv"><label for="availserv">&nbsp;Avail Service&nbsp;&nbsp;</label><br>

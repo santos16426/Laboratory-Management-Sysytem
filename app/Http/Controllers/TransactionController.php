@@ -377,6 +377,19 @@ class TransactionController extends Controller
     {
         $paymentinput= 0;
     }
+    $prescriptions = "";
+    $prescriptions1 = $_POST['prescriptions'];
+    if(count($prescriptions1)>0)
+    {
+        for ($i=0; $i < count($prescriptions1) ; $i++) { 
+            $prescriptions = $prescriptions.'<br>'. $prescriptions1[$i];
+        }
+    }
+    else
+    {
+        $prescriptions = 'N/A';
+    }
+
         DB::table('transaction_tbl')
                 ->insert([
                     'medical_certificate'=>$file_name_new,
@@ -386,7 +399,7 @@ class TransactionController extends Controller
                     'issuedBy_emp_id'   =>  $issuedBy,
                     'trans_change'  =>  ($paymentinput - $totalpriceinput),
                     'trans_payment' =>  $paymentinput,
-                    'prescriptions'=>$_POST['prescriptions']
+                    'prescriptions'=> $prescriptions
                 ]);
         $trans_id = DB::table('transaction_tbl')
                         ->select('trans_id')

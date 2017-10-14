@@ -386,6 +386,12 @@ class UtilitiesController extends Controller
         Session::flash('reactivate', true);
         return redirect()->back();
 	}
+	function activatepatient()
+	{
+		DB::table('patient_tbl')->where('patient_id',$_POST['id'])->update(['PatientStatus'=>1]);
+        Session::flash('reactivate', true);
+        return redirect()->back();
+	}
 
     function reactivation()
     {
@@ -403,7 +409,9 @@ class UtilitiesController extends Controller
     	$corppack = DB::table('corp_package_tbl')
     		->leftjoin('corporate_accounts_tbl','corporate_accounts_tbl.corp_id','=','corp_package_tbl.corp_id')
     		->where('CorpPackStatus',0)->get();
-    	return view('Utilities.Reactivation',['lab'=>$lab,'emptype'=>$emptype,'emp'=>$emp,'servgroup'=>$servgroup,'servtype'=>$servtype,'serv'=>$serv,'pack'=>$pack,'corp'=>$corp,'corppack'=>$corppack]);
+
+    	$patient = DB::table('patient_tbl')->where('PatientStatus',0)->get();
+    	return view('Utilities.Reactivation',['lab'=>$lab,'emptype'=>$emptype,'emp'=>$emp,'servgroup'=>$servgroup,'servtype'=>$servtype,'serv'=>$serv,'pack'=>$pack,'corp'=>$corp,'corppack'=>$corppack,'patient'=>$patient]);
     }
     function companydetails()
     {
