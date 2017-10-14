@@ -281,7 +281,7 @@ $('#generatebtn').click(function(){
 						        type: 'column'
 						    },
 						    title: {
-						        text: 'No. service availed as of '+start_date
+						        text: 'Month Census Report for the month of ' + moment(smm+'/01/'+sy).format('MMMM YYYY')
 						    },
 						    
 						    xAxis: {
@@ -385,7 +385,6 @@ $('#generatebtn').click(function(){
 					url: '/yearlyCensusReport',
 					type: 'get',
 					data:  { 
-						month : smm,
 						year : sy
 					},
 					dataType : 'json',
@@ -399,7 +398,7 @@ $('#generatebtn').click(function(){
 						        type: 'column'
 						    },
 						    title: {
-						        text: 'No. service availed as of '+start_date
+						        text: 'Yearly Census Report for the year of ' + moment('01/01/'+sy).format('YYYY')
 						    },
 						    
 						    xAxis: {
