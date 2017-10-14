@@ -504,6 +504,123 @@ $('.employeeTypeDropDown').on('change',function(){
               
             }
 
+            if(rank == 0 &&  license == 1 && address == 0 && contact == 0 && username == 1)
+            {
+    
+              document.getElementById('EmpLicense').className = "form-horizontal 01001";  
+// 11111
+            $('.01001').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    message:'First name should be at least 2 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },  
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              username: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Minimum of 6 characters.'
+                  },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },    
+              password: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },      
+               confirmpass: {
+                validators: {
+                    notEmpty: {},
+                    identical: {
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
+                    },
+                }
+            },   
+              license: {
+                validators: {
+                  regexp: {
+                    regexp: /^[A-Z-0-9]{6,8}$/,
+                    message: 'Invalid License Number Format.'
+                  },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                          
+            }
+          });
+        
+              
+            }
+
              if(rank == 0 &&  license == 0 && address == 0 && contact == 0 && username == 0)
             {
               document.getElementById('EmpLicense').className = "form-horizontal 00000";
@@ -4785,6 +4902,112 @@ $('.empupdateModalbtn').click(function(){
             },                                   
             }
           });
+            }
+
+             if(rank == 0 &&  license == 1 && address == 1 && contact == 1 && username == 0)
+            {
+    
+              document.getElementById('upEmpLicense').className = "form-horizontal 01110";  
+// 11111
+            $('.01110').bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              firstname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    message:'First name should be at least 2 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                }
+              },  
+              middlename: {
+                validators: {
+                  stringLength: {
+                    max: 20,
+                    message:'Middle name should not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                }
+              },      
+              lastname: {
+                validators: {
+                  stringLength: {
+                    min: 2,
+                    max: 20,
+                    message:'Last name should be at least 2 characters and not exceed 20 characters.'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z]+([-'\s][a-zA-Z]+)*$/,
+                    message: 'This field should contain alphabetical letters only.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              address: {
+                validators: {
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
+                    message: 'Invalid Input.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              contact: {
+                validators: {
+                  regexp: {
+                    regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
+                    message: 'Invalid Format.'
+                  },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
+                    },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              }, 
+              license: {
+                validators: {
+                  regexp: {
+                    regexp: /^[A-Z-0-9]{6,8}$/,
+                    message: 'Invalid License Number Format.'
+                  },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkLicense',
+                        data:{ license:$('#license').val()},
+                        message: 'License Number already exist.',
+                    },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },                                          
+            }
+          });
+        
+              
             }
 
              if(rank == 0 &&  license == 1 && address == 0 && contact == 1 && username == 0)
