@@ -213,7 +213,7 @@ $('#EmployeeTypeedit').bootstrapValidator({
             servTypeName: {
                 validators: {
                     regexp: {
-                            regexp: /^[a-zA-Z0-9.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
+                            regexp: /^[a-zA-Z0-9.()]+([-'-_\s][().a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
                     },
                     remote: {
@@ -223,8 +223,8 @@ $('#EmployeeTypeedit').bootstrapValidator({
                         message: 'Service Type already exist.',
                     },
                     stringLength: {
-                        max: 30,
-                        message:'Service Type Name should not exceed 30 characters.'
+                        max: 40,
+                        message:'Service Type Name should not exceed 40 characters.'
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -255,12 +255,12 @@ $('#EmployeeTypeedit').bootstrapValidator({
             upservTypeName: {
                 validators: {
                   regexp: {
-                            regexp: /^[a-zA-Z0-9.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
+                            regexp: /^[a-zA-Z0-9.()]+([-'-_\s][().a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
                     },
                     stringLength: {
-                        max: 30,
-                        message:'Service Type Name should not exceed 30 characters.'
+                        max: 40,
+                        message:'Service Type Name should not exceed 40 characters.'
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -292,13 +292,13 @@ $('#EmployeeTypeedit').bootstrapValidator({
                         message: 'Service already exist',
                     },
                         regexp: {
-                            regexp: /^[a-zA-Z0-9.]+([-'-_\s][().a-zA-Z0-9]+)*$/,
+                            regexp: /^[a-zA-Z0-9.()]+([-'-_\s][().a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
                     },
                     stringLength: {
                         min: 2,
-                        max: 30,
-                        message:'Service name should be at least 2 characters and not exceed 30 characters.'
+                        max: 40,
+                        message:'Service name should be at least 2 characters and not exceed 40 characters.'
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -355,13 +355,13 @@ $('#EmployeeTypeedit').bootstrapValidator({
             srvcname: {
                 validators: {
                         regexp: {
-                            regexp: /^[a-zA-Z0-9.]+([-.'-_\s][().a-zA-Z0-9]+)*$/,
+                            regexp: /^[a-zA-Z0-9.()]+([-'-_\s][().a-zA-Z0-9]+)*$/,
                             message: 'Special characters are not allowed.'
                     },
                     stringLength: {
                         min: 2,
-                        max: 30,
-                        message:'Service name should be at least 2 characters and not exceed 30 characters.'
+                        max: 40,
+                        message:'Service name should be at least 2 characters and not exceed 40 characters.'
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -567,8 +567,8 @@ $('#packageedit')
                             message: 'Special characters are not allowed.'
                     },
                     stringLength: {
-                        max: 20,
-                        message:'Company name should not exceed 20 characters.'
+                        max: 30,
+                        message:'Company name should not exceed 30 characters.'
                     },
                         notEmpty: {
                         message: 'This field is required.'
@@ -665,8 +665,8 @@ $('#packageedit')
                             message: 'Special characters are not allowed.'
                     },
                     stringLength: {
-                        max: 20,
-                        message:'Company name should not exceed 20 characters.'
+                        max: 30,
+                        message:'Company name should not exceed 30 characters.'
                     },
                         notEmpty: {
                         message: 'This field is required.'
