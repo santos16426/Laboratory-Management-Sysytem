@@ -31,9 +31,11 @@ $('#generatebtn').click(function(){
 						        type: 'column'
 						    },
 						    title: {
-						        text: 'No. service availed as of '+moment(start_date).format('Do of MMMM, YYYY')
+						        text: 'Daily Census Reports'
 						    },
-						    
+						    subtitle:{
+						    	text: moment(start_date).format('Do of MMMM, YYYY')
+						    },
 						    xAxis: {
 						        categories:service,
 						        crosshair: true
@@ -164,7 +166,10 @@ $('#generatebtn').click(function(){
 						        type: 'column'
 						    },
 						    title: {
-						        text: 'No. service availed as of '+start_date
+						        text: 'Weekly Census Reports'
+						    },
+						    subtitle:{
+						    	text: moment(start_date).format('Do of MMMM, YYYY') + 'to ' moment(enddate).format('Do of MMMM, YYYY')
 						    },
 						    
 						    xAxis: {
@@ -280,10 +285,13 @@ $('#generatebtn').click(function(){
 						    chart: {
 						        type: 'column'
 						    },
-						    title: {
-						        text: 'Month Census Report for the month of ' + moment(smm+'/01/'+sy).format('MMMM YYYY')
-						    },
 						    
+						    title: {
+						        text: 'Monthly Census Reports'
+						    },
+						    subtitle:{
+						    	text: moment(smm+'/01/'+sy).format('MMMM YYYY')
+						    },
 						    xAxis: {
 						        categories:service,
 						        crosshair: true
@@ -397,10 +405,13 @@ $('#generatebtn').click(function(){
 						    chart: {
 						        type: 'column'
 						    },
+						   
 						    title: {
-						        text: 'Yearly Census Report for the year of ' + moment('01/01/'+sy).format('YYYY')
+						        text: 'Yearly Census Reports'
 						    },
-						    
+						    subtitle:{
+						    	text: moment('01/01/'+sy).format('YYYY')
+						    },
 						    xAxis: {
 						        categories:service,
 						        crosshair: true

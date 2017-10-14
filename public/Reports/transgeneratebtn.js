@@ -36,8 +36,11 @@ $('#generatebtn').click(function(){
 					            type: 'pie'
 					        },
 					        title: {
-					            text: 'Transaction Report as of '+moment(start_date).format('Do of MMMM, YYYY')
-					        },
+						        text: 'Daily Transction Reports'
+						    },
+						    subtitle:{
+						    	text: moment(start_date).format('Do of MMMM, YYYY')
+						    },
 					        tooltip: {
 					            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
 					        },
@@ -69,7 +72,10 @@ $('#generatebtn').click(function(){
 						        type: 'column'
 						    },
 						    title: {
-						        text: 'Transaction Report as of '+moment(start_date).format('Do of MMMM, YYYY')
+						        text: 'Daily Transction Reports'
+						    },
+						    subtitle:{
+						    	text: moment(start_date).format('Do of MMMM, YYYY')
 						    },
 						    
 						    xAxis: {
@@ -370,8 +376,11 @@ $('#generatebtn').click(function(){
 					            type: 'pie'
 					        },
 					        title: {
-					            text: 'Transaction Report as of '+moment(start_date).format('Do of MMMM, YYYY')+ ' to ' +moment(enddate).format('Do of MMMM, YYYY')
-					        },
+						        text: 'Weekly Transction Reports'
+						    },
+						    subtitle:{
+						    	text: moment(start_date).format('Do of MMMM, YYYY')+ ' to ' +moment(enddate).format('Do of MMMM, YYYY')
+						    },
 					        tooltip: {
 					            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
 					        },
@@ -402,10 +411,12 @@ $('#generatebtn').click(function(){
 						    chart: {
 						        type: 'column'
 						    },
-						    title: {
-						        text: 'Transaction Report as of '+moment(start_date).format('Do of MMMM, YYYY')+ ' to ' +moment(enddate).format('Do of MMMM, YYYY')
+						   	title: {
+						        text: 'Weekly Transction Reports'
 						    },
-						    
+						    subtitle:{
+						    	text: moment(start_date).format('Do of MMMM, YYYY')+ ' to ' +moment(enddate).format('Do of MMMM, YYYY')
+						    },
 						    xAxis: {
 						        categories: [
 						            moment(start_date).format('MMMM Do'),
@@ -764,8 +775,11 @@ $('#generatebtn').click(function(){
 				success:function(response){
 					Highcharts.chart('barcharts', {
 					    title: {
-					        text: 'Monthly Transaction Report as of '+moment(smm +'/01/'+sy).format('MMMM') + ' '+moment(smm +'/01/'+sy).format('YYYY')
-					    },
+						        text: 'Monthly Transction Reports'
+						    },
+						    subtitle:{
+						    	text: moment(smm +'/01/'+sy).format('MMMM') + ' '+moment(smm +'/01/'+sy).format('YYYY')
+						    },
 					    yAxis: {
 					        title: {
 					            text: 'Total income (Pesos)'
@@ -824,7 +838,10 @@ $('#generatebtn').click(function(){
 				            type: 'pie'
 				        },
 				        title: {
-				            text: 'Monthly Transaction Report as of '+moment(smm +'/01/'+sy).format('MMMM') + ' '+moment(smm +'/01/'+sy).format('YYYY')
+				            text: 'Monthly Transaction Report'
+				        },
+				        subtitle:{
+				        	text: moment(smm +'/01/'+sy).format('MMMM') + ' '+moment(smm +'/01/'+sy).format('YYYY')
 				        },
 				        tooltip: {
 				            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -1115,7 +1132,10 @@ $('#generatebtn').click(function(){
 					        type: 'column'
 					    },
 					    title: {
-					        text: 'Yearly Transaction Report of '+sy
+					        text: 'Yearly Transaction Report'
+					    },
+					    subtitle:{
+					    	text: sy
 					    },
 					    
 					    xAxis: {
@@ -1181,8 +1201,11 @@ $('#generatebtn').click(function(){
 				            type: 'pie'
 				        },
 				        title: {
-				            text: 'Transaction Report as of '+moment(start_date).format('Do of MMMM, YYYY')+ ' to ' +moment(enddate).format('Do of MMMM, YYYY')
-				        },
+					        text: 'Yearly Transaction Report'
+					    },
+					    subtitle:{
+					    	text: sy
+					    },
 				        tooltip: {
 				            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
 				        },
