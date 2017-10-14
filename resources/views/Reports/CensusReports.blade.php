@@ -46,8 +46,6 @@
 									<option value="weekly">Weekly</option>
 									<option value="monthly">Monthly</option>
 									<option value="yearly">Yearly</option>
-									<option value="range">Select Range</option>
-									<option value="all">See all transactions</option>
 								</select>
 							</div>
 						</div>
@@ -85,16 +83,6 @@
 			            	</div>
 			          	</div>
 
-						<div class="form-group hidden" id="rangepicker">
-			              <div class="col-md-10 col-md-offset-1 input-group">
-			              	<span class="input-group-addon">Select Range <sup>*</sup></span>
-			                  <div class="input-group input-large"  data-date="13/07/2013" data-date-format="mm/dd/yyyy">
-			                    <input type="text" class="form-control dpd1" name="rangestart" id="rangestart_date">
-			                    <span class="input-group-addon">To</span>
-			                    <input type="text" class="form-control dpd2" name="rangeend" id="rangeend_date">
-			                  </div>
-			              </div>
-			          	</div>
 			          	<div class="col-md-12">
 			          		<div class="col-md-12">
 			          			<button type="button" class="btn btn-success btn-block" id="generatebtn">Generate</button>

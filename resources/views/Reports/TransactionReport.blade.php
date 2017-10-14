@@ -47,8 +47,6 @@
 									<option value="weekly">Weekly</option>
 									<option value="monthly">Monthly</option>
 									<option value="yearly">Yearly</option>
-									<option value="range">Select Range</option>
-									<option value="all">See all transactions</option>
 								</select>
 							</div>
 						</div>
@@ -57,7 +55,7 @@
 			              <div class="col-md-10 col-md-offset-1 input-group">
 			              	<span class="input-group-addon">Starting Date <sup>*</sup></span>
 								<div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="yyyy-mm-dd"  class="input-append date dpYears">
-			                  		<input class="form-control form-control-inline input-medium default-date-picker dpd1" name="start_date" id="start_date_date"  size="16" type="text" value="" />
+			                  		<input class="form-control dpd1 form-control-inline input-medium default-date-picker" name="start_date" id="start_date_date"  size="16" type="text" value="" />
 			                  	</div>
 			              </div>
 			          	</div>
@@ -86,16 +84,6 @@
 			            	</div>
 			          	</div>
 
-						<div class="form-group hidden" id="rangepicker">
-			              <div class="col-md-10 col-md-offset-1 input-group">
-			              	<span class="input-group-addon">Select Range <sup>*</sup></span>
-			                  <div class="input-group input-large"  data-date="13/07/2013" data-date-format="mm/dd/yyyy">
-			                    <input type="text" class="form-control dpd1" name="rangestart" id="rangestart_date">
-			                    <span class="input-group-addon">To</span>
-			                    <input type="text" class="form-control dpd2" name="rangeend" id="rangeend_date">
-			                  </div>
-			              </div>
-			          	</div>
 			          	<div class="col-md-12">
 			          		<div class="col-md-12">
 			          			<button type="button" class="btn btn-success btn-block" id="generatebtn">Generate</button>
@@ -190,15 +178,18 @@
 <script type="text/javascript" src="{{ asset('/Reports/corpselectrange.js') }}"></script>
 <script type="text/javascript">
 
-	var t = $('#transTbl').DataTable({
-	  'paging'      : true,
-	  'lengthChange': true,
-	  'searching'   : true,
-	  'ordering'    : false,
-	  'info'        : true,
-	  'autoWidth'   : true,
-	  'bSort'		: false
-	});
+	
+		var t = $('#transTbl').DataTable({
+					'paging'      : false,
+					'lengthChange': true,
+					'searching'   : true,
+					'ordering'    : false,
+					'info'        : true,
+					'autoWidth'   : true,
+					'bSort'		: false
+				});
+
+	
 	
 	
 

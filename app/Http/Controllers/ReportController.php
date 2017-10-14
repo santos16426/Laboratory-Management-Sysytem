@@ -117,7 +117,9 @@ class ReportController extends Controller
     	$var = DB::table('transaction_tbl')
     		->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
             ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
-    		->whereDate('trans_date',$startdate)->get();
+    		->whereDate('trans_date',$startdate)
+            ->orderBy('transaction_tbl.trans_date','desc')
+            ->get();
     	$total = DB::table('transaction_tbl')
             ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
             ->select(DB::raw('SUM(charge) as charge'),DB::raw('SUM(trans_total)as total'))  
@@ -153,7 +155,7 @@ class ReportController extends Controller
         $fifthdate = $req->fifthdate;
         $sixdate = $req->sixdate;
     	$enddate = $req->enddate;
-    	$var = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id WHERE trans_date >= "'.$startdate.'" AND trans_date <= "'.$enddate.'"'));
+    	$var = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id WHERE trans_date >= "'.$startdate.'" AND trans_date <= "'.$enddate.'" Order by t.trans_date DESC'));
         $transtotal = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id LEFT OUTER JOIN patient_tbl p ON p.patient_id = t.trans_patient_id WHERE trans_date >= "'.$startdate.'" AND trans_date <= "'.$enddate.'"'));
         $corporate = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id LEFT OUTER JOIN patient_tbl p ON p.patient_id = t.trans_patient_id WHERE patient_type_id = 2 and trans_date >= "'.$startdate.'" AND trans_date <= "'.$enddate.'"'));
         $individual = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id LEFT OUTER JOIN patient_tbl p ON p.patient_id = t.trans_patient_id WHERE patient_type_id = 1 and trans_date >= "'.$startdate.'" AND trans_date <= "'.$enddate.'"'));
@@ -199,14 +201,7 @@ class ReportController extends Controller
                
     	return response()->json([$var,$firsttotal,$secondtotal,$thirdtotal,$fourthtotal,$fifthtotal,$sixtotal,$seventotal,$totaltransaction,$corporate,$individual]);	
     }
-    function allTransactionReport()
-    {
-    	$var = DB::table('transaction_tbl')
-    		->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
-    		->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
-    		->get();
-		return response()->json($var);
-    }
+
     function monthlyTransactionReport(Request $req)
     {
         $var = DB::table('transaction_tbl')
@@ -214,6 +209,7 @@ class ReportController extends Controller
             ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
             ->whereMonth('trans_date',$req->month)
             ->whereYear('trans_date',$req->year)
+            ->orderBy('transaction_tbl.trans_date','desc')
             ->get();
         $totaltransaction = DB::table('transaction_tbl')
             ->leftjoin('patient_tbl','patient_id','=','trans_patient_id')
@@ -267,14 +263,106 @@ class ReportController extends Controller
             ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
             ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
             ->whereYear('trans_date',$req->year)
+            ->orderBy('transaction_tbl.trans_date','desc')
             ->get();
-        return response()->json($var);
+        $jan = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereYear('trans_date',$req->year)
+            ->whereMonth('trans_date',1)
+            ->get();
+        $feb = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereYear('trans_date',$req->year)
+            ->whereMonth('trans_date',2)
+            ->get();
+        $mar = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereYear('trans_date',$req->year)
+            ->whereMonth('trans_date',3)
+            ->get();
+        $apr = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereYear('trans_date',$req->year)
+            ->whereMonth('trans_date',4)
+            ->get();
+        $may = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereYear('trans_date',$req->year)
+            ->whereMonth('trans_date',5)
+            ->get();
+        $june = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereYear('trans_date',$req->year)
+            ->whereMonth('trans_date',6)
+            ->get();
+        $july = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereYear('trans_date',$req->year)
+            ->whereMonth('trans_date',7)
+            ->get();
+        $aug = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereYear('trans_date',$req->year)
+            ->whereMonth('trans_date',8)
+            ->get();
+        $sept = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereYear('trans_date',$req->year)
+            ->whereMonth('trans_date',9)
+            ->get();
+        $oct = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereYear('trans_date',$req->year)
+            ->whereMonth('trans_date',10)
+            ->get();
+        $nov = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereYear('trans_date',$req->year)
+            ->whereMonth('trans_date',11)
+            ->get();
+        $dec = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereYear('trans_date',$req->year)
+            ->whereMonth('trans_date',12)
+            ->get();
+        $totaltransaction = DB::table('transaction_tbl')
+            ->leftjoin('patient_tbl','patient_id','=','trans_patient_id')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->whereYear('trans_date',$req->year)
+            ->count();
+        $corporate = DB::table('transaction_tbl')
+            ->leftjoin('patient_tbl','patient_id','=','trans_patient_id')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->where('patient_type_id',2)
+            ->whereYear('trans_date',$req->year)
+            ->count();
+        $individual = DB::table('transaction_tbl')
+            ->leftjoin('patient_tbl','patient_id','=','trans_patient_id')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date')
+            ->where('patient_type_id',1)
+            ->whereYear('trans_date',$req->year)
+            ->count();
+        $corporate = ((($totaltransaction-$corporate) / $totaltransaction)*100);
+        $individual= ((($totaltransaction-$individual) / $totaltransaction)*100);
+        
+        
+
+        return response()->json([$var,$jan,$feb,$mar,$apr,$may,$june,$july,$aug,$sept,$oct,$nov,$dec,$corporate,$individual]);
     }
-    function rangeTransactionReport(Request $req)
-    {
-        $startdate = $req->startdate;
-        $enddate = $req->enddate;
-        $var = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id WHERE trans_date >= "'.$startdate.'" AND trans_date <= "'.$enddate.'"'));
-        return response()->json($var);  
-    }
+
 }

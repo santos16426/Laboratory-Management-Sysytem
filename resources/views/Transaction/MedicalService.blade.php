@@ -199,13 +199,6 @@
 																@endforeach              
 															</optgroup>
 														@endforeach
-														<optgroup label="Others">
-															@foreach($service as $servnogrp)
-																@if($servnogrp->service_group_id == null)
-																	<option id="ServiceOPTION{{ $servnogrp->service_id }}" value="{{ $servnogrp->service_id }}">{{ $servnogrp->service_name }}</option>
-																@endif
-															@endforeach
-														</optgroup>
 													</select>
 													<div class="input-group-btn">
 														<a class="btn btn-default addservice btn-sm" id="addservice" style="border-radius: 10%">Add</a>
