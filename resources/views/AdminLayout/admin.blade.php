@@ -293,19 +293,22 @@
 <script type="text/javascript" src="{{ asset('/plugins/js/sparkline-chart.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/easy-pie-chart.js') }}" ></script>
 
-<script type="text/javascript" src="{{ asset('/js/moment.min.js') }}" ></script>
 
 <script type="text/javascript" src="{{ asset('/bootstrapvalidator/dist/js/bootstrapValidator.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/gritter/js/jquery.gritter.js') }}"></script>
 <script src="{{ asset('/plugins/select2/dist/js/select2.full.min.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/bootstrap-switch.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/jquery.tagsinput.js') }}" ></script>
+
 <script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-daterangepicker/date.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/plugins/js/advanced-form-components.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/moment.min.js') }}" ></script>
+
 <script type="text/javascript" src="{{ asset('/plugins/js/ga.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/form-component.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/js/gritter.js') }}" ></script>
@@ -314,7 +317,7 @@
 <script src="{{ asset('/plugins/js/modernizr.custom.js') }}"></script>
 <script src="{{ asset('/plugins/js/toucheffects.js') }}"></script>
 <script src="{{ asset('/plugins/js/val.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/plugins/js/advanced-form-components.js') }}"></script>
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>

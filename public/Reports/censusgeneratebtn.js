@@ -169,7 +169,7 @@ $('#generatebtn').click(function(){
 						        text: 'Weekly Census Reports'
 						    },
 						    subtitle:{
-						    	text: moment(start_date).format('Do of MMMM, YYYY') + 'to ' moment(enddate).format('Do of MMMM, YYYY')
+						    	text: moment(start_date).format('Do of MMMM, YYYY') + 'to ' +moment(enddate).format('Do of MMMM, YYYY')
 						    },
 						    
 						    xAxis: {

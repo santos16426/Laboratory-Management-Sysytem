@@ -12,6 +12,8 @@
 */
 
 Route::get('/','LoginController@showLoginForm');
+Route::get('/ChangePass','LoginController@ChangePass');
+Route::post('/changePass','LoginController@changePassword');
 Route::post('/doLogin','LoginController@doLogin');
 Route::get('/logout','LoginController@logout');
 Route::get('/PageNotFound','AdminController@pagenotfound');
@@ -111,13 +113,6 @@ Route::get('/Transactions/RebateBilling','TransactionController@rebatebilling');
 Route::get('/Transaction/Rebate/ViewTransactions','TransactionController@viewrebatetrans');
 Route::post('/saveEmpRebatePayment','TransactionController@saveRebatePayment');
 Route::get('/maximumAmount','RemoteController@maximumAmount');
-//Layouts
-// Route::get('/medicalReport','ResultController@medicalReport');
-// Route::get('/ecg','ResultController@ecg');
-// Route::get('/uploadResult','ResultController@uploadResult');
-// Route::get('/ultra','ResultController@ultra');
-// Route::get('/xray','ResultController@xray');
-// Route::get('/medservice','ResultController@medservice');
 
 //Results
 Route::get('/Transactions/EncodeResults','ResultController@encoderesults');
@@ -185,6 +180,10 @@ Route::get('/yearlyCensusReport','ReportController@yearlyCensusReport');
 Route::get('/allCensusReports','ReportController@allCensusReports');
 // Rebate Reports
 Route::get('/Reports/RebateReports','ReportController@rebatereports');
+Route::get('/dailyRebateReport','ReportController@dailyRebateReport');
+Route::get('/weeklyRebateReport','ReportController@weeklyRebateReport');
+Route::get('/monthlyRebateReport','ReportController@monthlyRebateReport');
+Route::get('/yearlyRebateReport','ReportController@yearlyRebateReport');
 // Utilities
 Route::get('/Utilities/Reactivation','UtilitiesController@reactivation');
 Route::get('/Utilities/Useraccess','UtilitiesController@Useraccess');

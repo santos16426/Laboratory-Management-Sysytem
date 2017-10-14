@@ -15,7 +15,6 @@ $('#generatebtn').click(function(){
 			$('#piecharts').append('No data avaialbe');
 			$('#barcharts').empty();
 			$('#barcharts').append('No data avaialbe');
-			t.clear().draw();
 			$.ajax
 			({
 				url: '/dailyTransactionReport',
@@ -778,7 +777,7 @@ $('#generatebtn').click(function(){
 						        text: 'Monthly Transction Reports'
 						    },
 						    subtitle:{
-						    	text: moment(smm +'/01/'+sy).format('MMMM') + ' '+moment(smm +'/01/'+sy).format('YYYY')
+						    	text: moment(smm +'/01/'+sy).format('MMMM YYYY')
 						    },
 					    yAxis: {
 					        title: {

@@ -5,8 +5,8 @@ $('#generatebtn').click(function(){
 	    var yearly = $('#yearly_date').val();
     	var total = 0;
     	var charge = 0;
-    	var corpname = [];
-    	var charge = [];
+    	var emp_name = [];
+    	var percentage = [];
 		if(report == 'daily')
 		{
 			if(start_date != '')
@@ -18,7 +18,51 @@ $('#generatebtn').click(function(){
 					data:  { start_date:start_date},
 					dataType : 'json',
 					success:function(response){
-						
+						response[0].forEach(function(data){
+							emp_name.push(data.name);
+							percentage.push(parseFloat(data.percentage));
+						})
+						Highcharts.chart('barcharts', {
+						    chart: {
+						        type: 'column'
+						    },
+						    title: {
+						        text: 'Daily Employee Rebate Transaction Report'
+						    },
+						    subtitle:{
+						    	text: moment(start_date).format('Do of MMMM, YYYY')
+						    },
+						    
+						    xAxis: {
+						        categories:emp_name,
+						        crosshair: true
+						    },
+						    yAxis: {
+						        min: 0,
+						        title: {
+						            text: 'Total Rebate (pesos)'
+						        }
+						    },
+						    tooltip: {
+						        headerFormat: '<span style="font-size:10px">Service Name: <b>{point.key}</b></span><table>',
+						        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+						            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+						        footerFormat: '</table>',
+						        shared: true,
+						        useHTML: true
+						    },
+						    plotOptions: {
+						        column: {
+						            pointPadding: 0.2,
+						            borderWidth: 0
+						        }
+						    },
+						    series: [{
+						        name: 'Rebate',
+						        data: percentage
+
+						    }]
+						});
 						toastr.options = {
 					      "closeButton": true,
 					      "debug": false,
@@ -34,6 +78,9 @@ $('#generatebtn').click(function(){
 					      "hideMethod": "hide"
 					    }
 					    toastr.success("Done!");
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function(){
@@ -146,7 +193,51 @@ $('#generatebtn').click(function(){
 					dataType : 'json',
 
 					success:function(response){
-						
+						response[0].forEach(function(data){
+							emp_name.push(data.name);
+							percentage.push(parseFloat(data.percentage));
+						})
+						Highcharts.chart('barcharts', {
+						    chart: {
+						        type: 'column'
+						    },
+						    title: {
+						        text: 'Weekly Employee Rebate Transaction Report'
+						    },
+						    subtitle:{
+						    	text: moment(start_date).format('Do of MMMM, YYYY') + ' To ' +moment(enddate).format('Do of MMMM, YYYY')
+						    },
+						    
+						    xAxis: {
+						        categories:emp_name,
+						        crosshair: true
+						    },
+						    yAxis: {
+						        min: 0,
+						        title: {
+						            text: 'Total Rebate (pesos)'
+						        }
+						    },
+						    tooltip: {
+						        headerFormat: '<span style="font-size:10px">Service Name: <b>{point.key}</b></span><table>',
+						        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+						            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+						        footerFormat: '</table>',
+						        shared: true,
+						        useHTML: true
+						    },
+						    plotOptions: {
+						        column: {
+						            pointPadding: 0.2,
+						            borderWidth: 0
+						        }
+						    },
+						    series: [{
+						        name: 'Rebate',
+						        data: percentage
+
+						    }]
+						});
 						toastr.options = {
 					      "closeButton": true,
 					      "debug": false,
@@ -162,6 +253,9 @@ $('#generatebtn').click(function(){
 					      "hideMethod": "hide"
 					    }
 					    toastr.success("Done!");
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function(){
 						toastr.options = {
@@ -219,7 +313,51 @@ $('#generatebtn').click(function(){
 					},
 					dataType : 'json',
 					success:function(response){
-						
+						response[0].forEach(function(data){
+							emp_name.push(data.name);
+							percentage.push(parseFloat(data.percentage));
+						})
+						Highcharts.chart('barcharts', {
+						    chart: {
+						        type: 'column'
+						    },
+						    title: {
+						        text: 'Monthly Employee Rebate Transaction Report'
+						    },
+						    subtitle:{
+						    	text: moment(smm+'/01/'+sy).format('MMMM, YYYY')
+						    },
+						    
+						    xAxis: {
+						        categories:emp_name,
+						        crosshair: true
+						    },
+						    yAxis: {
+						        min: 0,
+						        title: {
+						            text: 'Total Rebate (pesos)'
+						        }
+						    },
+						    tooltip: {
+						        headerFormat: '<span style="font-size:10px">Service Name: <b>{point.key}</b></span><table>',
+						        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+						            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+						        footerFormat: '</table>',
+						        shared: true,
+						        useHTML: true
+						    },
+						    plotOptions: {
+						        column: {
+						            pointPadding: 0.2,
+						            borderWidth: 0
+						        }
+						    },
+						    series: [{
+						        name: 'Rebate',
+						        data: percentage
+
+						    }]
+						});
 						toastr.options = {
 					      "closeButton": true,
 					      "debug": false,
@@ -235,6 +373,8 @@ $('#generatebtn').click(function(){
 					      "hideMethod": "hide"
 					    }
 					    toastr.success("Done!");
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function()
 					{
@@ -283,7 +423,7 @@ $('#generatebtn').click(function(){
 				var date = new Date("01/01/"+yearly);
 			    var newdate = new Date(date);
 			    var sy = date.getFullYear();
-			    t.clear().draw();
+			    
 				$.ajax
 				({
 					url: '/yearlyRebateReport',
@@ -294,7 +434,51 @@ $('#generatebtn').click(function(){
 					},
 					dataType : 'json',
 					success:function(response){
-						
+						response[0].forEach(function(data){
+							emp_name.push(data.name);
+							percentage.push(parseFloat(data.percentage));
+						})
+						Highcharts.chart('barcharts', {
+						    chart: {
+						        type: 'column'
+						    },
+						    title: {
+						        text: 'Yearly Employee Rebate Transaction Report'
+						    },
+						    subtitle:{
+						    	text: moment('01/01/'+sy).format('YYYY')
+						    },
+						    
+						    xAxis: {
+						        categories:emp_name,
+						        crosshair: true
+						    },
+						    yAxis: {
+						        min: 0,
+						        title: {
+						            text: 'Total Rebate (pesos)'
+						        }
+						    },
+						    tooltip: {
+						        headerFormat: '<span style="font-size:10px">Service Name: <b>{point.key}</b></span><table>',
+						        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+						            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+						        footerFormat: '</table>',
+						        shared: true,
+						        useHTML: true
+						    },
+						    plotOptions: {
+						        column: {
+						            pointPadding: 0.2,
+						            borderWidth: 0
+						        }
+						    },
+						    series: [{
+						        name: 'Rebate',
+						        data: percentage
+
+						    }]
+						});
 						toastr.options = {
 					      "closeButton": true,
 					      "debug": false,
@@ -310,6 +494,7 @@ $('#generatebtn').click(function(){
 					      "hideMethod": "hide"
 					    }
 					    toastr.success("Done!");
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function()
 					{

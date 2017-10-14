@@ -8,11 +8,47 @@ use Session;
 use DB;
 class LoginController extends Controller
 {
+
 	function logout()
 	{
 		Session::flush();
 		return redirect('/');
 	}
+    function changePassword()
+    {
+        $emp_id = $_POST['emp_id'];
+        $oldpass = $_POST['oldpass'];
+        $newpassword = $_POST['newpassword'];
+        $comparepassword = $_POST['comparepassword'];
+        $checkuser = DB::table('users')->where('emp_id',$emp_id)->where('password',$oldpass)->count();
+        if($checkuser > 0)
+        {
+            if($comparepassword == $newpassword)
+            {
+                DB::table('users')
+                    ->where('emp_id',$emp_id)
+                    ->update([
+                        'password'=>$newpassword
+                    ]);
+                Session::flash('successchange',true);
+                return redirect('/');
+            }
+            else
+            {
+                Session::flash('incorrect',true);
+                return redirect()->back();
+            }
+        }
+        else
+        {
+            Session::flash('incorrect',true);
+            return redirect()->back();
+        }
+    }
+    function ChangePass()
+    {
+        return view('Pages.ChangePassword');
+    }
 	function showLoginForm()
 	{
 		return view('Pages.Login');

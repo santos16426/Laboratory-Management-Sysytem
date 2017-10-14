@@ -250,6 +250,7 @@ $('#generatebtn').click(function(){
 					      "hideMethod": "hide"
 					    }
 					    toastr.success("Done!");
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function(){
 						toastr.options = {
@@ -319,7 +320,7 @@ $('#generatebtn').click(function(){
 						        text: 'Monthly Corporate Transaction Report'
 						    },
 						    subtitle:{
-						    	text: moment(start_date).format('Do MMMM, YYYY') + ' to '+moment(enddate).format('Do MMMM, YYYY') 
+						    	text: moment(smm+'/01/'+sy).format('MMMM, YYYY')
 						    },
 						    xAxis: {
 						        categories:corpname,
@@ -366,6 +367,8 @@ $('#generatebtn').click(function(){
 					      "hideMethod": "hide"
 					    }
 					    toastr.success("Done!");
+
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function()
 					{
@@ -437,7 +440,7 @@ $('#generatebtn').click(function(){
 						        text: 'Yearly Corporate Transaction Report'
 						    },
 						    subtitle: {
-						        text: moment(start_date).format('Do MMMM, YYYY') + ' to '+moment(enddate).format('Do MMMM, YYYY') 
+						        text: moment('01/01/'+sy).format('YYYY')
 						    },
 
 						    xAxis: {
@@ -485,6 +488,7 @@ $('#generatebtn').click(function(){
 					      "hideMethod": "hide"
 					    }
 					    toastr.success("Done!");
+					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function()
 					{

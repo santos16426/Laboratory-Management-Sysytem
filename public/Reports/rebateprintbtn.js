@@ -18,23 +18,30 @@ $('#printbtn').click(function(){
 					data:  { start_date:start_date},
 					dataType : 'json',
 					success:function(response){
-						
-						toastr.options = {
-					      "closeButton": true,
-					      "debug": false,
-					      "positionClass": "toast-top-right",
-					      "onclick": null,
-					      "showDuration": "3000",
-					      "hideDuration": "100",
-					      "timeOut": "3000",
-					      "extendedTimeOut": "0",
-					      "showEasing": "swing",
-					      "hideEasing": "swing",
-					      "showMethod": "show",
-					      "hideMethod": "hide"
-					    }
-					    toastr.success("Done!");
-					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
+						var frame1 = $('<iframe />');
+						frame1[0].name = "frame1";
+						frame1.css({ "position": "absolute", "top": "-1000000px" });
+						$("body").append(frame1);
+						var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+						frameDoc.document.open();
+						frameDoc.document.write('<html><head>');
+						frameDoc.document.write('</head><body>');
+						frameDoc.document.write('<style>@page { margin: 2; } .invoice-box{ max-width:800px; margin:auto; padding:30px; font-size:16px; line-height:24px; font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; color:#555; } .invoice-box table{ width:100%; line-height:inherit; text-align:left; } .invoice-box table td{ padding:5px; vertical-align:top; } .invoice-box table tr.top table td{ padding-bottom:20px; } .invoice-box table tr.top table td.title{ font-size:45px; line-height:45px; color:#333; } .invoice-box table tr.information table td{ padding-bottom:40px; } .invoice-box table tr.heading td{ background:#eee; border-bottom:1px solid #ddd; font-weight:bold; } .invoice-box table tr.details td{ padding-bottom:20px; } .invoice-box table tr.item td{ border-bottom:1px solid #eee; } .invoice-box table tr.item.last td{ border-bottom:none; } .invoice-box table tr.total td:nth-child(2){ border-top:2px solid #eee; font-weight:bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top 						table td{ width:100%; display:block; text-align:center; } .invoice-box table tr.information table td{ width:100%; display:block; text-align:center; } }</style>');
+						frameDoc.document.write('<html><body>');
+						frameDoc.document.write('<div class="invoice-box"> <table><br> <tr> <td> <img src="/banner.jpg" style="width:100%; max-width:400px;"> </td> <td style="text-align: left;padding-top: 20px; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr> </table><br><br> ');
+						frameDoc.document.write('<span><center><strong>Daily Employee Rebate Report</strong></center><center><small>'+moment(start_date).format('Do of MMMM, YYYY')+'</small></center></span> <br><br> ');
+						frameDoc.document.write('<table cellpadding="0" cellspacing="0" border="0" style="text-align: center"> <tr class="heading"> <td width="35%"> Employee Name </td> <td width="50%"> Total </td> </tr> ');
+						response[0].forEach(function(data){
+							frameDoc.document.write('<tr class="item"><td> '+data.name+' </td> <td> '+((data.percentage*1).toFixed(2))+' </td>');
+						})
+						frameDoc.document.write(' </table> </div>');
+						frameDoc.document.write('</div></body></html>');
+						frameDoc.document.close();
+						setTimeout(function () {
+						window.frames["frame1"].focus();
+						window.frames["frame1"].print();
+						frame1.remove();
+						}, 500);
 					},
 					error:function(){
 						toastr.options = {
@@ -147,21 +154,30 @@ $('#printbtn').click(function(){
 
 					success:function(response){
 						
-						toastr.options = {
-					      "closeButton": true,
-					      "debug": false,
-					      "positionClass": "toast-top-right",
-					      "onclick": null,
-					      "showDuration": "3000",
-					      "hideDuration": "100",
-					      "timeOut": "3000",
-					      "extendedTimeOut": "0",
-					      "showEasing": "swing",
-					      "hideEasing": "swing",
-					      "showMethod": "show",
-					      "hideMethod": "hide"
-					    }
-					    toastr.success("Done!");
+						var frame1 = $('<iframe />');
+						frame1[0].name = "frame1";
+						frame1.css({ "position": "absolute", "top": "-1000000px" });
+						$("body").append(frame1);
+						var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+						frameDoc.document.open();
+						frameDoc.document.write('<html><head>');
+						frameDoc.document.write('</head><body>');
+						frameDoc.document.write('<style>@page { margin: 2; } .invoice-box{ max-width:800px; margin:auto; padding:30px; font-size:16px; line-height:24px; font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; color:#555; } .invoice-box table{ width:100%; line-height:inherit; text-align:left; } .invoice-box table td{ padding:5px; vertical-align:top; } .invoice-box table tr.top table td{ padding-bottom:20px; } .invoice-box table tr.top table td.title{ font-size:45px; line-height:45px; color:#333; } .invoice-box table tr.information table td{ padding-bottom:40px; } .invoice-box table tr.heading td{ background:#eee; border-bottom:1px solid #ddd; font-weight:bold; } .invoice-box table tr.details td{ padding-bottom:20px; } .invoice-box table tr.item td{ border-bottom:1px solid #eee; } .invoice-box table tr.item.last td{ border-bottom:none; } .invoice-box table tr.total td:nth-child(2){ border-top:2px solid #eee; font-weight:bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top 						table td{ width:100%; display:block; text-align:center; } .invoice-box table tr.information table td{ width:100%; display:block; text-align:center; } }</style>');
+						frameDoc.document.write('<html><body>');
+						frameDoc.document.write('<div class="invoice-box"> <table><br> <tr> <td> <img src="/banner.jpg" style="width:100%; max-width:400px;"> </td> <td style="text-align: left;padding-top: 20px; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr> </table><br><br> ');
+						frameDoc.document.write('<span><center><strong>Weekly Employee Rebate Report</strong></center><center><small>'+moment(start_date).format('Do of MMMM, YYYY') + ' To ' +moment(enddate).format('Do of MMMM, YYYY')+'</small></center></span> <br><br> ');
+						frameDoc.document.write('<table cellpadding="0" cellspacing="0" border="0" style="text-align: center"> <tr class="heading"> <td width="35%"> Employee Name </td> <td width="50%"> Total </td> </tr> ');
+						response[0].forEach(function(data){
+							frameDoc.document.write('<tr class="item"><td> '+data.name+' </td> <td> '+((data.percentage*1).toFixed(2))+' </td>');
+						})
+						frameDoc.document.write(' </table> </div>');
+						frameDoc.document.write('</div></body></html>');
+						frameDoc.document.close();
+						setTimeout(function () {
+						window.frames["frame1"].focus();
+						window.frames["frame1"].print();
+						frame1.remove();
+						}, 500);
 					},
 					error:function(){
 						toastr.options = {
@@ -220,21 +236,30 @@ $('#printbtn').click(function(){
 					dataType : 'json',
 					success:function(response){
 						
-						toastr.options = {
-					      "closeButton": true,
-					      "debug": false,
-					      "positionClass": "toast-top-right",
-					      "onclick": null,
-					      "showDuration": "3000",
-					      "hideDuration": "100",
-					      "timeOut": "3000",
-					      "extendedTimeOut": "0",
-					      "showEasing": "swing",
-					      "hideEasing": "swing",
-					      "showMethod": "show",
-					      "hideMethod": "hide"
-					    }
-					    toastr.success("Done!");
+						var frame1 = $('<iframe />');
+						frame1[0].name = "frame1";
+						frame1.css({ "position": "absolute", "top": "-1000000px" });
+						$("body").append(frame1);
+						var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+						frameDoc.document.open();
+						frameDoc.document.write('<html><head>');
+						frameDoc.document.write('</head><body>');
+						frameDoc.document.write('<style>@page { margin: 2; } .invoice-box{ max-width:800px; margin:auto; padding:30px; font-size:16px; line-height:24px; font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; color:#555; } .invoice-box table{ width:100%; line-height:inherit; text-align:left; } .invoice-box table td{ padding:5px; vertical-align:top; } .invoice-box table tr.top table td{ padding-bottom:20px; } .invoice-box table tr.top table td.title{ font-size:45px; line-height:45px; color:#333; } .invoice-box table tr.information table td{ padding-bottom:40px; } .invoice-box table tr.heading td{ background:#eee; border-bottom:1px solid #ddd; font-weight:bold; } .invoice-box table tr.details td{ padding-bottom:20px; } .invoice-box table tr.item td{ border-bottom:1px solid #eee; } .invoice-box table tr.item.last td{ border-bottom:none; } .invoice-box table tr.total td:nth-child(2){ border-top:2px solid #eee; font-weight:bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top 						table td{ width:100%; display:block; text-align:center; } .invoice-box table tr.information table td{ width:100%; display:block; text-align:center; } }</style>');
+						frameDoc.document.write('<html><body>');
+						frameDoc.document.write('<div class="invoice-box"> <table><br> <tr> <td> <img src="/banner.jpg" style="width:100%; max-width:400px;"> </td> <td style="text-align: left;padding-top: 20px; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr> </table><br><br> ');
+						frameDoc.document.write('<span><center><strong>Monthly Employee Rebate Report</strong></center><center><small>'+moment(smm+'/01/'+sy).format('MMMM, YYYY')+'</small></center></span> <br><br> ');
+						frameDoc.document.write('<table cellpadding="0" cellspacing="0" border="0" style="text-align: center"> <tr class="heading"> <td width="35%"> Employee Name </td> <td width="50%"> Total </td> </tr> ');
+						response[0].forEach(function(data){
+							frameDoc.document.write('<tr class="item"><td> '+data.name+' </td> <td> '+((data.percentage*1).toFixed(2))+' </td>');
+						})
+						frameDoc.document.write(' </table> </div>');
+						frameDoc.document.write('</div></body></html>');
+						frameDoc.document.close();
+						setTimeout(function () {
+						window.frames["frame1"].focus();
+						window.frames["frame1"].print();
+						frame1.remove();
+						}, 500);
 					},
 					error:function()
 					{
@@ -283,7 +308,6 @@ $('#printbtn').click(function(){
 				var date = new Date("01/01/"+yearly);
 			    var newdate = new Date(date);
 			    var sy = date.getFullYear();
-			    t.clear().draw();
 				$.ajax
 				({
 					url: '/yearlyRebateReport',
@@ -294,22 +318,30 @@ $('#printbtn').click(function(){
 					},
 					dataType : 'json',
 					success:function(response){
-						
-						toastr.options = {
-					      "closeButton": true,
-					      "debug": false,
-					      "positionClass": "toast-top-right",
-					      "onclick": null,
-					      "showDuration": "3000",
-					      "hideDuration": "100",
-					      "timeOut": "3000",
-					      "extendedTimeOut": "0",
-					      "showEasing": "swing",
-					      "hideEasing": "swing",
-					      "showMethod": "show",
-					      "hideMethod": "hide"
-					    }
-					    toastr.success("Done!");
+						var frame1 = $('<iframe />');
+						frame1[0].name = "frame1";
+						frame1.css({ "position": "absolute", "top": "-1000000px" });
+						$("body").append(frame1);
+						var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+						frameDoc.document.open();
+						frameDoc.document.write('<html><head>');
+						frameDoc.document.write('</head><body>');
+						frameDoc.document.write('<style>@page { margin: 2; } .invoice-box{ max-width:800px; margin:auto; padding:30px; font-size:16px; line-height:24px; font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; color:#555; } .invoice-box table{ width:100%; line-height:inherit; text-align:left; } .invoice-box table td{ padding:5px; vertical-align:top; } .invoice-box table tr.top table td{ padding-bottom:20px; } .invoice-box table tr.top table td.title{ font-size:45px; line-height:45px; color:#333; } .invoice-box table tr.information table td{ padding-bottom:40px; } .invoice-box table tr.heading td{ background:#eee; border-bottom:1px solid #ddd; font-weight:bold; } .invoice-box table tr.details td{ padding-bottom:20px; } .invoice-box table tr.item td{ border-bottom:1px solid #eee; } .invoice-box table tr.item.last td{ border-bottom:none; } .invoice-box table tr.total td:nth-child(2){ border-top:2px solid #eee; font-weight:bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top 						table td{ width:100%; display:block; text-align:center; } .invoice-box table tr.information table td{ width:100%; display:block; text-align:center; } }</style>');
+						frameDoc.document.write('<html><body>');
+						frameDoc.document.write('<div class="invoice-box"> <table><br> <tr> <td> <img src="/banner.jpg" style="width:100%; max-width:400px;"> </td> <td style="text-align: left;padding-top: 20px; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr> </table><br><br> ');
+						frameDoc.document.write('<span><center><strong>Yearly Employee Rebate Report</strong></center><center><small>'+sy+'</small></center></span> <br><br> ');
+						frameDoc.document.write('<table cellpadding="0" cellspacing="0" border="0" style="text-align: center"> <tr class="heading"> <td width="35%"> Employee Name </td> <td width="50%"> Total </td> </tr> ');
+						response[0].forEach(function(data){
+							frameDoc.document.write('<tr class="item"><td> '+data.name+' </td> <td> '+((data.percentage*1).toFixed(2))+' </td>');
+						})
+						frameDoc.document.write(' </table> </div>');
+						frameDoc.document.write('</div></body></html>');
+						frameDoc.document.close();
+						setTimeout(function () {
+						window.frames["frame1"].focus();
+						window.frames["frame1"].print();
+						frame1.remove();
+						}, 500);
 					},
 					error:function()
 					{
