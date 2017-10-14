@@ -88,6 +88,29 @@ class ReportController extends Controller
     {
     	return view('Reports.TransactionReport');
     }
+    function weeklyCorporateReport(Request $req)
+    {
+        $startdate = $req->startdate;
+        $enddate = $req->enddate;
+        $secdate = $req->secdate;
+        $thirddate = $req->thirddate;
+        $fourthdate = $req->fourthdate;
+        $fifthdate = $req->fifthdate;
+        $sixdate = $req->sixdate;
+        $var = DB::table('corporate_accounts_tbl')
+                ->leftjoin('transcorp_tbl','transcorp_tbl.corp_id','=','corporate_accounts_tbl.corp_id')
+                ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','transcorp_tbl.trans_id')
+                ->select(DB::raw('COUNT(*) as row_count,SUM(charge) as charge'),'corp_name')
+                ->groupBy('corp_name')
+                ->whereDate('trans_date',$startdate)
+                ->whereDate('trans_date',$secdate)
+                ->whereDate('trans_date',$thirddate)
+                ->whereDate('trans_date',$fourthdate)
+                ->whereDate('trans_date',$fifthdate)
+                ->whereDate('trans_date',$sixdate)
+                ->whereDate('trans_date',$enddate)
+                ->get();
+    }
     function dailyCorporateReport(Request $req)
     {
         $day = $req->start_date;
@@ -96,17 +119,12 @@ class ReportController extends Controller
         $var = DB::table('corporate_accounts_tbl')
                 ->leftjoin('transcorp_tbl','transcorp_tbl.corp_id','=','corporate_accounts_tbl.corp_id')
                 ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','transcorp_tbl.trans_id')
-                ->select(DB::raw('COUNT(*) as row_count'),'corp_name')
+                ->select(DB::raw('COUNT(*) as row_count,SUM(charge) as charge'),'corp_name')
                 ->groupBy('corp_name')
                 ->whereDate('trans_date',$startdate)
                 ->get();
-        $corporate = DB::table('corporate_accounts_tbl')
-                ->leftjoin('transcorp_tbl','transcorp_tbl.corp_id','=','corporate_accounts_tbl.corp_id')
-                ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','transcorp_tbl.trans_id')
-                ->whereDate('trans_date',$startdate)
-                ->count();
-
-        return response()->json([$var,$corporate]);
+        
+        return response()->json([$var,]);
     }
 
     function dailyTransactionReport(Request $req)
