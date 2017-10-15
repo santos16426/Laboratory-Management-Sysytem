@@ -44,7 +44,7 @@
 								<td>
 									@foreach($rebates as $rebate)
 										@if($empreb->emp_id == $rebate->emp_id)
-										<?php  $total += $rebate->percentage; $total += $rebate->charge?>
+										<?php  $total += $rebate->percentage;?>
 										@endif
 									@endforeach
 									@foreach($paymentTransaction as $payments)
@@ -59,7 +59,7 @@
 								<td>
 									@foreach($rebates as $rebate)
 										@if($empreb->emp_id == $rebate->emp_id)
-										<?php  $total += $rebate->percentage;$total += $rebate->charge ?>
+										<?php  $total += $rebate->percentage; ?>
 										@endif
 									@endforeach
 									@foreach($paymentTransaction as $payments)
@@ -111,7 +111,7 @@
         		<h4 class="modal-title">Rebate Payment</h4>
       		</div>
       		<div class="modal-body">
-         		<form class="form-horizontal rebatebill" method="post" action="/saveEmpRebatePayment" id="paymentForm" enctype="multipart/form-data">
+         		<form class="form-horizontal" method="post" action="/saveEmpRebatePayment" id="paymentForm" enctype="multipart/form-data">
           			<div class="box-body">
             			<input type="hidden" name="emp_id" id="PAYemp_id" value="">
             			<input type="hidden" name="checkAmount" id="checkAmount" value="">
@@ -121,7 +121,7 @@
 								<div class="input-group-addon">
 									Amount <sup>*</sup>
 								</div>
-								<input  name="amount" id="amount" type="text" class="form-control input-md" required>
+								<input  name="amount" id="amount" type="number" class="form-control input-md" required step="any" pattern="^\d+(?:\.\d{1,2})?$">
 								</div>
 							</div>  
 						</div> 
@@ -169,9 +169,14 @@ $('#corpTbl').DataTable({
 'info'        : true,
 'autoWidth'   : true
 });
+
 $('.payEmpReb').click(function(){
 	$('#PAYemp_id').val($(this).data('id'));
 	$('#checkAmount').val($(this).data('amount'));
+
+	$('#amount').prop('min',1);
+	$('#amount').prop('max',$(this).data('amount'));
+
 	$('#paymentModal').modal('show');
 });
 $('.viewTrans').click(function(){

@@ -41,7 +41,7 @@
 				Corporate Transactions
 				<span class="tools pull-right">
                     <a class="fa fa-chevron-down" href="javascript:;"></a>
-                    <a class="fa fa-times" href="javascript:;"></a>
+                    
                 </span>
 			</header>
 			<div class="panel-body">
@@ -62,7 +62,7 @@
 					    <tr>
 						      
 						      <td>{{ date('F jS, Y',strtotime($transact->date)) }}</td>
-						      <td>{{ $transact->charge }}</td>
+						      <td>{{ ($transact->charge - ($transact->charge * ($transact->discount/100))) }}</td>
 						      <td>
 						      	{{ $transact->patient_fname }}  {{ $transact->patient_mname }} {{ $transact->patient_lname }}
 						      </td>
@@ -83,7 +83,7 @@
 				Corporate Payments
 				<span class="tools pull-right">
                     <a class="fa fa-chevron-down" href="javascript:;"></a>
-                    <a class="fa fa-times" href="javascript:;"></a>
+                    
                 </span>
 			</header>
 			<div class="panel-body">
@@ -194,8 +194,11 @@ $('.printTrans').click(function(){
 	frameDoc.document.write('<tr> <td> <img src="/banner.jpg" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
 	frameDoc.document.write('</table>');
 	frameDoc.document.write('<tr class="information"> <td colspan="2"> <table> <tr><td></td></tr>');
-	frameDoc.document.write('<tr> <td> <strong>Patient Name:</strong>'+patient_name+'<br> <strong> Claiming Code:</strong> '+claimcode+'<br> <strong>Website:</strong>www.ghdc-sj.com </td> <td> </td> <td style="padding-left: 33px"> <strong>Date:</strong> '+date+' <br> <strong>Receptionist:</strong>'+emp_name+'<br> <strong>Reffering Employee:</strong>'+ref_name+' </td></tr>');
+	response[6].forEach(function(data){
 
+
+	frameDoc.document.write('<tr> <td> <strong>Patient Name:</strong>'+patient_name+'<br> <strong> Company Name:</strong> '+data.corp_name+'<br>  <strong>Date:</strong> '+moment(date).format('MMMM Do YYYY')+'  </td> <td> </td> <td style="padding-left: 33px"> <strong>Receptionist:</strong>'+emp_name+'<br> <strong>Reffering Employee:</strong>'+ref_name+' </td></tr>');
+	})
 	frameDoc.document.write('</table>');
 
 	frameDoc.document.write('<tr class="heading"> <td> Service </td> <td> Fee </td></tr>');
@@ -211,15 +214,28 @@ $('.printTrans').click(function(){
 	}
 	if(charge != 0)
 	{
-	  frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) (c/o '+data.corp_name+')</td><td>(c/o '+data.corp_name+') Php '+data.price+'</td></tr>'); 
+	  frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package)</td><td>(c/o '+data.corp_name+') Php '+data.price+'</td></tr>'); 
 	}
 	response[7].forEach(function(data){
 	  frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
 	})
-
 	})
 	response[6].forEach(function(data){
-	frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+data.price+'</td></tr>');	
+	var discount = 0; 
+	response[0].forEach(function(data){
+		discount = data.discount;
+	})
+	if(discount > 0)	
+	{
+		frameDoc.document.write('<tr class="item" > <td></td> <td>Sub Total: '+data.price+'</td></tr>');	
+		frameDoc.document.write('<tr> <td></td> <td> Discount:(PWD/Senior Citizen) 32% </td></tr>');
+		frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+(data.price - (data.price *(32/100)))+'</td></tr>');	
+	}
+	else
+	{
+		frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+data.price+'</td></tr>');	
+	}
+	
 	})
 	
 	

@@ -61,7 +61,7 @@
 					  <thead>
 					    <tr>
 					    	<th>Transaction Date</th>
-					    	<th>Transaction Total</th>
+					    	<th>Accumulated Rebate</th>
 					    	<th>Patient</th>
 					    	<th>Action</th>
 					    </tr>
@@ -211,6 +211,7 @@ $('.printTrans').click(function(){
   })
 
   })
+
   response[8].forEach(function(data){
   price = data.pack_price;
   price = parseFloat(price).toFixed(2);
@@ -219,9 +220,27 @@ $('.printTrans').click(function(){
     frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
   })
   })
-  frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
-  frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
-  frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+  response[6].forEach(function(data){
+    var discount = 0; 
+    response[0].forEach(function(data){
+      discount = data.discount;
+    })  
+    if(discount > 0)  
+    {
+      frameDoc.document.write('<tr class="item" > <td></td> <td>Sub Total: '+data.price+'</td></tr>');  
+      frameDoc.document.write('<tr> <td></td> <td> Discount:(PWD/Senior Citizen) 32% </td></tr>');
+      frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+(data.price - (data.price *(32/100)))+'</td></tr>');
+      frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
+      frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+    }
+    else
+    {
+      frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+data.price+'</td></tr>');  
+      frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
+      frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+    }
+  
+  })
   frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
   frameDoc.document.write('</div></body></html>');
   frameDoc.document.close();
@@ -236,6 +255,7 @@ $('.printTrans').click(function(){
 $('.select2').select2();
 
 $('#corpTrans').DataTable({
+  'order'       : [],
   'paging'      : true,
   'lengthChange': true,
   'searching'   : true,
@@ -244,6 +264,7 @@ $('#corpTrans').DataTable({
   'autoWidth'   : true
 });
 $('#corpPayment').DataTable({
+  'order'       : [],
   'paging'      : true,
   'lengthChange': true,
   'searching'   : true,

@@ -70,10 +70,7 @@ class TransactionController extends Controller
             ->leftjoin('medtech_rank','medtech_rank.rank_id','=','employee_tbl.emp_medtech_rank_id')
             ->where('emp_id',$emp_id)
             ->get();
-        $transactions = DB::table('trans_emprebate_tbl')
-            ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','trans_emprebate_tbl.trans_id')
-            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
-            ->where('emp_id',$emp_id)->get();
+        $transactions = DB::select(DB::raw('SELECT empr.trans_id,trans_date as date,empr.emp_id,(((IFNULL(charge,0)+t.trans_total) * (r.percentage/100))) as trans_total,charge,patient_fname,patient_mname,patient_lname FROM trans_emprebate_tbl empr LEFT JOIN rebate_tbl r on empr.rebate_id = r.rebate_id LEFT JOIN employee_tbl e on empr.emp_id = e.emp_id LEFT JOIN transaction_tbl t ON t.trans_id = empr.trans_id LEFT JOIN transcorp_tbl tc ON tc.trans_id = t.trans_id LEFT OUTER JOIN patient_tbl p on p.patient_id = t.trans_patient_id WHERE empr.emp_id = '.$emp_id .' ORDER BY trans_date desc'));
         $payments = DB::table('transrebate_payment_tbl')->where('transRebPay_emp_id',$emp_id)->get();
         return view ('Transaction.ViewEmployeeRebateTrans',['transactions'=>$transactions,'empdetails'=>$empdetails,'payments'=>$payments]);
     }
@@ -87,7 +84,7 @@ class TransactionController extends Controller
             ->where('employee_tbl.EmpStatus',1)
             ->where('emp_rebate_tbl.EmpRebStatus',1)->get();
         $getRebateTransaction = DB::table('trans_emprebate_tbl')->get();
-        $rebates = DB::select(DB::raw('SELECT empr.emp_id,(t.trans_total * (r.percentage/100)) as percentage,charge FROM trans_emprebate_tbl empr LEFT JOIN rebate_tbl r on empr.rebate_id = r.rebate_id LEFT JOIN employee_tbl e on empr.emp_id = e.emp_id LEFT JOIN transaction_tbl t ON t.trans_id = empr.trans_id LEFT JOIN transcorp_tbl tc ON tc.trans_id = t.trans_id'));
+        $rebates = DB::select(DB::raw('SELECT empr.emp_id,(((IFNULL(charge,0)+t.trans_total) * (r.percentage/100))) as percentage,charge FROM trans_emprebate_tbl empr LEFT JOIN rebate_tbl r on empr.rebate_id = r.rebate_id LEFT JOIN employee_tbl e on empr.emp_id = e.emp_id LEFT JOIN transaction_tbl t ON t.trans_id = empr.trans_id LEFT JOIN transcorp_tbl tc ON tc.trans_id = t.trans_id'));
         
         $total = 0;
         $payments = 0;
@@ -200,7 +197,9 @@ class TransactionController extends Controller
         $corporates = DB::table('corporate_accounts_tbl')
                         ->distinct()
                         ->get();
-        $corppack_ids = DB::table('transcorp_tbl')->whereNotIn('charge',[0])->get();
+        $corppack_ids = DB::table('transcorp_tbl')
+                            ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','transcorp_tbl.trans_id')
+                            ->whereNotIn('charge',[0])->get();
         $corppayments = DB::table('transcorp_payment_tbl')->get();
 
         return view('Transaction.CorporateBilling',['corporates'=>$corporates,'packprice'=>$corppack_ids,'balance'=>$balance,'payments'=>$corppayments,'corppay'=>$payments,'bill'=>$bill]);   

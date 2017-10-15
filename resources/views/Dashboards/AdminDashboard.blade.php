@@ -333,7 +333,7 @@ $( document ).ready(function() {
           frameDoc.document.write('<tr> <td> <img src="{{ asset("/banner.jpg") }}" style="width:100%; max-width: 350px; padding 0"> </td> <td style="text-align: left; padding-top: 25px; padding: 0; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr>');
           frameDoc.document.write('</table>');
           frameDoc.document.write('<tr class="information"> <td colspan="2"> <table> <tr><td></td></tr>');
-          frameDoc.document.write('<tr> <td> <strong>Patient Name:</strong>'+patient_name+'<br> <strong> Claiming Code:</strong> '+claimcode+'<br> <strong>Website:</strong>www.ghdc-sj.com </td> <td> </td> <td style="padding-left: 33px"> <strong>Date:</strong> '+date+' <br> <strong>Receptionist:</strong>'+emp_name+'<br> <strong>Reffering Employee:</strong>'+ref_name+' </td></tr>');
+          frameDoc.document.write('<tr> <td> <strong>Patient Name:</strong>'+patient_name+'<br> <strong> Claiming Code:</strong> '+claimcode+'<br> <strong>Website:</strong>www.ghdc-sj.com </td> <td> </td> <td style="padding-left: 33px"> <strong>Date:</strong> '+moment(date).format('MMMM Do YYYY')+' <br> <strong>Receptionist:</strong>'+emp_name+'<br> <strong>Reffering Employee:</strong>'+ref_name+' </td></tr>');
           
           frameDoc.document.write('</table>');
           
@@ -363,26 +363,44 @@ $( document ).ready(function() {
 
           })
           response[8].forEach(function(data){
-            price = data.pack_price;
-            price = parseFloat(price).toFixed(2);
-            frameDoc.document.write('<tr><td>'+data.pack_name+'</td><td>Php '+price+'</td></tr>');
-            response[9].forEach(function(data){
-              frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
-            })
+          price = data.pack_price;
+          price = parseFloat(price).toFixed(2);
+          frameDoc.document.write('<tr><td>'+data.pack_name+'</td><td>Php '+price+'</td></tr>');
+          response[9].forEach(function(data){
+            frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
           })
-          frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
-          frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
-          frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+          })
+          response[6].forEach(function(data){
+            var discount = 0; 
+            response[0].forEach(function(data){
+              discount = data.discount;
+            })  
+            if(discount > 0)  
+            {
+              frameDoc.document.write('<tr class="item" > <td></td> <td>Sub Total: '+data.price+'</td></tr>');  
+              frameDoc.document.write('<tr> <td></td> <td> Discount:(PWD/Senior Citizen) 32% </td></tr>');
+              frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+(data.price - (data.price *(32/100)))+'</td></tr>');
+              frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
+              frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+            }
+            else
+            {
+              frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+data.price+'</td></tr>');  
+              frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
+              frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+            }
+          
+          })
           frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
           frameDoc.document.write('</div></body></html>');
           frameDoc.document.close();
           setTimeout(function () {
-            window.frames["frame1"].focus();
-            window.frames["frame1"].print();
-            frame1.remove();
+          window.frames["frame1"].focus();
+          window.frames["frame1"].print();
+          frame1.remove();
           }, 500);
-        }
-     });
+          }
+          });
 });
 </script>
 @endif

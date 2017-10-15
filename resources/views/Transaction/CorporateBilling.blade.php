@@ -53,7 +53,7 @@
 					      <td>
 					      	@foreach($packprice as $getBill)
 					      		@if($getBill->corp_id == $corporates->corp_id)
-					      		<?php $balance += $getBill->charge ?>
+					      		<?php $balance += ($getBill->charge - ($getBill->charge * ($getBill->discount/100))) ?>
 					      		@endif
 					      	@endforeach	
 					      	@foreach($payments as $getPayments)
