@@ -1361,6 +1361,7 @@ class ResultController extends Controller
                         ->select('corppack_id')
                         ->where('result_id',$result_id)
                         ->where('service_id',null)
+                        ->where('status','PENDING')
                         ->get();
         $physicalexam = 0;
         if(count($corppack_id)>0)
@@ -1519,7 +1520,7 @@ class ResultController extends Controller
             $result_type = "Medical Request";
             if(isset($_POST['corppack_id']))
             {
-                DB::table('trans_result_service_tbl')->where('result_id',$result_id)->where('corppack_id',$_POST['corppack_id'])
+                DB::table('trans_result_service_tbl')->where('result_id',$result_id)->where('service_id',null)
                     ->update([
                         'status'=>'DONE'
                     ]);
@@ -1620,7 +1621,7 @@ class ResultController extends Controller
                         $emp_id = 0;
                         if(Session::has('emp_id'))
                         {
-                            $emp_id = Sess::get('emp_id');
+                            $emp_id = Session::get('emp_id');
                         }
                          DB::table('trans_resultfiles_tbl')->insert([
                             'result_type'=>$result_type,

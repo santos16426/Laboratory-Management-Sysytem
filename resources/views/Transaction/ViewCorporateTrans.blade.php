@@ -38,7 +38,7 @@
 	<div class="col-lg-8">
 		<section class="panel">
 			<header class="panel-heading">
-				Corporate Transactions
+				Corporate Patient Transactions
 				<span class="tools pull-right">
                     <a class="fa fa-chevron-down" href="javascript:;"></a>
                     
@@ -80,7 +80,7 @@
 	<div class="col-lg-8 col-lg-offset-4">
 		<section class="panel">
 			<header class="panel-heading">
-				Corporate Payments
+				Corporate Recieved Payments
 				<span class="tools pull-right">
                     <a class="fa fa-chevron-down" href="javascript:;"></a>
                     

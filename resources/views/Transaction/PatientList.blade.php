@@ -507,6 +507,8 @@
 
 @section('additional')
 <script type="text/javascript">
+$('#birthday').datepicker({ maxDate: new Date});
+$('#upbirthday').datepicker({ maxDate: new Date});
 $('.delpatientbtn').click(function(){
 	$('#pid').val($(this).data('id'));
 	$('#deleteModal').modal('show');

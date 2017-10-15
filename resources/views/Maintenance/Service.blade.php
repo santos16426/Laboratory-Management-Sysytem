@@ -124,6 +124,9 @@
                 </div>
                   <select class="form-control" id="typesel" name="srvctyp_id" disabled=""> <!-- dito magaad ng service type everytime na mag onchange ung sa group -->
                     <option value = "0">Service Type(Optional)</option>
+                    @foreach($typedropdown as $td)
+                    <option value="{{ $td->service_type_id }}">{{ $td->service_type_name }}</option>
+                    @endforeach
                   </select>
             </div>
           </div>  
@@ -228,6 +231,7 @@
                 </div>
                   <select class="form-control"  name="srvctyp_id" id="servt" style="width: 100%"> <!-- dito magaad ng service type everytime na mag onchange ung sa group -->
                     <option value = "0">Service Type(Optional)</option>
+
                   </select>
             </div>
           </div>  
@@ -543,7 +547,7 @@ $('.editsrvc').on('click',function(){
             $('#srvcname').val(data.service_name);
             $('#srvcprice').val(data.service_price);
             $('#srvcgrpid').val(data.service_group_id);
-            $('#typesel').val(data.service_type_id);
+            $('#typesel').val(data.service_type_id).trigger('change');
             if(data.medical_request == "Yes")
             {
               $('#med_req').attr('checked',true);
@@ -593,7 +597,7 @@ $('.editsrvc').on('click',function(){
             $('#srvcname').val(data.service_name);
             $('#srvcprice').val(data.service_price);
             $('#srvcgrpid').val(data.service_group_id);
-            $('#typesel').val(data.service_type_id);
+            $('#typesel').val(data.service_type_id).trigger('change');
 
           })      
         }
