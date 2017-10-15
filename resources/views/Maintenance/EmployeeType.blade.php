@@ -213,7 +213,7 @@
 				<h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Update employee type</h4>
 			</div>
 				<div class="modal-body">
-					<form class="form-horizontal updateemptype" id="EmployeeTypeeditformform" method="POST" action="/update_empType">
+					<form class="form-horizontal updateemptype" id="EmployeeTypeeditform" method="POST" action="/update_empType">
 						<div class="box-body">
 							<div class="form-group"  >
 							<div class="col-md-10 col-md-offset-1">

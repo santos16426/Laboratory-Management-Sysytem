@@ -460,7 +460,7 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               },    
-              password: {
+                    password: {
                 validators: {
                   stringLength: {
                     min: 6,
@@ -469,6 +469,10 @@ $('.employeeTypeDropDown').on('change',function(){
                   },
                   notEmpty: {
                     message: 'This field is required.'
+                  },
+                  identical: {
+                            field: 'confirmpass',
+                            message: 'Password and Confirm Password does not match.'
                   },
                 }
               },      
@@ -480,7 +484,7 @@ $('.employeeTypeDropDown').on('change',function(){
                         message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },   
+            }, 
               license: {
                 validators: {
                   regexp: {
@@ -577,7 +581,7 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               },    
-              password: {
+                    password: {
                 validators: {
                   stringLength: {
                     min: 6,
@@ -586,6 +590,10 @@ $('.employeeTypeDropDown').on('change',function(){
                   },
                   notEmpty: {
                     message: 'This field is required.'
+                  },
+                  identical: {
+                            field: 'confirmpass',
+                            message: 'Password and Confirm Password does not match.'
                   },
                 }
               },      
@@ -597,7 +605,7 @@ $('.employeeTypeDropDown').on('change',function(){
                         message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },   
+            }, 
               license: {
                 validators: {
                   regexp: {
@@ -779,7 +787,7 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               },    
-              password: {
+                    password: {
                 validators: {
                   stringLength: {
                     min: 6,
@@ -788,6 +796,10 @@ $('.employeeTypeDropDown').on('change',function(){
                   },
                   notEmpty: {
                     message: 'This field is required.'
+                  },
+                  identical: {
+                            field: 'confirmpass',
+                            message: 'Password and Confirm Password does not match.'
                   },
                 }
               },      
@@ -799,7 +811,7 @@ $('.employeeTypeDropDown').on('change',function(){
                         message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },   
+            }, 
               license: {
                 validators: {
                   regexp: {
@@ -1050,7 +1062,7 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               },    
-              password: {
+                    password: {
                 validators: {
                   stringLength: {
                     min: 6,
@@ -1059,6 +1071,10 @@ $('.employeeTypeDropDown').on('change',function(){
                   },
                   notEmpty: {
                     message: 'This field is required.'
+                  },
+                  identical: {
+                            field: 'confirmpass',
+                            message: 'Password and Confirm Password does not match.'
                   },
                 }
               },      
@@ -1070,7 +1086,7 @@ $('.employeeTypeDropDown').on('change',function(){
                         message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },   
+            }, 
               license: {
                 validators: {
                   regexp: {
@@ -1183,7 +1199,7 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               },    
-              password: {
+                    password: {
                 validators: {
                   stringLength: {
                     min: 6,
@@ -1192,6 +1208,10 @@ $('.employeeTypeDropDown').on('change',function(){
                   },
                   notEmpty: {
                     message: 'This field is required.'
+                  },
+                  identical: {
+                            field: 'confirmpass',
+                            message: 'Password and Confirm Password does not match.'
                   },
                 }
               },      
@@ -1203,7 +1223,7 @@ $('.employeeTypeDropDown').on('change',function(){
                         message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },   
+            }, 
               license: {
                 validators: {
                   regexp: {
@@ -1659,7 +1679,7 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               },    
-              password: {
+                    password: {
                 validators: {
                   stringLength: {
                     min: 6,
@@ -1668,6 +1688,10 @@ $('.employeeTypeDropDown').on('change',function(){
                   },
                   notEmpty: {
                     message: 'This field is required.'
+                  },
+                  identical: {
+                            field: 'confirmpass',
+                            message: 'Password and Confirm Password does not match.'
                   },
                 }
               },      
@@ -1679,7 +1703,7 @@ $('.employeeTypeDropDown').on('change',function(){
                         message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },   
+            }, 
               license: {
                 validators: {
                   regexp: {
@@ -1846,35 +1870,67 @@ $('.employeeTypeDropDown').on('change',function(){
                     message: 'This field is required.'
                   }
                 }
-              }, 
-              address: {
+              },
+              contact: {
                 validators: {
                   regexp: {
-                    regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
-                    message: 'Invalid Input.'
-                  },
-                  notEmpty: {
-                    message: 'This field is required.'
-                  }
-                }
-              }, 
-              license: {
-                validators: {
-                  regexp: {
-                    regexp: /^[A-Z-0-9]{6,8}$/,
-                    message: 'Invalid License Number Format.'
+                    regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
+                    message: 'Invalid Format.'
                   },
                   remote: {
                         type: 'GET',
-                        url: '/checkLicense',
-                        data:{ license:$('#license').val()},
-                        message: 'License Number already exist.',
+                        url: '/checkEmpcontact',
+                        data:{ contact:$('#contact').val()},
+                        message: 'Contact Number already exist.',
                     },
                   notEmpty: {
                     message: 'This field is required.'
                   }
                 }
-              },                                          
+              },  
+            username: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Minimum of 6 characters.'
+                  },
+                  remote: {
+                        type: 'GET',
+                        url: '/checkUsername',
+                        data:{ username:$('#username').val()},
+                        message: 'Username already exist.',
+                    },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  }
+                }
+              },    
+                    password: {
+                validators: {
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message:'Password must be atleast 6 charaters.'
+                  },
+                  notEmpty: {
+                    message: 'This field is required.'
+                  },
+                  identical: {
+                            field: 'confirmpass',
+                            message: 'Password and Confirm Password does not match.'
+                  },
+                }
+              },      
+               confirmpass: {
+                validators: {
+                    notEmpty: {},
+                    identical: {
+                        field: 'password',
+                        message: 'Password and Confirm Password does not match.'
+                    },
+                }
+            },                                           
             }
           });
             }
@@ -2924,7 +2980,7 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               },    
-              password: {
+                    password: {
                 validators: {
                   stringLength: {
                     min: 6,
@@ -2933,6 +2989,10 @@ $('.empupdateModalbtn').click(function(){
                   },
                   notEmpty: {
                     message: 'This field is required.'
+                  },
+                  identical: {
+                            field: 'confirmpass',
+                            message: 'Password and Confirm Password does not match.'
                   },
                 }
               },      
@@ -2944,7 +3004,7 @@ $('.empupdateModalbtn').click(function(){
                         message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },   
+            }, 
               license: {
                 validators: {
                   regexp: {
@@ -3126,7 +3186,7 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               },    
-              password: {
+                    password: {
                 validators: {
                   stringLength: {
                     min: 6,
@@ -3135,6 +3195,10 @@ $('.empupdateModalbtn').click(function(){
                   },
                   notEmpty: {
                     message: 'This field is required.'
+                  },
+                  identical: {
+                            field: 'confirmpass',
+                            message: 'Password and Confirm Password does not match.'
                   },
                 }
               },      
@@ -3146,7 +3210,7 @@ $('.empupdateModalbtn').click(function(){
                         message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },   
+            }, 
               license: {
                 validators: {
                   regexp: {
@@ -3397,7 +3461,7 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               },    
-              password: {
+                    password: {
                 validators: {
                   stringLength: {
                     min: 6,
@@ -3406,6 +3470,10 @@ $('.empupdateModalbtn').click(function(){
                   },
                   notEmpty: {
                     message: 'This field is required.'
+                  },
+                  identical: {
+                            field: 'confirmpass',
+                            message: 'Password and Confirm Password does not match.'
                   },
                 }
               },      
@@ -3417,7 +3485,7 @@ $('.empupdateModalbtn').click(function(){
                         message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },   
+            }, 
               license: {
                 validators: {
                   regexp: {
@@ -3530,7 +3598,7 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               },    
-              password: {
+                    password: {
                 validators: {
                   stringLength: {
                     min: 6,
@@ -3539,6 +3607,10 @@ $('.empupdateModalbtn').click(function(){
                   },
                   notEmpty: {
                     message: 'This field is required.'
+                  },
+                  identical: {
+                            field: 'confirmpass',
+                            message: 'Password and Confirm Password does not match.'
                   },
                 }
               },      
@@ -3550,7 +3622,7 @@ $('.empupdateModalbtn').click(function(){
                         message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },   
+            }, 
               license: {
                 validators: {
                   regexp: {
@@ -4006,7 +4078,7 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               },    
-              password: {
+                    password: {
                 validators: {
                   stringLength: {
                     min: 6,
@@ -4015,6 +4087,10 @@ $('.empupdateModalbtn').click(function(){
                   },
                   notEmpty: {
                     message: 'This field is required.'
+                  },
+                  identical: {
+                            field: 'confirmpass',
+                            message: 'Password and Confirm Password does not match.'
                   },
                 }
               },      
@@ -4026,7 +4102,7 @@ $('.empupdateModalbtn').click(function(){
                         message: 'Password and Confirm Password does not match.'
                     },
                 }
-            },   
+            }, 
               license: {
                 validators: {
                   regexp: {
