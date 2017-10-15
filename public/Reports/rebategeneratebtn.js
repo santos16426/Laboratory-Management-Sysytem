@@ -79,9 +79,6 @@ $('#generatebtn').click(function(){
 					    }
 					    toastr.success("Done!");
 					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
-					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
-					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
-					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function(){
 						toastr.options = {
@@ -254,8 +251,6 @@ $('#generatebtn').click(function(){
 					    }
 					    toastr.success("Done!");
 					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
-					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
-					    document.getElementById('printbtn').className = 'btn btn-success pull-right';
 					},
 					error:function(){
 						toastr.options = {
@@ -272,7 +267,7 @@ $('#generatebtn').click(function(){
 					      "showMethod": "show",
 					      "hideMethod": "hide"
 					    }
-					    toastr.Error("Sorry! No data available");
+					    toastr.error("Sorry! No data available");
 					}
 				});
 			}

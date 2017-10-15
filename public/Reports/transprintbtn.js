@@ -26,10 +26,10 @@ $('#printbtn').click(function(){
 						frameDoc.document.write('<html><body>');
 						frameDoc.document.write('<div class="invoice-box"> <table><br> <tr> <td> <img src="/banner.jpg" style="width:100%; max-width:400px;"> </td> <td style="text-align: left;padding-top: 20px; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr> </table><br><br> ');
 						frameDoc.document.write('<span><center><strong>Daily Transaction Report</strong></center><center><small>'+moment(start_date).format('Do of MMMM, YYYY')+'</small></center></span> <br><br> ');
-						frameDoc.document.write('<table cellpadding="0" cellspacing="0" border="0" style="text-align: center"> <tr class="heading"> <td width="25%"> Transaction ID </td> <td width="25%"> Patient Name </td> <td width="25%"> Transaction Date </td> </td> <td width="25%"> Total </td> </tr> ');
+						frameDoc.document.write('<table cellpadding="0" cellspacing="0" border="0" style="text-align: center"> <tr class="heading"> <td width="25%"> Patient Name </td> <td width="25%"> Transaction Date </td> </td> <td width="25%"> Total </td> </tr> ');
 
 						response[1].forEach(function(data){
-							frameDoc.document.write('<tr class="item"> <td> '+data.trans_id+' </td> <td> '+data.name +' </td> <td> '+moment(data.trans_date).format('Do of MMMM YYYY')+' </td> <td> '+ (((data.trans_total*1) + (data.charge*1)).toFixed(2))+' </td> </tr>');
+							frameDoc.document.write('<tr class="item">  <td> '+data.name +' </td> <td> '+moment(data.trans_date).format('Do of MMMM YYYY')+' </td> <td> '+ (((data.trans_total*1) + (data.charge*1)).toFixed(2))+' </td> </tr>');
 						})
 						frameDoc.document.write(' </table> </div>');
 						frameDoc.document.write('</div></body></html>');
@@ -118,10 +118,10 @@ $('#printbtn').click(function(){
 						frameDoc.document.write('<html><body>');
 						frameDoc.document.write('<div class="invoice-box"> <table><br> <tr> <td> <img src="/banner.jpg" style="width:100%; max-width:400px;"> </td> <td style="text-align: left;padding-top: 20px; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr> </table><br><br> ');
 						frameDoc.document.write('<span><center><strong>Weekly Transaction Report</strong></center><center><small>'+moment(start_date).format('Do of MMMM, YYYY')+ ' to ' +moment(enddate).format('Do of MMMM, YYYY')+'</small></center></span> <br><br> ');
-						frameDoc.document.write('<table cellpadding="0" cellspacing="0" border="0" style="text-align: center"> <tr class="heading"> <td width="25%"> Transaction ID </td> <td width="25%"> Patient Name </td> <td width="25%"> Transaction Date </td> </td> <td width="25%"> Total </td> </tr> ');
+						frameDoc.document.write('<table cellpadding="0" cellspacing="0" border="0" style="text-align: center"> <tr class="heading"> <td width="25%"> Patient Name </td> <td width="25%"> Transaction Date </td> </td> <td width="25%"> Total </td> </tr> ');
 
 						response[0].forEach(function(data){
-							frameDoc.document.write('<tr class="item"> <td> '+data.trans_id+' </td> <td> '+data.name +' </td> <td> '+moment(data.trans_date).format('Do of MMMM YYYY')+' </td> <td> '+ (((data.trans_total*1) + (data.charge*1)).toFixed(2))+' </td> </tr>');
+							frameDoc.document.write('<tr class="item">  <td> '+data.name +' </td> <td> '+moment(data.trans_date).format('Do of MMMM YYYY')+' </td> <td> '+ (((data.trans_total*1) + (data.charge*1)).toFixed(2))+' </td> </tr>');
 						})
 						frameDoc.document.write(' </table> </div>');
 						frameDoc.document.write('</div></body></html>');
@@ -202,10 +202,10 @@ $('#printbtn').click(function(){
 						frameDoc.document.write('<html><body>');
 						frameDoc.document.write('<div class="invoice-box"> <table><br> <tr> <td> <img src="/banner.jpg" style="width:100%; max-width:400px;"> </td> <td style="text-align: left;padding-top: 20px; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr> </table><br><br> ');
 						frameDoc.document.write('<span><center><strong>Monthly Transaction Report</strong></center><center><small>'+moment(smm +'/01/'+sy).format('MMMM YYYY')+ ' to ' +moment(enddate).format('Do of MMMM, YYYY')+'</small></center></span> <br><br> ');
-						frameDoc.document.write('<table cellpadding="0" cellspacing="0" border="0" style="text-align: center"> <tr class="heading"> <td width="25%"> Transaction ID </td> <td width="25%"> Patient Name </td> <td width="25%"> Transaction Date </td> </td> <td width="25%"> Total </td> </tr> ');
+						frameDoc.document.write('<table cellpadding="0" cellspacing="0" border="0" style="text-align: center"> <tr class="heading"> <td width="25%"> Patient Name </td> <td width="25%"> Transaction Date </td> </td> <td width="25%"> Total </td> </tr> ');
 
 						response[0].forEach(function(data){
-							frameDoc.document.write('<tr class="item"> <td> '+data.trans_id+' </td> <td> '+data.name +' </td> <td> '+moment(data.trans_date).format('Do of MMMM YYYY')+' </td> <td> '+ (((data.trans_total*1) + (data.charge*1)).toFixed(2))+' </td> </tr>');
+							frameDoc.document.write('<tr class="item">  <td> '+data.name +' </td> <td> '+moment(data.trans_date).format('Do of MMMM YYYY')+' </td> <td> '+ (((data.trans_total*1) + (data.charge*1)).toFixed(2))+' </td> </tr>');
 						})
 						frameDoc.document.write(' </table> </div>');
 						frameDoc.document.write('</div></body></html>');
@@ -287,10 +287,10 @@ $('#printbtn').click(function(){
 						frameDoc.document.write('<html><body>');
 						frameDoc.document.write('<div class="invoice-box"> <table><br> <tr> <td> <img src="/banner.jpg" style="width:100%; max-width:400px;"> </td> <td style="text-align: left;padding-top: 20px; font-size: 10px"> <strong>Company Name:</strong>Globalhealth Diagnostic Center Inc<br> <strong>Address:</strong>156 N. Domingo Street, San Juan City, <br>Metro Manila<br> <strong>Contact Number:</strong>722-4544/576-5357<br> <strong>Email:</strong>globalhealth_sj@yahoo.com </td> </tr> </table><br><br> ');
 						frameDoc.document.write('<span><center><strong>Yearly Transaction Report</strong></center><center><small>'+sy+ ' to ' +moment(enddate).format('Do of MMMM, YYYY')+'</small></center></span> <br><br> ');
-						frameDoc.document.write('<table cellpadding="0" cellspacing="0" border="0" style="text-align: center"> <tr class="heading"> <td width="25%"> Transaction ID </td> <td width="25%"> Patient Name </td> <td width="25%"> Transaction Date </td> </td> <td width="25%"> Total </td> </tr> ');
+						frameDoc.document.write('<table cellpadding="0" cellspacing="0" border="0" style="text-align: center"> <tr class="heading"> <td width="25%"> Patient Name </td> <td width="25%"> Transaction Date </td> </td> <td width="25%"> Total </td> </tr> ');
 
 						response[0].forEach(function(data){
-							frameDoc.document.write('<tr class="item"> <td> '+data.trans_id+' </td> <td> '+data.name +' </td> <td> '+moment(data.trans_date).format('Do of MMMM YYYY')+' </td> <td> '+ (((data.trans_total*1) + (data.charge*1)).toFixed(2))+' </td> </tr>');
+							frameDoc.document.write('<tr class="item">  <td> '+data.name +' </td> <td> '+moment(data.trans_date).format('Do of MMMM YYYY')+' </td> <td> '+ (((data.trans_total*1) + (data.charge*1)).toFixed(2))+' </td> </tr>');
 						})
 						frameDoc.document.write(' </table> </div>');
 						frameDoc.document.write('</div></body></html>');

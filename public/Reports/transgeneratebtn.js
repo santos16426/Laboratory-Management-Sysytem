@@ -112,15 +112,15 @@ $('#generatebtn').click(function(){
 					})//end for function response
 					function corporate(){
 
-						return response[3];
+						return response[2];
 					}
 					function individual()
 					{
-						return response[2];
+						return response[3];
 					}
 					response[1].forEach(function(data){
 						t.row.add([
-							data.trans_id,
+							data.name,
 							moment(data.trans_date).format('MMMM Do YYYY'),
 							total = (data.trans_total + data.charge).toLocaleString() +" pesos",
 							'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
@@ -208,7 +208,7 @@ $('#generatebtn').click(function(){
 						}
 						if(charge != 0)
 						{
-						  frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) (c/o '+data.corp_name+')</td><td>Php 0</td></tr>'); 
+						  frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) </td><td>(c/o '+data.corp_name+')Php '+data.price+'</td></tr>'); 
 						}
 						response[7].forEach(function(data){
 						  frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
@@ -350,6 +350,13 @@ $('#generatebtn').click(function(){
 		    var sixmm = sixdate.getMonth()+1;
 		    var sixy = 	sixdate.getFullYear();
 		    var sixdate = sixy + '-' + sixmm + '-' + sixdd;
+
+		    var lastdate = new Date(date);
+		    lastdate.setDate(lastdate.getDate()+7);
+		    var lastdd = lastdate.getDate();
+		    var lastmm = lastdate.getMonth()+1;
+		    var lasty = 	lastdate.getFullYear();
+		    var lastdate = lasty + '-' + lastmm + '-' + lastdd;
 			t.clear().draw();
 			$.ajax
 			({
@@ -362,7 +369,8 @@ $('#generatebtn').click(function(){
 					fourthdate:fourthdate,
 					fifthdate:fifthdate,
 					sixdate:sixdate,
-					enddate:enddate
+					enddate:enddate,
+					lastdate:lastdate
 				},
 				dataType : 'json',
 
@@ -563,7 +571,7 @@ $('#generatebtn').click(function(){
 						}
 					response[0].forEach(function(data){
 						t.row.add([
-							data.trans_id,
+							data.name,
 							moment(data.trans_date).format('MMMM Do YYYY'),
 							total = (data.trans_total + data.charge).toLocaleString() +" pesos",
 							'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
@@ -651,7 +659,7 @@ $('#generatebtn').click(function(){
 						}
 						if(charge != 0)
 						{
-						  frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) (c/o '+data.corp_name+')</td><td>Php 0</td></tr>'); 
+						  frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) </td><td>(c/o '+data.corp_name+')Php '+data.price+'</td></tr>'); 
 						}
 						response[7].forEach(function(data){
 						  frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
@@ -933,7 +941,7 @@ $('#generatebtn').click(function(){
 					}
 					response[0].forEach(function(data){
 						t.row.add([
-							data.trans_id,
+							data.name,
 							moment(data.trans_date).format('MMMM Do YYYY'),
 							total = (data.trans_total + data.charge).toLocaleString() +" pesos",
 							'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
@@ -1021,7 +1029,7 @@ $('#generatebtn').click(function(){
 						}
 						if(charge != 0)
 						{
-						  frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) (c/o '+data.corp_name+')</td><td>Php 0</td></tr>'); 
+						  frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) </td><td>(c/o '+data.corp_name+')Php '+data.price+'</td></tr>'); 
 						}
 						response[7].forEach(function(data){
 						  frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
@@ -1386,7 +1394,7 @@ $('#generatebtn').click(function(){
 					}
 					response[0].forEach(function(data){
 						t.row.add([
-							data.trans_id,
+							data.name,
 							moment(data.trans_date).format('MMMM Do YYYY'),
 							total = (data.trans_total + data.charge).toLocaleString() +" pesos",
 							'<a class="btn btn-primary btn-xs printTrans" data-id="'+data.trans_id+'"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a><input type="hidden" value='+data.trans_id+' class="trans_id">'
@@ -1474,7 +1482,7 @@ $('#generatebtn').click(function(){
 						}
 						if(charge != 0)
 						{
-						  frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) (c/o '+data.corp_name+')</td><td>Php 0</td></tr>'); 
+						  frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) </td><td>(c/o '+data.corp_name+')Php '+data.price+'</td></tr>'); 
 						}
 						response[7].forEach(function(data){
 						  frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');

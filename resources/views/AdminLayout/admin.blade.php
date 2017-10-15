@@ -239,7 +239,7 @@
                   <ul class="sub">
                       <li class="@yield('reactivation')"><a  href="/Utilities/Reactivation"><span><i class="fa fa-recycle" aria-hidden="true"></i></span> Reactivation</a></li>
                       <li class="@yield('useraccess')"><a  href="/Utilities/Useraccess"><span><i class="fa fa-key" aria-hidden="true"></i></span> User Access</a></li>
-                      <li class="@yield('companydetails')"><a  href="/Utilities/CompanyDetails"><span><i class="fa fa-address-card" aria-hidden="true"></i></span>Company Details</a></li>
+                      <!-- <li class="@yield('companydetails')"><a  href="/Utilities/CompanyDetails"><span><i class="fa fa-address-card" aria-hidden="true"></i></span>Company Details</a></li> -->
                   </ul>
                 </li>
                 @endif
@@ -318,9 +318,9 @@
 <script src="{{ asset('/plugins/js/toucheffects.js') }}"></script>
 <script src="{{ asset('/plugins/js/val.js') }}"></script>
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/series-label.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="{{ asset('/js/highcharts.src.js') }}"></script>
+
+<script src="{{ asset('/js/modules/exporting.src.js') }}"></script>
 <script type="text/javascript">
 
       $(function() {

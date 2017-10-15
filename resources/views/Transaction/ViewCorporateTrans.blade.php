@@ -200,11 +200,6 @@ $('.printTrans').click(function(){
 
 	frameDoc.document.write('<tr class="heading"> <td> Service </td> <td> Fee </td></tr>');
 
-	response[5].forEach(function(data){
-	price = data.service_price
-	price = parseFloat(price).toFixed(2);
-	frameDoc.document.write('<tr><td>'+data.serv_name+'</td><td>Php '+price+'</td></tr>');
-	})
 
 	response[6].forEach(function(data){
 	var charge = data.charge;
@@ -216,25 +211,18 @@ $('.printTrans').click(function(){
 	}
 	if(charge != 0)
 	{
-	  frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) (c/o '+data.corp_name+')</td><td>Php 0</td></tr>'); 
+	  frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) (c/o '+data.corp_name+')</td><td>(c/o '+data.corp_name+') Php '+data.price+'</td></tr>'); 
 	}
 	response[7].forEach(function(data){
 	  frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
 	})
 
 	})
-	response[8].forEach(function(data){
-	price = data.pack_price;
-	price = parseFloat(price).toFixed(2);
-	frameDoc.document.write('<tr><td>'+data.pack_name+'</td><td>Php '+price+'</td></tr>');
-	response[9].forEach(function(data){
-	  frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
+	response[6].forEach(function(data){
+	frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+data.price+'</td></tr>');	
 	})
-	})
-	frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
-	frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
-	frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
-	frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
+	
+	
 	frameDoc.document.write('</div></body></html>');
 	frameDoc.document.close();
 	setTimeout(function () {

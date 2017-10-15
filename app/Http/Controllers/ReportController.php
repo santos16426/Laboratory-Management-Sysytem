@@ -225,7 +225,7 @@ class ReportController extends Controller
     	$var = DB::table('transaction_tbl')
     		->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
             ->leftjoin('patient_tbl','patient_id','=','trans_patient_id')
-            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date',DB::raw('CONCAT(patient_fname," ",patient_mname," ",patient_fname)as name'))
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date',DB::raw('CONCAT(patient_fname," ",patient_mname," ",patient_lname)as name'))
     		->whereDate('trans_date',$startdate)
             ->orderBy('transaction_tbl.trans_date','desc')
             ->get();
@@ -252,8 +252,8 @@ class ReportController extends Controller
             ->where('patient_type_id',1)
             ->whereDate('trans_date',$startdate)->count();
         
-        $corporate = ((($totaltransaction-$corporate) / $totaltransaction)*100);
-        $individual= ((($totaltransaction-$individual) / $totaltransaction)*100);
+        $corporate = ((($corporate) / $totaltransaction)*100);
+        $individual= ((($individual) / $totaltransaction)*100);
     	return response()->json([$total,$var,$corporate,$individual]);
     }
     function weeklyTransactionReport(Request $req)
@@ -265,15 +265,45 @@ class ReportController extends Controller
         $fifthdate = $req->fifthdate;
         $sixdate = $req->sixdate;
     	$enddate = $req->enddate;
-    	$var = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge, CONCAT(patient_fname," ",patient_mname," ",patient_fname)as name FROM transaction_tbl t LEFT OUTER JOIN patient_tbl on patient_id = trans_patient_id LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id WHERE trans_date >= "'.$startdate.'" AND trans_date <= "'.$enddate.'" Order by t.trans_date DESC'));
-        $transtotal = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id LEFT OUTER JOIN patient_tbl p ON p.patient_id = t.trans_patient_id WHERE trans_date >= "'.$startdate.'" AND trans_date <= "'.$enddate.'"'));
-        $corporate = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id LEFT OUTER JOIN patient_tbl p ON p.patient_id = t.trans_patient_id WHERE patient_type_id = 2 and trans_date >= "'.$startdate.'" AND trans_date <= "'.$enddate.'"'));
-        $individual = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id LEFT OUTER JOIN patient_tbl p ON p.patient_id = t.trans_patient_id WHERE patient_type_id = 1 and trans_date >= "'.$startdate.'" AND trans_date <= "'.$enddate.'"'));
+        $lastdate = $req->lastdate;
+    	
+        $var = DB::table('transaction_tbl')
+            ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->leftjoin('patient_tbl','patient_id','=','trans_patient_id')
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date',DB::raw('CONCAT(patient_fname," ",patient_mname," ",patient_lname)as name'))
+            ->where('trans_date','>=',$startdate)
+            ->where('trans_date','<=',$lastdate)
+            ->orderBy('transaction_tbl.trans_date','desc')
+            ->get();
+        $transtotal = DB::table('transaction_tbl')
+                        ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+                        ->leftjoin('patient_tbl','patient_id','=','trans_patient_id')
+                        ->select('transaction_tbl.trans_id','transaction_tbl.trans_date','trans_total','charge','patient_type_id')
+                        ->where('trans_date','>=',$startdate)
+                        ->where('trans_date','<=',$lastdate)
+                        ->get();
+        $corporate = DB::table('transaction_tbl')
+                        ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+                        ->leftjoin('patient_tbl','patient_id','=','trans_patient_id')
+                        ->select('transaction_tbl.trans_id','transaction_tbl.trans_date','trans_total','charge')
+                        ->where('trans_date','>=',$startdate)
+                        ->where('trans_date','<=',$lastdate)
+                        ->where('patient_type_id',2)
+                        ->get();
+        $individual =DB::table('transaction_tbl')
+                        ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+                        ->leftjoin('patient_tbl','patient_id','=','trans_patient_id')
+                        ->select('transaction_tbl.trans_id','transaction_tbl.trans_date','trans_total','charge')
+                        ->where('trans_date','>=',$startdate)
+                        ->where('trans_date','<=',$lastdate)
+                        ->where('patient_type_id',1)
+                        ->get();
         $individual = count($individual);
         $corporate = count($corporate);
         $totaltransaction = count($transtotal);
-        $corporate = ((($totaltransaction-$corporate) / $totaltransaction)*100);
-        $individual= ((($totaltransaction-$individual) / $totaltransaction)*100);
+        $corporate = (($corporate / $totaltransaction)*100);
+        $individual= (($individual / $totaltransaction)*100);
+        
         $firsttotal = DB::table('transaction_tbl')
             ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
             ->select(DB::raw('SUM(charge) as charge'),DB::raw('SUM(trans_total)as total'))  
@@ -317,7 +347,7 @@ class ReportController extends Controller
         $var = DB::table('transaction_tbl')
             ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
             ->leftjoin('patient_tbl','patient_id','=','trans_patient_id')
-            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date',DB::raw('CONCAT(patient_fname," ",patient_mname," ",patient_fname)as name'))
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date',DB::raw('CONCAT(patient_fname," ",patient_mname," ",patient_lname)as name'))
             ->whereMonth('trans_date',$req->month)
             ->whereYear('trans_date',$req->year)
             ->orderBy('transaction_tbl.trans_date','desc')
@@ -364,8 +394,8 @@ class ReportController extends Controller
 
         $fourthweektotal = DB::select(DB::raw('SELECT t.trans_id, t.trans_date,t.trans_total,tc.charge FROM transaction_tbl t LEFT OUTER JOIN transcorp_tbl tc on tc.trans_id = t.trans_id WHERE trans_date >= "'.$startdate.'" AND trans_date <= "'.$fourthweek.'"'));
 
-        $corporate = ((($totaltransaction-$corporate) / $totaltransaction)*100);
-        $individual= ((($totaltransaction-$individual) / $totaltransaction)*100);
+        $corporate = ((($corporate) / $totaltransaction)*100);
+        $individual= ((($individual) / $totaltransaction)*100);
         return response()->json([$var,$totaltransaction,$corporate,$individual,$transperday,$firstweektotal,$secondweektotal,$thirdweektotal,$fourthweektotal]);
     }
     function yearlyTransactionReport(Request $req)
@@ -373,7 +403,7 @@ class ReportController extends Controller
         $var = DB::table('transaction_tbl')
             ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
             ->leftjoin('patient_tbl','patient_id','=','trans_patient_id')
-            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date',DB::raw('CONCAT(patient_fname," ",patient_mname," ",patient_fname)as name'))
+            ->select('transaction_tbl.trans_id','trans_total','charge','trans_date',DB::raw('CONCAT(patient_fname," ",patient_mname," ",patient_lname)as name'))
             ->whereYear('trans_date',$req->year)
             ->orderBy('transaction_tbl.trans_date','desc')
             ->get();
@@ -469,8 +499,8 @@ class ReportController extends Controller
             ->where('patient_type_id',1)
             ->whereYear('trans_date',$req->year)
             ->count();
-        $corporate = ((($totaltransaction-$corporate) / $totaltransaction)*100);
-        $individual= ((($totaltransaction-$individual) / $totaltransaction)*100);
+        $corporate = ((($corporate) / $totaltransaction)*100);
+        $individual= ((($individual) / $totaltransaction)*100);
         
         
 
