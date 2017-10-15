@@ -213,7 +213,7 @@
 				<h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Update employee type</h4>
 			</div>
 				<div class="modal-body">
-					<form class="form-horizontal updateemptype" id="EmployeeTypeedit" method="POST" action="/update_empType">
+					<form class="form-horizontal updateemptype" id="EmployeeTypeeditformform" method="POST" action="/update_empType">
 						<div class="box-body">
 							<div class="form-group"  >
 							<div class="col-md-10 col-md-offset-1">
@@ -267,12 +267,12 @@
 	});
 
 	$('.upEtypebtn').click(function(){
-		$('#EmployeeTypeedit').bootstrapValidator('resetForm',true);
-		$('#EmployeeTypeedit div').removeClass('has-error');
-		$('#EmployeeTypeedit div').removeClass('has-success');
-		$('#EmployeeTypeedit i').removeClass('glyphicon glyphicon-ok');
-		$('#EmployeeTypeedit i').removeClass('glyphicon glyphicon-remove');
-		$('#EmployeeTypeedit small').attr('style','display:none');
+		$('#EmployeeTypeeditform').bootstrapValidator('resetForm',true);
+		$('#EmployeeTypeeditform div').removeClass('has-error');
+		$('#EmployeeTypeeditform div').removeClass('has-success');
+		$('#EmployeeTypeeditform i').removeClass('glyphicon glyphicon-ok');
+		$('#EmployeeTypeeditform i').removeClass('glyphicon glyphicon-remove');
+		$('#EmployeeTypeeditform small').attr('style','display:none');
 		$.ajax
 		({
 			url: '/updateEmployeeType',

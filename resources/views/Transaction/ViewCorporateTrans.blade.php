@@ -67,7 +67,7 @@
 						      	{{ $transact->patient_fname }}  {{ $transact->patient_mname }} {{ $transact->patient_lname }}
 						      </td>
 						      <td>
-						      	<a class="btn btn-primary btn-xs printTrans" data-id="{{ $transact->transCorp_id }}"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a>
+						      	<a class="btn btn-primary btn-xs printTrans" data-id="{{ $transact->trans_id }}"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Print</a>
 						      </td>
 					    </tr>
 					    @endforeach
