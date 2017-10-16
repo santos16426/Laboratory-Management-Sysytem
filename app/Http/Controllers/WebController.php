@@ -4,35 +4,51 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Session;
 class WebController extends Controller
 {
     public function Website()
     {
     	return view('Website.website');
     }
-    public function proceedPatientResult()
+   
+    function login()
     {
         $code = $_POST['code'];
-        $lname = $_POST['name'];
-        $check = DB::table('patient_tbl')->where('claimCode',$code)->where('patient_lname',$lname)->count();
-        if($check == 1)
+        $name = $_POST['name'];
+        $combination =$code.'-'.$name;
+
+        $check = DB::table('patient_tbl')->select(DB::raw("CONCAT(claimCode,'-',webPass)as checkacc"))->get();
+        foreach($check as $check)
         {
-            $patientinfo = DB::table('patient_tbl')->where('claimCode',$code)->where('patient_lname',$lname)->get();
-            foreach($patientinfo as $get)
+            if($check->checkacc == $combination)
             {
-                $patient_id = $get->patient_id;
+                $access = 1; 
+                break;
             }
-            $transactions = DB::table('transaction_tbl')
-                        ->leftjoin('transresult_tbl','transresult_tbl.trans_id','=','transaction_tbl.trans_id')
-                        ->where('transresult_tbl.status','DONE')
-                        ->where('trans_patient_id',$patient_id)
-                        ->get();
-            return view('Website.patientresult',['transactions'=>$transactions,'patientinfo'=>$patientinfo]);
+            else
+            {
+                $access = 0;
+            }
+        }
+        if($access == 1)
+        {
+            $patientinfo = DB::table('patient_tbl')->where('claimCode',$code)->get();
+                foreach($patientinfo as $get)
+                {
+                    $patient_id = $get->patient_id;
+                }
+                $transactions = DB::table('transaction_tbl')
+                            ->leftjoin('transresult_tbl','transresult_tbl.trans_id','=','transaction_tbl.trans_id')
+                            ->where('transresult_tbl.status','DONE')
+                            ->where('trans_patient_id',$patient_id)
+                            ->get();
+                return view('Website.patientresult',['transactions'=>$transactions,'patientinfo'=>$patientinfo]);
         }
         else
         {
-             return view('Website.website');   
+            return redirect()->back();
         }
-    	
     }
 }
+
