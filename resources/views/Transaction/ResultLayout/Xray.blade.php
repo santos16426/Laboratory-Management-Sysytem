@@ -5,15 +5,12 @@
 @endif
 <!DOCTYPE html>
 <html >
-
-
 	<body>
 
 	<head>
 		<meta charset="utf-8">
 		<title>X-Ray</title>
 		<link rel="stylesheet" href="{{ asset('/plugins/xray.css') }}">
-		
 	</head>
 		<header>
 			<address rightinfo style="padding-bottom: 20px">
@@ -24,6 +21,7 @@
 			</address>
 			<span><img alt="" src="/banner.jpg" style="width: 500px; height: 250px float: left; max-height: 112px; max-width: 330px;"></span>
 		</header><br><br>
+		
 		<article>
 		@foreach($patientinfo as $patient)
 		<header>
@@ -39,22 +37,35 @@
 			</address>
 			@endforeach
 		</header>
+		<table border="0">
+			<tr>
+				<td>
 		@foreach($service as $serv)
-		<header>
+		<header style="font-size: 15px">
 			<address style="float: left; width: 500px;">
 				<p>{{ $serv->xray_title }}</p><br>
 			</address>
-			
 			<br><br>
 		</header>
-		<header>
+		</td>
+		</tr>
+		<tr>
+			<td style="height: 400px">
+		<header style="font-size: 15px">
 		<address style="float: left; width: 500px;">
-			<p>Findings:&nbsp;<br><span style="margin-left: 1in">{{ $serv->xray_findings }}</span></p><br>
+			<p>Findings:&nbsp;<br><span style="margin-left: 1in"></p><br>
+		</header>
+		<header style="font-size: 14px">
+			<p style="font-size: 80%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $serv->xray_findings }}</p>
 		</header>
 		
 		</article>
-
-		<header style="padding-top: 330px; font-size: 20px">
+		</td>
+		</tr>
+		<tr><td>
+		<footer>
+			<div style="">
+		<header style="font-size: 13px;">
 			<address style="float: left; padding-left: 40px">
 			<center>
 			<img alt="" src="/Employee_signatures/{{ $serv->xray_radiologic_img }}" style="width: 250px; height: 90px; float: left; max-height: 90px; max-width: 350px;">
@@ -67,9 +78,9 @@
 			</center>
 			</address>
 
-			<address style="float: right; padding-right: 40px">
+			<address style="float: right; padding-right: 40px;">
 			<center>
-			<img alt="" src="/Employee_signatures/{{ $serv->xray_radiologist_img }}" style="width: 200px; height: 90px; float: left; max-height: 90px; max-width: 200px;">
+			<img alt="" src="/Employee_signatures/{{ $serv->xray_radiologist_img }}" style="width: 250px; height: 90px; float: left; max-height: 90px; max-width: 350px;">
 			@foreach($emp as $radic)
 				@if($radic->emp_id == $serv->xray_radiologist)
 					<p><span style="text-decoration: underline;">{{ $radic->name }}</span></p>
@@ -87,15 +98,26 @@
 			</center>
 		</header><br><br><br>
 
-		<header style="font-size: 20px">
+		<header style="font-size: 13px">
 			<address style="float: left">
 				<p>San Juan City</p>
 				<p>156 N. Domingo Street, San Juan City</p>
 				<p>Tel No. 576-5357</p>
 				<p>Email: globalhealth_anonas@yahoo.com</p>
 			</address>
+			<address style="float: right;">
+				<p>Quezon City</p>
+				<p>Deofranz Plaza Bldng #2 Anonas Ext cor. V Luna  </p>
+				<p>Road, Quezon City Tel No. 436-2057</p>
+				<p>Email: globalhealth_anonas@yahoo.com</p>
+			</address>
 			
 		</header>
+		</div>
+		</footer>
+		</td>
+		</tr>
+		</table>
 	</body>
 </html>
   

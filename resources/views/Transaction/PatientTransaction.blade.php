@@ -144,10 +144,10 @@
               </select>
             </div>
           </div>  
-        </div> 
-        <div class="form-group">
-            <label for="file" class="control-label">File</label>
+        </div><br><br>
+        <div class="form-group" style="padding-left: 33px">
             <div class="controls col-md-12">
+              <label for="file" class="control-label"><strong>Upload File</strong></label>
                 <div class="fileupload fileupload-new" data-provides="fileupload">
                   <span class="btn btn-white btn-file">
                   <span class="fileupload-new col-md-"><i class="fa fa-paper-clip"></i> Select file</span>
@@ -158,6 +158,7 @@
                     <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none; margin-left:5px;"></a>
                 </div>
             </div>
+            <br><br><br>
         </div>
 
         <input type="hidden" name="transaction_id" value="{{ $trans_id }}">
