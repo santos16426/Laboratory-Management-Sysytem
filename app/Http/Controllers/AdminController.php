@@ -10,6 +10,75 @@ class AdminController extends Controller
     {
         date_default_timezone_set('Singapore');
     }
+    function pack()
+    {
+        $package = DB::table('package_tbl')
+                    ->join('trans_pack_tbl','trans_pack_tbl.pack_id','=','package_tbl.pack_id')
+                    ->select('trans_pack_tbl.pack_name','trans_pack_tbl.pack_price',DB::raw('COUNt(*) as row_count'))
+                    ->groupBy('trans_pack_tbl.pack_name','trans_pack_tbl.pack_price')
+                    ->where('PackStatus',1)
+                    ->orderBy('row_count','desc')
+                    ->take(5)
+                    ->get();
+        return response()->json($package);
+    }
+    function serv()
+    {
+        $service =DB::table('trans_result_service_tbl')
+                    ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_result_service_tbl.result_id')
+                    ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                    ->select('service_tbl.service_name',DB::raw('COUNT(*) as row_count'),'service_price')
+                    ->groupBy('service_tbl.service_name','service_price')
+                    ->where('corppack_id',null)
+                    ->where('ServiceStatus',1)
+                    ->orderBy('row_count','desc')
+                    ->take(5)
+                    ->get();
+        return response()->json($service);
+    }
+    function corp(Request $req)
+    {
+        $corporate = DB::table('corporate_accounts_tbl')
+                ->leftjoin('transcorp_tbl','transcorp_tbl.corp_id','=','corporate_accounts_tbl.corp_id')
+                ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','transcorp_tbl.trans_id')
+                ->select(DB::raw('COUNT(*) as row_count,SUM(charge) as charge'),'corp_name')
+                ->groupBy('corp_name')
+                ->where('charge','!=',0)
+                ->where('CorpStatus',1)
+                ->orderBy('row_count','desc')
+                ->take(5)
+                ->get();
+        return response()->json($corporate);
+    }
+    function patient(Request $req)
+    {
+        $patient = DB::table('transaction_tbl')
+                    ->join('patient_tbl','patient_id','=','trans_patient_id')
+                    ->join('patient_type_tbl','ptype_id','=','patient_type_id')
+                    ->select('patient_id',DB::raw('CONCAT(patient_fname," ",patient_mname," ",patient_lname) as name'),DB::raw('COUNT(*) as row_count'),'patient_civilstatus','patient_birthdate','age','patient_gender','ptype_name','patient_address')
+                    ->where('PatientStatus',1)
+                    ->groupBy('patient_id','name','patient_civilstatus','patient_birthdate','age','patient_gender','ptype_name','patient_address')
+
+                    ->orderBy('row_count','desc')
+                    ->take(5)
+                    ->get();
+        
+        return response()->json($patient);
+    }
+    function employee(Request $req)
+    {
+        $employee = DB::table('employee_tbl')
+                        ->leftjoin('trans_emprebate_tbl','trans_emprebate_tbl.emp_id','=','employee_tbl.emp_id')
+                        ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','trans_emprebate_tbl.trans_id')
+                        ->leftjoin('rebate_tbl','rebate_tbl.rebate_id','=','trans_emprebate_tbl.rebate_id')
+                        ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+                        ->select(DB::raw('employee_tbl.emp_id ,CONCAT(emp_fname," ",emp_mname," ",emp_lname) as name,((trans_total + IFNULL(charge,0))*(percentage/100)) as percentage'))
+                        ->where('transaction_tbl.trans_id','!=',null)
+                        ->take(5)
+                        ->get();
+
+        return response()->json($employee);
+    }
     function debug()
     {
         $medtech = DB::table('employee_tbl')

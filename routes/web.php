@@ -226,3 +226,9 @@ Route::get('/Transactions/ResultLayout/DrugTest','ResultController@printdrug');
 Route::get('/Website/Home','WebController@Website');
 Route::post('/Website/PatientView','WebController@proceedPatientResult');
 
+// Queries
+Route::get('/QueryPatient','AdminController@patient');
+Route::get('/QueryEmployee','AdminController@employee');
+Route::get('/QueryCorp','AdminController@corp');
+Route::get('/QueryService','AdminController@serv');
+Route::get('/QueryPackage','AdminController@pack');

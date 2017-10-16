@@ -31,130 +31,20 @@
 						<div class="form-group">
 							<div class="col-md-10 col-md-offset-1 input-group">
 								<span class="input-group-addon">Select Query<sup>*</sup></span>
-								<select class="form-control select2" id="search">
-									<option value="Patient" data-id="Patient">Patient</option>
-									<option value="Employee" data-id="Employee">Employee</option>
-									<option value="Corporate" data-id="Corporate">Corporate Account</option>
-									<option value="Service" data-id="Service">Service</option>
-									<option value="Package" data-id="Package">Package</option>
+								<select class="form-control query" id="search" >
+									<option value="Patient" data-id="Patient">Patient with most transactions (Top 5)</option>
+									<option value="Employee" data-id="Employee">Employee With most rebate (Top 5)</option>
+									<option value="Corporate" data-id="Corporate">Corporate Account with most transaction (Top 5)</option>
+									<option value="Service" data-id="Service">Service that is most availed (Top 5)</option>
+									<option value="Package" data-id="Package">Packages that is most used (Top 5)</option>
 								</select>
 							</div>
 						</div>
 
-						<div class="form-group" id="patient">
-							<div class="col-md-10 col-md-offset-1 input-group">
-								<span class="input-group-addon">Filter<sup>*</sup></span>
-								<select class="form-control select2" multiple="" id="patientselect" style="width:100%">
-									<optgroup label="Patient Type">
-										<option value="Where patient_type_id = 1">Individual Patient</option>
-										<option value="Where patient_type_id = 2">Corporate Patient</option>
-									</optgroup>
-									<optgroup label="Gender">
-										<option value="Where patient_gender= 'Male'">Male</option>
-										<option value="Where patient_gender= 'Female'">Female</option>
-									</optgroup>
-									<optgroup label = "Age">
-										<option value="Where age >=0 and age <=12">Child (0-12)</option>
-										<option value="Where age >=13 and age >=19 ">Teen (13-19)</option>
-										<option value="Where age >=20 and age >= 59">Adult (20-59)</option>
-										<option value="Where age >= 60">Senior Citizen (60 above)</option>
-									</optgroup>
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group hidden" id="employee">
-							<div class="col-md-10 col-md-offset-1 input-group">
-								<span class="input-group-addon">Filter<sup>*</sup></span>
-								<select class="form-control select2" multiple="" id="employeeselect" style="width:100%">
-									<optgroup label="Employee Type">
-										@foreach($emptype as $type)
-										<option value="Where role_id = {{ $type->role_id }}">{{ $type->role_name }}</option>
-										@endforeach
-									</optgroup>
-									<optgroup label="Gender">
-										<option value="Where patient_gender= 'Male'">Male</option>
-										<option value="Where patient_gender= 'Female'">Female</option>
-									</optgroup>
-									<optgroup label = "Age">
-										<option value="Where age >=0 and age <=12">Child (0-12)</option>
-										<option value="Where age >=13 and age >=19 ">Teen (13-19)</option>
-										<option value="Where age >=20 and age >= 59">Adult (20-59)</option>
-										<option value="Where age >= 60">Senior Citizen (60 above)</option>
-									</optgroup>
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group hidden" id="corporate">
-							<div class="col-md-10 col-md-offset-1 input-group">
-								<span class="input-group-addon">Filter<sup>*</sup></span>
-								<select class="form-control select2" multiple="" id="corporateselect"  style="width:100%">
-									<optgroup label="Patient Type">
-										<option value="Where patient_type_id = 1">Individual Patient</option>
-										<option value="Where patient_type_id = 2">Corporate Patient</option>
-									</optgroup>
-									<optgroup label="Gender">
-										<option value="Where patient_gender= 'Male'">Male</option>
-										<option value="Where patient_gender= 'Female'">Female</option>
-									</optgroup>
-									<optgroup label = "Age">
-										<option value="Where age >=0 and age <=12">Child (0-12)</option>
-										<option value="Where age >=13 and age >=19 ">Teen (13-19)</option>
-										<option value="Where age >=20 and age >= 59">Adult (20-59)</option>
-										<option value="Where age >= 60">Senior Citizen (60 above)</option>
-									</optgroup>
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group hidden" id="service">
-							<div class="col-md-10 col-md-offset-1 input-group">
-								<span class="input-group-addon">Filter<sup>*</sup></span>
-								<select class="form-control select2" multiple="" id="serviceselect" style="width:100%">
-									<optgroup label="Patient Type">
-										<option value="Where patient_type_id = 1">Individual Patient</option>
-										<option value="Where patient_type_id = 2">Corporate Patient</option>
-									</optgroup>
-									<optgroup label="Gender">
-										<option value="Where patient_gender= 'Male'">Male</option>
-										<option value="Where patient_gender= 'Female'">Female</option>
-									</optgroup>
-									<optgroup label = "Age">
-										<option value="Where age >=0 and age <=12">Child (0-12)</option>
-										<option value="Where age >=13 and age >=19 ">Teen (13-19)</option>
-										<option value="Where age >=20 and age >= 59">Adult (20-59)</option>
-										<option value="Where age >= 60">Senior Citizen (60 above)</option>
-									</optgroup>
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group hidden" id="package">
-							<div class="col-md-10 col-md-offset-1 input-group">
-								<span class="input-group-addon">Filter<sup>*</sup></span>
-								<select class="form-control select2" multiple="" id="packageselect" style="width:100%">
-									<optgroup label="Patient Type">
-										<option value="Where patient_type_id = 1">Individual Patient</option>
-										<option value="Where patient_type_id = 2">Corporate Patient</option>
-									</optgroup>
-									<optgroup label="Gender">
-										<option value="Where patient_gender= 'Male'">Male</option>
-										<option value="Where patient_gender= 'Female'">Female</option>
-									</optgroup>
-									<optgroup label = "Age">
-										<option value="Where age >=0 and age <=12">Child (0-12)</option>
-										<option value="Where age >=13 and age >=19 ">Teen (13-19)</option>
-										<option value="Where age >=20 and age >= 59">Adult (20-59)</option>
-										<option value="Where age >= 60">Senior Citizen (60 above)</option>
-									</optgroup>
-								</select>
-							</div>
-						</div>
-
+						
 						<div class="col-md-12">
 			          		<div class="col-md-12">
-			          			<button type="button" class="btn btn-success btn-block" id="generatebtn">Search</button>
+			          			<button type="button" class="btn btn-success btn-block" id="searchbtn">Search</button>
 			          		</div>
 			          	</div>
         			</form>
@@ -163,60 +53,485 @@
 		</section>
 	</div>
 </div>
+<div class="row" id="patienttbl">
+	<div class="col-md-12">
+		<section class="panel">
+			<div class="panel-body">
+				<table class="table table-bordered table-hover dataTable" id="ptnttbl">
+					<thead>
+						<tr>
+							<th>Patient Name</th>
+							<th>Patient Type</th>
+							<th>Address</th>
+							<th>Gender</th>
+							<th>Birthday</th>
+							<th>Age</th>
+							<th>Civil Status</th>
+							<th>No. of Transactions</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</div>
+</div>
+
+<div class="row hidden" id="employeetbl">
+	<div class="col-md-12">
+		<section class="panel">
+			<div class="panel-body">
+				<table class="table table-bordered table-hover dataTable" id="emptbl">
+					<thead>
+						<tr>
+							<th>Employee Name</th>
+							<th>Employee Type</th>
+							<th>Rebate</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</div>
+</div>
+<div class="row hidden" id="corporatetbl">
+	<div class="col-md-12">
+		<section class="panel">
+			<div class="panel-body">
+				<table class="table table-bordered table-hover dataTable" id="corptbl">
+					<thead>
+						<tr>
+							<th>Corporate Name</th>
+							<th>No. of transactions</th>
+							<th>Total Payments</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</div>
+</div>
+<div class="row hidden" id="servicetbl">
+	<div class="col-md-12">
+		<section class="panel">
+			<div class="panel-body">
+				<table class="table table-bordered table-hover dataTable" id="servtbl">
+					<thead>
+						<tr>
+							<th>Service Name</th>
+							<th>Price</th>
+							<th>No. of times availed</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</div>
+</div>
+<div class="row hidden" id="packagetbl">
+	<div class="col-md-12">
+		<section class="panel">
+			<div class="panel-body">
+				<table class="table table-bordered table-hover dataTable" id="packtbl">
+					<thead>
+						<tr>
+							<th>Package Name</th>
+							<th>Package Price</th>
+							<th>No. of times availed</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</div>
+</div>
 @endsection
 @section('additional')
+<script type="text/javascript">
+	var ptnttbl = $('#ptnttbl').DataTable(
+		{
+			'paging'      : false,
+			'lengthChange': true,
+			'searching'   : true,
+			'ordering'    : false,
+			'info'        : true,
+			'autoWidth'   : true,
+		});
+	var emptbl= $('#emptbl').DataTable(
+		{
+			'paging'      : false,
+			'lengthChange': true,
+			'searching'   : true,
+			'ordering'    : false,
+			'info'        : true,
+			'autoWidth'   : true,
+		});
+		var corptbl= $('#corptbl').DataTable(
+		{
+			'paging'      : false,
+			'lengthChange': true,
+			'searching'   : true,
+			'ordering'    : false,
+			'info'        : true,
+			'autoWidth'   : true,
+		});
+		var servtbl = $('#servtbl').DataTable(
+		{
+			'paging'      : false,
+			'lengthChange': true,
+			'searching'   : true,
+			'ordering'    : false,
+			'info'        : true,
+			'autoWidth'   : true,
+		});
+		var packtbl = $('#packtbl').DataTable(
+		{
+			'paging'      : false,
+			'lengthChange': true,
+			'searching'   : true,
+			'ordering'    : false,
+			'info'        : true,
+			'autoWidth'   : true,
+		});
+</script>
 
 <script type="text/javascript">
-	$('.select2').select2();
 
-	var patientdiv = document.getElementById('patient');
-	var employeediv = document.getElementById('employee');
-	var corporatediv = document.getElementById('corporate');
-	var servicediv = document.getElementById('service');
-	var packagediv = document.getElementById('package');
-	var search = $('#search').val($(this).data('id'));
-	$('#search').change(function(){
+	$('.select2').select2(
+		{
+			placeholder:'Choose filter'
+		});
+	$('#search').select2();
+	
+	
+	var patienttbl = document.getElementById('patienttbl');
+	var employeetbl = document.getElementById('employeetbl');
+	var corporatetbl = document.getElementById('corporatetbl');
+	var servicetbl = document.getElementById('servicetbl');
+	var packagetbl = document.getElementById('packagetbl');
+	$('#searchbtn').click(function(){
+		var search = $('#search').val();	
+		if(search == 'Patient')
+		{
+			ptnttbl.clear().draw();
+			$.ajax
+			({
+				url : '/QueryPatient',
+				dataType : 'json',
+				type : 'get',
+				success:function(response){
+					response.forEach(function(data){
+						ptnttbl.row.add([
+						data.name,
+						data.ptype_name,
+						data.patient_address,
+						data.patient_gender,
+						moment(data.patient_birthdate).format('MMMM Do YYYY'),
+						data.age,
+						data.patient_civilstatus,
+						data.row_count
+					]).draw(false)
+					})
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.success("Done!");
+
+				},
+				error:function(){
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.error("Sorry! No data available");
+				}
+			})
+		}
 		
-		if(search = 'Patient')
+		if(search == 'Employee')
 		{
-			patientdiv.className = "form-group"
-			employeediv.className = "form-group hidden"
-			corporatediv.className = "form-group hidden"
-			servicediv.className = "form-group hidden"
-			packagediv.className = "form-group hidden"
+			emptbl.clear().draw();
+			$.ajax
+			({
+				url : '/QueryEmployee',
+				dataType : 'json',
+				type : 'get',
+				success:function(response){
+					response.forEach(function(data){
+						emptbl.row.add([
+						data.name,
+						'',
+						data.percentage
+					]).draw(false)
+					})
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.success("Done!");
+
+				},
+				error:function(){
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.error("Sorry! No data available");
+				}
+			})
 		}
-		alert(search);
-		if(search = 'Employee')
+		if(search == 'Corporate')
 		{
-			patientdiv.className = "form-group hidden"
-			employeediv.className = "form-group"
-			corporatediv.className = "form-group hidden"
-			servicediv.className = "form-group hidden"
-			packagediv.className = "form-group hidden"
+			corptbl.clear().draw();
+			$.ajax
+			({
+				url : '/QueryCorp',
+				dataType : 'json',
+				type : 'get',
+				success:function(response){
+					response.forEach(function(data){
+						corptbl.row.add([
+						data.corp_name,
+						data.row_count,
+						data.charge
+					]).draw(false)
+					})
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.success("Done!");
+
+				},
+				error:function(){
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.error("Sorry! No data available");
+				}
+			})
 		}
-		if(search = 'Corporate')
+		if(search == 'Service')
 		{
-			patientdiv.className = "form-group hidden"
-			employeediv.className = "form-group hidden"
-			corporatediv.className = "form-group hidden"
-			servicediv.className = "form-group"
-			packagediv.className = "form-group hidden"
+			servtbl.clear().draw();
+			$.ajax
+			({
+				url : '/QueryService',
+				dataType : 'json',
+				type : 'get',
+				success:function(response){
+					response.forEach(function(data){
+						servtbl.row.add([
+						data.service_name,
+						data.service_price,
+						data.row_count
+					]).draw(false)
+					})
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.success("Done!");
+
+				},
+				error:function(){
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.error("Sorry! No data available");
+				}
+			})
 		}
-		if(search = 'Service')
+		if(search == 'Package')
 		{
-			patientdiv.className = "form-group hidden"
-			employeediv.className = "form-group hidden"
-			corporatediv.className = "form-group hidden"
-			servicediv.className = "form-group"
-			packagediv.className = "form-group hidden"
+			packtbl.clear().draw();
+			$.ajax
+			({
+				url : '/QueryPackage',
+				dataType : 'json',
+				type : 'get',
+				success:function(response){
+					response.forEach(function(data){
+						packtbl.row.add([
+						data.pack_name,
+						data.pack_price,
+						data.row_count
+					]).draw(false)
+					})
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.success("Done!");
+
+				},
+				error:function(){
+					toastr.options = {
+				      "closeButton": true,
+				      "debug": false,
+				      "positionClass": "toast-top-right",
+				      "onclick": null,
+				      "showDuration": "3000",
+				      "hideDuration": "100",
+				      "timeOut": "3000",
+				      "extendedTimeOut": "0",
+				      "showEasing": "swing",
+				      "hideEasing": "swing",
+				      "showMethod": "show",
+				      "hideMethod": "hide"
+				    }
+				    toastr.error("Sorry! No data available");
+				}
+			})
 		}
-		if(search = 'Package')
+	})
+
+	$('#search').change(function(){
+		var search = $('#search').val();	
+		if(search == 'Patient')
 		{
-			patientdiv.className = "form-group hidden"
-			employeediv.className = "form-group hidden"
-			corporatediv.className = "form-group hidden"
-			servicediv.className = "form-group hidden"
-			packagediv.className = "form-group"
+			patienttbl.className = "row"
+			employeetbl.className = "row hidden"
+			corporatetbl.className = "row hidden"
+			servicetbl.className = "row hidden"
+			packagetbl.className = "row hidden"
+		}
+		if(search == 'Employee')
+		{
+			patienttbl.className = "row hidden"
+			employeetbl.className = "row"
+			corporatetbl.className = "row hidden"
+			servicetbl.className = "row hidden"
+			packagetbl.className = "row hidden"
+		}
+		if(search == 'Corporate')
+		{
+
+			patienttbl.className = "row hidden"
+			employeetbl.className = "row hidden"
+			corporatetbl.className = "row"
+			servicetbl.className = "row hidden"
+			packagetbl.className = "row hidden"
+		}
+		if(search == 'Service')
+		{
+			patienttbl.className = "row hidden"
+			employeetbl.className = "row hidden"
+			corporatetbl.className = "row hidden"
+			servicetbl.className = "row"
+			packagetbl.className = "row hidden"
+		}
+		if(search == 'Package')
+		{
+			patienttbl.className = "row hidden"
+			employeetbl.className = "row hidden"
+			corporatetbl.className = "row hidden"
+			servicetbl.className = "row hidden"
+			packagetbl.className = "row"
 		}
 	})
 </script>
