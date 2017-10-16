@@ -1069,6 +1069,10 @@ $('.employeeTypeDropDown').on('change',function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -1595,6 +1599,10 @@ $('.employeeTypeDropDown').on('change',function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -1716,6 +1724,10 @@ $('.employeeTypeDropDown').on('change',function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -2159,6 +2171,10 @@ $('.employeeTypeDropDown').on('change',function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -2622,6 +2638,10 @@ $('.employeeTypeDropDown').on('change',function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -2741,6 +2761,10 @@ $('.employeeTypeDropDown').on('change',function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -3508,6 +3532,10 @@ $('.empupdateModalbtn').click(function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -4034,6 +4062,10 @@ $('.empupdateModalbtn').click(function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -4155,6 +4187,10 @@ $('.empupdateModalbtn').click(function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -4570,6 +4606,10 @@ $('.empupdateModalbtn').click(function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -5033,6 +5073,10 @@ $('.empupdateModalbtn').click(function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -5152,6 +5196,10 @@ $('.empupdateModalbtn').click(function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },

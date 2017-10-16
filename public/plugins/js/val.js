@@ -105,7 +105,15 @@ $('#EmployeeTypeadd').bootstrapValidator({
                         message: 'This field is required.'
                     }
                 }
-            },                                         
+            }, 
+            lab_id: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select a Department'
+                    }
+                }
+            },  
+
             }
         });
 

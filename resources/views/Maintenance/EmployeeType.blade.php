@@ -110,8 +110,8 @@
 												<div class="input-group-addon">
 													Department Name
 												</div>
-												<select class="form-control select2" name="lab_id" id="dropLABID" style="width: 100%">
-													<option value=Null>Select a Department</option>
+												<select class="form-control select2" name="lab_id" id="dropLABID" style="width: 100%" required>
+													<option value="">Select a Department</option>
 													@foreach($labs as $gd) 
 														<option value="{{$gd->lab_id}}">{{$gd->lab_name}}</option>
 													@endforeach
