@@ -13,6 +13,22 @@ class ResultController extends Controller
         date_default_timezone_set('Singapore');
         ini_set('memory_limit','256M');
     }
+    function archiveresults()
+    {
+        
+        $transactions = DB::table('transaction_tbl')
+            ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+            ->leftjoin('transresult_tbl','transresult_tbl.trans_id','=','transaction_tbl.trans_id')
+            ->where('status','DONE')
+            ->get();
+        $nooffiles = DB::table('trans_resultfiles_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->where('status',1)->get();
+        
+        $totaltransaction = DB::table('trans_result_service_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->get();
+        $doneTransaction = DB::table('trans_result_service_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->where('status','DONE')->get();
+        $total = 0;
+        $done = 0;
+         return view('Transaction.ArchiveOfResults',['transactions'=>$transactions,'totaltrans'=>$totaltransaction,'donetrans'=>$doneTransaction,'total'=>$total,'done'=>$done,'nooffiles'=>$nooffiles]);
+    }
     function printxray()
     {
         $result_id = Session::get('result_id');
@@ -967,6 +983,7 @@ class ResultController extends Controller
                         ->get();
         $sonologist = DB::table('employee_tbl')
                         ->leftjoin('employee_role_tbl','role_id','=','emp_type_id')
+                        ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
                         ->where('role_name','Sonologist')
                         ->where('EmpStatus',1)                    
                         ->where('RoleStatus',1)
@@ -1310,7 +1327,6 @@ class ResultController extends Controller
             ->whereIn('transresult_tbl.result_id',$res_id)
             ->get();
         $nooffiles = DB::table('trans_resultfiles_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->where('status',1)->get();
-        
         $totaltransaction = DB::table('trans_result_service_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->get();
         $doneTransaction = DB::table('trans_result_service_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->where('status','DONE')->get();
         $total = 0;

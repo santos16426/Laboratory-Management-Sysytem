@@ -221,7 +221,7 @@ Route::get('/Transactions/ResultLayout/MedicalRequest','ResultController@printMe
 Route::get('/Transactions/ResultLayout/Ultrasound','ResultController@printultrasound');
 Route::get('/Transactions/ResultLayout/Xray','ResultController@printxray');
 Route::get('/Transactions/ResultLayout/DrugTest','ResultController@printdrug');
-
+Route::get('/Transactions/ArchiveofResults','ResultController@archiveresults');
 // Web
 Route::get('/Website/Home','WebController@Website');
 Route::post('/Website/PatientView','WebController@proceedPatientResult');

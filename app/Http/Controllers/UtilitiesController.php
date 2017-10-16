@@ -68,7 +68,7 @@ class UtilitiesController extends Controller
 		$income = 0;
 		$corppayment = 0;
 		$rebatepayment = 0;
-
+		$arcresult = 0;
 
 
 		if(isset($_POST['service']))
@@ -271,6 +271,10 @@ class UtilitiesController extends Controller
 		{
 			$upresult = 1;
 		}
+		if(isset($_POST['arcresult']))
+		{
+			$arcresult = 1;
+		}
 		if(isset($_POST['census']))
 		{
 			$census = 1;
@@ -325,6 +329,7 @@ class UtilitiesController extends Controller
 				Session::put('rebatebill',$rebatebill);
 				Session::put('addresult',$addresult);
 				Session::put('upresult',$upresult);
+				Session::put('arcresult',$arcresult);
 				Session::put('census',$census);
 				Session::put('trans',$trans);
 				Session::put('corprep',$corprep);
@@ -381,6 +386,7 @@ class UtilitiesController extends Controller
 			'rebatebill'=>$rebatebill,
 			'addresult'=>$addresult,
 			'upresult'=>$upresult,
+			'arcresult'=>$arcresult,
 			'census'=>$census,
 			'trans'=>$trans,
 			'corprep'=>$corprep,

@@ -370,11 +370,12 @@ $( document ).ready(function() {
             frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
           })
           })
-          response[6].forEach(function(data){
-            var discount = 0; 
+          var discount = []; 
             response[0].forEach(function(data){
-              discount = data.discount;
+              discount.push(data.discount);
             })  
+          response[6].forEach(function(data){
+            
             if(data.home_service == 1)
             {
              frameDoc.document.write('<tr class="item" > <td></td> <td>Home Service Charge: Php 200.00</td></tr>');   

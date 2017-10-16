@@ -57,11 +57,14 @@
 				          		@foreach($nooffiles as $nof)
 					          		@if($nof->result_id == $transact->result_id)
 					          		{{ $nof->count_row }}
-					          		@else
-					          		0
+					          		<?php  $done = $nof->count_row; ?>
 					          		@endif
-
 				          		@endforeach
+
+				          		@if($done == 0)
+				          		0
+				          		@endif
+								<?php $done = 0; ?>
 				          	@else
 				          		0
 				          	@endif
@@ -78,20 +81,17 @@
 				                                      <span>{{ $total }}% Complete</span>
 				                                  </div>
 				                            </div>
-				                            @else
-									          	<div class="progress progress-striped active progress-md">
-													<div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-														<span>0% Complete</span>
-													</div>
-					                            </div>
+				                            <?php $done =1;  ?>
 			                            @endif
 		                            @endforeach
-		                            @else
-							          	<div class="progress progress-striped active progress-md">
-											<div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-												<span>0% Complete</span>
-											</div>
-			                            </div>
+		                            @if($done == 0)
+		                            <div class="progress progress-striped active progress-md">
+										<div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+											<span>0% Complete</span>
+										</div>
+		                            </div>
+		                            @endif
+		                            <?php $done = 0; ?>
 		                            @endif
 	                            @endif
                               @endforeach

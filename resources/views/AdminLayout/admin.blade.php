@@ -185,7 +185,7 @@
                       <li class="@yield('rebatetrans')"><a  href="/Transactions/RebateBilling"><i class="fa fa-percent" aria-hidden="true"></i> Rebate Employee Billing</a></li>
                       @endif
                       
-                      @if((Session::get('addresult')==1)||(Session::get('upresult')==1))
+                      @if((Session::get('addresult')==1)||(Session::get('upresult')==1)||(Session::get('arcresult')==1))
                       <li class="sub-menu">
                           <a  href="" class="@yield('transresultactive')"><i class="fa fa-file-o" aria-hidden="true"></i> Results</a>
                           <ul class="sub">
@@ -194,6 +194,9 @@
                               @endif
                               @if((Session::get('upresult')==1))
                               <li class="@yield('uploadactive')"><a  href="/Transactions/UploadOfResults">Uploading of Results</a></li>
+                              @endif
+                              @if(Session::get('arcresult')==1)
+                              <li class="@yield('archiveactive')"><a  href="/Transactions/ArchiveofResults">Archive of Results</a></li>
                               @endif
                           </ul>
                       </li>

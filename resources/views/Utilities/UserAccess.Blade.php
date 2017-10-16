@@ -116,7 +116,7 @@
 						  		@endif
 						    </td>
 						    <td>
-						    	@if($admin->addresult == 1 || $admin->upresult)
+						    	@if($admin->addresult == 1 || $admin->upresult || $admin->arcresult)
 						  			<i class="fa fa-check" aria-hidden="true"></i> 
 						  		@endif
 						    </td>
@@ -193,7 +193,7 @@
 						  		@endif
 						    </td>
 						    <td>
-						    	@if($users->addresult == 1 || $users->upresult)
+						    	@if($users->addresult == 1 || $users->upresult || $users->arcresult)
 						  			<i class="fa fa-check" aria-hidden="true"></i> 
 						  		@endif
 						    </td>
@@ -627,6 +627,8 @@
 										<input type="checkbox" name="addresult" class="transaction" id="addresult" value="1"><label for="addresult">&nbsp;Add Result&nbsp;&nbsp;</label>
 										<br>
 										<input type="checkbox" name="upresult" class="transaction" id="upresult" value="1"><label for="upresult">&nbsp;Upload Result&nbsp;&nbsp;</label>
+										<br>
+										<input type="checkbox" name="arcresult" class="transaction" id="arcresult" value="1"><label for="arcresult">&nbsp;Archive of Result&nbsp;&nbsp;</label>
 									</div>
 								</div>
 							</div>  
@@ -893,6 +895,10 @@
 					if(data.upresult == 1)
 					{
 						$('#upresult').attr('checked','checked')
+					}
+					if(data.arcresult == 1)
+					{
+						$('#arcresult').attr('checked','checked')
 					}
 					if(data.census == 1)
 					{

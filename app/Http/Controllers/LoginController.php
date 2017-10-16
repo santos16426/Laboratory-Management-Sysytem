@@ -155,6 +155,7 @@ class LoginController extends Controller
                 Session::put('rebatebill',$accessmodules->rebatebill);
                 Session::put('addresult',$accessmodules->addresult);
                 Session::put('upresult',$accessmodules->upresult);
+                Session::put('arcresult',$accessmodules->arcresult);
                 Session::put('census',$accessmodules->census);
                 Session::put('trans',$accessmodules->trans);
                 Session::put('corprep',$accessmodules->corprep);

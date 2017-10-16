@@ -282,7 +282,7 @@
 			              <div class="col-md-12">
 			                 <div class="input-group" >
 									<span class="input-group-addon">Analyst</span>
-									<select class="form-control package_id select2" name="referred1" id="referred1" style="width: 100%" >
+									<select class="form-control package_id select2" name="referred1" id="referred1" style="width: 100%" required="">
 										@foreach($emp as $emps)
 											<option value="{{ $emps->emp_id }}">{{ $emps->emp_fname }} {{ $emps->emp_mname }} {{ $emps->emp_lname }}</option>
 										@endforeach
@@ -296,7 +296,7 @@
 			              <div class="col-md-12">
 			                 <div class="input-group" >
 									<span class="input-group-addon">Analyst</span>
-									<select class="form-control package_id select2" name="referred2" id="referred2" style="width: 100%" >
+									<select class="form-control package_id select2" name="referred2" id="referred2" style="width: 100%" required="">
 										@foreach($emp as $emp2)
 											<option value="{{ $emp2->emp_id }}">{{ $emp2->emp_fname }} {{ $emp2->emp_mname }} {{ $emp2->emp_lname }}</option>
 										@endforeach
