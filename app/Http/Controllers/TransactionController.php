@@ -397,6 +397,7 @@ class TransactionController extends Controller
         {
             $homeserv = 0;
         }
+        $discount = $_POST['discount'];
         DB::table('transaction_tbl')
                 ->insert([
                     'medical_certificate'=>$file_name_new,
@@ -404,6 +405,7 @@ class TransactionController extends Controller
                     'trans_date'    =>  date_create('now'),
                     'trans_patient_id'  =>  $patient_id,
                     'issuedBy_emp_id'   =>  $issuedBy,
+                    'discount'=>$discount,
                     'trans_change'  =>  ($paymentinput - $totalpriceinput),
                     'trans_payment' =>  $paymentinput,
                     'prescriptions'=> $prescriptions,
@@ -613,7 +615,7 @@ class TransactionController extends Controller
             }
         }
         
-        Session::flash('transaction',true);
+        Session::put('transaction',true);
         $transactionDetails = DB::table('transaction_tbl')->get();
         $transaction_id=0;
         $employee_id = 0;
@@ -633,7 +635,7 @@ class TransactionController extends Controller
             $trans_date = $t->trans_date;
         }
         
-        Session::flash('trans_id',$transaction_id);
+        Session::put('trans_id',$transaction_id);
         return redirect('/Admin/Dashboard');
     
     }
