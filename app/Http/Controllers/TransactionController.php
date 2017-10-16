@@ -388,7 +388,15 @@ class TransactionController extends Controller
     {
         $prescriptions = 'N/A';
     }
-
+        $home_service = $_POST['transactwhere'];
+        if($home_service == 'home')
+        {
+            $homeserv = 1;
+        }
+        else
+        {
+            $homeserv = 0;
+        }
         DB::table('transaction_tbl')
                 ->insert([
                     'medical_certificate'=>$file_name_new,
@@ -398,7 +406,8 @@ class TransactionController extends Controller
                     'issuedBy_emp_id'   =>  $issuedBy,
                     'trans_change'  =>  ($paymentinput - $totalpriceinput),
                     'trans_payment' =>  $paymentinput,
-                    'prescriptions'=> $prescriptions
+                    'prescriptions'=> $prescriptions,
+                    'home_service'=>$homeserv
                 ]);
         $trans_id = DB::table('transaction_tbl')
                         ->select('trans_id')

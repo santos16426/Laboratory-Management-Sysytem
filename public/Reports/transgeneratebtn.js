@@ -223,9 +223,31 @@ $('#generatebtn').click(function(){
 						  frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
 						})
 						})
-						frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
-						frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
-						frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+						response[6].forEach(function(data){
+				            var discount = 0; 
+				            response[0].forEach(function(data){
+				              discount = data.discount;
+				            })  
+				            if(data.home_service == 1)
+				            {
+				             frameDoc.document.write('<tr class="item" > <td></td> <td>Home Service Charge: Php 200.00</td></tr>');   
+				            }
+				            if(discount > 0)  
+				            {
+				              frameDoc.document.write('<tr class="item" > <td></td> <td>Sub Total: '+data.price+'</td></tr>');  
+				              frameDoc.document.write('<tr> <td></td> <td> Discount:(PWD/Senior Citizen) 32% </td></tr>');
+				              frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+(data.price - (data.price *(32/100)))+'</td></tr>');
+				              frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
+				              frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+				            }
+				            else
+				            {
+				              frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+data.price+'</td></tr>');  
+				              frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
+				              frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+				            }
+				          
+				          })
 						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
 						frameDoc.document.write('</div></body></html>');
 						frameDoc.document.close();
@@ -674,9 +696,31 @@ $('#generatebtn').click(function(){
 						  frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
 						})
 						})
-						frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
-						frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
-						frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+						response[6].forEach(function(data){
+				            var discount = 0; 
+				            response[0].forEach(function(data){
+				              discount = data.discount;
+				            })  
+				            if(data.home_service == 1)
+				            {
+				             frameDoc.document.write('<tr class="item" > <td></td> <td>Home Service Charge: Php 200.00</td></tr>');   
+				            }
+				            if(discount > 0)  
+				            {
+				              frameDoc.document.write('<tr class="item" > <td></td> <td>Sub Total: '+data.price+'</td></tr>');  
+				              frameDoc.document.write('<tr> <td></td> <td> Discount:(PWD/Senior Citizen) 32% </td></tr>');
+				              frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+(data.price - (data.price *(32/100)))+'</td></tr>');
+				              frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
+				              frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+				            }
+				            else
+				            {
+				              frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+data.price+'</td></tr>');  
+				              frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
+				              frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+				            }
+				          
+				          })
 						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
 						frameDoc.document.write('</div></body></html>');
 						frameDoc.document.close();
@@ -1044,9 +1088,31 @@ $('#generatebtn').click(function(){
 						  frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
 						})
 						})
-						frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
-						frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
-						frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+						response[6].forEach(function(data){
+				            var discount = 0; 
+				            response[0].forEach(function(data){
+				              discount = data.discount;
+				            })  
+				            if(data.home_service == 1)
+				            {
+				             frameDoc.document.write('<tr class="item" > <td></td> <td>Home Service Charge: Php 200.00</td></tr>');   
+				            }
+				            if(discount > 0)  
+				            {
+				              frameDoc.document.write('<tr class="item" > <td></td> <td>Sub Total: '+data.price+'</td></tr>');  
+				              frameDoc.document.write('<tr> <td></td> <td> Discount:(PWD/Senior Citizen) 32% </td></tr>');
+				              frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+(data.price - (data.price *(32/100)))+'</td></tr>');
+				              frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
+				              frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+				            }
+				            else
+				            {
+				              frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+data.price+'</td></tr>');  
+				              frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
+				              frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+				            }
+				          
+				          })
 						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
 						frameDoc.document.write('</div></body></html>');
 						frameDoc.document.close();
@@ -1497,9 +1563,31 @@ $('#generatebtn').click(function(){
 						  frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
 						})
 						})
-						frameDoc.document.write('<tr class="item last total"> <td></td> <td> Total: '+total+'</td></tr>');
-						frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
-						frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+						response[6].forEach(function(data){
+				            var discount = 0; 
+				            response[0].forEach(function(data){
+				              discount = data.discount;
+				            })  
+				            if(data.home_service == 1)
+				            {
+				             frameDoc.document.write('<tr class="item" > <td></td> <td>Home Service Charge: Php 200.00</td></tr>');   
+				            }
+				            if(discount > 0)  
+				            {
+				              frameDoc.document.write('<tr class="item" > <td></td> <td>Sub Total: '+data.price+'</td></tr>');  
+				              frameDoc.document.write('<tr> <td></td> <td> Discount:(PWD/Senior Citizen) 32% </td></tr>');
+				              frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+(data.price - (data.price *(32/100)))+'</td></tr>');
+				              frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
+				              frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+				            }
+				            else
+				            {
+				              frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+data.price+'</td></tr>');  
+				              frameDoc.document.write('<tr> <td></td> <td> Payment:  '+payment+'</td></tr>');
+				              frameDoc.document.write('<tr> <td></td> <td> Change: '+change+'</td></tr>');
+				            }
+				          
+				          })
 						frameDoc.document.write('</table><br><br><br> <table> <tr> <td> Note<sup>*</sup> </td> </tr> <tr> <td>'+prescriptions+'</td> </tr> </table> ');
 						frameDoc.document.write('</div></body></html>');
 						frameDoc.document.close();

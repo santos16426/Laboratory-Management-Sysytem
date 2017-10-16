@@ -1646,9 +1646,7 @@ class ResultController extends Controller
             ->update([
                 'status'=>'DONE'
                 ]);
-        Session::flash('title', 'Success!');
-        Session::flash('type', "success");
-        Session::flash('message',"All files are successfully uploaded");
+        Session::flash('success',"All files are successfully uploaded");
         return redirect()->back();
     }
 }

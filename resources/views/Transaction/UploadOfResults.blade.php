@@ -112,6 +112,29 @@
 		</section>
 	</div>
 </div>
+@if(Session::has('success'))
+
+<script type="text/javascript">
+  $( document ).ready(function() 
+  {
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "positionClass": "toast-top-right",
+      "onclick": null,
+      "showDuration": "3000",
+      "hideDuration": "100",
+      "timeOut": "3000",
+      "extendedTimeOut": "0",
+      "showEasing": "swing",
+      "hideEasing": "swing",
+      "showMethod": "show",
+      "hideMethod": "hide"
+    }
+    toastr.success("All files are successfully uploaded");
+  }); 
+</script>
+@endif
 @endsection
 @section('additional')
 <script type="text/javascript">

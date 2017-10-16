@@ -1,10 +1,9 @@
-@extends('AdminLayout.admin')
-
 @if((Session::get('addpatient')!= 1)&&(Session::get('availserv')!= 1)&&(Session::get('delpatient')== 1 )&&(Session::get('uppatient')==1))
 <script type="text/javascript">
     window.location = "{{ url('/PageNotFound') }}";
 </script>
 @endif
+@extends('AdminLayout.admin')
 
 @section ('breadrootName')
 <i class="fa fa-handshake-o" aria-hidden="true"></i><span> Transaction</span>
@@ -33,7 +32,7 @@
 				<div class="clearfix">
 					<div class="btn-group pull-right">
 						@if(Session::get('addpatient')==1)
-						<a class="btn btn-info addbtn" style="margin-left: -40%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
+						<a class="btn btn-info" style="margin-left: -40%" href="#addModal" data-toggle="modal" ><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; New </a>
 						@endif
 					</div>
 					<table class="table table-bordered table-hover dataTable" id="patientTbl">
@@ -64,7 +63,7 @@
 			          	@endif
 			          </td>
 			          <td>{{ $table->patient_address }}</td>
-			          <td>{{ date('F jS, Y',strtotime($table->patient_birthdate)) }}</td>
+			          <td>{{ $table->patient_birthdate }}</td>
 			          <td>{{ $table->age }}</td>
 			          <td>{{ $table->patient_contact }}</td>
 			          <td>{{ $table->patient_civilstatus }}</td>
@@ -182,7 +181,7 @@
 								<div class="input-group-addon">
 									Email Address
 								</div>
-								<input  name="uppatient_email" id="uppatient_email" type="text" placeholder="Email Address" class="form-control input-md">
+								<input  name="uppatient_email" id="uppatient_email" type="text" placeholder="Email Address" class="form-control input-md" required>
 							</div>
 						</div>  
 					</div>
@@ -385,7 +384,7 @@
 								<div class="input-group-addon">
 									Email Address
 								</div>
-								<input  name="patient_email" type="text" placeholder="Email Address" class="form-control input-md">
+								<input  name="patient_email" type="text" placeholder="Email Address" class="form-control input-md" required>
 							</div>
 						</div>  
 					</div>
@@ -507,8 +506,6 @@
 
 @section('additional')
 <script type="text/javascript">
-$('#birthday').datepicker({ maxDate: new Date});
-$('#upbirthday').datepicker({ maxDate: new Date});
 $('.delpatientbtn').click(function(){
 	$('#pid').val($(this).data('id'));
 	$('#deleteModal').modal('show');
@@ -541,23 +538,8 @@ $('#patientTbl').DataTable({
 });	
 
 })
-$('.addbtn').click(function()
-{
-	
-	$('#patientinfo').bootstrapValidator('resetForm',true);
-	$('#patientinfo div').removeClass('has-error');
-	$('#patientinfo div').removeClass('has-success');
-	$('#patientinfo i').removeClass('glyphicon glyphicon-ok');
-	$('#patientinfo i').removeClass('glyphicon glyphicon-remove');
-	$('#patientinfo small').attr('style','display:none');
-})
 $('.uppatientbtn').click(function(){
-	$('#updatepatientinfo').bootstrapValidator('resetForm',true);
-	$('#updatepatientinfo div').removeClass('has-error');
-	$('#updatepatientinfo div').removeClass('has-success');
-	$('#updatepatientinfo i').removeClass('glyphicon glyphicon-ok');
-	$('#updatepatientinfo i').removeClass('glyphicon glyphicon-remove');
-	$('#updatepatientinfo small').attr('style','display:none');
+	
 	$.ajax
 	({
 		url : '/retrievePatient',
@@ -578,16 +560,14 @@ $('.uppatientbtn').click(function(){
 				$('#uppatient_email').val(data.patient_email);
 				$('#upbirthday').val(data.patient_birthdate);
 				$('#upage').val(data.age);
-
 				if(data.patient_gender == 'Male')
 				{
-					$('#upupMale').prop('checked','checked');
+					$('#upupMale').prop('checked',true);
 				}
-				else if(data.patient_gender == 'Female')
+				else
 				{
-					$('#upupFemale').prop('checked','checked');
+					$('#upupFemale').prop('checked',true);
 				}
-
 				if(data.patient_civilstatus == 'Single')
 				{
 					$('#upupSingle').prop('checked',true);

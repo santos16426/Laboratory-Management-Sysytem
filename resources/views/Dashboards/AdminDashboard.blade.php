@@ -375,6 +375,10 @@ $( document ).ready(function() {
             response[0].forEach(function(data){
               discount = data.discount;
             })  
+            if(data.home_service == 1)
+            {
+             frameDoc.document.write('<tr class="item" > <td></td> <td>Home Service Charge: Php 200.00</td></tr>');   
+            }
             if(discount > 0)  
             {
               frameDoc.document.write('<tr class="item" > <td></td> <td>Sub Total: '+data.price+'</td></tr>');  

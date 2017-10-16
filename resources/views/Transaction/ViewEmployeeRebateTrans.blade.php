@@ -204,7 +204,7 @@ $('.printTrans').click(function(){
   }
   if(charge != 0)
   {
-    frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package) (c/o '+data.corp_name+')</td><td>Php 0</td></tr>'); 
+    frameDoc.document.write('<tr><td>'+data.corpPack_name+' (Corporate Package)</td><td> (c/o '+data.corp_name+') Php '+data.price+'</td></tr>'); 
   }
   response[7].forEach(function(data){
     frameDoc.document.write('<tr><td>&emsp;&emsp;&emsp; -'+data.service_name+'</td><td></td></tr>');
@@ -225,6 +225,10 @@ $('.printTrans').click(function(){
     response[0].forEach(function(data){
       discount = data.discount;
     })  
+    if(data.home_service == 1)
+    {
+     frameDoc.document.write('<tr class="item" > <td></td> <td>Home Service Charge: Php 200.00</td></tr>');   
+    }
     if(discount > 0)  
     {
       frameDoc.document.write('<tr class="item" > <td></td> <td>Sub Total: '+data.price+'</td></tr>');  
