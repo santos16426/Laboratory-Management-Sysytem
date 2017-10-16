@@ -105,7 +105,15 @@ $('#EmployeeTypeadd').bootstrapValidator({
                         message: 'This field is required.'
                     }
                 }
-            },                                         
+            }, 
+            lab_id: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select a Department'
+                    }
+                }
+            },  
+
             }
         });
 
@@ -989,12 +997,6 @@ $('#patientinfo')
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                     message: 'Invalid input.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkPatientcontact',
-                        data:{ patient_contact:$('#patient_contact').val()},
-                        message: 'Contact Number already exist.',
-                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }

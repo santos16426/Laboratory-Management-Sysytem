@@ -181,7 +181,7 @@
 								<div class="input-group-addon">
 									Email Address
 								</div>
-								<input  name="uppatient_email" id="uppatient_email" type="text" placeholder="Email Address" class="form-control input-md" required>
+								<input  name="uppatient_email" id="uppatient_email" type="text" placeholder="Email Address" class="form-control input-md">
 							</div>
 						</div>  
 					</div>
@@ -384,7 +384,7 @@
 								<div class="input-group-addon">
 									Email Address
 								</div>
-								<input  name="patient_email" type="text" placeholder="Email Address" class="form-control input-md" required>
+								<input  name="patient_email" type="text" placeholder="Email Address" class="form-control input-md">
 							</div>
 						</div>  
 					</div>

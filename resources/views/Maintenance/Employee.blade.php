@@ -1069,6 +1069,10 @@ $('.employeeTypeDropDown').on('change',function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -1595,6 +1599,10 @@ $('.employeeTypeDropDown').on('change',function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -1716,6 +1724,10 @@ $('.employeeTypeDropDown').on('change',function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -2159,6 +2171,10 @@ $('.employeeTypeDropDown').on('change',function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -2622,6 +2638,10 @@ $('.employeeTypeDropDown').on('change',function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -2741,6 +2761,10 @@ $('.employeeTypeDropDown').on('change',function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -3105,12 +3129,6 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                     message: 'Invalid Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkEmpcontact',
-                        data:{ contact:$('#contact').val()},
-                        message: 'Contact Number already exist.',
-                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -3315,12 +3333,6 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                     message: 'Invalid Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkEmpcontact',
-                        data:{ contact:$('#contact').val()},
-                        message: 'Contact Number already exist.',
-                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -3472,12 +3484,6 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                     message: 'Invalid Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkEmpcontact',
-                        data:{ contact:$('#contact').val()},
-                        message: 'Contact Number already exist.',
-                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -3508,6 +3514,10 @@ $('.empupdateModalbtn').click(function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -3594,12 +3604,6 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                     message: 'Invalid Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkEmpcontact',
-                        data:{ contact:$('#contact').val()},
-                        message: 'Contact Number already exist.',
-                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -3892,12 +3896,6 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                     message: 'Invalid Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkEmpcontact',
-                        data:{ contact:$('#contact').val()},
-                        message: 'Contact Number already exist.',
-                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -3998,12 +3996,6 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                     message: 'Invalid Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkEmpcontact',
-                        data:{ contact:$('#contact').val()},
-                        message: 'Contact Number already exist.',
-                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -4034,6 +4026,10 @@ $('.empupdateModalbtn').click(function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -4119,12 +4115,6 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                     message: 'Invalid Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkEmpcontact',
-                        data:{ contact:$('#contact').val()},
-                        message: 'Contact Number already exist.',
-                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -4155,6 +4145,10 @@ $('.empupdateModalbtn').click(function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -4570,6 +4564,10 @@ $('.empupdateModalbtn').click(function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -4940,12 +4938,6 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                     message: 'Invalid Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkEmpcontact',
-                        data:{ contact:$('#contact').val()},
-                        message: 'Contact Number already exist.',
-                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -5033,6 +5025,10 @@ $('.empupdateModalbtn').click(function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -5152,6 +5148,10 @@ $('.empupdateModalbtn').click(function(){
                     max: 30,
                     message:'Password must be atleast 6 charaters.'
                   },
+                  identical: {
+                        field: 'confirmpass',
+                        message: 'Password and Confirm Password does not match.'
+                    },
                   notEmpty: {
                     message: 'This field is required.'
                   },
@@ -5246,12 +5246,6 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                     message: 'Invalid Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkEmpcontact',
-                        data:{ contact:$('#contact').val()},
-                        message: 'Contact Number already exist.',
-                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -5339,12 +5333,6 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                     message: 'Invalid Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkEmpcontact',
-                        data:{ contact:$('#contact').val()},
-                        message: 'Contact Number already exist.',
-                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -5445,12 +5433,6 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/,
                     message: 'Invalid Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkEmpcontact',
-                        data:{ contact:$('#contact').val()},
-                        message: 'Contact Number already exist.',
-                    },
                   notEmpty: {
                     message: 'This field is required.'
                   }
