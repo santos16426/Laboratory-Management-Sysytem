@@ -976,7 +976,11 @@ $('#patientinfo')
                   },
                   notEmpty: {
                     message: 'This field is required.'
-                  }
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
+                  },
                 }
               }, 
               patient_contact: {
@@ -1118,6 +1122,10 @@ $('#updatepatientinfo')
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'

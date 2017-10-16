@@ -223,6 +223,6 @@ Route::get('/Transactions/ResultLayout/Xray','ResultController@printxray');
 Route::get('/Transactions/ResultLayout/DrugTest','ResultController@printdrug');
 
 // Web
-Route::get('/Website/Home','WebController@website');
+Route::get('/Website/Home','WebController@Website');
 Route::post('/Website/PatientView','WebController@proceedPatientResult');
 

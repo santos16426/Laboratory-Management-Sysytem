@@ -8,7 +8,7 @@ class WebController extends Controller
 {
     public function Website()
     {
-    	return view('website.website');
+    	return view('Website.website');
     }
     public function proceedPatientResult()
     {
@@ -27,11 +27,11 @@ class WebController extends Controller
                         ->where('transresult_tbl.status','DONE')
                         ->where('trans_patient_id',$patient_id)
                         ->get();
-            return view('website.patientresult',['transactions'=>$transactions,'patientinfo'=>$patientinfo]);
+            return view('Website.patientresult',['transactions'=>$transactions,'patientinfo'=>$patientinfo]);
         }
         else
         {
-             return view('website.website');   
+             return view('Website.website');   
         }
     	
     }

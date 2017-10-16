@@ -414,11 +414,15 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -741,11 +745,15 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -894,11 +902,15 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -1170,11 +1182,15 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -1306,11 +1322,15 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -1408,11 +1428,15 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -1786,11 +1810,15 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -2313,11 +2341,15 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -2559,11 +2591,15 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -2757,11 +2793,15 @@ $('.employeeTypeDropDown').on('change',function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -2934,11 +2974,15 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -3140,11 +3184,15 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -3293,11 +3341,15 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -3569,11 +3621,15 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -3705,11 +3761,15 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -3807,11 +3867,15 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -4185,11 +4249,15 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -4270,11 +4338,15 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -4680,11 +4752,15 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -4926,11 +5002,15 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -5035,11 +5115,15 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'
@@ -5230,11 +5314,15 @@ $('.empupdateModalbtn').click(function(){
                   }
                 }
               }, 
-              address: {
+             address: {
                 validators: {
                   regexp: {
                     regexp: /^[a-zA-Z0-9,#.]+([-.,'-_\s][().,a-zA-Z0-9]+)*$/,
                     message: 'Invalid Input.'
+                  },
+                  stringLength: {
+                    max: 100,
+                    message:'Address should not exceed 100 characters.'
                   },
                   notEmpty: {
                     message: 'This field is required.'

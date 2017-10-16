@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>GLOBALHEALTH | DIAGNOSTIC CENTER</title>
+    <link rel="shortcut icon" href="/icon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="bootstrapvalidator/dist/css/bootstrapValidator.css"/>
@@ -61,7 +62,7 @@
                      <li class="nav-item">
                         <a class="nav-link" href="#mission">
                             <i class="now-ui-icons travel_info"></i>
-                            About used
+                            About us
                         </a>
                     </li>
                     <li class="nav-item">
@@ -346,9 +347,6 @@
                                     </li>
                                     <li>
                                         <a href="#doctor">• Schedule of Doctors</a>
-                                    </li>
-                                    <li>
-                                        <a href="#dropdown-row">• Clients</a>
                                     </li>
                                     <li>
                                         <a href="#qc">• GH - Quezon City Schedule & Location</a>
