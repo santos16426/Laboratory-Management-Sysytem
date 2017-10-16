@@ -24,7 +24,7 @@
 		<header class="panel-heading btn-info ">
       <ul class="nav nav-tabs">
           <li class="active">
-              <a data-toggle="tab" href="#labs">Laboratory</a>
+              <a data-toggle="tab" href="#labs">Department</a>
           </li>
           <li class="">
               <a data-toggle="tab" href="#emptype">Employee Type</a>
@@ -62,7 +62,7 @@
             <table class="table table-bordered table-hover dataTable" id="labTbl">
 				      <thead>
 				        <tr>
-				          <th>Laboratory Name</th>
+				          <th>Department Name</th>
 				          <th>Action</th>
 				        </tr>
 				      </thead>

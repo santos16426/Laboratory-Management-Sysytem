@@ -19,7 +19,7 @@ Route::get('/logout','LoginController@logout');
 Route::get('/PageNotFound','AdminController@pagenotfound');
 // dashboard
 Route::get('/Admin/Dashboard','AdminController@dashboard');
-Route::get('/Queue','AdminController@queue');
+Route::get('/Queries','AdminController@query');
 
 // Department
 Route::get('/Maintenance/Laboratory','LaboratoryController@lab');
@@ -221,3 +221,8 @@ Route::get('/Transactions/ResultLayout/MedicalRequest','ResultController@printMe
 Route::get('/Transactions/ResultLayout/Ultrasound','ResultController@printultrasound');
 Route::get('/Transactions/ResultLayout/Xray','ResultController@printxray');
 Route::get('/Transactions/ResultLayout/DrugTest','ResultController@printdrug');
+
+// Web
+Route::get('/Website/Home','WebController@website');
+Route::post('/Website/PatientView','WebController@proceedPatientResult');
+

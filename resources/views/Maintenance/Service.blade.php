@@ -473,6 +473,13 @@
       $('#servadd i').removeClass('glyphicon glyphicon-ok');
       $('#servadd i').removeClass('glyphicon glyphicon-remove');
       $('#servadd small').attr('style','display:none');
+      $('#servg').val(0).trigger('change');
+      $('#medserv1').removeAttr('checked',true);
+      $('#medserv2').removeAttr('checked',true);
+      $('#ecg').removeAttr('checked',true);
+      $('#xray').removeAttr('checked',true);
+      $('#ultrasound').removeAttr('checked',true);
+      $('#drugtest').removeAttr('checked',true);
     });
 $(function () {
 

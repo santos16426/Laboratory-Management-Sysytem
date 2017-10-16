@@ -27,9 +27,9 @@
 </style>
 
 <style type="text/css">
-    .main{background-image: url('webplugins/assets/img/bg.jpg');};
+    .main{background-image: url('/webplugins/assets/img/bg.jpg');};
 </style>
-<body class="index-page" style="background-image: url('webplugins/assets/img/bg.jpg');">
+<body class="index-page" style="background-image: url('/webplugins/assets/img/bg.jpg');">
     <!-- Navbar -->
     <nav class="navbar navbar-toggleable-md bg-info fixed-top navbar-transparent " color-on-scroll="500">
         <div class="container">
@@ -39,11 +39,11 @@
                     <span class="navbar-toggler-bar bar2"></span>
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
-                <a class="navbar-brand" href="#home" rel="tooltip"><img src="webplugins/assets/img/logo.png" style="width: 17%; height: 17%">
+                <a class="navbar-brand" href="#home" rel="tooltip"><img src="/webplugins/assets/img/logo.png" style="width: 17%; height: 17%">
                     <strong>GLOBALHEALTH | DIAGNOSTIC CENTER</strong>
                 </a>
             </div>
-            <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image=".assets/img/blurred-image-1.jpg">
+            <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="/webplugins/assets/img/blurred-image-1.jpg">
             <div id="menu-center">
                 <ul class="navbar-nav"> 
                     <li class="nav-item">
@@ -90,19 +90,19 @@
                                 </ol>
                                 <div class="carousel-inner" role="listbox">
                                     <div class="carousel-item active">
-                                        <img class="d-block" src="webplugins/assets/img/c1.jpg" alt="First slide">
+                                        <img class="d-block" src="/webplugins/assets/img/c1.jpg" alt="First slide">
                                         <div class="carousel-caption d-none d-md-block">
                                             <!--<h5>Nature, United States</h5>-->
                                         </div>
                                     </div>
                                     <div class="carousel-item">
-                                        <img class="d-block" src="webplugins/assets/img/c2.jpg" alt="Second slide">
+                                        <img class="d-block" src="/webplugins/assets/img/c2.jpg" alt="Second slide">
                                         <div class="carousel-caption d-none d-md-block">
                                            <!-- <h5>Somewhere Beyond, United States</h5>-->
                                         </div>
                                     </div>
                                     <div class="carousel-item">
-                                        <img class="d-block" src="webplugins/assets/img/c3.jpg" alt="Third slide">
+                                        <img class="d-block" src="/webplugins/assets/img/c3.jpg" alt="Third slide">
                                         <div class="carousel-caption d-none d-md-block">
                                           <!--  <h5>Yellowstone National Park, United States</h5> -->
                                         </div>
@@ -145,17 +145,17 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <h3>Our Clients</h3>
-                                <img src="webplugins/assets/img/icon_clients.png" alt="Circle Image" class="img-thumbnail img-spin" style="background-color: #F1F0F0; width: 160px">
+                                <img src="/webplugins/assets/img/icon_clients.png" alt="Circle Image" class="img-thumbnail img-spin" style="background-color: #F1F0F0; width: 160px">
                          
                             </div>
                             <div class="col-md-4">
                                 <h3>Medical Services</h3>
-                                <img src="webplugins/assets/img/icon_services.png" alt="Circle Image" class="img-thumbnail img-spin img-dog" style="background-color: #F1F0F0; width: 160px">
+                                <img src="/webplugins/assets/img/icon_services.png" alt="Circle Image" class="img-thumbnail img-spin img-dog" style="background-color: #F1F0F0; width: 160px">
                                
                             </div>
                             <div class="col-md-4">
                                 <h3>Contact Us</h3>
-                                <img src="webplugins/assets/img/icon_contact.png" alt="Circle Image" class="img-thumbnail img-spin" style="background-color: #F1F0F0; width: 160px">
+                                <img src="/webplugins/assets/img/icon_contact.png" alt="Circle Image" class="img-thumbnail img-spin" style="background-color: #F1F0F0; width: 160px">
                                 
                             </div>
                         </div>
@@ -169,7 +169,7 @@
             <div class="row">
                 <div class="col-md-5 col-sm-offset-1">
                     <div class="text-center">
-                        <img src="webplugins/assets/img/1.jpg" style="height: 330px; width: 500px;border-radius: 5%;" alt="Rounded Image" class="img-thumbnail img-responsive img-dog">
+                        <img src="/webplugins/assets/img/1.jpg" style="height: 330px; width: 500px;border-radius: 5%;" alt="Rounded Image" class="img-thumbnail img-responsive img-dog">
                     </div>
                 </div>
                <div class="col-md-7">
@@ -197,7 +197,7 @@
                   </div>
                 <div class="col-md-5">
                     <div class="text-center">
-                        <img src="webplugins/assets/img/2.jpg" style="height: 330px; width: 500px;border-radius: 5%;" alt="Rounded Image" class="img-thumbnail img-responsive img-dog">
+                        <img src="/webplugins/assets/img/2.jpg" style="height: 330px; width: 500px;border-radius: 5%;" alt="Rounded Image" class="img-thumbnail img-responsive img-dog">
                     </div>
                 </div>
                 
@@ -212,7 +212,7 @@
             <div class="row">
                 <div class="col-md-5 col-sm-offset-1">
                     <div class="text-center">
-                        <img src="webplugins/assets/img/3.jpg" style="height: 330px; width: 500px;border-radius: 5%;" alt="Rounded Image" class="img-thumbnail img-responsive img-dog">
+                        <img src="/webplugins/assets/img/3.jpg" style="height: 330px; width: 500px;border-radius: 5%;" alt="Rounded Image" class="img-thumbnail img-responsive img-dog">
                     </div>
                 </div>
                 <div class="col-md-7">
@@ -240,7 +240,7 @@
                   </div>
                 <div class="col-md-5">
                     <div class="text-center">
-                        <img src="webplugins/assets/img/qual.jpg" style="height: 330px; width: 500px;border-radius: 5%;" alt="Rounded Image" class="img-thumbnail img-responsive img-dog">
+                        <img src="/webplugins/assets/img/qual.jpg" style="height: 330px; width: 500px;border-radius: 5%;" alt="Rounded Image" class="img-thumbnail img-responsive img-dog">
                     </div>
                 </div>
                 
@@ -255,7 +255,7 @@
             <div class="row">
                 <div class="col-md-5 col-sm-offset-1">
                     <div class="text-center">
-                        <img src="webplugins/assets/img/cc.jpg" style="height: 330px; width: 500px;border-radius: 5%;" alt="Rounded Image" class="img-thumbnail img-responsive img-dog">
+                        <img src="/webplugins/assets/img/cc.jpg" style="height: 330px; width: 500px;border-radius: 5%;" alt="Rounded Image" class="img-thumbnail img-responsive img-dog">
                     </div>
                 </div>
                 <div class="col-md-7">
@@ -283,7 +283,7 @@
                   </div>
                 <div class="col-md-5">
                     <div class="text-center">
-                        <img src="webplugins/assets/img/po.png" style="height: 330px; width: 500px;border-radius: 5%;" alt="Rounded Image" class="img-thumbnail img-responsive img-dog">
+                        <img src="/webplugins/assets/img/po.png" style="height: 330px; width: 500px;border-radius: 5%;" alt="Rounded Image" class="img-thumbnail img-responsive img-dog">
                     </div>
                 </div>
                 
@@ -362,7 +362,7 @@
                            <br>
                             <div class="tim-row tim-row-first">
                                 <h2 class="title">Clinical Laboratory Tests</h2>
-                                <img src="webplugins/assets/img/MS.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
+                                <img src="/webplugins/assets/img/MS.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
                                 <legend></legend><br>
                                 <p>
                                     To give every Filipino the option to have access to ancillary health procedures at affordable prices with reliability that is at par with global standards.
@@ -601,7 +601,7 @@
                            <br>
                             <div class="tim-row tim-row-first">
                                 <h2 class="title">General Ultrasound (3D and 4D)</h2>
-                                <img src="webplugins/assets/img/GenUlt.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
+                                <img src="/webplugins/assets/img/GenUlt.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
                                 <legend></legend><br>
                                 <p>
                                     To give every Filipino the option to have access to ancillary health procedures at affordable prices with reliability that is at par with global standards.
@@ -612,7 +612,7 @@
                            <br>
                             <div class="tim-row tim-row-first">
                                 <h2 class="title">X-ray Services</h2>
-                                <img src="webplugins/assets/img/xray.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
+                                <img src="/webplugins/assets/img/xray.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
                                 <legend></legend><br>
                                 <p>
                                     To give every Filipino the option to have access to ancillary health procedures at affordable prices with reliability that is at par with global standards.
@@ -623,7 +623,7 @@
                            <br>
                             <div class="tim-row tim-row-first">
                                 <h2 class="title">Drug Test</h2>
-                                <img src="webplugins/assets/img/DT.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
+                                <img src="/webplugins/assets/img/DT.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
                                 <legend></legend><br>
                                 <p>
                                     To give every Filipino the option to have access to ancillary health procedures at affordable prices with reliability that is at par with global standards.
@@ -634,7 +634,7 @@
                            <br>
                             <div class="tim-row tim-row-first">
                                 <h2 class="title">In-House and On-Site Pre-Employment</h2>
-                                <img src="webplugins/assets/img/In-House and On.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
+                                <img src="/webplugins/assets/img/In-House and On.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
                                 <legend></legend><br>
                                 <p>
                                     To give every Filipino the option to have access to ancillary health procedures at affordable prices with reliability that is at par with global standards.
@@ -645,7 +645,7 @@
                            <br>
                             <div class="tim-row tim-row-first">
                                 <h2 class="title">On-Site Annual Medical Exam with Mobile Van</h2>
-                                <img src="webplugins/assets/img/OnsiteME.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
+                                <img src="/webplugins/assets/img/OnsiteME.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
                                 <legend></legend><br>
                                 <p>
                                     To give every Filipino the option to have access to ancillary health procedures at affordable prices with reliability that is at par with global standards.
@@ -656,7 +656,7 @@
                            <br>
                             <div class="tim-row tim-row-first">
                                 <h2 class="title">Home Service</h2>
-                                <img src="webplugins/assets/img/HS.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
+                                <img src="/webplugins/assets/img/HS.jpg" alt="Raised Image" class="rounded img-raised" style="width: 450px; height: 350;">
                                 <legend></legend><br>
                                 <p>
                                     To give every Filipino the option to have access to ancillary health procedures at affordable prices with reliability that is at par with global standards.

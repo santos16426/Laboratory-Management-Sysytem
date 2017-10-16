@@ -231,7 +231,7 @@ $('.sendEmail').click(function(){
 		      "showMethod": "show",
 		      "hideMethod": "hide"
 		    }
-		    toastr.success("Success wala nakong maisip ehe");
+		    toastr.success("Email sent!");
 		},
 		error:function(response){
 			toastr.options = {

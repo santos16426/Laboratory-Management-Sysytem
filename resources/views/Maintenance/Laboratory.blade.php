@@ -198,6 +198,12 @@
 	});
 
 	$('.uplabbtn').click(function(){
+    $('#labedit').bootstrapValidator('resetForm',true);
+    $('#labedit div').removeClass('has-error');
+    $('#labedit div').removeClass('has-success');
+    $('#labedit i').removeClass('glyphicon glyphicon-ok');
+    $('#labedit i').removeClass('glyphicon glyphicon-remove');
+    $('#labedit small').attr('style','display:none');
     $.ajax
     ({
       url: '/updateLab',

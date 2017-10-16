@@ -14,9 +14,9 @@ class AdminController extends Controller
     {
         return view('Pages.PageNotFound');
     }
-    function queue()
+    function query()
     {
-        return view('Pages.Queueing');
+        return view('Pages.Query');
     }
     function dashboard()
     {
@@ -48,8 +48,50 @@ class AdminController extends Controller
             ->where('LabStatus',null)
             ->count();
         
-        $dayincome =DB::table('transaction_tbl')->whereDate('trans_date',date('Y-m-d'))->sum('trans_total');
-        
+        $dayincome =DB::table('transaction_tbl')
+                        ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+                        ->select('trans_total',DB::raw('IFNULL(charge,0) as charge'),'discount')
+                        ->where('trans_date',date('Y-m-d'))
+                        ->get();
+        if(count($dayincome)>0)
+        {
+            foreach($dayincome as $d)
+            {
+                $total = $d->trans_total;
+                $charge = $d->charge;
+                $discount = $d->discount;
+                $total += $total;
+                $total += $charge;
+                $dayincome = ($total - ($total * ($discount/100)));
+            }
+        }
+        else
+        {
+            $dayincome = 0;
+        }
+        $monthincome =DB::table('transaction_tbl')
+                        ->join('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+                        ->select('trans_total',DB::raw('IFNULL(charge,0) as charge'),'discount')
+                        ->whereYear('trans_date',date('Y'))
+                        ->whereMonth('trans_date',date('m'))
+                        ->get();
+
+        if(count($monthincome)>0)
+        {
+            $total = 0;
+            foreach($monthincome as $m)
+            {
+                $total += $m->trans_total;
+                $total += $m->charge;
+                $monthincome = ($total - ($total * ($m->discount/100)));  
+            }
+
+             
+        }
+        else
+        {
+            $monthincome = 0;
+        }
         $corporate = DB::table('corporate_accounts_tbl')->where('CorpStatus',1)->count();
 
         $emp_total = 0;
@@ -78,7 +120,7 @@ class AdminController extends Controller
             $rebate = $reb->percentage;
         }
         $daytransact= DB::table('transaction_tbl')->whereDate('trans_date',date('Y-m-d'))->count();
-        $monthincome =DB::table('transaction_tbl')->whereYear('trans_date',date('Y'))->whereMonth('trans_date',date('m'))->sum('trans_total');
+        
         $unfinish = DB::table('transresult_tbl')->where('status','PENDING')->count();
 
         $patientcount = DB::table('patient_tbl')->count();

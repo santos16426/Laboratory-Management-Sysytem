@@ -190,6 +190,7 @@
 @section('additional')
 <script type="text/javascript">
    $('#newbtn').click(function(){
+      $('#dropLABID').val(0).trigger('change');
       $('#servgrpadd').bootstrapValidator('resetForm',true);
       $('#servgrpadd div').removeClass('has-error');
       $('#servgrpadd div').removeClass('has-success');
@@ -215,7 +216,7 @@
     $('#deleteModal').modal('show');
 	});
 	$('.servgroupupbtn').click(function(){
-    $('#servgrpadd').bootstrapValidator('resetForm',true);
+      $('#servgrpedit').bootstrapValidator('resetForm',true);
       $('#servgrpedit div').removeClass('has-error');
       $('#servgrpedit div').removeClass('has-success');
       $('#servgrpedit i').removeClass('glyphicon glyphicon-ok');
