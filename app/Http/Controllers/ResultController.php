@@ -13,6 +13,57 @@ class ResultController extends Controller
         date_default_timezone_set('Singapore');
         ini_set('memory_limit','256M');
     }
+    function update_resultfile()
+    {
+        $trans_id =$_POST['trans_id'];
+        $result_type = $_POST['result_type'];
+        $result_id = $_POST['result_id'];
+        $file_id = $_POST['file_id'];
+        DB::table('trans_resultfiles_tbl')->where('file_id',$file_id)->update(['status'=>0]);
+        $file = $_FILES['file'];
+        $file_error = $file['error'];
+        // File properties
+        $file_name = $file['name'];
+        $file_tmp = $file['tmp_name'];
+        $file_size = $file['size'];
+
+        //Work out the file extension
+        $file_ext = explode('.',$file_name);
+        $file_ext = strtolower(end($file_ext));
+
+        $allowed = array('pdf','jpg','png','txt','doc','docx','xlsx','ppt','pptx');
+        $emp_id = Session::get('emp_id');
+        if(in_array($file_ext,$allowed))
+        {
+            if($file_error === 0)
+            {
+                if($file_size <= 2097152)
+                {
+                    $file_name_new = uniqid('',true) . '.' . $file_ext;
+                    $file_destination = 'PatientResults/' . $file_name_new;
+
+                    if(move_uploaded_file($file_tmp, $file_destination))
+                    {
+                        $emp_id = 0;
+                        if(Session::has('emp_id'))
+                        {
+                            $emp_id = Session::get('emp_id');
+                        }
+                         DB::table('trans_resultfiles_tbl')->insert([
+                            'result_type'=> $result_type,
+                            'trans_id'  =>  $trans_id,
+                            'result_id' =>  $result_id,
+                            'date'      =>  date_create('now'),
+                            'file'      =>  $file_name_new,
+                            'emp_id'    =>  $emp_id
+                        ]);
+                    }
+                }
+            }
+        }
+        Session::flash('update',true);
+        return redirect()->back();
+    }
     function archiveresults()
     {
         
@@ -1665,5 +1716,35 @@ class ResultController extends Controller
                 ]);
         Session::flash('success',"All files are successfully uploaded");
         return redirect()->back();
+    }
+    public function TransactionFiles()
+    {
+        $trans_id = $_GET['id'];
+        $result_id = DB::table('transresult_tbl')->select('result_id')->where('trans_id',$trans_id)->get();
+
+        if(Session::get('emp_type_id')== 0 )
+        {
+            $table = DB::table('trans_resultfiles_tbl')
+                ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','trans_resultfiles_tbl.trans_id')
+                ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_resultfiles_tbl.result_id')
+                ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+                ->select('patient_fname','patient_mname','patient_lname','result_type','trans_resultfiles_tbl.status','trans_date','file','file_id','trans_resultfiles_tbl.trans_id','trans_resultfiles_tbl.result_id')
+                ->where('trans_resultfiles_tbl.trans_id',$trans_id)
+                ->get();
+        }
+        else
+        {
+            $table = DB::table('trans_resultfiles_tbl')
+                    ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','trans_resultfiles_tbl.trans_id')
+                    ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_resultfiles_tbl.result_id')
+                    ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+                    ->select('patient_fname','patient_mname','patient_lname','result_type','trans_resultfiles_tbl.status','trans_date','file','file_id','trans_resultfiles_tbl.trans_id','trans_resultfiles_tbl.result_id')
+                    ->where('trans_resultfiles_tbl.trans_id',$trans_id)
+                    ->where('trans_resultfiles_tbl.emp_id',Session::get('emp_id'))
+                    ->get();
+        }
+        
+
+        return view('Transaction.TransactionFiles',['table'=>$table]);
     }
 }

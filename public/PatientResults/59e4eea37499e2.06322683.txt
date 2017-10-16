@@ -1,0 +1,7 @@
+1.	palabasin yung error sa maling age (tuwing kailan sya lumalabas)  
+
+-- findings: di na sya lumalabas
+
+2.	results sa percentage
+
+--findings: di ko magawa kasi di makapagtransact

@@ -125,6 +125,9 @@ Route::post('/uploadResultFile','ResultController@uploadResultFile');
 Route::get('/uploadFileResuls','ResultController@uploadFileResuls');
 Route::post('/delete_resultfile','ResultController@delete_resultfile');
 
+Route::get('/Transaction/ResultFile','ResultController@TransactionFiles');
+
+
 //Remote Validation
 Route::get('/checkEmpType','RemoteController@checkEmpType');
 Route::get('/checkServgrp','RemoteController@checkServgrp');
@@ -222,6 +225,7 @@ Route::get('/Transactions/ResultLayout/Ultrasound','ResultController@printultras
 Route::get('/Transactions/ResultLayout/Xray','ResultController@printxray');
 Route::get('/Transactions/ResultLayout/DrugTest','ResultController@printdrug');
 Route::get('/Transactions/ArchiveofResults','ResultController@archiveresults');
+Route::post('/update_resultfile','ResultController@update_resultfile');
 // Web
 Route::get('/Website/Home','WebController@Website');
 Route::post('/Website/PatientView','WebController@proceedPatientResult');

@@ -63,10 +63,15 @@
 				          	@else
 				          		0
 				          	@endif
+
 				          </td>
 				          		
 				          <td>
-				            <a class="btn btn-info btn-xs" href="/Transaction/TransactionFile?id={{ $transact->trans_id }}"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;  View Files</a>
+				          	<form action="/Transaction/ResultFile" method="GET">
+				          		<input type="hidden" name="id" value="{{ $transact->trans_id }}">
+				          		{{ csrf_field() }}
+				            <button class="btn btn-info btn-xs" type="submit"><i class="fa fa-files-o" aria-hidden="true"></i>&nbsp;  View Files</button>
+				            </form>
 				          </td>
 				        </tr>
 				        <?php $total=0; ?>
