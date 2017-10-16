@@ -409,8 +409,8 @@ class ResultController extends Controller
         $service_results = DB::table('trans_result_service_tbl')->whereIn('service_id',$service_id)->where('result_id',$result_id)->get();
         foreach($service_results as $med)
         {
-            $med_id = $med->medserv2_medtech;
-            $path_id = $med->medserv2_pathologist;
+            $med_id = $med->Medserv2_medtech;
+            $path_id = $med->Medserv2_pathologist;
         }
         $getMedtech = DB::table('employee_tbl')->where('emp_id',$med_id)->get();
         $getPatho = DB::table('employee_tbl')->where('emp_id',$path_id)->get();
