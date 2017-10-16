@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/debug','AdminController@debug');
 Route::get('/','LoginController@showLoginForm');
 Route::get('/ChangePass','LoginController@ChangePass');
 Route::post('/changePass','LoginController@changePassword');

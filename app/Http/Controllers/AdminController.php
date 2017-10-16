@@ -10,14 +10,28 @@ class AdminController extends Controller
     {
         date_default_timezone_set('Singapore');
     }
+    function debug()
+    {
+        $medtech = DB::table('employee_tbl')
+                    ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
+                    ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
+                    ->where('role_name','Medical Techonlogist')
+                    ->where('EmpStatus',1)                    
+                    ->where('RoleStatus',1)
+                    ->where('LabStatus',1)
+                    ->get();
+
+    }
     function pagenotfound()
     {
         return view('Pages.PageNotFound');
     }
     function query()
     {
-        return view('Pages.Query');
+        $emptype = DB::table('employee_role_tbl')->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')->where('RoleStatus',1)->where('LabStatus',1)->get();
+        return view('Pages.Query',['emptype'=>$emptype]);
     }
+
     function dashboard()
     {
         $emp_count = DB::table('employee_tbl')
