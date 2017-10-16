@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use DateTime;
+use Session;
 class AdminController extends Controller
 {
     public function __construct()
@@ -220,12 +221,24 @@ class AdminController extends Controller
             array_push($res_id,$r->result_id);
 
         } 
-        $transactions = DB::table('transaction_tbl')
+        if(Session::get('emp_id')== 0)
+
+        {
+            $transactions = DB::table('transaction_tbl')
+                ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+                ->leftjoin('transresult_tbl','transresult_tbl.trans_id','=','transaction_tbl.trans_id')
+                ->where('status','PENDING')
+                ->get();
+        }
+        else
+        {
+            $transactions = DB::table('transaction_tbl')
             ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
             ->leftjoin('transresult_tbl','transresult_tbl.trans_id','=','transaction_tbl.trans_id')
             ->whereIn('transresult_tbl.result_id',$res_id)
+            ->where('status','PENDING')
             ->get();
-        
+        }
         $totaltransaction = DB::table('trans_result_service_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->get();
         $doneTransaction = DB::table('trans_result_service_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->where('status','DONE')->get();
         $total = 0;

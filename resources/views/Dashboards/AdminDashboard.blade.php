@@ -187,7 +187,7 @@
 
               <div class="row">
                @if(Session::get('result')==1)
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                       <!--user info table start-->
                       <section class="panel">
                       	<header class="panel-heading">
@@ -197,10 +197,9 @@
 											      	</span>
 												</header>
                           <div class="panel-body">
-	                          <table class="table table-hover personal-task">
+	                          <table class="table table-hover" id="uptbl">
 	                            <thead>
 	                              <tr>
-	                                <th>Transaction ID</th>
 	                                <th>Transaction Date</th>
 	                                <th>Patient Name</th>
 	                                <th>Progress</th>
@@ -212,47 +211,46 @@
 	                            <tbody>
 	                              @foreach($transactions as $transact)
 	                              <tr>
-	                                <td>{{ $transact->trans_id }}</td>
 	                                <td>
 	                                    {{  date('F jS, Y',strtotime($transact->trans_date)) }}
 	                                </td>
 	                                <td>{{ $transact->patient_lname }} {{ $transact->patient_mname }} {{ $transact->patient_fname }}</td>
 	                                <td>
-	                                  @foreach($totaltrans as $totals)
-	                                    @if($totals->result_id == $transact->result_id)
-	                                      @if(count($donetrans)>0)
-	                                      @foreach($donetrans as $dones)
-	                                        @if($dones->result_id == $transact->result_id)
-	                                          <?php $total = floor(($dones->count_row/$totals->count_row)*100) ?>
-	                                          <div class="progress progress-striped active progress-md">
-	                                            <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{ $total }}%">
-	                                              <span>{{ $total }}% Complete</span>
-	                                            </div>
-	                                          </div>
-	                                          @else
-	                                            <div class="progress progress-striped active progress-md">
-			                                          <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-			                                            <span>0% Complete</span>
-			                                          </div>
-	                                            </div>
-	                                            @endif
-	                                          @endforeach
-	                                          @else
-	                                        <div class="progress progress-striped active progress-md">
-			                                      <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-			                                        <span>0% Complete</span>
-			                                      </div>
-	                                        </div>
-	                                        @endif
-	                                      @endif
-	                                    @endforeach
-	                                	</td>
+                                    @foreach($totaltrans as $totals)
+                                      @if($totals->result_id == $transact->result_id)
+                                        @if(count($donetrans)>0)
+                                        @foreach($donetrans as $dones)
+                                          @if($dones->result_id == $transact->result_id)
+                                            <?php $total = floor(($dones->count_row/$totals->count_row)*100) ?>
+                                            <div class="progress progress-striped active progress-md">
+                                                          <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{ $total }}%">
+                                                              <span>{{ $total }}% Complete</span>
+                                                          </div>
+                                                    </div>
+                                                    <?php $done =1;  ?>
+                                                  @endif
+                                                @endforeach
+                                                @if($done == 0)
+                                                <div class="progress progress-striped active progress-md">
+                                    <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                      <span>0% Complete</span>
+                                    </div>
+                                                </div>
+                                                @endif
+                                                <?php $done = 0; ?>
+                                                @endif
+                                              @endif
+                                              @endforeach
+                                  </td>
 	                                  @if((Session::get('upresult')==1))
 	                                  @if($total == 100)
 	                                  <td>
 	                                      <a class="btn btn-primary btn-xs" href="/uploadFileResuls?id={{ $transact->trans_id }}"><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;  Upload Result</a>
 	                                  </td>
+                                    @else
+                                      <td><a class="btn btn-primary btn-xs" disabled><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;  Upload Result</a></td>
 	                                  @endif
+                                    <?php  $total = 0 ?>
 	                                  @endif
 	                              </tr>
 	                              @endforeach
@@ -269,12 +267,45 @@
 </div>
 
 @endsection
+@if(Session::has('success'))
+<script type="text/javascript">
+  $( document ).ready(function() 
+  {
+    
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "positionClass": "toast-top-right",
+      "onclick": null,
+      "showDuration": "3000",
+      "hideDuration": "100",
+      "timeOut": "3000",
+      "extendedTimeOut": "0",
+      "showEasing": "swing",
+      "hideEasing": "swing",
+      "showMethod": "show",
+      "hideMethod": "hide"
+    }
+    toastr.success("Success! Result successfully uploaded");
+  }); 
+</script>
+@endif
 @section('additional')
-
+<script type="text/javascript">
+  $('#uptbl').dataTable({
+    'paging'      : true,
+    'lengthChange': true,
+    'searching'   : true,
+    'ordering'    : true,
+    'info'        : true,
+    'autoWidth'   : true,
+  })
+</script>
 @if(Session::has('transaction'))
 <input type="hidden" name="" value="{{ Session::get('trans_id') }}" id="transaction_id">
 <script type="text/javascript">
 $( document ).ready(function() {  
+
   var date="";
   var total="";
   var payment="";

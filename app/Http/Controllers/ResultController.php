@@ -1372,11 +1372,23 @@ class ResultController extends Controller
             array_push($res_id,$r->result_id);
 
         } 
-        $transactions = DB::table('transaction_tbl')
+        if(Session::get('emp_id')== 0)
+        {
+            $transactions = DB::table('transaction_tbl')
+                ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
+                ->leftjoin('transresult_tbl','transresult_tbl.trans_id','=','transaction_tbl.trans_id')
+                ->where('status','PENDING')
+                ->get();
+        }
+        else
+        {
+            $transactions = DB::table('transaction_tbl')
             ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
             ->leftjoin('transresult_tbl','transresult_tbl.trans_id','=','transaction_tbl.trans_id')
             ->whereIn('transresult_tbl.result_id',$res_id)
+            ->where('status','PENDING')
             ->get();
+        }
         $nooffiles = DB::table('trans_resultfiles_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->where('status',1)->get();
         $totaltransaction = DB::table('trans_result_service_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->get();
         $doneTransaction = DB::table('trans_result_service_tbl')->select('result_id',DB::raw('COUNT(*) as count_row'))->distinct()->groupBy('result_id')->where('status','DONE')->get();
@@ -1730,6 +1742,7 @@ class ResultController extends Controller
                 ->leftjoin('patient_tbl','patient_tbl.patient_id','=','transaction_tbl.trans_patient_id')
                 ->select('patient_fname','patient_mname','patient_lname','result_type','trans_resultfiles_tbl.status','trans_date','file','file_id','trans_resultfiles_tbl.trans_id','trans_resultfiles_tbl.result_id')
                 ->where('trans_resultfiles_tbl.trans_id',$trans_id)
+                ->orderBy('status',1)
                 ->get();
         }
         else
@@ -1741,6 +1754,7 @@ class ResultController extends Controller
                     ->select('patient_fname','patient_mname','patient_lname','result_type','trans_resultfiles_tbl.status','trans_date','file','file_id','trans_resultfiles_tbl.trans_id','trans_resultfiles_tbl.result_id')
                     ->where('trans_resultfiles_tbl.trans_id',$trans_id)
                     ->where('trans_resultfiles_tbl.emp_id',Session::get('emp_id'))
+                    ->orderBy('status',1)
                     ->get();
         }
         

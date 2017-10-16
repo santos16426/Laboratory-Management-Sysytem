@@ -763,18 +763,20 @@
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="content">
-                                    <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                            <i class="now-ui-icons users_circle-08"></i>
-                                        </span>
-                                        <input type="text" class="form-control" placeholder="Enter Last name" name="name">
-                                    </div>
-                                    <div class="input-group form-group-no-border">
+                            <div class="input-group form-group-no-border">
                                         <span class="input-group-addon">
                                             <i class="now-ui-icons ui-1_lock-circle-open"></i>
                                         </span>
                                         <input type="text" placeholder="Enter Code" class="form-control" name="code">
                                     </div>
+                                    <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons users_circle-08"></i>
+                                        </span>
+                                        <input type="password" class="form-control" placeholder="Enter Last name" name="name">
+                                    </div>
+                                    <span></span>
+                                    <span><small>Note:If first time, Last name should be all capital letters without spaces</small></span>
                                 </div>
                     </div>
                     <div class="footer text-center">

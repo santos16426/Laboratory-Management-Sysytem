@@ -869,6 +869,7 @@ class TransactionController extends Controller
         'patient_corp_id' =>  $addcorpid,
         'patient_civilstatus'=>$patient_civil,
         'claimCode' =>  $code,
+        'webPass'=>strtoupper(str_replace(' ','',$patient_lname)),
         'patient_email'=>$patient_email
       ]);
 
