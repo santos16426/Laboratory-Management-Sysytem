@@ -1190,7 +1190,7 @@ class ResultController extends Controller
         $medtech = DB::table('employee_tbl')
                     ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
                     ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
-                    ->where('role_name','Medical Techonologist')
+                    ->where('role_name','Technologist')
                     ->where('EmpStatus',1)                    
                     ->where('RoleStatus',1)
                     ->where('LabStatus',1)
