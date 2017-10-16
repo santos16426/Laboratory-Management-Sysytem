@@ -32,11 +32,11 @@
 							<div class="col-md-10 col-md-offset-1 input-group">
 								<span class="input-group-addon">Select Query<sup>*</sup></span>
 								<select class="form-control select2" id="search">
-									<option value="Patient">Patient</option>
-									<option value="Employee">Employee</option>
-									<option value="Corporate">Corporate Account</option>
-									<option value="Service">Service</option>
-									<option value="Package">Package</option>
+									<option value="Patient" data-id="Patient">Patient</option>
+									<option value="Employee" data-id="Employee">Employee</option>
+									<option value="Corporate" data-id="Corporate">Corporate Account</option>
+									<option value="Service" data-id="Service">Service</option>
+									<option value="Package" data-id="Package">Package</option>
 								</select>
 							</div>
 						</div>
@@ -174,7 +174,7 @@
 	var corporatediv = document.getElementById('corporate');
 	var servicediv = document.getElementById('service');
 	var packagediv = document.getElementById('package');
-	var search = $('#search').select2('data');
+	var search = $('#search').val($(this).data('id'));
 	$('#search').change(function(){
 		
 		if(search = 'Patient')

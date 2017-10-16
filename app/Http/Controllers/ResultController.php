@@ -409,8 +409,8 @@ class ResultController extends Controller
         $service_results = DB::table('trans_result_service_tbl')->whereIn('service_id',$service_id)->where('result_id',$result_id)->get();
         foreach($service_results as $med)
         {
-            $med_id = $med->medserv1_medtech;
-            $path_id = $med->medserv1_pathologist;
+            $med_id = $med->medserv2_medtech;
+            $path_id = $med->medserv2_pathologist;
         }
         $getMedtech = DB::table('employee_tbl')->where('emp_id',$med_id)->get();
         $getPatho = DB::table('employee_tbl')->where('emp_id',$path_id)->get();
@@ -1190,11 +1190,12 @@ class ResultController extends Controller
         $medtech = DB::table('employee_tbl')
                     ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
                     ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
-                    ->where('role_name','Technologist')
+                    ->where('role_name','Medical Technologist')
                     ->where('EmpStatus',1)                    
                     ->where('RoleStatus',1)
                     ->where('LabStatus',1)
                     ->get();
+        
         $patho = DB::table('employee_tbl')
                     ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
                     ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
