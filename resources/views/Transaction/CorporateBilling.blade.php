@@ -81,7 +81,7 @@
 					      	<a class="btn btn-info btn-xs viewTrans" data-id="{{ $corporates->corp_id }}"><i class="fa fa-handshake-o" aria-hidden="true" ></i>&nbsp;View Transactions</a>
 					      	<a class="btn btn-success btn-xs payCorp" data-id="{{ $corporates->corp_id }}" data-amount="{{ $balance }}"><i class="fa fa-rub" aria-hidden="true" ></i>&nbsp; Pay</a>
 					      	<a class="btn btn-primary btn-xs sendEmail" data-id="{{ $corporates->corp_id }}" data-total="{{ $balance }}" data-email="{{ $corporates->corp_email }}"><i class="fa fa-envelope" aria-hidden="true" ></i>&nbsp; Email</a>
-					      	@else
+					      	@if($balance == 0)
 					      	<a class="btn btn-info btn-xs viewTrans" data-id="{{ $corporates->corp_id }}"><i class="fa fa-handshake-o" aria-hidden="true" ></i>&nbsp;View Transactions</a>
 					      	@endif
 					      	<?php $balance=0; $corppay=0; ?>
