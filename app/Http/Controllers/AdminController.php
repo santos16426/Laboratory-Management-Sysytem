@@ -193,8 +193,14 @@ class AdminController extends Controller
             $emppayment += $emppay->transRebPay_amount;
         }
         $emp_total = $total - $emppayment;
-        
-        $totalcorp = DB::table('transcorp_tbl')->sum('charge');
+        $totalcorp = DB::table('transcorp_tbl')
+                        ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','transcorp_tbl.trans_id')
+                        ->select(DB::raw('(trans_total + IFNULL(charge,0)-((trans_total + IFNULL(charge,0)) *discount/100)) as total'))
+                        ->get();
+        foreach($totalcorp as $tot)
+        {
+            $totalcorp = $tot->total;
+        }
         $totaypaycorp = DB::table('transcorp_payment_tbl')->sum('corpPayment_bill');
         $corppay = $totalcorp - $totaypaycorp;
         $reb_id = DB::table('rebate_tbl')->max('rebate_id');
