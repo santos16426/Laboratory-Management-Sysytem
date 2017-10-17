@@ -49,6 +49,7 @@
                 <th hidden></th>
                 <th hidden></th>
                 <th hidden></th>
+                <th hidden></th>
               </tr>
             </thead>
             <tbody>
@@ -87,6 +88,7 @@
                 <td hidden>@if($emp1->emp_address != null){{ $emp1->emp_address }}@else null @endif</td>
                 <td hidden>@if($emp1->rank_name != null){{ $emp1->rank_name }}@else null @endif</td>
                 <td hidden>@if($emp1->emp_contact != null){{ $emp1->emp_contact }}@else null @endif</td>
+                <td hidden>{{ $emp1->emp_id }}</td>
               </tr>
 
              
@@ -193,6 +195,7 @@
       {
           var aData = oTable.fnGetData( nTr );
           var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+          sOut += '<tr><td>Employee ID: '+aData[12]+'</td></tr>';
           sOut += '<tr><td>Name: <b><u>'+' '+aData[3]+' ' +aData[4]+' ' +aData[2]+'</u></b></td></tr>';
           sOut += '<tr><td>Employee Type: '+aData[5]+'</td></tr>';
           if(aData[8] != 'null')
