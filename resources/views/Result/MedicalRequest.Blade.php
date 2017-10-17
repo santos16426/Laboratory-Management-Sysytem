@@ -128,7 +128,7 @@
 								<div class="input-group" >
 									<span class="input-group-addon">Examining Physician</span>
 									<select class="form-control emp_id select2" name="examphysician" id="examphysician" style="width: 100%" required="">
-										<option value="" selected="">Select Physician</option>
+										<option value="" selected="" disabled="">Select Physician</option>
 										@foreach($doctor as $doc)
 											<option value="{{ $doc->emp_id }}">{{ $doc->emp_fname }} {{ $doc->emp_mname }} {{ $doc->emp_lname }}</option>
 										@endforeach
@@ -158,7 +158,7 @@
 								<div class="input-group" >
 									<span class="input-group-addon">Evaluated By</span>
 									<select class="form-control eval select2" name="eval" id="eval" style="width: 100%" required="">
-										<option value="" selected="">Select an Doctor</option>
+										<option value="" selected="" disabled="">Select an Doctor</option>
 									@foreach($doctor as $doc1)
 										<option value="{{ $doc1->emp_id }}">{{ $doc1->emp_fname }} {{ $doc1->emp_mname }} {{ $doc1->emp_lname }}</option>
 									@endforeach
@@ -190,7 +190,7 @@
 				<div class="col-md-6">
 			        <div class="form-group">
 			              <div class="col-md-12">
-			                <textarea  name="history" id="history" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  title="This Field is required. This Field should not exceed 200 characters." required></textarea>
+			                <textarea  name="history" id="history" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  title="This Field is required. This Field should not exceed 200 characters."></textarea>
 			          </div>  
 			       </div><br><br><br>
 			 	 </div>
@@ -210,7 +210,7 @@
 			                  <div class="input-group-addon">
 			                   Date of Diagnosis
 			                 </div>
-			                <input  name="datediag" id="datediag" type="text" placeholder="Date of Diagnosis" class="form-control input-md default-date-picker" required>
+			                <input  name="datediag" id="datediag" type="text" placeholder="Date of Diagnosis" class="form-control input-md default-date-picker">
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -222,7 +222,7 @@
 			                  <div class="input-group-addon">
 			                   Illness/Operation
 			                 </div>
-			                <input  name="illness" id="illness" placeholder="Illness/Operation" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."   title="This Field is required. This Field should not exceed 200 characters." required>
+			                <input  name="illness" id="illness" placeholder="Illness/Operation" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."   title="This Field is required. This Field should not exceed 200 characters.">
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -237,7 +237,7 @@
 			                  <div class="input-group-addon">
 			                   Medication
 			                 </div>
-			                <input  name="medication" id="medication" type="text" placeholder="Medication" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  title="This Field is required. This Field should not exceed 200 characters." required>
+			                <input  name="medication" id="medication" type="text" placeholder="Medication" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  title="This Field is required. This Field should not exceed 200 characters.">
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -249,7 +249,7 @@
 			                  <div class="input-group-addon">
 			                   Remark
 			                 </div>
-			                <input  name="remark1" id="remark1" placeholder="Remark" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required>
+			                <input  name="remark1" id="remark1" placeholder="Remark" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters." >
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -264,14 +264,14 @@
 				<div class="col-md-6">
 			        <div class="form-group">
 			              <div class="col-md-12">
-			                <textarea  name="famhisto1" id="" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required></textarea>
+			                <textarea  name="famhisto1" id="" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters." ></textarea>
 			          </div>  
 			       </div><br><br><br>
 			 	 </div>
 			 	 <div class="col-md-6">
 			        <div class="form-group">
 			            <div class="col-md-12">
-			                <textarea  name="famhisto2" id="" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required></textarea>
+			                <textarea  name="famhisto2" id="" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters." ></textarea>
 			          	</div>  
 			       </div><br><br><br>
 		        </div> 
@@ -289,7 +289,7 @@
 			                  <div class="input-group-addon">
 			                   Smoker
 			                 </div>
-			                <input  name="smoker" id="smoker" placeholder="Smoker" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
+			                <input  name="smoker" id="smoker" placeholder="Smoker" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." >
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -301,7 +301,7 @@
 			                  <div class="input-group-addon">
 			                   No. of Sticks/Day
 			                 </div>
-			                <input  name="sticks" type="" id="sticks" placeholder="No. of Sticks/Day" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only." required>
+			                <input  name="sticks" type="" id="sticks" placeholder="No. of Sticks/Day" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only." >
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -316,7 +316,7 @@
 			                  <div class="input-group-addon">
 			                   Remarks
 			                 </div>
-			                <input  name="remarks2" id="remarks2" type="text" placeholder="Remarks" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required>
+			                <input  name="remarks2" id="remarks2" type="text" placeholder="Remarks" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters." >
 			             </div>
 			          </div>  
 			       </div><br><br><br>
@@ -328,7 +328,7 @@
 			                  <div class="input-group-addon">
 			                   Pack Years
 			                 </div>
-			                <input  name="packyears" id="packyears" placeholder="Pack Years" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only." required>
+			                <input  name="packyears" id="packyears" placeholder="Pack Years" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only." >
 			             </div>
 			          </div>  
 			       </div><br><br><br>
@@ -343,7 +343,7 @@
 			                  <div class="input-group-addon">
 			                   Alcohol
 			                 </div>
-			                <input  name="alcohol" id="alcohol" placeholder="Alcohol" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters." required>
+			                <input  name="alcohol" id="alcohol" placeholder="Alcohol" class="form-control input-md" pattern="[a-zA-Z0-9.>/=\<-]{1,50}" title="This Field is required. This Field should not exceed 50 characters.">
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -355,7 +355,7 @@
 			                  <div class="input-group-addon">
 			                   No. of Bottles
 			                 </div>
-			                <input  name="bottles" id="bottles" placeholder="No. of Bottles" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only." required>
+			                <input  name="bottles" id="bottles" placeholder="No. of Bottles" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only.">
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -370,7 +370,7 @@
 			                  <div class="input-group-addon">
 			                   Remarks
 			                 </div>
-			                <input  name="remarks3" id="remarks3" type="text" placeholder="Remarks" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required>
+			                <input  name="remarks3" id="remarks3" type="text" placeholder="Remarks" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters." >
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -382,7 +382,7 @@
 			                  <div class="input-group-addon">
 			                   No. of Shots
 			                 </div>
-			                <input  name="shots" id="shots" placeholder="No. of Shots" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only." required>
+			                <input  name="shots" id="shots" placeholder="No. of Shots" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only.">
 			             </div>
 			          </div>  
 			       </div><br><br>
@@ -397,14 +397,14 @@
 				<div class="col-md-6">
 			        <div class="form-group">
 		              	<div class="col-md-12">
-			                <textarea  name="obstetric1" id="obstetric1" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required></textarea>
+			                <textarea  name="obstetric1" id="obstetric1" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters." ></textarea>
 			          	</div>  
 			       </div><br><br><br>
 			 	 </div>
 			 	 <div class="col-md-6">
 			        <div class="form-group">
 		              	<div class="col-md-12">
-			                <textarea  name="obstetric2" id="obstetric2" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters."  required></textarea>
+			                <textarea  name="obstetric2" id="obstetric2" type="text" placeholder="" class="form-control input-md" pattern=".{1,200}" title="This Field is required. This Field should not exceed 200 characters." ></textarea>
 			          	</div>  
 			       </div><br><br><br>
 		        </div> 

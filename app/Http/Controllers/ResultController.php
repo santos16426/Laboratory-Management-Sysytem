@@ -530,55 +530,268 @@ class ResultController extends Controller
     }
     function save_medreq()
     {
+
         $corppack_id = $_POST['corppack_id'];
         $result_id = $_POST['result_id'];
+
+        $examphysician='';
+        $eval='';
+        $history='';
+        $datediag='';
+        $illness='';
+        $medication='';
+        $remark1='';
+        $famhisto1='';
+        $famhisto2='';
+        $smoker='';
+        $sticks='';
+        $remarks2='';
+        $packyears='';
+        $alcohol='';
+        $bottles='';
+        $remarks3='';
+        $shots='';
+        $obstetric1='';
+        $obstetric2='';
+        $visual='';
+        $temp='';
+        $height='';
+        $weight='';
+        $pulse='';
+        $bloodpressure='';
+        $genapp='';
+        $eyes='';
+        $ear='';
+        $neck='';
+        $breast='';
+        $chest='';
+        $heart='';
+        $abdomen='';
+        $exanal='';
+        $exgen='';
+        $extermities='';
+        $cbc='';
+        $fecalysis='';
+        $urinalysis='';
+        $xray='';
+        $drugtest='';
+        $assess = '';
+    
+        if(isset($_POST['examphysician'])){
+            $examphysician = $_POST['examphysician']
+        }
+            
+        if(isset($_POST['eval'])){
+            $eval = $_POST['eval']
+        }
+            
+        if(isset($_POST['history'])){
+            $history = $_POST['history']
+        }
+            
+        if(isset(($_POST['datediag'])){
+            $datediag = date_create($_POST['datediag'])
+        }
+            
+        if(isset($_POST['illness'])){
+            $illness = $_POST['illness']
+        }
+            
+        if(isset($_POST['medication'])){
+            $medication = $_POST['medication']
+        }
+            
+        if(isset($_POST['remark1'])){
+            $remark1 = $_POST['remark1']
+        }
+            
+        if(isset($_POST['famhisto1'])){
+            $famhisto1 = $_POST['famhisto1']
+        }
+            
+        if(isset($_POST['famhisto2'])){
+            $famhisto2 = $_POST['famhisto2']
+        }
+            
+        if(isset($_POST['smoker'])){
+            $smoker = $_POST['smoker']
+        }
+            
+        if(isset($_POST['sticks'])){
+            $sticks = $_POST['sticks']
+        }
+            
+        if(isset($_POST['remarks2'])){
+            $remarks2 = $_POST['remarks2']
+        }
+            
+        if(isset($_POST['packyears'])){
+            $packyears = $_POST['packyears']
+        }
+            
+        if(isset($_POST['alcohol'])){
+            $alcohol = $_POST['alcohol']
+        }
+            
+        if(isset($_POST['bottles'])){
+            $bottles = $_POST['bottles']
+        }
+            
+        if(isset($_POST['remarks3'])){
+            $remarks3 = $_POST['remarks3']
+        }
+            
+        if(isset($_POST['shots'])){
+            $shots = $_POST['shots']
+        }
+            
+        if(isset($_POST['obstetric1'])){
+            $obstetric1 = $_POST['obstetric1']
+        }
+            
+        if(isset($_POST['obstetric2'])){
+            $obstetric2 = $_POST['obstetric2']
+        }
+            
+        if(isset($_POST['visual'])){
+            $visual = $_POST['visual']
+        }
+            
+        if(isset($_POST['temp'])){
+            $temp = $_POST['temp']
+        }
+            
+        if(isset($_POST['height'])){
+            $height = $_POST['height']
+        }
+            
+        if(isset($_POST['weight'])){
+            $weight = $_POST['weight']
+        }
+            
+        if(isset($_POST['pulse'])){
+            $pulse = $_POST['pulse']
+        }
+            
+        if(isset($_POST['bloodpressure'])){
+            $bloodpressure = $_POST['bloodpressure']
+        }
+            
+        if(isset($_POST['genapp'])){
+            $genapp = $_POST['genapp']
+        }
+            
+        if(isset($_POST['eyes'])){
+            $eyes = $_POST['eyes']
+        }
+            
+        if(isset($_POST['ear'])){
+            $ear = $_POST['ear']
+        }
+            
+        if(isset($_POST['neck'])){
+            $neck = $_POST['neck']
+        }
+            
+        if(isset($_POST['breast'])){
+            $breast = $_POST['breast']
+        }
+            
+        if(isset($_POST['chest'])){
+            $chest = $_POST['chest']
+        }
+            
+        if(isset($_POST['heart'])){
+            $heart = $_POST['heart']
+        }
+            
+        if(isset($_POST['abdomen'])){
+            $abdomen = $_POST['abdomen']
+        }
+            
+        if(isset($_POST['exanal'])){
+            $exanal = $_POST['exanal']
+        }
+            
+        if(isset($_POST['exgen'])){
+            $exgen = $_POST['exgen']
+        }
+            
+        if(isset($_POST['extermities'])){
+            $extermities = $_POST['extermities']
+        }
+            
+        if(isset($_POST['cbc'])){
+            $cbc = $_POST['cbc']
+        }
+            
+        if(isset($_POST['fecalysis'])){
+            $fecalysis = $_POST['fecalysis']
+        }
+            
+        if(isset($_POST['urinalysis'])){
+            $urinalysis = $_POST['urinalysis']
+        }
+            
+        if(isset($_POST['xray'])){
+            $xray = $_POST['xray']
+        }
+            
+        if(isset($_POST['drugtest'])){
+            $drugtest = $_POST['drugtest']
+        }
+        if(isset($_POST['assess']))
+        {
+            $assess = $_POST['assess'];
+        }
+        if(isset($_POST['assess']))
         DB::table('trans_result_service_tbl')
             ->where('corppack_id',$corppack_id)
             ->where('result_id',$result_id)
             ->update([
                 'medreq_dateofexam'=> date_create('now'),
-                'medreq_examphysician'=>$_POST['examphysician'],
-                'medreq_evaluated'=>$_POST['eval'],
-                'medreq_history'=>$_POST['history'],
-                'medreq_datediag'=>date_create($_POST['datediag']),
-                'medreq_illness'=>$_POST['illness'],
-                'medreq_medication'=>$_POST['medication'],
-                'medreq_remarks1'=>$_POST['remark1'],
-                'medreq_famhisto1'=>$_POST['famhisto1'],
-                'medreq_famhisto2'=>$_POST['famhisto2'],
-                'medreq_smoker'=>$_POST['smoker'],
-                'medreq_sticks'=>$_POST['sticks'],
-                'medreq_remarks2'=>$_POST['remarks2'],
-                'medreq_packyears'=>$_POST['packyears'],
-                'medreq_alcohol'=>$_POST['alcohol'],
-                'medreq_bottles'=>$_POST['bottles'],
-                'medreq_remarks3'=>$_POST['remarks3'],
-                'medreq_shots'=>$_POST['shots'],
-                'medreq_obstetric1'=>$_POST['obstetric1'],
-                'medreq_obstetric2'=>$_POST['obstetric2'],
-                'medreq_visual'=>$_POST['visual'],
-                'medreq_temp'=>$_POST['temp'],
-                'medreq_height'=>$_POST['height'],
-                'medreq_weight'=>$_POST['weight'],
-                'medreq_pulse'=>$_POST['pulse'],
-                'medreq_bloodpressure'=>$_POST['bloodpressure'],
-                'medreq_genapp'=>$_POST['genapp'],
-                'medreq_eyes'=>$_POST['eyes'],
-                'medreq_ear'=>$_POST['ear'],
-                'medreq_neck'=>$_POST['neck'],
-                'medreq_breast'=>$_POST['breast'],
-                'medreq_chest'=>$_POST['chest'],
-                'medreq_heart'=>$_POST['heart'],
-                'medreq_abdomen'=>$_POST['abdomen'],
-                'medreq_exanal'=>$_POST['exanal'],
-                'medreq_exgen'=>$_POST['exgen'],
-                'medreq_extermities'=>$_POST['extermities'],
-                'medreq_cbc'=>$_POST['cbc'],
-                'medreq_fecalysis'=>$_POST['fecalysis'],
-                'medreq_urinalysis'=>$_POST['urinalysis'],
-                'medreq_xray'=>$_POST['xray'],
-                'medreq_drugtest'=>$_POST['drugtest'],
-                'medreq_assess'=>$_POST['assess'],
+                'medreq_examphysician'=>$examphysician,
+                'medreq_evaluated'=>$eval,
+                'medreq_history'=>$history,
+                'medreq_datediag'=>$datediag,
+                'medreq_illness'=>$illness,
+                'medreq_medication'=>$medication,
+                'medreq_remarks1'=>$remark1,
+                'medreq_famhisto1'=>$famhisto1,
+                'medreq_famhisto2'=>$famhisto2,
+                'medreq_smoker'=>$smoker,
+                'medreq_sticks'=>$sticks,
+                'medreq_remarks2'=>$remarks2,
+                'medreq_packyears'=>$packyears,
+                'medreq_alcohol'=>$alcohol,
+                'medreq_bottles'=>$bottles,
+                'medreq_remarks3'=>$remarks3,
+                'medreq_shots'=>$shots,
+                'medreq_obstetric1'=>$obstetric1,
+                'medreq_obstetric2'=>$obstetric2,
+                'medreq_visual'=>$visual,
+                'medreq_temp'=>$temp,
+                'medreq_height'=>$height,
+                'medreq_weight'=>$weight,
+                'medreq_pulse'=>$pulse,
+                'medreq_bloodpressure'=>$bloodpressure,
+                'medreq_genapp'=>$genapp,
+                'medreq_eyes'=>$eyes,
+                'medreq_ear'=>$ear,
+                'medreq_neck'=>$neck,
+                'medreq_breast'=>$breast,
+                'medreq_chest'=>$chest,
+                'medreq_heart'=>$heart,
+                'medreq_abdomen'=>$abdomen,
+                'medreq_exanal'=>$exanal,
+                'medreq_exgen'=>$exgen,
+                'medreq_extermities'=>$extermities,
+                'medreq_cbc'=>$cbc,
+                'medreq_fecalysis'=>$fecalysis,
+                'medreq_urinalysis'=>$urinalysis,
+                'medreq_xray'=>$xray,
+                'medreq_drugtest'=>$drugtest,
+                'medreq_assess'=>$assess,
             ]);
             Session::put('printResult',true);
             Session::put('result_id',$result_id);
