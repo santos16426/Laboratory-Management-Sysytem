@@ -93,7 +93,7 @@
 						<td>REMARK</td>
 					</tr>
 					<tr>
-						<td><span >{{ $d->medreq_diagnosis }}</span></td>
+						<td><span >{{ $d->medreq_datediag }}</span></td>
 						<td><span >{{ $d->medreq_illness }}</span></td>
 						<td><span >{{ $d->medreq_medication }}</span></td>
 						<td><span >{{ $d->medreq_remarks1 }}</span></td>
@@ -121,7 +121,7 @@
 					<tr>
 						<td>SMOKER:&nbsp;<span >{{ $d->medreq_smoker }}</span></td>
 						<td>NO. OF STICKS/DAY:&nbsp;<span >{{ $d->medreq_sticks }}</span></td>
-						<td>ALCOHOL DRINKER:&nbsp;<span >{{ $d->medreq_alchohol }}</span></td>
+						<td>ALCOHOL DRINKER:&nbsp;<span >{{ $d->medreq_alcohol }}</span></td>
 						<td>NO. OF BOTTLES:&nbsp;<span >{{ $d->medreq_bottles }}</span></td>
 					</tr>
 					<tr>
@@ -210,7 +210,7 @@
 					</tr>
 					<tr>
 						<td>EXTREMITIES</td>
-						<td><span >{{ $d->medreq_extremities }}</span></td>
+						<td><span >{{ $d->medreq_extermities }}</span></td>
 					</tr>
 				</tbody>
 			</table><div class="space"></div>
@@ -249,5 +249,6 @@
 			</address>
 
 		</article>
+		@endforeach
 </body>
 </html>

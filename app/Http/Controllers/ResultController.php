@@ -537,7 +537,7 @@ class ResultController extends Controller
         $examphysician='';
         $eval='';
         $history='';
-        $datediag='';
+        $datediag=NULL;
         $illness='';
         $medication='';
         $remark1='';
@@ -578,167 +578,171 @@ class ResultController extends Controller
         $assess = '';
     
         if(isset($_POST['examphysician'])){
-            $examphysician = $_POST['examphysician']
+            $examphysician = $_POST['examphysician'];
         }
             
         if(isset($_POST['eval'])){
-            $eval = $_POST['eval']
+            $eval = $_POST['eval'];
         }
             
         if(isset($_POST['history'])){
-            $history = $_POST['history']
+            $history = $_POST['history'];
         }
             
-        if(isset(($_POST['datediag'])){
-            $datediag = date_create($_POST['datediag'])
+        if(isset(($_POST['datediag']))){
+            $datediag = date_create($_POST['datediag']);
+            if($datediag == false)
+            {
+                $datediag = NULL;
+            }
         }
             
         if(isset($_POST['illness'])){
-            $illness = $_POST['illness']
+            $illness = $_POST['illness'];
         }
             
         if(isset($_POST['medication'])){
-            $medication = $_POST['medication']
+            $medication = $_POST['medication'];
         }
             
         if(isset($_POST['remark1'])){
-            $remark1 = $_POST['remark1']
+            $remark1 = $_POST['remark1'];
         }
             
         if(isset($_POST['famhisto1'])){
-            $famhisto1 = $_POST['famhisto1']
+            $famhisto1 = $_POST['famhisto1'];
         }
             
         if(isset($_POST['famhisto2'])){
-            $famhisto2 = $_POST['famhisto2']
+            $famhisto2 = $_POST['famhisto2'];
         }
             
         if(isset($_POST['smoker'])){
-            $smoker = $_POST['smoker']
+            $smoker = $_POST['smoker'];
         }
             
         if(isset($_POST['sticks'])){
-            $sticks = $_POST['sticks']
+            $sticks = $_POST['sticks'];
         }
             
         if(isset($_POST['remarks2'])){
-            $remarks2 = $_POST['remarks2']
+            $remarks2 = $_POST['remarks2'];
         }
             
         if(isset($_POST['packyears'])){
-            $packyears = $_POST['packyears']
+            $packyears = $_POST['packyears'];
         }
             
         if(isset($_POST['alcohol'])){
-            $alcohol = $_POST['alcohol']
+            $alcohol = $_POST['alcohol'];
         }
             
         if(isset($_POST['bottles'])){
-            $bottles = $_POST['bottles']
+            $bottles = $_POST['bottles'];
         }
             
         if(isset($_POST['remarks3'])){
-            $remarks3 = $_POST['remarks3']
+            $remarks3 = $_POST['remarks3'];
         }
             
         if(isset($_POST['shots'])){
-            $shots = $_POST['shots']
+            $shots = $_POST['shots'];
         }
             
         if(isset($_POST['obstetric1'])){
-            $obstetric1 = $_POST['obstetric1']
+            $obstetric1 = $_POST['obstetric1'];
         }
             
         if(isset($_POST['obstetric2'])){
-            $obstetric2 = $_POST['obstetric2']
+            $obstetric2 = $_POST['obstetric2'];
         }
             
         if(isset($_POST['visual'])){
-            $visual = $_POST['visual']
+            $visual = $_POST['visual'];
         }
             
         if(isset($_POST['temp'])){
-            $temp = $_POST['temp']
+            $temp = $_POST['temp'];
         }
             
         if(isset($_POST['height'])){
-            $height = $_POST['height']
+            $height = $_POST['height'];
         }
             
         if(isset($_POST['weight'])){
-            $weight = $_POST['weight']
+            $weight = $_POST['weight'];
         }
             
         if(isset($_POST['pulse'])){
-            $pulse = $_POST['pulse']
+            $pulse = $_POST['pulse'];
         }
             
         if(isset($_POST['bloodpressure'])){
-            $bloodpressure = $_POST['bloodpressure']
+            $bloodpressure = $_POST['bloodpressure'];
         }
             
         if(isset($_POST['genapp'])){
-            $genapp = $_POST['genapp']
+            $genapp = $_POST['genapp'];
         }
             
         if(isset($_POST['eyes'])){
-            $eyes = $_POST['eyes']
+            $eyes = $_POST['eyes'];
         }
             
         if(isset($_POST['ear'])){
-            $ear = $_POST['ear']
+            $ear = $_POST['ear'];
         }
             
         if(isset($_POST['neck'])){
-            $neck = $_POST['neck']
+            $neck = $_POST['neck'];
         }
             
         if(isset($_POST['breast'])){
-            $breast = $_POST['breast']
+            $breast = $_POST['breast'];
         }
             
         if(isset($_POST['chest'])){
-            $chest = $_POST['chest']
+            $chest = $_POST['chest'];
         }
             
         if(isset($_POST['heart'])){
-            $heart = $_POST['heart']
+            $heart = $_POST['heart'];
         }
             
         if(isset($_POST['abdomen'])){
-            $abdomen = $_POST['abdomen']
+            $abdomen = $_POST['abdomen'];
         }
             
         if(isset($_POST['exanal'])){
-            $exanal = $_POST['exanal']
+            $exanal = $_POST['exanal'];
         }
             
         if(isset($_POST['exgen'])){
-            $exgen = $_POST['exgen']
+            $exgen = $_POST['exgen'];
         }
             
         if(isset($_POST['extermities'])){
-            $extermities = $_POST['extermities']
+            $extermities = $_POST['extermities'];
         }
             
         if(isset($_POST['cbc'])){
-            $cbc = $_POST['cbc']
+            $cbc = $_POST['cbc'];
         }
             
         if(isset($_POST['fecalysis'])){
-            $fecalysis = $_POST['fecalysis']
+            $fecalysis = $_POST['fecalysis'];
         }
             
         if(isset($_POST['urinalysis'])){
-            $urinalysis = $_POST['urinalysis']
+            $urinalysis = $_POST['urinalysis'];
         }
             
         if(isset($_POST['xray'])){
-            $xray = $_POST['xray']
+            $xray = $_POST['xray'];
         }
             
         if(isset($_POST['drugtest'])){
-            $drugtest = $_POST['drugtest']
+            $drugtest = $_POST['drugtest'];
         }
         if(isset($_POST['assess']))
         {
