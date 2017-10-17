@@ -120,6 +120,9 @@ class ReportController extends Controller
     }
     function weeklyRebateReport(Request $req)
     {
+        $startdate = $_GET['startdate'];
+
+        $enddate = $req->enddate;
         $var = DB::table('employee_tbl')
                 ->leftjoin('trans_emprebate_tbl','trans_emprebate_tbl.emp_id','=','employee_tbl.emp_id')
                 ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','trans_emprebate_tbl.trans_id')
@@ -127,7 +130,8 @@ class ReportController extends Controller
                 ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
                 ->select(DB::raw('employee_tbl.emp_id ,CONCAT(emp_fname," ",emp_mname," ",emp_lname) as name,((trans_total + IFNULL(charge,0))*(percentage/100)) as percentage'))
                 ->where('transaction_tbl.trans_id','!=',null)
-                ->whereDate('trans_date',$startdate)
+                ->whereDate('trans_date','>=',$startdate)
+                ->whereDate('trans_date','<=',$enddate)
                 ->get();
         return response()->json([$var]);
     }
