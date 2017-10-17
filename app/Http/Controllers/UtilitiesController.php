@@ -430,7 +430,7 @@ class UtilitiesController extends Controller
 		Session::flash('reactivate',true);
 		return redirect()->back();
 	}
-	function activecorp()
+	function activatecorp()
 	{
 		DB::table('corporate_accounts_tbl')->where('corp_id',$_POST['id'])->update(['CorpStatus'=>1]);
       	Session::flash('reactivate',true);
