@@ -181,7 +181,8 @@ class AdminController extends Controller
         $emp_total = 0;
         $total = 0;
         $emppayment = 0;
-        $emptotalrebates = DB::select(DB::raw('SELECT empr.emp_id,(t.trans_total * (r.percentage/100)) as percentage,charge FROM trans_emprebate_tbl empr LEFT JOIN rebate_tbl r on empr.rebate_id = r.rebate_id LEFT JOIN employee_tbl e on empr.emp_id = e.emp_id LEFT JOIN transaction_tbl t ON t.trans_id = empr.trans_id LEFT JOIN transcorp_tbl tc ON tc.trans_id = t.trans_id'));
+        $emptotalrebates = DB::select(DB::raw('SELECT empr.emp_id,((t.trans_total-t.home_service) * (r.percentage/100)) as percentage,charge FROM trans_emprebate_tbl empr LEFT JOIN rebate_tbl r on empr.rebate_id = r.rebate_id LEFT JOIN employee_tbl e on empr.emp_id = e.emp_id LEFT JOIN transaction_tbl t ON t.trans_id = empr.trans_id LEFT JOIN transcorp_tbl tc ON tc.trans_id = t.trans_id'));
+
         foreach($emptotalrebates as $empreb)
         {
             $total += $empreb->percentage;
@@ -192,6 +193,7 @@ class AdminController extends Controller
         {
             $emppayment += $emppay->transRebPay_amount;
         }
+        
         $emp_total = $total - $emppayment;
         $totalcorpq = DB::table('transcorp_tbl')
                         ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','transcorp_tbl.trans_id')
