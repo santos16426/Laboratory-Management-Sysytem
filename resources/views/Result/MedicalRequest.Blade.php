@@ -127,7 +127,8 @@
 							<div class="col-md-12" >
 								<div class="input-group" >
 									<span class="input-group-addon">Examining Physician</span>
-									<select class="form-control emp_id select2" name="examphysician" id="examphysician" style="width: 100%" >
+									<select class="form-control emp_id select2" name="examphysician" id="examphysician" style="width: 100%" required="">
+										<option value="" selected="">Select Physician</option>
 										@foreach($doctor as $doc)
 											<option value="{{ $doc->emp_id }}">{{ $doc->emp_fname }} {{ $doc->emp_mname }} {{ $doc->emp_lname }}</option>
 										@endforeach
@@ -156,7 +157,8 @@
 							<div class="col-md-12" >
 								<div class="input-group" >
 									<span class="input-group-addon">Evaluated By</span>
-									<select class="form-control eval select2" name="eval" id="eval" style="width: 100%" >
+									<select class="form-control eval select2" name="eval" id="eval" style="width: 100%" required="">
+										<option value="" selected="">Select an Doctor</option>
 									@foreach($doctor as $doc1)
 										<option value="{{ $doc1->emp_id }}">{{ $doc1->emp_fname }} {{ $doc1->emp_mname }} {{ $doc1->emp_lname }}</option>
 									@endforeach
@@ -380,7 +382,7 @@
 			                  <div class="input-group-addon">
 			                   No. of Shots
 			                 </div>
-			                <input  name="shots" id="shots" placeholder="No. of Shots" class="form-control input-md" required>
+			                <input  name="shots" id="shots" placeholder="No. of Shots" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only." required>
 			             </div>
 			          </div>  
 			       </div><br><br>
