@@ -231,6 +231,7 @@ Route::get('/Website/Home','WebController@Website');
 Route::post('/Website/PatientView','WebController@proceedPatientResult');
 Route::post('/proceedPatientResult','WebController@login');
 Route::get('/GetFiles','WebController@GetFiles');
+Route::post('/changePassPatient','WebController@changepass');
 
 // Queries
 Route::get('/QueryPatient','AdminController@patient');

@@ -825,7 +825,7 @@ body {
                             <i class="now-ui-icons users_single-02"></i>
                         </div>
                     </div>
-                    <form action="/proceedPatientResult" method="POST">
+                    <form action="/changePassPatient" method="POST">
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="content">
@@ -845,13 +845,13 @@ body {
                                         <span class="input-group-addon">
                                             <i class="now-ui-icons users_circle-08"></i>
                                         </span>
-                                        <input type="password" placeholder="Enter New Password" class="form-control" name="code">
+                                        <input type="password" placeholder="Enter New Password" class="form-control" name="newpass">
                                     </div>
                                     <div class="input-group form-group-no-border">
                                         <span class="input-group-addon">
                                             <i class="now-ui-icons users_circle-08"></i>
                                         </span>
-                                        <input type="password" class="form-control" placeholder="Enter Re-Type New Password" name="name">
+                                        <input type="password" class="form-control" placeholder="Enter Re-Type New Password" name="confirmpass">
                                     </div>
                                 </div>
                     </div>
@@ -888,5 +888,37 @@ body {
         }
     }
 </script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        alert()
+    })
+</script>
+@if(Session::has('failupdate'))
+<input type="" id="message" value="{{ Session::get('failupdate') }}">
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        alert($('#message').val());
+    })
+</script>
+@endif
+@if(Session::has('incorrect'))
+<input type="" id="incorrect" value="{{ Session::get('incorrect') }}">
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        alert($('#incorrect').val());
+    })
+</script>
+@endif
+@if(Session::has('success'))
+<input type="" id="success" value="{{ Session::get('success') }}">
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        alert($('#success').val());
+    })
+</script>
+@endif
 
 </html>
