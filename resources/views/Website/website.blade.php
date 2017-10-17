@@ -800,14 +800,63 @@ body {
                                         <span class="input-group-addon">
                                             <i class="now-ui-icons users_circle-08"></i>
                                         </span>
-                                        <input type="password" class="form-control" placeholder="Enter Last name" name="name">
-                                    </div>
-                                    <span></span>
-                                    <span><small>Note:If first time, Last name should be all capital letters without spaces</small></span>
+                                        <input type="password" class="form-control" placeholder="Enter Password" name="name">
+                                    </div> 
+                                    <span><small><a href="" data-toggle="modal" data-target="#changeModal">Change Password</a></small></span><br>
+                                    <span><small>Note:&nbsp;<br>If first time, Last name should be all capital letters without spaces</small></span>
                                 </div>
                     </div>
                     <div class="footer text-center">
                         <button type="submit" class="btn btn-success btn-round btn-lg">Go</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade modal-mini modal-info" id="changeModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <div class="modal-profile">
+                            <i class="now-ui-icons users_single-02"></i>
+                        </div>
+                    </div>
+                    <form action="/proceedPatientResult" method="POST">
+                    {{ csrf_field() }}
+                    <div class="modal-body">
+                        <div class="content">
+                                    <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons ui-1_lock-circle-open"></i>
+                                        </span>
+                                        <input type="text" placeholder="Enter Code" class="form-control" name="code">
+                                    </div>
+                                    <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons users_circle-08"></i>
+                                        </span>
+                                        <input type="password" class="form-control" placeholder="Enter Old Password" name="name">
+                                    </div>
+                                    <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons users_circle-08"></i>
+                                        </span>
+                                        <input type="password" placeholder="Enter New Password" class="form-control" name="code">
+                                    </div>
+                                    <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons users_circle-08"></i>
+                                        </span>
+                                        <input type="password" class="form-control" placeholder="Enter Re-Type New Password" name="name">
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="footer text-center">
+                        <button type="submit" class="btn btn-success btn-round btn-lg">Save</button>
                     </div>
                     </form>
                 </div>
