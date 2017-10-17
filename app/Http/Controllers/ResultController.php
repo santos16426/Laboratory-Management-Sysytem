@@ -589,7 +589,8 @@ class ResultController extends Controller
             $history = $_POST['history'];
         }
             
-        if(isset(($_POST['datediag']))){
+        if(isset($_POST['datediag']))
+        {
             $datediag = date_create($_POST['datediag']);
             if($datediag == false)
             {
