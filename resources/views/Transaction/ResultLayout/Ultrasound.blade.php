@@ -52,10 +52,10 @@
 					</td>
 				</tr>
 				<tr>
-					<td style="height: 390px">
+					<td style="height: 370px">
 					<header style="font-size: 15px">
 					<address style="float: left; width: 500px;">
-					<p>Impression:&nbsp;<br><span style="margin-left: 1in"></p><br>
+					<p>&nbsp;<span style="margin-left: 1in"></p><br>
 					</header>
 					<header style="font-size: 14px">
 					<p style="font-size: 80%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $serv->ultra_impression }}</p>

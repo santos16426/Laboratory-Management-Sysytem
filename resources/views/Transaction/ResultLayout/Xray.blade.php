@@ -50,7 +50,7 @@
 		</td>
 		</tr>
 		<tr>
-			<td style="height: 400px">
+			<td style="height: 370px">
 		<header style="font-size: 15px">
 		<address style="float: left; width: 500px;">
 			<p>Findings:&nbsp;<br><span style="margin-left: 1in"></p><br>
