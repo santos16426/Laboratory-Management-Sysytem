@@ -55,7 +55,7 @@
 					<td style="height: 370px">
 					<header style="font-size: 15px">
 					<address style="float: left; width: 500px;">
-					<p>&nbsp;<span style="margin-left: 1in"></p><br>
+					
 					</header>
 					<header style="font-size: 14px">
 					<p style="font-size: 80%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $serv->ultra_impression }}</p>
@@ -68,7 +68,7 @@
 					<address style="float: right;">
 					<center>
 					<img alt="" src="/Employee_signatures/{{ $serv->ultra_sonologist_img }}" style="width: 150px; height: 90px;float: left; max-height: 90px; max-width: 150px;">
-					<p><span>{{ $serv->emp_fname }} {{ $serv->emp_mname }} {{ $serv->emp_lname }}</span></p>
+					<p style="width: 150px">{{ $serv->emp_fname }} {{ $serv->emp_mname }} {{ $serv->emp_lname }}</p>
 					<p>Sonologist</p>
 					</center>
 					</address><br><br><br><br><br><br>

@@ -40,6 +40,7 @@ body {
     height: 100%;
 }
 
+
 /* Background images are set within the HTML using inline CSS, not here */
 
 .fill {
@@ -107,8 +108,8 @@ body {
     <!-- End Navbar -->
     <div class="wrapper">
     <section id="home">
-        <div id="carousel">
-               
+        <div id="carousel" style="background-color: black;">
+               <center>
                             <div id="carouselExampleControls" class="carousel slide">
                                 <ol class="carousel-indicators">
                                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -142,7 +143,7 @@ body {
                                     <i class="now-ui-icons arrows-1_minimal-right"></i>
                                 </a>
                             </div>
-                
+                </center>
             </div>
     </section>
         <!-- <div class="page-header">
