@@ -62,7 +62,7 @@ class ReportController extends Controller
     {
         $startdate = $req->startdate;
         $enddate = $req->enddate;
-        $services = DB::select('SELECT service_tbl.service_name, COUNT(*) as row_count FROM trans_result_service_tbl LEFT OUTER JOIN transresult_tbl ON transresult_tbl.result_id = trans_result_service_tbl.result_id LEFT OUTER JOIN service_tbl ON service_tbl.service_id = trans_result_service_tbl.service_id WHERE corppack_id is null AND transresult_tbl.date >= "'.$startdate.'" AND transresult_tbl.date <= "'.$enddate.'" Group by service_tbl.service_name');
+        $services = DB::select('SELECT servgroup_name,service_tbl.service_name, COUNT(*) as row_count FROM trans_result_service_tbl LEFT OUTER JOIN transresult_tbl ON transresult_tbl.result_id = trans_result_service_tbl.result_id LEFT OUTER JOIN service_tbl ON service_tbl.service_id = trans_result_service_tbl.service_id WHERE corppack_id is null AND transresult_tbl.date >= "'.$startdate.'" AND transresult_tbl.date <= "'.$enddate.'" Group by service_tbl.service_name');
         return response()->json([$services]);
     }
     function dailyCensusReport(Request $req)
