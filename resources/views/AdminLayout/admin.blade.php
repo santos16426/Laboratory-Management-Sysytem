@@ -266,7 +266,7 @@
     </section>
     <footer class="site-footer">
           <div class="text-center">
-              2017 &copy; Poging Billy Joe
+             &copy; Polytechnic University of the Philippines A.Y. 2017-2018 
               <a href="#" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>

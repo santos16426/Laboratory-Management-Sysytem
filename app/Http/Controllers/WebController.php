@@ -33,7 +33,7 @@ class WebController extends Controller
         }
         if($access == 1)
         {
-            $patientinfo = DB::table('patient_tbl')->where('claimCode',$code-)>get();
+            $patientinfo = DB::table('patient_tbl')->where('claimCode',$code)->get();
                 foreach($patientinfo as $get)
                 {
                     $patient_id = $get->patient_id;
