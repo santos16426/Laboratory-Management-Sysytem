@@ -227,7 +227,7 @@ $('.printTrans').click(function(){
 	})
 	if(discount > 0)	
 	{
-		frameDoc.document.write('<tr class="item" > <td></td> <td>Sub Total: '+data.price'</td></tr>');	
+		frameDoc.document.write('<tr class="item" > <td></td> <td>Sub Total: '+data.price+'</td></tr>');	
 		frameDoc.document.write('<tr> <td></td> <td> Discount:(PWD/Senior Citizen) 32% </td></tr>');
 		frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+(data.price - (data.price *(32/100)))+'</td></tr>');	
 	}
