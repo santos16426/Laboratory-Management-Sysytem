@@ -888,13 +888,9 @@ body {
         }
     }
 </script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        alert()
-    })
-</script>
+
 @if(Session::has('failupdate'))
-<input type="" id="message" value="{{ Session::get('failupdate') }}">
+<input type="hidden" id="message" value="{{ Session::get('failupdate') }}">
 <script type="text/javascript">
     $(document).ready(function()
     {
@@ -903,7 +899,7 @@ body {
 </script>
 @endif
 @if(Session::has('incorrect'))
-<input type="" id="incorrect" value="{{ Session::get('incorrect') }}">
+<input type="hidden" id="incorrect" value="{{ Session::get('incorrect') }}">
 <script type="text/javascript">
     $(document).ready(function()
     {
@@ -912,7 +908,7 @@ body {
 </script>
 @endif
 @if(Session::has('success'))
-<input type="" id="success" value="{{ Session::get('success') }}">
+<input type="hidden" id="success" value="{{ Session::get('success') }}">
 <script type="text/javascript">
     $(document).ready(function()
     {
