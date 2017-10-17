@@ -623,6 +623,10 @@ class ResultController extends Controller
             
         if(isset($_POST['sticks'])){
             $sticks = $_POST['sticks'];
+            if($sticks == '')
+            {
+                $sticks = null;
+            }
         }
             
         if(isset($_POST['remarks2'])){
@@ -631,6 +635,10 @@ class ResultController extends Controller
             
         if(isset($_POST['packyears'])){
             $packyears = $_POST['packyears'];
+            if($packyears == '')
+            {
+                $packyears = null;
+            }
         }
             
         if(isset($_POST['alcohol'])){
@@ -639,6 +647,10 @@ class ResultController extends Controller
             
         if(isset($_POST['bottles'])){
             $bottles = $_POST['bottles'];
+            if($bottles == '')
+            {
+                $bottles = null;
+            }
         }
             
         if(isset($_POST['remarks3'])){
@@ -647,6 +659,10 @@ class ResultController extends Controller
             
         if(isset($_POST['shots'])){
             $shots = $_POST['shots'];
+            if($shots == '')
+            {
+                $shots = null;
+            }
         }
             
         if(isset($_POST['obstetric1'])){
@@ -748,7 +764,7 @@ class ResultController extends Controller
         {
             $assess = $_POST['assess'];
         }
-        if(isset($_POST['assess']))
+
         DB::table('trans_result_service_tbl')
             ->where('corppack_id',$corppack_id)
             ->where('result_id',$result_id)

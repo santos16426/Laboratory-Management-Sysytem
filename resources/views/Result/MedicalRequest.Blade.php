@@ -301,7 +301,7 @@
 			                  <div class="input-group-addon">
 			                   No. of Sticks/Day
 			                 </div>
-			                <input  name="sticks" type="" id="sticks" placeholder="No. of Sticks/Day" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only." >
+			                <input  name="sticks" id="sticks" placeholder="No. of Sticks/Day" class="form-control input-md" pattern="[0-9]{1,10}" title="Numbers Only." >
 			             </div>
 			          </div>  
 			       </div><br><br>
