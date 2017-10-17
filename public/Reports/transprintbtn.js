@@ -95,13 +95,21 @@ $('#printbtn').click(function(){
 			    var mm = newdate.getMonth() + 1;
 			    var y = newdate.getFullYear();
 			    var enddate =  y + '-' + mm + '-' + dd ;
+			    var lastdate = new Date(date);
+		    lastdate.setDate(lastdate.getDate()+7);
+		    var lastdd = lastdate.getDate();
+		    var lastmm = lastdate.getMonth()+1;
+		    var lasty = 	lastdate.getFullYear();
+		    var lastdate = lasty + '-' + lastmm + '-' + lastdd;
+
 				$.ajax
 				({
 					url: '/weeklyTransactionReport',
 					type: 'get',
 					data:  { 
 						startdate:startdate,
-						enddate:enddate
+						enddate:enddate,
+						lastdate:lastdate
 					},
 					dataType : 'json',
 
