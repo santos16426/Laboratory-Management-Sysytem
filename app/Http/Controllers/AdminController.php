@@ -154,12 +154,12 @@ class AdminController extends Controller
             $dayincome = 0;
         }
         $monthincome =DB::table('transaction_tbl')
-                        ->join('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
-                        ->select('trans_total',DB::raw('IFNULL(charge,0) as charge'),'discount')
+                        ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+                        ->select('trans_total',DB::raw('IFNULL(charge,0) as charge'),'discount','trans_date')
                         ->whereYear('trans_date',date('Y'))
                         ->whereMonth('trans_date',date('m'))
                         ->get();
-
+        
         if(count($monthincome)>0)
         {
             $total = 0;

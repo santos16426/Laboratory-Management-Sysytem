@@ -145,7 +145,8 @@
             </div>
           </div>  
         </div><br><br>
-        <div class="form-group" style="padding-left: 33px">
+        <center>
+          <div class="form-group" style="padding-left: 33px">
             <div class="controls col-md-12">
               <label for="file" class="control-label"><strong>Upload File</strong></label>
                 <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -160,6 +161,7 @@
             </div>
             <br><br><br>
         </div>
+        </center>
 
         <input type="hidden" name="transaction_id" value="{{ $trans_id }}">
         <input type="hidden" name="result_id" value="{{ $result_id }}">

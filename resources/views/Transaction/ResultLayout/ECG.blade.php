@@ -36,7 +36,7 @@
 				</div>
 				<div class="col-md-4">
 					<address style="padding-left: 65%">
-						<p>Diagnosis Info:&nbsp;{{ $serv->Ecg_diagnosis }}</p>
+						<p>Diagnosis Info:<br><br>&nbsp;{{ $serv->Ecg_diagnosis }}</p>
 					</address>
 				</div>
 				@endforeach

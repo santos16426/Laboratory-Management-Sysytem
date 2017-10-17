@@ -1332,7 +1332,7 @@ class ResultController extends Controller
         $emp = DB::table('employee_tbl')
                     ->leftjoin('employee_role_tbl','employee_role_tbl.role_id','=','employee_tbl.emp_type_id')
                     ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')
-                    ->where('role_name','Analyst')
+                    ->where('role_name','Drug Test Analyst')
                     ->where('EmpStatus',1)                    
                     ->where('RoleStatus',1)
                     ->where('LabStatus',1)
@@ -1422,6 +1422,7 @@ class ResultController extends Controller
                     ->where('trans_resultfiles_tbl.emp_id',Session::get('emp_id'))
                     ->get();
         }
+
         foreach($result_id as $s)
         {
             $result_id = $s->result_id;
@@ -1591,7 +1592,15 @@ class ResultController extends Controller
     }
     public function uploadResultFile()
     {
-           
+        if(Session::get('emp_type_id')== 0)
+        {
+            $emp_id = 0;
+        }
+        else
+        {
+            $emp_id = Session::get('emp_id');
+        }
+        
         $trans_id = $_POST['transaction_id'];
         $result_id= $_POST['result_id'];
         $result_layout = $_POST['result_layout'];
@@ -1698,11 +1707,7 @@ class ResultController extends Controller
 
                     if(move_uploaded_file($file_tmp, $file_destination))
                     {
-                        $emp_id = 0;
-                        if(Session::has('emp_id'))
-                        {
-                            $emp_id = Session::get('emp_id');
-                        }
+                        
                          DB::table('trans_resultfiles_tbl')->insert([
                             'result_type'=>$result_type,
                             'trans_id'  =>  $trans_id,

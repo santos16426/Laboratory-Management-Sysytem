@@ -411,7 +411,7 @@ $( document ).ready(function() {
             }
             if(discount > 0)  
             {
-              frameDoc.document.write('<tr class="item" > <td></td> <td>Sub Total: '+data.trans_total/.68+'</td></tr>');  
+              frameDoc.document.write('<tr class="item" > <td></td> <td>Sub Total: '+(data.trans_total/.68).toFixed(2)+'</td></tr>');  
               frameDoc.document.write('<tr> <td></td> <td> Discount:(PWD/Senior Citizen) 32% </td></tr>');
               frameDoc.document.write('<tr class="item last total"> <td></td> <td>Grand Total: '+data.trans_total+'</td></tr>');
               frameDoc.document.write('<tr> <td></td> <td> Payment:  '+data.trans_payment+'</td></tr>');

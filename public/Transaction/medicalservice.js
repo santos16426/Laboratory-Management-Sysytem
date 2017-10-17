@@ -469,11 +469,10 @@ $('#payDirect').click(function(){
 				toastr.success("Success! Corporate Package added!");
 				$('.corpremove_package'+data.corpPack_id+'').click(function()
 				{
-					for(var i = 0; i<service_names.length; i++)
-					{
-						$("#ServiceOPTION"+service_id[i]).removeAttr("disabled","disabled");
-					}	
 					
+					response[1].forEach(function(data){
+						$("#ServiceOPTION"+data.service_id).removeAttr("disabled","disabled");
+					});
 					var remPack_id = $(this).data("id");
 					if(transactwhere == 'here')
 					{
@@ -600,10 +599,9 @@ $('#payCorp').click(function(){
 			    }
 			    toastr.success(data.corpPack_name + " is successfully added");
 				$('.corpremove_package'+data.corpPack_id+'').click(function(){
-					for(var i = 0; i<service_names.length; i++)
-					{
-						$("#ServiceOPTION"+service_id[i]).removeAttr("disabled","disabled");
-					}
+					response[1].forEach(function(data){
+						$("#ServiceOPTION"+data.service_id).removeAttr("disabled","disabled");
+					});
 					var remPack_id = $(this).data("id");
 					if(transactwhere == 'here')
 					{
@@ -618,12 +616,12 @@ $('#payCorp').click(function(){
 					else
 					{
 						origprice = $('#originalprice').val();
-						price = ($('#serviceprice'+service_id+'').val()*1);
+						price = ($('#corppackprice'+data.corpPack_id).val()*1);
 						total = origprice *1;
-						total = total - price;
+						total = total - 0;
 						total = total - total *(discount/100) + 200;
 						origprice = origprice *1;
-						origprice = origprice - price;
+						origprice = origprice - 0;
 					}
 					$('#originalprice').val(origprice);
 					$('#totalpriceinput').val(total);
@@ -719,10 +717,10 @@ $('#addpackageBtn').click(function(){
 				$('#totalpriceinput').val(total);
 
 				$('.remove_package'+package_id+'').click(function(){
-					for(var i = 0; i<service_names.length; i++)
-					{
-						$("#ServiceOPTION"+service_id[i]).removeAttr("disabled","disabled");
-					}
+
+					response[1].forEach(function(data){
+						$("#ServiceOPTION"+data.service_id).removeAttr("disabled","disabled");
+					});
 					var remPack_id = $(this).data("id");
 					toastr.options = {
 				      "closeButton": true,
