@@ -36,6 +36,7 @@ class ReportController extends Controller
         $services = DB::table('trans_result_service_tbl')
                     ->leftjoin('transresult_tbl','transresult_tbl.result_id','=','trans_result_service_tbl.result_id')
                     ->leftjoin('service_tbl','service_tbl.service_id','=','trans_result_service_tbl.service_id')
+                    ->leftjoin('service_group_tbl','servgroup_id','=','service_tbl.service_group_id')
                     ->select('servgroup_name','service_tbl.service_name',DB::raw('COUNT(*) as row_count'))
                     ->groupBy('service_tbl.service_name','servgroup_name')
                     ->where('corppack_id',null)
