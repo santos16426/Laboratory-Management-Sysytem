@@ -150,7 +150,8 @@
 			              <div class="col-md-12">
 			                 <div class="input-group" >
 									<span class="input-group-addon">Sonologist</span>
-									<select class="form-control package_id select2" name="sonologist" id="sonologist" style="width: 100%" >
+									<select class="form-control package_id select2" name="sonologist" id="sonologist" style="width: 100%" required="">
+										<option value="" selected="">Select Sonologist</option>
 										@foreach($sonologist as $sono)
 											<option value="{{ $sono->emp_id }}">{{ $sono->emp_fname }} {{ $sono->emp_mname }} {{ $sono->emp_lname }}</option>
 										@endforeach

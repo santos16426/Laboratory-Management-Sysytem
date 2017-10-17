@@ -189,7 +189,7 @@
 			                 <div class="input-group" >
 									<span class="input-group-addon">Medical Technologist</span>
 									<select class="form-control select2 medtech_id " name="medtech" id="medtech" style="width: 100%" required>
-											<option disabled="" selected="">Select Medical Technologist</option>
+											<option value="" selected="">Select Medical Technologist</option>
 											@foreach($medtech as $medtech)
 												<option value="{{ $medtech->emp_id }}">{{ $medtech->emp_fname }} {{ $medtech->emp_mname }} {{ $medtech->emp_lname }}</option>
 											@endforeach
@@ -245,7 +245,7 @@
 			                 <div class="input-group" >
 									<span class="input-group-addon">Pathologist</span>
 									<select class="form-control package_id select2" name="pathologist" id="pathologist" style="width: 100%" required>
-										<option disabled="" selected="">Select Pathologist</option>
+										<option value="" selected="">Select Pathologist</option>
 										@foreach($patho as $patho)
 											<option value="{{ $patho->emp_id }}">{{ $patho->emp_fname }} {{ $patho->emp_mname }} {{ $patho->emp_lname }}</option>
 										@endforeach

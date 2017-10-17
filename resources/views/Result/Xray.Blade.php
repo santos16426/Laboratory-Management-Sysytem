@@ -151,8 +151,8 @@
 			                 <div class="input-group" >
 									<span class="input-group-addon">Radiologic Technologist</span>
 									<select class="form-control" name="radiologic" id="radiologic" style="width: 100%"  required="" >
+										<option value="" selected="">Select Medical Technologist</option>
 										@foreach($radtech as $rad)
-
 											<option value="{{ $rad->emp_id }}">{{ $rad->emp_fname }} {{ $rad->emp_mname }} {{ $rad->emp_lname }}</option>
 										@endforeach
 										@if(count($radtech)==0)
@@ -210,6 +210,7 @@
 			                 <div class="input-group" >
 									<span class="input-group-addon">Radiologist</span>
 									<select class="form-control" name="radiologist" id="radiologist" style="width: 100%"  required="" >
+										<option value="" selected="">Select Radiologist</option>
 										@foreach($radiologist as $rads)
 											<option value="{{ $rads->emp_id }}">{{ $rads->emp_fname }} {{ $rads->emp_mname }} {{ $rads->emp_lname }}</option>
 										@endforeach
