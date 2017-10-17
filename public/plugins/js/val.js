@@ -770,14 +770,14 @@ $('#corppackadd').bootstrapValidator({
             gender: {
                     validators: {
                         notEmpty: {
-                            message: 'The gender is required'
+                            message: 'Gender is required'
                         }
                     }
                 },
             age: {
                     validators: {
                         notEmpty: {
-                            message: 'The gender is required'
+                            message: 'Age is required'
                         }
                     }
                 },                                   
@@ -843,14 +843,14 @@ $('#corppackedit').bootstrapValidator({
             gender: {
                     validators: {
                         notEmpty: {
-                            message: 'The gender is required'
+                            message: 'Gender is required'
                         }
                     }
                 },
             age: {
                     validators: {
                         notEmpty: {
-                            message: 'The gender is required'
+                            message: 'Age is required'
                         }
                     }
                 },                                   
