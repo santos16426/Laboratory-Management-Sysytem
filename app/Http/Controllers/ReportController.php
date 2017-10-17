@@ -95,13 +95,14 @@ class ReportController extends Controller
         $date = explode('-',$day);
         $startdate = $date[2] ."-".$date[0]."-".$date[1]." 00:00:00";
         $var = DB::table('employee_tbl')
-                ->leftjoin('trans_emprebate_tbl','trans_emprebate_tbl.emp_id','=','employee_tbl.emp_id')
-                ->leftjoin('transaction_tbl','transaction_tbl.trans_id','=','trans_emprebate_tbl.trans_id')
-                ->leftjoin('rebate_tbl','rebate_tbl.rebate_id','=','trans_emprebate_tbl.rebate_id')
-                ->leftjoin('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
-                ->select(DB::raw('employee_tbl.emp_id ,CONCAT(emp_fname," ",emp_mname," ",emp_lname) as name,((trans_total + IFNULL(charge,0))*(percentage/100)) as percentage'))
+                ->join('trans_emprebate_tbl','trans_emprebate_tbl.emp_id','=','employee_tbl.emp_id')
+                ->join('transaction_tbl','transaction_tbl.trans_id','=','trans_emprebate_tbl.trans_id')
+                ->join('rebate_tbl','rebate_tbl.rebate_id','=','trans_emprebate_tbl.rebate_id')
+                ->join('transcorp_tbl','transcorp_tbl.trans_id','=','transaction_tbl.trans_id')
+                ->select(DB::raw('employee_tbl.emp_id ,CONCAT(emp_fname," ",emp_mname," ",emp_lname) as name,((trans_total + IFNULL(charge,0)-home_service)*(percentage/100)) as percentage'))
                 ->where('transaction_tbl.trans_id','!=',null)
                 ->whereDate('trans_date',$startdate)
+                ->groupBy('employee_tbl.emp_id','percentage','emp_fname','emp_mname','emp_lname','trans_total','charge','home_service')
                 ->get();
         
         return response()->json([$var]);

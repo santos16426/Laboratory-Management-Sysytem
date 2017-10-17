@@ -59,38 +59,20 @@
                     <div class="toolbar">
                         
                     </div>
-                    <div class="jumbotron">
-                    @foreach($patientinfo as $table)
-                     <p class="text-center"><strong><small>&nbsp;Patient's Information</small></strong></p>
-                      <div class="col-md-14 jumbotron">
-                        <div class="col-md-6">
-                          <p><small><small><strong>Name:</strong></small>&nbsp;{{ $table->patient_fname }}{{ $table->patient_mname }}{{ $table->patient_lname }}</small></p>
-                          <p><small><small><strong>Age:</strong></small>&nbsp;{{ $table->age }}</small></p>
-                          <p><small><small><strong>Gender:</strong></small>&nbsp;{{ $table->patient_gender }}</small></p>
-                        </div>
-                        <div class="col-md-6" style="padding-left: 200px">
-                          <p><small><small><strong>Address:</strong></small>&nbsp;{{ $table->patient_address }}</small></p>
-                          <p><small><small><strong>Civil Status:</strong></small>&nbsp;{{ $table->patient_civilstatus }}</small></p>
-                        </div>
-                        <br><br>
-                      </div>
-                      @endforeach
-                    </div>
-
                     <table id="fresh-table" class="table">
                         <thead>
                           <th data-sortable="true">Transaction Date</th>
+                          <th>Result</th>
                           <th>Action</th>
-                          
-                            
                         </thead>
                         <tbody>
-                        @foreach($transactions as $t)
-                            <tr>
-                              <td>{{ $t->trans_date }}</td>
-                              <td><a class="btn btn-info btn-sm" href="/GetFiles?id={{ $t->trans_id }}"><i class="fa fa-files-o"></i>&nbsp; View Files</a></td>
-                            </tr>
-                        @endforeach
+                       @foreach($table as $t)
+                        <tr>
+                          <td>{{ $t->date }}</td>
+                          <td>{{ $t->result_type }}</td>
+                          <td><a class="btn btn-primary btn-xs" href="{{ URL::to( '/PatientResults/'.$t->file)  }}" target="_blank" data-id=""><i class="fa fa-download" aria-hidden="true" ></i>&nbsp;Download</a></td>
+                        </tr>
+                       @endforeach
                         </tbody>
                     </table>
                 </div>

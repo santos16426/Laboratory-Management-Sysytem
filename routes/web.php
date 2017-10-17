@@ -230,6 +230,7 @@ Route::post('/update_resultfile','ResultController@update_resultfile');
 Route::get('/Website/Home','WebController@Website');
 Route::post('/Website/PatientView','WebController@proceedPatientResult');
 Route::post('/proceedPatientResult','WebController@login');
+Route::get('/GetFiles','WebController@GetFiles');
 
 // Queries
 Route::get('/QueryPatient','AdminController@patient');

@@ -11,7 +11,12 @@ class WebController extends Controller
     {
     	return view('Website.website');
     }
-   
+    function GetFiles()
+    {
+        $trans_id = $_GET['id'];
+        $table = DB::table('trans_resultfiles_tbl')->where('trans_id',$trans_id)->where('status',1)->get();
+        return view('Website.GetFiles',['table'=>$table]);
+    }
     function login()
     {
         $code = $_POST['code'];
@@ -33,7 +38,7 @@ class WebController extends Controller
         }
         if($access == 1)
         {
-            $patientinfo = DB::table('patient_tbl')->where('claimCode',$code)->get();
+                $patientinfo = DB::table('patient_tbl')->where('claimCode',$code)->get();
                 foreach($patientinfo as $get)
                 {
                     $patient_id = $get->patient_id;

@@ -787,7 +787,6 @@ body {
                         </div>
                     </div>
                     <form action="/proceedPatientResult" method="POST">
-                    {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="content">
                             <div class="input-group form-group-no-border">
@@ -806,6 +805,7 @@ body {
                                     <span><small>Note:&nbsp;<br>If first time, Last name should be all capital letters without spaces</small></span>
                                 </div>
                     </div>
+                    {{ csrf_field() }}
                     <div class="footer text-center">
                         <button type="submit" class="btn btn-success btn-round btn-lg">Go</button>
                     </div>

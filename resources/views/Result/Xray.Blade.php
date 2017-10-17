@@ -150,10 +150,14 @@
 			              <div class="col-md-12">
 			                 <div class="input-group" >
 									<span class="input-group-addon">Radiologic Technologist</span>
-									<select class="form-control package_id select2" name="radiologic" id="radiologic" style="width: 100%" >
+									<select class="form-control" name="radiologic" id="radiologic" style="width: 100%"  required="" >
 										@foreach($radtech as $rad)
+
 											<option value="{{ $rad->emp_id }}">{{ $rad->emp_fname }} {{ $rad->emp_mname }} {{ $rad->emp_lname }}</option>
 										@endforeach
+										@if(count($radtech)==0)
+										<option disabled="">No available Radiologic Technologist</option>
+										@endif
 									</select>
 								</div>
 			          		</div>  
@@ -205,10 +209,13 @@
 			              <div class="col-md-12">
 			                 <div class="input-group" >
 									<span class="input-group-addon">Radiologist</span>
-									<select class="form-control package_id select2" name="radiologist" id="radiologist" style="width: 100%" >
+									<select class="form-control" name="radiologist" id="radiologist" style="width: 100%"  required="" >
 										@foreach($radiologist as $rads)
 											<option value="{{ $rads->emp_id }}">{{ $rads->emp_fname }} {{ $rads->emp_mname }} {{ $rads->emp_lname }}</option>
 										@endforeach
+										@if(count($radiologist)==0)
+										<option disabled="">No available Radiologist</option>
+										@endif
 									</select>
 								</div>
 			          		</div>  
@@ -276,6 +283,9 @@
 				$('#radlicense').val(response);
 			}
 		})
+	})
+	$(".select2").select2({
+		placeholder:"Select an Employee"
 	})
 </script>
 @endsection
