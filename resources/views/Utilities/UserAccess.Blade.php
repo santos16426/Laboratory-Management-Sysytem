@@ -47,7 +47,7 @@
 						    <th rowspan="2" colspan="1">Employee Type</th>
 						    <th colspan="6">Maintenance</th>
 						    <th colspan="4">Transaction</th>
-						    <th colspan="5">Reports</th>
+						    <th colspan="4">Reports</th>
 						    <th rowspan="2" colspan="1">Action</th>
 						  </tr>
 						  <tr>
@@ -65,7 +65,6 @@
 						    <th>Transaction</th>
 						    <th>Corporate</th>
 						    <th>Rebate</th>
-						    <th>Anoda</th>
 						  </tr>
 						  @foreach($admin as $admin)
 						  <tr align="center">
@@ -140,7 +139,6 @@
 						  			<i class="fa fa-check" aria-hidden="true"></i> 
 						  		@endif
 						    </td>
-						    <td></td>
 						    <td><a class="btn btn-warning btn-xs  updateModal" href="#updateModal" data-toggle="modal" data-id="0"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 						  </tr>
 						  @endforeach
@@ -217,7 +215,6 @@
 						  			<i class="fa fa-check" aria-hidden="true"></i> 
 						  		@endif
 						    </td>
-						    <td></td>
 						    <td><a class="btn btn-warning btn-xs  updateModal" href="#updateModal" data-toggle="modal" data-id="{{ $users->emp_type_id }}"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Update</a>
 						  </tr>
 						  @endforeach

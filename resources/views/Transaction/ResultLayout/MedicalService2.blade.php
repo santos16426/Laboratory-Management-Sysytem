@@ -80,7 +80,9 @@
 			@foreach($getMedtech as $med)
 			<address style="float: left">
 			<center>
-			<img alt="" src="/banner.jpg" style="width: 150px; height: 90px float: left; max-height: 90px; max-width: 150px;">
+			@foreach($service_results as $servmed)
+			<img alt="" src="/Employee_signatures/{{ $servmed->Medserv2_medtech_img }}" style="width: 150px; height: 90px float: left; max-height: 90px; max-width: 150px;">
+			@endforeach
 			<p><span>{{ $med->emp_fname }} {{ $med->emp_mname }} {{ $med->emp_lname }}</span></p>
 			<p>Medical Technologist<br>License No.: {{ $med->license_no }}</p>
 			</center>
@@ -94,7 +96,9 @@
 			@foreach($getPatho as $path)
 			<address style="float: right;">
 			<center>
-			<img alt="" src="/banner.jpg" style="width: 150px; height: 90px float: left; max-height: 90px; max-width: 150px;">
+			@foreach($service_results as $servimg)
+			<img alt="" src="/Employee_signatures/{{ $servimg->Medserv2_pathologist_img }}" style="width: 150px; height: 90px float: left; max-height: 90px; max-width: 150px;">
+			@endforeach
 			<p><span>{{ $path->emp_fname }} {{ $path->emp_mname }} {{ $path->emp_lname }}</span></p>
 			<p>Pathologist<br>License No.: {{ $med->license_no }}<p></p>
 			</center>

@@ -15,18 +15,6 @@ alt="" / style="width:300px; height:100px;margin-left: 97px;"><br><br><br>
 <body>
 <h1><center>olytechnic University of The Philippines</center></h1> </center> 
 
-@component('mail::table')
-|  Transaction Date |     Patient       |     Charge    |
-|: -----------------|:-------------:    | --------:     |
-| October 5, 2017   | Dannica Moises    |  {{ $total }} |
-| October 10, 2017  | Joseph Gallardo   |  {{ $total }} |
-| October 5, 2017   | Dannica Moises    |  {{ $total }} |
-| October 10, 2017  | Joseph Gallardo   |  {{ $total }} |
-|					|					|  Total= {{$total}}|
-										
-@endcomponent
-
-
 		<p>Please settle the above balances as soon as you can.</p><br>
 </body>
 
