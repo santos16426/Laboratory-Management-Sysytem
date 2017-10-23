@@ -176,15 +176,12 @@
                 <div class="input-group">
                   <label><strong>Result Layout</strong><sup>*</sup></label><br>
                   <div style="padding-left: 20px" required>
-                    <input type="checkbox" name="upmedserv1" value="1" id="upmedserv1"><label for="upmedserv1">&nbsp;Medical Service 1&nbsp;&nbsp;</label><a class="btn btn-xs btn-success medserv1view">View</a><br>
-                    <input type="checkbox" name="upmedserv2" value="1" id="upmedserv2"><label for="upmedserv2">&nbsp;Medical Service 2&nbsp;&nbsp;</label><a class="btn btn-xs btn-success medserv2">View</a><br>
-                    <input type="checkbox" name="upecg" value="1" id="upecg"><label for="upecg">&nbsp;ECG&nbsp;&nbsp;</label><a class="btn btn-xs btn-success ecgview">View</a>
-                    <br>
-                    <input type="checkbox" name="upxray" id="upxray" value="1"><label for="upxray">&nbsp;X-Ray&nbsp;&nbsp;</label><a class="btn btn-xs btn-success xrayview">View</a>
-                    <br>
-                    <input type="checkbox" name="upultrasound" id="upultrasound" value="1"><label for="upultrasound">&nbsp;Ultrasound&nbsp;&nbsp;</label><a class="btn btn-xs btn-success ultrasoundview">View</a>
-                    <br>
-                    <input type="checkbox" name="updrugtest" id="updrugtest" value="1"><label for="updrugtest">&nbsp;Drug Test&nbsp;&nbsp;</label><a class="btn btn-xs btn-success drugview">View</a>
+                    <input type="checkbox" name="upmedserv1" value="1" id="upmedserv1"><label for="upmedserv1">&nbsp;Medical Service 1&nbsp;&nbsp;</label><a class="btn btn-xs btn-success" href="{{ URL::to( '/ResultImage/medservicesample.jpg')  }}" target="_blank">View</a><br>
+                    <input type="checkbox" name="upmedserv2" value="1" id="upmedserv2"><label for="upmedserv2">&nbsp;Medical Service 2&nbsp;&nbsp;</label><a class="btn btn-xs btn-success" href="{{ URL::to( '/ResultImage/medserv2.png')  }}" target="_blank">View</a><br>
+                    <input type="checkbox" name="upecg" value="1" id="upecg"><label for="upecg">&nbsp;ECG&nbsp;&nbsp;</label><a class="btn btn-xs btn-success" href="{{ URL::to( '/ResultImage/ecgsample.jpg')  }}" target="_blank">View</a><br>
+                    <input type="checkbox" name="upxray" id="upxray" value="1"><label for="upxray">&nbsp;X-Ray&nbsp;&nbsp;</label><a class="btn btn-xs btn-success" href="{{ URL::to( '/ResultImage/xraysample.jpg')  }}" target="_blank">View</a><br>
+                    <input type="checkbox" name="upultrasound" id="upultrasound" value="1"><label for="upultrasound">&nbsp;Ultrasound&nbsp;&nbsp;</label><a class="btn btn-xs btn-success" href="{{ URL::to( '/ResultImage/ultrasoundsample.jpg')  }}" target="_blank">View</a><br>
+                    <input type="checkbox" name="updrugtest" id="updrugtest" value="1"><label for="updrugtest">&nbsp;Drug Test&nbsp;&nbsp;</label><a class="btn btn-xs btn-success" href="{{ URL::to( '/ResultImage/drugtest.png')  }}" target="_blank">View</a>
                 </div>
               </div>
             </div>  
@@ -282,15 +279,12 @@
                 <div class="input-group">
                   <label><strong>Result Layout</strong></label><br>
                   <div style="padding-left: 20px" name="checkbox">
-                    <input type="checkbox" name="medserv1" value="1" id="medserv1"><label for="medserv1">&nbsp;Medical Service 1&nbsp;&nbsp;</label><a class="btn btn-xs btn-success medserv1view">View</a><br>
-                    <input type="checkbox" name="medserv2" value="1" id="medserv2"><label for="medserv2">&nbsp;Medical Service 2&nbsp;&nbsp;</label><a class="btn btn-xs btn-success medserv2">View</a><br>
-                    <input type="checkbox" name="ecg" value="1" id="ecg"><label for="ecg">&nbsp;ECG&nbsp;&nbsp;</label><a class="btn btn-xs btn-success ecgview">View</a>
-                    <br>
-                    <input type="checkbox" name="xray" id="xray" value="1"><label for="xray">&nbsp;X-Ray&nbsp;&nbsp;</label><a class="btn btn-xs btn-success xrayview">View</a>
-                    <br>
-                    <input type="checkbox" name="ultrasound" id="ultrasound" value="1"><label for="ultrasound">&nbsp;Ultrasound&nbsp;&nbsp;</label><a class="btn btn-xs btn-success ultrasoundview">View</a>
-                    <br>
-                    <input type="checkbox" name="drugtest" id="drugtest" value="1"><label for="drugtest">&nbsp;Drug Test&nbsp;&nbsp;</label><a class="btn btn-xs btn-success drugview">View</a>
+                    <input type="checkbox" name="medserv1" value="1" id="medserv1"><label for="medserv1">&nbsp;Medical Service 1&nbsp;&nbsp;</label><a class="btn btn-xs btn-success" href="{{ URL::to( '/ResultImage/medservicesample.jpg')  }}" target="_blank">View</a><br>
+                    <input type="checkbox" name="medserv2" value="1" id="medserv2"><label for="medserv2">&nbsp;Medical Service 2&nbsp;&nbsp;</label><a class="btn btn-xs btn-success" href="{{ URL::to( '/ResultImage/medserv2.png')  }}" target="_blank">View</a><br>
+                    <input type="checkbox" name="ecg" value="1" id="ecg"><label for="ecg">&nbsp;ECG&nbsp;&nbsp;</label><a class="btn btn-xs btn-success" href="{{ URL::to( '/ResultImage/ecgsample.jpg')  }}" target="_blank">View</a><br>
+                    <input type="checkbox" name="xray" id="xray" value="1"><label for="xray">&nbsp;X-Ray&nbsp;&nbsp;</label><a class="btn btn-xs btn-success" href="{{ URL::to( '/ResultImage/xraysample.jpg')  }}" target="_blank">View</a><br>
+                    <input type="checkbox" name="ultrasound" id="ultrasound" value="1"><label for="ultrasound">&nbsp;Ultrasound&nbsp;&nbsp;</label><a class="btn btn-xs btn-success" href="{{ URL::to( '/ResultImage/ultrasoundsample.jpg')  }}" target="_blank">View</a><br>
+                    <input type="checkbox" name="drugtest" id="drugtest" value="1"><label for="drugtest">&nbsp;Drug Test&nbsp;&nbsp;</label><a class="btn btn-xs btn-success" href="{{ URL::to( '/ResultImage/drugtest.png')  }}" target="_blank">View</a>
                 </div>
               </div>
             </div>  
@@ -338,38 +332,7 @@
 </div>  
 @endsection
 @section('additional')
-<script type="text/javascript">
-  $('.medserv1view').click(function(){
-    $('#pic').empty();
-    $('#pic').append('<img src="/ResultImage/medservicesample.jpg">')
-    $('#LayoutModal').modal('show');
-  });
-  $('.medserv2').click(function(){
-    $('#pic').empty();
-    $('#pic').append('<img src="/ResultImage/medserv2.png">');
-    $('#LayoutModal').modal('show');  
-  });
-  $('.ecgview').click(function(){
-    $('#pic').empty();
-    $('#pic').append('<img src="/ResultImage/ecgsample.jpg">');
-    $('#LayoutModal').modal('show');  
-  });
-  $('.xrayview').click(function(){
-    $('#pic').empty();
-    $('#pic').append('<img src="/ResultImage/xraysample.jpg">');
-    $('#LayoutModal').modal('show');  
-  });
-  $('.ultrasoundview').click(function(){
-    $('#pic').empty();
-    $('#pic').append('<img src="/ResultImage/ultrasoundsample.jpg">');
-    $('#LayoutModal').modal('show');  
-  });
-  $('.drugview').click(function(){
-    $('#pic').empty();
-    $('#pic').append('<img src="/ResultImage/drugtest.png">');
-    $('#LayoutModal').modal('show');  
-  });
-</script>
+
 <script type="text/javascript">
   function fnFormatDetails ( oTable, nTr )
       {
