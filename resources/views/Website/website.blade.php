@@ -715,7 +715,7 @@ body {
                                 <div class="tim-row" id="schedule">
                                     <h2 class="text-center title">Schedule & Location</h2>
                                     <legend></legend>
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d969.2700034798418!2d121.02508052146734!3d14.606524327162846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa2c641fd56c4c687!2sGlobalhealth+Diagnostic+Center+Inc.!5e1!3m2!1sen!2sph!4v1499284739874" width="710" height="350" frameborder="1" style="border:1" allowfullscreen></iframe></div>
+                                    </div>
                                     <br>
                                     <strong>Address:</strong> < Insert Company Name ><br>
                                         <strong>Open:</strong> < Insert Schedule ><br>
@@ -760,7 +760,7 @@ body {
                                 <div class="tim-row">
                                     <h2 class="text-center title">Schedule & Location</h2>
                                     <legend></legend>
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m11!1m3!1d1462.582676387449!2d121.0586975774077!3d14.63529546042551!2m2!1f0!2f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b798d2c287c1%3A0xb48632c4373de566!2sGlobalhealth+Diagnostic+Center+Inc.!5e1!3m2!1sen!2sph!4v1484660468213" width="710" height="350" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+                                   </div>
                                     <br>
                                     <strong>Address:</strong> < Insert Company Name ><br>
                                         <strong>Open:</strong> < Insert Schedule ><br>
