@@ -68,6 +68,7 @@ class LoginController extends Controller
     			$displayname = $validusers->display_name;
                 if($type!=0)
                 {
+                    
                     $checkEmp = DB::table('employee_tbl')
                         ->leftjoin('employee_role_tbl','role_id','=','emp_type_id')
                         ->leftjoin('laboratory_tbl','laboratory_tbl.lab_id','=','employee_role_tbl.lab_id')

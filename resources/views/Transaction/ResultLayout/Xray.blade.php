@@ -14,10 +14,10 @@
 	</head>
 		<header>
 			<address rightinfo style="padding-bottom: 20px">
-				<p style="padding-bottom: 8px"><strong>Company Name:</strong>Globalhealth Diagnostics Center,Inc.</p>
-				<p style="padding-bottom: 8px"><strong>Address:</strong>156 N. Domingo Street, San Juan City, Metro Manila</p>
-				<p style="padding-bottom: 8px"><strong>Contact Number:</strong> 722-4544/436-2057</p>
-				<p style="padding-bottom: 8px"><strong>Email: globalhealth_sj@yahoo.com</strong></p><br>
+				<p style="padding-bottom: 8px"><strong>Company Name:</strong>< Insert Company Name ></p>
+				<p style="padding-bottom: 8px"><strong>Address:</strong>< Insert Company Address ></p>
+				<p style="padding-bottom: 8px"><strong>Contact Number:</strong> < Insert Company Tel No. ></p>
+				<p style="padding-bottom: 8px"><strong>Email: < Insert Company Email ></strong></p><br>
 			</address>
 			<span><img alt="" src="/banner.jpg" style="width: 500px; height: 250px float: left; max-height: 112px; max-width: 330px;"></span>
 		</header><br><br>

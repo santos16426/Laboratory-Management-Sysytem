@@ -87,10 +87,6 @@
 									<td><b>{{ $patientinfo->patient_address }}</b></td>
 								</tr>
 								<tr>
-									<td>Patient Birthday: &nbsp;</td>
-									<td><b>{{ date('F jS, Y',strtotime($patientinfo->patient_birthdate)) }}</b></td>
-								</tr>
-								<tr>
 									<td>Age: &nbsp;</td>
 									<td><b>{{ $patientinfo->age }}</b></td>
 								</tr>

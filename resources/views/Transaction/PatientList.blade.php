@@ -43,7 +43,6 @@
 			          <th>Middle Name</th>
 			          <th>Patient Type</th>
 			          <th>Address</th>
-			          <th>Birthdate</th>
 			          <th>Age</th>
 			          <th>Contact</th>
 			          <th>Civil Status</th>
@@ -63,7 +62,6 @@
 			          	@endif
 			          </td>
 			          <td>{{ $table->patient_address }}</td>
-			          <td>{{ $table->patient_birthdate }}</td>
 			          <td>{{ $table->age }}</td>
 			          <td>{{ $table->patient_contact }}</td>
 			          <td>{{ $table->patient_civilstatus }}</td>

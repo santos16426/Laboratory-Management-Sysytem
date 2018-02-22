@@ -13,7 +13,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="/icon.ico">
+        
         <title>E-Diagnostic Center</title>
 
         <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/css/bootstrap.min.css') }}">
@@ -57,7 +57,7 @@
         <div class="sidebar-toggle-box">
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
-        <a href="/Admin/Dashboard" class="logo">Global<span>Health</span></a>
+        <a href="/Admin/Dashboard" class="logo">E-<span>Diagnostic</span> Center</a>
         <div class="top-nav ">
             <ul class="nav pull-right top-menu">
                 <li class="dropdown">

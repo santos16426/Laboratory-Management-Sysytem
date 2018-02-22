@@ -27,10 +27,10 @@
 			<address style="padding-left: 100px">
 			<CENTER>	
 				<p>DEPARTMENT OF HEALTH</p>
-				<p>GLOBALHEALTH DIAGNOSTICS CENTER, INC.</p>
-				<p>156 UNIT-A G/F, N. DOMINGO ST., PEDRO CRUZ, SAN JUAN CITY</p><br>
+				<p>< Insert Company Name ></p>
+				<p>< Insert Company Address ></p><br>
 				
-				<small><p style="font-size: 11px">Phone Number: 7224544</p></small><br>
+				<small><p style="font-size: 11px">< Insert Company Tel No. ></p></small><br>
 				<p>DRUG TEST REPORT</p>
 			</CENTER>
 			</address><br><br><br><br><br><br><br><br><br><br><br>

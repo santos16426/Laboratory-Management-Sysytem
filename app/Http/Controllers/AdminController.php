@@ -11,6 +11,11 @@ class AdminController extends Controller
     {
         date_default_timezone_set('Singapore');
     }
+    function allserv()
+    {
+        $var = DB::table('service_tbl')->get();
+        return response()->json($var);
+    }
     function pack()
     {
         $package = DB::table('package_tbl')

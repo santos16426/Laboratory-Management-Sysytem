@@ -3186,12 +3186,7 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkLicense',
-                        data:{ license:$('#license').val()},
-                        message: 'License Number already exist.',
-                    },
+                  
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -3390,12 +3385,7 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkLicense',
-                        data:{ license:$('#license').val()},
-                        message: 'License Number already exist.',
-                    },
+                  
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -3661,12 +3651,7 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkLicense',
-                        data:{ license:$('#license').val()},
-                        message: 'License Number already exist.',
-                    },
+                  
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -3802,12 +3787,7 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkLicense',
-                        data:{ license:$('#license').val()},
-                        message: 'License Number already exist.',
-                    },
+                  
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -3910,12 +3890,7 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkLicense',
-                        data:{ license:$('#license').val()},
-                        message: 'License Number already exist.',
-                    },
+                  
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -4280,12 +4255,7 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkLicense',
-                        data:{ license:$('#license').val()},
-                        message: 'License Number already exist.',
-                    },
+                  
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -4377,12 +4347,7 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkLicense',
-                        data:{ license:$('#license').val()},
-                        message: 'License Number already exist.',
-                    },
+                  
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -4466,12 +4431,7 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkLicense',
-                        data:{ license:$('#license').val()},
-                        message: 'License Number already exist.',
-                    },
+                  
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -4656,12 +4616,7 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkLicense',
-                        data:{ license:$('#license').val()},
-                        message: 'License Number already exist.',
-                    },
+                  
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -4795,12 +4750,7 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkLicense',
-                        data:{ license:$('#license').val()},
-                        message: 'License Number already exist.',
-                    },
+                  
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -5260,12 +5210,7 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkLicense',
-                        data:{ license:$('#license').val()},
-                        message: 'License Number already exist.',
-                    },
+                  
                   notEmpty: {
                     message: 'This field is required.'
                   }
@@ -5347,12 +5292,7 @@ $('.empupdateModalbtn').click(function(){
                     regexp: /^[A-Z-0-9]{6,8}$/,
                     message: 'Invalid License Number Format.'
                   },
-                  remote: {
-                        type: 'GET',
-                        url: '/checkLicense',
-                        data:{ license:$('#license').val()},
-                        message: 'License Number already exist.',
-                    },
+                  
                   notEmpty: {
                     message: 'This field is required.'
                   }

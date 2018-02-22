@@ -239,3 +239,4 @@ Route::get('/QueryEmployee','AdminController@employee');
 Route::get('/QueryCorp','AdminController@corp');
 Route::get('/QueryService','AdminController@serv');
 Route::get('/QueryPackage','AdminController@pack');
+Route::get('/QueryAllService','AdminController@allserv');
