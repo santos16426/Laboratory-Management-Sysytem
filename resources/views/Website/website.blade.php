@@ -5,7 +5,7 @@
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>GLOBALHEALTH | DIAGNOSTIC CENTER</title>
+    <title>E-DIAGNOSTIC CENTER</title>
     <link rel="shortcut icon" href="/icon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -68,7 +68,7 @@ body {
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
                 <a class="navbar-brand" href="#home" rel="tooltip"><img src="/webplugins/assets/img/logo.png" style="width: 17%; height: 17%">
-                    <strong>GLOBALHEALTH | DIAGNOSTIC CENTER</strong>
+                    <strong>E-DIAGNOSTIC CENTER</strong>
                 </a>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="/webplugins/assets/img/blurred-image-1.jpg">
@@ -704,7 +704,7 @@ body {
                                 <h2 class="text-center title">Vision</h2>
                                 <legend></legend>
                                 <p>
-                                    The company envisions expanding its reach to every health professional and his patient by putting up branches in other key global cities in the Metro. It is also our vision that in the coming years GLOBALHEALTH DIAGNOSTIC CENTER, INC. will continue to be known for its reliability and high quality testing and for providing every physician the option to work-up their patients economically while ensuring complete confidence in the validity of its laboratory imaging results.
+                                    The company envisions expanding its reach to every health professional and his patient by putting up branches in other key global cities in the Metro. It is also our vision that in the coming years E-DIAGNOSTIC CENTER, INC. will continue to be known for its reliability and high quality testing and for providing every physician the option to work-up their patients economically while ensuring complete confidence in the validity of its laboratory imaging results.
                                 </p>
                             </div>
                             
@@ -717,12 +717,11 @@ body {
                                     <legend></legend>
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d969.2700034798418!2d121.02508052146734!3d14.606524327162846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa2c641fd56c4c687!2sGlobalhealth+Diagnostic+Center+Inc.!5e1!3m2!1sen!2sph!4v1499284739874" width="710" height="350" frameborder="1" style="border:1" allowfullscreen></iframe></div>
                                     <br>
-                                    <strong>Address:</strong> 156 N. Domingo Street,
-                                        San Juan City, Metro Manila<br>
-                                        <strong>Open:</strong> Monday to Saturday<br>
-                                        <strong>Time:</strong> 7:30 am to 6:00 pm<br>
-                                        <strong>Tel Nos:</strong> 722-4544/576-5357<br>
-                                        <strong>E-mail:</strong> globalhealth_sj@yahoo.com
+                                    <strong>Address:</strong> < Insert Company Name ><br>
+                                        <strong>Open:</strong> < Insert Schedule ><br>
+                                        <strong>Time:</strong> < Insert Available Time ><br>
+                                        <strong>Tel Nos:</strong> < Insert Tel No. ><br>
+                                        <strong>E-mail:</strong> < Insert Email No. >
                                     
                                 <div id="doctor"></div>
                                 <br>   
@@ -731,27 +730,27 @@ body {
                                     <legend></legend><br>
                                     
                                     <p>
-                                        <h4>Dr. Dela Cruz<hr></h4>
+                                        <h4>Doctor<hr></h4>
                                         <strong>Specialization:</strong> IM/CARDIO<br>
                                         <strong>Schedule:</strong> Monday, 4:00 pm - 6:00 pm
                                         
-                                        <h4>Dr. Collado<hr></h4>
+                                        <h4>Doctor<hr></h4>
                                         <strong>Specialization:</strong> IM/CARDIO<br>
                                         <strong>Schedule:</strong> Tuesday, 1:00 pm - 3:00 pm
                                         
-                                        <h4>Dr. Talamayan<hr></h4>
+                                        <h4>Doctor<hr></h4>
                                         <strong>Specialization:</strong> IM/CARDIO<br>
                                         <strong>Schedule:</strong> Thursday, 4:00 pm - 6:00 pm
                                         
-                                        <h4>Dr. Dionisio<hr></h4>
+                                        <h4>Doctor<hr></h4>
                                         <strong>Specialization:</strong> IM/CARDIO<br>
                                         <strong>Schedule:</strong> Friday, 10:00 am - 12:00 pm
                                         
-                                        <h4>Dr. Florista<hr></h4>
+                                        <h4>Doctor<hr></h4>
                                         <strong>Specialization:</strong> Pulmo<br>
                                         <strong>Schedule:</strong> Wednesday, 11:00 am - 12:00 pm
                                        
-                                        <h4>Dr. Calma<hr></h4>
+                                        <h4>Doctor<hr></h4>
                                         <strong>Specialization:</strong> General Surgeon<br>
                                         <strong>Schedule:</strong> Monday and Saturday, 10:00 am - 12:00 pm
                                         </div>
@@ -759,15 +758,15 @@ body {
                                 <div id="qc"></div>
                                 <br>
                                 <div class="tim-row">
-                                    <h2 class="text-center title">GH - Quezon City Schedule & Location</h2>
+                                    <h2 class="text-center title">Schedule & Location</h2>
                                     <legend></legend>
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m11!1m3!1d1462.582676387449!2d121.0586975774077!3d14.63529546042551!2m2!1f0!2f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b798d2c287c1%3A0xb48632c4373de566!2sGlobalhealth+Diagnostic+Center+Inc.!5e1!3m2!1sen!2sph!4v1484660468213" width="710" height="350" frameborder="0" style="border:0" allowfullscreen></iframe></div>
                                     <br>
-                                    <strong>Address:</strong> Deofranz Plaza Bldng #2 Anonas Ext cor. V Luna Road, Quezon City, Metro Manila<br>
-                                        <strong>Open:</strong> Monday to Saturday<br>
-                                        <strong>Time:</strong> 8:00 am to 6:00 pm<br>
-                                        <strong>Tel No:</strong> 436-2057<br>
-                                        <strong>E-mail:</strong> globalhealth_anonas@<yahoo class="com"></yahoo>
+                                    <strong>Address:</strong> < Insert Company Name ><br>
+                                        <strong>Open:</strong> < Insert Schedule ><br>
+                                        <strong>Time:</strong> < Insert Available Time ><br>
+                                        <strong>Tel Nos:</strong> < Insert Tel No. ><br>
+                                        <strong>E-mail:</strong> < Insert Email No. >
                             </div>
                         </div>
                     </div>

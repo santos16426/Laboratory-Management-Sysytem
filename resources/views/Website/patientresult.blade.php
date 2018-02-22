@@ -30,7 +30,7 @@
                 <span class="icon-bar"></span>
               </button>
               <a class="navbar-brand" href="#" rel="tooltip">
-                    <strong><small>GLOBALHEALTH | DIAGNOSTIC CENTER</small></strong>
+                    <strong><small>E-DIAGNOSTIC CENTER</small></strong>
                 </a>
             </div>
         
