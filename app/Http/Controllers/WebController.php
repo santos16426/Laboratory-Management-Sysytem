@@ -7,14 +7,38 @@ use DB;
 use Session;
 class WebController extends Controller
 {
+    function save(){
+        $service = $_POST['service'];
+        $fname = $_POST['fname'];
+        $mname = $_POST['mname'];
+        $lname = $_POST['lname'];
+        $contact = $_POST['contact'];
+        $age = $_POST['age'];
+        $location = $_POST['location'];
+        $date = $_POST['date'];
+        $doctor = $_POST['doctor'];
+        DB::table('save_table')->insert
+        ([
+            'service_id' => $service,
+            'full_name' => $fname. ' '. $mname. ' '.$lname,
+            'age' => $age,
+            'address'=>$location,
+            'sched_date'=>date_create($date),
+            'doctor'=>$doctor,
+            'contact'=>$contact
+        ]);
+        Session::flash('success',true);
+        return redirect()->back();
+
+    }
     public function Website()
     {
     	return view('Website.website');
     }
     function GetFiles()
     {
-        $trans_id = $_GET['id'];
-        $table = DB::table('trans_resultfiles_tbl')->where('trans_id',$trans_id)->where('status',1)->get();
+       
+        $table = DB::table('save_table')->get();
         return view('Website.GetFiles',['table'=>$table]);
     }
     function changepass()

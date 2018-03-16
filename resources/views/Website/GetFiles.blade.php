@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Results</title>
+  <title>Transaction</title>
   <link rel="stylesheet" href="{{ asset('/webplugins/DataTable/assets/css/bootstrap-tbl.css') }}">
   <link rel="stylesheet" href="{{ asset('/webplugins/DataTable/assets/css/demo.css') }}">
   <link rel="stylesheet" href="{{ asset('/webplugins/DataTable/assets/css/bootstrap.min.css') }}">
@@ -62,17 +62,23 @@
                     <table id="fresh-table" class="table">
                         <thead>
                           <th data-sortable="true">Transaction Date</th>
-                          <th>Result</th>
-                          <th>Action</th>
+                          <th>Patient Full Name</th>
+                          <th>Age</th>
+                          <th>Location</th>
+                          <th>Services</th>
+                          <th>Doctor</th>
                         </thead>
                         <tbody>
-                       @foreach($table as $t)
+                        @foreach($table as $t)
                         <tr>
-                          <td>{{ $t->date }}</td>
-                          <td>{{ $t->result_type }}</td>
-                          <td><a class="btn btn-primary btn-xs" href="{{ URL::to( '/PatientResults/'.$t->file)  }}" target="_blank" data-id=""><i class="fa fa-download" aria-hidden="true" ></i>&nbsp;Download</a></td>
+                        <td>{{ $t->sched_date }}</td>
+                        <td>{{ $t->full_name }}</td>
+                        <td>{{ $t->age }}</td>
+                        <td>{{ $t->address }}</td>
+                        <td>{{ $t->service_id }}</td>
+                        <td>{{ $t->doctor }}</td>
                         </tr>
-                       @endforeach
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

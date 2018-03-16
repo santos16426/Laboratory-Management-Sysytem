@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,13 +14,18 @@
     <link rel="stylesheet" href="{{ asset('/webplugins/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/webplugins/assets/css/now-ui-kit.css') }}">
     <link rel="stylesheet" href="{{ asset('/webplugins/assets/css/demo.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/webplugins/datepicker/css/datepicker.css') }}">
     <!-- <link rel="stylesheet" href="{{ asset('/webplugins/assets/css/site.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/webplugins/assets/css/animate.css') }}"> -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 </head>
 
-
+<style>
+    .datepicker {
+      z-index:1600 !important; /* has to be larger than 1050 */
+    }
+</style>
 <style type="text/css">
     p {
     text-indent: 50px;
@@ -58,6 +64,7 @@ body {
     .main{background-image: url('/webplugins/assets/img/bg.jpg');};
 </style>
 <body class="index-page" style="background-image: url('/webplugins/assets/img/bg.jpg');">
+    
     <!-- Navbar -->
     <nav class="navbar navbar-toggleable-md bg-info fixed-top navbar-transparent " color-on-scroll="500">
         <div class="container">
@@ -92,25 +99,35 @@ body {
                             About us
                         </a>
                     </li>
-                    <li class="nav-item">
-                           <button class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                    <li class="nav-item" color="white">
+                           <a class="nav-link" data-toggle="modal" data-target="#myModal">
                            <i class="now-ui-icons files_paper"></i>
-                                Get Results
-                            </button> 
+                                Avail Service
+                            </a> 
                         </a>
                     </li>
-                    
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#admin">
+                            <i class="now-ui-icons ui-1_bell-53"></i>
+                            Admin
+                        </a>
+                    </li>
                 </ul>
                 </div>
             </div>
         </div>
     </nav>
     <!-- End Navbar -->
+
     <div class="wrapper">
+
     <section id="home">
         <div id="carousel" style="background-color: black;">
+
                <center>
+
                             <div id="carouselExampleControls" class="carousel slide">
+
                                 <ol class="carousel-indicators">
                                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -146,6 +163,21 @@ body {
                 </center>
             </div>
     </section>
+    @if(Session::get('success') == true)
+<div class="alert alert-success" role="alert">
+        <div class="container">
+            <div class="alert-icon">
+                <i class="now-ui-icons ui-2_like"></i>
+            </div>
+            <strong>Success!</strong> You successfully save the patient transaction.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                </span>
+            </button>
+        </div>
+    </div>
+    @endif
         <!-- <div class="page-header">
             <div class="page-header-image"  style="background-image: url('./assets/img/home1.jpg');">
             </div>
@@ -165,6 +197,8 @@ body {
             </div>
         </div> -->
         <div class="main">
+
+    
           <br>
             <h1 class="text-center">Medical Lab Technology and <br> Diagnostic Imaging at Its Best<br><small class="small">"Results that meet Global Standards"</small></h1><br><br><br>
         
@@ -774,93 +808,199 @@ body {
             </div>
         </div>
     </section>    <!-- Modal Core -->
-            <div class="modal fade modal-mini modal-info" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header justify-content-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                        </button>
-                        <div class="modal-profile">
-                            <i class="now-ui-icons users_single-02"></i>
-                        </div>
+    <div class="modal fade modal-mini modal-info" id="admin" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            
+            <h4 class="modal-title" id="myModalLabel" style="margin-top: -10%">Login</h4>
+          </div>
+          <form method="POST" action="/login">
+              <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" value="" placeholder="Username" pattern="admin" title="Incorrect username and password" class="form-control">
                     </div>
-                    <form action="/proceedPatientResult" method="POST">
-                    <div class="modal-body">
-                        <div class="content">
-                            <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                            <i class="now-ui-icons ui-1_lock-circle-open"></i>
-                                        </span>
-                                        <input type="text" placeholder="Enter Code" class="form-control" name="code">
-                                    </div>
-                                    <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                            <i class="now-ui-icons users_circle-08"></i>
-                                        </span>
-                                        <input type="password" class="form-control" placeholder="Enter Password" name="name">
-                                    </div> 
-                                    <span><small><a href="" data-toggle="modal" data-target="#changeModal">Change Password</a></small></span><br>
-                                    <span><small>Note:&nbsp;<br>If first time, Last name should be all capital letters without spaces</small></span>
-                                </div>
-                    </div>
-                    {{ csrf_field() }}
-                    <div class="footer text-center">
-                        <button type="submit" class="btn btn-success btn-round btn-lg">Go</button>
-                    </div>
-                    </form>
                 </div>
-            </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="password" value="" placeholder="Password" pattern="admin" title="Incorrect username and password" class="form-control">
+                    </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-success btn-round">Go</button>
+                </div>
+              </div>
+              {{ csrf_field() }}
+            </form>
         </div>
+      </div>
+    </div>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: -15%">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3>Transaction</h3
+                  </div>
+                  
+                  <div class="modal-body" style="margin-top: -8%">
+                    <form method="POST" action="save_record">
+                    <hr>
+                    
+                    <h4>Services</h4>
+                    <div class="row col-md-12">
+                        
+                        <!-- start service -->
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="CBC" id="cbc">
+                            <label for="cbc">
+                                CBC
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="XRAY" id="xray">
+                            <label for="xray">
+                                XRAY
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="Ultrasound" id="ultrasound">
+                            <label for="ultrasound">
+                                Ultrasound
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="APTT" id="aptt">
+                            <label for="aptt">
+                                APTT
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="Urinaylsis" id="urinalysis">
+                            <label for="urinalysis">
+                                Urinaylsis
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="Dengue Test" id="dengue">
+                            <label for="dengue">
+                                Dengue Test
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="Creatinine" id="creatinine">
+                            <label for="creatinine">
+                                Creatinine
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="ECG" id="ecg">
+                            <label for="ecg">
+                                ECG
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="Uric Acid" id="uric">
+                            <label for="uric">
+                                Uric Acid
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="BUN" id="bun">
+                            <label for="bun">
+                                BUN
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="Triglyceride" id="triglyceride">
+                            <label for="triglyceride">
+                                Triglyceride
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="Albumin" id="albumin">
+                            <label for="albumin">
+                                Albumin
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="Peripheral Smear" id="peripheral">
+                            <label for="peripheral">
+                                Peripheral Smear
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" name="service" value="Blood Typing" id="blood">
+                            <label for="blood">
+                                Blood Typing
+                            </label>
+                        </div>
+                        <!-- end service -->
 
-        <div class="modal fade modal-mini modal-info" id="changeModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header justify-content-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                        </button>
-                        <div class="modal-profile">
-                            <i class="now-ui-icons users_single-02"></i>
+                    </div>
+                    <hr>
+                    <h5>Patient Record</h5>
+                    <div class="row col-md-12">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" value="" placeholder="First Name" name="fname" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" value="" placeholder="Middle Name" name="mname" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" value="" placeholder="Last Name" name="lname" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="text" value="" placeholder="Contact Number" name="contact" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <input type="text" value="" placeholder="Age" name="age" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="text" value="" placeholder="Location" name="location" class="form-control">
+                            </div>
                         </div>
                     </div>
-                    <form action="/changePassPatient" method="POST">
-                    {{ csrf_field() }}
-                    <div class="modal-body">
-                        <div class="content">
-                                    <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                            <i class="now-ui-icons ui-1_lock-circle-open"></i>
-                                        </span>
-                                        <input type="text" placeholder="Enter Code" class="form-control" name="code">
-                                    </div>
-                                    <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                            <i class="now-ui-icons users_circle-08"></i>
-                                        </span>
-                                        <input type="password" class="form-control" placeholder="Enter Old Password" name="name">
-                                    </div>
-                                    <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                            <i class="now-ui-icons users_circle-08"></i>
-                                        </span>
-                                        <input type="password" placeholder="Enter New Password" class="form-control" name="newpass">
-                                    </div>
-                                    <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                            <i class="now-ui-icons users_circle-08"></i>
-                                        </span>
-                                        <input type="password" class="form-control" placeholder="Enter Re-Type New Password" name="confirmpass">
-                                    </div>
-                                </div>
+                    <hr>
+                    <h5>Schedule</h5>
+                    <div class="row col-md-12">
+                        <input type="text" class="form-control date-picker" id="datepick" name="date" value="03/18/2018" data-datepicker-color="">
                     </div>
-                    <div class="footer text-center">
-                        <button type="submit" class="btn btn-success btn-round btn-lg">Save</button>
+                    <hr>
+                    <h5>Doctor</h5>
+                    <div class="row col-md-12">
+                        <select class="form-control" name="doctor">
+                            <option>Doctor 1</option>
+                            <option>Doctor 1</option>
+                            <option>Doctor 1</option>
+                        </select>
                     </div>
-                    </form>
+                    </div>
+                    
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info btn-simple">Save</button>
+                  </div>
+                  {{ csrf_field() }}
+                </form>
                 </div>
+              </div>
             </div>
-        </div>
+
+     
 
 <script src="{{ asset('/webplugins/assets/js/core/jquery.3.2.1.min.js') }}"></script>
 <script src="{{ asset('/webplugins/assets/js/core/tether.min.js') }}"></script>
@@ -871,8 +1011,26 @@ body {
 <script src="{{ asset('/webplugins/assets/js/scroll.js') }}"></script>
 <script src="{{ asset('/webplugins/assets/js/site.min.js') }}"></script>
 <script src="{{ asset('/webplugins/assets/js/now-ui-kit.js') }}"></script>
-
+<script src="{{ asset('/webplugins/datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script type="text/javascript">
+     
+    $('#datepick').each(function(){
+        $(this).datepicker({
+            templates:{
+                leftArrow: '<i class="now-ui-icons arrows-1_minimal-left"></i>',
+                rightArrow: '<i class="now-ui-icons arrows-1_minimal-right"></i>'
+            }
+        }).on('show', function() {
+                $('.datepicker').addClass('open');
+
+                datepicker_color = $(this).data('datepicker-color');
+                if( datepicker_color.length != 0){
+                    $('.datepicker').addClass('datepicker-'+ datepicker_color +'');
+                }
+            }).on('hide', function() {
+                $('.datepicker').removeClass('open');
+            });
+    });
     $(document).ready(function() {
         // the body of this function is in assets/js/now-ui-kit.js
         nowuiKit.initSliders();
@@ -887,33 +1045,5 @@ body {
         }
     }
 </script>
-
-@if(Session::has('failupdate'))
-<input type="hidden" id="message" value="{{ Session::get('failupdate') }}">
-<script type="text/javascript">
-    $(document).ready(function()
-    {
-        alert($('#message').val());
-    })
-</script>
-@endif
-@if(Session::has('incorrect'))
-<input type="hidden" id="incorrect" value="{{ Session::get('incorrect') }}">
-<script type="text/javascript">
-    $(document).ready(function()
-    {
-        alert($('#incorrect').val());
-    })
-</script>
-@endif
-@if(Session::has('success'))
-<input type="hidden" id="success" value="{{ Session::get('success') }}">
-<script type="text/javascript">
-    $(document).ready(function()
-    {
-        alert($('#success').val());
-    })
-</script>
-@endif
 
 </html>
