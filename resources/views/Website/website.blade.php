@@ -106,12 +106,7 @@ body {
                             </a> 
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="modal" data-target="#admin">
-                            <i class="now-ui-icons ui-1_bell-53"></i>
-                            Admin
-                        </a>
-                    </li>
+                    
                 </ul>
                 </div>
             </div>
@@ -808,41 +803,15 @@ body {
             </div>
         </div>
     </section>    <!-- Modal Core -->
-    <div class="modal fade modal-mini modal-info" id="admin" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            
-            <h4 class="modal-title" id="myModalLabel" style="margin-top: -10%">Login</h4>
-          </div>
-          <form method="POST" action="/login">
-              <div class="modal-body">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <input type="text" value="" placeholder="Username" pattern="admin" title="Incorrect username and password" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <input type="password" value="" placeholder="Password" pattern="admin" title="Incorrect username and password" class="form-control">
-                    </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-success btn-round">Go</button>
-                </div>
-              </div>
-              {{ csrf_field() }}
-            </form>
-        </div>
-      </div>
-    </div>
+  
+
+
+    
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: -15%">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h3>Transaction</h3
+                    <h3>Transaction</h3>
                   </div>
                   
                   <div class="modal-body" style="margin-top: -8%">
@@ -853,90 +822,14 @@ body {
                     <div class="row col-md-12">
                         
                         <!-- start service -->
+                        @foreach($service as $s)
                         <div class="col-md-3">
-                            <input type="checkbox" name="service" value="CBC" id="cbc">
-                            <label for="cbc">
-                                CBC
+                            <input type="checkbox" name="service[]" value="{{ $s->service_id }}" id="{{ $s->service_id }}">
+                            <label for="{{ $s->service_id }}">
+                                {{ $s->service_name }}
                             </label>
                         </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" name="service" value="XRAY" id="xray">
-                            <label for="xray">
-                                XRAY
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" name="service" value="Ultrasound" id="ultrasound">
-                            <label for="ultrasound">
-                                Ultrasound
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" name="service" value="APTT" id="aptt">
-                            <label for="aptt">
-                                APTT
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" name="service" value="Urinaylsis" id="urinalysis">
-                            <label for="urinalysis">
-                                Urinaylsis
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" name="service" value="Dengue Test" id="dengue">
-                            <label for="dengue">
-                                Dengue Test
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" name="service" value="Creatinine" id="creatinine">
-                            <label for="creatinine">
-                                Creatinine
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" name="service" value="ECG" id="ecg">
-                            <label for="ecg">
-                                ECG
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" name="service" value="Uric Acid" id="uric">
-                            <label for="uric">
-                                Uric Acid
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" name="service" value="BUN" id="bun">
-                            <label for="bun">
-                                BUN
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" name="service" value="Triglyceride" id="triglyceride">
-                            <label for="triglyceride">
-                                Triglyceride
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" name="service" value="Albumin" id="albumin">
-                            <label for="albumin">
-                                Albumin
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" name="service" value="Peripheral Smear" id="peripheral">
-                            <label for="peripheral">
-                                Peripheral Smear
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" name="service" value="Blood Typing" id="blood">
-                            <label for="blood">
-                                Blood Typing
-                            </label>
-                        </div>
+                        @endforeach
                         <!-- end service -->
 
                     </div>
@@ -983,13 +876,12 @@ body {
                     <h5>Doctor</h5>
                     <div class="row col-md-12">
                         <select class="form-control" name="doctor">
-                            <option>Doctor 1</option>
-                            <option>Doctor 1</option>
-                            <option>Doctor 1</option>
+                           @foreach($doctor as $d)
+                           <option value="{{ $d->doctor_id }}">{{ $d->doctor_name }} - {{ $d->specialization }}</option>
+                           @endforeach
                         </select>
                     </div>
-                    </div>
-                    
+                 
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-info btn-simple">Save</button>
@@ -999,7 +891,8 @@ body {
                 </div>
               </div>
             </div>
-
+        </div>
+        </div>
      
 
 <script src="{{ asset('/webplugins/assets/js/core/jquery.3.2.1.min.js') }}"></script>

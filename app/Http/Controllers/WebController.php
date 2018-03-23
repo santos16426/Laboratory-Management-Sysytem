@@ -7,6 +7,123 @@ use DB;
 use Session;
 class WebController extends Controller
 {
+    function resservform(){
+        $serv_id = $_POST['redserv_id'];
+        DB::table('service_tbl')
+            ->where('service_id',$serv_id)
+            ->update([
+             'status'=> 1
+             
+        ]);
+        return redirect()->back();
+    }
+    function delservform(){
+
+        $serv_id = $_POST['delserv_id'];
+        DB::table('service_tbl')
+            ->where('service_id',$serv_id)
+            ->update([
+             'status'=> 0
+             
+        ]);
+        return redirect()->back();
+    }
+
+    function resform(){
+        $doc_id = $_POST['resdoc_id'];
+        DB::table('doctor_tbl')
+            ->where('doctor_id',$doc_id)
+            ->update([
+             'status'=> 1
+             
+        ]);
+        return redirect()->back();
+    }
+    function delform(){
+
+        $doc_id = $_POST['deldoc_id'];
+        DB::table('doctor_tbl')
+            ->where('doctor_id',$doc_id)
+            ->update([
+             'status'=> 0
+             
+        ]);
+        return redirect()->back();
+    }
+    function mewform(){
+        $docname = $_POST['newdocname'];
+        $specialization = $_POST['newspecialization'];
+        $contact = $_POST['newcontact'];
+        
+        DB::table('doctor_tbl')
+            ->insert([
+              'doctor_name'=>$docname,
+              'specialization'=>$specialization,
+              'contact'=>$contact
+             
+        ]);
+        return redirect()->back();
+    }
+
+    function upform(){
+        $docname = $_POST['docname'];
+        $specialization = $_POST['specialization'];
+        $contact = $_POST['contact'];
+        $doc_id = $_POST['doc_id'];
+        DB::table('doctor_tbl')
+            ->where('doctor_id',$doc_id)
+            ->update([
+              'doctor_name'=>$docname,
+              'specialization'=>$specialization,
+              'contact'=>$contact
+             
+        ]);
+        return redirect()->back();
+    }
+    function upservform(){
+        $serv_name = $_POST['serv_name'];
+       
+        $serv_id = $_POST['serv_id'];
+        DB::table('service_tbl')
+            ->where('service_id',$serv_id)
+            ->update([
+              'service_name'=>$serv_name
+             
+        ]);
+        return redirect()->back();
+    }
+    function getService(Request $req){
+        $var = DB::table('service_tbl')->where('service_id',$req->id)->get();
+        return response()->json($var);
+    }
+    function mewservform(){
+        $serv_name = $_POST['newserv_name'];
+       
+        DB::table('service_tbl')
+            ->insert([
+              'service_name'=>$serv_name
+             
+        ]);
+        return redirect()->back();
+    }
+    function getDoctor(Request $req){
+        $var = DB::table('doctor_tbl')->where('doctor_id',$req->id)->get();
+        return response()->json($var);
+    }
+    function doctors(){
+        $table = DB::table('doctor_tbl')->get();
+        return view('Website.doctors',['table'=>$table]);
+    }
+    function service(){
+        $table = DB::table('service_tbl')->get();
+        return view('Website.service',['table'=>$table]);
+    }
+    function logged(){
+        $table = DB::table('save_table')->leftjoin('doctor_tbl','doctor_tbl.doctor_id','=','save_table.doctor')->get();
+        var_dump($table);
+        Session::put('login',true);
+        return view('Website.GetFiles',['table'=>$table]);
+    }
     function save(){
         $service = $_POST['service'];
         $fname = $_POST['fname'];
@@ -19,27 +136,37 @@ class WebController extends Controller
         $doctor = $_POST['doctor'];
         DB::table('save_table')->insert
         ([
-            'service_id' => $service,
-            'full_name' => $fname. ' '. $mname. ' '.$lname,
+            'full_name' => $fname. ' '. $mname. ' ' .$lname,
             'age' => $age,
             'address'=>$location,
             'sched_date'=>date_create($date),
             'doctor'=>$doctor,
             'contact'=>$contact
         ]);
+        $max = DB::table('save_table')->select('tran_id')->max('tran_id');
+        for($x = 0; $x < count($service); $x++){
+            DB::table('trans_service_tbl')->insert
+            ([
+                'trans_id'=>$max,
+                'service_id'=>$service[$x]
+            ]);
+        }
         Session::flash('success',true);
         return redirect()->back();
 
     }
     public function Website()
     {
-    	return view('Website.website');
+        $service = DB::table('service_tbl')->where('status',1)->get();
+        $doctors = DB::table('doctor_tbl')->where('status',1)->get();
+    	return view('Website.website',['service'=>$service, 'doctor'=>$doctors]);
     }
     function GetFiles()
     {
        
-        $table = DB::table('save_table')->get();
-        return view('Website.GetFiles',['table'=>$table]);
+       $table = DB::table('save_table')->leftjoin('doctor_tbl','doctor_tbl.doctor_id','=','save_table.doctor')->get();
+       $service = DB::table('service_tbl')->leftjoin('trans_service_tbl','trans_service_tbl.service_id','=','service_tbl.service_id')->get();
+        return view('Website.GetFiles',['table'=>$table,'service'=>$service]);
     }
     function changepass()
     {

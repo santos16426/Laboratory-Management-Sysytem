@@ -1,10 +1,13 @@
 
+
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>Transaction</title>
+  <link rel="stylesheet" href="{{ asset('/webplugins/assets/css/now-ui-kit.css') }}">
   <link rel="stylesheet" href="{{ asset('/webplugins/DataTable/assets/css/bootstrap-tbl.css') }}">
   <link rel="stylesheet" href="{{ asset('/webplugins/DataTable/assets/css/demo.css') }}">
   <link rel="stylesheet" href="{{ asset('/webplugins/DataTable/assets/css/bootstrap.min.css') }}">
@@ -15,7 +18,8 @@
   <link rel="stylesheet" href="{{ asset('/webplugins/DataTable/assets/background.css') }}">
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  
+
 </head>
 <body>
   <div id="navbar-full">
@@ -37,7 +41,10 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    
+                  @if(Session::get('login') == true)
+                      <li><a href="/doctors">Doctor &nbsp;<i class="fa fa-users" aria-hidden="true"></i></a></li>
+                      <li><a href="/service">Service &nbsp;<i class="fa fa-dropbox" aria-hidden="true"></i></a></li>
+                    @endif
                       <li><a href="/Website/Home">Back to Website&nbsp;&nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
                       
                       </ul>
@@ -59,10 +66,11 @@
                     <div class="toolbar">
                         
                     </div>
+                    @if(Session::get('login') == true)
                     <table id="fresh-table" class="table">
                         <thead>
                           <th data-sortable="true">Transaction Date</th>
-                          <th>Patient Full Name</th>
+                          <th >Patient Full Name</th>
                           <th>Age</th>
                           <th>Location</th>
                           <th>Services</th>
@@ -75,12 +83,50 @@
                         <td>{{ $t->full_name }}</td>
                         <td>{{ $t->age }}</td>
                         <td>{{ $t->address }}</td>
-                        <td>{{ $t->service_id }}</td>
-                        <td>{{ $t->doctor }}</td>
+                        <td>
+                          @foreach($service as $s)
+                           @if($s->trans_id == $t->tran_id)
+                            {{ $s->service_name }},
+                           @endif
+                          @endforeach
+                        </td>
+                        <td>{{ $t->doctor_name }}</td>
                         </tr>
                         @endforeach
                         </tbody>
                     </table>
+                    @else
+
+                   
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                
+                                <h4 class="modal-title" id="myModalLabel" style="margin-top: -10%">Login</h4>
+                              </div>
+                              <form method="POST" action="/login">
+                                  <div class="modal-body">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" value="" placeholder="Username" pattern="admin" title="Incorrect username and password" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="password" value="" placeholder="Password" pattern="admin" title="Incorrect username and password" class="form-control">
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-success btn-round">Go</button>
+                                    </div>
+                                  </div>
+                                  {{ csrf_field() }}
+                                </form>
+                            </div>
+                          </div>
+                          @endif
                 </div>
         </div>
       </div>
@@ -90,9 +136,18 @@
 
 
   
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script src="{{ asset('/webplugins/assets/js/site.min.js') }}"></script>
+
 <script src="{{ asset('/webplugins/DataTable/assets/js/bootstrap-tbl.js') }}"></script>
 <script src="{{ asset('/webplugins/DataTable/assets/js/bootstrap-table.js') }}"></script>
-<script src="{{ asset('/webplugins/DataTable/assets/js/jquery-1.11.2.min.js') }}"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#admin').modal('show');
+});
+</script>
 <script type="text/javascript">
         var $table = $('#fresh-table'),
             
@@ -151,9 +206,7 @@
                 }
             };
             
-            $alertBtn.click(function () {
-                alert("You pressed on Alert");
-            });
+         
             
         });
             
@@ -175,4 +228,7 @@
             
     </script>
 
+
+
 </html>
+  
